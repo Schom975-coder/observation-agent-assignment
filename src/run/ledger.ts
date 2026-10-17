@@ -828,11 +828,31 @@ export function bindingIsCurrent(binding: AgentBinding, state: BatchState): bool
 
 export type BindResult = { ok: true; binding: AgentBinding } | { ok: false; reason: string };
 
+// out/ledger/agents/jobs/<job_id>.json: the agent holding the job's current dispatch, so that one
+// dispatch is worked on by one agent. `dispatch` and `refill` never hand out a running job, so
+// there is never a second agent for a dispatch legitimately; a second one is refused.
+type JobHolder = { agent_id: string; dispatches: number; cache_key: string; dispatched_utc: string };
+const jobHolderFile = (root: string, jobId: string): string => join(agentsDir(root), 'jobs', `${jobId}.json`);
+
+// The recorded holder, or null when there is none or the file can't be read (it only ever
+// excludes, and is rewritten by the next binding).
+function readHolder(file: string): JobHolder | null {
+  try {
+    const raw: unknown = JSON.parse(readText(file) ?? 'null');
+    if (!isRecord(raw) || typeof raw.agent_id !== 'string' || !Number.isInteger(raw.dispatches) || typeof raw.cache_key !== 'string' || typeof raw.dispatched_utc !== 'string') return null;
+    return { agent_id: raw.agent_id, dispatches: raw.dispatches as number, cache_key: raw.cache_key, dispatched_utc: raw.dispatched_utc };
+  } catch {
+    return null;
+  }
+}
+
 // Bind an agent to a job, on its first read of a job file. The first binding wins: binding again to
 // the same job returns it unchanged, to another job is refused. Only a running job can be bound,
-// and the binding copies its dispatch count, cache key and dispatch time, so a re-dispatch
-// supersedes it (bindingIsCurrent). Which kind of job an agent type may bind to is the guard's
-// business (its allowlists); this records whatever it allowed.
+// and only by one agent per dispatch: a second agent reading a job another agent already holds
+// under the same dispatch is refused. The binding copies the dispatch count, cache key and
+// dispatch time, so a re-dispatch supersedes it (bindingIsCurrent) and frees the job for the next
+// agent. Which kind of job an agent type may bind to is the guard's business (its allowlists);
+// this records whatever it allowed.
 export function bindAgent(root: string, agentId: string, jobId: string): BindResult {
   if (!isAgentId(agentId)) return { ok: false, reason: `agent ID ${JSON.stringify(agentId.slice(0, 80))} can't be bound (letters, digits, - and _ only)` };
   if (!isJobId(jobId)) return { ok: false, reason: `${JSON.stringify(jobId.slice(0, 80))} is not a job ID` };
@@ -848,6 +868,20 @@ export function bindAgent(root: string, agentId: string, jobId: string): BindRes
     const state = readBatchState(root, jobId);
     if (state.status !== 'running') return { ok: false, reason: `${jobId} is ${state.status}, not running: it has not been handed to ${k.worker === 'extractor' ? 'an' : 'a'} ${k.worker}` };
     if (state.cache_key === null || state.dispatched_utc === null) return { ok: false, reason: `${jobId} has no dispatch record to bind to` };
+    const dispatch = { dispatches: state.dispatches, cache_key: state.cache_key, dispatched_utc: state.dispatched_utc };
+    // Agent lock, then job-holder lock: always in this order, so two agents can't deadlock.
+    const holderFile = jobHolderFile(root, jobId);
+    const heldBy = withLock(holderFile, `out/ledger/agents/jobs/${jobId}.json`, (): string | null => {
+      const h = readHolder(holderFile);
+      if (h !== null && h.agent_id !== agentId && h.dispatches === dispatch.dispatches && h.cache_key === dispatch.cache_key && h.dispatched_utc === dispatch.dispatched_utc) {
+        return h.agent_id;
+      }
+      writeJsonAtomic(holderFile, { agent_id: agentId, ...dispatch });
+      return null;
+    });
+    if (heldBy !== null) {
+      return { ok: false, reason: `${jobId} is already being worked on by another ${k.worker} under its current dispatch; one ${k.short} has one ${k.worker} at a time` };
+    }
     const binding: AgentBinding = {
       agent_id: agentId,
       batch_id: jobId,

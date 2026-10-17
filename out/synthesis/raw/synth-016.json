@@ -1,0 +1,137 @@
+{
+  "group_id": "synth-016",
+  "processes": [
+    {
+      "key": "reference-data-update",
+      "description": "Staff and counterparties tell the desk about changed reference data: new phone, pager and cell numbers, extensions and contact sheets, and counterparty identifier changes such as scheduling coordinator IDs, contract numbers, DnB numbers, legal names, meter numbers and pooling points. Desk leads also ask staff for current contact details or for the codes and book owners used on their desk. Notices are forwarded to the people who use them, and counterparty records, contract entries, contact sheets and email lists are updated.",
+      "steps": [
+        "A counterparty, colleague or HR announces a change in contact details or identifiers, or a desk lead asks staff for their current details.",
+        "The notice is forwarded to the desk that uses the data, often with the new ID or contract number highlighted.",
+        "Staff reply with the missing details, such as cell numbers, org region codes or book owners.",
+        "Counterparty records, contract entries and contact sheets are updated with the new names, numbers and IDs.",
+        "Email distribution lists are corrected when names or addresses change.",
+        "A revised contact list or a final monthly list of counterparty name changes is circulated, and counterparties can object to identifier changes."
+      ],
+      "stalls": [
+        {
+          "summary": "Distribution lists drift out of date: one trader reports he does not receive mail unless his name appears a particular way, asks to be removed from a list, and later asks again for lists to be changed.",
+          "evidence_ids": ["batch-055:e12", "batch-055:e17", "batch-061:e20", "batch-069:e9"]
+        },
+        {
+          "summary": "A counterparty sends its reference changes in an empty spreadsheet and has to resend the file.",
+          "evidence_ids": ["batch-040:e9"]
+        },
+        {
+          "summary": "Contact details go missing or stale, so the desk has to ask again for current contact information and a working cell number, and staff ask for revised contact sheets to be passed on.",
+          "evidence_ids": ["batch-088:e15", "batch-088:e16", "batch-011:e31"]
+        }
+      ],
+      "contradictions": [
+        {
+          "summary": "Instructions on how one trader's name should appear in email lists reverse: earlier mail says the name with the suffix III must appear or he does not receive the mail, later mail asks lists to read the name without III.",
+          "evidence_ids": ["batch-055:e12", "batch-069:e9"]
+        }
+      ],
+      "automation": {
+        "approach": "Keep one shared reference register for staff contacts and counterparty identifiers, fed by a standard change form that records the counterparty, the old and new value, the effective date and the systems and lists to update. A check could compare incoming notices against the register and flag records and distribution lists not yet updated.",
+        "artifact_type": "template",
+        "rationale": "Most rounds are a single notice that someone must re-key into several places. A fixed change form makes each notice complete on arrival, avoiding empty attachments and missing numbers, and gives one list to update from, while people still confirm identifier changes with the counterparty."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": { "low": 3, "mid": 10, "high": 30 },
+        "automatable_pct": 40,
+        "basis": "inferred",
+        "rationale": "Many rounds are a contact change that takes a few minutes to enter into a contact sheet or list. Counterparty identifier, contract number or legal name changes take longer because the record has to be found, corrected in the counterparty and contract records and checked. About 10 minutes is typical, from 3 for a phone number to 30 for a counterparty change touching several records. Lookup, re-keying and list updates are the part a register and change form can take over.",
+        "evidence_ids": ["batch-007:e5", "batch-005:e31", "batch-068:e16", "batch-076:e11", "batch-008:e30", "batch-040:e6", "batch-011:e31"]
+      }
+    },
+    {
+      "key": "staff-recruiting",
+      "description": "Managers open rounds to fill an analyst, associate or commercial opening: they ask the analyst program or HR for candidates, describe the role and reporting line, or forward internal candidates and referrals. Resumes are circulated, interviewers are named and schedules set, candidates are interviewed and feedback goes back to HR, and the hiring manager asks to bring a chosen person into the group. Some rounds settle whether a group needs anyone at all, justify replacement hires, or tell candidates that plans changed.",
+      "steps": [
+        "A manager identifies an opening and asks HR or the analyst program for candidates, or describes the role in a posting.",
+        "HR, colleagues or candidates send resumes, referrals and internal candidates for review.",
+        "The manager reviews candidates and, for transfers, settles with the current group where the person should go.",
+        "Interviewers are named and an interview schedule is set.",
+        "Candidates are interviewed and feedback goes back to HR.",
+        "The manager asks HR to bring the chosen candidate in, with justification for replacement hires.",
+        "Candidates are told of the outcome or of any change in plans."
+      ],
+      "stalls": [
+        {
+          "summary": "Two managers compete for the same analyst and the current manager refuses to release him unless forced, so the placement waits on a meeting to decide where he fits better.",
+          "evidence_ids": ["batch-038:s3", "batch-038:e31", "batch-038:e32", "batch-038:e30"]
+        },
+        {
+          "summary": "Interviews are cancelled or moved when an interviewer is out of the office, and feedback waits until every candidate has been seen.",
+          "evidence_ids": ["batch-042:e19", "batch-042:e20", "batch-072:e4"]
+        },
+        {
+          "summary": "Plans change after candidates are engaged: a posting is reworded as possibly temporary and candidates have to be told of the change in plans.",
+          "evidence_ids": ["batch-059:e5", "batch-075:e2"]
+        },
+        {
+          "summary": "Staffing requests are routed to different HR contacts by job type, and managers wait for HR to call back.",
+          "evidence_ids": ["batch-028:e17", "batch-039:e19"]
+        }
+      ],
+      "contradictions": [
+        {
+          "summary": "The current manager and the requesting manager each claim the same analyst for their own group, one acknowledging why the other wants him while refusing to give him up.",
+          "evidence_ids": ["batch-038:e31", "batch-038:s3", "batch-038:e32"]
+        }
+      ],
+      "automation": {
+        "approach": "A standard requisition form capturing role, level, reporting line, whether the post may be temporary and the justification for replacements, plus a shared candidate tracker listing resumes, interviewers, interview slots and feedback status for each opening. Scheduling and feedback reminders could be generated from the tracker.",
+        "artifact_type": "template",
+        "rationale": "The repeated work is assembling role details, routing resumes and collecting interview feedback. A requisition form and tracker keep these in one place and cut re-asking, while interviewing, judging fit and negotiating between groups stay with managers."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": { "low": 15, "mid": 60, "high": 180 },
+        "automatable_pct": 20,
+        "basis": "inferred",
+        "rationale": "The hands-on work per round is reading resumes, interviewing, writing feedback and drafting the role description or requisition. A round often covers several resumes and at least one interview, so about 60 minutes is typical; a referral passed to HR takes 15, a round with several candidates and interviewers up to 180. Scheduling, requisition drafting and resume routing can be supported by tools; interviewing and selection remain people's work.",
+        "evidence_ids": ["batch-038:e34", "batch-039:e7", "batch-060:e18", "batch-059:e5", "batch-072:e4", "batch-073:e11", "batch-069:e5"]
+      }
+    },
+    {
+      "key": "staff-training-coordination",
+      "description": "Desk leads arrange training for their staff: they choose topics, set dates for internal classes, presentations and system training, build class rosters of balanced groups, sign people up for courses such as an energy math class or a pilot program, and approve requests to attend. Requests come from managers asking for lists of who needs training or from staff asking to attend a suggested course; organisers confirm times, arrange for night-shift staff and approve registrations in the training system.",
+      "steps": [
+        "A manager or trainer proposes training: a class, a presentation, cross training or a system session.",
+        "Topics and content are chosen, such as specific deal types, models or contract clauses.",
+        "The organiser lists who needs the training and builds rosters or class groups.",
+        "A date and time are set, with arrangements for staff on other shifts.",
+        "Staff are signed up or ask to attend, and their manager approves the registration.",
+        "Attendees are told when classes start, and progress through course units is followed."
+      ],
+      "stalls": [
+        {
+          "summary": "Approving a training registration fails with a system error, so the approval has to be retried or handled another way.",
+          "evidence_ids": ["batch-047:s1", "batch-047:e18"]
+        },
+        {
+          "summary": "Sessions are planned at short notice and organisers drop out, so a class is discussed again on the day it starts or has to be moved.",
+          "evidence_ids": ["batch-020:e9", "batch-031:e21", "batch-031:e22"]
+        },
+        {
+          "summary": "Trainers wait on managers for the list of individuals who need the training before they can schedule it.",
+          "evidence_ids": ["batch-017:e2"]
+        }
+      ],
+      "contradictions": [],
+      "automation": {
+        "approach": "A shared training calendar and enrollment sheet listing course, date, attendees, shift, manager approval and completion, with sign-ups and approvals recorded in one place. Balanced class rosters and reminders to attendees could be generated from it.",
+        "artifact_type": "template",
+        "rationale": "Rounds repeat the same steps of listing attendees, setting dates and getting approvals. One enrollment sheet removes re-asking for lists and gives a fallback when the approval system errors, while the choice of topics and attendees stays with managers."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": { "low": 5, "mid": 20, "high": 60 },
+        "automatable_pct": 30,
+        "basis": "inferred",
+        "rationale": "Hands-on work per round is choosing topics, listing attendees, building balanced class rosters, booking the session and approving registrations. A single sign-up or approval takes about 5 minutes; building rosters or a topic outline for a class series takes up to 60. About 20 minutes is typical. Listing, enrolment and reminders can be supported by a shared sheet; picking topics and people stays with managers.",
+        "evidence_ids": ["batch-031:e13", "batch-032:e13", "batch-065:e20", "batch-067:e2", "batch-017:e2", "batch-098:e15", "batch-047:e18"]
+      }
+    }
+  ]
+}

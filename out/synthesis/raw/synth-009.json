@@ -1,0 +1,100 @@
+{
+  "group_id": "synth-009",
+  "processes": [
+    {
+      "key": "gas-nomination-handling",
+      "description": "Customers, suppliers and plants such as the Enron Methanol plant and Calpine send daily or monthly gas nominations, usually as attached documents or spreadsheets. Schedulers forward them to whoever schedules the affected pipeline or meters, estimate volumes where none arrive (from the prior year's nomination or a recent average), enter volumes against deals and pipeline paths, confirm deal numbers, meters and transport numbers, and issue revised nominations when flows, meters or spot purchases change.",
+      "steps": [
+        "A customer, supplier or plant sends a daily or monthly nomination, usually as an attached document or spreadsheet.",
+        "The scheduler forwards it to the people who schedule the affected pipeline, trade zone or meters.",
+        "Where no nomination arrives, the scheduler estimates volumes from the prior year's nomination or a recent average.",
+        "Volumes are entered against deals and pipeline paths in the scheduling system.",
+        "Deal numbers, meters and transport numbers are confirmed with the counterparty or internal desks.",
+        "When flows, meters or purchases change, a revised nomination is issued and the path or volume corrected.",
+        "At month end, schedulers pull their own meters from the position and confirm them back to the lead scheduler."
+      ],
+      "stalls": [
+        {
+          "summary": "Rounds wait on replies: a check goes unanswered, a producer does not respond after repeated voice and email contacts, a transport number is still outstanding, and a meter addition waits on a return call.",
+          "evidence_ids": ["batch-011:s3", "batch-033:s1", "batch-033:s2", "batch-006:s2"]
+        },
+        {
+          "summary": "Nominations are reworked after the fact: a mistake in the start-of-month nominations, a pipeline path changed by another scheduler, and revised daily nominations reissued by the customer.",
+          "evidence_ids": ["batch-003:s2", "batch-003:e9", "batch-003:e42"]
+        },
+        {
+          "summary": "The month position attachment keeps bouncing off the mail gateway, so it is pasted into the message body instead.",
+          "evidence_ids": ["batch-079:s0"]
+        },
+        {
+          "summary": "Confirmation is held up until deal numbers are supplied, and some nominations are left pending while a colleague decides whether to wait on them.",
+          "evidence_ids": ["batch-052:e9", "batch-009:e28"]
+        },
+        {
+          "summary": "Who places which nominations shifts: a suggestion to centralize transport nominations, and a later assignment of off-system nominations to one scheduler.",
+          "evidence_ids": ["batch-039:e5", "batch-042:o0"]
+        }
+      ],
+      "contradictions": [],
+      "automation": {
+        "approach": "A standard nomination form (day, meter, pipeline, deal and volume) that customers and suppliers fill in, loaded into the scheduling system by a script that compares each nomination with the prior one and with flowing volumes, flags missing deal or transport numbers and disconnected meters, and drafts the revised nomination for a scheduler to review when volumes change.",
+        "artifact_type": "template",
+        "rationale": "Nominations arrive in varied formats (documents, spreadsheets, pasted text) and volumes are re-keyed, estimated and corrected by hand. One shared form removes the re-keying and makes errors such as a wrong start-of-month nomination or a changed path visible before they reach the pipeline, while schedulers keep the judgement on estimates and exceptions."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": { "low": 5, "mid": 15, "high": 45 },
+        "automatable_pct": 50,
+        "basis": "inferred",
+        "rationale": "Most rounds are routine nominations: reviewing the attached volumes, checking them against the deal and earlier nominations, and entering them against the path in the scheduling system, about 15 minutes. Straight entries take about 5; rounds that need an estimate, a path change, a deal-number confirmation or a month-end meter check run to about 45. Parsing a standard form and loading and comparing volumes could be handled by a tool; estimates and exceptions stay with schedulers.",
+        "evidence_ids": ["batch-025:e7", "batch-006:e21", "batch-013:e2", "batch-011:e0", "batch-003:e9", "batch-052:e9", "batch-079:e0", "batch-003:s2", "batch-015:e8"]
+      }
+    },
+    {
+      "key": "internal-annuity-booking",
+      "description": "A desk member asks for an internal annuity to be booked or revised so that revenue or profit from a specific deal is shared between trading books. Bill Williams asks for annuities to be revised as appropriate, explains which of several annuities relate to a deal's profit sharing, states which book revenue moved from and to and how it was split, and supports the explanation with a spreadsheet he built months earlier.",
+      "steps": [
+        "A desk member asks for an internal annuity on a specific deal to be booked or revised.",
+        "The deal's existing annuities and profit-sharing arrangement are identified.",
+        "The split of revenue between the trading books is worked out.",
+        "The annuity is entered or revised to move revenue between the books.",
+        "The booking is explained to the requester, with the supporting spreadsheet attached."
+      ],
+      "stalls": [],
+      "contradictions": [],
+      "automation": {
+        "approach": "A standard annuity booking sheet recording the deal, the books revenue moves from and to, the split, the period and the reason, kept as a shared record so later revisions and explanations draw on it instead of an old personal spreadsheet.",
+        "artifact_type": "template",
+        "rationale": "The explanations rely on a spreadsheet created months earlier and on recalling several annuities tied to one deal. A single shared template keeps that record in one place and makes revisions and questions quicker to answer."
+      },
+      "work_estimate": null
+    },
+    {
+      "key": "iso-adjustment-bidding",
+      "description": "Bill Williams sets up the desk's decremental and adjustment bidding in the California ISO market. He circulates a sheet outlining the basic dec bidding process, works with generators on buy-backs or supplemental dec bids when market conditions warrant, instructs the real-time group on tiering adjustment bids within the limit on how many bids the CAISO system reads, and asks colleagues which tools were used to settle such bids.",
+      "steps": [
+        "Market conditions or a generator's position prompt a decremental or adjustment bid.",
+        "The desk agrees buy-backs or supplemental dec bids with the generator.",
+        "The real-time group enters the bids in the ISO system following the outlined process.",
+        "Adjustment bids are tiered so the set stays within the number of bids the CAISO system reads.",
+        "Settlement is checked, which means finding out which tools were used to settle earlier bids."
+      ],
+      "stalls": [
+        {
+          "summary": "The CAISO system reads only a limited number of tiered adjustment bids, so bids must be tiered to fit that limit, which led to a new tiering process.",
+          "evidence_ids": ["batch-066:e19", "batch-066:e5"]
+        },
+        {
+          "summary": "How earlier bids were settled is not written down; the desk has to ask colleagues what tools were used to settle.",
+          "evidence_ids": ["batch-054:e4"]
+        }
+      ],
+      "contradictions": [],
+      "automation": {
+        "approach": "A written procedure with a bid-entry sheet that builds the tiered bid set, checks it against the CAISO bid limit before submission, and records generator buy-back agreements and the settlement tools used.",
+        "artifact_type": "sop",
+        "rationale": "The process lives in one person's emails and a simple attached sheet, and the real-time group needs clear instructions on entering and tiering bids. A procedure with a limit check captures the tiering rule and the settlement knowledge that the mail shows being asked for."
+      },
+      "work_estimate": null
+    }
+  ]
+}

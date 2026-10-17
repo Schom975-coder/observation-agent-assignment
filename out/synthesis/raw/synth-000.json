@@ -1,0 +1,127 @@
+{
+  "group_id": "synth-000",
+  "processes": [
+    {
+      "key": "accounting-variance-resolution",
+      "description": "Operational accounting, logistics and risk staff work through figures that do not agree: Sitara deals with volume variances, intercompany balances that must be cleared, meter volumes determined to be written off, prior month adjustments, revised storage prices and lists of major items still outstanding. A round starts when someone sends a list or schedule of differences; recipients research each item, send back schedules, adjustments or revised prices, and items that depend on a counterparty such as Transco are handed to a named person.",
+      "steps": [
+        "An accounting or volume contact sends a list of differences: Sitara deals with volume variances, intercompany balances to clear, or major items still outstanding.",
+        "Recipients research each item against deal, meter and ledger records to find why the figures differ.",
+        "Schedules, revised prices or prior month adjustments are prepared and sent back, such as storage schedules for Spindletop and Bammel.",
+        "Volumes determined to be written off at a meter are moved out as instructed.",
+        "Items that depend on a counterparty, such as Transco, are assigned to a named person to resolve.",
+        "The requester follows up on unanswered items and resends attachments that arrived unreadable.",
+        "Risk and accounting staff propose process improvements to cut recurring differences."
+      ],
+      "stalls": [
+        {
+          "summary": "A request to clear intercompany balances went unanswered until the requester followed up asking whether anyone had looked into it.",
+          "evidence_ids": ["batch-006:s1", "batch-006:e15"]
+        },
+        {
+          "summary": "A list of differences arrived distorted and had to be resent before recipients could work from it.",
+          "evidence_ids": ["batch-010:s2", "batch-010:e11"]
+        },
+        {
+          "summary": "Major items stay open and are re-listed as still outstanding; one depends on the counterparty and is handed to Charlotte to work out with Transco.",
+          "evidence_ids": ["batch-014:e13", "batch-014:o0"]
+        },
+        {
+          "summary": "Unresolved differences are sent out with a general plea for help rather than to a named owner.",
+          "evidence_ids": ["batch-086:e3"]
+        }
+      ],
+      "contradictions": [],
+      "automation": {
+        "approach": "A scheduled reconciliation report that compares Sitara deal volumes with the scheduled, flash, ledger and inventory figures, lists every mismatch with its deal, meter and counterparty, and carries open items forward with an owner and status, so each round starts from a maintained list instead of a fresh emailed one.",
+        "artifact_type": "template",
+        "rationale": "Every round has the same shape: a list of items that do not agree, research, and items carried forward as still outstanding. A shared variance tracker layout with owner and status columns addresses the unanswered and re-listed items. Matching figures is rule-based and suits a report; deciding write-offs and settling counterparty disputes stays with people."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": { "low": 30, "mid": 90, "high": 240 },
+        "automatable_pct": 40,
+        "basis": "inferred",
+        "rationale": "Most of a round is research: looking up each listed Sitara deal or meter, finding why volumes or balances differ, and preparing schedules, prior month adjustments or revised prices. A short list takes about 30 minutes, a typical list with a schedule about 90, and building storage schedules or working a long outstanding list up to 240. Matching and listing differences can be automated; investigating causes and agreeing write-offs cannot.",
+        "evidence_ids": ["batch-006:e8", "batch-006:e15", "batch-014:e13", "batch-028:e22", "batch-045:e15", "batch-046:e23", "batch-086:e3"]
+      }
+    },
+    {
+      "key": "audit-support-requests",
+      "description": "Arthur Andersen auditors send monthly gas testing requests to risk staff: deal tickets and confirmations for sampled deals, the P&L top sheet as of month end, MTM valuations, the index used for pricing, and a description of where origination value comes from. A risk coordinator forwards each request to the desk or person holding the information, collects the replies, explains differences, passes everything to the auditors, and tracks the quarter's requests in a matrix.",
+      "steps": [
+        "Auditors send a testing request naming the sampled deals and the support they need.",
+        "The risk coordinator forwards it to the desk contact who holds the data, such as Pat Ryder for West desk requests.",
+        "Desk or risk staff pull deal tickets, confirmations, P&L top sheets or MTM valuations from their systems.",
+        "Staff write explanations where asked: where origination value comes from, which index was used, how a difference was booked.",
+        "The coordinator collects replies, re-requests anything missing or misplaced, and passes the package to the auditors.",
+        "All requests are logged in a matrix circulated for the quarter."
+      ],
+      "stalls": [
+        {
+          "summary": "Information gathered for the auditors was misplaced and had to be requested again from the desk.",
+          "evidence_ids": ["batch-031:e4"]
+        },
+        {
+          "summary": "Auditor pressure lands on the coordinator, who presses desk staff to deliver; one request went out already expecting the information might not come back.",
+          "evidence_ids": ["batch-039:e15", "batch-031:e6", "batch-049:e17"]
+        },
+        {
+          "summary": "Requests are passed along until they reach whoever can research the deals, such as the real time coordinator for hourly deals.",
+          "evidence_ids": ["batch-042:e27", "batch-056:o0"]
+        }
+      ],
+      "contradictions": [
+        {
+          "summary": "West desk audit requests are directed to Pat Ryder in one message, while a later reply says the West Hourly deals in a request can be researched by Kate Symes, the real time coordinator.",
+          "evidence_ids": ["batch-042:o1", "batch-056:o0"]
+        }
+      ],
+      "automation": {
+        "approach": "Keep the request matrix as a standing tracker and map each request type to its source system and owner per desk. Deal tickets, confirmations, P&L top sheets and MTM mini-book valuations could be pulled by a report from the list of sampled deal numbers, leaving desk staff to answer only the narrative questions.",
+        "artifact_type": "sop",
+        "rationale": "The repeated cost is routing: one coordinator forwards every request and presses the desks, and different people are named for West desk requests. A written procedure naming the owner and source for each request type removes that guesswork. Document pulls are mechanical and suit a report; explanations to the auditors need people."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": { "low": 15, "mid": 45, "high": 150 },
+        "automatable_pct": 50,
+        "basis": "inferred",
+        "rationale": "Each round means locating and copying support for sampled deals: deal tickets, confirmations, a P&L top sheet or valuation, plus a short written explanation for some. About 45 minutes for a typical request, 15 for a single top sheet, and up to 150 when valuations for a book or a quarter's request matrix are assembled. Pulling standard documents is mechanical; explanations and research on disputed deals are not.",
+        "evidence_ids": ["batch-048:e12", "batch-031:e7", "batch-042:e26", "batch-052:e28", "batch-039:e9", "batch-042:e25", "batch-056:o0"]
+      }
+    },
+    {
+      "key": "balancing-agreement-negotiation",
+      "description": "Pipeline marketing staff negotiate operational balancing agreements with connecting parties such as Williams, Burlington and TETCO. A round involves drafting or revising contract language, such as the tolerance-level paragraph, circulating it internally, sending it to the counterparty, meeting their conditions such as a change of the contracting name, getting the signed agreement back by mail, and settling any old imbalance when an agreement is replaced.",
+      "steps": [
+        "Draft or revise OBA language, such as the tolerance-level paragraph, and circulate it internally.",
+        "Send the draft to the connecting pipeline or producer.",
+        "Handle counterparty conditions, such as changing the name on the contract before execution.",
+        "Wait for the counterparty to sign and mail back the agreement.",
+        "Settle any imbalance left under an old OBA, such as a cash-out."
+      ],
+      "stalls": [
+        {
+          "summary": "Execution depends on the counterparty mailing the agreement back; a TETCO contact only promised to put the OBA in the mail.",
+          "evidence_ids": ["batch-009:e24"]
+        },
+        {
+          "summary": "An OBA stayed outstanding until the counterparty's condition, a change of the name on the contract, was met.",
+          "evidence_ids": ["batch-098:e13"]
+        }
+      ],
+      "contradictions": [],
+      "automation": {
+        "approach": "A standard OBA form with pre-approved clause options for tolerance levels and imbalance cash-out, plus a tracker of agreements sent, outstanding and executed with each counterparty's correct legal name, so drafts start from approved language and outstanding agreements stay visible.",
+        "artifact_type": "template",
+        "rationale": "Each round is a negotiation, so most of the work is judgement. Standard clause language shortens drafting and internal review, and recording the counterparty's correct name up front avoids the hold-up seen when an agreement waited on a name change."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": { "low": 20, "mid": 60, "high": 180 },
+        "automatable_pct": 25,
+        "basis": "inferred",
+        "rationale": "Hands-on work is drafting or revising clause language, checking tolerance terms with colleagues, correcting contract details such as the party name, and working out an old imbalance to cash out. About 60 minutes per round; a simple execution follow-up takes 20 and drafting fresh terms up to 180. Starting from standard clauses cuts drafting; negotiation stays manual.",
+        "evidence_ids": ["batch-082:e16", "batch-098:e13", "batch-098:e4", "batch-009:e24"]
+      }
+    }
+  ]
+}

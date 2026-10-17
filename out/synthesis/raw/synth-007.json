@@ -1,0 +1,151 @@
+{
+  "group_id": "synth-007",
+  "processes": [
+    {
+      "key": "deal-pathing-setup",
+      "description": "Schedulers, marketers and volume management ask the logistics desk to enter gas deals in Sitara and path them in the scheduling system for each pipeline involved: purchases and sales, storage sales, buy/sell links between supply and market deals, industrial buybacks and storage withdrawals. Rounds also cover reviewing the month's setup in UNIFY for missing or wrong deals, sharing the industrial spreadsheet, and creating customer finals in CAPS or FSP each night. Requesters check the schedule afterwards and ask again when a pipeline path is still missing.",
+      "steps": [
+        "A marketer, scheduler or volume management asks for a purchase, sale or storage deal to be entered in Sitara.",
+        "The new deal is entered and linked to related deals, such as attaching a supply deal to a market deal as a buy/sell.",
+        "The deal is pathed in the scheduling system on each pipeline it moves across.",
+        "The month's setup in UNIFY is reviewed against desk lists to find current and missing deals.",
+        "Industrial allocations, links and buybacks are reviewed and the industrial spreadsheet is shared.",
+        "Customer finals are created in CAPS or FSP before the nightly deadline.",
+        "The requester checks that volumes schedule and asks for status when a path is still missing."
+      ],
+      "stalls": [
+        {
+          "summary": "A deal asked to be pathed on two pipelines was later found still not pathed on two others, and the requester had to ask again for its status.",
+          "evidence_ids": ["batch-055:e7", "batch-055:s1", "batch-055:s2"]
+        },
+        {
+          "summary": "On the Cannon Interest purchase and sale a requester had to ask whether the recipient was the person able to schedule the volume, so who finishes the pathing was unclear.",
+          "evidence_ids": ["batch-011:e21", "batch-011:s5"]
+        },
+        {
+          "summary": "The Centana storage sale to AEP was requested for entry and pathing, and a later message still asks whether the deal has been put in.",
+          "evidence_ids": ["batch-081:e5", "batch-082:e8"]
+        },
+        {
+          "summary": "Deals entered retroactively are flagged as having impacts on daily operations, so late entries cause rework downstream.",
+          "evidence_ids": ["batch-010:e21"]
+        }
+      ],
+      "contradictions": [
+        {
+          "summary": "Pathing for Cilco on a storage withdrawal day is laid out one way, while a reply in the same round says the volume should have originated elsewhere, leaving it unclear which setup is right.",
+          "evidence_ids": ["batch-004:e26", "batch-004:s4"]
+        }
+      ],
+      "automation": {
+        "approach": "A nightly report comparing new and changed Sitara deals against the paths in the scheduling system, listing each deal not yet pathed on every pipeline it names, plus a monthly setup checklist covering buybacks, buy/sell links, storage withdrawals and customer finals, so missing paths surface before the requester has to chase.",
+        "artifact_type": "checklist",
+        "rationale": "The mail shows rounds stalling on paths missed on one pipeline, unclear hand-offs and monthly setups checked by hand against lists. A checklist of each deal type's pathing steps and the nightly finals deadline can be used tomorrow without a system change; the exception report needs a data feed and comes later."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": { "low": 15, "mid": 30, "high": 90 },
+        "automatable_pct": 35,
+        "basis": "inferred",
+        "rationale": "Minutes go to entering a deal in Sitara, linking it to related deals and pathing it on each pipeline named, around 30 minutes for a typical round. A single storage or sales deal sits nearer 15; monthly setup reviews in UNIFY and industrial buyback reviews run toward 90. Comparing deals with paths and listing gaps could be done by a report; entry decisions and pathing choices stay with the scheduler.",
+        "evidence_ids": ["batch-055:e7", "batch-081:e5", "batch-003:e29", "batch-003:e28", "batch-004:e26", "batch-011:e21", "batch-057:e21", "batch-003:e46"]
+      }
+    },
+    {
+      "key": "deal-record-correction",
+      "description": "Schedulers, settlements, accounting and desk staff spot a deal ticket in Sitara or Tagg that does not match what flowed, was confirmed or was paid: wrong volume, price, points, counterparty, end date or demand charge, a duplicate, or a deal that fails to bridge. They email the desk that owns the deal with the deal numbers and the correct values. The owner zeroes, rebooks, reprices or kills the deal, releases it so it bridges downstream, and replies done; unanswered requests get reminders and misrouted ones are sent on to another desk.",
+      "steps": [
+        "Someone downstream finds a deal record that disagrees with flow, confirmation, payment or a bridge result.",
+        "They email the deal's desk or logistics contact listing the deal numbers and the values that should apply.",
+        "The recipient checks whether the deal is theirs and forwards it to the right desk or person if not.",
+        "The deal is changed in Sitara or Tagg: volumes zeroed, price, points or dates fixed, counterparty rebooked or duplicate killed.",
+        "The changed deal is released so it bridges to the downstream systems.",
+        "The corrector replies that it is done, giving any new deal numbers.",
+        "The requester checks the system and sends a reminder if the deal is still unchanged or unreleased."
+      ],
+      "stalls": [
+        {
+          "summary": "Requests sit unanswered and are chased with reminders asking whether anyone has looked yet, and a deal checked afterwards was still not released.",
+          "evidence_ids": ["batch-057:s0", "batch-080:s0", "batch-065:s0", "batch-003:s1", "batch-039:s0"]
+        },
+        {
+          "summary": "Requesters are unsure who makes the change: one asks whether she should change a counterparty herself or another group handles it, another is not sure who takes care of it, and another is told someone else will handle older items.",
+          "evidence_ids": ["batch-020:s1", "batch-036:s0", "batch-008:s2"]
+        },
+        {
+          "summary": "The systems block corrections: a protected deal ticket cannot be edited and an attempted counterparty change fails, so the request has to go to someone else.",
+          "evidence_ids": ["batch-015:s0", "batch-031:s0"]
+        },
+        {
+          "summary": "Requests reach the wrong desk and are sent back, with the recipient pointing out the deal belongs to another desk or naming who to send them to in future.",
+          "evidence_ids": ["batch-040:o0", "batch-047:o0"]
+        },
+        {
+          "summary": "When a deal cannot be fixed, a fixed price is put on it as a workaround instead of correcting the deal itself.",
+          "evidence_ids": ["batch-018:e16"]
+        }
+      ],
+      "contradictions": [
+        {
+          "summary": "Darron C Giron makes many of the Tagg and Sitara changes himself, yet in other rounds he says a deal is a Central deal while he works the West Desk and asks that such requests go to Kristen Clause, so senders and he disagree on who owns these corrections.",
+          "evidence_ids": ["batch-019:e9", "batch-040:o0", "batch-047:o0"]
+        },
+        {
+          "summary": "Different rounds name different people as the ones who make the change: Mark is said to have assigned older items to the recipients, Daren is said to have copied an old ticket and re-entered the volumes, and a scheduler asks whether counterparty changes are hers or another group's.",
+          "evidence_ids": ["batch-020:o0", "batch-049:o0", "batch-036:s0"]
+        },
+        {
+          "summary": "Deal records and the mail disagree on figures: a deal entered at one volume against a different confirmed volume, end dates that likely should fall on the last day of February, and a deal set up incorrectly behind a payment problem.",
+          "evidence_ids": ["batch-050:e25", "batch-005:e3", "batch-008:e15"]
+        }
+      ],
+      "automation": {
+        "approach": "A daily exception report that compares deal tickets with confirmations, nominations, payments and bridge results and lists each mismatch with the field, the owning desk and whether the deal has been released; paired with a standard correction request naming deal number, field, current value, correct value, period and owning desk, and a routing table by desk so requests reach the right person first time.",
+        "artifact_type": "email_template",
+        "rationale": "Most rounds are a short request listing deal numbers and corrected values, yet they stall on missing details, misrouting to the wrong desk and reminders. A request template with the fields and desk routing addresses that tomorrow; the exception report finds errors before downstream staff do, but needs system access."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": { "low": 5, "mid": 15, "high": 45 },
+        "automatable_pct": 40,
+        "basis": "observed",
+        "rationale": "Minutes go to looking the deal up in Sitara or Tagg, checking it against the confirmation, schedule or payment, changing the field and releasing it: about 15 minutes for a typical single-deal fix, 5 for a simple zero-out or price change, up to 45 for rebooking several deals or fixing prior periods. Finding mismatches and checking release status could be done by a report; deciding the right value and making the change stays manual.",
+        "evidence_ids": ["batch-053:e22", "batch-041:e14", "batch-045:e22", "batch-057:e11", "batch-033:e9", "batch-001:e25", "batch-062:e12", "batch-005:e3"]
+      }
+    },
+    {
+      "key": "desk-coverage-on-call",
+      "description": "Desk members and managers announce vacations, afternoons out and holidays and name who covers each desk, meter or pipeline and who is the point person, with phone extensions. Managers collect vacation requests and publish weekend and holiday on-call schedules, including extra coverage such as dispatching for Enron Canada or weekend California scheduling, and warn of system outages during shifts. After a weekend the on-call person sends notes of calls from gas control and producers, cuts and nomination changes, and the desk checks the meters named.",
+      "steps": [
+        "A manager collects vacation requests and sets the weekend or holiday on-call schedule for the desk.",
+        "Before an absence the desk member names who covers each desk, meter or pipeline and a point person with a contact number.",
+        "The schedule and coverage notice go to the desk, with changes emailed and written on the schedule.",
+        "Extra coverage or shift notices, such as dispatch for another office or system downtime, are sent ahead of the shift.",
+        "During the shift the on-call person handles calls from gas control and counterparties, cuts and nomination changes.",
+        "After the shift the on-call notes are written up and sent to the desk.",
+        "Desk members check the meters named in the notes and carry weekend changes into regular scheduling."
+      ],
+      "stalls": [
+        {
+          "summary": "Weekend scheduling changes have to be followed up and reworked afterwards: a cut was moved to another point and meters were flagged for checking.",
+          "evidence_ids": ["batch-014:s0", "batch-014:e4"]
+        },
+        {
+          "summary": "Changes to the on-call schedule are not always captured, prompting a reminder to email every change and write it on the schedule, and a new schedule is sent out to replace the old one.",
+          "evidence_ids": ["batch-088:e18", "batch-082:e1"]
+        }
+      ],
+      "contradictions": [],
+      "automation": {
+        "approach": "A shared on-call roster that holds the schedule, each person's absences and the named backup for every desk, meter and pipeline, and generates the coverage notice and point-person contacts from it; with a structured on-call notes form recording time, caller, meter or plant, issue and action taken, so the desk can check follow-ups.",
+        "artifact_type": "template",
+        "rationale": "The mail shows coverage notices retyped for every absence, schedules changed without being recorded, and free-text weekend notes that the desk then has to turn into meter checks. A notes form and roster layout can be used at once and make hand-backs after the shift easier to act on; deciding who covers stays with the managers."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": { "low": 5, "mid": 15, "high": 40 },
+        "automatable_pct": 30,
+        "basis": "inferred",
+        "rationale": "Minutes go to arranging a backup and briefing them on the desk's meters, updating the on-call schedule, and gathering what happened during the shift from logs and pages: about 15 minutes a round, 5 for a simple out-of-office cover, up to 40 when a weekend's events touch many meters. The shift work itself is not counted here. A roster and notes form could take over updating and formatting; choosing cover and judging what to note stays manual.",
+        "evidence_ids": ["batch-052:e26", "batch-013:e6", "batch-018:e3", "batch-046:e22", "batch-088:e18", "batch-098:e23", "batch-046:e4", "batch-014:e4"]
+      }
+    }
+  ]
+}

@@ -4,16 +4,18 @@
 // covered by the same rule.
 //
 // Two modes:
-// - A pipeline subagent (agent_type extractor, taxonomist, synthesizer or drafter) gets an
+// - A pipeline subagent (agent_type extractor, taxonomist, merger, synthesizer or drafter) gets an
 //   allowlist: only the tools and paths its stage needs; everything else is denied. Agents without
-//   a list yet are denied everything, so a new stage can't run unguarded. An extractor is also
-//   bound to one batch: the first batch file it reads (out/batches/batch-NNN.md, its previous
-//   output out/extract/batch-NNN.json or its problems file out/fix/batch-NNN.txt) binds its
-//   agent_id to that batch, provided the batch is running (out/ledger/agents/<agent_id>.json, with
-//   the dispatch it was bound under). After that it may not read another batch's files, and it may
-//   write only its own batch's output, only while that batch is still running under the same
-//   dispatch. The SubagentStop gate checks the batch the agent is bound to, so no model text
-//   decides which file is checked.
+//   a list yet are denied everything, so a new stage can't run unguarded. An extractor or a
+//   synthesizer is also bound to one ledger job: the first job file it reads binds its agent_id
+//   to that job, provided the job is running and no other agent holds its current dispatch
+//   (out/ledger/agents/<agent_id>.json, with the dispatch it was bound under). For an extractor that is a batch (out/batches/batch-NNN.md, its previous
+//   output out/extract/batch-NNN.json or its problems file out/fix/batch-NNN.txt); for a
+//   synthesizer a synthesis group (out/synthesis/input/synth-NNN.md, out/synthesis/raw/
+//   synth-NNN.json or out/fix/synth-NNN.txt). After that it may not read another job's files, and
+//   it may write only its own job's output, only while that job is still running under the same
+//   dispatch. The SubagentStop gate checks the job the agent is bound to, so no model text decides
+//   which file is checked. The taxonomist and the merger have fixed files and no binding.
 // - Any other caller while out/ledger/run.json says a run is active gets a deny-list: any path
 //   segment named corpus or its browsing copy in a path-like field is refused, and so is starting
 //   a subagent that is not one of the pipeline's own.
@@ -42,7 +44,21 @@ import {
   writeStopGate,
   type HookInput,
 } from './lib.ts';
-import { bindAgent, bindingIsCurrent, boundBatch, claimFile, nowUtc, readBatchState, readRun, rootForms, withoutRoot, writeJsonAtomic, type RunState } from '../../src/run/ledger.ts';
+import {
+  JOB_KINDS,
+  bindAgent,
+  bindingIsCurrent,
+  boundJob,
+  claimFile,
+  kindOf,
+  nowUtc,
+  readJobState,
+  readRun,
+  rootForms,
+  withoutRoot,
+  writeJsonAtomic,
+  type RunState,
+} from '../../src/run/ledger.ts';
 
 const RULE =
   'CLAUDE.md, "Reading messages": nothing else opens corpus/... paths directly: not the pipeline, not the dashboard, ' +
@@ -64,29 +80,33 @@ function deny(reason: string): void {
 // ---- Allowlists for pipeline agents ----
 
 // What a project-relative POSIX path ("out/batches/batch-000.md") is to an agent: not allowed, a
-// shared file, or a file of one batch (which the extractor's binding governs).
-type PathMatch = { ok: false } | { ok: true; batch: string | null };
+// shared file, or a file of one ledger job (which the agent's binding governs).
+type PathMatch = { ok: false } | { ok: true; job: string | null };
 type PathRule = (rel: string) => PathMatch;
 type Policy = { read: PathRule; write: PathRule; summary: string };
 
 const NO: PathMatch = { ok: false };
-const SHARED: PathMatch = { ok: true, batch: null };
+const SHARED: PathMatch = { ok: true, job: null };
 const exactly = (...files: string[]): PathRule => (rel) => (files.includes(rel) ? SHARED : NO);
-const ofBatch = (pattern: RegExp): PathRule => (rel) => {
+const ofJob = (pattern: RegExp): PathRule => (rel) => {
   const m = pattern.exec(rel);
-  return m === null ? NO : { ok: true, batch: m[1] as string };
+  return m === null ? NO : { ok: true, job: m[1] as string };
 };
 const either = (...rules: PathRule[]): PathRule => (rel) => rules.map((r) => r(rel)).find((m) => m.ok) ?? NO;
 
+// An extractor's batch files; a synthesizer's group files. The job ID is the captured part.
 const BATCH_FILE = /^out\/batches\/(batch-\d{3,6})\.md$/;
 const EXTRACT_FILE = /^out\/extract\/(batch-\d{3,6})\.json$/;
-const FIX_FILE = /^out\/fix\/(batch-\d{3,6})\.txt$/;
+const BATCH_FIX_FILE = /^out\/fix\/(batch-\d{3,6})\.txt$/;
+const GROUP_FILE = /^out\/synthesis\/input\/(synth-\d{3,6})\.md$/;
+const SYNTHESIS_FILE = /^out\/synthesis\/raw\/(synth-\d{3,6})\.json$/;
+const GROUP_FIX_FILE = /^out\/fix\/(synth-\d{3,6})\.txt$/;
 
-// One entry per pipeline agent; the synthesizer (M5) and drafter (M6) get theirs with their stage.
+// One entry per pipeline agent; the drafter (M6) gets its own with its stage.
 const POLICIES: Record<string, Policy> = {
   extractor: {
-    read: either(exactly('out/taxonomy.json'), ofBatch(BATCH_FILE), ofBatch(EXTRACT_FILE), ofBatch(FIX_FILE)),
-    write: ofBatch(EXTRACT_FILE),
+    read: either(exactly('out/taxonomy.json'), ofJob(BATCH_FILE), ofJob(EXTRACT_FILE), ofJob(BATCH_FIX_FILE)),
+    write: ofJob(EXTRACT_FILE),
     summary:
       'Read of its own batch file out/batches/batch-NNN.md, its own output out/extract/batch-NNN.json, its own problems file ' +
       'out/fix/batch-NNN.txt and out/taxonomy.json, and Write of its own output out/extract/batch-NNN.json ' +
@@ -96,6 +116,20 @@ const POLICIES: Record<string, Policy> = {
     read: exactly('out/taxonomy-digest.md', 'out/taxonomy-proposed.json'),
     write: exactly('out/taxonomy-proposed.json'),
     summary: 'Read of out/taxonomy-digest.md and out/taxonomy-proposed.json, and Write of out/taxonomy-proposed.json',
+  },
+  merger: {
+    read: exactly('out/merge-input.md', 'out/taxonomy.json', 'out/merge-proposed.json'),
+    write: exactly('out/merge-proposed.json'),
+    summary: 'Read of out/merge-input.md, out/taxonomy.json and out/merge-proposed.json, and Write of out/merge-proposed.json',
+  },
+  synthesizer: {
+    // Not the group's sidecar (out/synthesis/input/synth-NNN.json): the validator's, not the agent's.
+    read: either(ofJob(GROUP_FILE), ofJob(SYNTHESIS_FILE), ofJob(GROUP_FIX_FILE)),
+    write: ofJob(SYNTHESIS_FILE),
+    summary:
+      'Read of its own group input out/synthesis/input/synth-NNN.md, its own output out/synthesis/raw/synth-NNN.json and its own ' +
+      'problems file out/fix/synth-NNN.txt, and Write of its own output out/synthesis/raw/synth-NNN.json ' +
+      '(its group is the first group file it reads)',
   },
 };
 
@@ -135,32 +169,41 @@ function relativeTo(value: string, root: string, cwd: string): string | null {
   return caseInsensitive(root) ? rel.toLowerCase() : rel;
 }
 
-// Why an extractor may not touch this batch's file, or null when it may. The first batch file it
-// reads binds it; a write needs that binding, the same batch, and the batch still running under
-// the dispatch the binding recorded (a re-dispatch hands the batch to a new extractor).
-function bindingProblem(tool: 'Read' | 'Write', batchId: string, agentId: string | null, root: string): string | null {
-  if (agentId === null || agentId === '') return 'the call carries no agent_id, so it cannot be tied to one batch';
-  let binding = boundBatch(root, agentId);
+// What the binding messages call a job's input file and its work, by kind.
+const INPUT_FILE = { batch: 'batch file', synth: 'input file' } as const;
+const BEING = { batch: 'extracted', synth: 'synthesized' } as const;
+
+// Why an extractor or synthesizer (`agent`) may not touch this job's file, or null when it may. The
+// first job file it reads binds it; a write needs that binding, the same job, and the job still
+// running under the dispatch the binding recorded (a re-dispatch hands the job to a new agent).
+// Which kind of job an agent may bind to is fixed by its allowlist's path patterns.
+function bindingProblem(agent: string, tool: 'Read' | 'Write', jobId: string, agentId: string | null, root: string): string | null {
+  const kind = kindOf(jobId);
+  const { short, worker } = JOB_KINDS[kind];
+  if (agentId === null || agentId === '') return `the call carries no agent_id, so it cannot be tied to one ${short}`;
+  let binding = boundJob(root, agentId);
   if (binding === null) {
-    if (tool === 'Write') return `it has not read its batch yet. Read the batch file named in your task first; an extractor writes only the output of that batch`;
-    const bound = bindAgent(root, agentId, batchId);
+    if (tool === 'Write') {
+      return `it has not read its ${short} yet. Read the ${INPUT_FILE[kind]} named in your task first; ${worker === 'extractor' ? 'an' : 'a'} ${worker} writes only the output of that ${short}`;
+    }
+    const bound = bindAgent(root, agentId, jobId);
     if (!bound.ok) {
-      log(root, { event: 'guard_bind_refused', agent_type: 'extractor', agent_id: agentId, batch_id: batchId, reason: bound.reason });
-      return `it cannot start on ${batchId}: ${bound.reason}`;
+      log(root, { event: 'guard_bind_refused', agent_type: agent, agent_id: agentId, batch_id: jobId, reason: bound.reason });
+      return `it cannot start on ${jobId}: ${bound.reason}`;
     }
     binding = bound.binding;
-    log(root, { event: 'guard_bind', agent_type: 'extractor', agent_id: agentId, batch_id: binding.batch_id, dispatches: binding.dispatches });
+    log(root, { event: 'guard_bind', agent_type: agent, agent_id: agentId, batch_id: binding.batch_id, dispatches: binding.dispatches });
   }
-  if (binding.batch_id !== batchId) {
-    return `it is working on ${binding.batch_id} (the first batch file it read), so ${tool} of ${batchId}'s files is refused`;
+  if (binding.batch_id !== jobId) {
+    return `it is working on ${binding.batch_id} (the first ${short} file it read), so ${tool} of ${jobId}'s files is refused`;
   }
   if (tool === 'Write') {
-    const state = readBatchState(root, batchId);
+    const state = readJobState(root, jobId);
     if (!bindingIsCurrent(binding, state)) {
-      return `${batchId} has been handed to another extractor since this one started, so this output is no longer used. Stop and reply in one sentence`;
+      return `${jobId} has been handed to another ${worker} since this one started, so this output is no longer used. Stop and reply in one sentence`;
     }
     if (state.status !== 'running') {
-      return `${batchId} is no longer being extracted (it is ${state.status}), so its output cannot change now. Stop and reply in one sentence`;
+      return `${jobId} is no longer being ${BEING[kind]} (it is ${state.status}), so its output cannot change now. Stop and reply in one sentence`;
     }
   }
   return null;
@@ -198,8 +241,8 @@ function checkAgent(agent: string, input: HookInput, root: string): void {
     refuse(`${tool} of ${rel ?? 'a path outside its own files'} is not allowed. ${allowed}`);
     return;
   }
-  if (match.batch === null) return;
-  const problem = bindingProblem(tool, match.batch, agentId, root);
+  if (match.job === null) return;
+  const problem = bindingProblem(agent, tool, match.job, agentId, root);
   if (problem !== null) refuse(`${tool} of ${rel} is refused: ${problem}. ${allowed}`);
 }
 
@@ -269,15 +312,18 @@ function checkRun(scope: string, input: HookInput | null, root: string): boolean
 
 // ---- The orchestrator's session ----
 
-// A session that starts a pipeline subagent during a run is the run's orchestrator: record it
-// (once per run) for the Stop hook. Never in the way of the call: a failure is reported, and the
-// Stop hook then steers whichever session stops, as it does before the first subagent starts.
+// The fallback claim: when no session is recorded for this run yet (`run start` saw no claim:
+// hooks were off when it ran, it was started by hand, or from a shell whose command the claim
+// pattern does not match), the first session that starts a pipeline subagent during the run is
+// its orchestrator. Once a session is recorded it stays: a second window spawning a pipeline agent
+// during the run (an `/extract-batch` by hand) never takes the run over. Never in the way of the
+// call: a failure is reported, and the Stop hook then steers whichever session stops.
 function claimRun(input: HookInput, run: RunState, root: string): void {
   const session = str(input.session_id);
   if (session === null || session === '') return;
   try {
     const gate = readStopGate(root, run.run_id);
-    if (gate.session_id === session) return;
+    if (gate.session_id !== null) return;
     writeStopGate(root, { run_id: run.run_id, session_id: session, last_block: null });
     log(root, { event: 'guard_claim', subagent_type: isRecord(input.tool_input) ? str(input.tool_input.subagent_type) : null });
   } catch (err) {

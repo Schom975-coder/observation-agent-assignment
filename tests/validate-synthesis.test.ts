@@ -157,9 +157,30 @@ test('E2: 3-12 distinct ids, from at least 3 occurrences and 2 senders', () => {
   assert.deepEqual(ids(e(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)), [], '12 ids');
   assert.match(ids(e(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)).join('\n'), /must cite 3-12 ids, got 13 \(E2\)/);
   assert.match(ids(e(0, 4, 4, 5)).join('\n'), /lists an id twice/);
-  assert.deepEqual(ids(e(0, 1, 20)), ['processes[0] (alpha).work_estimate.evidence_ids come from 2 occurrences; cite quotes from at least 3 different occurrences (E2)']);
-  assert.deepEqual(ids(e(0, 1, 2)), ['processes[0] (alpha).work_estimate.evidence_ids come from 1 sender; cite quotes from at least 2 different senders (E2)']);
+  assert.deepEqual(ids(e(0, 1, 20)), ['processes[0] (alpha).work_estimate.evidence_ids come from 2 occurrences; cite quotes from at least 3 different occurrences, or set work_estimate to null (E2)']);
+  assert.deepEqual(ids(e(0, 1, 2)), ['processes[0] (alpha).work_estimate.evidence_ids come from 1 sender; cite quotes from at least 2 different senders, or set work_estimate to null (E2)']);
   assert.match(ids(['batch-000:e0', 'batch-000:e4', 'batch-000:s0']).join('\n'), /^$/, 'a stall quote is a citable id too');
+});
+
+test('E2: when the section itself shows too few senders or occurrences, the problem says no estimate can meet the rule: null', () => {
+  // alpha's quotes all from one sender, and then all from two occurrences.
+  const oneSender: SynthSidecar = { ...SIDECAR, processes: SIDECAR.processes.map((p) => (p.key === 'alpha' ? { ...p, cited: p.cited.map((c) => ({ ...c, sender: 's0@enron.com' })) } : p)) };
+  const twoOccurrences: SynthSidecar = { ...SIDECAR, processes: SIDECAR.processes.map((p) => (p.key === 'alpha' ? { ...p, cited: p.cited.map((c, i) => ({ ...c, occurrence_id: `t-a-o${i % 2}` })) } : p)) };
+  const check = (sidecar: SynthSidecar, g: SynthesisGroup) => {
+    const root = project(g);
+    writeFileSync(join(root, 'out', 'synthesis', 'input', `${GROUP}.json`), JSON.stringify(sidecar));
+    return checkSynthesis(root, GROUP, { scoring });
+  };
+  assert.deepEqual(check(oneSender, GOOD).problems, [
+    "processes[0] (alpha).work_estimate.evidence_ids come from 1 sender; this process's section shows quotes from only 1 sender, so no estimate can meet the rule: set work_estimate to null (E2)",
+  ]);
+  assert.deepEqual(check(twoOccurrences, GOOD).problems, [
+    "processes[0] (alpha).work_estimate.evidence_ids come from 2 occurrences; this process's section shows quotes from only 2 occurrences, so no estimate can meet the rule: set work_estimate to null (E2)",
+  ]);
+  // And null is accepted for it.
+  const withNull = clone();
+  (withNull.processes[0] as SynthesisGroup['processes'][number]).work_estimate = null;
+  assert.equal(check(oneSender, withNull).ok, true);
 });
 
 test('E3: self_reported needs 3 senders; E4: a process seen fewer than 3 times has no estimate', () => {

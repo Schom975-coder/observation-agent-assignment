@@ -18,6 +18,11 @@ export const STALL_SAMPLE = 10;
 export const OWNERSHIP_SAMPLE = 6;
 export const QUOTE_SHOWN_CHARS = 240;
 export const PARTICIPANTS_SHOWN = 8;
+// The evidence sample shows at least this many senders when the process's quotes have them (up to
+// this many extra lines): the estimate rules count senders among the cited ids (2; 3 for a
+// self_reported basis), and one sender's quotes falling on every sampled occurrence must not make
+// an estimate impossible.
+export const SAMPLE_MIN_SENDERS = 3;
 const NAME_SHOWN_CHARS = 60;
 
 export class SynthesisInputError extends Error {
@@ -86,12 +91,25 @@ function quotesOf(
 }
 
 // One per occurrence at even steps through the occurrences in ID order; within an occurrence the
-// first quote in id order.
-function evidenceSample(evidence: readonly Quoted[]): Quoted[] {
+// first quote in id order. Then, while the sample shows fewer than SAMPLE_MIN_SENDERS senders, the
+// first quote (id order) of each sender it does not show, in id order, as long as there are such
+// senders. All of them listed by occurrence, then id. `extra`: how many the second rule added.
+function evidenceSample(evidence: readonly Quoted[]): { sample: Quoted[]; extra: number } {
+  const ordered = [...evidence].sort((a, b) => idOrder(a.id, b.id));
   const byOccurrence = new Map<string, Quoted>();
-  for (const q of [...evidence].sort((a, b) => idOrder(a.id, b.id))) if (!byOccurrence.has(q.occurrence_id)) byOccurrence.set(q.occurrence_id, q);
+  for (const q of ordered) if (!byOccurrence.has(q.occurrence_id)) byOccurrence.set(q.occurrence_id, q);
   const occurrences = [...byOccurrence.keys()].sort(byText);
-  return evenSteps(occurrences.length, EVIDENCE_SAMPLE).map((i) => byOccurrence.get(occurrences[i] as string) as Quoted);
+  const sample = evenSteps(occurrences.length, EVIDENCE_SAMPLE).map((i) => byOccurrence.get(occurrences[i] as string) as Quoted);
+  const senders = new Set(sample.map((q) => q.sender).filter((s) => s !== ''));
+  const extra: Quoted[] = [];
+  for (const q of ordered) {
+    if (senders.size >= SAMPLE_MIN_SENDERS) break;
+    if (q.sender === '' || senders.has(q.sender)) continue;
+    senders.add(q.sender);
+    extra.push(q);
+  }
+  const all = [...sample, ...extra].sort((a, b) => byText(a.occurrence_id, b.occurrence_id) || idOrder(a.id, b.id));
+  return { sample: all, extra: extra.length };
 }
 
 const steps = <T>(items: readonly T[], k: number): T[] => evenSteps(items.length, k).map((i) => items[i] as T);
@@ -118,7 +136,7 @@ function section(p: ProcessRollup, q: { evidence: Quoted[]; stalls: Quoted[]; ow
     .map((x) => `${x.name === null ? quotedName(x.email) : `${quotedName(x.name)} ${quotedName(`<${x.email}>`)}`} authored ${x.authored}, forwards ${x.forwards}, chasers ${x.chasers}, reads ${x.reads}`);
   const stallKinds = new Map<string, number>();
   for (const s of p.stalls) stallKinds.set(s.kind, (stallKinds.get(s.kind) ?? 0) + 1);
-  const evidence = evidenceSample(q.evidence);
+  const { sample: evidence, extra } = evidenceSample(q.evidence);
   const stalls = steps(q.stalls, STALL_SAMPLE);
   const ownership = steps(q.ownership, OWNERSHIP_SAMPLE);
   const lines = [
@@ -129,7 +147,8 @@ function section(p: ProcessRollup, q: { evidence: Quoted[]; stalls: Quoted[]; ow
       `email actions: ${a.short} short, ${a.medium} medium, ${a.long} long, ${plural(a.forward, 'forward')}, ${plural(a.chaser, 'chaser')}, ${plural(a.read, 'read')}.`,
     `Participants (top ${PARTICIPANTS_SHOWN} by actions): ${participants.length === 0 ? 'none' : participants.join('; ')}.`,
     `Stalls recorded: ${stallKinds.size === 0 ? 'none' : [...stallKinds].sort(([x], [y]) => byText(x, y)).map(([k, n]) => `${k} ${n}`).join(', ')}.`,
-    `### Evidence (${evidence.length} of ${plural(q.evidence.length, 'accepted quote')}: one per occurrence at even steps through the occurrences in ID order)`,
+    `### Evidence (${evidence.length} of ${plural(q.evidence.length, 'accepted quote')}: one per occurrence at even steps through the occurrences in ID order` +
+      `${extra > 0 ? `, and ${extra} more from ${extra === 1 ? 'a sender' : 'senders'} those do not show` : ''})`,
     ...evidence.map((x) => line(x, src)),
     `### Stall quotes (${stalls.length} of ${q.stalls.length}, even steps)`,
     ...stalls.map((x) => line(x, src)),

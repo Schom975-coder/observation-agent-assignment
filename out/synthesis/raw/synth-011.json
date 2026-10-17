@@ -1,0 +1,136 @@
+{
+  "group_id": "synth-011",
+  "processes": [
+    {
+      "key": "meeting-scheduling",
+      "description": "An organiser sends a notice asking staff to mark, hold or clear their calendars for a staff meeting, group meeting, off-site or lunch, or asks attendees to reply whether a proposed day suits them. Attendees reply with attendance or interest. The organiser books the conference room, collects a headcount so catering numbers can be finalised, and for outside parties sets up a conference call. Some meetings repeat on a fixed pattern in a named room; an outside party may cancel a planned in-person meeting and move the discussion to a call.",
+      "steps": [
+        "The organiser picks a date and sends a notice asking attendees to mark, hold or clear their calendars.",
+        "Where the date is still open, attendees are asked to reply whether the proposed day works.",
+        "Attendees reply with attendance or interest in the topic.",
+        "The organiser reserves the conference room and the booking is acknowledged.",
+        "The organiser gathers a headcount to finalise catering numbers.",
+        "For outside parties, a conference call is arranged, or a cancelled in-person meeting is moved to a call."
+      ],
+      "stalls": [
+        {
+          "summary": "Dates and catering numbers depend on attendees replying, so the organiser has to go back to attendees before the meeting to settle the day and finalise numbers.",
+          "evidence_ids": ["batch-037:e22", "batch-054:e14"]
+        },
+        {
+          "summary": "An outside party cancelled a planned in-person meeting in Houston and the discussion moved to a conference call, so arrangements were made a second time.",
+          "evidence_ids": ["batch-075:e6", "batch-075:e8"]
+        }
+      ],
+      "contradictions": [],
+      "automation": {
+        "approach": "A shared calendar or scheduling tool proposes dates, sends holds and collects replies, while a standard meeting notice carries the date, time, room, dial-in details, agenda and a reply cutoff for the catering headcount. Room booking and headcount tallies come from the replies rather than from separate follow-up.",
+        "artifact_type": "email_template",
+        "rationale": "The notices in the mail repeat the same elements (calendar hold, room, time, lunch, conference call) written fresh each time. One reusable notice with a reply-by line would cut the back-and-forth over dates and numbers; the hands-on work beyond the mail is light, so a larger tool would add little."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": { "low": 5, "mid": 10, "high": 20 },
+        "automatable_pct": 50,
+        "basis": "inferred",
+        "rationale": "Beyond the emails, a round involves reserving a room, checking calendars for a workable date, tallying a headcount and placing a catering order, and for outside parties setting up a dial-in. The quotes show these as small tasks, so about 10 minutes, rising to 20 for an off-site or catered event. A scheduling tool could take over date-finding, reply tallies and room holds; choosing the date and ordering food stay with the organiser.",
+        "evidence_ids": ["batch-076:e1", "batch-054:e14", "batch-037:e22", "batch-005:e20", "batch-054:e10", "batch-005:e12"]
+      }
+    },
+    {
+      "key": "meter-facility-setup",
+      "description": "Logistics, marketing or pipeline staff ask for meter and point records to be set up or changed: new points and combinations, a new meter on Houston Pipe Line, a zone re-mapped, a pipe code changed, meters removed from the estimate list, or confirmed nominations zeroed for contracts at a meter. Facilities staff enter the change in Global Facilities and confirm what changed and what stays the same. New meters are assigned to a scheduler, who confirms it. Outside parties send spreadsheets of data discrepancies such as state and county, which are forwarded for checking.",
+      "steps": [
+        "A requester sends the meter or point details and the change needed: set-up, zone re-map, pipe code change or removal from the estimate list.",
+        "Facilities staff enter or change the record in Global Facilities and the scheduling system.",
+        "Related records are adjusted, such as confirmed nominations set to zero for the affected contracts.",
+        "The meter is assigned to a scheduler, who confirms the assignment.",
+        "Set-up staff confirm completion to the requester, noting what stays unchanged such as the meter number.",
+        "Data discrepancies reported on a spreadsheet are forwarded for checking and correction."
+      ],
+      "stalls": [
+        {
+          "summary": "A spreadsheet of state and county discrepancies for a list of meters was forwarded on, and the person receiving it could not tell what to make of it or who should act on it.",
+          "evidence_ids": ["batch-071:s1", "batch-071:e12"]
+        }
+      ],
+      "contradictions": [],
+      "automation": {
+        "approach": "A standard set-up request form captures meter or point number, pipeline and pipe code, zone, state and county, effective date, contracts affected and the assigned scheduler, and a check compares the entered state and county and zone against a reference list before the record is saved. Completed requests generate the confirmation to the requester.",
+        "artifact_type": "template",
+        "rationale": "The requests in the mail each carry the same fields in free text, and the one stall comes from a discrepancy list nobody knew how to handle. A fixed request layout makes each change complete on first send and gives discrepancy reports a known owner and format."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": { "low": 10, "mid": 20, "high": 45 },
+        "automatable_pct": 40,
+        "basis": "inferred",
+        "rationale": "The hands-on work is entering or changing meter and point records in Global Facilities and the scheduling system, re-mapping a zone or pipe code, updating the estimate list or zeroing nominations, and assigning the meter. A single record change runs about 10 minutes; a typical round with a few points about 20; checking a spreadsheet of state and county discrepancies runs to 45. Validation and confirmation could be tooled; judging the right mapping stays manual.",
+        "evidence_ids": ["batch-011:e28", "batch-012:e11", "batch-061:e21", "batch-080:e0", "batch-071:e12", "batch-005:e27"]
+      }
+    },
+    {
+      "key": "meter-flow-deal-coverage",
+      "description": "Logistics and volume management staff find gas that flowed at a meter with no deal, an expired deal ticket, no nomination or no transport contract. They check the ticket in Sitara and email the trader or desk with the meter, period and volumes, asking for a deal to be created or extended, which transport contract to use, or what price to bill. The trader enters the ticket and replies with the deal number, and the volumes are reallocated. Old uncovered flow sits under the HPL Strangers Gas account or goes for approval to write off to Unaccounted for Gas.",
+      "steps": [
+        "Logistics or volume staff spot flow at a meter for a period with no valid deal, an expired ticket or no nomination.",
+        "They check the deal ticket and contract in Sitara to confirm the gap and its dates.",
+        "They email the trader or desk with meter, period and volumes, asking for a deal, an extension, a contract or a price.",
+        "The trader settles price and terms, creates or extends the deal ticket in Sitara and replies with the deal number.",
+        "Volumes are reallocated to the new or extended deal and its transport contract.",
+        "Long-uncovered volumes are booked to a holding account or sent for write-off approval.",
+        "Unanswered requests are chased or forwarded to someone else."
+      ],
+      "stalls": [
+        {
+          "summary": "Requests wait on answers from traders and schedulers: senders note they never heard back on which transport contract to use, ask for status on open meters, and wait for a person to return before the deal can be done.",
+          "evidence_ids": ["batch-014:s2", "batch-021:s1", "batch-029:s1", "batch-005:s1", "batch-041:s0"]
+        },
+        {
+          "summary": "It is often unclear who should act: requesters ask colleagues to sort out between themselves who rolls the deal, forward the request to another person, apologise for leaving someone off the thread, or are told to talk to someone else.",
+          "evidence_ids": ["batch-011:s0", "batch-021:s2", "batch-036:e7", "batch-005:e6"]
+        },
+        {
+          "summary": "Work is redone when the first answer is wrong: a deal number offered was not a deal between ENA and HPL, and a spot ticket request had its price corrected after it was sent.",
+          "evidence_ids": ["batch-036:s2", "batch-002:s2", "batch-002:e24"]
+        },
+        {
+          "summary": "Systems get in the way: a deal errors out against its gathering contract, and flow cannot yet carry over to the downstream system after a ticket is entered.",
+          "evidence_ids": ["batch-028:e2", "batch-010:s3"]
+        },
+        {
+          "summary": "Uncovered flow is left for long periods: logistics raises flow from long-past production months, volumes sit under the strangers gas account, and a deal is requested well after the month it covers.",
+          "evidence_ids": ["batch-036:e5", "batch-037:e31", "batch-038:e2", "batch-036:e17", "batch-073:e4"]
+        },
+        {
+          "summary": "The same gap recurs because deal tickets and their contracts expire while gas keeps flowing at the meter, so each lapse starts a new round.",
+          "evidence_ids": ["batch-000:e11", "batch-010:e14", "batch-010:e20", "batch-040:e5", "batch-038:e4"]
+        }
+      ],
+      "contradictions": [
+        {
+          "summary": "Different people are named as the one who handles erroring or missing deals: one message says Daren used to handle it, and the same sender then says Danny Conner handles it, while an outside party points to Daren Farmer to put the deal in.",
+          "evidence_ids": ["batch-028:o0", "batch-028:o1", "batch-054:o0"]
+        },
+        {
+          "summary": "Uncovered volumes are treated in different ways across rounds: booked under the strangers gas account, written off to unaccounted-for gas, or given a new deal, and one sender asks outright whether it should be a buyback, force majeure or no deal.",
+          "evidence_ids": ["batch-036:e17", "batch-037:e33", "batch-020:e17", "batch-002:e22"]
+        },
+        {
+          "summary": "One message says Volume Management must set up the accounting arrangements to cover the volume, while another sender takes responsibility for the interconnect ticket not being adjusted, leaving it unclear which side owns the fix.",
+          "evidence_ids": ["batch-001:o3", "batch-001:o5"]
+        }
+      ],
+      "automation": {
+        "approach": "An exception report matches measured flow by meter and day against active deal tickets, nominations and transport contracts in Sitara, flags flow with no deal and tickets about to expire while the meter still flows, and routes each item to the meter's assigned owner with the period and volumes filled in. A written procedure sets who creates or extends deals by desk, the fields a request must carry, and how long-uncovered volumes are treated.",
+        "artifact_type": "sop",
+        "rationale": "Most stalls are waiting on the right person and confusion over who acts, and the contradictions are over ownership and over how uncovered volumes are booked. A procedure that names the owner, the required request fields and the treatment of old volumes addresses those directly; the exception report then removes the manual hunt for gaps."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": { "low": 15, "mid": 30, "high": 90 },
+        "automatable_pct": 45,
+        "basis": "observed",
+        "rationale": "Time goes to pulling the meter's flow for the period, checking Sitara for the ticket, its expiry and the transport contract, settling price and treatment, entering or extending the ticket, and reallocating the volumes. A simple extension of an expired ticket runs about 15 minutes; a typical round about 30; aged volumes needing research and write-off approval run to 90. Matching flow to deals is rule-based and could be reported by a tool; pricing, approval and contract choice stay with people.",
+        "evidence_ids": ["batch-016:e9", "batch-017:e13", "batch-002:e1", "batch-037:e33", "batch-018:e17", "batch-010:e14", "batch-052:e23", "batch-042:e13"]
+      }
+    }
+  ]
+}

@@ -15,7 +15,7 @@
     ],
     "SubagentStart": [
       {
-        "matcher": "extractor|taxonomist",
+        "matcher": "extractor|taxonomist|merger|synthesizer",
         "hooks": [
           { "type": "command", "command": "node", "args": ["${CLAUDE_PROJECT_DIR}/.claude/hooks/log-event.ts"], "timeout": 10 }
         ]
@@ -23,14 +23,14 @@
     ],
     "SubagentStop": [
       {
-        "matcher": "extractor",
+        "matcher": "extractor|synthesizer",
         "hooks": [
           { "type": "command", "command": "node", "args": ["${CLAUDE_PROJECT_DIR}/.claude/hooks/gate-subagent.ts"], "timeout": 120 },
           { "type": "command", "command": "node", "args": ["${CLAUDE_PROJECT_DIR}/.claude/hooks/log-event.ts"], "timeout": 10 }
         ]
       },
       {
-        "matcher": "taxonomist",
+        "matcher": "taxonomist|merger",
         "hooks": [
           { "type": "command", "command": "node", "args": ["${CLAUDE_PROJECT_DIR}/.claude/hooks/log-event.ts"], "timeout": 10 }
         ]

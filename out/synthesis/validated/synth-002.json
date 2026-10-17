@@ -1,0 +1,274 @@
+{
+  "group_id": "synth-002",
+  "content_sha": "0f7945f8b328bc6dc7fcf5116a26c4e73ed06351d17f53be8c59a4f5d893720b",
+  "processes": [
+    {
+      "key": "contract-administration",
+      "description": "Contract administrators handle requests to create, amend, assign or terminate gas transport, purchase and sale contracts. A round starts when a marketer, scheduler or counterparty asks for a change such as a higher MDQ or TQ, new receipt volumes, an assignment or a termination letter. The request goes for capacity and credit approval, the contract or amendment is set up in the Global contract system and routed for signature, executed copies are returned, and contract status lists and assignment, termination and expiration reports are sent out.",
+      "steps": [
+        "A marketer, scheduler or counterparty requests a new contract, an amendment to volumes or term, an assignment or a termination.",
+        "The contract group submits the request for capacity approval and requests credit approval.",
+        "The approver confirms the change and states whether the contract number stays the same.",
+        "The contract or amendment is set up in the Global contract system with its points and volumes.",
+        "Amendments and termination letters are prepared and routed for signature, and executed copies are returned.",
+        "Contract status lists and the assignment, termination and expiration report are compiled and sent to the groups that use them."
+      ],
+      "stalls": [
+        {
+          "summary": "Requesters lose track of where a contract is in routing and ask who still has possession of it, and executed amendments have to be chased back from the counterparty.",
+          "evidence_ids": [
+            "batch-014:s3",
+            "batch-014:e10",
+            "batch-022:e18"
+          ]
+        },
+        {
+          "summary": "Requests and reports are revised after they go out: a counterparty corrects its own assignment request, receipt volumes on an amendment are raised after the fact, and a monthly report is revised late.",
+          "evidence_ids": [
+            "batch-080:s2",
+            "batch-084:e9",
+            "batch-046:e16"
+          ]
+        },
+        {
+          "summary": "After the pipeline sale it is unsettled which contracts move to the buyer: one contract is reported as not transferred, and staff reason among themselves about which contracts should go to AEP.",
+          "evidence_ids": [
+            "batch-061:e22",
+            "batch-051:e24"
+          ]
+        }
+      ],
+      "contradictions": [
+        {
+          "summary": "Amendments for PPL EnergyPlus are cited against two different contract numbers whose digits are transposed, so the mail does not agree on which contract the amendments belong to.",
+          "evidence_ids": [
+            "batch-088:e2",
+            "batch-097:e23"
+          ]
+        }
+      ],
+      "automation": {
+        "approach": "A standard contract change request form capturing counterparty, contract number, change requested, points, volumes, effective dates, capacity and credit approval status and signature status, with a check that the contract number matches the counterparty on file, and contract status lists and the assignment and termination report produced from the contract system rather than compiled by hand.",
+        "artifact_type": "template",
+        "rationale": "Rounds repeat the same fields in free text, and the mail shows status questions, revised requests and a mismatched contract number. One form with required fields and a system-generated status list cuts re-asking and catches mistyped contract numbers, while approvals and signatures stay with people."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": {
+          "low": 10,
+          "mid": 20,
+          "high": 45
+        },
+        "automatable_pct": 35,
+        "basis": "inferred",
+        "rationale": "The minutes go to entering or amending the contract in the contract system, preparing the amendment or termination letter, arranging capacity and credit approval, and compiling status lists or the monthly assignment and termination report. A single change is a short system edit plus paperwork, around 20 minutes; report rounds run toward 45. Data entry and report compilation could be drawn from the system; approvals and signature routing stay manual.",
+        "evidence_ids": [
+          "batch-036:e0",
+          "batch-010:e29",
+          "batch-088:e2",
+          "batch-047:e30",
+          "batch-080:e9",
+          "batch-083:e1",
+          "batch-046:e26",
+          "batch-022:e18"
+        ]
+      },
+      "estimate_check": {
+        "occurrences_cited": 8,
+        "senders_cited": 7
+      }
+    },
+    {
+      "key": "cost-center-allocation",
+      "description": "Operations managers set the plan and monthly allocation of group costs across cost centers (RCs) and operating companies, and accounting checks that labor, charges and workorders land on the right RC. A round starts when a manager sends an allocation spreadsheet for review or update, or when someone spots an employee, charge or e-workorder coded to the wrong RC or company on a labor distribution or RC report. Corrections go to the cost center contact, RCs are set up for specific spend, and the spreadsheet is updated.",
+      "steps": [
+        "A manager prepares the plan or monthly allocation of group costs across cost centers in a spreadsheet.",
+        "Team leads review the allocations and send changes back to the manager or the cost center contact.",
+        "The cost center contact updates the allocation spreadsheet and it is submitted.",
+        "Staff review labor distribution and RC reports for employees, charges or workorders coded to the wrong RC or company.",
+        "Corrections are requested, such as changing an employee's operating company or moving a workorder to the right RC.",
+        "Accounting sets up or explains RCs for specific spend, such as computer purchases or training."
+      ],
+      "stalls": [
+        {
+          "summary": "The allocation spreadsheet defeats its owner: the manager gives up on inserting a column and asks someone else to update the spreadsheet for the changes.",
+          "evidence_ids": [
+            "batch-002:s1",
+            "batch-002:e15"
+          ]
+        },
+        {
+          "summary": "A request about allocations is not understood by the person receiving it, so the round has to be explained again before anything is changed.",
+          "evidence_ids": [
+            "batch-030:s2",
+            "batch-030:e24"
+          ]
+        },
+        {
+          "summary": "It is unclear who supplies labor distribution reports: staff ask who to talk to about getting one while the reports are being rerouted through a new contact.",
+          "evidence_ids": [
+            "batch-008:e8",
+            "batch-008:o0"
+          ]
+        },
+        {
+          "summary": "Employees appear under the wrong cost center or operating company on labor distribution reports and have to be corrected.",
+          "evidence_ids": [
+            "batch-007:e16",
+            "batch-004:e13"
+          ]
+        }
+      ],
+      "contradictions": [],
+      "automation": {
+        "approach": "A shared allocation workbook with a fixed layout of one row per cost center and operating company and totals that must reconcile before submission, plus a regular exception report comparing each employee's and workorder's RC and company on the labor distribution against the expected mapping.",
+        "artifact_type": "template",
+        "rationale": "The work is spreadsheet allocation and spotting miscoded labor. A fixed layout avoids the structure trouble the manager hit, and an exception report replaces reading RC reports line by line, while managers still decide the splits and approve corrections."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": {
+          "low": 15,
+          "mid": 30,
+          "high": 60
+        },
+        "automatable_pct": 40,
+        "basis": "inferred",
+        "rationale": "The minutes go to building or updating the allocation spreadsheet for the group, reviewing plan allocations, and reading labor distribution and RC reports to find miscoded employees, charges or workorders and arranging the fix. A single correction takes around 15 minutes; a full allocation round runs toward 60. Totalling the sheet and checking codes against an expected mapping could be done by a report; the splits themselves are a manager's call.",
+        "evidence_ids": [
+          "batch-002:e14",
+          "batch-002:e15",
+          "batch-002:e20",
+          "batch-011:e24",
+          "batch-007:e16",
+          "batch-006:e3",
+          "batch-006:e4",
+          "batch-004:e13"
+        ]
+      },
+      "estimate_check": {
+        "occurrences_cited": 8,
+        "senders_cited": 3
+      }
+    },
+    {
+      "key": "counterparty-settlement-review",
+      "description": "Settlement and volume analysts check invoices, payments, demand charges and ISO settlement charges or revenues against the deals booked in Sitara, and resolve differences with counterparties and traders. A round starts when a counterparty disputes a price or amount, an invoice or payment has no matching deal, or an ISO statement shows unexpected congestion, capacity or penalty charges. The analyst researches deal tickets and prices, asks the trader or scheduler to verify or correct Sitara, and settles with the counterparty; some disputes need trader tapes pulled.",
+      "steps": [
+        "An invoice, payment, statement or ISO settlement arrives that does not match what the company booked or expected.",
+        "The analyst looks up the deal ticket, volumes and pricing in Sitara for the days in question.",
+        "The analyst asks the trader, scheduler or deal owner to verify the price or explain the deal.",
+        "Sitara deals or prices are corrected, or deals are separated or netted as agreed.",
+        "The difference is resolved with the counterparty by call or corrected invoice, with recordings pulled when a trade itself is disputed.",
+        "ISO charges and revenues are allocated to the right trading group and disputes are raised with the ISO."
+      ],
+      "stalls": [
+        {
+          "summary": "Analysts chase traders and schedulers for answers on prices and deal changes, sometimes more than once, while counterparties or client services wait for an answer.",
+          "evidence_ids": [
+            "batch-054:s1",
+            "batch-011:s2",
+            "batch-037:s0",
+            "batch-048:s1",
+            "batch-026:s0",
+            "batch-022:e15"
+          ]
+        },
+        {
+          "summary": "Analysts do not know who handles a deal, invoice or counterparty, or that the usual contact is out, so items are forwarded around before anyone works them.",
+          "evidence_ids": [
+            "batch-050:s3",
+            "batch-070:s0",
+            "batch-064:s0",
+            "batch-037:e19"
+          ]
+        },
+        {
+          "summary": "Deal records are missing or out of date: Sitara was not updated for a month, and no Sitara deal can be found for an invoiced amount.",
+          "evidence_ids": [
+            "batch-025:e0",
+            "batch-025:e14",
+            "batch-034:e1"
+          ]
+        },
+        {
+          "summary": "Outside systems fail the review: awarded ISO prices did not match the bids, and settlement information from the Hub arrives late.",
+          "evidence_ids": [
+            "batch-074:s0",
+            "batch-053:s0"
+          ]
+        },
+        {
+          "summary": "Some disputes stay open across several messages, such as an ISO amount still unresolved after earlier mail about it.",
+          "evidence_ids": [
+            "batch-056:e19",
+            "batch-057:e14"
+          ]
+        }
+      ],
+      "contradictions": [
+        {
+          "summary": "Company and counterparty prices disagree: the company paid one price while the counterparty says its price was higher, and other rounds report price differences and price issues with suppliers for past production months.",
+          "evidence_ids": [
+            "batch-052:e27",
+            "batch-007:e22",
+            "batch-059:e34"
+          ]
+        },
+        {
+          "summary": "Settlement figures conflict with the company's own expectations: published ISO prices did not match bids, a capacity payment is said to be lower than it should be, and a charge for a reduced purchase is disputed.",
+          "evidence_ids": [
+            "batch-074:s0",
+            "batch-057:e5",
+            "batch-056:e21"
+          ]
+        },
+        {
+          "summary": "Deal records disagree between the parties: the company invoiced a deal the counterparty cannot find in its system, and a counterparty does not know why it received a payment.",
+          "evidence_ids": [
+            "batch-053:e3",
+            "batch-090:e0"
+          ]
+        },
+        {
+          "summary": "Responsibility for deals and meters is stated differently from message to message: one deal is said to be handled going forward by one analyst, another sender only knows by hearsay who handles a deal, and meters are reassigned to one person while another is named as allocating a point.",
+          "evidence_ids": [
+            "batch-025:o0",
+            "batch-033:o0",
+            "batch-038:o0",
+            "batch-044:o0"
+          ]
+        }
+      ],
+      "automation": {
+        "approach": "A reconciliation report that matches counterparty invoices, payments and ISO settlement lines to Sitara deals by deal number, day, volume and price and lists only the variances, with each variance entered in a shared dispute log that records the counterparty, the named owner, the trader asked to verify, and the status.",
+        "artifact_type": "template",
+        "rationale": "Most rounds start with someone hunting for a deal or price and then waiting on whoever owns it. A variance report removes the hunt, and a log with named owners and status cuts the chasing and forwarding, while settling each dispute with the counterparty stays a judgment call."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": {
+          "low": 15,
+          "mid": 30,
+          "high": 90
+        },
+        "automatable_pct": 35,
+        "basis": "inferred",
+        "rationale": "The minutes go to looking up deal tickets and prices in Sitara for the disputed days, comparing them with the invoice, payment or ISO statement, correcting Sitara or the invoice, and calling the counterparty or trader. Disputed trades add pulling tapes or building a billing spreadsheet. A simple price check takes around 15 minutes and ISO disputes run toward 90, so the middle sits at 30. Matching statement lines to deals could be automated; resolving the dispute stays manual.",
+        "evidence_ids": [
+          "batch-025:e0",
+          "batch-025:e14",
+          "batch-005:e14",
+          "batch-050:e22",
+          "batch-052:e27",
+          "batch-053:e3",
+          "batch-058:e16",
+          "batch-057:e9",
+          "batch-083:e4",
+          "batch-015:e6"
+        ]
+      },
+      "estimate_check": {
+        "occurrences_cited": 10,
+        "senders_cited": 9
+      }
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "group_id": "synth-004",
+  "processes": [
+    {
+      "key": "curve-validation-review",
+      "description": "The curve validation group questions forward price curves whose shape, level or seasonality moved. The questions land with Darron Giron, who forwards the flagged curves to the trading desk and asks them to identify the factors driving the drastic changes. Traders named in the mail, such as Phillip Allen and Keith Holst, explain the moves, for example the West market trading higher in general over the month, and he relays those explanations back to the group, chasing the desk when no one answers.",
+      "steps": [
+        "The curve validation group flags forward curves whose shape, level or seasonality changed sharply.",
+        "The coordinator forwards the flagged curves to the trading desk and asks what is driving the changes.",
+        "Traders explain the move, such as the regional market trading higher over the period.",
+        "The coordinator relays the traders' explanation back to the validation group.",
+        "Follow-up questions from the group are passed to the desk again and answered."
+      ],
+      "stalls": [
+        {
+          "summary": "The coordinator forwards flagged curves to the desk and then has to ask again for someone in the group to follow up, so the answer to the validation group waits on traders' replies.",
+          "evidence_ids": ["batch-047:s2", "batch-047:e20"]
+        }
+      ],
+      "contradictions": [],
+      "automation": {
+        "approach": "A curve-change report produced from the curve records at each validation cut-off, listing each curve's change in level, shape and seasonal spread against the prior mark, flagging moves beyond a set tolerance, and pre-filling a commentary sheet in which the responsible trader records the driver. The completed sheet goes to the validation group as the answer.",
+        "artifact_type": "template",
+        "rationale": "The work is relaying: the coordinator gathers trader explanations for flagged curves and passes them on, and rounds stall when the desk does not answer. A standing form with the flagged curves, the size of each move and a driver column gives traders one place to answer and the validation group a consistent record, shortening the forward-and-chase loop."
+      },
+      "work_estimate": null
+    },
+    {
+      "key": "customer-event-planning",
+      "description": "Heather Choate runs most rounds: she prepares a customer trip proposal for approval, sends invitations to the annual Enron customer meeting for staff to pass on, announces that planning has begun for the customer appreciation meeting, and later circulates the final guest list with each guest's activities for review. Commercial staff are asked to confirm their customers or name replacements by a stated Friday noon deadline. Others remind colleagues that a customer trip is close or invite them to a transportation and logistics customer happy hour.",
+      "steps": [
+        "The organizer drafts the event or trip proposal and circulates it for approval.",
+        "Planning is announced and invitations are sent for commercial staff to pass to their customers.",
+        "Staff confirm which customers attend or name replacements before the stated deadline.",
+        "The organizer compiles the guest list with activity choices and rooming details.",
+        "The final guest list and itinerary are circulated for reference and review.",
+        "Reminders go out to staff as the event date nears."
+      ],
+      "stalls": [
+        {
+          "summary": "Guest lists change late: when invited customers drop out, staff are asked to name replacements against a fixed deadline, so the list is reworked before it can be finalised.",
+          "evidence_ids": ["batch-055:e22"]
+        }
+      ],
+      "contradictions": [],
+      "automation": {
+        "approach": "A shared tracker per event holding the guest list, each guest's sponsoring rep, RSVP status, chosen activities and rooming, with invitation and reminder messages drawn from it and replacements logged against the stated deadline. The final guest list and the rooming list for the venue are produced from the same sheet rather than retyped.",
+        "artifact_type": "template",
+        "rationale": "Rounds repeat the same assembly: proposal, invitations, nominations, replacements, and a final guest list with activities. One tracker layout reused across events removes the rebuilding of lists and makes late replacements easy to absorb, while choosing customers and arranging the trip stay decisions for people."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": { "low": 20, "mid": 75, "high": 240 },
+        "automatable_pct": 35,
+        "basis": "inferred",
+        "rationale": "The minutes go to the planning behind the mail: drafting a trip proposal or invitation, gathering customer nominations, reconciling replacements, and building the final guest list with activities and rooming. A happy-hour notice or trip reminder needs little beyond the email, while a proposal or final guest list takes far longer, so the range runs from 20 to 240 minutes around 75. List consolidation, RSVP tracking and reminders could run from a shared tracker; proposals, customer selection and vendor arrangements stay manual.",
+        "evidence_ids": ["batch-007:e0", "batch-012:e17", "batch-012:e12", "batch-055:e22", "batch-061:e26", "batch-016:e13", "batch-020:e10"]
+      }
+    },
+    {
+      "key": "customer-list-compilation",
+      "description": "Commercial and origination staff ask colleagues for lists of customers, prospects or market participants, and the lists come back as forwards: HPL's industrial customers in Texas, a contact report for a municipal gas authority, an article excerpt used to estimate the energy needs of new ethanol plants. Managers ask each team member to send a working customer list to one person for consolidation into market lists. Some requests turn on whether deal records capture everything, such as buy/sell deals with ENA on HPL's pipe, and requesters sometimes revisit what they asked for.",
+      "steps": [
+        "A commercial or origination contact asks for a list of customers, prospects or participants in a market or region.",
+        "A colleague pulls names, volumes or contacts from records, reports or outside sources.",
+        "The list or contact report is forwarded to the requester, sometimes with notes on how figures were estimated.",
+        "The requester checks whether the list answers the question and asks about gaps, such as deals the records may miss.",
+        "Working lists from several staff are gathered by one person and merged into a market list."
+      ],
+      "stalls": [
+        {
+          "summary": "A question about whether buy/sell deals on HPL's pipe are missing from the records waits on a reply from the person who would know, holding up the list.",
+          "evidence_ids": ["batch-012:s0", "batch-012:e0"]
+        },
+        {
+          "summary": "A requester first says the wrong question was asked, prompting another exchange before confirming that the original answer was what was needed.",
+          "evidence_ids": ["batch-005:e21", "batch-005:e23"]
+        }
+      ],
+      "contradictions": [
+        {
+          "summary": "The same requester gives conflicting verdicts on the list received: one message says the question was wrong and the answer misses the need, another says the first answer was exactly right.",
+          "evidence_ids": ["batch-005:e21", "batch-005:e23"]
+        }
+      ],
+      "automation": {
+        "approach": "A shared customer and prospect master list, kept as one spreadsheet or database view fed from the deal and pipeline records, with standard columns for company, location, market segment, volumes, contact and owning originator. Requests become a filtered extract instead of a fresh compilation, a check flags counterparties whose deals may not appear in the standard reports, and team working lists are merged into it rather than forwarded separately.",
+        "artifact_type": "template",
+        "rationale": "Each round rebuilds a list someone already holds in part: industrial customers, municipal contacts, ethanol prospects, team working lists. A standard layout lets lists be merged, filtered and reused, and makes gaps such as missing buy/sell deals visible. Judging which prospects matter and estimating their requirements stays with the originators."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": { "low": 15, "mid": 45, "high": 150 },
+        "automatable_pct": 45,
+        "basis": "inferred",
+        "rationale": "The minutes go to pulling customer names, volumes and contacts from records or outside sources, filtering them to the region or segment asked for, checking whether deal records miss some activity, and writing contact or estimate notes. Forwarding a ready list takes little; a compiled market list with estimated requirements takes far longer, hence 15 to 150 minutes around 45. Extraction and filtering could come from a maintained master list; estimating prospects' needs and judging relevance stay manual.",
+        "evidence_ids": ["batch-003:e7", "batch-075:e0", "batch-065:e12", "batch-071:e11", "batch-071:e10", "batch-012:e0"]
+      }
+    }
+  ]
+}

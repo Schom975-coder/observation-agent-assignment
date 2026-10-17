@@ -1,0 +1,214 @@
+{
+  "group_id": "synth-013",
+  "content_sha": "b96dab7cba3a682a63df3556cc1b7240adc5e8a2ee94ad93007bf1c0ae13067a",
+  "processes": [
+    {
+      "key": "performance-review",
+      "description": "Supervisors and HR run the mid-year and year-end review cycles. HR announces the cycle and its schedule; managers set pre-PRC and PRC meeting dates and ask for feedback by a deadline; employees nominate reviewers (by email when the PEP system fails) and send self-evaluations and accomplishment lists. Supervisors then write reviews on the standard PEP form, nominate staff for awards, hold review discussions or calls, communicate rankings and collect signed originals.",
+      "steps": [
+        "HR announces the start of the review cycle and circulates the performance management schedule.",
+        "Employees and supervisors nominate reviewers, sending the list to the manager by email when the PEP system is not working.",
+        "Employees complete self-evaluations and lists of accomplishments for their supervisor.",
+        "Managers set the pre-PRC and PRC meeting dates and collect reviewer feedback ahead of them.",
+        "The PRC meeting ranks employees and supervisors are asked to communicate each ranking.",
+        "Supervisors write reviews on the standard PEP form, nominate staff for awards and discuss each review with the employee.",
+        "Supervisors collect signed original copies of completed reviews and make any requested changes."
+      ],
+      "stalls": [
+        {
+          "summary": "The PEP system had problems during reviewer selection, so reviewer lists had to be sent to the manager by email instead, and a supervisor found he was not set up in the system to review his own staff.",
+          "evidence_ids": [
+            "batch-012:s1",
+            "batch-012:e13",
+            "batch-030:e3"
+          ]
+        },
+        {
+          "summary": "Reviews wait on others: a supervisor has to chase for word on an employee's review, and the timing of some reviews is pushed out toward the following year.",
+          "evidence_ids": [
+            "batch-041:e5",
+            "batch-028:e4"
+          ]
+        },
+        {
+          "summary": "Inputs arrive late or in the wrong shape: accomplishments are updated after the deadline, an employee points out the self-evaluation was already filled out in May, and goals and accomplishments are sent where a short outline of duties was wanted.",
+          "evidence_ids": [
+            "batch-083:e2",
+            "batch-053:e24",
+            "batch-079:e2"
+          ]
+        }
+      ],
+      "contradictions": [
+        {
+          "summary": "The PRC meeting date shifts within one cycle: the manager first proposes a Thursday meeting, then sets a feedback deadline for the day after that Thursday, and later reminds staff the meeting is on the following Tuesday.",
+          "evidence_ids": [
+            "batch-012:e7",
+            "batch-014:e6",
+            "batch-015:e4"
+          ]
+        }
+      ],
+      "automation": {
+        "approach": "A review-cycle tracker listing each employee with reviewers nominated, feedback received, self-evaluation and accomplishments in, PEP form drafted, ranking communicated and signed copy returned, with reminders sent ahead of each date in the HR schedule and a fallback route for reviewer lists when the PEP system is down.",
+        "artifact_type": "checklist",
+        "rationale": "The writing and ranking are judgement calls, but much of the mail is about who has sent what by when. A supervisor checklist tied to the cycle dates keeps the meeting date, feedback deadline, accomplishment lists and signed copies in one place and cuts late and repeated requests."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": {
+          "low": 5,
+          "mid": 20,
+          "high": 60
+        },
+        "automatable_pct": 25,
+        "basis": "inferred",
+        "rationale": "Most of the hands-on work in a round is a supervisor drafting a review on the PEP form from accomplishments and reviewer feedback, or an employee compiling accomplishments or reviewer choices, roughly 20 to 60 minutes; scheduling and announcement rounds need only a few minutes of calendar work, so the mid is 20. Tracking, reminders and form prefill could take over part of it; the evaluation itself stays with people.",
+        "evidence_ids": [
+          "batch-037:e21",
+          "batch-060:e23",
+          "batch-076:e4",
+          "batch-014:e6",
+          "batch-052:e29",
+          "batch-012:e16",
+          "batch-062:e7",
+          "batch-039:e22"
+        ]
+      },
+      "estimate_check": {
+        "occurrences_cited": 8,
+        "senders_cited": 5
+      }
+    },
+    {
+      "key": "pipeline-capacity-marketing",
+      "description": "The Transwestern marketing team sells spare firm capacity and handles changes to shippers' contracted quantities. A round starts when capacity becomes available or a customer asks for more: the posting is drafted and reviewed by colleagues, put on TW's EBB, and the link sent to shippers with the bid deadline that day. Requests to raise a contract's total quantity or MDQ for a day are approved and forwarded for entry, contract terms are checked against the tariff's notice periods, and errors on the EBB posting form or late postings are reported.",
+      "steps": [
+        "Available firm capacity is identified, or a shipper or customer asks for more capacity.",
+        "A posting is drafted and sent to colleagues for review before it goes up.",
+        "The posting goes on TW's EBB and the link is sent to shippers with the bid deadline.",
+        "Requests to raise a contract's total quantity or MDQ for a day are approved and forwarded for entry.",
+        "Contract terms such as notice periods before expiration are checked against the tariff.",
+        "Errors on the EBB capacity form and late postings are reported and fixed."
+      ],
+      "stalls": [
+        {
+          "summary": "The EBB unsubscribed capacity form returns an error page, holding up the posting until it is fixed.",
+          "evidence_ids": [
+            "batch-097:s0",
+            "batch-097:e3"
+          ]
+        },
+        {
+          "summary": "A capacity posting goes up late again, so the problem recurs rather than being fixed once.",
+          "evidence_ids": [
+            "batch-098:s0",
+            "batch-098:e27"
+          ]
+        },
+        {
+          "summary": "Getting capacity back from ENA is held up by a disagreement: ENA is agreed to owe money, but conditions agreed earlier have to be met before the capacity returns.",
+          "evidence_ids": [
+            "batch-087:e0"
+          ]
+        }
+      ],
+      "contradictions": [],
+      "automation": {
+        "approach": "A posting template holding point, quantity, term and bid deadline, checked against the tariff's notice rules before colleague review, then used to fill both the EBB form and a standard shipper notice; a scheduled check that the posting is live by its stated time and that the EBB form loads without error; and a log of approved quantity and MDQ changes forwarded for entry.",
+        "artifact_type": "checklist",
+        "rationale": "The mail shows the same sequence each time a block of capacity is offered, and the failures are a late posting and a broken form noticed afterwards. A posting checklist with a review step, a posting deadline and a check that the page works catches both, while commercial judgement on approvals and disputes stays with the team."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": {
+          "low": 10,
+          "mid": 20,
+          "high": 45
+        },
+        "automatable_pct": 35,
+        "basis": "inferred",
+        "rationale": "Each round involves preparing or reviewing a capacity posting and entering it on the EBB, or checking a quantity change or contract term against the tariff before approving it, roughly 10 to 45 minutes; most rounds are a single posting or a single change, so the mid is 20. Form filling, shipper notices and posting checks could be tool-driven; approvals and disputes stay manual.",
+        "evidence_ids": [
+          "batch-087:e6",
+          "batch-082:e3",
+          "batch-084:e3",
+          "batch-073:e2",
+          "batch-097:e3",
+          "batch-098:e27",
+          "batch-082:e5"
+        ]
+      },
+      "estimate_check": {
+        "occurrences_cited": 7,
+        "senders_cited": 3
+      }
+    },
+    {
+      "key": "pipeline-outage-supply-cuts",
+      "description": "Logistics staff receive notices that supply or capacity will be lost: plant operators report methanol and MTBE plant trips, repairs and restarts; gas control and pipelines announce line work, pigging and closed valves; field staff report meters shut in; counterparties cut purchased volumes or claim force majeure. Staff identify the affected meters, deals and volumes, contact the customers and operators involved, rearrange supply and nominations, follow restart updates, and keep a record of cuts and force majeure days for settlement questions such as buyback.",
+      "steps": [
+        "A notice arrives of a plant upset, line work, pigging, a meter shut-in or a supplier cut.",
+        "Staff identify the affected meters, deals and volumes before and after the cut.",
+        "Affected customers, operators and counterparties are contacted and asked for status.",
+        "Supply and nominations are rearranged for the period of the outage.",
+        "Follow-up notices on repairs, postponements and restarts are tracked and plans adjusted.",
+        "Cuts and force majeure days are recorded for settlement and buyback questions."
+      ],
+      "stalls": [
+        {
+          "summary": "Counterparties do not answer: a call is left unreturned, and the logistics side has to ask for status and an urgent reply before it can plan around the outage.",
+          "evidence_ids": [
+            "batch-051:s0",
+            "batch-000:s0",
+            "batch-001:s0"
+          ]
+        },
+        {
+          "summary": "Outage timelines keep moving, so supply plans are redone: restart estimates change across successive plant notices, repairs turn out more extensive than expected, and a scheduled outage is postponed.",
+          "evidence_ids": [
+            "batch-008:e32",
+            "batch-009:e14",
+            "batch-017:e14",
+            "batch-052:e16"
+          ]
+        },
+        {
+          "summary": "Notices come from many senders in free text, some second-hand, and one sender asks for better ways to communicate such issues.",
+          "evidence_ids": [
+            "batch-022:e10",
+            "batch-007:e6"
+          ]
+        }
+      ],
+      "contradictions": [],
+      "automation": {
+        "approach": "A standard outage and cut notice capturing source, meter, counterparty, volume before and after, start, expected end and affected deals, sent to one distribution list; a lookup that lists deals and nominations at the named meters; and a running log of cuts and force majeure days that settlement can query.",
+        "artifact_type": "email_template",
+        "rationale": "Notices arrive from plants, gas control and suppliers in free text, and each recipient has to work out the meters and volumes. One notice format with the fields logistics needs, plus a shared log, cuts the lookup and re-keying; deciding how to replace supply stays with the schedulers."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": {
+          "low": 10,
+          "mid": 25,
+          "high": 60
+        },
+        "automatable_pct": 35,
+        "basis": "inferred",
+        "rationale": "The work in a round is finding the deals and nominations at the affected meters, calling the operator or counterparty, rearranging supply and updating nominations, and logging cuts or force majeure days, roughly 10 to 60 minutes depending on how many meters and deals are hit; plant status updates often need only one nomination change, so the mid is 25. Lookup and logging could be tooled; replacement supply decisions stay manual.",
+        "evidence_ids": [
+          "batch-015:e7",
+          "batch-014:e11",
+          "batch-001:e9",
+          "batch-010:e34",
+          "batch-007:e6",
+          "batch-003:e32",
+          "batch-041:e8",
+          "batch-012:e24"
+        ]
+      },
+      "estimate_check": {
+        "occurrences_cited": 8,
+        "senders_cited": 6
+      }
+    }
+  ]
+}

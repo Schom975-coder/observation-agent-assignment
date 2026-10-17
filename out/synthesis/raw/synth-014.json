@@ -1,0 +1,107 @@
+{
+  "group_id": "synth-014",
+  "processes": [
+    {
+      "key": "pnl-position-reporting",
+      "description": "A round starts from the nightly P&L and daily position report (DPR) for a book or desk, such as the Enovate DPR, or from a question about it. Traders, originators and managers ask the risk controller for a version or unprotected copy of the report, MTM values as of a past date, a counterparty breakdown or support for a figure. The controller checks P&L and open positions, approves days, works out adjustments against the ledger, prior-period hits and excluded deals, and sends the file back, restating the P&L when an error turns up.",
+      "steps": [
+        "The nightly P&L and DPR are produced for each book or desk.",
+        "A trader, originator or manager asks for a report version, an unprotected copy, MTM values as of a date, a breakdown or support for a figure.",
+        "The controller checks P&L and open positions and approves the days' results.",
+        "Adjustments are worked out: ledger differences, prior-period production hits, originator shares and deals to exclude.",
+        "The file, breakdown or adjustment summary is attached and sent back to the requester.",
+        "When an error is found, the P&L is restated and the corrected file is sent out."
+      ],
+      "stalls": [
+        {
+          "summary": "Requests are misread or results explained in a way that confuses the desk, so the report or answer has to go round again.",
+          "evidence_ids": ["batch-031:s1", "batch-031:e25", "batch-018:s1"]
+        },
+        {
+          "summary": "The reporting system went down and the controller could not get the report out.",
+          "evidence_ids": ["batch-020:s2", "batch-020:e21"]
+        },
+        {
+          "summary": "Exclusion rules are applied by hand and get missed: pricing is per MW rather than per deal, transmission, pool and imbalance deals must be left out, and deals with another office ended up in a deal value.",
+          "evidence_ids": ["batch-079:e9", "batch-088:e0"]
+        },
+        {
+          "summary": "Steps slip between people: a reminder to a colleague is missed, an amount is not top-levelled that night, a file goes out without its attachment, a fix waits until the controller is back, and an assignment makes little progress.",
+          "evidence_ids": ["batch-034:e6", "batch-037:e20", "batch-037:e10", "batch-030:e23", "batch-032:e5"]
+        },
+        {
+          "summary": "Traders are told again that they will have to calculate their own basis positions this month, a recurring manual workaround.",
+          "evidence_ids": ["batch-025:e12"]
+        }
+      ],
+      "contradictions": [
+        {
+          "summary": "Reported P&L figures are later found wrong: a desk's reported P&L was understated, a P&L left out People's and Origination's share, and a day's P&L was restated with a new file.",
+          "evidence_ids": ["batch-042:e22", "batch-018:e20", "batch-093:e15"]
+        },
+        {
+          "summary": "Deal figures in the reports disagree with what the people on the deals expect: revenue shown in a new deal summary is rejected by its recipient, and a deal value includes deals with the Chicago office that should not be in it.",
+          "evidence_ids": ["batch-059:s5", "batch-088:e0"]
+        }
+      ],
+      "automation": {
+        "approach": "Generate the DPR and its distribution versions (unprotected copy, management summary) straight from the risk system each night; reconcile the DPR to the general ledger automatically and list the differences; code the standing exclusion rules (transmission, pool and imbalance deals, other-office deals) as filters; keep an adjustment and restatement log that feeds the next report; and run a pre-send check that every day is approved and the file is attached.",
+        "artifact_type": "checklist",
+        "rationale": "Most rework in the quotes comes from missed or misapplied steps rather than hard analysis: a missing attachment, a forgotten reminder, an amount not posted, deals left in that should be out, a request misread. A nightly close checklist covering approvals, the open-position check, exclusions, adjustments and attachments would catch these at once, while the reconciliation and filters take longer to build."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": { "low": 10, "mid": 25, "high": 60 },
+        "automatable_pct": 40,
+        "basis": "inferred",
+        "rationale": "The minutes go to checking P&L and open positions, working out adjustments such as ledger differences, a book's net DPR impact or volumes and values for a desk, pulling MTM values as of a past date, and preparing counterparty breakdowns or report versions. Many rounds are a quick check, an approval or a re-sent copy at about 10 minutes; rounds that rebuild an adjustment or pull historical values take up to 60 minutes. Reconciliation, filtering and versioning could be tooled; judging disputed figures stays manual.",
+        "evidence_ids": ["batch-037:e8", "batch-072:e12", "batch-016:e1", "batch-043:e16", "batch-034:e7", "batch-093:e15", "batch-079:e9", "batch-033:e2", "batch-043:e10", "batch-021:e13", "batch-038:e38"]
+      }
+    },
+    {
+      "key": "pnl-reserve-tracking",
+      "description": "The risk controller tells the desk about reserves held against its P&L: amounts put on Schedule C on a given night and removed or released on later nights, and credit reserves taken for specific counterparty transactions when a desk asks for them. When a reserve is granted, the amount is split between the desk and the credit reserve, and any excess origination is taken back that night.",
+      "steps": [
+        "A desk or originator asks for a reserve, or the controller decides to put an amount on Schedule C.",
+        "A credit reserve is requested for a specific transaction, with the deal details forwarded.",
+        "The amount is booked to Schedule C or the credit reserve in that night's P&L.",
+        "The controller tells the desk the amount taken on, released or removed.",
+        "Granted amounts are allocated between the desk and the credit reserve, and any excess origination is taken back."
+      ],
+      "stalls": [
+        {
+          "summary": "A granted reserve had to be reallocated after the fact, with extra origination taken back from the desk that night.",
+          "evidence_ids": ["batch-049:s1", "batch-049:e23"]
+        },
+        {
+          "summary": "Schedule C amounts are put on and then removed or released on following nights, so each position is announced and reversed in separate messages with no running balance shown.",
+          "evidence_ids": ["batch-045:e0", "batch-045:e2", "batch-035:e19", "batch-035:e20"]
+        }
+      ],
+      "contradictions": [],
+      "automation": {
+        "approach": "Keep a reserve register recording each Schedule C and credit reserve entry by desk, date, type, amount and reason, with each release linked to the entry it reverses, and send the nightly notice from it so the desk sees the running balance and the split between desk and credit reserve.",
+        "artifact_type": "template",
+        "rationale": "The work is a running ledger of put-ons and releases told to the desk one message at a time. A register layout makes the balance and the allocation between desk and credit reserve visible and would avoid the reallocation seen after a grant."
+      },
+      "work_estimate": null
+    },
+    {
+      "key": "price-index-evaluation",
+      "description": "A trading manager receives proposals for new power price indexes, such as hourly or real-time indexes in the West, with their definitions, methodology and submission templates, from outside groups. He forwards them to traders and colleagues asking for feedback on the index and its template, and decides which index the desk will take part in, if it works.",
+      "steps": [
+        "An outside group approaches the desk with a proposed price index.",
+        "The manager forwards the proposal and its submission template to colleagues for review.",
+        "Colleagues review the definition, methodology and template and send feedback.",
+        "The manager decides whether the desk will participate and in which index."
+      ],
+      "stalls": [],
+      "contradictions": [],
+      "automation": {
+        "approach": "A standard review checklist for index proposals: product and hours definition, methodology and data sources, submission template fields, confidentiality of submitted data, who submits and how often, and a recorded decision. Trader feedback would be collected against the same headings so competing proposals can be compared.",
+        "artifact_type": "checklist",
+        "rationale": "The rounds are judgement calls on outside proposals, with several groups offering similar indexes. Little is repetitive except the questions asked of each proposal, so a checklist helps compare them the same way and record why the desk joined one."
+      },
+      "work_estimate": null
+    }
+  ]
+}

@@ -46,7 +46,7 @@ export const COMMANDS: Record<string, Command> = {
     run: (args) => validateCommand(ROOT, args),
   },
   refill: {
-    summary: 'After completions: validate the named jobs, dispatch everything next, print the prompts as JSON',
+    summary: 'After completions: validate the named jobs (--failed <id>: an Agent call that failed, recorded at once), dispatch everything next, print the prompts as JSON',
     milestone: 'M5',
     run: (args) => refillCommand(ROOT, args),
   },

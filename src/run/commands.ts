@@ -383,13 +383,16 @@ type Validated =
   | { kind: 'starting' }
   | { kind: 'setup'; setup: string };
 
-// Check a running job's output and stamp it done or failed, as its agent's gate would have.
-function validateJob(root: string, job: JobEntry): Validated {
+// Check a running job's output and stamp it done or failed, as its agent's gate would have. A job
+// with no output file dispatched under ORPHAN_GRACE_S ago is left running (its agent may still be
+// reading) unless `gone`: the orchestrator saw its Agent call fail or be refused, so no agent will
+// ever write it, and it is recorded at once.
+function validateJob(root: string, job: JobEntry, opts: { gone?: boolean } = {}): Validated {
   const id = job.id;
   const before = readBatchState(root, id);
   if (before.status === 'done' || before.status === 'failed') return { kind: 'already', status: before.status, when: `recorded when its ${JOB_KINDS[kindOf(id)].worker} finished` };
   requireRunning(root, id);
-  if (stillStarting(root, before)) return { kind: 'starting' };
+  if (opts.gone !== true && stillStarting(root, before)) return { kind: 'starting' };
   const check = checkJob(root, id);
   if (check.setup !== null) return { kind: 'setup', setup: withoutRoot(check.setup, root) };
   try {
@@ -443,6 +446,7 @@ export type RefillReport = {
   stage: Stage;
   extraction: StatusReport['extraction'];
   // The named jobs: recorded now, already recorded (by the gate), still starting, or not checkable.
+  // A job named after --failed is never "still starting": its Agent call failed, so it is recorded.
   validated: Array<{ id: string; status: BatchStatus; note: 'recorded' | 'already recorded' | 'still starting' | 'could not be checked' }>;
   jobs: Array<{ id: string; description: string; prompt: string }>; // dispatched now: one Agent call each
   refused: Array<{ id: string; reason: string }>; // listed in next but refused by dispatch
@@ -452,25 +456,36 @@ export type RefillReport = {
 
 export const REFILL_MAX_BYTES = 64_000;
 
-// `node obs.mjs refill [<id> ...] [--json]`: validate each named job still running exactly as
-// `validate <id>` does (a job already stamped is reported, not re-checked), then dispatch every job
-// `status --json` lists in `next` (both kinds) exactly as `dispatch <id>` does, and print one JSON
-// object: the prompts to start, and what the loop needs to know. Nothing is dispatched while the
-// breaker is on. The same ledger end state as the separate commands, in one call.
+// `node obs.mjs refill [<id> ...] [--failed <id> ...] [--json]`: validate each named job still
+// running exactly as `validate <id>` does (a job already stamped is reported, not re-checked), then
+// dispatch every job `status --json` lists in `next` (both kinds) exactly as `dispatch <id>` does,
+// and print one JSON object: the prompts to start, and what the loop needs to know. Nothing is
+// dispatched while the breaker is on. The same ledger end state as the separate commands, in one
+// call. The jobs after --failed are those whose Agent call failed or was refused: no agent will
+// write their output, so they are recorded now rather than left "still starting" for
+// ORPHAN_GRACE_S (when that was the last running job, nothing would wake the orchestrator again).
+// Recorded exactly as `validate` records a job with no output: failed, the first such dispatch in
+// a row not counted toward MAX_DISPATCHES, and the stamp counted toward this run's circuit breaker.
+export const REFILL_USAGE = 'Usage: node obs.mjs refill [<job_id> ...] [--failed <job_id> ...] --json';
+
 export function refillCommand(root: string, args: readonly string[]): number {
   return guarded('refill', () => {
-    const named = args.filter((a) => a !== '--json').map(normalizeJobId);
-    for (const a of named) {
-      if (a.startsWith('-')) throw new LedgerError(`unexpected option "${a}". Usage: node obs.mjs refill [<job_id> ...] --json`);
+    const rest = args.filter((a) => a !== '--json');
+    const cut = rest.indexOf('--failed');
+    const completed = (cut === -1 ? rest : rest.slice(0, cut)).map(normalizeJobId);
+    const gone = cut === -1 ? [] : rest.slice(cut + 1).map(normalizeJobId);
+    for (const a of [...completed, ...gone]) {
+      if (a.startsWith('-')) throw new LedgerError(`unexpected option "${a}". ${REFILL_USAGE}`);
     }
+    if (cut !== -1 && gone.length === 0) throw new LedgerError(`--failed needs the jobs whose Agent call failed. ${REFILL_USAGE}`);
     const validated: RefillReport['validated'] = [];
-    for (const id of [...new Set(named)]) {
+    for (const id of [...new Set([...completed, ...gone])]) {
       const job = jobOf(root, id);
       if (readBatchState(root, id).status === 'pending') {
         validated.push({ id, status: 'pending', note: 'already recorded' });
         continue;
       }
-      const r = validateJob(root, job);
+      const r = validateJob(root, job, { gone: gone.includes(id) });
       if (r.kind === 'recorded') validated.push({ id, status: r.state.status, note: 'recorded' });
       else if (r.kind === 'already') validated.push({ id, status: r.status, note: 'already recorded' });
       else validated.push({ id, status: 'running', note: r.kind === 'starting' ? 'still starting' : 'could not be checked' });

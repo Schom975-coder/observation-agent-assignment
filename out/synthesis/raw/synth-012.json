@@ -1,0 +1,108 @@
+{
+  "group_id": "synth-012",
+  "processes": [
+    {
+      "key": "month-end-close-coordination",
+      "description": "Each month a close schedule for the coming month is circulated to the logistics and accounting groups, sometimes first as a tentative calendar and later reissued as a revised schedule after the leads discuss it. Groups are asked to send in their monthly items and to reply when their last-day files are complete, regions report when they have flashed, and the schedule sets a cut-off on a stated Friday evening after which no changes can be made.",
+      "steps": [
+        "Draft the close calendar for the coming month, marking it tentative where dates are not yet settled.",
+        "Circulate the schedule to the logistics and accounting groups.",
+        "Discuss conflicts with the leads and reissue a revised schedule where needed.",
+        "Ask each group for its monthly submission ahead of its deadline.",
+        "Collect replies as groups finish their last-day files and regions report their flash.",
+        "Hold to the stated cut-off after which no further changes are accepted."
+      ],
+      "stalls": [
+        {
+          "summary": "The schedule is not always settled when first sent: one round goes out as tentative and another is reissued as a revised schedule after discussion among the leads, so groups work from a calendar that changes under them.",
+          "evidence_ids": ["batch-009:e10", "batch-068:e2"]
+        },
+        {
+          "summary": "Progress through the close depends on each group replying when its last-day file is complete and on regions reporting their flash, so the coordinator waits on confirmations before the close can move on.",
+          "evidence_ids": ["batch-042:e11", "batch-034:e8"]
+        }
+      ],
+      "contradictions": [],
+      "automation": {
+        "approach": "Generate the close calendar from a standing layout keyed to business days, holidays and system run dates, publish it in one shared place, and track each group's monthly submission, last-day file and flash status in a status column so completion is visible without asking for replies; flag change requests that arrive after the stated cut-off.",
+        "artifact_type": "template",
+        "rationale": "Each round repeats the same calendar layout with only the dates changing, and the follow-up is mostly finding out who has finished. A schedule template with a status column covers both, while agreeing revisions among the leads stays a human decision."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": { "low": 20, "mid": 45, "high": 90 },
+        "automatable_pct": 40,
+        "basis": "inferred",
+        "rationale": "Most of the roughly 45 minutes goes to building the coming month's calendar against system run dates and holidays and, in some rounds, reworking it after the leads agree changes; the rest goes to tallying which groups have delivered their monthly items and last-day files. The quotes show a schedule document each round but not its size, so the range runs from 20 to 90 minutes. A template can lay out dates and track status; negotiating revisions stays manual.",
+        "evidence_ids": ["batch-000:e10", "batch-009:e10", "batch-068:e2", "batch-064:e16", "batch-042:e11", "batch-005:e8", "batch-034:e8"]
+      }
+    },
+    {
+      "key": "office-move-coordination",
+      "description": "Rounds are announcements and requests around a relocation to a new building or floor: staff are reminded how little time remains before the move and that it is scheduled for a weekend, packing and labelling instructions from facilities are forwarded on, and staff reply with timing preferences such as being moved in the morning because they have only a few boxes. After moves, someone is asked to clear out all unoccupied desks in a region.",
+      "steps": [
+        "Receive the move schedule and packing and labelling instructions from facilities.",
+        "Forward the schedule and instructions to the affected staff ahead of the move.",
+        "Staff pack and label their belongings and reply with any timing requests.",
+        "Adjust individual move slots where staff ask for a particular time.",
+        "After the move, clear out items left in unoccupied desks."
+      ],
+      "stalls": [
+        {
+          "summary": "Desks left unoccupied after moves still hold items, so a separate clear-out of a whole region's empty desks has to be arranged afterwards.",
+          "evidence_ids": ["batch-088:e28"]
+        }
+      ],
+      "contradictions": [],
+      "automation": {
+        "approach": "A standing move checklist covering the schedule, packing and labelling rules, collection of timing requests and a post-move sweep of vacated desks, sent with a reusable announcement, would let each move run from the same list instead of from forwarded notes.",
+        "artifact_type": "checklist",
+        "rationale": "Moves are physical work that no tool takes over; the repetitive part is telling staff the same instructions each time and remembering the clean-up afterwards, which a checklist handles directly."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": { "low": 15, "mid": 40, "high": 120 },
+        "automatable_pct": 15,
+        "basis": "inferred",
+        "rationale": "The hands-on work per round is arranging move slots, passing on packing and labelling rules and clearing vacated desks. The quotes show small personal volumes, such as someone with only a couple of boxes, so about 40 minutes of coordination and clearing is the central figure, rising to 120 when a region's empty desks are cleared out. Being mostly physical, little beyond the checklist and announcement can be automated.",
+        "evidence_ids": ["batch-088:e28", "batch-073:e22", "batch-076:e12", "batch-098:e7"]
+      }
+    },
+    {
+      "key": "origination-credit-booking",
+      "description": "Rounds track and reconcile origination credit between books: one side reports how much origination was recognized overnight and from which desk, the other checks whether its own book shows the same amount, and originations an originator cannot find are traced. Rounds also cover the single cost centre all origination is coded to, corrections booked in a later month to fix a quarter's gas P&L, and arranging deal data and a daily origination report for a group head.",
+      "steps": [
+        "Record the origination recognized overnight and the desk it came from.",
+        "Tell the counterpart book how much was recognized.",
+        "Compare the counterpart's recognized amount with what appears in the own book.",
+        "Trace any origination an originator reports as missing.",
+        "Book corrections to the right cost centre and period to fix the quarter's P&L.",
+        "Send requested deal data and set up a regular origination report for the group head."
+      ],
+      "stalls": [
+        {
+          "summary": "Origination recognized on one side does not always show up on the other, so a round turns into a check of what was booked where.",
+          "evidence_ids": ["batch-016:e2", "batch-016:e0"]
+        },
+        {
+          "summary": "Originations drop out of view and have to be tracked down on behalf of the originator.",
+          "evidence_ids": ["batch-051:e28"]
+        },
+        {
+          "summary": "Earlier bookings are corrected in a later month to put the quarter's gas P&L right, which is rework after the fact.",
+          "evidence_ids": ["batch-043:e7", "batch-043:e6"]
+        }
+      ],
+      "contradictions": [
+        {
+          "summary": "The two books disagree on the origination recognized: one side states an amount it recognized that the other side does not see in its own records.",
+          "evidence_ids": ["batch-016:e2"]
+        }
+      ],
+      "automation": {
+        "approach": "A daily reconciliation report matching origination recognized in each book by deal, desk and cost centre, flagging amounts present on one side only and originations with no booking, would replace the manual comparisons and the searches for missing credit; the same report can serve as the group head's daily origination view.",
+        "artifact_type": "template",
+        "rationale": "The recurring work is comparing recognized amounts across books and chasing items that do not match. A fixed reconciliation layout makes mismatches visible each day, while deciding which group earns the credit and booking corrections stays with people."
+      },
+      "work_estimate": null
+    }
+  ]
+}

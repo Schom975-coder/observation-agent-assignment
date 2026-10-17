@@ -1,0 +1,136 @@
+{
+  "group_id": "synth-008",
+  "processes": [
+    {
+      "key": "desk-equipment-requests",
+      "description": "The real-time desk lead asks IT trader deployments and telecom staff for desk equipment: an extra turret, handsets for each turret, headsets, PCs and cell phones on a group calling plan. Orders are assigned to a technician who reports progress and sends an installation-complete notice, and cabling and turret IDs are sorted out for the real-time desks. An admin who receives a vendor invoice asks the requester to confirm the items arrived. Phone plans are set up, capped per employee or cancelled, and usage is reported back to group members.",
+      "steps": [
+        "The desk lead identifies equipment a desk or person needs: turret, handsets, headset, PC or cell phone.",
+        "The order is placed with IT trader deployments or the carrier, sometimes by phone.",
+        "The order is assigned to a technician, who reports progress and confirms the installation.",
+        "Cabling, desk moves and turret IDs are arranged for the real-time desks.",
+        "When the vendor invoice arrives, the admin asks the requester to confirm the items were received.",
+        "Mobile plans are set up, capped or cancelled, and each group member is told their average usage."
+      ],
+      "stalls": [
+        {
+          "summary": "A phone request for a staff member waited on the carrier, and the desk lead had to ask again for any news.",
+          "evidence_ids": ["batch-065:s2", "batch-065:e19"]
+        },
+        {
+          "summary": "Receipt is checked only once the invoice arrives: the admin has to ask requesters whether invoiced items such as a printer maintenance kit were actually received before the bill is cleared.",
+          "evidence_ids": ["batch-042:e16", "batch-042:e15"]
+        }
+      ],
+      "contradictions": [],
+      "automation": {
+        "approach": "A shared equipment log for the desk: requester, item, desk and turret ID, order date, assigned technician, install date and receipt confirmation, updated from the deployment system's assignment and completion notices, so invoices are matched to logged receipts instead of asking requesters. A regular per-person mobile usage report against the group cap could be produced from the carrier's billing data.",
+        "artifact_type": "template",
+        "rationale": "Most rounds are one request followed by a status question or a receipt check. A tracking layout that holds turret IDs, orders, installs and receipts answers those questions without a new thread and lets the admin match invoices to deliveries, while ordering decisions stay with the desk lead."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": { "low": 10, "mid": 20, "high": 60 },
+        "automatable_pct": 30,
+        "basis": "inferred",
+        "rationale": "Hands-on work is placing the order by phone or with deployments, gathering turret IDs and desk details, arranging cable and installation, checking receipt against an invoice, and setting up or cancelling phone plans and working out usage. About 20 minutes is typical; a simple receipt check takes 10, and re-cabling a desk or adding a turret up to 60. Logging, invoice matching and usage reports could be automated; choosing equipment and the physical install stay manual.",
+        "evidence_ids": ["batch-056:e7", "batch-064:e6", "batch-065:e3", "batch-042:e16", "batch-068:e1", "batch-066:e9", "batch-065:e8"]
+      }
+    },
+    {
+      "key": "divestiture-transition",
+      "description": "Hand-over of sold businesses to new owners: first the HPL sale to AEP, where deal files go to the buyer and a transition-issues memo is circulated for comments, then the move of the gas and power trading business to UBS. In the UBS move, staff complete new-hire applications, drug tests and orientation, get new access cards, copy compliant data and email into the new environment with migration compliance forms, fix spreadsheet macros and book lists, and work out which files and daily procedures stay with the estate team.",
+      "steps": [
+        "The seller circulates transition issues and deal or customer files for the buyer and asks for comments.",
+        "Planning meetings map out the implementation plan and which files, procedures and systems stay with the estate.",
+        "Transferring staff complete new-hire applications, drug tests and paperwork by the stated deadlines.",
+        "Staff attend orientation sessions and obtain new access cards.",
+        "Compliance sets the protocol for which data may move; staff copy compliant data and email and file migration compliance forms.",
+        "IT migrates systems and announces outages; users fix macros and refresh book lists in their spreadsheets.",
+        "The estate team takes over the daily settlement runs and any procedures the buyer's staff no longer run."
+      ],
+      "stalls": [
+        {
+          "summary": "Systems were unavailable during the migration: a model could not be sent to a colleague and the trading cluster had not been reconfigured, so CAPS could not be reached.",
+          "evidence_ids": ["batch-095:s2", "batch-095:e15"]
+        },
+        {
+          "summary": "A transition request reached the wrong person and had to be passed on with a note that a response was required.",
+          "evidence_ids": ["batch-090:s0", "batch-090:e1"]
+        },
+        {
+          "summary": "New-hire paperwork went round again: applications missing information and pre-employment drug tests not yet taken drew follow-up requests against a same-day paperwork deadline.",
+          "evidence_ids": ["batch-094:e10", "batch-095:e5", "batch-095:e6", "batch-088:e22"]
+        },
+        {
+          "summary": "The split of work between the estate team and the buyer was unclear: staff were asked which files, directories and procedures the estate still needs or should take over.",
+          "evidence_ids": ["batch-085:e12", "batch-096:e8"]
+        },
+        {
+          "summary": "Moved files broke spreadsheets: P&L macros had to be edited and hedge strip book lists refreshed after the folders changed.",
+          "evidence_ids": ["batch-090:e12", "batch-090:e15"]
+        },
+        {
+          "summary": "The email export used for the migration does not save attachments, so staff had to save them separately or lose them.",
+          "evidence_ids": ["batch-096:e10"]
+        }
+      ],
+      "contradictions": [],
+      "automation": {
+        "approach": "One transition checklist per person and per desk: new-hire application, drug test, orientation session, access card, data migration under the compliance protocol with its form, email export with attachments saved, spreadsheet macro and link updates after folders move, and a list of files and daily procedures that stay with the estate. A script could find spreadsheets still pointing at old folders, and a shared form could collect migration compliance forms in one batch.",
+        "artifact_type": "checklist",
+        "rationale": "The rounds are many small, deadline-driven tasks announced in separate messages, and the follow-ups show items being missed. One checklist gathers them in one place; deciding which data may move stays with compliance and the desk heads."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": { "low": 10, "mid": 30, "high": 120 },
+        "automatable_pct": 25,
+        "basis": "inferred",
+        "rationale": "Hands-on work per round is the task the notice asks for: completing an application or paperwork, copying files into the new environment with a compliance form, editing macros or refreshing book lists, listing files and procedures for the estate, or preparing deal files and reviewing a transition memo. About 30 minutes is typical; a short form takes 10, a desk's data migration or deal-file preparation up to 120. Link fixes and form collection could be scripted; judging what may move cannot.",
+        "evidence_ids": ["batch-095:e14", "batch-090:e12", "batch-090:e15", "batch-096:e11", "batch-085:e12", "batch-045:e12", "batch-049:e32", "batch-094:e10"]
+      }
+    },
+    {
+      "key": "expense-report-approval",
+      "description": "Employees file expense reports and outstanding invoices in the expense system; the system emails the approver that a report is ready for approval and later reports status changes. Admins and corporate announcements ask staff to file outstanding items and approvers to approve or reject expenses waiting in their inboxes, and explain which bills fall before the bankruptcy cut-off. Login problems with the expense system are sent to support.",
+      "steps": [
+        "Staff gather receipts and outstanding invoices and enter an expense report in the expense system.",
+        "The system emails the approver that the report is ready for approval.",
+        "The approver reviews the report and approves or rejects it.",
+        "The system sends a notice when the approval status changes.",
+        "Admins and finance ask staff to file outstanding expenses and clear approval inboxes before cut-off dates.",
+        "Access problems with the expense system are referred to support."
+      ],
+      "stalls": [
+        {
+          "summary": "The approver could not get into the expense system and had to ask for the login and password to be looked into.",
+          "evidence_ids": ["batch-076:s0", "batch-076:e13"]
+        },
+        {
+          "summary": "Expenses sit unprocessed: notices ask approvers to approve or reject outstanding items in their inboxes and staff to file outstanding expenses as soon as possible.",
+          "evidence_ids": ["batch-081:e9", "batch-094:e12", "batch-001:e31"]
+        }
+      ],
+      "contradictions": [
+        {
+          "summary": "An announcement promises prompt reimbursement on submission, while a later notice says phone bills submitted before the cut-off date were treated as pre-petition.",
+          "evidence_ids": ["batch-083:e5", "batch-084:e15"]
+        },
+        {
+          "summary": "Approval notices come from the Concur system, while a finance request asks staff to file outstanding expenses through the XMS system.",
+          "evidence_ids": ["batch-092:e0", "batch-094:e12"]
+        }
+      ],
+      "automation": {
+        "approach": "Rules in the expense system that check each report against policy and attached receipts before it reaches the approver, a reminder report listing reports waiting in each approver's inbox, and self-service password resets. A short written procedure names the one system to file in, what the approver checks, and how the bankruptcy cut-off applies.",
+        "artifact_type": "sop",
+        "rationale": "The system already routes reports and sends notices; the friction in the mail is confusion over which system to use, the cut-off rules, outstanding items and access. A short procedure settles those, and policy checks shorten the approver's review while the approval decision stays with a person."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": { "low": 3, "mid": 10, "high": 30 },
+        "automatable_pct": 40,
+        "basis": "inferred",
+        "rationale": "Hands-on work is the employee gathering receipts and invoices and entering the report, and the approver checking the line items before approving or rejecting. About 10 minutes a round; 3 for a routine approval, 30 for a report with many items or missing receipts. Policy and receipt checks and reminders could be automated; the decision stays manual.",
+        "evidence_ids": ["batch-092:e0", "batch-095:e2", "batch-088:e24", "batch-081:e9", "batch-094:e12", "batch-001:e31"]
+      }
+    }
+  ]
+}

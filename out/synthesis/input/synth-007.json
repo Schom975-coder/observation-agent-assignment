@@ -1,0 +1,999 @@
+{
+  "group_id": "synth-007",
+  "processes": [
+    {
+      "key": "deal-pathing-setup",
+      "occurrences": 16,
+      "cited": [
+        {
+          "id": "batch-011:e21",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/1082.",
+          "occurrence_id": "t-00e9ef5854b4-o1",
+          "sender": "kenny.soignet@enron.com",
+          "date_utc": "2000-05-01T11:02:00Z"
+        },
+        {
+          "id": "batch-010:e21",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/1030.",
+          "occurrence_id": "t-409215039c38-o1",
+          "sender": "brenda.herod@enron.com",
+          "date_utc": "2000-04-10T17:24:00Z"
+        },
+        {
+          "id": "batch-001:e2",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/623.",
+          "occurrence_id": "t-5390fe13b528-o1",
+          "sender": "david.baumbach@enron.com",
+          "date_utc": "1999-12-28T18:20:00Z"
+        },
+        {
+          "id": "batch-003:e30",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/759.",
+          "occurrence_id": "t-5c1a89e1c578-o1",
+          "sender": "kenneth.seaman@enron.com",
+          "date_utc": "2000-02-07T10:19:00Z"
+        },
+        {
+          "id": "batch-055:e7",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/108.",
+          "occurrence_id": "t-6aac5d877601-o1",
+          "sender": "g..barkowsky@enron.com",
+          "date_utc": "2001-06-22T21:50:23Z"
+        },
+        {
+          "id": "batch-003:e46",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/779.",
+          "occurrence_id": "t-7216996f162f-o1",
+          "sender": "robert.lloyd@enron.com",
+          "date_utc": "2000-02-09T16:44:00Z"
+        },
+        {
+          "id": "batch-081:e5",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/14.",
+          "occurrence_id": "t-abea83c3e5cc-o1",
+          "sender": "michael.olsen@enron.com",
+          "date_utc": "2001-11-30T13:18:13Z"
+        },
+        {
+          "id": "batch-057:e21",
+          "kind": "evidence",
+          "message_id": "corpus/williams-w3/sent_items/413.",
+          "occurrence_id": "t-b36c004dddb1-o1",
+          "sender": "bill.williams@enron.com",
+          "date_utc": "2001-07-11T19:08:18Z"
+        },
+        {
+          "id": "batch-005:e28",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/852.",
+          "occurrence_id": "t-bd6be79655a0-o1",
+          "sender": "robert.lloyd@enron.com",
+          "date_utc": "2000-02-28T14:36:00Z"
+        },
+        {
+          "id": "batch-004:e26",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/811.",
+          "occurrence_id": "t-c4c3c78986c7-o1",
+          "sender": "howard.camp@enron.com",
+          "date_utc": "2000-02-17T17:55:00Z"
+        },
+        {
+          "id": "batch-003:e29",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/758.",
+          "occurrence_id": "t-ca3a4ad673c1-o1",
+          "sender": "kenneth.seaman@enron.com",
+          "date_utc": "2000-02-07T08:46:00Z"
+        },
+        {
+          "id": "batch-082:e8",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/12.",
+          "occurrence_id": "t-e93fd4ad380f-o1",
+          "sender": "rita.wynne@enron.com",
+          "date_utc": "2001-12-11T14:07:33Z"
+        },
+        {
+          "id": "batch-010:e3",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/1008.",
+          "occurrence_id": "t-f2993ad7b550-o1",
+          "sender": "pat.clynes@enron.com",
+          "date_utc": "2000-04-03T15:18:00Z"
+        },
+        {
+          "id": "batch-010:e4",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/1033.",
+          "occurrence_id": "t-f2993ad7b550-o2",
+          "sender": "brenda.herod@enron.com",
+          "date_utc": "2000-04-11T09:54:00Z"
+        },
+        {
+          "id": "batch-017:e3",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/1253.",
+          "occurrence_id": "t-fe0c4bccc2b7-o1",
+          "sender": "pat.clynes@enron.com",
+          "date_utc": "2000-06-29T09:18:00Z"
+        },
+        {
+          "id": "batch-003:e28",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/757.",
+          "occurrence_id": "t-fea182d5deae-o1",
+          "sender": "robert.lloyd@enron.com",
+          "date_utc": "2000-02-07T08:34:00Z"
+        },
+        {
+          "id": "batch-055:s1",
+          "kind": "stall",
+          "message_id": "corpus/farmer-d/logistics/102.",
+          "occurrence_id": "t-6aac5d877601-o1",
+          "sender": "g..barkowsky@enron.com",
+          "date_utc": "2001-06-29T21:47:25Z"
+        },
+        {
+          "id": "batch-011:s5",
+          "kind": "stall",
+          "message_id": "corpus/farmer-d/logistics/1114.",
+          "occurrence_id": "t-00e9ef5854b4-o1",
+          "sender": "stephanie.gomes@enron.com",
+          "date_utc": "2000-05-17T14:14:00Z"
+        },
+        {
+          "id": "batch-004:s4",
+          "kind": "stall",
+          "message_id": "corpus/farmer-d/logistics/823.",
+          "occurrence_id": "t-c4c3c78986c7-o1",
+          "sender": "rita.wynne@enron.com",
+          "date_utc": "2000-02-22T13:40:00Z"
+        },
+        {
+          "id": "batch-055:s2",
+          "kind": "stall",
+          "message_id": "corpus/farmer-d/logistics/97.",
+          "occurrence_id": "t-6aac5d877601-o1",
+          "sender": "g..barkowsky@enron.com",
+          "date_utc": "2001-07-17T20:00:09Z"
+        }
+      ]
+    },
+    {
+      "key": "deal-record-correction",
+      "occurrences": 86,
+      "cited": [
+        {
+          "id": "batch-053:e22",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/121.",
+          "occurrence_id": "t-0745a8c4da02-o1",
+          "sender": "david.baumbach@enron.com",
+          "date_utc": "2001-05-30T23:35:00Z"
+        },
+        {
+          "id": "batch-019:e12",
+          "kind": "evidence",
+          "message_id": "corpus/giron-d/sent/721.",
+          "occurrence_id": "t-0a6b42108a0f-o1",
+          "sender": "darron.giron@enron.com",
+          "date_utc": "2000-07-31T17:22:00Z"
+        },
+        {
+          "id": "batch-001:e25",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/649.",
+          "occurrence_id": "t-0b586b48c8d3-o1",
+          "sender": "anita.luong@enron.com",
+          "date_utc": "2000-01-05T10:03:00Z"
+        },
+        {
+          "id": "batch-003:e44",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/775.",
+          "occurrence_id": "t-0fe048913a12-o1",
+          "sender": "o'neal.winfree@enron.com",
+          "date_utc": "2000-02-09T09:50:00Z"
+        },
+        {
+          "id": "batch-045:e22",
+          "kind": "evidence",
+          "message_id": "corpus/giron-d/sent/173.",
+          "occurrence_id": "t-10e856e60e58-o1",
+          "sender": "darron.giron@enron.com",
+          "date_utc": "2001-03-01T10:55:00Z"
+        },
+        {
+          "id": "batch-041:e14",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/2071.",
+          "occurrence_id": "t-1302a21ad982-o1",
+          "sender": "mark.mccoy@enron.com",
+          "date_utc": "2001-02-01T16:36:00Z"
+        },
+        {
+          "id": "batch-041:e15",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/2072.",
+          "occurrence_id": "t-160f71d6cb7b-o1",
+          "sender": "mark.mccoy@enron.com",
+          "date_utc": "2001-02-01T16:45:00Z"
+        },
+        {
+          "id": "batch-003:e15",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/741.",
+          "occurrence_id": "t-1c51f306587b-o1",
+          "sender": "jackie.young@enron.com",
+          "date_utc": "2000-02-01T15:19:00Z"
+        },
+        {
+          "id": "batch-020:e7",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/1333.",
+          "occurrence_id": "t-2059f03087f7-o1",
+          "sender": "karen.lindley@enron.com",
+          "date_utc": "2000-08-11T16:06:00Z"
+        },
+        {
+          "id": "batch-057:e11",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/100.",
+          "occurrence_id": "t-28aa59d351f4-o1",
+          "sender": "michael.olsen@enron.com",
+          "date_utc": "2001-07-09T15:36:48Z"
+        },
+        {
+          "id": "batch-047:e28",
+          "kind": "evidence",
+          "message_id": "corpus/giron-d/sent/127.",
+          "occurrence_id": "t-2ba0a2c03b59-o1",
+          "sender": "darron.giron@enron.com",
+          "date_utc": "2001-03-23T14:02:00Z"
+        },
+        {
+          "id": "batch-005:e3",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/822.",
+          "occurrence_id": "t-2f444c6287b5-o1",
+          "sender": "carlos.rodriguez@enron.com",
+          "date_utc": "2000-02-22T12:53:00Z"
+        },
+        {
+          "id": "batch-011:e29",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/1093.",
+          "occurrence_id": "t-3524354f7f07-o1",
+          "sender": "torrey.moorer@enron.com",
+          "date_utc": "2000-05-08T08:42:00Z"
+        },
+        {
+          "id": "batch-054:e5",
+          "kind": "evidence",
+          "message_id": "corpus/williams-w3/sent_items/499.",
+          "occurrence_id": "t-3ccd2420164f-o1",
+          "sender": "bill.williams@enron.com",
+          "date_utc": "2001-06-14T23:45:24Z"
+        },
+        {
+          "id": "batch-019:e9",
+          "kind": "evidence",
+          "message_id": "corpus/giron-d/sent/724.",
+          "occurrence_id": "t-43a87d92f26d-o1",
+          "sender": "darron.giron@enron.com",
+          "date_utc": "2000-07-28T16:46:00Z"
+        },
+        {
+          "id": "batch-034:e0",
+          "kind": "evidence",
+          "message_id": "corpus/giron-d/sent/445.",
+          "occurrence_id": "t-4cc59a871e08-o1",
+          "sender": "darron.giron@enron.com",
+          "date_utc": "2000-11-29T13:23:00Z"
+        },
+        {
+          "id": "batch-029:e10",
+          "kind": "evidence",
+          "message_id": "corpus/giron-d/sent/549.",
+          "occurrence_id": "t-5130eee6045c-o1",
+          "sender": "darron.giron@enron.com",
+          "date_utc": "2000-10-27T13:40:00Z"
+        },
+        {
+          "id": "batch-037:e27",
+          "kind": "evidence",
+          "message_id": "corpus/giron-d/sent/310.",
+          "occurrence_id": "t-5405a693c5a9-o2",
+          "sender": "darron.giron@enron.com",
+          "date_utc": "2001-01-22T08:24:00Z"
+        },
+        {
+          "id": "batch-050:e25",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/173.",
+          "occurrence_id": "t-68a5cd3102b2-o1",
+          "sender": "michael.olsen@enron.com",
+          "date_utc": "2001-04-18T20:10:35Z"
+        },
+        {
+          "id": "batch-062:e12",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/74.",
+          "occurrence_id": "t-68eff2156fb2-o1",
+          "sender": "valerie.vela@enron.com",
+          "date_utc": "2001-08-17T19:54:45Z"
+        },
+        {
+          "id": "batch-048:e15",
+          "kind": "evidence",
+          "message_id": "corpus/giron-d/sent/117.",
+          "occurrence_id": "t-74186c4b6a26-o1",
+          "sender": "darron.giron@enron.com",
+          "date_utc": "2001-03-28T11:04:00Z"
+        },
+        {
+          "id": "batch-082:e29",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/7.",
+          "occurrence_id": "t-81871ea8afab-o1",
+          "sender": "tammy.jaquet@enron.com",
+          "date_utc": "2001-12-13T22:19:53Z"
+        },
+        {
+          "id": "batch-093:e10",
+          "kind": "evidence",
+          "message_id": "corpus/giron-d/inbox/25.",
+          "occurrence_id": "t-8a989fc1aa19-o1",
+          "sender": "richard.tomaski@enron.com",
+          "date_utc": "2002-02-04T17:34:12Z"
+        },
+        {
+          "id": "batch-038:e29",
+          "kind": "evidence",
+          "message_id": "corpus/giron-d/sent/357.",
+          "occurrence_id": "t-8b6e95c42e23-o1",
+          "sender": "darron.giron@enron.com",
+          "date_utc": "2001-01-03T10:12:00Z"
+        },
+        {
+          "id": "batch-001:e4",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/629.",
+          "occurrence_id": "t-90acb938fc16-o1",
+          "sender": "charlotte.hawkins@enron.com",
+          "date_utc": "1999-12-29T11:26:00Z"
+        },
+        {
+          "id": "batch-038:e33",
+          "kind": "evidence",
+          "message_id": "corpus/giron-d/sent/351.",
+          "occurrence_id": "t-9783806a223d-o1",
+          "sender": "darron.giron@enron.com",
+          "date_utc": "2001-01-04T10:48:00Z"
+        },
+        {
+          "id": "batch-023:e4",
+          "kind": "evidence",
+          "message_id": "corpus/giron-d/sent/655.",
+          "occurrence_id": "t-9c66e0f7291f-o1",
+          "sender": "darron.giron@enron.com",
+          "date_utc": "2000-09-11T16:56:00Z"
+        },
+        {
+          "id": "batch-008:e24",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/948.",
+          "occurrence_id": "t-a6724131ffcb-o1",
+          "sender": "bryan.hull@enron.com",
+          "date_utc": "2000-03-23T10:09:00Z"
+        },
+        {
+          "id": "batch-018:e21",
+          "kind": "evidence",
+          "message_id": "corpus/giron-d/sent/738.",
+          "occurrence_id": "t-a9e391da736e-o1",
+          "sender": "darron.giron@enron.com",
+          "date_utc": "2000-07-18T13:30:00Z"
+        },
+        {
+          "id": "batch-043:e17",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/2084.",
+          "occurrence_id": "t-aecf1303a2ff-o1",
+          "sender": "mark.mccoy@enron.com",
+          "date_utc": "2001-02-18T14:32:00Z"
+        },
+        {
+          "id": "batch-033:e9",
+          "kind": "evidence",
+          "message_id": "corpus/giron-d/sent/469.",
+          "occurrence_id": "t-b00779ce176e-o1",
+          "sender": "darron.giron@enron.com",
+          "date_utc": "2000-11-21T16:00:00Z"
+        },
+        {
+          "id": "batch-022:e3",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/1371.",
+          "occurrence_id": "t-b52a1a737364-o1",
+          "sender": "thomas.engel@enron.com",
+          "date_utc": "2000-08-29T07:24:00Z"
+        },
+        {
+          "id": "batch-049:e28",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/190.",
+          "occurrence_id": "t-bbf0ad55bc49-o1",
+          "sender": "mary.poorman@enron.com",
+          "date_utc": "2001-04-09T18:26:00Z"
+        },
+        {
+          "id": "batch-010:e10",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/1016.",
+          "occurrence_id": "t-c642e408d736-o1",
+          "sender": "donna.greif@enron.com",
+          "date_utc": "2000-04-05T13:18:00Z"
+        },
+        {
+          "id": "batch-018:e16",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/1285.",
+          "occurrence_id": "t-d53e1e6483da-o1",
+          "sender": "david.baumbach@enron.com",
+          "date_utc": "2000-07-17T11:08:00Z"
+        },
+        {
+          "id": "batch-008:e15",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/942.",
+          "occurrence_id": "t-e32c5946dedd-o1",
+          "sender": "sherlyn.schumack@enron.com",
+          "date_utc": "2000-03-22T10:33:00Z"
+        },
+        {
+          "id": "batch-054:e26",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/113.",
+          "occurrence_id": "t-e562055d1941-o1",
+          "sender": "megan.parker@enron.com",
+          "date_utc": "2001-06-19T20:30:29Z"
+        },
+        {
+          "id": "batch-031:e3",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/1497.",
+          "occurrence_id": "t-f0428ae0af0d-o1",
+          "sender": "mary.poorman@enron.com",
+          "date_utc": "2000-11-07T08:55:00Z"
+        },
+        {
+          "id": "batch-051:e3",
+          "kind": "evidence",
+          "message_id": "corpus/giron-d/sent/57.",
+          "occurrence_id": "t-f512415d2fe0-o1",
+          "sender": "darron.giron@enron.com",
+          "date_utc": "2001-04-19T14:30:00Z"
+        },
+        {
+          "id": "batch-003:e3",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/723.",
+          "occurrence_id": "t-fc5fc50e049f-o1",
+          "sender": "lee.papayoti@enron.com",
+          "date_utc": "2000-01-26T12:06:00Z"
+        },
+        {
+          "id": "batch-057:s0",
+          "kind": "stall",
+          "message_id": "corpus/farmer-d/logistics/100.",
+          "occurrence_id": "t-28aa59d351f4-o1",
+          "sender": "michael.olsen@enron.com",
+          "date_utc": "2001-07-09T15:36:48Z"
+        },
+        {
+          "id": "batch-015:s0",
+          "kind": "stall",
+          "message_id": "corpus/farmer-d/logistics/1204.",
+          "occurrence_id": "t-6de63aece4a7-o1",
+          "sender": "mark.mccoy@enron.com",
+          "date_utc": "2000-06-13T16:47:00Z"
+        },
+        {
+          "id": "batch-020:s1",
+          "kind": "stall",
+          "message_id": "corpus/farmer-d/logistics/1333.",
+          "occurrence_id": "t-2059f03087f7-o1",
+          "sender": "karen.lindley@enron.com",
+          "date_utc": "2000-08-11T16:06:00Z"
+        },
+        {
+          "id": "batch-031:s0",
+          "kind": "stall",
+          "message_id": "corpus/farmer-d/logistics/1497.",
+          "occurrence_id": "t-f0428ae0af0d-o1",
+          "sender": "mary.poorman@enron.com",
+          "date_utc": "2000-11-07T08:55:00Z"
+        },
+        {
+          "id": "batch-080:s0",
+          "kind": "stall",
+          "message_id": "corpus/farmer-d/logistics/16.",
+          "occurrence_id": "t-a7ee6961488d-o1",
+          "sender": "sherlyn.schumack@enron.com",
+          "date_utc": "2001-11-27T18:20:53Z"
+        },
+        {
+          "id": "batch-036:s0",
+          "kind": "stall",
+          "message_id": "corpus/farmer-d/logistics/1969.",
+          "occurrence_id": "t-106984f54f3e-o1",
+          "sender": "mary.poorman@enron.com",
+          "date_utc": "2000-12-14T07:28:00Z"
+        },
+        {
+          "id": "batch-065:s0",
+          "kind": "stall",
+          "message_id": "corpus/farmer-d/logistics/59.",
+          "occurrence_id": "t-31d2c3292636-o1",
+          "sender": "sherlyn.schumack@enron.com",
+          "date_utc": "2001-09-14T18:19:31Z"
+        },
+        {
+          "id": "batch-003:s1",
+          "kind": "stall",
+          "message_id": "corpus/farmer-d/logistics/748.",
+          "occurrence_id": "t-1c51f306587b-o1",
+          "sender": "jackie.young@enron.com",
+          "date_utc": "2000-02-03T10:13:00Z"
+        },
+        {
+          "id": "batch-008:s2",
+          "kind": "stall",
+          "message_id": "corpus/farmer-d/logistics/942.",
+          "occurrence_id": "t-e32c5946dedd-o1",
+          "sender": "sherlyn.schumack@enron.com",
+          "date_utc": "2000-03-22T10:33:00Z"
+        },
+        {
+          "id": "batch-039:s0",
+          "kind": "stall",
+          "message_id": "corpus/giron-d/sent/313.",
+          "occurrence_id": "t-12f1368c1d44-o1",
+          "sender": "darron.giron@enron.com",
+          "date_utc": "2001-01-19T09:15:00Z"
+        },
+        {
+          "id": "batch-020:o0",
+          "kind": "ownership",
+          "message_id": "corpus/farmer-d/logistics/1333.",
+          "occurrence_id": "t-2059f03087f7-o1",
+          "sender": "karen.lindley@enron.com",
+          "date_utc": "2000-08-11T16:06:00Z"
+        },
+        {
+          "id": "batch-049:o0",
+          "kind": "ownership",
+          "message_id": "corpus/farmer-d/logistics/189.",
+          "occurrence_id": "t-846caa521514-o1",
+          "sender": "mary.poorman@enron.com",
+          "date_utc": "2001-04-10T00:15:00Z"
+        },
+        {
+          "id": "batch-047:o0",
+          "kind": "ownership",
+          "message_id": "corpus/giron-d/sent/141.",
+          "occurrence_id": "t-bba18e202ca8-o1",
+          "sender": "darron.giron@enron.com",
+          "date_utc": "2001-03-20T12:49:00Z"
+        },
+        {
+          "id": "batch-040:o0",
+          "kind": "ownership",
+          "message_id": "corpus/giron-d/sent/300.",
+          "occurrence_id": "t-68ef7cbd85ae-o1",
+          "sender": "darron.giron@enron.com",
+          "date_utc": "2001-01-24T09:13:00Z"
+        },
+        {
+          "id": "batch-052:o0",
+          "kind": "ownership",
+          "message_id": "corpus/giron-d/sent/9.",
+          "occurrence_id": "t-fcf11c34e37c-o1",
+          "sender": "darron.giron@enron.com",
+          "date_utc": "2001-05-09T13:38:00Z"
+        }
+      ]
+    },
+    {
+      "key": "desk-coverage-on-call",
+      "occurrences": 56,
+      "cited": [
+        {
+          "id": "batch-050:e14",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/180.",
+          "occurrence_id": "t-0042bd7a274e-o1",
+          "sender": "mark.mccoy@enron.com",
+          "date_utc": "2001-04-16T13:48:38Z"
+        },
+        {
+          "id": "batch-052:e26",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/142.",
+          "occurrence_id": "t-06a5fdc8505f-o1",
+          "sender": "carlos.rodriguez@enron.com",
+          "date_utc": "2001-05-09T20:18:48Z"
+        },
+        {
+          "id": "batch-020:e8",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/1334.",
+          "occurrence_id": "t-0d9b15b1dffa-o1",
+          "sender": "robert.lloyd@enron.com",
+          "date_utc": "2000-08-14T08:39:00Z"
+        },
+        {
+          "id": "batch-013:e24",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/3217.",
+          "occurrence_id": "t-1381902095fb-o2",
+          "sender": "carlos.rodriguez@enron.com",
+          "date_utc": "2000-06-29T08:27:00Z"
+        },
+        {
+          "id": "batch-013:e25",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/3218.",
+          "occurrence_id": "t-1381902095fb-o3",
+          "sender": "robert.lloyd@enron.com",
+          "date_utc": "2000-06-29T10:32:00Z"
+        },
+        {
+          "id": "batch-098:e23",
+          "kind": "evidence",
+          "message_id": "corpus/lokay-m/sent_items/161.",
+          "occurrence_id": "t-1a3bfb04cb8b-o1",
+          "sender": "michelle.lokay@enron.com",
+          "date_utc": "2002-03-25T19:18:05Z"
+        },
+        {
+          "id": "batch-051:e6",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/167.",
+          "occurrence_id": "t-1e6b75a170a8-o1",
+          "sender": "brandee.jackson@enron.com",
+          "date_utc": "2001-04-20T21:15:31Z"
+        },
+        {
+          "id": "batch-022:e0",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/1369.",
+          "occurrence_id": "t-20055714bd54-o1",
+          "sender": "mary.poorman@enron.com",
+          "date_utc": "2000-08-28T08:58:00Z"
+        },
+        {
+          "id": "batch-059:e4",
+          "kind": "evidence",
+          "message_id": "corpus/williams-w3/sent_items/386.",
+          "occurrence_id": "t-260e7304b1b7-o1",
+          "sender": "bill.williams@enron.com",
+          "date_utc": "2001-07-20T01:59:39Z"
+        },
+        {
+          "id": "batch-004:e6",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/788.",
+          "occurrence_id": "t-3294df53be06-o1",
+          "sender": "robert.superty@enron.com",
+          "date_utc": "2000-02-14T10:59:00Z"
+        },
+        {
+          "id": "batch-018:e14",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/1282.",
+          "occurrence_id": "t-4313bcd81ad6-o1",
+          "sender": "steve.venturatos@enron.com",
+          "date_utc": "2000-07-14T17:26:00Z"
+        },
+        {
+          "id": "batch-008:e13",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/940.",
+          "occurrence_id": "t-445e344f64b9-o1",
+          "sender": "robert.lloyd@enron.com",
+          "date_utc": "2000-03-22T09:45:00Z"
+        },
+        {
+          "id": "batch-008:e14",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/941.",
+          "occurrence_id": "t-445e344f64b9-o2",
+          "sender": "robert.lloyd@enron.com",
+          "date_utc": "2000-03-22T10:13:00Z"
+        },
+        {
+          "id": "batch-018:e3",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/1269.",
+          "occurrence_id": "t-494932c52d46-o1",
+          "sender": "mark.mccoy@enron.com",
+          "date_utc": "2000-07-10T16:05:00Z"
+        },
+        {
+          "id": "batch-018:e4",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/1301.",
+          "occurrence_id": "t-494932c52d46-o2",
+          "sender": "mary.poorman@enron.com",
+          "date_utc": "2000-07-24T12:49:00Z"
+        },
+        {
+          "id": "batch-088:e18",
+          "kind": "evidence",
+          "message_id": "corpus/williams-w3/sent_items/13.",
+          "occurrence_id": "t-560368d37fd7-o1",
+          "sender": "bill.williams@enron.com",
+          "date_utc": "2002-01-25T00:13:20Z"
+        },
+        {
+          "id": "batch-031:e11",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/1501.",
+          "occurrence_id": "t-5c694af186c2-o1",
+          "sender": "carlos.rodriguez@enron.com",
+          "date_utc": "2000-11-08T10:17:00Z"
+        },
+        {
+          "id": "batch-031:e12",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/1547.",
+          "occurrence_id": "t-5c694af186c2-o2",
+          "sender": "carlos.rodriguez@enron.com",
+          "date_utc": "2000-12-04T11:44:00Z"
+        },
+        {
+          "id": "batch-064:e4",
+          "kind": "evidence",
+          "message_id": "corpus/williams-w3/sent_items/288.",
+          "occurrence_id": "t-7440aeb7aa83-o1",
+          "sender": "bill.williams@enron.com",
+          "date_utc": "2001-08-24T19:45:21Z"
+        },
+        {
+          "id": "batch-039:e26",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/2050.",
+          "occurrence_id": "t-7b24a12c1f4a-o1",
+          "sender": "mary.poorman@enron.com",
+          "date_utc": "2001-01-22T17:25:00Z"
+        },
+        {
+          "id": "batch-055:e13",
+          "kind": "evidence",
+          "message_id": "corpus/williams-w3/sent_items/470.",
+          "occurrence_id": "t-82abff6b9f9f-o1",
+          "sender": "bill.williams@enron.com",
+          "date_utc": "2001-06-25T16:21:05Z"
+        },
+        {
+          "id": "batch-082:e1",
+          "kind": "evidence",
+          "message_id": "corpus/williams-w3/inbox/134.",
+          "occurrence_id": "t-83139572b96c-o1",
+          "sender": "albert.meyers@enron.com",
+          "date_utc": "2001-12-10T04:00:56Z"
+        },
+        {
+          "id": "batch-079:e5",
+          "kind": "evidence",
+          "message_id": "corpus/giron-d/inbox/395.",
+          "occurrence_id": "t-8b4e0fa80c89-o1",
+          "sender": "patrick.tucker@enron.com",
+          "date_utc": "2001-11-21T20:43:53Z"
+        },
+        {
+          "id": "batch-066:e21",
+          "kind": "evidence",
+          "message_id": "corpus/williams-w3/sent_items/233.",
+          "occurrence_id": "t-90a5c3c1fbb8-o1",
+          "sender": "bill.williams@enron.com",
+          "date_utc": "2001-09-19T16:22:22Z"
+        },
+        {
+          "id": "batch-068:e10",
+          "kind": "evidence",
+          "message_id": "corpus/williams-w3/sent_items/208.",
+          "occurrence_id": "t-9c25c1dbde37-o1",
+          "sender": "bill.williams@enron.com",
+          "date_utc": "2001-09-26T19:09:17Z"
+        },
+        {
+          "id": "batch-068:e12",
+          "kind": "evidence",
+          "message_id": "corpus/williams-w3/sent_items/123.",
+          "occurrence_id": "t-9c25c1dbde37-o3",
+          "sender": "bill.williams@enron.com",
+          "date_utc": "2001-11-02T01:30:59Z"
+        },
+        {
+          "id": "batch-034:e16",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/1552.",
+          "occurrence_id": "t-ad7c57c75e5f-o1",
+          "sender": "heather.choate@enron.com",
+          "date_utc": "2000-12-06T15:52:00Z"
+        },
+        {
+          "id": "batch-036:e20",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/1990.",
+          "occurrence_id": "t-b0edb6b5098b-o1",
+          "sender": "mary.poorman@enron.com",
+          "date_utc": "2000-12-20T08:34:00Z"
+        },
+        {
+          "id": "batch-013:e6",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/1143.",
+          "occurrence_id": "t-b15d73da1064-o1",
+          "sender": "yvette.connevey@enron.com",
+          "date_utc": "2000-05-24T18:18:00Z"
+        },
+        {
+          "id": "batch-010:e18",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/1026.",
+          "occurrence_id": "t-b16b9dbb9c8e-o1",
+          "sender": "robert.lloyd@enron.com",
+          "date_utc": "2000-04-10T09:21:00Z"
+        },
+        {
+          "id": "batch-067:e4",
+          "kind": "evidence",
+          "message_id": "corpus/williams-w3/sent_items/225.",
+          "occurrence_id": "t-c9517b5e2a52-o1",
+          "sender": "bill.williams@enron.com",
+          "date_utc": "2001-09-21T00:39:24Z"
+        },
+        {
+          "id": "batch-071:e2",
+          "kind": "evidence",
+          "message_id": "corpus/williams-w3/sent_items/161.",
+          "occurrence_id": "t-cb45d2bf8968-o1",
+          "sender": "bill.williams@enron.com",
+          "date_utc": "2001-10-19T23:58:11Z"
+        },
+        {
+          "id": "batch-014:e4",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/1171.",
+          "occurrence_id": "t-d705d81abb58-o1",
+          "sender": "robert.lloyd@enron.com",
+          "date_utc": "2000-06-04T16:26:00Z"
+        },
+        {
+          "id": "batch-046:e22",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/2115.",
+          "occurrence_id": "t-d859998136e6-o1",
+          "sender": "robert.cotten@enron.com",
+          "date_utc": "2001-03-12T08:43:00Z"
+        },
+        {
+          "id": "batch-046:e25",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/2117.",
+          "occurrence_id": "t-daef1003c3a5-o1",
+          "sender": "carlos.rodriguez@enron.com",
+          "date_utc": "2001-03-14T09:09:00Z"
+        },
+        {
+          "id": "batch-046:e3",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/2110.",
+          "occurrence_id": "t-dedcbfbc1ad6-o1",
+          "sender": "michael.olsen@enron.com",
+          "date_utc": "2001-03-05T08:21:00Z"
+        },
+        {
+          "id": "batch-046:e4",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/210.",
+          "occurrence_id": "t-dedcbfbc1ad6-o2",
+          "sender": "mary.poorman@enron.com",
+          "date_utc": "2001-03-26T19:33:00Z"
+        },
+        {
+          "id": "batch-038:e5",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/2021.",
+          "occurrence_id": "t-df3080a7e083-o1",
+          "sender": "robert.cotten@enron.com",
+          "date_utc": "2001-01-01T23:49:00Z"
+        },
+        {
+          "id": "batch-066:e3",
+          "kind": "evidence",
+          "message_id": "corpus/williams-w3/sent_items/252.",
+          "occurrence_id": "t-e942044884fc-o1",
+          "sender": "bill.williams@enron.com",
+          "date_utc": "2001-09-13T22:18:08Z"
+        },
+        {
+          "id": "batch-071:e3",
+          "kind": "evidence",
+          "message_id": "corpus/williams-w3/sent_items/160.",
+          "occurrence_id": "t-f6ec20797349-o1",
+          "sender": "bill.williams@enron.com",
+          "date_utc": "2001-10-20T00:39:47Z"
+        },
+        {
+          "id": "batch-014:s0",
+          "kind": "stall",
+          "message_id": "corpus/farmer-d/logistics/1177.",
+          "occurrence_id": "t-d705d81abb58-o2",
+          "sender": "robert.lloyd@enron.com",
+          "date_utc": "2000-06-05T13:17:00Z"
+        },
+        {
+          "id": "batch-052:o1",
+          "kind": "ownership",
+          "message_id": "corpus/farmer-d/logistics/142.",
+          "occurrence_id": "t-06a5fdc8505f-o1",
+          "sender": "carlos.rodriguez@enron.com",
+          "date_utc": "2001-05-09T20:18:48Z"
+        },
+        {
+          "id": "batch-026:o0",
+          "kind": "ownership",
+          "message_id": "corpus/farmer-d/logistics/1443.",
+          "occurrence_id": "t-b4b911cad001-o1",
+          "sender": "mark.mccoy@enron.com",
+          "date_utc": "2000-10-05T15:31:00Z"
+        },
+        {
+          "id": "batch-031:o1",
+          "kind": "ownership",
+          "message_id": "corpus/farmer-d/logistics/1547.",
+          "occurrence_id": "t-5c694af186c2-o2",
+          "sender": "carlos.rodriguez@enron.com",
+          "date_utc": "2000-12-04T11:44:00Z"
+        },
+        {
+          "id": "batch-013:o1",
+          "kind": "ownership",
+          "message_id": "corpus/farmer-d/logistics/3215.",
+          "occurrence_id": "t-1381902095fb-o1",
+          "sender": "aimee.lannou@enron.com",
+          "date_utc": "2000-05-31T14:56:00Z"
+        },
+        {
+          "id": "batch-013:o3",
+          "kind": "ownership",
+          "message_id": "corpus/farmer-d/logistics/3218.",
+          "occurrence_id": "t-1381902095fb-o3",
+          "sender": "robert.lloyd@enron.com",
+          "date_utc": "2000-06-29T10:32:00Z"
+        },
+        {
+          "id": "batch-079:o0",
+          "kind": "ownership",
+          "message_id": "corpus/giron-d/inbox/395.",
+          "occurrence_id": "t-8b4e0fa80c89-o1",
+          "sender": "patrick.tucker@enron.com",
+          "date_utc": "2001-11-21T20:43:53Z"
+        }
+      ]
+    }
+  ]
+}

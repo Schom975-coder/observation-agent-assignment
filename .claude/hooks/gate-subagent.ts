@@ -1,60 +1,75 @@
-// SubagentStop (matcher: extractor): check a finished extractor's output and record the result.
+// SubagentStop (matcher: extractor|synthesizer): check a finished agent's output and record the
+// result in the ledger. The same gate for both kinds of ledger job: an extractor's batch and a
+// synthesizer's synthesis group (ARCHITECTURE.md 6.21, 7.4).
 //
 // The gate records; it never blocks. In auto mode a subagent delivers its reply through its
 // hand-back tool before it stops, so a block could not reach it anyway; fix rounds are new
 // dispatches driven by the orchestrator from the ledger (ARCHITECTURE.md 6.7).
 //
-// Which batch to check comes from the agent's binding (out/ledger/agents/<agent_id>.json, made by
-// the corpus guard on the agent's first batch read), never from the reply or the transcript. Then:
+// Which job to check comes from the agent's binding (out/ledger/agents/<agent_id>.json, made by
+// the corpus guard on the agent's first read of a job file), never from the reply or the
+// transcript. Then:
 // - no binding: log gate_unbound and stop (the orchestrator's `node obs.mjs validate` takes over);
-// - the batch was dispatched again since the binding (dispatch count, cache key or dispatch time
-//   moved on): log gate_superseded and stop (that output belongs to the newer extractor);
-// - the batch is no longer running (already validated): log gate_not_running and stop;
-// - otherwise run the same check as `node obs.mjs validate` and record done, or failed with the
-//   problem list, in the batch's ledger file.
-// A problem the model cannot fix (unreadable out/, changed corpus bytes) stamps nothing: the batch
-// stays running for a later validate. If the gate itself fails, it logs the error and exits 0.
-// Nothing it logs contains the project's path.
+// - a binding to a job of the other kind: log gate_kind_mismatch and stop (the guard's allowlists
+//   make this impossible; the gate does not trust that);
+// - the job was dispatched again since the binding (dispatch count, cache key or dispatch time
+//   moved on): log gate_superseded and stop (that output belongs to the newer agent);
+// - the job is no longer running (already validated): log gate_not_running and stop;
+// - otherwise run the job's own check, exactly as `node obs.mjs validate` does (checkJob:
+//   checkExtraction for a batch, checkSynthesis for a group), and record done, or failed with the
+//   problem list, in the job's ledger file.
+// A problem the model cannot fix (unreadable out/, changed corpus bytes, a stale group input)
+// stamps nothing: the job stays running for a later validate. If the gate itself fails, it logs
+// the error and exits 0. Nothing it logs contains the project's path. Log records name the job in
+// `batch_id`, as the ledger's state files do for both kinds.
 import { appendRunLog, errorText, parseInput, projectRoot, readStdin, reportFailure, str, type HookInput } from './lib.ts';
-import { bindingIsCurrent, boundBatch, findBatch, loadIndex, outDir, readBatchState, recordValidation, withoutRoot } from '../../src/run/ledger.ts';
+import { JOB_KINDS, bindingIsCurrent, boundJob, findJob, kindOf, loadJobs, readJobState, recordValidation, withoutRoot } from '../../src/run/ledger.ts';
 
-async function gate(root: string, input: HookInput): Promise<void> {
+// The agents this gate checks, and the kind of job each works on.
+const WORKERS: readonly string[] = [JOB_KINDS.batch.worker, JOB_KINDS.synth.worker];
+
+async function gate(root: string, input: HookInput, agentType: string): Promise<void> {
   const agentId = str(input.agent_id);
-  const agent = { agent_type: 'extractor', agent_id: agentId };
-  const binding = agentId === null || agentId === '' ? null : boundBatch(root, agentId);
+  const agent = { agent_type: agentType, agent_id: agentId };
+  const binding = agentId === null || agentId === '' ? null : boundJob(root, agentId);
   if (binding === null) {
     appendRunLog(root, { event: 'gate_unbound', ...agent });
     return;
   }
-  const batchId = binding.batch_id;
-  const state = readBatchState(root, batchId);
+  const jobId = binding.batch_id;
+  const kind = kindOf(jobId);
+  if (JOB_KINDS[kind].worker !== agentType) {
+    appendRunLog(root, { event: 'gate_kind_mismatch', ...agent, batch_id: jobId });
+    return;
+  }
+  const state = readJobState(root, jobId);
   if (!bindingIsCurrent(binding, state)) {
-    appendRunLog(root, { event: 'gate_superseded', ...agent, batch_id: batchId, bound_dispatch: binding.dispatches, dispatches: state.dispatches });
+    appendRunLog(root, { event: 'gate_superseded', ...agent, batch_id: jobId, bound_dispatch: binding.dispatches, dispatches: state.dispatches });
     return;
   }
   if (state.status !== 'running') {
-    appendRunLog(root, { event: 'gate_not_running', ...agent, batch_id: batchId, status: state.status });
+    appendRunLog(root, { event: 'gate_not_running', ...agent, batch_id: jobId, status: state.status });
     return;
   }
-  const entry = findBatch(loadIndex(root), batchId);
+  const job = findJob(loadJobs(root, kind), jobId);
 
-  // Loaded here rather than at the top, so that even a validator that fails to load is caught below.
-  const { checkExtraction } = await import('../../src/model/validate-extraction.ts');
-  const check = checkExtraction(root, batchId, { outDir: outDir(root) });
+  // Loaded here rather than at the top, so that even a checker that fails to load is caught below.
+  const { checkJob } = await import('../../src/run/jobs.ts');
+  const check = checkJob(root, jobId);
   if (check.setup !== null) {
-    // Nothing the model can fix: stamp nothing, leave the batch running.
-    appendRunLog(root, { event: 'gate_setup_error', ...agent, batch_id: batchId, setup: withoutRoot(check.setup, root) });
+    // Nothing the model can fix: stamp nothing, leave the job running.
+    appendRunLog(root, { event: 'gate_setup_error', ...agent, batch_id: jobId, setup: withoutRoot(check.setup, root) });
     return;
   }
-  const recorded = recordValidation(root, entry, check);
+  const recorded = recordValidation(root, job, check);
   appendRunLog(root, {
     event: 'gate',
     ...agent,
-    batch_id: batchId,
+    batch_id: jobId,
     dispatches: recorded.dispatches,
     status: recorded.status,
     problems: check.problems.length,
-    quote_stats: recorded.quote_stats,
+    ...(kind === 'batch' ? { quote_stats: recorded.quote_stats } : {}),
   });
 }
 
@@ -63,9 +78,9 @@ try {
   const input = parseInput(await readStdin());
   if (input !== null) {
     const agentType = str(input.agent_type);
-    if (agentType === 'extractor') {
+    if (agentType !== null && WORKERS.includes(agentType)) {
       root = projectRoot(input);
-      await gate(root, input);
+      await gate(root, input, agentType);
     } else if (agentType === null) {
       // The matcher fired but the input names no agent: nothing to gate, but worth knowing.
       root = projectRoot(input);

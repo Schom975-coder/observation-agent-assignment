@@ -10,11 +10,12 @@ import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { evenSteps } from '../src/batch/digest.ts';
 import { loadEffortRates, loadScoring } from '../src/config.ts';
-import { buildRollup, messageShares, ownershipConflict, rollupWithNotes, spanDays, windowMonthsX100 } from '../src/metrics/rollup.ts';
+import { GROUP_WORDS, NAME_MAX_WORDS, buildRollup, claimant, messageShares, nameTokens, ownershipConflict, rollupWithNotes, spanDays, windowMonthsX100 } from '../src/metrics/rollup.ts';
 import { canonicalMergeTable, slugFacts } from '../src/model/merge.ts';
 import { canonicalTaxonomy } from '../src/model/taxonomy.ts';
 import { score, tierOf } from '../src/metrics/score.ts';
-import { EVIDENCE_SAMPLE, OWNERSHIP_SAMPLE, STALL_SAMPLE, SYNTH_GROUP_MAX, SYNTH_INPUT_MAX_TOKENS, buildSynthesisInputs } from '../src/model/synthesis-input.ts';
+import { EVIDENCE_SAMPLE, OWNERSHIP_SAMPLE, SAMPLE_MIN_SENDERS, STALL_SAMPLE, SYNTH_GROUP_MAX, SYNTH_INPUT_MAX_TOKENS, buildSynthesisInputs } from '../src/model/synthesis-input.ts';
+import { SELF_REPORTED_MIN_SENDERS } from '../src/model/synthesis.ts';
 import { buildPeople } from '../src/normalize/people.ts';
 import { buildThreads } from '../src/normalize/threads.ts';
 import { parseMessage } from '../src/parse/message.ts';
@@ -48,18 +49,81 @@ test('messageShares: 1/k in hundredths, the remainder one each to the keys in so
   assert.deepEqual([...messageShares([])], []);
 });
 
-test('ownershipConflict: different people within 60 days conflict; the same person, or 61 days apart, does not', () => {
-  const claim = (person: string, date: string | null, n: number) => ({ message_id: `m${n}`, person, date_utc: date, quote: 'q' });
-  assert.deepEqual(ownershipConflict([claim('Ann Lee', '2001-04-01T10:00:00Z', 1), claim('Bob Ray', '2001-04-02T10:00:00Z', 2)]), {
+const claim = (person: string, date: string | null, n: number) => ({ message_id: `corpus/r/inbox/${70 + n}`, person, date_utc: date, quote: 'q' });
+// Participants as the rollup lists them: an address, and the display name when the archive has one.
+const PARTIES = [
+  { email: 'ann.lee@enron.com', name: 'Ann Lee' },
+  { email: 'bob.ray@enron.com', name: null },
+  { email: 'william.ash@enron.com', name: 'Bill Ash' },
+  { email: 'darron.c.giron@enron.com', name: null },
+  { email: 'mary.poe@enron.com', name: 'Mary Poe' },
+  { email: 'mary.smith@enron.com', name: 'Mary Smith' },
+  { email: 'pat.oneal@calpine.com', name: "Pat O'Neal" },
+];
+
+test('ownershipConflict: different participants within 60 days conflict; the same one, or 61 days apart, does not', () => {
+  assert.deepEqual(ownershipConflict([claim('Ann Lee', '2001-04-01T10:00:00Z', 1), claim('Bob Ray', '2001-04-02T10:00:00Z', 2)], PARTIES), {
     claims: [
-      { person: 'Ann Lee', message_id: 'm1', date_utc: '2001-04-01T10:00:00Z' },
-      { person: 'Bob Ray', message_id: 'm2', date_utc: '2001-04-02T10:00:00Z' },
+      { person: 'Ann Lee', message_id: 'corpus/r/inbox/71', date_utc: '2001-04-01T10:00:00Z' },
+      { person: 'Bob Ray', message_id: 'corpus/r/inbox/72', date_utc: '2001-04-02T10:00:00Z' },
     ],
   });
-  assert.equal(ownershipConflict([claim('Ann Lee', '2001-04-01T10:00:00Z', 1), claim('ann  LEE', '2001-04-02T10:00:00Z', 2)]), null, 'the same person spelled differently');
-  assert.equal(ownershipConflict([claim('Ann Lee', '2001-05-01T10:00:00Z', 1), claim('Bob Ray', '2001-07-01T10:00:00Z', 2)]), null, '61 days apart');
-  assert.notEqual(ownershipConflict([claim('Ann Lee', '2001-05-01T10:00:00Z', 1), claim('Bob Ray', '2001-06-30T10:00:00Z', 2)]), null, 'exactly 60 days');
-  assert.equal(ownershipConflict([claim('Ann Lee', null, 1), claim('Bob Ray', '2001-04-02T10:00:00Z', 2)]), null, 'an undated claim has no distance');
+  assert.equal(ownershipConflict([claim('Ann Lee', '2001-04-01T10:00:00Z', 1), claim('ann  LEE.', '2001-04-02T10:00:00Z', 2)], PARTIES), null, 'the same person spelled differently');
+  assert.equal(ownershipConflict([claim('Ann Lee', '2001-05-01T10:00:00Z', 1), claim('Bob Ray', '2001-07-01T10:00:00Z', 2)], PARTIES), null, '61 days apart');
+  assert.notEqual(ownershipConflict([claim('Ann Lee', '2001-05-01T10:00:00Z', 1), claim('Bob Ray', '2001-06-30T10:00:00Z', 2)], PARTIES), null, 'exactly 60 days');
+  assert.equal(ownershipConflict([claim('Ann Lee', null, 1), claim('Bob Ray', '2001-04-02T10:00:00Z', 2)], PARTIES), null, 'an undated claim has no distance');
+});
+
+// The archive's people directory beyond the participants: people who never took part in the process.
+const DIRECTORY = [
+  ...PARTIES,
+  { email: 'heidi.walker@enron.com', name: 'Heidi Walker' },
+  { email: 'mary.jones@enron.com', name: null },
+  { email: 'bill.stone@calpine.com', name: 'Bill Stone' },
+];
+
+test('ownershipConflict: a group claim never makes a conflict; a person counts whether or not they took part; spelling variants are one person', () => {
+  const day = (d: number) => `2001-11-${String(d).padStart(2, '0')}T15:00:00Z`;
+  const conflict = (a: string, b: string, people = DIRECTORY) => ownershipConflict([claim(a, day(1), 1), claim(b, day(2), 2)], PARTIES, people);
+  // The planted pair's shape, with ordinary IDs: a first name in each of two messages a day apart,
+  // each matching one participant of the process. Still a conflict.
+  assert.deepEqual(ownershipConflict([claim('Bill', day(16), 1), claim('Darron', day(15), 2)], PARTIES, DIRECTORY)?.claims.map((c) => c.person), ['Darron', 'Bill']);
+  // A claim that names a group, a role or a quantity of people is listed but never conflicts.
+  for (const group of ['each trader', 'Volume Management group', 'the desk', 'the scheduling team', 'everyone on nights', '', 'C.']) {
+    assert.equal(conflict('Ann Lee', group), null, JSON.stringify(group));
+  }
+  assert.notEqual(ownershipConflict([claim('Ann Lee', day(1), 1), claim('each trader', day(2), 2), claim('Bob', day(3), 3)], PARTIES, DIRECTORY), null, 'the people still do');
+  // Someone in the directory who is not on this process's trail, and a name found only in a body
+  // (in nobody's display name or address): each is a person, so each conflicts with Ann Lee.
+  assert.notEqual(conflict('Ann Lee', 'Heidi Walker'), null, 'in the directory, not a participant');
+  assert.notEqual(conflict('Ann Lee', 'Zed Quill'), null, 'a name only a message body carries');
+  assert.notEqual(conflict('Ann Lee', 'Darren'), null, 'a first name nobody carries is still a name');
+  assert.equal(conflict('Ann Lee', 'the night shift supervisor on call'), null, 'more than three words is a phrase, not a name');
+  // Spelling variants of one person: display name, address, initials, punctuation, case; and two
+  // spellings of one name nobody carries.
+  for (const [a, b] of [['Darron', 'Darron C Giron'], ['Bill', 'William Ash'], ['Bill Ash', 'ASH, BILL'], ['Pat ONeal', "O'Neal"], ['Lee, Ann M.', 'ann'], ['Zed Quill', 'Zed'], ['Heidi', 'Heidi Walker']] as const) {
+    assert.equal(conflict(a, b), null, `${a} / ${b}`);
+  }
+  // A first name two participants share could be either of them: never a conflict with the full
+  // name of one; two full names are two people.
+  assert.equal(conflict('Mary', 'Mary Smith'), null);
+  assert.notEqual(conflict('Mary Poe', 'Mary Smith'), null);
+});
+
+test('claimant and nameTokens: the directory person sharing the most words, participants first on ties; else a name of one to three words', () => {
+  assert.deepEqual(nameTokens("  Love, Phillip  M. O'Hara-Smith "), ['love', 'phillip', 'ohara', 'smith']);
+  assert.deepEqual(nameTokens('darron.c.giron'), ['darron', 'giron']);
+  // Participants win a tie with people who never took part; among participants all ties are kept.
+  assert.deepEqual(claimant('Mary', PARTIES, DIRECTORY), { known: ['mary.poe@enron.com', 'mary.smith@enron.com'] });
+  assert.deepEqual(claimant('Bill', PARTIES, DIRECTORY), { known: ['william.ash@enron.com'] }, 'not Bill Stone of Calpine');
+  assert.deepEqual(claimant('Mary Smith', PARTIES, DIRECTORY), { known: ['mary.smith@enron.com'] }, 'the most shared words win');
+  assert.deepEqual(claimant('Bob', PARTIES, DIRECTORY), { known: ['bob.ray@enron.com'] }, 'by the address when there is no display name');
+  // The most shared words beat being a participant.
+  assert.deepEqual(claimant('Bill Stone', PARTIES, DIRECTORY), { known: ['bill.stone@calpine.com'] });
+  assert.deepEqual(claimant('Heidi', PARTIES, DIRECTORY), { known: ['heidi.walker@enron.com'] });
+  assert.deepEqual(claimant('Zed  Quill.', PARTIES, DIRECTORY), { named: ['quill', 'zed'] });
+  for (const none of ['each trader', 'all of us', 'the desk', 'Volume Management', 'C', 'one two three four']) assert.equal(claimant(none, PARTIES, DIRECTORY), null, none);
+  assert.ok(GROUP_WORDS.includes('each') && GROUP_WORDS.includes('group') && NAME_MAX_WORDS === 3);
 });
 
 // ---- A small archive (ordinary IDs; replicas of the ownership trap with ordinary content) ----
@@ -278,6 +342,21 @@ test('stalls only when their quote passed; ownership claims with a conflict a da
   assert.deepEqual(proc('delta-one').evidence_ids, ['batch-001:e2', 'batch-001:e3', 'batch-001:e4']);
 });
 
+test('ownership conflicts in the rollup: a claim naming a group, or the other claimant again, is listed but makes no conflict', () => {
+  const withClaim = (n: number, person: string): ValidatedExtraction[] =>
+    VALIDATED.map((v) => ({ ...v, messages: v.messages.map((m) => (m.id === idOf(n) && m.ownership_claim !== null ? { ...m, ownership_claim: { ...m.ownership_claim, person } } : m)) }));
+  const beta = (validated: ValidatedExtraction[]) => rollupOf({ validated }).processes.find((p) => p.key === 'beta-work') as ProcessRollup;
+  assert.ok(proc('beta-work').participants.some((p) => p.email === 'bob.ray@enron.com'), 'the claimants took part');
+  for (const [person, why] of [['each trader', 'a group'], ['the scheduling desk', 'a role'], ['ann', 'the other claimant, by her address'], ['LEE, A.', 'the same, surname first']] as const) {
+    const b = beta(withClaim(8, person));
+    assert.deepEqual(b.ownership_claims.map((c) => c.person), ['Ann Lee', person], why);
+    assert.equal(b.ownership_conflict, null, why);
+  }
+  assert.deepEqual(beta(withClaim(8, 'Bob')).ownership_conflict?.claims.map((c) => c.person), ['Ann Lee', 'Bob'], 'a first name of a participant still counts');
+  assert.deepEqual(beta(withClaim(8, 'Eve Ng')).ownership_conflict?.claims.map((c) => c.person), ['Ann Lee', 'Eve Ng'], 'someone in the archive who is not on this trail');
+  assert.deepEqual(beta(withClaim(8, 'Zed Quill')).ownership_conflict?.claims.map((c) => c.person), ['Ann Lee', 'Zed Quill'], 'a name only a message body carries');
+});
+
 test('a process every message of which is a flagged injection is quarantined, not counted; one flagged message flags the process', () => {
   const { rollup, notes } = rollupWithNotes({ validated: VALIDATED, merge: MERGE, threads: THREADS, messages: MESSAGES, people: PEOPLE, rates, taxonomy: TAXONOMY, flagged: new Set([idOf(9), idOf(10)]), shas: SHAS });
   assert.ok(rollup.processes.some((p) => p.key === 'gamma-work'), 'gamma still has an unflagged message');
@@ -334,6 +413,35 @@ test('on the committed M4 outputs, with every proposed key unassigned: the appro
   assert.deepEqual([get('realtime-schedule-checkout').window.span_days, get('realtime-schedule-checkout').window.months_x100], [241, 792]);
   assert.deepEqual([get('volume-imbalance-reconciliation').window.span_days, get('volume-imbalance-reconciliation').window.months_x100], [828, 2720]);
   assert.deepEqual([rollup.coverage.tagged, rollup.coverage.counted, rollup.coverage.unassigned], [2345, 1700, 645]);
+  // Ownership conflicts: a claim counts when it names one person (the people directory, the
+  // process's participants first; or a personal name found nowhere else), never a group, and claims
+  // naming the same person count once. 6 of 25 (7 under plain string comparison): the only claims
+  // of the 51 that name no one person are the three group claims, realtime-schedule-checkout's
+  // ("each trader", "volume management group") and "Volume Management". Three claimants who are
+  // not on their process's trail resolve through the directory, and two of them now take part in
+  // desk-coverage-on-call's conflict. The planted pair, a day apart, still conflicts.
+  assert.deepEqual(
+    rollup.processes.filter((p) => p.ownership_conflict !== null).map((p) => p.key),
+    ['counterparty-settlement-review', 'deal-book-transfer', 'deal-record-correction', 'desk-coverage-on-call', 'meter-flow-deal-coverage', 'volume-imbalance-reconciliation'],
+  );
+  const people = json('people.json') as Person[];
+  const claims = rollup.processes.flatMap((p) => p.ownership_claims.map((c) => ({ p, c, who: claimant(c.person, p.participants, people) })));
+  assert.equal(claims.length, 51);
+  assert.deepEqual(claims.filter((x) => x.who === null).map((x) => x.c.person).sort(), ['Volume Management', 'each trader', 'volume management group']);
+  const resolved = (person: string) => {
+    const x = claims.find((y) => y.c.person === person);
+    assert.ok(x !== undefined && x.who !== null && 'known' in x.who, person);
+    return { known: (x.who as { known: string[] }).known, participant: x.p.participants.some((q) => (x.who as { known: string[] }).known.includes(q.email)) };
+  };
+  assert.deepEqual(resolved('Heidi Withers'), { known: ['heidi.withers@enron.com'], participant: false });
+  assert.deepEqual(resolved('Ryan Slinger'), { known: ['ryan.slinger@enron.com'], participant: false });
+  assert.deepEqual(resolved('Souad'), { known: ['souad.mahmassani@enron.com'], participant: false });
+  const desk = get('desk-coverage-on-call').ownership_conflict?.claims.map((c) => c.person) ?? [];
+  assert.ok(desk.includes('Ryan Slinger') && desk.includes('Souad'), desk.join(', '));
+  assert.equal(get('realtime-schedule-checkout').ownership_claims.length, 3, 'the claims stay listed');
+  assert.equal(get('realtime-schedule-checkout').ownership_conflict, null);
+  const pair = get('volume-imbalance-reconciliation').ownership_conflict?.claims.map((c) => c.message_id) ?? [];
+  assert.ok(pair.includes('corpus/giron-d/inbox/483.') && pair.includes('corpus/williams-w3/sent_items/526.'), pair.join(', '));
   // The counted formula of a process with shared messages shows the plain sum and the shared one.
   const scored = score({ rollup, synthesis: [], rates, scoring, estimates: null, files: { rates: 'config/effort-rates.json', estimates: null }, shas: { rollup_sha: 'r', synthesis_sha: 's', rates_sha: 'rt', scoring_sha: 'sc', estimates_sha: null } });
   const realtime = scored.opportunities.find((o) => o.key === 'realtime-schedule-checkout');
@@ -435,6 +543,45 @@ test('synthesis inputs: evidence at even steps through the occurrences in ID ord
   assert.equal(cited.filter((c) => c.kind === 'ownership').length, OWNERSHIP_SAMPLE);
   assert.match((g as { markdown: string }).markdown, /\n### Evidence \(40 of 100 accepted quotes: one per occurrence at even steps through the occurrences in ID order\)\n/);
   assert.match((g as { markdown: string }).markdown, /\n### Stall quotes \(10 of 20, even steps\)\n/);
+});
+
+test('synthesis inputs: when the first quotes of the sampled rounds are all one sender, the first quote of up to two more senders is added', () => {
+  // Ten rounds, each a fresh send by a@ and a reply in the same round by b@ (even rounds) or c@
+  // (odd ones). The sample takes the first quote of each round: all a@'s.
+  const messages = new Map<string, ParsedMessage>();
+  const mail = (id: string, from: string, subject: string, day: number, hour: number) => {
+    const text = `From: ${from}\r\nTo: desk@enron.com\r\nSubject: ${subject}\r\nDate: ${day} Jan 2001 ${hour}:00:00 -0000\r\n\r\nBody of ${id}.\n`;
+    const bytes = Buffer.from(text, 'utf8');
+    messages.set(id, parseMessage(id, gitBlobSha(bytes), bytes));
+  };
+  for (let i = 0; i < 10; i++) {
+    mail(`corpus/d/inbox/${i}0`, 'a@enron.com', `Round ${i}`, i + 1, 10);
+    mail(`corpus/d/inbox/${i}1`, i % 2 === 0 ? 'b@enron.com' : 'c@enron.com', `RE: Round ${i}`, i + 1, 11);
+  }
+  const ids = [...messages.keys()].sort();
+  const threads = buildThreads([...messages.values()]);
+  const validated: ValidatedExtraction = {
+    batch_id: 'batch-000',
+    content_sha: 'x',
+    messages: ids.map((id) => ({ id, processes: ['rounds'], role: 'request', stall: null, ownership_claim: null })),
+    evidence: ids.map((id, k) => ({ evidence_id: `batch-000:e${k}`, process: 'rounds', message_id: id, field: 'body', quote: `Body of ${id}.`, note: '', match: 'exact', start: 0, end: 1, segment: 'own', raw_text: `Body of ${id}.`, reason: null })),
+    stall_checks: [],
+    ownership_checks: [],
+    new_processes: [],
+    batch_notes: '',
+    quote_stats: { exact: 0, repaired: 0, rejected: 0 },
+  };
+  const taxonomy = canonicalTaxonomy([{ key: 'rounds', name: 'Rounds', definition: 'Work that comes round ten times.', include: [], exclude: [], example_subjects: ['x'] }], 'd'.repeat(64), 'a'.repeat(64));
+  const rollup = buildRollup({ validated: [validated], merge: { ...MERGE, slugs: [], promoted: [] }, threads, messages, people: [], rates, taxonomy, flagged: new Set(), shas: SHAS });
+  assert.equal((rollup.processes[0] as ProcessRollup).occurrences, 10);
+  const [g] = buildSynthesisInputs(rollup, [validated], messages, [], threads);
+  const cited = (g as { sidecar: SynthSidecar }).sidecar.processes[0]?.cited ?? [];
+  assert.deepEqual([...new Set(cited.map((c) => c.sender))].sort(), ['a@enron.com', 'b@enron.com', 'c@enron.com']);
+  assert.equal(cited.length, 10 + 2, 'one per round, and the first quote of b@ and of c@');
+  assert.deepEqual(cited.filter((c) => c.sender !== 'a@enron.com').map((c) => c.message_id).sort(), ['corpus/d/inbox/01', 'corpus/d/inbox/11'], 'the first quote of each, in id order');
+  assert.deepEqual(cited.map((c) => c.occurrence_id), [...cited.map((c) => c.occurrence_id)].sort(), 'listed by round');
+  assert.match((g as { markdown: string }).markdown, /\n### Evidence \(12 of 20 accepted quotes: one per occurrence at even steps through the occurrences in ID order, and 2 more from senders those do not show\)\n/);
+  assert.ok(SAMPLE_MIN_SENDERS >= SELF_REPORTED_MIN_SENDERS && SAMPLE_MIN_SENDERS >= loadScoring(join(repo, 'config', 'scoring.json')).estimates.min_senders, 'enough senders for every estimate rule');
 });
 
 // ---- The command ----

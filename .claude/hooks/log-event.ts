@@ -1,4 +1,5 @@
-// SubagentStart and SubagentStop (extractor, taxonomist): one line per event in the run log,
+// SubagentStart and SubagentStop (extractor, taxonomist, merger, synthesizer; the matchers in
+// .claude/settings.json choose which agents): one line per event in the run log,
 // out/runs/<run_id>.jsonl (out/runs/adhoc.jsonl outside a run), so subagent launches and their
 // agent_ids can be read back next to the guard's bindings and the gate's records. Logging must
 // never get in the way: any failure is reported and ignored.

@@ -6,13 +6,13 @@
 import { after, test } from 'node:test';
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
-import { copyFileSync, cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { copyFileSync, cpSync, existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { bodyTag } from '../src/batch/build.ts';
 import { CorpusError, openCorpus } from '../src/corpus/reader.ts';
-import { COVERAGE_MAX_CHARS, PROBLEM_MAX_CHARS, checkExtraction, errorText, listed, repoPath } from '../src/model/validate-extraction.ts';
+import { COVERAGE_MAX_CHARS, NEW_KEY_MAX_CHARS, PROBLEM_MAX_CHARS, checkExtraction, errorText, listed, repoPath } from '../src/model/validate-extraction.ts';
 import { prepare } from '../src/pipeline/prepare.ts';
 import type { BatchEntry, Extraction, ExtractionCheck, ParsedMessage } from '../src/types.ts';
 
@@ -404,6 +404,44 @@ test('process keys: a process listed twice, a new: key the taxonomy already has,
     'new_processes[2] ("new:gas-nomination"): name is empty',
     'new_processes[2] ("new:gas-nomination"): definition is empty',
   ]);
+});
+
+test('process keys: a proposed key over 60 characters, as a tag or a declaration, is a fixable problem naming it cut short', () => {
+  const rekey = (key: string) =>
+    edit((x) => {
+      message(x, ID4).processes = ['pipeline-operations', key];
+      evidence(x, 4).process = key;
+      (x.new_processes[0] as Extraction['new_processes'][number]).key = key;
+    });
+  const at60 = `new:${'a'.repeat(NEW_KEY_MAX_CHARS - 'new:'.length)}`;
+  assert.equal(at60.length, 60);
+  assert.deepEqual(check(rekey(at60)).problems, [], 'exactly 60 characters is a key');
+  const over = `new:${'meter-volume-'.repeat(10)}check`;
+  const shown = JSON.stringify(`${over.slice(0, 80)}...`);
+  const result = check(rekey(over));
+  assert.equal(result.ok, false);
+  assert.deepEqual(result.problems, [
+    `${ID4}: ${shown} is ${over.length} characters long; a proposed key is at most 60 characters, "new:" included: shorten it to the few words that name the work`,
+    `new_processes[0] (${shown}): the key is ${over.length} characters long; a proposed key is at most 60 characters, "new:" included: shorten it to the few words that name the work`,
+  ]);
+  const longest61 = check(rekey(`${at60}b`)).problems;
+  assert.equal(longest61.length, 2, longest61.join('\n'));
+  assert.ok(longest61.every((p) => p.includes('is 61 characters long')));
+});
+
+test('real run: every proposed key in the committed extractions is within the cap', (t) => {
+  const dir = join(root, 'out', 'extract');
+  if (!existsSync(dir)) {
+    t.skip('the committed run outputs are not here');
+    return;
+  }
+  let longest = 0;
+  for (const f of readdirSync(dir).filter((n) => /^batch-\d{3}\.json$/.test(n))) {
+    const x = JSON.parse(readFileSync(join(dir, f), 'utf8')) as Extraction;
+    for (const k of [...x.messages.flatMap((m) => m.processes), ...x.new_processes.map((p) => p.key)]) if (k.startsWith('new:')) longest = Math.max(longest, k.length);
+  }
+  assert.equal(longest, 45, 'the longest proposed key of the M4 run');
+  assert.ok(longest <= NEW_KEY_MAX_CHARS);
 });
 
 test('evidence citing a message outside the batch is rejected as wrong_message, and always blocks', () => {

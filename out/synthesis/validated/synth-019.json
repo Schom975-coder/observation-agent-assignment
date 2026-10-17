@@ -1,0 +1,238 @@
+{
+  "group_id": "synth-019",
+  "content_sha": "5fa32db465ccbb423938ffbe0ae1c77118a523b896217bc2c73a084f0f6554f1",
+  "processes": [
+    {
+      "key": "volume-imbalance-reconciliation",
+      "description": "A round starts when someone notices that scheduled, confirmed, actualized or measured gas volumes disagree at a meter, on a deal or in a pipeline imbalance statement. Settlements, volume management, measurement or the counterparty asks logistics to verify the nomination, path or allocation; the scheduler checks deals and meter data, moves volumes or updates tickets, and imbalance statements or month-to-date flow numbers are resent. Older balances are cleared by payback, manual entries or a write-off to unaccounted-for gas, which needs approval.",
+      "steps": [
+        "Someone spots a gap between scheduled, confirmed, actualized or measured volumes at a meter, on a deal or in an imbalance statement.",
+        "They email logistics or volume management asking for the nomination, path, allocation or deal to be verified.",
+        "The scheduler checks nominations, deal tickets and meter data and explains or finds the cause of the variance.",
+        "Volumes are moved or re-allocated, deals and storage or injection tickets are updated or created.",
+        "Updated imbalance figures or month-to-date flow numbers are sent to the customer, pipeline or internal group.",
+        "Old or prior-period balances are cleared by payback, manual book entries or an approved write-off to unaccounted-for gas."
+      ],
+      "stalls": [
+        {
+          "summary": "Requesters wait on answers: earlier voice mails and requests go unanswered, issues get no updates, internal customers ask when results will be ready, and prior-month data has to be retrieved before work can continue.",
+          "evidence_ids": [
+            "batch-011:s4",
+            "batch-012:s2",
+            "batch-014:s1",
+            "batch-044:s1"
+          ]
+        },
+        {
+          "summary": "Handoffs are unclear: people do not know which group a request comes from, misunderstand what was wanted when work was handed over, and ask who needs to talk to whom to fix volumes that were never actualized.",
+          "evidence_ids": [
+            "batch-010:s1",
+            "batch-055:s6",
+            "batch-053:s1",
+            "batch-053:e9"
+          ]
+        },
+        {
+          "summary": "A requester needing an urgent answer is told the fix is not a priority item, so the round stalls until someone escalates.",
+          "evidence_ids": [
+            "batch-008:s0",
+            "batch-008:s1"
+          ]
+        },
+        {
+          "summary": "Issues go round and round between groups without being resolved.",
+          "evidence_ids": [
+            "batch-035:s0"
+          ]
+        },
+        {
+          "summary": "The scheduling system cannot process a payback for a past period, so the imbalance has to be cleared with manual entries outside it.",
+          "evidence_ids": [
+            "batch-075:e4"
+          ]
+        },
+        {
+          "summary": "Old balances are left alone: nobody wants to touch them so they sit with one person, old customer balances are cleared long after the fact, and write-offs wait for approval.",
+          "evidence_ids": [
+            "batch-076:o0",
+            "batch-035:e4",
+            "batch-035:e15"
+          ]
+        }
+      ],
+      "contradictions": [
+        {
+          "summary": "Ownership of the daily imbalance check is disputed: Mary Poorman says it has been Bill's since the reorg, Bill Williams says Darron has owned it since March, and Mary Poorman also says the unwanted work just sits with her.",
+          "evidence_ids": [
+            "batch-078:o0",
+            "batch-077:o0",
+            "batch-076:o0"
+          ]
+        },
+        {
+          "summary": "In the same round one party was told the measurement problem was not a priority item while another demanded an answer as soon as possible.",
+          "evidence_ids": [
+            "batch-008:s0",
+            "batch-008:s1"
+          ]
+        },
+        {
+          "summary": "Measurement replies to set the record straight that it was neither contacted nor informed, disputing the account of the issue given earlier in the thread.",
+          "evidence_ids": [
+            "batch-010:e27"
+          ]
+        }
+      ],
+      "automation": {
+        "approach": "A scheduled comparison of scheduled, nominated, actualized and metered volumes by meter, deal and counterparty could flag variances above a tolerance, list open imbalances with their named owner and age, and generate the imbalance statement or month-to-date flow summary for the counterparty. A written procedure would name the owner of the daily imbalance check, the contacts in measurement, volume management and settlements, and the route for manual entries and write-off approval.",
+        "artifact_type": "sop",
+        "rationale": "The stalls are mostly about who owns the check, who to ask and how to clear old balances the system cannot handle, and the mail disputes ownership outright. A procedure naming owners, contacts and the clearing and write-off route addresses those first; the variance report then removes the repetitive lookups and matching once the routing is settled."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": {
+          "low": 20,
+          "mid": 45,
+          "high": 150
+        },
+        "automatable_pct": 40,
+        "basis": "observed",
+        "rationale": "Each round means pulling scheduled, actualized and meter volumes for the points or deals in question, finding the cause of the variance and correcting tickets, allocations or imbalance records; some rounds also compile point lists, update month-to-date flow sheets or make manual entries to clear past balances. A single meter or deal check takes about 20 minutes, a typical round 45, a multi-party list or write-off up to 150. A variance report could take over lookups and matching; diagnosis, counterparty agreement and approvals stay manual.",
+        "evidence_ids": [
+          "batch-062:e1",
+          "batch-031:e8",
+          "batch-075:e4",
+          "batch-006:e16",
+          "batch-003:e12",
+          "batch-001:e32",
+          "batch-035:e15",
+          "batch-033:e12",
+          "batch-047:e13",
+          "batch-000:e23"
+        ]
+      },
+      "estimate_check": {
+        "occurrences_cited": 10,
+        "senders_cited": 9
+      }
+    },
+    {
+      "key": "weekly-commercial-reporting",
+      "description": "Each week Michelle Lokay sends the California Capacity Report for the week, stating Transwestern's average deliveries to California against capacity and the San Juan lateral throughput, and in some weeks the operational line pack sold and its average rate. She also sends the commercial team's weekly bullets, or notes that there are none and which deals are ongoing. Occasionally a report goes out with a wrong effective date and a correction follows; related outside reports such as the CEC's final draft are passed on when requested.",
+      "steps": [
+        "Pull the week's deliveries to California and San Juan lateral throughput from pipeline flow data.",
+        "Work out the weekly averages and the utilisation of California delivery capacity.",
+        "Add operational line pack sales and their average rate when there were any.",
+        "Collect the commercial team's bullets on deals in progress, or note that there are none.",
+        "Send the California Capacity Report and the bullets to the commercial distribution list.",
+        "Send a correction when a date or figure in the report was wrong."
+      ],
+      "stalls": [
+        {
+          "summary": "A report went out with the wrong effective date and had to be followed by a correction message.",
+          "evidence_ids": [
+            "batch-086:e12"
+          ]
+        }
+      ],
+      "contradictions": [],
+      "automation": {
+        "approach": "A scheduled report could pull the week's California deliveries, San Juan lateral throughput and line pack sales from the pipeline's flow and sales records, compute the averages and capacity utilisation, and fill them into the fixed sentences of the weekly message with the week's dates set automatically. The author then adds or confirms the commercial bullets and sends it.",
+        "artifact_type": "email_template",
+        "rationale": "The report repeats the same sentences every week with only the dates and figures changing, and the one recorded slip is a wrong effective date. A message template with the figures and dates filled from the data removes the retyping and the date error, while the bullets still need the team's judgement."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": {
+          "low": 15,
+          "mid": 30,
+          "high": 60
+        },
+        "automatable_pct": 55,
+        "basis": "inferred",
+        "rationale": "Each round means pulling the week's California deliveries and San Juan lateral throughput, working out averages and capacity utilisation, adding line pack sales when there were any and gathering the commercial bullets. The figures follow a fixed layout, so a round takes about 30 minutes, from 15 in a quiet week with no bullets to 60 when line pack sales and deal updates are added. A scheduled report could fill the figures; the bullets and the final check stay with the author.",
+        "evidence_ids": [
+          "batch-098:e20",
+          "batch-083:e0",
+          "batch-098:e21",
+          "batch-098:e6",
+          "batch-086:e12",
+          "batch-097:e26",
+          "batch-068:e7"
+        ]
+      },
+      "estimate_check": {
+        "occurrences_cited": 7,
+        "senders_cited": 2
+      }
+    },
+    {
+      "key": "work-responsibility-assignment",
+      "description": "A round starts with a role change, a reorganisation or a new point or account. A manager such as the logistics lead announces who will handle which pooling points, industrial accounts, pipelines, counterparties or books; the people giving up and taking over the work confirm the transition, pass on how the accounts are run and point others to the new contact. Gaps surface when someone finds an operational account left unassigned or asks who covers it for the new month, and staff moving roles are asked to pick up rates or tasks from others.",
+      "steps": [
+        "A role change, reorganisation or new point or account triggers a reassignment.",
+        "A manager decides who takes which pipelines, points, accounts or books.",
+        "The changes are announced to logistics and the affected groups.",
+        "The outgoing person transitions the accounts and explains the work to the new owner.",
+        "The new owner confirms the takeover and is named as the contact for others.",
+        "Items later found unassigned are raised and given an owner."
+      ],
+      "stalls": [
+        {
+          "summary": "Work is left without an owner after a reassignment: an operational account is noticed as unassigned and a later question about who covers it for the new month stays unresolved.",
+          "evidence_ids": [
+            "batch-001:s1",
+            "batch-001:e16",
+            "batch-001:s3",
+            "batch-001:e43"
+          ]
+        },
+        {
+          "summary": "People handed new work do not know how to do it: a person asked to pick up off-system pipeline rates has no idea where to start, and an outgoing scheduler says the new owner would not have known how to handle one account.",
+          "evidence_ids": [
+            "batch-044:s3",
+            "batch-044:e15",
+            "batch-001:s2"
+          ]
+        }
+      ],
+      "contradictions": [
+        {
+          "summary": "The industrial accounts handover is described inconsistently: Kenneth Seaman says they should be completely transitioned to Robert and Robert Lloyd announces he has taken over all of them, while Kenneth Seaman's reply disputes how the Valero work would have been handled before he leaves Robert to the accounts.",
+          "evidence_ids": [
+            "batch-001:o2",
+            "batch-001:o6",
+            "batch-001:s2",
+            "batch-001:e39"
+          ]
+        }
+      ],
+      "automation": {
+        "approach": "One shared responsibility roster listing each point, account, pipeline and book with its primary owner, backup and effective date, updated by every announcement, with a check before each month starts that lists anything without an owner. Each transfer would come with a short handover list of the accounts' quirks for the new owner.",
+        "artifact_type": "template",
+        "rationale": "The stalls are items left unassigned and new owners unsure of the work, and the announcements are free-text lists that are hard to check. A roster layout gives one place to see who owns what and spot gaps; the handover notes travel with it. Deciding assignments and training stay with people."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": {
+          "low": 10,
+          "mid": 30,
+          "high": 120
+        },
+        "automatable_pct": 25,
+        "basis": "inferred",
+        "rationale": "The hands-on work is deciding the split of points and accounts, updating assignment lists and records, and walking the new owner through the accounts, as the announcements and handover replies show. Most rounds are an announcement with some list upkeep, about 30 minutes; a full handover with training on unfamiliar accounts can take up to 120. A roster and unassigned-item check could take over the list upkeep, not the decisions or the training.",
+        "evidence_ids": [
+          "batch-001:e3",
+          "batch-013:e5",
+          "batch-044:e15",
+          "batch-001:e37",
+          "batch-047:e26",
+          "batch-037:e4",
+          "batch-001:e22"
+        ]
+      },
+      "estimate_check": {
+        "occurrences_cited": 7,
+        "senders_cited": 5
+      }
+    }
+  ]
+}

@@ -9,7 +9,7 @@ import { appendRunLog, stopGateFile, withoutRoot, writeJsonAtomic } from '../../
 export type HookInput = Record<string, unknown>;
 
 // The pipeline's own subagents (frontmatter `name`, which hooks receive as `agent_type`).
-export const PIPELINE_AGENTS: readonly string[] = ['extractor', 'taxonomist', 'synthesizer', 'drafter'];
+export const PIPELINE_AGENTS: readonly string[] = ['extractor', 'taxonomist', 'merger', 'synthesizer', 'drafter'];
 
 export const isRecord = (v: unknown): v is Record<string, unknown> => typeof v === 'object' && v !== null && !Array.isArray(v);
 export const str = (v: unknown): string | null => (typeof v === 'string' ? v : null);
@@ -74,9 +74,10 @@ export function reportFailure(hook: string, err: unknown, root: string): void {
 
 // ---- out/ledger/stop-gate.json: the Stop hook's memory for one run (git-ignored) ----
 //
-// session_id: the orchestrator's session, recorded by the corpus guard when a session starts a
-// pipeline subagent during the run, so the Stop hook steers that session only and never another
-// Claude Code session open in the same folder. last_block: the reason key of the Stop hook's
+// session_id: the orchestrator's session, recorded by `run start` from the claim the corpus guard
+// wrote when the session typed it (or, failing that, by the guard when a session starts a pipeline
+// subagent during the run), so the Stop hook steers that session only and never another Claude
+// Code session open in the same folder. last_block: the reason key of the Stop hook's
 // previous block, so it never blocks twice in a row for the same reason. Both belong to run_id:
 // what another run left behind reads as empty.
 export type StopGate = { run_id: string | null; session_id: string | null; last_block: string | null };

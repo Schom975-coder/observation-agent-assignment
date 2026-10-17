@@ -24,8 +24,13 @@ import type { BatchEntry, Extraction, ExtractionCheck, ParsedMessage, QuoteCheck
 
 export const NOTE_MAX_CHARS = 200;
 export const BATCH_NOTES_MAX_WORDS = 100;
-// A proposed process key: "new:" and a lowercase slug of hyphen-joined words.
+// A proposed process key: "new:" and a lowercase slug of hyphen-joined words, at most
+// NEW_KEY_MAX_CHARS characters with the prefix. Longer is a sentence, not a name: the merge input,
+// the review table and every later reader show the key whole (the longest in the M4 run is 45).
 export const NEW_KEY = /^new:[a-z0-9]+(?:-[a-z0-9]+)*$/;
+export const NEW_KEY_MAX_CHARS = 60;
+const keyTooLong = (key: string): string =>
+  `is ${key.length} characters long; a proposed key is at most ${NEW_KEY_MAX_CHARS} characters, "new:" included: shorten it to the few words that name the work`;
 // Roles a message may have with no process at all.
 export const ROLES_WITHOUT_PROCESS: readonly string[] = ['personal', 'noise', 'automated', 'injection_attempt'];
 
@@ -268,6 +273,8 @@ function check(x: Extraction, batchId: string, batch: Batch, taxonomy: ReadonlyS
       if (key.startsWith('new:')) {
         if (!NEW_KEY.test(key)) {
           add(`${m.id}: ${modelText(key)} is not a valid new process key: use "new:" and lowercase words joined by hyphens, e.g. "new:meter-reconciliation"`);
+        } else if (key.length > NEW_KEY_MAX_CHARS) {
+          add(`${m.id}: ${modelText(key)} ${keyTooLong(key)}`);
         } else if (taxonomy.has(key.slice(4))) {
           add(`${m.id}: ${modelText(key)} proposes a key the taxonomy already has: use ${JSON.stringify(key.slice(4))}`);
         } else usedNew.set(key, [...(usedNew.get(key) ?? []), m.id]);
@@ -289,6 +296,7 @@ function check(x: Extraction, batchId: string, batch: Batch, taxonomy: ReadonlyS
   x.new_processes.forEach((p, i) => {
     const at = `new_processes[${i}] (${modelText(p.key)})`;
     if (!NEW_KEY.test(p.key)) add(`${at}: key must be "new:" and lowercase words joined by hyphens, e.g. "new:meter-reconciliation"`);
+    else if (p.key.length > NEW_KEY_MAX_CHARS) add(`${at}: the key ${keyTooLong(p.key)}`);
     if (declared.has(p.key)) add(`${at}: ${modelText(p.key)} is declared more than once (declare it once)`);
     else declared.set(p.key, i);
     if (p.name.trim() === '') add(`${at}: name is empty`);

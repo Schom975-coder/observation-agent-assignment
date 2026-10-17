@@ -75,8 +75,83 @@ const median = (xs: readonly number[]): number | null => {
   const mid = Math.floor(s.length / 2);
   return s.length % 2 === 1 ? (s[mid] as number) : ((s[mid - 1] as number) + (s[mid] as number)) / 2;
 };
-// A person as a claim names them, compared without case or spacing.
-const personKey = (p: string): string => p.toLowerCase().replace(/\s+/g, ' ').trim();
+// A name as the words it is made of: case-folded, apostrophes dropped ("O'Neal" is "oneal", as in
+// an address), every other mark and space a separator, and single letters (initials) left out,
+// since they identify nobody: "Love, Phillip M." is love, phillip. The same for a display name, a
+// claim's person and an address's local part ("phillip.m.love" is phillip, love).
+export function nameTokens(text: string): string[] {
+  return text
+    .toLowerCase()
+    .replace(/['’]/g, '')
+    .split(/[^\p{L}\p{N}]+/u)
+    .filter((t) => [...t].length >= 2);
+}
+
+// Words that make an ownership claim name a group, a role or a quantity of people rather than one
+// person ("each trader", "the scheduling desk", "volume management group"). Such a claim is listed
+// under its process but never counts toward a conflict.
+export const GROUP_WORDS: readonly string[] = [
+  'each', 'every', 'all', 'any', 'both', 'everyone', 'everybody', 'someone', 'somebody', 'anyone', 'anybody', 'nobody',
+  'they', 'them', 'we', 'us', 'team', 'teams', 'group', 'groups', 'desk', 'desks', 'department', 'departments',
+  'management', 'staff', 'trader', 'traders', 'people',
+];
+// A claim of more words than this is a phrase, not a person's name.
+export const NAME_MAX_WORDS = 3;
+
+type Named = { email: string; name: string | null };
+// Whom an ownership claim names: people of the directory (addresses, sorted), or, for a name no
+// one in the directory carries (it appears only in a message body), the name's own words.
+export type Claimant = { known: string[] } | { named: string[] };
+
+type NameEntry = { email: string; tokens: ReadonlySet<string> };
+const entries = (people: readonly Named[]): NameEntry[] =>
+  people.map((p) => ({ email: p.email, tokens: new Set([...nameTokens(p.name ?? ''), ...nameTokens(p.email.slice(0, Math.max(0, p.email.lastIndexOf('@'))))]) }));
+const directories = new WeakMap<readonly Named[], NameEntry[]>();
+const directoryOf = (people: readonly Named[]): NameEntry[] => {
+  let d = directories.get(people);
+  if (d === undefined) {
+    d = entries(people);
+    directories.set(people, d);
+  }
+  return d;
+};
+
+// The person an ownership claim's `person` names, or null when it names no one person. Its words
+// (nameTokens) are matched against everyone in `people` (the archive's people directory) and the
+// process's `participants`, by display-name and email local-part words: the people sharing the
+// most words with it, and of those, the participants if any (ties otherwise all kept). A claim
+// that matches nobody still names someone if it reads as a personal name: one to NAME_MAX_WORDS
+// words. A claim with any GROUP_WORDS word never names one person.
+export function claimant(person: string, participants: readonly Named[], people: readonly Named[] = []): Claimant | null {
+  const words = person.trim().split(/\s+/).filter((w) => /[\p{L}\p{N}]/u.test(w));
+  const claim = [...new Set(nameTokens(person))];
+  if (claim.length === 0 || claim.some((t) => GROUP_WORDS.includes(t))) return null;
+  const inProcess = new Set(participants.map((p) => p.email));
+  let best = 0;
+  let who = new Set<string>();
+  for (const e of [...directoryOf(participants), ...directoryOf(people)]) {
+    const shared = claim.filter((t) => e.tokens.has(t)).length;
+    if (shared === 0 || shared < best) continue;
+    if (shared > best) {
+      best = shared;
+      who = new Set();
+    }
+    who.add(e.email);
+  }
+  if (who.size > 0) {
+    const ours = [...who].filter((e) => inProcess.has(e));
+    return { known: (ours.length > 0 ? ours : [...who]).sort(byText) };
+  }
+  return words.length <= NAME_MAX_WORDS ? { named: claim.sort(byText) } : null;
+}
+
+// Two claimants are the same person when the people they name overlap, or when one unknown name's
+// words are all among the other's ("Souad" and "Souad M").
+function samePerson(a: Claimant, b: Claimant): boolean {
+  if ('known' in a && 'known' in b) return a.known.some((e) => b.known.includes(e));
+  if ('named' in a && 'named' in b) return a.named.every((t) => b.named.includes(t)) || b.named.every((t) => a.named.includes(t));
+  return false;
+}
 
 export type RollupInputs = {
   validated: ValidatedExtraction[]; // the done batches'
@@ -263,7 +338,7 @@ export function rollupWithNotes(inputs: RollupInputs): { rollup: Rollup; notes: 
         ownership_claims.push({ message_id: id, person: e.ownership_claim.person, date_utc: usable(messages.get(id)), quote: oc.raw_text ?? e.ownership_claim.quote });
       }
     }
-    const conflict = ownershipConflict(ownership_claims);
+    const conflict = ownershipConflict(ownership_claims, participants, inputs.people);
 
     const actions = countActions(own);
     const senders = new Set(ms.map(senderOf).filter((s) => s !== ''));
@@ -341,23 +416,31 @@ export function rollupWithNotes(inputs: RollupInputs): { rollup: Rollup; notes: 
 }
 
 // Two or more different people claimed to own the work within OWNERSHIP_CONFLICT_DAYS of each
-// other (usable dates only): every claim that is part of such a pair, by date.
-export function ownershipConflict(claims: ProcessRollup['ownership_claims']): OwnershipConflict | null {
-  const dated = claims.filter((c) => c.date_utc !== null);
+// other (usable dates only): every claim that is part of such a pair, by date. A claim counts only
+// when it names one person (claimant: someone in the people directory, the process's participants
+// first, or a personal name found nowhere else); a claim naming a group or a role stays listed
+// under the process but never makes a conflict. Claims naming the same person count once, so
+// spelling variants ("Darron", "Darron C Giron") and a first name that could be either of two
+// people are one person. Content only: names against the archive's people, never the IDs.
+export function ownershipConflict(claims: ProcessRollup['ownership_claims'], participants: readonly Named[], people: readonly Named[] = []): OwnershipConflict | null {
+  const dated = claims
+    .filter((c) => c.date_utc !== null)
+    .map((c) => ({ c, who: claimant(c.person, participants, people) }))
+    .filter((x): x is { c: (typeof claims)[number]; who: Claimant } => x.who !== null);
   const inConflict = new Set<number>();
   for (let i = 0; i < dated.length; i++) {
     for (let j = i + 1; j < dated.length; j++) {
       const a = dated[i] as (typeof dated)[number];
       const b = dated[j] as (typeof dated)[number];
-      if (personKey(a.person) === personKey(b.person)) continue;
-      if (Math.abs(utcMs(a.date_utc as string) - utcMs(b.date_utc as string)) <= OWNERSHIP_CONFLICT_DAYS * DAY_MS) {
+      if (samePerson(a.who, b.who)) continue;
+      if (Math.abs(utcMs(a.c.date_utc as string) - utcMs(b.c.date_utc as string)) <= OWNERSHIP_CONFLICT_DAYS * DAY_MS) {
         inConflict.add(i);
         inConflict.add(j);
       }
     }
   }
   if (inConflict.size === 0) return null;
-  const list = [...inConflict].map((i) => dated[i] as (typeof dated)[number]).sort((a, b) => byText(a.date_utc as string, b.date_utc as string) || byText(a.message_id, b.message_id));
+  const list = [...inConflict].map((i) => (dated[i] as (typeof dated)[number]).c).sort((a, b) => byText(a.date_utc as string, b.date_utc as string) || byText(a.message_id, b.message_id));
   return { claims: list.map((c) => ({ person: c.person, message_id: c.message_id, date_utc: c.date_utc })) };
 }
 

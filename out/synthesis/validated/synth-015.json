@@ -1,0 +1,222 @@
+{
+  "group_id": "synth-015",
+  "content_sha": "ebeafd4024ddbc6677459d4cd80b65aac9b76b9734ff41510b822563e211f4b6",
+  "processes": [
+    {
+      "key": "process-documentation",
+      "description": "Managers and analysts write or revise documents describing how their group works, such as a controls and standards list, redefined activity definitions, or a process write-up for a senior manager, and send them round for comment, often with related correspondence attached. Colleagues read and give feedback, a coordinator gathers the marked-up document and returns it to the author, and the author decides what goes into the final version, sometimes holding a sensitive item back until an audit has closed.",
+      "steps": [
+        "An author drafts or revises a controls list, activity definitions or a process write-up.",
+        "The author circulates the draft with any supporting correspondence and asks for feedback.",
+        "Colleagues read the document and mark up comments.",
+        "A coordinator collects the comments and returns the document to the author.",
+        "The author settles the final wording, including what to leave out for now."
+      ],
+      "stalls": [
+        {
+          "summary": "A known issue is deliberately kept out of a write-up: the author asks that the invoice approval piece be described in a set way and does not want to open the underlying question before the audit closes, so the matter is left unresolved.",
+          "evidence_ids": [
+            "batch-075:s1",
+            "batch-075:e13"
+          ]
+        }
+      ],
+      "contradictions": [],
+      "automation": {
+        "approach": "A standard document template for controls and process write-ups, with fixed sections for activities, controls, owners and open items, plus a comment log so reviewers add feedback in one place and the coordinator does not have to collate returned copies by hand. Open items held back for an audit get an explicit follow-up entry rather than being dropped.",
+        "artifact_type": "template",
+        "rationale": "Each round starts from a fresh attachment and ends with someone coordinating returned comments. A common layout and a single comment log make drafts quicker to write and review and keep deferred items visible; the content itself still needs the author's judgement."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": {
+          "low": 20,
+          "mid": 60,
+          "high": 150
+        },
+        "automatable_pct": 20,
+        "basis": "inferred",
+        "rationale": "Hands-on work is drafting or revising the document (a controls list, redefined activities, a write-up for a senior manager) and reading and marking up a colleague's draft. A quick review of an attached draft is about 20 minutes; a typical draft or redefinition with comments folded in about 60; a fuller write-up toward 150. A template and comment log could take over layout and collating comments; deciding the content stays with people.",
+        "evidence_ids": [
+          "batch-012:e6",
+          "batch-075:e13",
+          "batch-049:e19",
+          "batch-023:e11",
+          "batch-019:e10"
+        ]
+      },
+      "estimate_check": {
+        "occurrences_cited": 5,
+        "senders_cited": 4
+      }
+    },
+    {
+      "key": "realtime-desk-procedures",
+      "description": "The real-time desk lead sends the shift group updates so everyone runs the desk the same way: transmission maps and OASIS links to print, new transmission prices effective from a date, packet updates, a warning to log out of the IPC website to avoid a lockout, notes on a new workspace tool, new URLs for the El Paso data scrape, rules for filing the previous day's printed dispatch and EPE prescheduling sheet, counterparty restrictions, seasonal market guidance and how outage reports are routed. Staff update their packet and follow the rule on shift.",
+      "steps": [
+        "The desk lead or a colleague learns of a change in prices, links, data sources, tools or rules.",
+        "The details are gathered and written up as a briefing or packet update.",
+        "The briefing goes to the real-time shift group.",
+        "Desk staff update their procedures packet, print maps or save links.",
+        "Staff apply the rule on shift, such as filing prior-day sheets or sending outage reports."
+      ],
+      "stalls": [
+        {
+          "summary": "A new desk tool barely works when introduced: only the ticker functions and the rest does not, so staff are told how to reach the workspace by another route.",
+          "evidence_ids": [
+            "batch-056:s2",
+            "batch-056:e22",
+            "batch-056:e23"
+          ]
+        },
+        {
+          "summary": "The IPC website locks the desk out if a session times out instead of being logged out, so the desk depends on every user remembering to log out.",
+          "evidence_ids": [
+            "batch-056:e15"
+          ]
+        }
+      ],
+      "contradictions": [],
+      "automation": {
+        "approach": "Keep one maintained desk handbook with dated sections for transmission prices, links and data sources, tool access, record-keeping rules, counterparty restrictions and outage routing. Each briefing becomes an edit to the handbook with a change note sent to the shift, so staff no longer rebuild their own packet from scattered messages.",
+        "artifact_type": "sop",
+        "rationale": "The briefings are pieces of a procedure manual delivered one email at a time and kept by each person in their own packet. A single written procedure with dated changes gives the whole shift the same current version; the lead still decides the rules."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": {
+          "low": 5,
+          "mid": 15,
+          "high": 45
+        },
+        "automatable_pct": 40,
+        "basis": "inferred",
+        "rationale": "Hands-on work beyond the email is looking up the changed item (transmission prices, links, data source URLs, counterparty rules), assembling the packet update, and staff printing maps, filing sheets or saving links. Most rounds are a single short update, about 15 minutes; a seasonal briefing or a new procedure runs toward 45. A maintained handbook could take over collating and distributing; deciding the rule stays with the lead.",
+        "evidence_ids": [
+          "batch-068:e18",
+          "batch-061:e1",
+          "batch-091:e4",
+          "batch-090:e8",
+          "batch-056:e14",
+          "batch-057:e13",
+          "batch-088:e7"
+        ]
+      },
+      "estimate_check": {
+        "occurrences_cited": 7,
+        "senders_cited": 3
+      }
+    },
+    {
+      "key": "realtime-schedule-checkout",
+      "description": "The real-time desk confirms and corrects each day's power schedules. The desk lead tells traders where the desk is long or short by zone and hour and asks them to buy or sell to fill, booking deals to the right book in Enpower. Preschedulers pass EPE schedule sheets and lending arrangements, which real time checks against Enpower and CAISO or CAPS records; wrong import IDs, volumes, duplicates and prices are flagged and fixed. Cuts and derates mean calling counterparties at the top of the hour, entering cuts in Enpower path confirmation, re-tagging, and zeroing and valuing cut deals.",
+      "steps": [
+        "Preschedulers and traders pass the day's positions, lending and deal details to real time.",
+        "Real time checks the schedule sheet against Enpower deals and CAISO or CAPS records by hour.",
+        "Shorts and longs are filled by buying or selling at the stated points and booked to the right book.",
+        "Wrong import IDs, volumes, duplicates or deal prices are flagged and corrected with preschedulers.",
+        "Cuts and derates are handled: counterparties called, cuts entered in path confirmation, tags updated.",
+        "Cut deals are zeroed out and valued, and revenue is routed to volume management.",
+        "The desk lead circulates follow-up rules and corrections to the shift."
+      ],
+      "stalls": [
+        {
+          "summary": "CAISO systems fail the desk: its computers went down and hours had to be submitted ahead of the outage, and on another day it again had difficulties reading the desk's bids.",
+          "evidence_ids": [
+            "batch-057:s1",
+            "batch-057:e12",
+            "batch-071:s0"
+          ]
+        },
+        {
+          "summary": "The EPE schedule sheet keeps arriving incomplete or wrong, day after day: duplicate schedules, wrong lending volumes and wrong hourly figures that real time has to square away with the preschedulers.",
+          "evidence_ids": [
+            "batch-093:s1",
+            "batch-090:s1",
+            "batch-059:s3",
+            "batch-059:s2"
+          ]
+        },
+        {
+          "summary": "Deals need correcting after entry: a deal price is changed in Enpower and revenue then shows in the wrong place, CAPS shows a final import different from the desk's records, and email to Real Time is reminded to match what is entered in Enpower.",
+          "evidence_ids": [
+            "batch-059:e27",
+            "batch-059:s5",
+            "batch-053:s2",
+            "batch-074:e2"
+          ]
+        },
+        {
+          "summary": "Records for a period were lost, so those on shift had to work out which deals were done and reconstruct the sheet.",
+          "evidence_ids": [
+            "batch-084:s1"
+          ]
+        },
+        {
+          "summary": "A reference manual for handling cuts is asked for, but the reply is that there is no time today and it may wait till tomorrow; cut procedures are circulated separately later.",
+          "evidence_ids": [
+            "batch-059:e6",
+            "batch-059:s0",
+            "batch-059:e24"
+          ]
+        }
+      ],
+      "contradictions": [
+        {
+          "summary": "Who prepares the EPE schedules is unsettled within one exchange: the preschedule lead says she and the desk lead are considering having Real Time take over the EPE preschedules, while the same thread names Diane Cutsforth as the one working on the EPE schedule.",
+          "evidence_ids": [
+            "batch-090:e17",
+            "batch-090:o0"
+          ]
+        },
+        {
+          "summary": "Prices on El Paso Electric lending and purchase deals conflict: a lending schedule is announced at a low price, a related deal is later re-priced much higher in Enpower with the resulting revenue disputed, and another round has EPE purchases reduced back to the low price.",
+          "evidence_ids": [
+            "batch-059:e19",
+            "batch-059:e27",
+            "batch-059:s5",
+            "batch-060:e14"
+          ]
+        },
+        {
+          "summary": "Schedule records disagree with what was arranged: lending from PSCO in the EPE schedules shows a different volume from the agreed one, SPS is wrong for an hour, an import ID carries the wrong on-peak and off-peak volumes, and CAPS shows a firm import the desk did not expect.",
+          "evidence_ids": [
+            "batch-090:e9",
+            "batch-090:s1",
+            "batch-084:e12",
+            "batch-053:s2"
+          ]
+        }
+      ],
+      "automation": {
+        "approach": "A checkout report that lines up the prescheduling sheet, Enpower deals and CAISO or CAPS final schedules hour by hour and flags mismatched volumes, wrong import IDs, duplicates, missing interchange deals, untagged schedules and prices that differ from the agreed figure. Pair it with a shift checklist covering hourly counterparty calls, cut entry in path confirmation, tagging both load periods, and zeroing and valuing cut deals.",
+        "artifact_type": "checklist",
+        "rationale": "Most rounds are the same checks repeated by hand and the same errors found late. A shift checklist gives traders the cut and tagging rules that now arrive as scattered emails, and the cross-check can catch sheet errors before real time inherits them; buying, calling counterparties and judging cuts stay with traders."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": {
+          "low": 15,
+          "mid": 30,
+          "high": 90
+        },
+        "automatable_pct": 40,
+        "basis": "observed",
+        "rationale": "Most of a round goes to checking the schedule sheet, Enpower deals and ISO records against each other and correcting what disagrees (import volumes, lending, duplicates, deal prices), plus buying to fill a short and entering the deal: about 30 minutes for a routine correction, 15 for a single fix. Cut handling with hourly calls, zeroing and valuing cut deals, or rebuilding a lost sheet runs toward 90. A cross-check report could take over the matching and flagging; trading decisions stay with people.",
+        "evidence_ids": [
+          "batch-084:e12",
+          "batch-090:e9",
+          "batch-059:e27",
+          "batch-081:e3",
+          "batch-058:e15",
+          "batch-060:e0",
+          "batch-053:s2",
+          "batch-059:s3",
+          "batch-084:s1",
+          "batch-076:e3"
+        ]
+      },
+      "estimate_check": {
+        "occurrences_cited": 10,
+        "senders_cited": 2
+      }
+    }
+  ]
+}

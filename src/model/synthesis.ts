@@ -301,12 +301,19 @@ function check(g: SynthesisGroup, groupId: string, entry: SynthEntry, sidecar: S
       const known = distinct.map((id) => cited.get(id)).filter((c) => c !== undefined);
       const occurrences = new Set(known.map((c) => c.occurrence_id).filter((o) => o !== '')).size;
       const senders = new Set(known.map((c) => c.sender).filter((s) => s !== '')).size;
-      if (occurrences < bounds.min_occurrences) {
-        add(`${at}.work_estimate.evidence_ids come from ${occurrences} occurrence${occurrences === 1 ? '' : 's'}; cite quotes from at least ${bounds.min_occurrences} different occurrences (E2)`);
-      }
-      if (senders < bounds.min_senders) {
-        add(`${at}.work_estimate.evidence_ids come from ${senders} sender${senders === 1 ? '' : 's'}; cite quotes from at least ${bounds.min_senders} different senders (E2)`);
-      }
+      // What this process's section shows at all: when it is short of the rule, no choice of ids
+      // can meet it, and the fix is null, not another round of trying.
+      const shown = {
+        occurrences: new Set(sp.cited.map((c) => c.occurrence_id).filter((o) => o !== '')).size,
+        senders: new Set(sp.cited.map((c) => c.sender).filter((s) => s !== '')).size,
+      };
+      const e2 = (n: number, noun: string, min: number, available: number): string =>
+        `${at}.work_estimate.evidence_ids come from ${n} ${noun}${n === 1 ? '' : 's'}; ` +
+        (available < min
+          ? `this process's section shows quotes from only ${available} ${noun}${available === 1 ? '' : 's'}, so no estimate can meet the rule: set work_estimate to null (E2)`
+          : `cite quotes from at least ${min} different ${noun}s, or set work_estimate to null (E2)`);
+      if (occurrences < bounds.min_occurrences) add(e2(occurrences, 'occurrence', bounds.min_occurrences, shown.occurrences));
+      if (senders < bounds.min_senders) add(e2(senders, 'sender', bounds.min_senders, shown.senders));
       if (e.basis === 'self_reported' && senders < SELF_REPORTED_MIN_SENDERS) {
         add(
           `${at}.work_estimate.basis is "self_reported" with quotes from ${senders} sender${senders === 1 ? '' : 's'}; what people say about their own time needs ${SELF_REPORTED_MIN_SENDERS} senders to be a basis (E3): ` +

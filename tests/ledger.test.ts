@@ -1263,6 +1263,40 @@ test('a synthesis group goes through every transition with its own files, agent 
   assert.equal(bindAgent(root, 's2', 'synth-000').ok, false, 'not running');
 });
 
+test('bindings: one agent per dispatch of a job, for both kinds; a re-dispatch frees the job for the next agent', () => {
+  const root = project(2);
+  addGroups(root, 1);
+  for (const [job, worker, short] of [['batch-000', 'extractor', 'batch'], ['synth-000', 'synthesizer', 'group']] as const) {
+    dispatch(root, job);
+    assert.ok(bindAgent(root, `${job}-first`, job).ok);
+    assert.deepEqual(bindAgent(root, `${job}-second`, job), {
+      ok: false,
+      reason: `${job} is already being worked on by another ${worker} under its current dispatch; one ${short} has one ${worker} at a time`,
+    });
+    assert.equal(boundBatch(root, `${job}-second`), null, 'a refused bind writes nothing');
+    assert.ok(bindAgent(root, `${job}-first`, job).ok, 'the holder may read on');
+    // Stamped and handed out again: the old holder is superseded and a new agent may bind.
+    recordValidation(root, indexEntry(root, job), failedCheck(job));
+    dispatch(root, job);
+    assert.ok(bindAgent(root, `${job}-third`, job).ok);
+    assert.equal(bindAgent(root, `${job}-first`, job).ok, true, 'its own stale binding still reads back (the guard refuses its writes)');
+    assert.equal(bindAgent(root, `${job}-fourth`, job).ok, false);
+  }
+});
+
+test('several agents binding one dispatched job from several processes at once: exactly one wins', async () => {
+  const root = project(1);
+  dispatch(root, 'batch-000');
+  const script = `
+    const { bindAgent } = await import(${JSON.stringify(ledgerUrl)});
+    const [root, agent] = process.argv.slice(1);
+    console.log(JSON.stringify(bindAgent(root, agent, 'batch-000')));`;
+  const results = (await children(script, 6, (n) => [root, `racer-${n}`])).map((line) => JSON.parse(line) as { ok: boolean });
+  assert.equal(results.filter((r) => r.ok).length, 1, JSON.stringify(results));
+  const winner = `racer-${results.findIndex((r) => r.ok)}`;
+  assert.equal(boundBatch(root, winner)?.batch_id, 'batch-000');
+});
+
 test('the stage walks taxonomy, extraction, merge, rollup, synthesis, score, done; groups are dispatched only once the rollup is current, within the shared cap', () => {
   const root = project(2);
   addGroups(root, 3);
@@ -1385,6 +1419,39 @@ test('refill: validates the named jobs, dispatches next exactly as dispatch does
   assert.deepEqual([s.stage, s.extraction, s.jobs], ['taxonomy', 'blocked', []]);
   assert.match(capture(() => refillCommand(stale, ['--fast'])).err[0] ?? '', /^refill: unexpected option "--fast"/);
   assert.match(capture(() => refillCommand(stale, ['merge-000'])).err[0] ?? '', /^refill: "merge-000" is not a job ID/);
+});
+
+test('refill --failed: a job whose Agent call failed is recorded at once, as validate records no output, and handed out again', () => {
+  const root = project(4, { taxonomy: true });
+  capture(() => runCommand(root, ['start']));
+  const refill = (args: string[]): RefillReport => {
+    const r = capture(() => refillCommand(root, [...args, '--json']));
+    assert.equal(r.code, 0, r.err.join('\n'));
+    return JSON.parse(r.out[0] as string) as RefillReport;
+  };
+  withInFlight('3', () => {
+    assert.deepEqual(refill([]).running, ['batch-000', 'batch-001', 'batch-002']);
+    // Named as a completion just after its dispatch, a job with no output is still starting...
+    const waiting = refill(['batch-000']);
+    assert.deepEqual([waiting.validated, waiting.jobs], [[{ id: 'batch-000', status: 'running', note: 'still starting' }], []]);
+    // ...but named after --failed (its Agent call failed or was refused), it is recorded now and
+    // goes out again with a fresh prompt: the first dispatch with no output costs no attempt.
+    const again = refill(['--failed', 'batch-000']);
+    assert.deepEqual(again.validated, [{ id: 'batch-000', status: 'failed', note: 'recorded' }]);
+    assert.deepEqual(again.jobs.map((j) => [j.id, j.prompt.split('\n')[0]]), [['batch-000', 'Extract batch batch-000.']]);
+    const state = readBatchState(root, 'batch-000');
+    assert.deepEqual([state.status, state.dispatches, state.uncounted_dispatches, state.no_output_streak], ['running', 2, 1, 1]);
+    assert.equal(state.no_output_run_id, readRun(root).run_id, 'the stamp counts toward this run\'s circuit breaker');
+    // Completions and failures in one call; an ID named twice is recorded once, as failed.
+    recordValidation(root, indexEntry(root, 'batch-001'), passed('batch-001'));
+    const mixed = refill(['batch-001', '--failed', '2', 'batch-002']);
+    assert.deepEqual(mixed.validated, [
+      { id: 'batch-001', status: 'done', note: 'already recorded' },
+      { id: 'batch-002', status: 'failed', note: 'recorded' },
+    ]);
+  });
+  assert.match(capture(() => refillCommand(root, ['--failed', '--json'])).err[0] ?? '', /^refill: --failed needs the jobs whose Agent call failed\. Usage: node obs\.mjs refill/);
+  assert.match(capture(() => refillCommand(root, ['--failed', '-x'])).err[0] ?? '', /^refill: unexpected option "-x"/);
 });
 
 // ---- Concurrency ----

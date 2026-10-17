@@ -16,7 +16,7 @@ import { rootVariants } from '../.claude/hooks/lib.ts';
 import { canonicalTaxonomy } from '../src/model/taxonomy.ts';
 import { BATCH_NOTES_MAX_WORDS, NOTE_MAX_CHARS, checkExtraction } from '../src/model/validate-extraction.ts';
 import { prepare } from '../src/pipeline/prepare.ts';
-import { extractorPrompt } from '../src/run/commands.ts';
+import { extractorPrompt, runCommand } from '../src/run/commands.ts';
 import {
   HALT_NO_OUTPUT,
   MAX_DISPATCHES,
@@ -221,12 +221,12 @@ const runLog = (name: string, dir = proj): Array<Record<string, unknown>> => {
     .split('\n')
     .map((l) => JSON.parse(l) as Record<string, unknown>);
 };
-const statusOf = (batchId: string) => batchViews(proj).find((v) => v.entry.batch_id === batchId)?.status;
+const statusOf = (batchId: string) => batchViews(proj).find((v) => v.entry.id === batchId)?.status;
 
 // ---- guard-corpus: the extractor's allowlist and its batch ----
 
 test('fixture: batch-000 holds all four messages, whose text mentions corpus/ IDs; three empty batches follow', () => {
-  assert.deepEqual([...entryOf(proj, BATCH).message_ids].sort(), [A, B, C, D].sort());
+  assert.deepEqual([...(loadIndex(proj).find((b) => b.batch_id === BATCH)?.message_ids ?? [])].sort(), [A, B, C, D].sort());
   assert.ok(readFileSync(batchFile, 'utf8').includes(`--- MESSAGE ${A} ---`));
   assert.deepEqual(loadIndex(proj).map((b) => b.batch_id), ids(0, 3));
 });
@@ -540,6 +540,53 @@ test('guard: the session that starts a pipeline subagent during a run is recorde
   }
   assert.equal(verdict(spawn('s-other', 'extractor')), 'silent');
   assert.ok(!existsSync(stopGateFile(proj)), 'outside a run nothing is claimed');
+});
+
+test('guard: a Bash call starting `node obs.mjs run start` claims the run for its session, inside a run or not; run start takes the claim', () => {
+  const dir = join(tmp, 'claim');
+  addBatches(dir, ids(0, 1));
+  const claimPath = join(dir, 'out', 'ledger', 'claim.json');
+  const bash = (command: string, extra: Record<string, unknown> = {}) => preToolUse('Bash', { command }, { cwd: dir, session_id: 's-orch', ...extra });
+  const claimed = (): Record<string, unknown> | null => (existsSync(claimPath) ? JSON.parse(readFileSync(claimPath, 'utf8')) : null);
+
+  for (const command of ['node obs.mjs run start', '  node obs.mjs run start --force']) {
+    assert.equal(verdict(bash(command), dir), 'silent', command);
+    const claim = claimed();
+    assert.deepEqual(Object.keys(claim ?? {}), ['session_id', 'utc'], command);
+    assert.equal(claim?.session_id, 's-orch');
+    assert.match(String(claim?.utc), /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/);
+    rmSync(claimPath);
+  }
+  for (const command of ['node obs.mjs status', 'node obs.mjs run end', 'node obs.mjs run starts', 'echo node obs.mjs run start', 'node obs.mjs prepare && node obs.mjs run start']) {
+    assert.equal(verdict(bash(command), dir), 'silent', command);
+    assert.equal(claimed(), null, command);
+  }
+  assert.equal(verdict(bash('node obs.mjs run start', { session_id: undefined }), dir), 'silent');
+  assert.equal(claimed(), null, 'no session to name');
+  // A pipeline subagent may not run commands at all, so it claims nothing.
+  assert.equal(verdict(bash('node obs.mjs run start', extractor('agent-c')), dir), 'deny');
+  assert.equal(claimed(), null);
+
+  // Inside an active run (a resume): the same claim, and the call goes ahead.
+  setRun(dir, true, 'r-old');
+  assert.equal(verdict(bash('node obs.mjs run start'), dir), 'silent');
+  assert.equal(claimed()?.session_id, 's-orch');
+  assert.equal(runLog('r-old', dir).filter((e) => e.event === 'guard_claim').length, 1);
+  // run start turns it into the new run's orchestrator session, before anything else.
+  const { log } = console;
+  console.log = () => {};
+  try {
+    assert.equal(runCommand(dir, ['start']), 0);
+  } finally {
+    console.log = log;
+  }
+  const run = JSON.parse(readFileSync(join(dir, 'out', 'ledger', 'run.json'), 'utf8'));
+  assert.deepEqual(JSON.parse(readFileSync(stopGateFile(dir), 'utf8')), { run_id: run.run_id, session_id: 's-orch', last_block: null });
+  assert.equal(claimed(), null, 'used once');
+  // So the Stop hook steers that session and leaves another one alone.
+  const other = hook('gate-run', { session_id: 's-dev', cwd: dir, hook_event_name: 'Stop', background_tasks: [] }, dir);
+  assert.deepEqual([other.status, other.stdout], [0, '']);
+  assert.equal(runLog(run.run_id, dir).find((e) => e.event === 'gate_run')?.decision, 'other_session');
 });
 
 test('guard: during a run, a checkout under a folder named corpus is not mistaken for the corpus', () => {
@@ -963,7 +1010,7 @@ test('stop gate: when nothing is left it asks for run end once, then lets the tu
 
   // An exhausted batch is reported by status, not waited for: the run still ends.
   forget(dir);
-  const statusOf1 = () => batchViews(dir).find((v) => v.entry.batch_id === 'batch-001')?.status;
+  const statusOf1 = () => batchViews(dir).find((v) => v.entry.id === 'batch-001')?.status;
   markDispatched(dir, entryOf(dir, 'batch-001'), { force: true });
   stamp(dir, 'batch-001', false);
   for (let i = 0; i < 2 * MAX_DISPATCHES && statusOf1() !== 'exhausted'; i++) {

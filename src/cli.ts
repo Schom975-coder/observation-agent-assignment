@@ -3,8 +3,11 @@
 import { fileURLToPath } from 'node:url';
 import { ingestCommand } from './corpus/ingest.ts';
 import { prepareCommand } from './pipeline/prepare.ts';
-import { dispatchCommand, runCommand, statusCommand, validateCommand, verifyCommand } from './run/commands.ts';
+import { dispatchCommand, refillCommand, runCommand, statusCommand, validateCommand, verifyCommand } from './run/commands.ts';
 import { goldCommand } from './run/gold.ts';
+import { mergeCommand } from './run/merge.ts';
+import { rollupCommand } from './run/rollup.ts';
+import { scoreCommand } from './run/score.ts';
 import { taxonomyCommand } from './run/taxonomy.ts';
 
 // The repo root, wherever the command is run from.
@@ -18,9 +21,9 @@ type Command = {
 
 export const COMMANDS: Record<string, Command> = {
   prepare: {
-    summary: 'Ingest, parse, de-duplicate, thread and batch every message',
+    summary: 'Ingest, parse, de-duplicate, thread and batch every message (skips itself when nothing changed; --force always runs)',
     milestone: 'M2',
-    run: () => prepareCommand(ROOT),
+    run: (args) => prepareCommand(ROOT, args),
   },
   ingest: {
     summary: 'List every corpus message and check its bytes against Git',
@@ -28,19 +31,24 @@ export const COMMANDS: Record<string, Command> = {
     run: () => ingestCommand(ROOT),
   },
   status: {
-    summary: 'Show the run ledger: what is done, running and pending (--json for the orchestrator)',
+    summary: 'Show the run ledger and the stage the run is in: what is done, running and pending (--json for the orchestrator)',
     milestone: 'M3',
     run: (args) => statusCommand(ROOT, args),
   },
   dispatch: {
-    summary: 'Mark a batch as handed to an extractor and print the extractor prompt',
+    summary: 'Mark a batch or synthesis group as handed to its subagent and print the prompt',
     milestone: 'M3',
     run: (args) => dispatchCommand(ROOT, args),
   },
   validate: {
-    summary: 'Check model output: schema, coverage, verbatim quotes',
+    summary: 'Check the model output of a batch or synthesis group (schema, coverage, quotes, estimate rules) and record it',
     milestone: 'M3',
     run: (args) => validateCommand(ROOT, args),
+  },
+  refill: {
+    summary: 'After completions: validate the named jobs, dispatch everything next, print the prompts as JSON',
+    milestone: 'M5',
+    run: (args) => refillCommand(ROOT, args),
   },
   run: {
     summary: 'Start or end a pipeline run (start | end); the corpus guard covers every tool call during one',
@@ -53,7 +61,7 @@ export const COMMANDS: Record<string, Command> = {
     run: (args) => taxonomyCommand(ROOT, args),
   },
   verify: {
-    summary: 'Re-check every done batch against the corpus and its committed validated file',
+    summary: 'Re-check every done batch and synthesis group against its inputs and its committed validated file',
     milestone: 'M4',
     run: (args) => verifyCommand(ROOT, args),
   },
@@ -62,8 +70,21 @@ export const COMMANDS: Record<string, Command> = {
     milestone: 'M4',
     run: (args) => goldCommand(ROOT, args),
   },
-  rollup: { summary: 'Count occurrences, actions, participants and stalls per process', milestone: 'M5' },
-  score: { summary: 'Price counted actions at the published rates and $85/hour', milestone: 'M5' },
+  merge: {
+    summary: 'Build the merge input and print the merger prompt (or "merge: fresh"); "accept" checks the proposal and writes out/merge.json',
+    milestone: 'M5',
+    run: (args) => mergeCommand(ROOT, args),
+  },
+  rollup: {
+    summary: 'Count occurrences, actions, participants and stalls per merged process; write the synthesis group inputs',
+    milestone: 'M5',
+    run: (args) => rollupCommand(ROOT, args),
+  },
+  score: {
+    summary: 'Price each process at $85/hour: counted email actions at the published rates plus counted rounds x the checked work estimate (--rates <file>, --estimates <file> re-score)',
+    milestone: 'M5',
+    run: (args) => scoreCommand(ROOT, args),
+  },
   'artifacts-prep': { summary: 'Write briefs for the opportunities that earn a drafted artifact', milestone: 'M6' },
   build: { summary: 'Build the report and the dashboard data', milestone: 'M7' },
   summary: { summary: 'Print the run summary', milestone: 'M8' },

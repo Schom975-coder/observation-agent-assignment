@@ -1,8 +1,19 @@
 {
-  "version": 1,
+  "version": 2,
   "tiers": {
-    "A": { "min_occurrences": 10, "min_participants": 3 },
-    "B": { "min_occurrences": 5 }
+    "A": { "min_occurrences": 40, "min_active_months": 6, "min_staff": 3 },
+    "B": { "min_occurrences": 10, "min_active_months": 3, "min_staff": 2 }
+  },
+  "merge": {
+    "promote_min": { "messages": 3, "occurrences": 3, "threads": 2, "active_months": 2 }
+  },
+  "estimates": {
+    "max_minutes_per_occurrence": 480,
+    "max_automatable_pct": 80,
+    "min_occurrences": 3,
+    "min_evidence": 3,
+    "max_evidence": 12,
+    "min_senders": 2
   },
   "artifacts": {
     "min_automatable_cents": null,

@@ -3,7 +3,7 @@
 // A few counts are pinned as well; see the note on those.
 import { after, test } from 'node:test';
 import assert from 'node:assert/strict';
-import { copyFileSync, existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { copyFileSync, existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -12,7 +12,7 @@ import { DIGEST_MAX_BYTES, DIGEST_MAX_LINES } from '../src/batch/digest.ts';
 import { ConfigError } from '../src/config.ts';
 import { openCorpus } from '../src/corpus/reader.ts';
 import { bodyKey } from '../src/normalize/dedup.ts';
-import { prepare, prepareCommand } from '../src/pipeline/prepare.ts';
+import { codeSha, prepare, prepareCommand, prepareIsCurrent } from '../src/pipeline/prepare.ts';
 import { sha256 } from '../src/util/hash.ts';
 import { normalizeNewlines } from '../src/util/text.ts';
 import { DAY_MS, utcMs } from '../src/util/time.ts';
@@ -379,6 +379,99 @@ test('a bad config file prints one clean line and exits 1', () => {
   assert.equal(code, 1);
   assert.equal(lines.length, 1);
   assert.match(lines[0] ?? '', /^prepare: .*effort-rates\.json is invalid: - version must be a positive integer/);
+});
+
+// console.log and console.error captured while `run` runs.
+function outputOf(run: () => number): { code: number; out: string[]; err: string[] } {
+  const out: string[] = [];
+  const err: string[] = [];
+  const { log, error } = console;
+  console.log = (...args: unknown[]) => void out.push(args.join(' '));
+  console.error = (...args: unknown[]) => void err.push(args.join(' '));
+  try {
+    return { code: run(), out, err };
+  } finally {
+    console.log = log;
+    console.error = error;
+  }
+}
+
+// Every file under `dir` with its modification time: what a run that writes nothing leaves alone.
+const mtimes = (dir: string): Record<string, number> =>
+  Object.fromEntries(
+    readdirSync(dir, { recursive: true, encoding: 'utf8' })
+      .filter((f) => statSync(join(dir, f)).isFile())
+      .sort()
+      .map((f) => [f, statSync(join(dir, f)).mtimeMs]),
+  );
+
+test('prepare skips itself when the corpus listing, the code and every output are unchanged; anything else, or --force, runs it', () => {
+  const mini = miniRoot('mini-skip', { 'x/inbox/1': goodMessage, 'x/inbox/2': goodMessage.replace('Volumes', 'Nominations') });
+  mkdirSync(join(mini, 'src'), { recursive: true });
+  writeFileSync(join(mini, 'src', 'a.ts'), 'export const a = 1;\n');
+  const out = join(mini, 'out');
+  const full = (args: string[] = []) => {
+    const r = outputOf(() => prepareCommand(mini, args));
+    assert.equal(r.code, 0, r.err.join('\n'));
+    return r.out;
+  };
+  assert.match(full()[0] ?? '', /^prepare: 2 messages parsed/);
+  const stats = JSON.parse(readFileSync(join(out, 'prepare-stats.json'), 'utf8'));
+  assert.equal(stats.code_sha, codeSha(mini));
+  assert.deepEqual(Object.keys(stats.outputs), ['manifest.json', 'messages.jsonl', 'dedup.json', 'threads.json', 'people.json', 'batches/index.json']);
+  for (const [rel, sha] of Object.entries(stats.outputs)) assert.equal(sha256(readFileSync(join(out, rel))), sha, rel);
+
+  // Unchanged: one line, nothing written.
+  const before = mtimes(out);
+  const sleepUntil = Date.now() + 30;
+  while (Date.now() < sleepUntil) {
+    // let the clock move, so a rewrite would show in the modification times
+  }
+  assert.deepEqual(full(), ['prepare: unchanged']);
+  assert.deepEqual(mtimes(out), before);
+  assert.ok(prepareIsCurrent(mini));
+
+  // Each of these makes it run in full, after which it is current again.
+  const changes: Array<[string, () => void]> = [
+    ['a batch file is missing', () => rmSync(join(out, 'batches', 'batch-000.md'))],
+    ['a batch file was edited', () => writeFileSync(join(out, 'batches', 'batch-000.md'), 'edited\n')],
+    ['an output was edited', () => writeFileSync(join(out, 'threads.json'), '[]\n')],
+    ['the digest is missing', () => rmSync(join(out, 'taxonomy-digest.md'))],
+    ['the corpus listing differs', () => writeFileSync(join(mini, 'corpus', 'x', 'inbox', '3'), goodMessage.replace('Volumes', 'Invoices'))],
+    ['the code changed', () => writeFileSync(join(mini, 'src', 'a.ts'), 'export const a = 2;\n')],
+    ['a source file was added', () => writeFileSync(join(mini, 'src', 'b.ts'), 'export const b = 1;\n')],
+    ['the rates changed', () => writeFileSync(join(mini, 'config', 'effort-rates.json'), readFileSync(join(root, 'config', 'effort-rates.json'), 'utf8').replace('"read": 1', '"read": 2'))],
+    ['the stats are from before M5 (no code_sha)', () => {
+      const s = JSON.parse(readFileSync(join(out, 'prepare-stats.json'), 'utf8'));
+      delete s.code_sha;
+      writeFileSync(join(out, 'prepare-stats.json'), JSON.stringify(s));
+    }],
+  ];
+  for (const [why, change] of changes) {
+    change();
+    assert.equal(prepareIsCurrent(mini), false, why);
+    assert.match(full()[0] ?? '', /^prepare: \d+ messages parsed/, why);
+    assert.deepEqual(full(), ['prepare: unchanged'], `${why}: current again`);
+  }
+  assert.match(full(['--force'])[0] ?? '', /^prepare: 3 messages parsed/, '--force always runs');
+  const bad = outputOf(() => prepareCommand(mini, ['--fast']));
+  assert.deepEqual([bad.code, bad.err], [1, ['prepare: unexpected argument "--fast". Usage: node obs.mjs prepare [--force]']]);
+});
+
+test('codeSha covers src/**/*.ts and the rates file, newline-normalised, and nothing else', () => {
+  const dir = join(tmp, 'code-sha');
+  mkdirSync(join(dir, 'src', 'run'), { recursive: true });
+  mkdirSync(join(dir, 'config'), { recursive: true });
+  writeFileSync(join(dir, 'src', 'run', 'x.ts'), 'export const x = 1;\n');
+  writeFileSync(join(dir, 'config', 'effort-rates.json'), '{}\n');
+  const first = codeSha(dir);
+  writeFileSync(join(dir, 'src', 'run', 'x.ts'), 'export const x = 1;\r\n');
+  assert.equal(codeSha(dir), first, 'a CRLF checkout of the same file');
+  writeFileSync(join(dir, 'src', 'notes.md'), 'not code');
+  writeFileSync(join(dir, 'config', 'scoring.json'), '{}');
+  assert.equal(codeSha(dir), first, 'other files do not count');
+  writeFileSync(join(dir, 'config', 'effort-rates.json'), '{"x": 1}\n');
+  assert.notEqual(codeSha(dir), first);
 });
 
 test('prepare with no corpus prints one clean line and exits 1', () => {

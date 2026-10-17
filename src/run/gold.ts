@@ -2,7 +2,8 @@
 //   node obs.mjs gold sample  writes out/gold-sample.md, and config/gold-labels.json with empty,
 //                             unconfirmed entries if that file does not exist yet (never overwritten)
 //   node obs.mjs gold score   scores the tags of the batches the ledger counts as done against
-//                             the confirmed labels and writes out/gold-score.json
+//                             the confirmed labels and writes out/gold-score.json; with a fresh
+//                             merge table, also on the merged keys
 // The labels are human input tied to one taxonomy: the file records the taxonomy_sha it was
 // labelled against, and score refuses another.
 import { existsSync } from 'node:fs';
@@ -14,8 +15,9 @@ import type { Taxonomy } from '../model/taxonomy.ts';
 import { gitBlobSha, sha256 } from '../util/hash.ts';
 import { writeJson } from '../util/json.ts';
 import { normalizeNewlines } from '../util/text.ts';
-import { LedgerError, batchViews, readText, taxonomyFile, validatedFile, withoutRoot, writeFileAtomic } from './ledger.ts';
-import type { DuplicateGroup, ParsedMessage } from '../types.ts';
+import { LedgerError, batchViews, mergeFile, readText, taxonomyFile, validatedFile, withoutRoot, writeFileAtomic } from './ledger.ts';
+import { mergeFreshness } from './merge.ts';
+import type { DuplicateGroup, MergeTable, ParsedMessage } from '../types.ts';
 
 export const goldLabelsFile = (root: string): string => join(root, 'config', 'gold-labels.json');
 export const goldSampleFile = (root: string): string => join(root, 'out', 'gold-sample.md');
@@ -104,11 +106,18 @@ function extractedTags(root: string): Map<string, Tagging> {
   const tags = new Map<string, Tagging>();
   for (const v of batchViews(root)) {
     if (v.status !== 'done') continue;
-    const file = validatedFile(root, v.entry.batch_id);
+    const file = validatedFile(root, v.entry.id);
     const value = readJson(root, file, 'the ledger says this batch is done; run node obs.mjs verify') as { messages?: Array<{ id: string; processes: string[]; role: string }> };
     for (const m of value.messages ?? []) tags.set(m.id, { processes: m.processes, role: m.role });
   }
   return tags;
+}
+
+// out/merge.json when it is fresh (made from the extractions being scored), else null: the merged
+// rates are reported only for the table the rollup would use.
+function freshMergeTable(root: string): MergeTable | null {
+  if (mergeFreshness(root) !== 'fresh') return null;
+  return readJson(root, mergeFile(root), 'run node obs.mjs merge') as MergeTable;
 }
 
 function scoreCommand(root: string): number {
@@ -128,7 +137,7 @@ function scoreCommand(root: string): number {
     return 1;
   }
   const labels: GoldLabels = check.labels;
-  const score = scoreGold(labels, extractedTags(root));
+  const score = scoreGold(labels, extractedTags(root), freshMergeTable(root));
   writeJson(goldScoreFile(root), score);
   const pct = (a: { pct: number | null }) => (a.pct === null ? 'n/a' : `${a.pct.toFixed(1)}%`);
   console.log(
@@ -136,6 +145,10 @@ function scoreCommand(root: string): number {
       `exact ${pct(score.exact)}, overlap ${pct(score.overlap)}, role ${pct(score.role)}; ` +
       `${score.mismatches.length} mismatches in out/gold-score.json.`,
   );
+  if (score.merged !== null) {
+    const m = score.merged;
+    console.log(`gold: on the merged keys: exact ${pct(m.exact)}, overlap ${pct(m.overlap)}, role ${pct(m.role)}; ${m.mismatches.length} mismatches.`);
+  }
   const n = score.missing.length;
   if (n > 0) console.log(`gold: ${n} confirmed label${n === 1 ? ' is' : 's are'} in no batch the ledger counts as done yet.`);
   return 0;

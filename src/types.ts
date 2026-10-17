@@ -1,5 +1,6 @@
 // Shared records passed between stages. Change only with every consumer in view:
 // parse writes ParsedMessage, normalize and actions read it, later stages build on both.
+import type { ActionType } from './config.ts';
 
 export type DateStatus = 'usable' | 'missing' | 'unparseable' | 'out_of_range';
 
@@ -109,8 +110,9 @@ export type MessageActions = {
 };
 
 // ---- Model stages (M3 on). What extractor subagents write, and what validation makes of it. ----
-// No model-facing type has a field for hours, minutes, dollars, counts or rank: the headline
-// numbers come only from counted actions (CLAUDE.md "Hours and dollars").
+// No model-facing type has a field for hours, minutes, dollars, counts or rank, with one exception:
+// the synthesizer's WorkEstimate (minutes per occurrence and an automatable share, M5), which code
+// bounds, checks for citations and lets a file override. Counts, windows, tiers and ranks are code's.
 
 export const MESSAGE_ROLES = [
   'request',
@@ -184,11 +186,270 @@ export type ValidatedExtraction = {
   quote_stats: { exact: number; repaired: number; rejected: number };
 };
 
-// Result of checking one extraction file. `problems` are what a fix-round prompt hands back to the
-// extractor; `setup` is a failure no model can fix, which is never recorded against the batch.
-export type ExtractionCheck = {
+// ---- Jobs (M5): extraction batches and synthesis groups go through one ledger ----
+
+// A job's kind is its ID prefix: "batch-NNN" or "synth-NNN" (ARCHITECTURE.md 6.21).
+export type JobKind = 'batch' | 'synth';
+// What the ledger needs of any index entry: the job's ID, its input file and that file's hash.
+export type JobEntry = { id: string; file: string; content_sha: string };
+
+// Result of checking one model output file. `problems` are what a fix-round prompt hands back to
+// the agent; `setup` is a failure no model can fix, which is never recorded against the job.
+export type JobCheck<T> = {
   ok: boolean; // no setup failure and no problems
   setup: string | null; // unreadable out/, changed corpus bytes and the like; `problems` is then empty
-  problems: string[]; // model-fixable only, most important first, each naming the message ID or quote involved
-  validated: ValidatedExtraction | null; // null when the file can't be read, fails the schema, or on a setup failure
+  problems: string[]; // model-fixable only, most important first, each naming the entry involved
+  validated: T | null; // null when the file can't be read, fails the schema, or on a setup failure
+};
+export type ExtractionCheck = JobCheck<ValidatedExtraction>;
+
+// Counts per action type, every type present (src/metrics/actions.ts builds them).
+export type ActionCounts = Record<ActionType, number>;
+
+// ---- Merge (M5, ARCHITECTURE.md 5.6) ----
+
+// out/merge-proposed.json, written by the merger subagent. Strict: unknown keys rejected, no
+// numeric field anywhere.
+export type MergeProposal = {
+  merges: Array<{ from: string; to: string }>; // from: a "new:" key of the input; to: a taxonomy key or "unassigned"
+  promoted: Array<{ key: string; name: string; definition: string; include: string[]; exclude: string[]; aliases: string[] }>;
+};
+
+// What became of one proposed key. mapped: counted under the taxonomy key `to`; promoted: it names
+// a promoted process (`to`, the slug "new:<to>"); alias: folded into the promoted process `to`
+// under another name; unassigned: the merger left it out; demoted: promoted, but too small when
+// counted (the reason says by how much). Unassigned and demoted keys are counted nowhere.
+export type MergeSlugStatus = 'mapped' | 'promoted' | 'alias' | 'unassigned' | 'demoted';
+
+// out/merge.json, written by code from an accepted proposal.
+export type MergeTable = {
+  version: 1;
+  extractions_sha: string;
+  taxonomy_sha: string;
+  agent_sha: string;
+  // config/scoring.json merge.promote_min as the promotions were sized: a change makes the table stale
+  promote_min: { messages: number; occurrences: number; threads: number; active_months: number };
+  slugs: Array<{ slug: string; messages: number; batches: number; status: MergeSlugStatus; to: string | null; reason: string | null }>; // sorted by slug
+  promoted: Array<{
+    key: string;
+    name: string;
+    definition: string;
+    include: string[];
+    exclude: string[];
+    aliases: string[];
+    messages: number;
+    occurrences: number;
+    threads: number;
+    active_months: number;
+  }>; // sorted by key; only the promotions that passed the size check
+  counts: {
+    slugs: number;
+    mapped: number;
+    promoted: number; // promoted processes kept
+    aliases: number; // slugs folded into a kept promotion (status promoted or alias)
+    unassigned: number;
+    demoted: number;
+    messages_mapped: number; // distinct messages with at least one mapped slug
+    messages_promoted: number; // distinct messages with at least one slug in a kept promotion
+    messages_unassigned: number; // distinct messages whose every slug is unassigned or demoted
+  };
+};
+
+// ---- Rollup (M5, ARCHITECTURE.md 4.1, 5.7) ----
+
+export type ActionSource = {
+  message_id: string;
+  type: AuthoredAction | 'read';
+  person: string; // the sender for an authored action, the recipient for a read
+  priced: boolean; // company staff (priced_domains)
+  share_x100: number; // the message's share for this process: 100 unless it carries several merged keys
+};
+
+export type Participant = { email: string; name: string | null; staff: boolean; authored: number; forwards: number; chasers: number; reads: number };
+
+export type ProcessWindow = {
+  first_utc: string | null; // earliest usable-date tagged message
+  last_utc: string | null;
+  span_days: number;
+  months_x100: number; // max(100, roundHalfUp(span_days * 1600 / 487))
+  active_months: number;
+  undated_occurrences: number; // occurrences with no usable-date tagged message
+};
+
+export type OwnershipConflict = { claims: Array<{ person: string; message_id: string; date_utc: string | null }> };
+
+export type ProcessRollup = {
+  key: string;
+  name: string;
+  origin: 'taxonomy' | 'promoted';
+  definition: string;
+  message_ids: string[]; // ID order
+  thread_ids: string[];
+  occurrence_ids: string[];
+  occurrences: number;
+  occurrence_share_x100: number;
+  shared_occurrences: number; // occurrences counted at less than a whole round
+  window: ProcessWindow;
+  monthly: Array<{ month: string; occurrences: number; messages: number }>;
+  actions: { priced: ActionCounts; unpriced: ActionCounts };
+  action_sources: ActionSource[];
+  email_x100: { today: number; automatable: number }; // whole window, the rollup's rates
+  participants: Participant[]; // by actions desc, then email
+  staff_participants: number;
+  median_reply_gap_h: number | null;
+  chasers: number;
+  stalls: Array<{ message_id: string; kind: StallKind; quote: string; start: number; end: number }>; // validated stall quotes only
+  ownership_claims: Array<{ message_id: string; person: string; date_utc: string | null; quote: string }>;
+  ownership_conflict: OwnershipConflict | null;
+  evidence_ids: string[]; // accepted evidence under this merged key
+  flags: string[];
+};
+
+export type Coverage = {
+  files: number; // every file in the corpus, duplicates included
+  unique: number;
+  classified: number; // in a done batch's validated extraction
+  tagged: number; // at least one process tag as extracted
+  counted: number; // at least one merged key
+  unassigned: number; // tagged, but every tag ended unassigned
+  role_only: Record<string, number>; // no process tag, by role
+};
+
+// out/rollup.json
+export type Rollup = {
+  version: 1;
+  inputs: { extractions_sha: string; merge_sha: string; corpus_hash: string; rates_sha: string };
+  processes: ProcessRollup[]; // sorted by key
+  unassigned: {
+    messages: number;
+    message_ids: string[];
+    slugs: Array<{ slug: string; messages: number; status: 'unassigned' | 'demoted'; reason: string | null }>;
+  };
+  coverage: Coverage;
+};
+
+// ---- Synthesis (M5, ARCHITECTURE.md 5.3, 5.8) ----
+
+// One line of out/synthesis/index.json.
+export type SynthEntry = { group_id: string; file: string; process_keys: string[]; bytes: number; lines: number; est_tokens: number; content_sha: string };
+
+export const ARTIFACT_TYPES = ['sop', 'checklist', 'email_template', 'template', 'none'] as const;
+export type ArtifactType = (typeof ARTIFACT_TYPES)[number];
+export const ESTIMATE_BASES = ['observed', 'inferred', 'self_reported'] as const;
+export type EstimateBasis = (typeof ESTIMATE_BASES)[number];
+
+// The one numeric record a model writes (ARCHITECTURE.md 6.20), bounded and checked by code.
+export type WorkEstimate = {
+  minutes_per_occurrence: { low: number; mid: number; high: number };
+  automatable_pct: number;
+  basis: EstimateBasis;
+  rationale: string;
+  evidence_ids: string[];
+};
+
+export type SynthesisProcess = {
+  key: string;
+  description: string;
+  steps: string[];
+  stalls: Array<{ summary: string; evidence_ids: string[] }>;
+  contradictions: Array<{ summary: string; evidence_ids: string[] }>;
+  automation: { approach: string; artifact_type: ArtifactType; rationale: string };
+  work_estimate: WorkEstimate | null;
+};
+
+// out/synthesis/raw/<group_id>.json, written by a synthesizer subagent. Strict schema.
+export type SynthesisGroup = { group_id: string; processes: SynthesisProcess[] };
+
+// out/synthesis/validated/<group_id>.json: the raw record checked, with the group input's hash
+// and, per estimate, the occurrences and senders its cited ids come from, as counted.
+export type ValidatedSynthesis = {
+  group_id: string;
+  content_sha: string;
+  processes: Array<SynthesisProcess & { estimate_check: null | { occurrences_cited: number; senders_cited: number } }>;
+};
+
+// out/synthesis/input/<group_id>.json: every id the group input shows, per process, with what the
+// validator needs to count occurrences and senders behind an estimate. Ids and addresses, no quotes.
+export type SynthCited = {
+  id: string; // "batch-021:e4" (evidence), "batch-021:s2" (stall), "batch-021:o0" (ownership claim)
+  kind: 'evidence' | 'stall' | 'ownership';
+  message_id: string;
+  occurrence_id: string;
+  sender: string;
+  date_utc: string | null;
+};
+export type SynthSidecar = { group_id: string; processes: Array<{ key: string; occurrences: number; cited: SynthCited[] }> };
+
+// config/estimates.json (optional): human estimates that replace the model's for the keys named.
+export type EstimatesOverride = {
+  version: 1;
+  estimates: Record<string, { minutes_per_occurrence: WorkEstimate['minutes_per_occurrence']; automatable_pct: number; rationale: string }>;
+};
+
+// ---- Score (M5, ARCHITECTURE.md 5.4) ----
+
+export type Tier = 'A' | 'B' | 'C';
+export type MinutesPair = { today: number; automatable: number };
+
+export type Opportunity = {
+  rank: number;
+  key: string;
+  name: string;
+  origin: 'taxonomy' | 'promoted';
+  tier: Tier;
+  counted: {
+    occurrences: number;
+    occurrence_share_x100: number;
+    shared_occurrences: number;
+    window: ProcessWindow;
+    staff_participants: number;
+    participants: Participant[];
+    actions: { priced: ActionCounts; unpriced: ActionCounts };
+    email_x100: MinutesPair; // whole window, at the rates scored with
+    email_per_month_x100: MinutesPair;
+  };
+  estimated: null | {
+    source: 'model' | 'override';
+    minutes_per_occurrence: { low: number; mid: number; high: number };
+    automatable_pct: number;
+    basis: string;
+    rationale: string;
+    evidence_ids: string[];
+    occurrences_cited: number;
+    senders_cited: number;
+    work_per_month_x100: MinutesPair;
+  };
+  per_month_x100: MinutesPair; // email + work
+  hours_per_month_x100: MinutesPair;
+  dollars_per_month_cents: MinutesPair;
+  formula: { counted: string; estimated: string | null; total: string };
+  rates_sha: string;
+  scoring_sha: string;
+  estimates_sha: string | null;
+  synthesis: null | {
+    description: string;
+    steps: string[];
+    stalls: Array<{ summary: string; evidence_ids: string[] }>;
+    contradictions: Array<{ summary: string; evidence_ids: string[] }>;
+    automation: { approach: string; artifact_type: string; rationale: string };
+  };
+  stalls_counted: Record<StallKind, number>;
+  ownership_conflict: OwnershipConflict | null;
+  evidence_ids: string[];
+  artifact: null | { type: string; path: string };
+  artifact_eligible: boolean;
+  flags: string[];
+};
+
+export type HeadlineCents = { total: number; counted_email: number; estimated_work: number };
+
+// out/opportunities.json (or out/opportunities.<name>.json for --rates / --estimates)
+export type Opportunities = {
+  version: 1;
+  inputs: { rollup_sha: string; synthesis_sha: string; rates_sha: string; scoring_sha: string; estimates_sha: string | null };
+  rates_file: string;
+  estimates_file: string | null;
+  headline: { label: 'observed in 4 mailboxes, 1999-2002'; tiers_ab_cents: HeadlineCents; all_tiers_cents: HeadlineCents };
+  opportunities: Opportunity[]; // ranked by automatable cents, ties by key
+  unassigned: { messages: number; slugs: number };
 };

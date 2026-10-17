@@ -1,0 +1,357 @@
+// The merge contract (ARCHITECTURE.md 5.6, 6.19): the input code builds for the merger from the
+// extractors' proposed "new:" keys, the checks the merger's proposal must pass, the canonical
+// out/merge.json code writes from an accepted one, and effectiveKeys(), the one function every
+// later stage uses to turn a message's tags into the keys it is counted under.
+//
+// The merger decides one thing: where each proposed key's messages count (a taxonomy key, a
+// promoted process of its own, or nowhere). Everything numeric is code's: the counts in the input,
+// the size check that demotes a promotion too small to be recurring work, and every count after.
+// Like the taxonomy gate, the proposal is strict (unknown keys rejected, no numeric field) and its
+// free text is scanned for instructions and effort numbers, since a promoted process's definition
+// is shown to every later reader.
+import { cutChars, flatten, jsonText } from '../batch/digest.ts';
+import { estTokens, lineCount } from '../batch/build.ts';
+import { checkKey, checkProcessText, type Taxonomy } from './taxonomy.ts';
+import { modelText } from './schema.ts';
+import type { MergeProposal, MergeTable, ParsedMessage, Thread, ValidatedExtraction } from '../types.ts';
+
+export const MERGE_INPUT_MAX_TOKENS = 48_000;
+export const MERGE_INPUT_MAX_LINES = 1_200;
+export const MERGE_PROPOSAL_MAX_BYTES = 200_000;
+export const DEFINITION_SHOWN_CHARS = 160;
+export const DEFINITION_CUT_CHARS = 100; // the first step down when the input is over its cap
+export const NAME_SHOWN_CHARS = 60;
+export const SUBJECTS_SHOWN = 2;
+export const SUBJECT_SHOWN_CHARS = 60;
+// What a proposal's `to` may be besides a taxonomy key.
+export const UNASSIGNED = 'unassigned';
+
+export class MergeInputError extends Error {
+  override name = 'MergeInputError';
+}
+
+// What code counts for one proposed key over the done batches' validated extractions.
+export type SlugFacts = {
+  slug: string; // "new:annual-budget-preparation"
+  name: string; // the first declaration's (batch order, then declaration order)
+  definition: string;
+  message_ids: string[]; // the messages tagged with it, ID order
+  occurrence_ids: string[];
+  thread_ids: string[];
+  batches: string[];
+  months: string[]; // YYYY-MM of its usable-date messages, sorted, distinct
+  subjects: string[]; // distinct subject_norm of its unflagged messages, in message ID order
+};
+
+const byText = (a: string, b: string): number => (a < b ? -1 : a > b ? 1 : 0);
+const sortedUnique = (xs: Iterable<string>): string[] => [...new Set(xs)].sort(byText);
+const isNewKey = (k: string): boolean => k.startsWith('new:');
+
+// Message -> its occurrence and thread, from threads.json.
+function occurrenceIndex(threads: readonly Thread[]): Map<string, { occurrence_id: string; thread_id: string }> {
+  const index = new Map<string, { occurrence_id: string; thread_id: string }>();
+  for (const t of threads) for (const o of t.occurrences) for (const id of o.message_ids) index.set(id, { occurrence_id: o.occurrence_id, thread_id: t.thread_id });
+  return index;
+}
+
+// One record per distinct new: key tagged in `validated` (the done batches), sorted by slug.
+// `messages`: every parsed message by ID (dates, subjects, flags).
+export function slugFacts(validated: readonly ValidatedExtraction[], threads: readonly Thread[], messages: ReadonlyMap<string, ParsedMessage>): SlugFacts[] {
+  const where = occurrenceIndex(threads);
+  const declared = new Map<string, { name: string; definition: string }>();
+  const tagged = new Map<string, { ids: Set<string>; batches: Set<string> }>();
+  for (const v of [...validated].sort((a, b) => byText(a.batch_id, b.batch_id))) {
+    for (const p of v.new_processes) if (!declared.has(p.key)) declared.set(p.key, { name: p.name, definition: p.definition });
+    for (const m of v.messages) {
+      for (const key of new Set(m.processes.filter(isNewKey))) {
+        const t = tagged.get(key) ?? { ids: new Set<string>(), batches: new Set<string>() };
+        t.ids.add(m.id);
+        t.batches.add(v.batch_id);
+        tagged.set(key, t);
+      }
+    }
+  }
+  return [...tagged.keys()].sort(byText).map((slug) => {
+    const t = tagged.get(slug) as { ids: Set<string>; batches: Set<string> };
+    const ids = sortedUnique(t.ids);
+    const ms = ids.map((id) => messages.get(id)).filter((m): m is ParsedMessage => m !== undefined);
+    const subjects: string[] = [];
+    for (const m of ms) if (!m.flags.suspected_injection && m.subject_norm !== '' && !subjects.includes(m.subject_norm)) subjects.push(m.subject_norm);
+    const decl = declared.get(slug) ?? { name: '', definition: '' };
+    return {
+      slug,
+      name: decl.name,
+      definition: decl.definition,
+      message_ids: ids,
+      occurrence_ids: sortedUnique(ids.flatMap((id) => where.get(id)?.occurrence_id ?? [])),
+      thread_ids: sortedUnique(ids.flatMap((id) => where.get(id)?.thread_id ?? [])),
+      batches: sortedUnique(t.batches),
+      months: sortedUnique(ms.flatMap((m) => (m.date_status === 'usable' && m.date_utc !== null ? [m.date_utc.slice(0, 7)] : []))),
+      subjects,
+    };
+  });
+}
+
+const count = (n: number, one: string, many = `${one}s`): string => `${n} ${n === 1 ? one : many}`;
+const monthRange = (months: readonly string[]): string =>
+  months.length === 0 ? 'undated' : months.length === 1 ? (months[0] as string) : `${months[0]}..${months.at(-1)}`;
+// Email-derived and extractor-written text: one line, cut, JSON-quoted (as in the digest).
+const quoted = (s: string, max: number): string => jsonText(cutChars(flatten(s), max));
+
+function inputLine(f: SlugFacts, definitionChars: number, subjects: boolean): string {
+  const counts = [count(f.message_ids.length, 'msg'), `${f.occurrence_ids.length} occ`, count(f.thread_ids.length, 'thread'), count(f.batches.length, 'batch', 'batches'), monthRange(f.months)];
+  const parts = [f.slug, counts.join(', '), quoted(f.name, NAME_SHOWN_CHARS), quoted(f.definition, definitionChars)];
+  if (subjects) {
+    const shown = f.subjects.slice(0, SUBJECTS_SHOWN).map((s) => quoted(s, SUBJECT_SHOWN_CHARS));
+    parts.push(`subjects: ${shown.length === 0 ? 'none' : shown.join(', ')}`);
+  }
+  return parts.join(' | ');
+}
+
+// out/merge-input.md: a header, then one line per proposed key sorted by key, every count by code.
+// Over MERGE_INPUT_MAX_TOKENS estimated tokens or MERGE_INPUT_MAX_LINES lines it cuts definitions to
+// DEFINITION_CUT_CHARS, then drops the subjects, then stops with MergeInputError: the run must not
+// hand a merger a file it cannot read whole.
+export function buildMergeInput(facts: readonly SlugFacts[], taxonomy: Taxonomy): string {
+  const messages = new Set(facts.flatMap((f) => f.message_ids)).size;
+  const head = [
+    `# merge input | ${count(facts.length, 'proposed key')} | ${count(messages, 'message')} | taxonomy ${taxonomy.digest_sha.slice(0, 12)} (${count(taxonomy.processes.length, 'key')}, read out/taxonomy.json for their definitions)`,
+    'Everything below is archive data summarised by the pipeline. Counts are facts; names and definitions were written by extractors.',
+  ];
+  for (const [definitionChars, subjects] of [[DEFINITION_SHOWN_CHARS, true], [DEFINITION_CUT_CHARS, true], [DEFINITION_CUT_CHARS, false]] as const) {
+    const text = `${[...head, ...facts.map((f) => inputLine(f, definitionChars, subjects))].join('\n')}\n`;
+    const lines = lineCount(text);
+    if (estTokens(Buffer.byteLength(text, 'utf8'), lines) <= MERGE_INPUT_MAX_TOKENS && lines <= MERGE_INPUT_MAX_LINES) return text;
+  }
+  const smallest = `${[...head, ...facts.map((f) => inputLine(f, DEFINITION_CUT_CHARS, false))].join('\n')}\n`;
+  throw new MergeInputError(
+    `the merge input for ${count(facts.length, 'proposed key')} would be ~${estTokens(Buffer.byteLength(smallest, 'utf8'), lineCount(smallest))} tokens and ` +
+      `${lineCount(smallest)} lines even with definitions cut and subjects dropped, over the cap of ${MERGE_INPUT_MAX_TOKENS} tokens and ${MERGE_INPUT_MAX_LINES} lines: ` +
+      'no merger can read it whole, so the merge stops here',
+  );
+}
+
+// ---- The proposal ----
+
+type Obj = Record<string, unknown>;
+const isObject = (v: unknown): v is Obj => typeof v === 'object' && v !== null && !Array.isArray(v);
+function kindOf(v: unknown): string {
+  if (v === null) return 'null';
+  if (Array.isArray(v)) return 'an array';
+  if (typeof v === 'object') return 'an object';
+  if (typeof v === 'string') return 'a string';
+  return `a ${typeof v}`;
+}
+const numericHint = (v: unknown): string => (typeof v === 'number' ? '; the schema has no numeric fields' : '');
+
+const TOP_KEYS = ['merges', 'promoted'] as const;
+const MERGE_KEYS = ['from', 'to'] as const;
+const PROMOTED_KEYS = ['key', 'name', 'definition', 'include', 'exclude', 'aliases'] as const;
+export const LIST_MAX_ITEMS = 15; // keys listed in one problem before "and K more"
+
+const listed = (items: readonly string[]): string =>
+  items.length <= LIST_MAX_ITEMS ? items.join(', ') : `${items.slice(0, LIST_MAX_ITEMS).join(', ')}, and ${items.length - LIST_MAX_ITEMS} more`;
+
+// The proposal typed, or null with every problem found, each naming where it is and what to do.
+// `slugs`: the proposed keys of the input; `taxonomyKeys`: out/taxonomy.json's. Every proposed key
+// must appear exactly once across merges[].from and promoted[].aliases, and nothing else may.
+export function checkMergeProposal(value: unknown, slugs: ReadonlySet<string>, taxonomyKeys: ReadonlySet<string>): { proposal: MergeProposal | null; problems: string[] } {
+  const problems: string[] = [];
+  const add = (p: string) => void problems.push(p);
+  if (!isObject(value)) {
+    add(`schema: the top level must be an object {"merges": [...], "promoted": [...]}, got ${kindOf(value)}`);
+    return { proposal: null, problems };
+  }
+  for (const k of Object.keys(value)) {
+    if (!(TOP_KEYS as readonly string[]).includes(k)) add(`schema: the top level has unknown key ${modelText(k, 60)}: remove it${numericHint(value[k])} (allowed keys: ${TOP_KEYS.join(', ')})`);
+  }
+  for (const k of TOP_KEYS) if (!Array.isArray(value[k])) add(`schema: the top level ${value[k] === undefined ? `is missing key "${k}"` : `key "${k}" must be an array, got ${kindOf(value[k])}`}`);
+  if (problems.length > 0) return { proposal: null, problems };
+
+  // Where each proposed key was placed, to report a second placement.
+  const placed = new Map<string, string>();
+  const place = (at: string, slug: unknown, field: string): void => {
+    if (typeof slug !== 'string') {
+      add(`schema: ${at}.${field} must be a string, got ${kindOf(slug)}${numericHint(slug)}`);
+      return;
+    }
+    if (!slugs.has(slug)) {
+      add(`${at}.${field}: ${modelText(slug)} is not a proposed key in the merge input: use the keys exactly as the input lists them (each starts with "new:")`);
+      return;
+    }
+    const first = placed.get(slug);
+    if (first !== undefined) add(`${at}.${field}: ${slug} is already placed at ${first}: place each proposed key exactly once`);
+    else placed.set(slug, at);
+  };
+
+  (value.merges as unknown[]).forEach((m, i) => {
+    const at = isObject(m) && typeof m.from === 'string' ? `merges[${i}] (${modelText(m.from)})` : `merges[${i}]`;
+    if (!isObject(m)) {
+      add(`schema: ${at} must be an object {"from", "to"}, got ${kindOf(m)}`);
+      return;
+    }
+    for (const k of Object.keys(m)) if (!(MERGE_KEYS as readonly string[]).includes(k)) add(`schema: ${at} has unknown key ${modelText(k, 60)}: remove it${numericHint(m[k])} (allowed keys: from, to)`);
+    for (const k of MERGE_KEYS) if (!Object.hasOwn(m, k)) add(`schema: ${at} is missing key "${k}"`);
+    if (m.from !== undefined) place(at, m.from, 'from');
+    if (m.to !== undefined) {
+      if (typeof m.to !== 'string') add(`schema: ${at}.to must be a string, got ${kindOf(m.to)}${numericHint(m.to)}`);
+      else if (m.to !== UNASSIGNED && !taxonomyKeys.has(m.to)) {
+        add(`${at}.to: ${modelText(m.to)} is not a taxonomy key or "${UNASSIGNED}": map the key to a key of out/taxonomy.json, list it as an alias of a promoted process, or use "${UNASSIGNED}"`);
+      }
+    }
+  });
+
+  const promotedKeys = new Map<string, number>();
+  const names = new Map<string, number>();
+  (value.promoted as unknown[]).forEach((p, i) => {
+    const at = isObject(p) && typeof p.key === 'string' ? `promoted[${i}] (${modelText(p.key)})` : `promoted[${i}]`;
+    if (!isObject(p)) {
+      add(`schema: ${at} must be an object, got ${kindOf(p)}`);
+      return;
+    }
+    for (const k of Object.keys(p)) {
+      if (!(PROMOTED_KEYS as readonly string[]).includes(k)) add(`schema: ${at} has unknown key ${modelText(k, 60)}: remove it${numericHint(p[k])} (allowed keys: ${PROMOTED_KEYS.join(', ')})`);
+    }
+    for (const k of PROMOTED_KEYS) if (!Object.hasOwn(p, k)) add(`schema: ${at} is missing key "${k}"`);
+    const key = checkKey(at, p.key, add);
+    if (key !== null) {
+      if (taxonomyKeys.has(key)) add(`${at}.key ${modelText(key)} is already a taxonomy key: map the proposed keys to it in merges instead of promoting`);
+      const first = promotedKeys.get(key);
+      if (first !== undefined) add(`${at}.key ${modelText(key)} repeats promoted[${first}]: promote each process once, with every key that means the same work as an alias`);
+      else promotedKeys.set(key, i);
+    }
+    checkProcessText(at, p, add, (name) => {
+      const folded = name.trim().toLowerCase();
+      const first = names.get(folded);
+      if (first !== undefined) add(`${at}.name ${modelText(name, 60)} repeats promoted[${first}]: names must be unique`);
+      else names.set(folded, i);
+    });
+    if (p.aliases !== undefined) {
+      if (!Array.isArray(p.aliases)) add(`schema: ${at}.aliases must be an array of strings, got ${kindOf(p.aliases)}`);
+      else if (p.aliases.length === 0) add(`${at}.aliases is empty: list every proposed key this process absorbs (at least one)`);
+      else p.aliases.forEach((a, j) => place(at, a, `aliases[${j}]`));
+    }
+  });
+
+  const missing = [...slugs].filter((s) => !placed.has(s)).sort(byText);
+  if (missing.length > 0) {
+    add(
+      `${count(missing.length, 'proposed key is', 'proposed keys are')} in neither merges nor promoted aliases: ${listed(missing)} ` +
+        `(place every key of the input exactly once: in merges with "to" a taxonomy key or "${UNASSIGNED}", or as an alias of a promoted process)`,
+    );
+  }
+  return { proposal: problems.length === 0 ? (value as MergeProposal) : null, problems };
+}
+
+// ---- The canonical table ----
+
+type PromoteMin = { messages: number; occurrences: number; threads: number; active_months: number };
+
+// out/merge.json from an accepted proposal. Every promotion is sized on its merged membership (the
+// union of its aliases' messages, their occurrences, threads and active months) and demoted, with
+// the reason, when any count is under `promoteMin`, or when every message behind it was flagged as a
+// suspected injection (`flagged`). A demotion changes the table, never the proposal's acceptance.
+export function canonicalMergeTable(
+  proposal: MergeProposal,
+  facts: readonly SlugFacts[],
+  promoteMin: PromoteMin,
+  flagged: ReadonlySet<string>,
+  shas: { extractions_sha: string; taxonomy_sha: string; agent_sha: string },
+): MergeTable {
+  const fact = new Map(facts.map((f) => [f.slug, f]));
+  const fate = new Map<string, { status: MergeTable['slugs'][number]['status']; to: string | null; reason: string | null }>();
+  for (const m of proposal.merges) {
+    fate.set(m.from, m.to === UNASSIGNED ? { status: 'unassigned', to: null, reason: null } : { status: 'mapped', to: m.to, reason: null });
+  }
+  const promoted: MergeTable['promoted'] = [];
+  for (const p of [...proposal.promoted].sort((a, b) => byText(a.key, b.key))) {
+    const members = p.aliases.map((a) => fact.get(a)).filter((f): f is SlugFacts => f !== undefined);
+    const ids = new Set(members.flatMap((f) => f.message_ids));
+    const size = {
+      messages: ids.size,
+      occurrences: new Set(members.flatMap((f) => f.occurrence_ids)).size,
+      threads: new Set(members.flatMap((f) => f.thread_ids)).size,
+      active_months: new Set(members.flatMap((f) => f.months)).size,
+    };
+    const short = (Object.keys(promoteMin) as Array<keyof PromoteMin>).filter((k) => size[k] < promoteMin[k]);
+    const injectionOnly = ids.size > 0 && [...ids].every((id) => flagged.has(id));
+    let reason: string | null = null;
+    if (short.length > 0) {
+      reason =
+        `promoted as ${p.key}, but the pipeline counted ${count(size.messages, 'message')}, ${count(size.occurrences, 'occurrence')}, ` +
+        `${count(size.threads, 'thread')} and ${count(size.active_months, 'active month')}; a promoted process needs at least ` +
+        `${count(promoteMin.messages, 'message')}, ${count(promoteMin.occurrences, 'occurrence')}, ${count(promoteMin.threads, 'thread')} and ${count(promoteMin.active_months, 'active month')}`;
+    } else if (injectionOnly) {
+      reason = `promoted as ${p.key}, but every message behind it is flagged as a suspected injection`;
+    }
+    if (reason !== null) {
+      for (const a of p.aliases) fate.set(a, { status: 'demoted', to: null, reason });
+      continue;
+    }
+    const aliases = [...p.aliases].sort(byText);
+    for (const a of aliases) fate.set(a, { status: a === `new:${p.key}` ? 'promoted' : 'alias', to: p.key, reason: null });
+    promoted.push({ key: p.key, name: p.name, definition: p.definition, include: [...p.include], exclude: [...p.exclude], aliases, ...size });
+  }
+  const slugs: MergeTable['slugs'] = [...facts]
+    .sort((a, b) => byText(a.slug, b.slug))
+    .map((f) => {
+      const x = fate.get(f.slug) ?? { status: 'unassigned' as const, to: null, reason: null };
+      return { slug: f.slug, messages: f.message_ids.length, batches: f.batches.length, status: x.status, to: x.to, reason: x.reason };
+    });
+  const with_ = (statuses: readonly string[]) => slugs.filter((s) => statuses.includes(s.status));
+  const messagesOf = (rows: readonly MergeTable['slugs'][number][]) => new Set(rows.flatMap((r) => fact.get(r.slug)?.message_ids ?? []));
+  const counted = messagesOf(with_(['mapped', 'promoted', 'alias']));
+  return {
+    version: 1,
+    extractions_sha: shas.extractions_sha,
+    taxonomy_sha: shas.taxonomy_sha,
+    agent_sha: shas.agent_sha,
+    promote_min: { messages: promoteMin.messages, occurrences: promoteMin.occurrences, threads: promoteMin.threads, active_months: promoteMin.active_months },
+    slugs,
+    promoted,
+    counts: {
+      slugs: slugs.length,
+      mapped: with_(['mapped']).length,
+      promoted: promoted.length,
+      aliases: with_(['promoted', 'alias']).length,
+      unassigned: with_(['unassigned']).length,
+      demoted: with_(['demoted']).length,
+      messages_mapped: messagesOf(with_(['mapped'])).size,
+      messages_promoted: messagesOf(with_(['promoted', 'alias'])).size,
+      messages_unassigned: [...messagesOf(with_(['unassigned', 'demoted']))].filter((id) => !counted.has(id)).length,
+    },
+  };
+}
+
+// ---- Merged keys ----
+
+const lookups = new WeakMap<MergeTable, Map<string, string | null>>();
+
+// A proposed key -> the key it counts under, or null (unassigned, demoted, or not in the table).
+function lookup(table: MergeTable): Map<string, string | null> {
+  let map = lookups.get(table);
+  if (map === undefined) {
+    map = new Map(table.slugs.map((s) => [s.slug, s.status === 'mapped' || s.status === 'promoted' || s.status === 'alias' ? s.to : null]));
+    lookups.set(table, map);
+  }
+  return map;
+}
+
+// The keys a message's tags count under after the merge: a taxonomy key is itself; a new: key is
+// the taxonomy key it was mapped to or the promoted process it belongs to, or nothing. Sorted, each
+// once; [] when every tag ended unassigned.
+export function effectiveKeys(tags: readonly string[], table: MergeTable): string[] {
+  const map = lookup(table);
+  const keys = new Set<string>();
+  for (const tag of tags) {
+    if (!isNewKey(tag)) keys.add(tag);
+    else {
+      const to = map.get(tag);
+      if (to !== undefined && to !== null) keys.add(to);
+    }
+  }
+  return [...keys].sort(byText);
+}
+
+// The key a proposed key counts under, or null: for re-keying evidence and for the gold score.
+export const mergeTarget = (slug: string, table: MergeTable): string | null => lookup(table).get(slug) ?? null;

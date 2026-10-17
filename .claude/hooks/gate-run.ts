@@ -88,7 +88,7 @@ function decide(report: StatusReport, views: readonly BatchView[], tasks: Task[]
   else if (live.some(unrecognised)) orphanCheck = 'skipped: a live subagent task of unrecognised shape';
   else if (extractors.some((t) => batchNumber(t.description) === null)) orphanCheck = 'skipped: a live extractor description names no batch';
   const working = new Set((extractors ?? []).map((t) => batchNumber(t.description)));
-  const byId = new Map(views.map((v) => [v.entry.batch_id, v]));
+  const byId = new Map(views.map((v) => [v.entry.id, v]));
   const orphans = report.running.filter((id) => {
     const age = ageOf(byId.get(id), nowMs);
     if (age === null) return false;

@@ -9,11 +9,18 @@ out/batches/
 out/taxonomy-digest.md
 out/gold-sample.md
 
-# Run-time state with no meaning after the run (ARCHITECTURE.md 6.17): the taxonomist's unchecked
-# proposal, fix-round problem lists (they quote model output), the active-run marker, extractor
-# bindings, the Stop hook's repeat guard, the log of hook events outside a run, and the ledger's
-# locks and half-written files.
+# The merge input and the synthesis group inputs carry corpus text too (names, subjects, quotes);
+# rollup and merge rebuild them in seconds. The group sidecars (ids, no quotes) are committed.
+out/merge-input.md
+out/synthesis/input/*.md
+
+# Run-time state with no meaning after the run (ARCHITECTURE.md 6.17): the taxonomist's and the
+# merger's unchecked proposals, fix-round problem lists (they quote model output), the active-run
+# marker, the run claim, agent bindings, the Stop hook's repeat guard, the log of hook events
+# outside a run, and the ledger's locks and half-written files.
 out/taxonomy-proposed.json
+out/merge-proposed.json
+out/ledger/claim.json
 out/fix/
 out/ledger/run.json
 out/ledger/agents/

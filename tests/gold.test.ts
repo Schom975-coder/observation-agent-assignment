@@ -6,13 +6,14 @@ import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { GOLD_PER_MAILBOX } from '../src/gold/sample.ts';
+import { GOLD_PER_MAILBOX, type GoldLabel } from '../src/gold/sample.ts';
 import { checkLabels, scoreGold } from '../src/gold/score.ts';
 import { prepare } from '../src/pipeline/prepare.ts';
 import { goldCommand } from '../src/run/gold.ts';
-import { batchViews, markDispatched, recordValidation, validatedFile } from '../src/run/ledger.ts';
+import { batchJob, batchViews, markDispatched, recordValidation, validatedFile } from '../src/run/ledger.ts';
+import { currentMergeShas } from '../src/run/merge.ts';
 import { sha256 } from '../src/util/hash.ts';
-import type { BatchEntry, ValidatedExtraction } from '../src/types.ts';
+import type { BatchEntry, MergeTable, ValidatedExtraction } from '../src/types.ts';
 
 const repo = fileURLToPath(new URL('..', import.meta.url));
 const tmp = mkdtempSync(join(tmpdir(), 'obs-gold-'));
@@ -194,11 +195,11 @@ function scoreProject(name: string, labels: unknown): string {
     }) as unknown as ValidatedExtraction;
   const [b0, b1, b2, b3] = entries as [BatchEntry, BatchEntry, BatchEntry, BatchEntry];
   for (const e of [b0, b1]) {
-    markDispatched(root, e);
-    recordValidation(root, e, { ok: true, setup: null, problems: [], validated: validated(e) });
+    markDispatched(root, batchJob(e));
+    recordValidation(root, batchJob(e), { ok: true, setup: null, problems: [], validated: validated(e) });
   }
-  markDispatched(root, b2);
-  recordValidation(root, b2, { ok: false, setup: null, problems: ['a problem the model can fix'], validated: validated(b2) });
+  markDispatched(root, batchJob(b2));
+  recordValidation(root, batchJob(b2), { ok: false, setup: null, problems: ['a problem the model can fix'], validated: validated(b2) });
   writeFileSync(validatedFile(root, b2.batch_id), JSON.stringify(validated(b2)));
   writeFileSync(validatedFile(root, b3.batch_id), JSON.stringify(validated(b3)));
   assert.deepEqual(batchViews(root).map((v) => v.status), ['done', 'done', 'failed', 'pending']);
@@ -233,6 +234,46 @@ test('gold score: exact, overlap and role agreement over confirmed labels, with 
   const first = readFileSync(join(root, 'out', 'gold-score.json'));
   run(root, ['score']);
   assert.ok(readFileSync(join(root, 'out', 'gold-score.json')).equals(first));
+});
+
+// A merge table that maps or drops the given proposed keys.
+const tableOf = (rows: Array<[string, string | null]>, shas = { extractions_sha: 'e', taxonomy_sha: 't', agent_sha: 'a' }): MergeTable => ({
+  version: 1,
+  ...shas,
+  promote_min: { messages: 3, occurrences: 3, threads: 2, active_months: 2 },
+  slugs: rows.map(([slug, to]) => ({ slug, messages: 1, batches: 1, status: to === null ? 'unassigned' : 'mapped', to, reason: null })),
+  promoted: [],
+  counts: { slugs: rows.length, mapped: 0, promoted: 0, aliases: 0, unassigned: 0, demoted: 0, messages_mapped: 0, messages_promoted: 0, messages_unassigned: 0 },
+});
+
+test('gold score: the same rates on the merged keys, where a mapped new: key counts as its target and any other as new:*', () => {
+  const labels = { version: 1 as const, taxonomy_sha: 's', labels: [entry(1, ['k-a'], 'request'), entry(2, ['new:x'], 'request'), entry(3, ['k-b'], 'fyi')] as GoldLabel[] };
+  const extracted = new Map([
+    ['corpus/m/inbox/1', { processes: ['new:bar'], role: 'request' }],
+    ['corpus/m/inbox/2', { processes: ['new:y'], role: 'request' }],
+    ['corpus/m/inbox/3', { processes: ['new:z'], role: 'fyi' }],
+  ]);
+  const table = tableOf([['new:bar', 'k-a'], ['new:y', null], ['new:z', 'k-c']]);
+  const score = scoreGold(labels, extracted, table);
+  assert.deepEqual([score.exact.agree, score.merged?.exact.agree], [1, 2], 'the merge recovers message 1 and keeps message 2');
+  assert.deepEqual(score.merged?.mismatches.map((m) => m.id), ['corpus/m/inbox/3']);
+  assert.equal(scoreGold(labels, extracted).merged, null, 'no table, no merged rates');
+});
+
+test('gold score: with a fresh merge table the command also prints the merged rates; a stale one is ignored', () => {
+  const root = scoreProject('merged', { version: 1, taxonomy_sha: TAXONOMY_SHA, labels: LABELS });
+  mkdirSync(join(root, '.claude', 'agents'), { recursive: true });
+  writeFileSync(join(root, '.claude', 'agents', 'merger.md'), 'a stand-in merger\n');
+  writeFileSync(join(root, 'config', 'scoring.json'), readFileSync(join(repo, 'config', 'scoring.json')));
+  writeFileSync(join(root, 'out', 'merge.json'), JSON.stringify(tableOf([['new:bar-baz', 'k-a']], currentMergeShas(root))));
+  const r = run(root, ['score']);
+  assert.equal(r.code, 0, r.err);
+  assert.equal(r.out.split('\n')[1], 'gold: on the merged keys: exact 50.0%, overlap 66.7%, role 66.7%; 4 mismatches.');
+  assert.ok(JSON.parse(readFileSync(join(root, 'out', 'gold-score.json'), 'utf8')).merged !== null);
+  writeFileSync(join(root, '.claude', 'agents', 'merger.md'), 'a changed merger\n');
+  const stale = run(root, ['score']);
+  assert.equal(stale.out.split('\n').filter((l) => l.startsWith('gold: on the merged keys')).length, 0);
+  assert.equal(JSON.parse(readFileSync(join(root, 'out', 'gold-score.json'), 'utf8')).merged, null);
 });
 
 test('gold score: no confirmed labels yet scores nothing, without dividing by zero', () => {

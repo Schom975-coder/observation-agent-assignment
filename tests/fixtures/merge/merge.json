@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "extractions_sha": "1f801c9bbea7445016cedcddfde801c4a6296338714fed92bd9843aebad10630",
+  "taxonomy_sha": "2036d2d9c411552670134e0ee82fc3aa2f3e6aa7040322459c0d94a7e97a75cf",
+  "agent_sha": "a34bff2ec004a601cf9189a9452d4a1979839d70f7fc0d78d3db8da101c2295c",
+  "promote_min": {
+    "messages": 3,
+    "occurrences": 3,
+    "threads": 2,
+    "active_months": 2
+  },
+  "slugs": [
+    {
+      "slug": "new:budget-planning",
+      "messages": 1,
+      "batches": 1,
+      "status": "alias",
+      "to": "budget-prep",
+      "reason": null
+    },
+    {
+      "slug": "new:budget-prep",
+      "messages": 3,
+      "batches": 2,
+      "status": "promoted",
+      "to": "budget-prep",
+      "reason": null
+    },
+    {
+      "slug": "new:lunch-plans",
+      "messages": 1,
+      "batches": 1,
+      "status": "unassigned",
+      "to": null,
+      "reason": null
+    },
+    {
+      "slug": "new:one-off-audit",
+      "messages": 1,
+      "batches": 1,
+      "status": "demoted",
+      "to": null,
+      "reason": "promoted as audit-request, but the pipeline counted 1 message, 1 occurrence, 1 thread and 1 active month; a promoted process needs at least 3 messages, 3 occurrences, 2 threads and 2 active months"
+    },
+    {
+      "slug": "new:volume-check",
+      "messages": 2,
+      "batches": 1,
+      "status": "mapped",
+      "to": "gas-nomination",
+      "reason": null
+    }
+  ],
+  "promoted": [
+    {
+      "key": "budget-prep",
+      "name": "Annual budget preparation",
+      "definition": "Collecting each desk's plan numbers, reconciling them with last year and sending the draft budget for sign-off.",
+      "include": [
+        "Requests for plan numbers and budget drafts"
+      ],
+      "exclude": [
+        "Expense reports"
+      ],
+      "aliases": [
+        "new:budget-planning",
+        "new:budget-prep"
+      ],
+      "messages": 4,
+      "occurrences": 4,
+      "threads": 3,
+      "active_months": 4
+    }
+  ],
+  "counts": {
+    "slugs": 5,
+    "mapped": 1,
+    "promoted": 1,
+    "aliases": 2,
+    "unassigned": 1,
+    "demoted": 1,
+    "messages_mapped": 2,
+    "messages_promoted": 4,
+    "messages_unassigned": 2
+  }
+}

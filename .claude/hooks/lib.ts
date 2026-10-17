@@ -2,10 +2,9 @@
 // see .claude/settings.json) with the hook input as JSON on stdin, and reads a decision from stdout
 // (https://code.claude.com/docs/en/hooks). A hook exits fast when it doesn't apply and never dies
 // with a stack trace: each script catches everything and decides what a failure means for it.
-import { appendFileSync, mkdirSync, readFileSync, realpathSync } from 'node:fs';
-import { join } from 'node:path';
+import { readFileSync, realpathSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { readRun, stopGateFile, withoutRoot, writeJsonAtomic } from '../../src/run/ledger.ts';
+import { appendRunLog, stopGateFile, withoutRoot, writeJsonAtomic } from '../../src/run/ledger.ts';
 
 export type HookInput = Record<string, unknown>;
 
@@ -63,24 +62,9 @@ export function emit(value: unknown): void {
 
 export const errorText = (err: unknown): string => (err instanceof Error ? err.message : String(err)).replace(/\s*\n\s*/g, ' ');
 
-// Append one record to the active run's log, out/runs/<run_id>.jsonl, or out/runs/adhoc.jsonl when
-// no run is active. One short line per append, so concurrent hooks don't interleave inside a line.
-// The log is committed, so the project folder is cut out of everything in it.
-export function appendRunLog(root: string, record: Record<string, unknown>): void {
-  let runId = 'adhoc';
-  try {
-    const run = readRun(root);
-    if (run.active && run.run_id !== null && /^[A-Za-z0-9_-]{1,64}$/.test(run.run_id)) runId = run.run_id;
-  } catch {
-    // an unreadable run state still gets its events logged, as adhoc
-  }
-  const dir = join(root, 'out', 'runs');
-  mkdirSync(dir, { recursive: true });
-  const line = JSON.stringify({ ts: new Date().toISOString(), ...record }, (_key, value: unknown) =>
-    typeof value === 'string' ? withoutRoot(value, root) : value,
-  );
-  appendFileSync(join(dir, `${runId}.jsonl`), `${line}\n`);
-}
+// Append one record to the active run's log (out/runs/<run_id>.jsonl, or adhoc.jsonl outside a run),
+// with the project folder cut out. It lives in the ledger, which `run start` also logs through.
+export { appendRunLog };
 
 // A last word on stderr for a hook that failed: Claude Code shows it as a hook error, never a
 // trace, and with the project folder cut out of it.

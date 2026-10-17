@@ -1,17 +1,19 @@
-// The run ledger and its commands, on temp projects with hand-made batch files (no corpus needed):
-// status transitions, what the cache key depends on, reruns that repeat nothing, dispatch refusals
-// and fix prompts, what is dispatched next, agent bindings, taxonomy freshness, run start and
-// --force, timing, concurrent writers and stale locks, and batch IDs as typed.
+// The run ledger and its commands, on temp projects with hand-made batch and synthesis group files
+// (no corpus needed): status transitions, what the cache key depends on, reruns that repeat
+// nothing, dispatch refusals and fix prompts, what is dispatched next and in which stage, agent
+// bindings, taxonomy freshness, run start and --force, the run claim, the circuit breaker, timing,
+// refill, concurrent writers and stale locks, and job IDs as typed.
 import { after, test } from 'node:test';
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
 import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, utimesSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   dispatchCommand,
   extractorPrompt,
+  refillCommand,
   runCommand,
   haltFrom,
   stampOrphans,
@@ -19,9 +21,15 @@ import {
   statusReport,
   timingFrom,
   validateCommand,
+  type RefillReport,
   type StatusReport,
 } from '../src/run/commands.ts';
+import { jobPaths, kindOf, loadJobs, synthesizerPrompt } from '../src/run/jobs.ts';
+import { currentMergeStamp } from '../src/run/merge.ts';
+import { currentRollupInputs } from '../src/run/rollup.ts';
+import { synthesisSha } from '../src/run/score.ts';
 import {
+  CLAIM_MAX_AGE_S,
   HALT_NO_OUTPUT,
   HALT_WINDOW_S,
   LOCK_STALE_MS,
@@ -35,20 +43,28 @@ import {
   bindingIsCurrent,
   boundBatch,
   cacheKey,
+  claimFile,
+  consumeClaim,
   countedDispatches,
   extractFile,
+  fileSha,
+  findBatch,
+  findJob,
   freshState,
   inFlight,
   loadIndex,
   markDispatched,
   nextToDispatch,
   normalizeBatchId,
+  nowUtc,
   readBatchState,
   readRun,
   recordValidation,
   sharedKeyParts,
+  stopGateFile,
   taxonomyFreshness,
   updateBatchState,
+  utcSeconds,
   validatedFile,
   withoutRoot,
   type AgentBinding,
@@ -56,7 +72,7 @@ import {
 } from '../src/run/ledger.ts';
 import { sha256 } from '../src/util/hash.ts';
 import { normalizeNewlines } from '../src/util/text.ts';
-import type { BatchEntry, ExtractionCheck, ValidatedExtraction } from '../src/types.ts';
+import type { BatchEntry, JobCheck, ValidatedExtraction, ValidatedSynthesis } from '../src/types.ts';
 
 const tmp = mkdtempSync(join(tmpdir(), 'obs-ledger-'));
 after(() => rmSync(tmp, { recursive: true, force: true }));
@@ -108,6 +124,51 @@ function freshTaxonomy(root: string): void {
   writeFileSync(join(root, 'out', 'taxonomy.json'), JSON.stringify(taxonomy));
 }
 
+// ---- Synthesis groups, as rollup writes their inputs ----
+
+const SYNTHESIZER = '---\nname: synthesizer\n---\n\nDescribe each process and estimate its work.\n';
+const groupName = (n: number) => `synth-${String(n).padStart(3, '0')}`;
+const groupContent = (n: number) => `# synthesis group ${groupName(n)} | 1 processes\n## process p-${n} | Process ${n} | taxonomy\n`;
+const groupSha = (id: string) => sha256(groupContent(Number(id.slice('synth-'.length))));
+
+// `n` group inputs with their sidecars, the synthesis index and the synthesizer definition.
+function addGroups(root: string, n: number): void {
+  const dir = join(root, 'out', 'synthesis', 'input');
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(join(root, '.claude', 'agents', 'synthesizer.md'), SYNTHESIZER);
+  const index = Array.from({ length: n }, (_, i) => {
+    const id = groupName(i);
+    const text = groupContent(i);
+    writeFileSync(join(dir, `${id}.md`), text);
+    writeFileSync(join(dir, `${id}.json`), JSON.stringify({ group_id: id, processes: [] }));
+    return { group_id: id, file: `out/synthesis/input/${id}.md`, process_keys: [`p-${i}`], bytes: Buffer.byteLength(text), lines: 2, est_tokens: 30, content_sha: sha256(text) };
+  });
+  writeFileSync(join(root, 'out', 'synthesis', 'index.json'), JSON.stringify(index));
+}
+const validatedSynth = (id: string): ValidatedSynthesis => ({ group_id: id, content_sha: groupSha(id), processes: [] });
+const passedSynth = (id: string): Check => ({ ok: true, setup: null, problems: [], validated: validatedSynth(id) });
+
+// The files a fresh merge, a current rollup and a current score would leave, so the stage moves on
+// without running those stages (they have tests of their own).
+function freshMerge(root: string): void {
+  mkdirSync(join(root, 'config'), { recursive: true });
+  writeFileSync(join(root, 'config', 'scoring.json'), readFileSync(fileURLToPath(new URL('../config/scoring.json', import.meta.url))));
+  writeFileSync(join(root, 'out', 'merge.json'), JSON.stringify({ version: 1, ...currentMergeStamp(root), slugs: [], promoted: [], counts: {} }));
+}
+function currentRollup(root: string): void {
+  writeFileSync(join(root, 'out', 'rollup.json'), JSON.stringify({ version: 1, inputs: currentRollupInputs(root), processes: [] }));
+}
+function currentScore(root: string): void {
+  const inputs = {
+    rollup_sha: fileSha(join(root, 'out', 'rollup.json')),
+    synthesis_sha: synthesisSha(root),
+    rates_sha: fileSha(join(root, 'config', 'effort-rates.json')) ?? sha256('none'),
+    scoring_sha: fileSha(join(root, 'config', 'scoring.json')) ?? sha256('none'),
+    estimates_sha: null,
+  };
+  writeFileSync(join(root, 'out', 'opportunities.json'), JSON.stringify({ version: 1, inputs }));
+}
+
 function validated(batchId: string): ValidatedExtraction {
   return {
     batch_id: batchId,
@@ -121,21 +182,25 @@ function validated(batchId: string): ValidatedExtraction {
     quote_stats: { exact: 3, repaired: 1, rejected: 0 },
   };
 }
-const passed = (batchId: string): ExtractionCheck => ({ ok: true, setup: null, problems: [], validated: validated(batchId) });
-const failedCheck = (batchId: string, problems = ['a', 'b']): ExtractionCheck => ({ ok: false, setup: null, problems, validated: validated(batchId) });
+const passed = (batchId: string): Check => ({ ok: true, setup: null, problems: [], validated: validated(batchId) });
+const failedCheck = (batchId: string, problems = ['a', 'b']): Check => ({ ok: false, setup: null, problems, validated: validated(batchId) });
 
-const viewOf = (root: string, batchId: string) => batchViews(root).find((v) => v.entry.batch_id === batchId);
+const viewOf = (root: string, id: string) => batchViews(root, kindOf(id)).find((v) => v.entry.id === id);
 const statusOf = (root: string, batchId: string) => viewOf(root, batchId)?.status;
 const keyOf = (root: string, batchId: string) => viewOf(root, batchId)?.cache_key;
-const indexEntry = (root: string, batchId: string) => loadIndex(root).find((b) => b.batch_id === batchId) as BatchEntry;
+// The index entry of a job of either kind.
+const indexEntry = (root: string, id: string) => findJob(loadJobs(root, kindOf(id)), id);
 const dispatch = (root: string, batchId: string, force = false) => markDispatched(root, indexEntry(root, batchId), { force });
-const writeExtract = (root: string, batchId: string, text: string) => {
-  mkdirSync(join(root, 'out', 'extract'), { recursive: true });
-  writeFileSync(extractFile(root, batchId), text);
+// The agent's output file, for a job of either kind.
+const writeExtract = (root: string, id: string, text: string) => {
+  const file = jobPaths(root, id).output;
+  mkdirSync(dirname(file), { recursive: true });
+  writeFileSync(file, text);
 };
 // Dispatch, let the "extractor" write `output` (null: it wrote nothing), then record a check: the
 // only way a batch gets stamped.
-const finish = (root: string, batchId: string, check: ExtractionCheck, output: string | null = '{}') => {
+type Check = JobCheck<ValidatedExtraction | ValidatedSynthesis>;
+const finish = (root: string, batchId: string, check: Check, output: string | null = '{}') => {
   dispatch(root, batchId);
   if (output !== null) writeExtract(root, batchId, output);
   return recordValidation(root, indexEntry(root, batchId), check);
@@ -176,6 +241,8 @@ function withInFlight<T>(value: string | undefined, fn: () => T): T {
   }
 }
 
+const utcSecondsNow = (): number => utcSeconds(nowUtc()) as number;
+
 const jsonStatus = (root: string): StatusReport => {
   const r = capture(() => statusCommand(root, ['--json']));
   assert.equal(r.code, 0, r.err.join('\n'));
@@ -206,7 +273,7 @@ test('a batch goes pending -> running -> done, and a failed one back to running 
   // The state file holds exactly the contract's fields, in order.
   assert.deepEqual(Object.keys(JSON.parse(readFileSync(batchStateFile(root, 'batch-001'), 'utf8'))), [
     'batch_id', 'status', 'dispatches', 'cache_key', 'dispatched_utc', 'finished_utc', 'quote_stats', 'problems', 'last_problems',
-    'uncounted_dispatches', 'no_output_streak', 'no_output_utc',
+    'uncounted_dispatches', 'no_output_streak', 'no_output_utc', 'no_output_run_id',
   ]);
 
   const failed = finish(root, 'batch-002', failedCheck('batch-002'), null);
@@ -230,7 +297,7 @@ test('only a running batch can be stamped: pending, done and failed batches are 
 test('a setup failure never stamps a batch, and a problem that merely reads like one is an ordinary problem', () => {
   const root = project();
   dispatch(root, 'batch-000');
-  const setup: ExtractionCheck = { ok: false, setup: 'cannot read out/messages.jsonl (ENOENT)', problems: [], validated: null };
+  const setup: Check = { ok: false, setup: 'cannot read out/messages.jsonl (ENOENT)', problems: [], validated: null };
   assert.throws(() => recordValidation(root, indexEntry(root, 'batch-000'), setup), /batch-000 could not be checked: cannot read out\/messages\.jsonl/);
   assert.equal(readBatchState(root, 'batch-000').status, 'running');
   const spoof = recordValidation(root, indexEntry(root, 'batch-000'), failedCheck('batch-000', ['setup: corpus/x/inbox/0. is fine']));
@@ -570,9 +637,9 @@ test('next lists retryable failures before pending batches, up to OBS_IN_FLIGHT 
   assert.deepEqual([blocked.taxonomy, blocked.next, blocked.extraction], ['missing', [], 'blocked']);
 });
 
-test('inFlight reads OBS_IN_FLIGHT clamped to 1..20, else 12', () => {
+test('inFlight reads OBS_IN_FLIGHT clamped to 1..20, else 20', () => {
   const cases: Array<[string | undefined, number]> = [
-    [undefined, 12], ['', 12], ['abc', 12], ['-3', 12], ['2.5', 12], ['0', 1], ['1', 1], [' 16 ', 16], ['20', 20], ['50', 20],
+    [undefined, 20], ['', 20], ['abc', 20], ['-3', 20], ['2.5', 20], ['0', 1], ['1', 1], [' 16 ', 16], ['20', 20], ['50', 20],
   ];
   for (const [value, expected] of cases) withInFlight(value, () => assert.equal(inFlight(), expected, String(value)));
 });
@@ -594,13 +661,14 @@ test('extraction is complete only with nothing pending, running or retryable; ex
   assert.deepEqual([complete.exhausted, complete.retryable, complete.next], [['batch-001'], [], []]);
 });
 
-test('status --json is compact: 99 batches with nothing dispatchable fit in under 3,000 bytes', () => {
+test('status --json is compact: 99 batches and 12 synthesis groups with nothing dispatchable fit in under 4,000 bytes', () => {
   const root = project(99, { taxonomy: true });
+  addGroups(root, 12);
   capture(() => runCommand(root, ['start']));
-  // Every batch exhausted under the current key: the longest lists status --json prints with nothing to dispatch.
-  for (const v of batchViews(root)) {
-    updateBatchState(root, v.entry.batch_id, () => ({
-      ...freshState(v.entry.batch_id),
+  // Every job exhausted under the current key: the longest lists status --json prints with nothing to dispatch.
+  for (const v of [...batchViews(root), ...batchViews(root, 'synth')]) {
+    updateBatchState(root, v.entry.id, () => ({
+      ...freshState(v.entry.id),
       status: 'failed',
       dispatches: MAX_DISPATCHES,
       cache_key: v.cache_key,
@@ -614,8 +682,14 @@ test('status --json is compact: 99 batches with nothing dispatchable fit in unde
   const text = r.out[0] as string;
   const report = JSON.parse(text) as StatusReport;
   assert.deepEqual([report.batches, report.exhausted.length, report.next, report.extraction], [99, 99, [], 'complete']);
-  assert.ok(Buffer.byteLength(text) < 3000, `${Buffer.byteLength(text)} bytes`);
-  assert.deepEqual(Object.keys(report), ['batches', 'counts', 'taxonomy', 'in_flight', 'next', 'running', 'retryable', 'exhausted', 'extraction', 'halt', 'halt_reason', 'timing', 'run']);
+  assert.deepEqual([report.synthesis.exhausted.length, report.synthesis.next, report.synthesis.complete], [12, [], false]);
+  assert.ok(Buffer.byteLength(text) < 4000, `${Buffer.byteLength(text)} bytes`);
+  assert.deepEqual(Object.keys(report), [
+    'batches', 'counts', 'taxonomy', 'in_flight', 'next', 'running', 'retryable', 'exhausted', 'extraction',
+    'merge', 'rollup', 'synthesis', 'score', 'stage', 'halt', 'halt_reason', 'timing', 'run',
+  ]);
+  assert.deepEqual(Object.keys(report.synthesis), ['counts', 'next', 'running', 'retryable', 'exhausted', 'complete']);
+  assert.deepEqual([report.merge, report.rollup, report.score, report.stage], ['missing', 'missing', 'missing', 'merge']);
   assert.deepEqual([report.halt, report.halt_reason], [false, null]);
 });
 
@@ -631,8 +705,9 @@ test('status prints one summary line, then the lists, each failure, and the timi
   for (let i = 0; i < MAX_DISPATCHES; i++) finish(root, 'batch-003', failedCheck('batch-003'));
   const human = withInFlight(undefined, () => capture(() => statusCommand(root, [])));
   assert.equal(human.code, 0);
-  assert.deepEqual(human.out.slice(0, 8), [
+  assert.deepEqual(human.out.slice(0, 9), [
     `status: 4 batches: 1 done, 1 running, 0 pending, 1 failed, 1 exhausted; taxonomy fresh; extraction incomplete; run ${runId} active.`,
+    '  stage: extraction (merge missing; rollup missing; synthesis no groups yet; score missing).',
     '  running: batch-002',
     '  failed: batch-001',
     '  exhausted: batch-003',
@@ -641,8 +716,8 @@ test('status prints one summary line, then the lists, each failure, and the timi
     '  batch-001 failed: 2 problems; 1 of 4 dispatches used.',
     '  batch-003 exhausted: 2 problems after 4 dispatches; node obs.mjs dispatch batch-003 --force tries once more.',
   ]);
-  assert.match(human.out[8] ?? '', /^ {2}timing: 1 batch done in this run; wall \d+s; per batch p50 \d+s, p90 \d+s; 3 fix rounds(?:; slot idle [\d.]+s mean)?\.$/);
-  assert.equal(human.out.length, 9);
+  assert.match(human.out[9] ?? '', /^ {2}timing: 1 batch done in this run; wall \d+s; per batch p50 \d+s, p90 \d+s; 3 fix rounds(?:; slot idle [\d.]+s mean)?\.$/);
+  assert.equal(human.out.length, 10);
 
   rmSync(join(root, 'out', 'taxonomy.json'));
   assert.match(capture(() => statusCommand(root, [])).out[0] ?? '', /; taxonomy missing; extraction blocked until the taxonomy is fresh \(node obs\.mjs taxonomy\); /);
@@ -915,8 +990,15 @@ test('run start stamps every batch left running: a missing or bad file fails wit
   assert.equal(readBatchState(root, 'batch-002').status, 'running');
 });
 
-test('run start --force clears batch states, bindings, the taxonomy, validated outputs and fix files, and keeps the raw extractions', () => {
+test('run start --force clears job states, bindings, the taxonomy, the merge, validated outputs, the rollup, synthesis and score, and fix files; it keeps the raw outputs', () => {
   const root = project(3, { taxonomy: true });
+  addGroups(root, 2);
+  finish(root, 'synth-000', passedSynth('synth-000'));
+  mkdirSync(join(root, 'out', 'synthesis', 'raw'), { recursive: true });
+  writeFileSync(join(root, 'out', 'synthesis', 'raw', 'synth-000.json'), '{"kept": true}');
+  for (const file of ['merge.json', 'merge-proposed.json', 'merge-input.md', 'ledger/merge.json', 'rollup.json', 'coverage.json', 'validation-report.json', 'opportunities.json', 'opportunities.alt-rates.json']) {
+    writeFileSync(join(root, 'out', file), '{}');
+  }
   finish(root, 'batch-000', passed('batch-000'));
   writeExtract(root, 'batch-000', '{"kept": true}');
   finish(root, 'batch-002', failedCheck('batch-002'));
@@ -927,11 +1009,19 @@ test('run start --force clears batch states, bindings, the taxonomy, validated o
   writeFileSync(join(root, 'out', 'ledger', 'taxonomy.json'), '{"dispatches": 4}');
   const r = capture(() => runCommand(root, ['start', '--force']));
   assert.equal(r.code, 0, r.err.join('\n'));
-  assert.deepEqual(r.out.slice(1), ['run: --force cleared the model outputs: batch states, extractor bindings, the taxonomy, the validated extractions and the fix files.']);
-  for (const gone of ['out/ledger/batch-000.json', 'out/ledger/batch-001.json', 'out/ledger/agents', 'out/taxonomy.json', 'out/taxonomy-proposed.json', 'out/ledger/taxonomy.json', 'out/validated', 'out/fix']) {
+  assert.deepEqual(r.out.slice(1), [
+    'run: --force cleared the model outputs: job states, agent bindings, the taxonomy, the merge, the validated extractions, ' +
+      'the rollup and the synthesis inputs, the validated syntheses, the opportunities and the fix files.',
+  ]);
+  for (const gone of [
+    'out/ledger/batch-000.json', 'out/ledger/batch-001.json', 'out/ledger/synth-000.json', 'out/ledger/agents', 'out/taxonomy.json', 'out/taxonomy-proposed.json',
+    'out/ledger/taxonomy.json', 'out/validated', 'out/fix', 'out/merge.json', 'out/merge-proposed.json', 'out/merge-input.md', 'out/ledger/merge.json',
+    'out/rollup.json', 'out/coverage.json', 'out/validation-report.json', 'out/synthesis/index.json', 'out/synthesis/input', 'out/synthesis/validated',
+    'out/opportunities.json', 'out/opportunities.alt-rates.json',
+  ]) {
     assert.ok(!existsSync(join(root, gone)), `${gone} is cleared`);
   }
-  for (const kept of ['out/extract/batch-000.json', 'out/taxonomy-digest.md', '.claude/agents/taxonomist.md', 'out/ledger/run.json']) {
+  for (const kept of ['out/extract/batch-000.json', 'out/synthesis/raw/synth-000.json', 'out/taxonomy-digest.md', '.claude/agents/taxonomist.md', 'out/ledger/run.json']) {
     assert.ok(existsSync(join(root, kept)), `${kept} is kept`);
   }
   assert.equal(readRun(root).active, true);
@@ -992,8 +1082,309 @@ test('the circuit breaker halts when 6 batches end with no output within 10 minu
   const run = readRun(root);
   const now = Date.now() / 1000;
   assert.equal(haltFrom(states, run, now + HALT_WINDOW_S + 60), null, 'ten minutes later the breaker resets');
-  // A new run (resuming after the pause) starts with the breaker off.
-  assert.equal(haltFrom(states, { ...run, started_utc: '2099-01-01T00:00:00Z' }, now), null);
+  // A new run (resuming after the pause) starts with the breaker off: only its own stamps count.
+  assert.equal(haltFrom(states, { ...run, run_id: '20990101T000000Z', started_utc: '2099-01-01T00:00:00Z' }, now), null);
+  assert.deepEqual([...new Set(states.filter((x) => x.no_output_utc !== null).map((x) => x.no_output_run_id))], [run.run_id], 'each no-output stamp records the run it was made under');
+});
+
+test('orphans that run start stamps with no output never count toward the new run\'s breaker, in whatever second', () => {
+  const root = project(8, { taxonomy: true });
+  capture(() => runCommand(root, ['start']));
+  // A session cut off with six extractors in flight: dispatched long ago, nothing written.
+  for (let n = 0; n < HALT_NO_OUTPUT; n++) {
+    dispatch(root, batchName(n));
+    backdate(root, batchName(n));
+  }
+  const resumed = capture(() => runCommand(root, ['start']));
+  assert.equal(resumed.code, 0, resumed.err.join('\n'));
+  const states = batchViews(root).map((v) => v.state);
+  const stamped = states.filter((s) => s.no_output_utc !== null);
+  assert.equal(stamped.length, HALT_NO_OUTPUT);
+  assert.deepEqual([...new Set(stamped.map((s) => s.no_output_run_id))], [null], 'stamped under no run');
+  const report = statusReport(root);
+  assert.deepEqual([report.halt, report.retryable.length], [false, HALT_NO_OUTPUT]);
+  // Even if the new run had started in the very second of those stamps, with the same run ID.
+  const run = readRun(root);
+  const sameSecond = { ...run, started_utc: stamped[0]?.no_output_utc ?? null };
+  assert.equal(haltFrom(states, sameSecond, utcSecondsNow()), null);
+  // A stamp made by validate during the run records the run.
+  dispatch(root, 'batch-006');
+  backdate(root, 'batch-006');
+  capture(() => validateCommand(root, ['batch-006']));
+  assert.equal(readBatchState(root, 'batch-006').no_output_run_id, run.run_id);
+});
+
+test('run start makes a fresh claim the orchestrator session; an old, future or unreadable claim is ignored, and a claim is used once', () => {
+  const root = project(2);
+  const claim = (body: unknown) => {
+    mkdirSync(join(root, 'out', 'ledger'), { recursive: true });
+    writeFileSync(claimFile(root), typeof body === 'string' ? body : JSON.stringify(body));
+  };
+  const gate = () => (existsSync(stopGateFile(root)) ? JSON.parse(readFileSync(stopGateFile(root), 'utf8')) : null);
+  claim({ session_id: 's-orch', utc: nowUtc() });
+  const r = capture(() => runCommand(root, ['start']));
+  assert.equal(r.code, 0, r.err.join('\n'));
+  assert.equal(r.out[1], "run: the session that started it is the run's orchestrator.");
+  assert.deepEqual(gate(), { run_id: readRun(root).run_id, session_id: 's-orch', last_block: null });
+  assert.ok(!existsSync(claimFile(root)), 'consumed');
+  const logged = readFileSync(join(root, 'out', 'runs', `${readRun(root).run_id}.jsonl`), 'utf8').trim().split('\n').map((l) => JSON.parse(l));
+  assert.deepEqual(logged.map((e) => [e.event, e.orchestrator]), [['run_start', 'claimed']]);
+
+  // No claim, or one that is too old: the Stop hook's memory is cleared, no session recorded.
+  for (const body of [null, { session_id: 's-old', utc: '2020-01-01T00:00:00Z' }]) {
+    if (body !== null) claim(body);
+    const again = capture(() => runCommand(root, ['start']));
+    assert.equal(again.out.length, 1, JSON.stringify(again.out));
+    assert.equal(gate(), null);
+    assert.ok(!existsSync(claimFile(root)));
+  }
+
+  const now = Date.UTC(2026, 9, 17, 12, 0, 0) / 1000;
+  const at = (s: number) => new Date((now - s) * 1000).toISOString().replace(/\.\d+Z$/, 'Z');
+  for (const [body, expected] of [
+    [{ session_id: 's1', utc: at(0) }, 's1'],
+    [{ session_id: 's1', utc: at(CLAIM_MAX_AGE_S - 1) }, 's1'],
+    [{ session_id: 's1', utc: at(CLAIM_MAX_AGE_S) }, null],
+    [{ session_id: 's1', utc: at(-5) }, null],
+    [{ session_id: '', utc: at(0) }, null],
+    [{ utc: at(0) }, null],
+    [{ session_id: 's1', utc: '2026-10-17 12:00:00' }, null],
+    ['not json', null],
+  ] as const) {
+    claim(body);
+    assert.equal(consumeClaim(root, CLAIM_MAX_AGE_S, now), expected, JSON.stringify(body));
+    assert.ok(!existsSync(claimFile(root)), 'removed whatever it held');
+  }
+  assert.equal(consumeClaim(root, CLAIM_MAX_AGE_S, now), null, 'no claim');
+});
+
+// ---- Jobs of two kinds (M5) ----
+
+test('the batch cache key formula is pinned to its exact hex, and every committed batch ledger file still matches it', () => {
+  const parts = { agent_sha: sha256('extractor'), taxonomy_sha: sha256('taxonomy') };
+  assert.equal(cacheKey(sha256('# batch-017 | 1 messages | 1 threads\n'), parts), '2b3af26be8222449b895f2d4831283d008d9bc095d1b96a5492b545817e745a1');
+  // The real run's: each done batch's recorded key is the key of its validated content today.
+  const repo = fileURLToPath(new URL('..', import.meta.url));
+  const ledger = join(repo, 'out', 'ledger');
+  const done = existsSync(ledger) ? readdirSync(ledger).filter((f) => /^batch-\d{3}\.json$/.test(f)) : [];
+  const repoParts = sharedKeyParts(repo, 'batch');
+  for (const file of done) {
+    const state = JSON.parse(readFileSync(join(ledger, file), 'utf8')) as BatchState;
+    if (state.status !== 'done') continue;
+    const v = JSON.parse(readFileSync(join(repo, 'out', 'validated', file), 'utf8')) as ValidatedExtraction;
+    assert.equal(cacheKey(v.content_sha, repoParts), state.cache_key, file);
+  }
+});
+
+test('kindOf and jobPaths: batch paths as before, synthesis groups under out/synthesis, nothing else is a job', () => {
+  const root = join(tmp, 'paths');
+  assert.deepEqual([kindOf('batch-000'), kindOf('synth-012'), kindOf('batch-1234')], ['batch', 'batch', 'batch'].map((k, i) => (i === 1 ? 'synth' : k)));
+  for (const bad of ['synth-1', 'batch-12', 'merge-000', 'Synth-000', '../synth-000', 'synth-000.', '74']) {
+    assert.throws(() => kindOf(bad), (e: unknown) => e instanceof LedgerError && /is not a job ID/.test(e.message), bad);
+  }
+  const rel = (p: string) => withoutRoot(p, root).replaceAll('\\', '/');
+  const b = jobPaths(root, 'batch-007');
+  assert.deepEqual([b.input, b.output, b.validated, b.fix, b.index, b.agent, b.state].map(rel), [
+    'out/batches/batch-007.md', 'out/extract/batch-007.json', 'out/validated/batch-007.json', 'out/fix/batch-007.txt',
+    'out/batches/index.json', '.claude/agents/extractor.md', 'out/ledger/batch-007.json',
+  ]);
+  const s = jobPaths(root, 'synth-003');
+  assert.deepEqual([s.input, s.output, s.validated, s.fix, s.index, s.agent, s.state].map(rel), [
+    'out/synthesis/input/synth-003.md', 'out/synthesis/raw/synth-003.json', 'out/synthesis/validated/synth-003.json', 'out/fix/synth-003.txt',
+    'out/synthesis/index.json', '.claude/agents/synthesizer.md', 'out/ledger/synth-003.json',
+  ]);
+  assert.equal(rel(validatedFile(root, 'synth-003')), 'out/synthesis/validated/synth-003.json');
+  assert.throws(() => extractFile(root, 'synth-003'), /not a batch ID/);
+});
+
+test('a synthesis group goes through every transition with its own files, agent definition and key', () => {
+  const root = project(1, { taxonomy: true });
+  addGroups(root, 2);
+  const base = root.replaceAll('\\', '/');
+  assert.deepEqual(batchViews(root, 'synth').map((v) => v.status), ['pending', 'pending']);
+  const key = cacheKey(groupSha('synth-000'), { agent_sha: sha256(SYNTHESIZER), taxonomy_sha: sha256('none') });
+  assert.equal(viewOf(root, 'synth-000')?.cache_key, key);
+
+  // Fresh dispatch: the 14.3 prompt.
+  const first = capture(() => dispatchCommand(root, ['synth-000']));
+  assert.equal(first.code, 0, first.err.join('\n'));
+  assert.deepEqual((first.out[0] as string).split('\n'), [
+    'Synthesize group synth-000.',
+    `Input file: ${base}/out/synthesis/input/synth-000.md`,
+    `Output file: ${base}/out/synthesis/raw/synth-000.json`,
+    'Reply with one short sentence and no email content.',
+  ]);
+  assert.deepEqual([readBatchState(root, 'synth-000').status, readBatchState(root, 'synth-000').cache_key], ['running', key]);
+  assert.match(capture(() => dispatchCommand(root, ['synth-000'])).err[0] ?? '', /synth-000 is running: its synthesizer may still be working on it\. Run node obs\.mjs validate synth-000 first\./);
+
+  // Failed with an output to fix: the fix round names the previous output and the problems file.
+  writeExtract(root, 'synth-000', '{"group_id": "synth-000", "processes": []}');
+  const failed = recordValidation(root, indexEntry(root, 'synth-000'), { ok: false, setup: null, problems: ['p1', 'p2'], validated: null });
+  assert.deepEqual([failed.status, failed.quote_stats], ['failed', null]);
+  assert.equal(readFileSync(join(root, 'out', 'fix', 'synth-000.txt'), 'utf8'), 'p1\np2\n');
+  const fix = capture(() => dispatchCommand(root, ['synth-000']));
+  assert.deepEqual((fix.out[0] as string).split('\n'), [
+    'Synthesize group synth-000 (fix round 1 of 3).',
+    `Input file: ${base}/out/synthesis/input/synth-000.md`,
+    `Previous output: ${base}/out/synthesis/raw/synth-000.json`,
+    `Problems file: ${base}/out/fix/synth-000.txt`,
+    'The pipeline checked the previous output and found 2 problems, listed in the problems file. Read the input file, the previous output and the problems file, fix only those problems, keep every other entry exactly as it was, and Write the whole file to:',
+    `Output file: ${base}/out/synthesis/raw/synth-000.json`,
+    'Reply with one short sentence and no email content.',
+  ]);
+  assert.equal(synthesizerPrompt(root, 'synth-000', ['p1', 'p2']), fix.out[0], 'the prompt is a function of the ledger');
+
+  // Done: the validated file under out/synthesis/validated, the fix file gone.
+  recordValidation(root, indexEntry(root, 'synth-000'), passedSynth('synth-000'));
+  assert.equal(statusOf(root, 'synth-000'), 'done');
+  assert.ok(existsSync(join(root, 'out', 'synthesis', 'validated', 'synth-000.json')) && !existsSync(join(root, 'out', 'fix', 'synth-000.txt')));
+  assert.match(capture(() => dispatchCommand(root, ['synth-000'])).err[0] ?? '', /synth-000 is already done\. To synthesize it again anyway: node obs\.mjs dispatch synth-000 --force/);
+
+  // Its key: the input and the synthesizer definition, not the extractor or the taxonomy.
+  writeFileSync(join(root, '.claude', 'agents', 'extractor.md'), `${AGENT}Another rule.\n`);
+  writeFileSync(join(root, 'out', 'taxonomy.json'), '{"processes": []}\n');
+  assert.equal(statusOf(root, 'synth-000'), 'done');
+  writeFileSync(join(root, '.claude', 'agents', 'synthesizer.md'), SYNTHESIZER.replaceAll('\n', '\r\n'));
+  assert.equal(statusOf(root, 'synth-000'), 'done', 'a CRLF checkout of the same definition');
+  writeFileSync(join(root, '.claude', 'agents', 'synthesizer.md'), `${SYNTHESIZER}A new rule.\n`);
+  assert.equal(statusOf(root, 'synth-000'), 'pending');
+
+  // A changed input that no longer matches the index is refused, by its own rebuild command.
+  writeFileSync(join(root, 'out', 'synthesis', 'input', 'synth-001.md'), 'edited\n');
+  assert.match(capture(() => dispatchCommand(root, ['synth-001'])).err[0] ?? '', /^dispatch: out\/synthesis\/input\/synth-001\.md does not match out\/synthesis\/index\.json \(changed since rollup ran\)\. Run node obs\.mjs rollup again\.$/);
+  assert.match(capture(() => dispatchCommand(root, ['synth-009'])).err[0] ?? '', /Unknown synthesis group "synth-009" \(synthesis groups in out\/synthesis\/index\.json: synth-000 to synth-001\)/);
+
+  // Bindings work for groups the same way.
+  rmSync(join(root, 'out', 'synthesis', 'input', 'synth-001.md'));
+  addGroups(root, 2);
+  dispatch(root, 'synth-001');
+  assert.ok(bindAgent(root, 's1', 'synth-001').ok);
+  assert.deepEqual(bindAgent(root, 's1', 'synth-000'), { ok: false, reason: 'this synthesizer is bound to synth-001, the first group it read; synth-000 is not its group' });
+  assert.equal(bindAgent(root, 's2', 'synth-000').ok, false, 'not running');
+});
+
+test('the stage walks taxonomy, extraction, merge, rollup, synthesis, score, done; groups are dispatched only once the rollup is current, within the shared cap', () => {
+  const root = project(2);
+  addGroups(root, 3);
+  const stage = () => statusReport(root).stage;
+  assert.equal(stage(), 'taxonomy');
+  freshTaxonomy(root);
+  assert.equal(stage(), 'extraction');
+  dispatch(root, 'batch-000');
+  recordValidation(root, indexEntry(root, 'batch-000'), passed('batch-000'));
+  assert.deepEqual([stage(), statusReport(root).synthesis.next], ['extraction', []]);
+  finish(root, 'batch-001', passed('batch-001'));
+  const merging = statusReport(root);
+  assert.deepEqual([merging.stage, merging.extraction, merging.merge, merging.synthesis.next], ['merge', 'complete', 'missing', []]);
+  freshMerge(root);
+  assert.deepEqual([stage(), statusReport(root).rollup], ['rollup', 'missing']);
+  currentRollup(root);
+  const synth = withInFlight(undefined, () => statusReport(root));
+  assert.deepEqual([synth.stage, synth.rollup, synth.synthesis.next, synth.synthesis.complete], ['synthesis', 'current', ['synth-000', 'synth-001', 'synth-002'], false]);
+  withInFlight('2', () => {
+    dispatch(root, 'synth-000');
+    const r = statusReport(root);
+    assert.deepEqual([r.synthesis.running, r.synthesis.next, r.next], [['synth-000'], ['synth-001'], []], 'one of two slots taken');
+  });
+  // An edited group input makes the rollup stale: no group goes out until it is rebuilt.
+  writeFileSync(join(root, 'out', 'synthesis', 'input', 'synth-002.md'), 'edited\n');
+  assert.deepEqual([stage(), statusReport(root).rollup, statusReport(root).synthesis.next], ['rollup', 'stale', []]);
+  addGroups(root, 3);
+  recordValidation(root, indexEntry(root, 'synth-000'), passedSynth('synth-000'));
+  finish(root, 'synth-001', passedSynth('synth-001'));
+  for (let i = 0; i < MAX_DISPATCHES; i++) finish(root, 'synth-002', failedCheck('synth-002'));
+  const scoring = statusReport(root);
+  assert.deepEqual([scoring.stage, scoring.synthesis.complete, scoring.synthesis.exhausted, scoring.score], ['score', true, ['synth-002'], 'missing'], 'an exhausted group is reported, not waited for');
+  currentScore(root);
+  assert.equal(stage(), 'done');
+  // A new extraction makes everything after it stale, in order.
+  writeFileSync(validatedFile(root, 'batch-001'), JSON.stringify({ ...validated('batch-001'), batch_notes: 'changed' }));
+  const after = statusReport(root);
+  assert.deepEqual([after.stage, after.merge, after.rollup, after.score], ['merge', 'stale', 'stale', 'current']);
+  const human = capture(() => statusCommand(root, [])).out;
+  assert.equal(human[1], '  stage: merge (merge stale; rollup stale; synthesis 2 of 3 groups done (1 exhausted); score current).');
+  assert.ok(human.includes('  exhausted: synth-002'), human.join('\n'));
+});
+
+test('validate and run start take synthesis groups too: checked by the synthesis check, no quote counts', () => {
+  const root = project(1, { taxonomy: true });
+  addGroups(root, 2);
+  mkdirSync(join(root, 'config'), { recursive: true });
+  writeFileSync(join(root, 'config', 'scoring.json'), readFileSync(fileURLToPath(new URL('../config/scoring.json', import.meta.url))));
+  dispatch(root, 'synth-000');
+  backdate(root, 'synth-000');
+  const r = capture(() => validateCommand(root, ['synth-000']));
+  assert.equal(r.code, 0, r.err.join('\n'));
+  assert.deepEqual(r.out, ['validate: synth-000 failed: 1 problem.', '  - out/synthesis/raw/synth-000.json does not exist or cannot be read: write the synthesis for synth-000 there']);
+  assert.deepEqual(capture(() => validateCommand(root, ['synth-000'])).out, ['validate: synth-000 is already failed (recorded when its synthesizer finished); nothing to do.']);
+  // A group left running by a dead session is stamped by run start, like a batch.
+  dispatch(root, 'synth-001');
+  backdate(root, 'synth-001');
+  dispatch(root, 'batch-000');
+  backdate(root, 'batch-000');
+  const start = capture(() => runCommand(root, ['start']));
+  assert.equal(start.out[1], 'run: 2 jobs were left running by an earlier session: batch-000 failed, synth-001 failed.');
+  assert.deepEqual([readBatchState(root, 'synth-001').status, readBatchState(root, 'synth-001').no_output_run_id], ['failed', null]);
+});
+
+test('refill: validates the named jobs, dispatches next exactly as dispatch does, and prints one JSON object', () => {
+  const twin = () => {
+    const root = project(6, { taxonomy: true });
+    capture(() => runCommand(root, ['start']));
+    return root;
+  };
+  const refill = (root: string, ids: string[]): RefillReport => {
+    const r = capture(() => refillCommand(root, [...ids, '--json']));
+    assert.equal(r.code, 0, r.err.join('\n'));
+    assert.equal(r.out.length, 1);
+    assert.ok(Buffer.byteLength(r.out[0] as string) < 64_000);
+    return JSON.parse(r.out[0] as string) as RefillReport;
+  };
+  const a = twin();
+  const b = twin();
+  withInFlight('3', () => {
+    const first = refill(a, []);
+    assert.deepEqual(Object.keys(first), ['halt', 'halt_reason', 'stage', 'extraction', 'validated', 'jobs', 'refused', 'running', 'exhausted']);
+    assert.deepEqual(first.jobs.map((j) => [j.id, j.description]), [['batch-000', 'Extract batch-000'], ['batch-001', 'Extract batch-001'], ['batch-002', 'Extract batch-002']]);
+    assert.deepEqual(first.jobs.map((j) => j.prompt), ['batch-000', 'batch-001', 'batch-002'].map((id) => extractorPrompt(a, id, null)));
+    assert.deepEqual([first.stage, first.extraction, first.running, first.validated, first.halt], ['extraction', 'incomplete', ['batch-000', 'batch-001', 'batch-002'], [], false]);
+    // The same wave by hand on the twin.
+    for (const id of jsonStatus(b).next) capture(() => dispatchCommand(b, [id]));
+
+    // Completions: batch-000 wrote nothing (long ago), batch-001 wrote no JSON, batch-002 was stamped
+    // done by its gate already.
+    for (const root of [a, b]) {
+      backdate(root, 'batch-000');
+      backdate(root, 'batch-001');
+      writeExtract(root, 'batch-001', 'not json {');
+      recordValidation(root, indexEntry(root, 'batch-002'), passed('batch-002'));
+    }
+    const second = refill(a, ['batch-000', '1', 'batch-002']);
+    assert.deepEqual(second.validated, [
+      { id: 'batch-000', status: 'failed', note: 'recorded' },
+      { id: 'batch-001', status: 'failed', note: 'recorded' },
+      { id: 'batch-002', status: 'done', note: 'already recorded' },
+    ]);
+    assert.deepEqual(second.jobs.map((j) => j.id), ['batch-000', 'batch-001', 'batch-003'], 'fix rounds first, then pending');
+    for (const id of ['batch-000', 'batch-001']) capture(() => validateCommand(b, [id]));
+    capture(() => validateCommand(b, ['batch-002']));
+    for (const id of jsonStatus(b).next) capture(() => dispatchCommand(b, [id]));
+    // Same ledger end state as the separate commands, times aside.
+    const strip = (s: BatchState) => ({ ...s, dispatched_utc: null, finished_utc: null, no_output_utc: null, no_output_run_id: null });
+    for (let n = 0; n < 6; n++) assert.deepEqual(strip(readBatchState(a, batchName(n))), strip(readBatchState(b, batchName(n))), batchName(n));
+  });
+
+  // Nothing is dispatched while the breaker is on or the taxonomy is stale.
+  const halted = twin();
+  for (let n = 0; n < HALT_NO_OUTPUT; n++) finish(halted, batchName(n), failedCheck(batchName(n)), null);
+  const h = refill(halted, []);
+  assert.deepEqual([h.halt, h.jobs, typeof h.halt_reason], [true, [], 'string']);
+  const stale = twin();
+  rmSync(join(stale, 'out', 'taxonomy.json'));
+  const s = refill(stale, []);
+  assert.deepEqual([s.stage, s.extraction, s.jobs], ['taxonomy', 'blocked', []]);
+  assert.match(capture(() => refillCommand(stale, ['--fast'])).err[0] ?? '', /^refill: unexpected option "--fast"/);
+  assert.match(capture(() => refillCommand(stale, ['merge-000'])).err[0] ?? '', /^refill: "merge-000" is not a job ID/);
 });
 
 // ---- Concurrency ----

@@ -44,3 +44,7 @@ jobs:
       - run: npm ci
       - run: npm run typecheck
       - run: npm test
+      # The deterministic stages rebuilt from scratch, then every committed model output re-checked
+      # against them and the corpus (ARCHITECTURE.md 6.17).
+      - run: node obs.mjs prepare --force
+      - run: node obs.mjs verify

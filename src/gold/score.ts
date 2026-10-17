@@ -1,9 +1,12 @@
 // Scoring the extractors' tags against the hand-confirmed gold labels (ARCHITECTURE.md 6.18).
 // Over confirmed entries only: exact key-set agreement, any-overlap agreement (both empty counts as
 // agreement) and role agreement, with every disagreement listed. Any "new:<slug>" key, on either
-// side, counts as the one key "new:*": the question is whether a message belongs to a known process,
-// and the slugs the extractors invent are merged later (M5).
-import { MESSAGE_ROLES, type MessageRole } from '../types.ts';
+// side, counts as the one key "new:*": the question is whether a message belongs to a known process.
+// From M5 the same three rates are also given on the merged keys when a merge table is passed: a
+// new: key (on either side) that the merge maps or promotes counts as its target, any other as
+// "new:*", so the two scores side by side show how much the merge recovers.
+import { mergeTarget } from '../model/merge.ts';
+import { MESSAGE_ROLES, type MergeTable, type MessageRole } from '../types.ts';
 import type { GoldLabel, GoldLabels } from './sample.ts';
 
 const LABEL_KEYS = ['id', 'processes', 'role', 'confirmed', 'note'] as const;
@@ -63,6 +66,9 @@ export type Agreement = { agree: number; of: number; pct: number | null };
 export type Tagging = { processes: string[]; role: string };
 export type GoldMismatch = { id: string; label: Tagging; extracted: Tagging; exact: boolean; overlap: boolean; role: boolean };
 
+// The three rates over the scored entries, and the disagreements behind them.
+export type GoldRates = { exact: Agreement; overlap: Agreement; role: Agreement; mismatches: GoldMismatch[] };
+
 // out/gold-score.json
 export type GoldScore = {
   taxonomy_sha: string;
@@ -74,30 +80,25 @@ export type GoldScore = {
   overlap: Agreement; // at least one key in common, or both empty
   role: Agreement;
   mismatches: GoldMismatch[]; // every scored entry where the key set or the role differs
+  merged: GoldRates | null; // the same on the merged keys; null without a fresh merge table
 };
 
 const agreement = (agree: number, of: number): Agreement => ({ agree, of, pct: of === 0 ? null : Math.round((1000 * agree) / of) / 10 });
 const byText = (a: string, b: string): number => (a < b ? -1 : a > b ? 1 : 0);
-const keySet = (processes: readonly string[]): string[] => [...new Set(processes.map((p) => (p.startsWith('new:') ? 'new:*' : p)))].sort(byText);
+// The key set compared: a new: key is "new:*", unless `table` maps or promotes it.
+const keySet = (processes: readonly string[], table: MergeTable | null): string[] =>
+  [...new Set(processes.map((p) => (p.startsWith('new:') ? ((table === null ? null : mergeTarget(p, table)) ?? 'new:*') : p)))].sort(byText);
 
-// `extracted`: message ID -> its tags, from the batches the ledger counts as done.
-export function scoreGold(labels: GoldLabels, extracted: ReadonlyMap<string, Tagging>): GoldScore {
-  const confirmed = labels.labels.filter((l): l is GoldLabel & { role: MessageRole } => l.confirmed && l.role !== null);
-  const missing: string[] = [];
+type Scored = { label: GoldLabel & { role: MessageRole }; extracted: Tagging };
+
+function rates(scored: readonly Scored[], table: MergeTable | null): GoldRates {
   const mismatches: GoldMismatch[] = [];
   let exact = 0;
   let overlap = 0;
   let role = 0;
-  let scored = 0;
-  for (const l of confirmed) {
-    const e = extracted.get(l.id);
-    if (e === undefined) {
-      missing.push(l.id);
-      continue;
-    }
-    scored++;
-    const a = keySet(l.processes);
-    const b = keySet(e.processes);
+  for (const { label: l, extracted: e } of scored) {
+    const a = keySet(l.processes, table);
+    const b = keySet(e.processes, table);
     const same = a.length === b.length && a.every((k, i) => k === b[i]);
     const shared = (a.length === 0 && b.length === 0) || a.some((k) => b.includes(k));
     const sameRole = l.role === e.role;
@@ -108,15 +109,31 @@ export function scoreGold(labels: GoldLabels, extracted: ReadonlyMap<string, Tag
       mismatches.push({ id: l.id, label: { processes: [...l.processes], role: l.role }, extracted: { processes: [...e.processes], role: e.role }, exact: same, overlap: shared, role: sameRole });
     }
   }
+  return { exact: agreement(exact, scored.length), overlap: agreement(overlap, scored.length), role: agreement(role, scored.length), mismatches };
+}
+
+// `extracted`: message ID -> its tags, from the batches the ledger counts as done. `table`: the
+// fresh merge table, when there is one.
+export function scoreGold(labels: GoldLabels, extracted: ReadonlyMap<string, Tagging>, table: MergeTable | null = null): GoldScore {
+  const confirmed = labels.labels.filter((l): l is GoldLabel & { role: MessageRole } => l.confirmed && l.role !== null);
+  const missing: string[] = [];
+  const scored: Scored[] = [];
+  for (const l of confirmed) {
+    const e = extracted.get(l.id);
+    if (e === undefined) missing.push(l.id);
+    else scored.push({ label: l, extracted: e });
+  }
+  const raw = rates(scored, null);
   return {
     taxonomy_sha: labels.taxonomy_sha,
     labels: labels.labels.length,
     confirmed: confirmed.length,
-    scored,
+    scored: scored.length,
     missing,
-    exact: agreement(exact, scored),
-    overlap: agreement(overlap, scored),
-    role: agreement(role, scored),
-    mismatches,
+    exact: raw.exact,
+    overlap: raw.overlap,
+    role: raw.role,
+    mismatches: raw.mismatches,
+    merged: table === null ? null : rates(scored, table),
   };
 }

@@ -21,9 +21,11 @@
 // checked, never file contents (an extraction naturally mentions corpus/... message IDs). Fail
 // closed: if the guard applies and the input can't be read, or anything throws, the call is denied.
 //
-// One side job: the session that starts a pipeline subagent during a run is recorded in
-// out/ledger/stop-gate.json as the run's orchestrator, so the Stop hook (gate-run.ts) steers that
-// session only.
+// Side jobs, so the Stop hook (gate-run.ts) steers the run's orchestrator session only: a Bash call
+// that starts `node obs.mjs run start` writes a claim (out/ledger/claim.json) before the command
+// runs, which run start turns into the orchestrator session; and, as the fallback when no claim was
+// made (hooks off when the run started, a run started by hand), the session that starts a pipeline
+// subagent during a run is recorded in out/ledger/stop-gate.json.
 import { posix } from 'node:path';
 import {
   PIPELINE_AGENTS,
@@ -40,7 +42,7 @@ import {
   writeStopGate,
   type HookInput,
 } from './lib.ts';
-import { bindAgent, bindingIsCurrent, boundBatch, readBatchState, readRun, rootForms, withoutRoot, type RunState } from '../../src/run/ledger.ts';
+import { bindAgent, bindingIsCurrent, boundBatch, claimFile, nowUtc, readBatchState, readRun, rootForms, withoutRoot, writeJsonAtomic, type RunState } from '../../src/run/ledger.ts';
 
 const RULE =
   'CLAUDE.md, "Reading messages": nothing else opens corpus/... paths directly: not the pipeline, not the dashboard, ' +
@@ -283,6 +285,28 @@ function claimRun(input: HookInput, run: RunState, root: string): void {
   }
 }
 
+// ---- The run claim ----
+
+// The command that starts a run, as the /observe skill types it.
+const RUN_START = /^\s*node obs\.mjs run start\b/;
+
+// A session about to run `node obs.mjs run start` claims the run before the command runs:
+// out/ledger/claim.json {session_id, utc}, which run start turns into the run's orchestrator
+// session (so the Stop hook steers that session, from the run's first turn). Outside a run and
+// inside one alike; never in the way of the call: a failure is reported and the call goes ahead.
+function claimRunStart(input: HookInput, root: string): void {
+  const toolInput = input.tool_input;
+  const command = isRecord(toolInput) ? str(toolInput.command) : null;
+  const session = str(input.session_id);
+  if (str(input.tool_name) !== 'Bash' || command === null || !RUN_START.test(command) || session === null || session === '') return;
+  try {
+    writeJsonAtomic(claimFile(root), { session_id: session, utc: nowUtc() });
+    log(root, { event: 'guard_claim', via: 'run_start' });
+  } catch (err) {
+    reportFailure('guard-corpus', err, root);
+  }
+}
+
 // ---- Entry ----
 
 function check(raw: string): void {
@@ -306,7 +330,9 @@ function check(raw: string): void {
   if (scope === null && input === null && new RegExp(`"agent_type"\\s*:\\s*"(?:${PIPELINE_AGENTS.join('|')})"`).test(raw)) {
     scope = 'a pipeline subagent';
   }
-  if (scope === null || !checkRun(scope, input, root)) return;
+  if (scope !== null && !checkRun(scope, input, root)) return;
+  if (input !== null) claimRunStart(input, root);
+  if (scope === null) return;
   const tool = input === null ? null : str(input.tool_name);
   if (run?.active === true && input !== null && tool !== null && SPAWN_TOOLS.has(tool)) claimRun(input, run, root);
 }

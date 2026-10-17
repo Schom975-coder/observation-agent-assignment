@@ -1,6 +1,7 @@
 // Rules from CLAUDE.md that a grep can enforce. They fail the build instead of relying on review.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { spawnSync } from 'node:child_process';
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -66,7 +67,22 @@ test('pipeline code never reads the browsing copy corpus-view/', () => {
   assert.deepEqual(violations(pipeline, /corpus-view/), []);
 });
 
+const LOCAL_PATH = /[A-Za-z]:[\\/]Users[\\/]|\/Users\/[A-Za-z]|\/home\/[A-Za-z]|AppData[\\/]/;
+
 test('public repo: no local file paths in anything we commit', () => {
   const ours = filesIn(TEXT, 'src', 'tests', 'config', '.claude', '.github', 'CLAUDE.md', 'package.json', 'obs.mjs');
-  assert.deepEqual(violations(ours, /[A-Za-z]:[\\/]Users[\\/]|\/Users\/[A-Za-z]|\/home\/[A-Za-z]|AppData[\\/]/), []);
+  assert.deepEqual(violations(ours, LOCAL_PATH), []);
+});
+
+// The run's outputs are committed too (run logs, ledger files, extractions): every text file Git
+// tracks under out/. Skipped outside a Git checkout, where there is no list of committed files.
+test('public repo: no local file paths in the committed out/ files', (t) => {
+  const r = spawnSync('git', ['ls-files', '-z', '--', 'out'], { cwd: root, encoding: 'utf8' });
+  if (r.status !== 0) {
+    t.skip('not a Git checkout');
+    return;
+  }
+  const committed = r.stdout.split('\0').filter((f) => f !== '' && /\.(json|jsonl|md|txt)$/.test(f) && existsSync(join(root, f)));
+  assert.ok(committed.length > 0 || !existsSync(join(root, 'out')), 'the committed out/ files were listed');
+  assert.deepEqual(violations(committed, LOCAL_PATH), []);
 });

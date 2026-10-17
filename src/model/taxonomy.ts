@@ -87,7 +87,9 @@ export const STEERING_PATTERNS: ReadonlyArray<{ name: string; pattern: RegExp }>
   // "pipeline": in this company "Pipeline: El Paso" is an ordinary label.
   {
     name: 'addressed_label',
-    pattern: /(?:^|[.;!?]\s+|\n\s*)(?:note\s+to\s+)?(?:the\s+)?(?:extractors?|reviewers?|reviewing\s+process|system|assistant|ai|llm|model|analysis)\s*:/i,
+    // After a line break only spaces and tabs may follow, so a run of line breaks is tried once per
+    // break, not rescanned from each one (linear on hostile text).
+    pattern: /(?:^|[.;!?]\s+|\n[^\S\n]*)(?:note\s+to\s+)?(?:the\s+)?(?:extractors?|reviewers?|reviewing\s+process|system|assistant|ai|llm|model|analysis)\s*:/i,
   },
   { name: 'reviewing_process', pattern: /\breviewing\s+(?:process|system|agent|model)\b/i },
   { name: 'addressed_modal', pattern: /\b(?:extractors?|reviewers?|the\s+analysis|ai|assistants?|llms?)\s+(?:shall|must|should|will|are\s+to|is\s+to|need\s+to)\b/i },
@@ -97,8 +99,14 @@ export const STEERING_PATTERNS: ReadonlyArray<{ name: string; pattern: RegExp }>
   { name: 'suppress_citation', pattern: /\b(?:do\s+not|don't|never|shall\s+not|must\s+not|should\s+not)\s+(?:cite|quote|count|report|mention|record)\b/i },
   { name: 'effort_claim', pattern: /\bzero\s+(?:staff\s+)?(?:hours?|minutes?|time|cost|effort|dollars?)\b|\bfully\s+automated\b/i },
 ];
-// A number tied to time, money or a share: the pipeline counts and prices the work itself.
-export const EFFORT_NUMBER = /\$\s*\d|\d\s*%|\d[\d,.]*\s*-?\s*(?:percent|per\s*cent|pct|dollars?|usd|cents?|hours?|hrs?|hr|h|minutes?|mins?|min|fte)\b/i;
+// A number tied to time, money or a share: the pipeline counts and prices the work itself. The
+// number part is tried only where a run of digits, commas and points starts (its first digit after
+// any leading separators), so a long run of digits or "1,1,1,..." is scanned once, not once per
+// digit: linear on hostile text.
+export const EFFORT_NUMBER = /\$\s*\d|\d\s*%|(?<![\d,.])[,.]*\d[\d,.]*\s*(?:-\s*)?(?:percent|per\s*cent|pct|dollars?|usd|cents?|hours?|hrs?|hr|h|minutes?|mins?|min|fte)\b/i;
+// Free text is checked for steering and effort numbers on at most this many characters: every field
+// it applies to is far shorter, and a longer one is already reported as too long.
+export const PROSE_SCAN_MAX_CHARS = 4_000;
 
 // Names of the patterns `text` matches: the corpus injection scanner's, then the steering ones.
 export function steeringMarkers(text: string): string[] {
@@ -168,6 +176,99 @@ const numericHint = (v: unknown): string => (typeof v === 'number' ? '; the sche
 export const taxonomyBytes = (processes: TaxonomyProcess[]): number =>
   Buffer.byteLength(`${JSON.stringify(canonicalTaxonomy(processes, '0'.repeat(64), '0'.repeat(64)), null, 2)}\n`, 'utf8');
 
+// ---- Text checks shared by every process record: the taxonomist's, and a process the merger
+// promotes (src/model/merge.ts). `at` names the record in each problem; problems go to `add`. ----
+
+// Free text describes the work and addresses nobody: no instruction to the pipeline or its readers
+// and, unless `numbers` allows it, no number of hours, minutes, dollars or percent.
+export function checkProse(at: string, where: string, text: string, add: (p: string) => void, numbers = false): void {
+  const s = text.length > PROSE_SCAN_MAX_CHARS ? text.slice(0, PROSE_SCAN_MAX_CHARS) : text;
+  const markers = steeringMarkers(s);
+  if (markers.length > 0) {
+    add(
+      `${at}.${where} reads as an instruction to the pipeline or its readers (${markers.join(', ')}): ` +
+        'describe the work and how to recognise its messages; address no reader and say nothing about what is cited, tagged or reported',
+    );
+  }
+  const number = numbers ? null : EFFORT_NUMBER.exec(s);
+  if (number !== null) {
+    add(`${at}.${where} has a number of hours, minutes, dollars or percent (${shown(number[0].trim())}): the pipeline counts and prices the work itself; leave such numbers out`);
+  }
+}
+
+// A string field of min-max characters (trimmed for the minimum); null when absent or not a string.
+export function textField(at: string, field: string, v: unknown, min: number, max: number, add: (p: string) => void): string | null {
+  if (v === undefined) return null;
+  if (typeof v !== 'string') {
+    add(`schema: ${at}.${field} must be a string, got ${kindOf(v)}${numericHint(v)}`);
+    return null;
+  }
+  const n = chars(v.trim());
+  if (n < min || chars(v) > max) add(`${at}.${field} must be ${min}-${max} characters, got ${chars(v)}`);
+  return v;
+}
+
+// An array of non-empty strings, minItems-maxItems long, each at most maxChars; the strings found.
+export function textList(at: string, field: string, v: unknown, minItems: number, maxItems: number, maxChars: number | null, add: (p: string) => void): string[] | null {
+  if (v === undefined) return null;
+  if (!Array.isArray(v)) {
+    add(`schema: ${at}.${field} must be an array of strings, got ${kindOf(v)}`);
+    return null;
+  }
+  if (v.length < minItems || v.length > maxItems) add(`${at}.${field} must have ${minItems === 0 ? `at most ${maxItems}` : `${minItems}-${maxItems}`} entries, got ${v.length}`);
+  const out: string[] = [];
+  v.forEach((s, j) => {
+    if (typeof s !== 'string') {
+      add(`schema: ${at}.${field}[${j}] must be a string, got ${kindOf(s)}${numericHint(s)}`);
+      return;
+    }
+    if (s.trim() === '') add(`${at}.${field}[${j}] is empty`);
+    else if (maxChars !== null && chars(s) > maxChars) add(`${at}.${field}[${j}] must be at most ${maxChars} characters, got ${chars(s)}`);
+    out.push(s);
+  });
+  return out;
+}
+
+// A process key: a slug of KEY_MIN_CHARS-KEY_MAX_CHARS, no catch-all or reserved word, its words no
+// instruction. The key, or null when absent or not a string. Uniqueness is the caller's.
+export function checkKey(at: string, v: unknown, add: (p: string) => void): string | null {
+  const key = textField(at, 'key', v, KEY_MIN_CHARS, KEY_MAX_CHARS, add);
+  if (key === null) return null;
+  if (!KEY_PATTERN.test(key)) {
+    add(`${at}.key must be a lowercase slug: letters, digits and single hyphens, starting with a letter (e.g. "meter-volume-correction"), got ${shown(key)}`);
+  }
+  const word = catchAllWord(key);
+  if (word !== null) {
+    add(`${at}.key ${shown(key)} is a catch-all ("${word}"), not a process: name the recurring work itself (messages that fit no process get a role or a new: key from the extractor)`);
+  }
+  checkProse(at, 'key', key.replaceAll('-', ' '), add);
+  return key;
+}
+
+// The name, definition and include/exclude notes of a process record: lengths, and no instruction
+// or effort number in any of them. `onName` runs right after the name's own checks (the caller's
+// uniqueness check, so problems keep their order). Returns the fields that are strings.
+export function checkProcessText(
+  at: string,
+  fields: { name?: unknown; definition?: unknown; include?: unknown; exclude?: unknown },
+  add: (p: string) => void,
+  onName?: (name: string) => void,
+): { name: string | null; definition: string | null; include: string[] | null; exclude: string[] | null } {
+  const name = textField(at, 'name', fields.name, NAME_MIN_CHARS, NAME_MAX_CHARS, add);
+  if (name !== null) {
+    checkProse(at, 'name', name, add);
+    onName?.(name);
+  }
+  const definition = textField(at, 'definition', fields.definition, DEFINITION_MIN_CHARS, DEFINITION_MAX_CHARS, add);
+  if (definition !== null) checkProse(at, 'definition', definition, add);
+  const notes = { include: null as string[] | null, exclude: null as string[] | null };
+  for (const field of ['include', 'exclude'] as const) {
+    notes[field] = textList(at, field, fields[field], 0, NOTES_MAX, NOTE_MAX_CHARS, add);
+    for (const [j, note] of (notes[field] ?? []).entries()) checkProse(at, `${field}[${j}]`, note, add);
+  }
+  return { name, definition, ...notes };
+}
+
 // The proposal typed, or null with every problem found, each naming where it is and what to do.
 // `subjects`: subjectStats() of threads.json.
 export function checkTaxonomyProposal(value: unknown, subjects: ReadonlyMap<string, SubjectStats>): { processes: TaxonomyProcess[] | null; problems: string[] } {
@@ -206,79 +307,20 @@ export function checkTaxonomyProposal(value: unknown, subjects: ReadonlyMap<stri
     }
     for (const k of PROCESS_KEYS) if (!Object.hasOwn(p, k)) add(`schema: ${at} is missing key "${k}"`);
 
-    // Free text describes the work and addresses nobody.
-    const prose = (where: string, s: string): void => {
-      const markers = steeringMarkers(s);
-      if (markers.length > 0) {
-        add(
-          `${at}.${where} reads as an instruction to the pipeline or its readers (${markers.join(', ')}): ` +
-            'describe the work and how to recognise its messages; address no reader and say nothing about what is cited, tagged or reported',
-        );
-      }
-      const number = EFFORT_NUMBER.exec(s);
-      if (number !== null) {
-        add(`${at}.${where} has a number of hours, minutes, dollars or percent (${shown(number[0].trim())}): the pipeline counts and prices the work itself; leave such numbers out`);
-      }
-    };
-    const text = (field: string, v: unknown, min: number, max: number): string | null => {
-      if (v === undefined) return null;
-      if (typeof v !== 'string') {
-        add(`schema: ${at}.${field} must be a string, got ${kindOf(v)}${numericHint(v)}`);
-        return null;
-      }
-      const n = chars(v.trim());
-      if (n < min || chars(v) > max) add(`${at}.${field} must be ${min}-${max} characters, got ${chars(v)}`);
-      return v;
-    };
-    const texts = (field: string, v: unknown, minItems: number, maxItems: number, maxChars: number | null): string[] | null => {
-      if (v === undefined) return null;
-      if (!Array.isArray(v)) {
-        add(`schema: ${at}.${field} must be an array of strings, got ${kindOf(v)}`);
-        return null;
-      }
-      if (v.length < minItems || v.length > maxItems) add(`${at}.${field} must have ${minItems === 0 ? `at most ${maxItems}` : `${minItems}-${maxItems}`} entries, got ${v.length}`);
-      const out: string[] = [];
-      v.forEach((s, j) => {
-        if (typeof s !== 'string') {
-          add(`schema: ${at}.${field}[${j}] must be a string, got ${kindOf(s)}${numericHint(s)}`);
-          return;
-        }
-        if (s.trim() === '') add(`${at}.${field}[${j}] is empty`);
-        else if (maxChars !== null && chars(s) > maxChars) add(`${at}.${field}[${j}] must be at most ${maxChars} characters, got ${chars(s)}`);
-        out.push(s);
-      });
-      return out;
-    };
-
-    const key = text('key', p.key, KEY_MIN_CHARS, KEY_MAX_CHARS);
+    const key = checkKey(at, p.key, add);
     if (key !== null) {
-      if (!KEY_PATTERN.test(key)) {
-        add(`${at}.key must be a lowercase slug: letters, digits and single hyphens, starting with a letter (e.g. "meter-volume-correction"), got ${shown(key)}`);
-      }
-      const word = catchAllWord(key);
-      if (word !== null) {
-        add(`${at}.key ${shown(key)} is a catch-all ("${word}"), not a process: name the recurring work itself (messages that fit no process get a role or a new: key from the extractor)`);
-      }
-      prose('key', key.replaceAll('-', ' '));
       const first = keys.get(key);
       if (first !== undefined) add(`${at}.key ${shown(key)} repeats processes[${first}]: keys must be unique`);
       else keys.set(key, i);
     }
-    const name = text('name', p.name, NAME_MIN_CHARS, NAME_MAX_CHARS);
-    if (name !== null) {
-      prose('name', name);
+    checkProcessText(at, p, add, (name) => {
       const folded = name.trim().toLowerCase();
       const first = names.get(folded);
       if (first !== undefined) add(`${at}.name ${shown(name)} repeats processes[${first}]: names must be unique`);
       else names.set(folded, i);
-    }
-    const definition = text('definition', p.definition, DEFINITION_MIN_CHARS, DEFINITION_MAX_CHARS);
-    if (definition !== null) prose('definition', definition);
-    for (const field of ['include', 'exclude'] as const) {
-      for (const [j, note] of (texts(field, p[field], 0, NOTES_MAX, NOTE_MAX_CHARS) ?? []).entries()) prose(`${field}[${j}]`, note);
-    }
+    });
 
-    const examples = texts('example_subjects', p.example_subjects, EXAMPLE_SUBJECTS_MIN, EXAMPLE_SUBJECTS_MAX, null);
+    const examples = textList(at, 'example_subjects', p.example_subjects, EXAMPLE_SUBJECTS_MIN, EXAMPLE_SUBJECTS_MAX, null, add);
     let occurrences = 0;
     for (const [j, s] of (examples ?? []).entries()) {
       if (s.trim() === '') continue; // reported above

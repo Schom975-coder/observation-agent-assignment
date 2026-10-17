@@ -6,16 +6,29 @@
 // dispatch, one is exhausted after four, a session dies with an extractor in flight and the next
 // `run start` stamps it, and a final session repeats nothing. `verify` passes on the result and
 // fails once a validated file is edited.
+//
+// Then the M5 stages on a second project (30 messages, six taxonomy keys and three proposed ones):
+// the same loop through merge (one fix round), rollup, synthesis (driven by `refill`, as the
+// skill does: one group fixed on round 2, one exhausted, a session dying mid-synthesis and the
+// next resuming without repeating anything) and score, with `status --json` walking every stage
+// and `verify` covering batches and synthesis groups.
 import { after, test } from 'node:test';
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
 import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { renderMessage } from '../src/batch/build.ts';
 import { checkExtraction } from '../src/model/validate-extraction.ts';
 import { parseMessage } from '../src/parse/message.ts';
-import { dispatchCommand, runCommand, statusCommand, validateCommand, verifyCommand, type StatusReport } from '../src/run/commands.ts';
+import { dispatchCommand, refillCommand, runCommand, statusCommand, validateCommand, verifyCommand, type RefillReport, type StatusReport } from '../src/run/commands.ts';
+import { canonicalTaxonomy } from '../src/model/taxonomy.ts';
+import { buildPeople } from '../src/normalize/people.ts';
+import { buildThreads } from '../src/normalize/threads.ts';
+import { mergeCommand } from '../src/run/merge.ts';
+import { rollupCommand } from '../src/run/rollup.ts';
+import { scoreCommand } from '../src/run/score.ts';
 import {
   MAX_DISPATCHES,
   bindAgent,
@@ -30,7 +43,7 @@ import {
 } from '../src/run/ledger.ts';
 import { gitBlobSha, sha256 } from '../src/util/hash.ts';
 import { normalizeNewlines } from '../src/util/text.ts';
-import type { BatchEntry, Extraction } from '../src/types.ts';
+import type { BatchEntry, Extraction, Opportunities, SynthesisGroup, SynthSidecar } from '../src/types.ts';
 
 const tmp = mkdtempSync(join(tmpdir(), 'obs-loop-'));
 after(() => rmSync(tmp, { recursive: true, force: true }));
@@ -306,4 +319,255 @@ test('verify with nothing done says so, and refuses arguments', () => {
   writeFileSync(join(root, 'out', 'batches', 'index.json'), '[]');
   assert.deepEqual(capture(() => verifyCommand(root, [])), { code: 0, out: ['verify: nothing to verify: no batch is done.'], err: [] });
   assert.deepEqual(capture(() => verifyCommand(root, ['--all'])), { code: 1, out: [], err: ['verify: unexpected argument "--all". Usage: node obs.mjs verify'] });
+});
+
+// ---- M5: merge, rollup, synthesis and score ----
+
+const KEYS = ['alpha-work', 'bravo-work', 'charlie-work', 'delta-work', 'echo-work', 'foxtrot-work'];
+const SENDERS = ['Ann Lee <ann.lee@enron.com>', 'Bob Ray <bob.ray@enron.com>'];
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+type Planned = { n: number; subject: string; month: number; from: string; tags: string[] };
+
+// Four rounds of each taxonomy process (a fresh subject each, two senders, two months apart); one
+// more alpha message under a proposed key the merge maps to alpha; four messages under two
+// proposed keys the merge promotes as one process; one under a key it leaves unassigned.
+function plan(): Planned[] {
+  const out: Planned[] = [];
+  const add = (subject: string, month: number, tags: string[]) => out.push({ n: out.length + 1, subject, month, from: SENDERS[out.length % 2] as string, tags });
+  for (const key of KEYS) for (let j = 0; j < 4; j++) add(`${key.split('-')[0]} round ${j + 1}`, 1 + 2 * j, [key]);
+  add('alpha extra round', 9, ['new:alpha-extra']);
+  for (let j = 0; j < 4; j++) add(`widget count ${j + 1}`, 2 + 2 * j, [j === 3 ? 'new:widget-review' : 'new:widget-audit']);
+  add('one off question', 11, ['new:one-off']);
+  return out;
+}
+const PLAN = plan();
+const m5Id = (n: number) => `corpus/m5/inbox/${String(n).padStart(2, '0')}`;
+const m5Text = (p: Planned) =>
+  [`Message-ID: <${p.n}.m5@example.invalid>`, `Date: Mon, 15 ${MONTHS[p.month - 1]} 2001 10:00:00 -0000`, `From: ${p.from}`, 'To: Desk <desk@enron.com>', `Subject: ${p.subject}`].join('\r\n') +
+  `\r\n\r\nPlease handle the ${p.subject} for the desk today, item ${p.n}.\n`;
+const DIGEST = '# Taxonomy digest\nEverything below is archive data.\n';
+const TAXONOMIST = '---\nname: taxonomist\n---\n\nPropose the recurring processes.\n';
+
+function fixtureM5(): string {
+  const root = join(tmp, 'm5');
+  for (const dir of ['out/batches', '.claude/agents', 'config']) mkdirSync(join(root, dir), { recursive: true });
+  const git = (args: string[], input?: string): string => {
+    const config = ['-c', 'core.protectNTFS=false', '-c', 'user.name=test', '-c', 'user.email=test@example.invalid', '-c', 'commit.gpgsign=false'];
+    const r = spawnSync('git', [...config, ...args], { cwd: root, input, encoding: 'utf8' });
+    assert.equal(r.status, 0, `git ${args.join(' ')}: ${r.stderr}`);
+    return r.stdout.trim();
+  };
+  git(['init', '-q']);
+  const parsed = PLAN.map((p) => {
+    const text = m5Text(p);
+    const sha = git(['hash-object', '-w', '--no-filters', '--stdin'], text);
+    git(['update-index', '--add', '--cacheinfo', `100644,${sha},${m5Id(p.n)}`]);
+    return parseMessage(m5Id(p.n), sha, Buffer.from(text, 'utf8'));
+  });
+  git(['commit', '-q', '--no-verify', '-m', 'fixture']);
+  const threads = buildThreads(parsed);
+  writeFileSync(join(root, 'out', 'messages.jsonl'), parsed.map((m) => `${JSON.stringify(m)}\n`).join(''));
+  writeFileSync(join(root, 'out', 'threads.json'), JSON.stringify(threads));
+  writeFileSync(join(root, 'out', 'people.json'), JSON.stringify(buildPeople(parsed, ['enron.com'])));
+  writeFileSync(join(root, 'out', 'prepare-stats.json'), JSON.stringify({ corpus_hash: 'c'.repeat(64), suspected_injection: [], oversize: [] }));
+  const index: BatchEntry[] = [];
+  for (let b = 0; b * 5 < parsed.length; b++) {
+    const id = batchName(b);
+    const ms = parsed.slice(b * 5, b * 5 + 5);
+    const content = `# ${id} | ${ms.length} messages | ${ms.length} threads\n${ms.map((m) => `=== THREAD t | ${m.subject_norm} | 1 messages ===\n${renderMessage(m, m5Text(PLAN[Number(m.id.slice(-2)) - 1] as Planned))}`).join('')}`;
+    writeFileSync(join(root, 'out', 'batches', `${id}.md`), content);
+    index.push({ batch_id: id, file: `out/batches/${id}.md`, message_ids: ms.map((m) => m.id), thread_ids: [], bytes: Buffer.byteLength(content), lines: content.split('\n').length - 1, est_tokens: 100, content_sha: sha256(content) });
+  }
+  writeFileSync(join(root, 'out', 'batches', 'index.json'), JSON.stringify(index));
+  writeFileSync(join(root, 'out', 'taxonomy-digest.md'), DIGEST);
+  for (const [name, text] of [['extractor', 'Classify every message.'], ['taxonomist', null], ['merger', 'Merge the proposed keys.'], ['synthesizer', 'Describe and estimate.']] as const) {
+    writeFileSync(join(root, '.claude', 'agents', `${name}.md`), text === null ? TAXONOMIST : `---\nname: ${name}\n---\n\n${text}\n`);
+  }
+  for (const f of ['effort-rates.json', 'scoring.json']) writeFileSync(join(root, 'config', f), readFileSync(join(dirname(fileURLToPath(import.meta.url)), '..', 'config', f)));
+  return root;
+}
+
+function acceptTaxonomy(root: string): void {
+  const processes = KEYS.map((key) => ({ key, name: `${key.split('-')[0]} work`, definition: `The recurring ${key.split('-')[0]} work of the desk.`, include: [], exclude: [], example_subjects: [`${key.split('-')[0]} round 1`] }));
+  const taxonomy = canonicalTaxonomy(processes, sha256(normalizeNewlines(DIGEST)), sha256(normalizeNewlines(TAXONOMIST)));
+  writeFileSync(join(root, 'out', 'taxonomy.json'), `${JSON.stringify(taxonomy, null, 2)}\n`);
+}
+
+// Extracts a batch as planned: each message's tags, its "Please handle" line as the quote, and a
+// declaration for every proposed key the batch uses.
+function plannedExtractor(prompt: string): void {
+  const batchId = /^Extract batch (batch-\d{3})/.exec(prompt)?.[1] as string;
+  const batch = readFileSync(field(prompt, 'Batch file') as string, 'utf8');
+  const ids = [...batch.matchAll(/^--- MESSAGE (.+) ---$/gm)].map((m) => m[1] as string);
+  const planned = ids.map((id) => PLAN[Number(id.slice(-2)) - 1] as Planned);
+  const used = [...new Set(planned.flatMap((p) => p.tags.filter((t) => t.startsWith('new:'))))];
+  const x: Extraction = {
+    batch_id: batchId,
+    messages: planned.map((p) => ({ id: m5Id(p.n), processes: p.tags, role: 'request', stall: null, ownership_claim: null })),
+    evidence: planned.flatMap((p) => p.tags.map((t) => ({ process: t, message_id: m5Id(p.n), field: 'body' as const, quote: `Please handle the ${p.subject} for the desk today, item ${p.n}.`, note: 'The request.' }))),
+    new_processes: used.map((key) => ({ key, name: key.slice(4).replace(/-/g, ' '), definition: `Proposed: ${key.slice(4)} handled by the desk.`, example_ids: [] })),
+    batch_notes: '',
+  };
+  const output = field(prompt, 'Output file') as string;
+  mkdirSync(dirname(output), { recursive: true }); // as the Write tool does
+  writeFileSync(output, JSON.stringify(x, null, 2));
+}
+
+// The synthesizer as a script: good, bad (a mid of 900: E1), or fix (the previous output with the
+// minutes put back). It reads the sidecar to choose ids from three occurrences and two senders;
+// the real agent reads the same facts from the group input's lines.
+type SynthBehaviour = 'good' | 'bad' | 'fix';
+function scriptedSynthesizer(root: string, prompt: string, behaviour: SynthBehaviour): void {
+  const groupId = /^Synthesize group (synth-\d{3})/.exec(prompt)?.[1] as string;
+  const output = field(prompt, 'Output file') as string;
+  mkdirSync(dirname(output), { recursive: true });
+  const previous = field(prompt, 'Previous output');
+  if (previous !== null && behaviour === 'fix') {
+    const g = JSON.parse(readFileSync(previous, 'utf8')) as SynthesisGroup;
+    for (const p of g.processes) if (p.work_estimate !== null) p.work_estimate.minutes_per_occurrence = { low: 20, mid: 30, high: 45 };
+    writeFileSync(output, JSON.stringify(g));
+    return;
+  }
+  const sidecar = JSON.parse(readFileSync(join(root, 'out', 'synthesis', 'input', `${groupId}.json`), 'utf8')) as SynthSidecar;
+  const g: SynthesisGroup = {
+    group_id: groupId,
+    processes: sidecar.processes.map((p) => {
+      const seen = new Set<string>();
+      const ids = p.cited.filter((c) => c.kind === 'evidence' && !seen.has(c.occurrence_id) && seen.add(c.occurrence_id)).slice(0, 3).map((c) => c.id);
+      return {
+        key: p.key,
+        description: `The desk handles the ${p.key.split('-')[0]} requests that come round every other month and confirms each one.`,
+        steps: ['Read the request', 'Handle it', 'Confirm back'],
+        stalls: [],
+        contradictions: [],
+        automation: { approach: 'A request tracker with a confirmation template', artifact_type: 'checklist' as const, rationale: 'Each round repeats the same steps.' },
+        work_estimate:
+          p.occurrences < 3
+            ? null
+            : { minutes_per_occurrence: behaviour === 'bad' ? { low: 20, mid: 900, high: 900 } : { low: 20, mid: 30, high: 45 }, automatable_pct: 50, basis: 'observed' as const, rationale: 'Read, handle and confirm: about half an hour a round.', evidence_ids: ids },
+      };
+    }),
+  };
+  writeFileSync(output, JSON.stringify(g));
+}
+
+const refill = (root: string, ids: string[]): RefillReport => {
+  const r = capture(() => refillCommand(root, [...ids, '--json']));
+  assert.equal(r.code, 0, r.err.join('\n'));
+  return JSON.parse(r.out[0] as string) as RefillReport;
+};
+const stageOf = (root: string): string => status(root).stage;
+
+test('the loop continues through merge, rollup, synthesis and score: a merge fix round, a group fixed on round 2, one exhausted, a resumed session; verify covers both kinds', () => {
+  const root = fixtureM5();
+  const saved = process.env.OBS_IN_FLIGHT;
+  delete process.env.OBS_IN_FLIGHT;
+  try {
+    assert.equal(capture(() => runCommand(root, ['start'])).code, 0);
+    const stages = [stageOf(root)];
+    acceptTaxonomy(root);
+    stages.push(stageOf(root));
+
+    // Extraction, one refill per completion wave.
+    let wave = refill(root, []);
+    while (wave.jobs.length > 0) {
+      for (const j of wave.jobs) plannedExtractor(j.prompt);
+      wave = refill(root, wave.jobs.map((j) => j.id));
+    }
+    assert.deepEqual([wave.stage, wave.extraction], ['merge', 'complete']);
+    stages.push(stageOf(root));
+
+    // The merge: a bad target first (one fix round), then the table.
+    const prompt = capture(() => mergeCommand(root, [])).out[0] as string;
+    assert.match(prompt, /^Merge the proposed process keys into the taxonomy\.\n/);
+    const good = {
+      merges: [{ from: 'new:alpha-extra', to: 'alpha-work' }, { from: 'new:one-off', to: 'unassigned' }],
+      promoted: [{ key: 'widget-checks', name: 'Widget checks', definition: 'Checking the widget counts with the desk each round and fixing them.', include: [], exclude: [], aliases: ['new:widget-audit', 'new:widget-review'] }],
+    };
+    const proposed = field(prompt, 'Output file') as string;
+    writeFileSync(proposed, JSON.stringify({ ...good, merges: [{ from: 'new:alpha-extra', to: 'nominations' }, good.merges[1]] }));
+    assert.match(capture(() => mergeCommand(root, ['accept'])).out[0] ?? '', /not accepted: 1 problem/);
+    assert.match(capture(() => mergeCommand(root, [])).out[0] ?? '', /^Fix the process-key merge proposal\.\n/);
+    writeFileSync(proposed, JSON.stringify(good));
+    assert.match(capture(() => mergeCommand(root, ['accept'])).out[0] ?? '', /^merge: accepted on attempt 2: 4 proposed keys: 1 mapped, 2 in 1 promoted process, 1 unassigned, 0 demoted/);
+    stages.push(stageOf(root));
+
+    const rolled = capture(() => rollupCommand(root, []));
+    assert.deepEqual(rolled.out, ['rollup: 7 processes (1 promoted), 29 counted messages in 29 occurrences; 1 tagged message unassigned; 3 synthesis groups.']);
+    stages.push(stageOf(root));
+
+    // Synthesis, session 1: synth-000 wrong then fixed, synth-001 always wrong, synth-002 right
+    // but its session dies before anything checks it.
+    const behaviour = (id: string, dispatch: number): SynthBehaviour => (id === 'synth-000' ? (dispatch === 1 ? 'bad' : 'fix') : id === 'synth-001' ? 'bad' : 'good');
+    const dispatched: string[] = [];
+    const first = refill(root, []);
+    assert.deepEqual(first.jobs.map((j) => [j.id, j.description]), [['synth-000', 'Synthesize synth-000'], ['synth-001', 'Synthesize synth-001'], ['synth-002', 'Synthesize synth-002']]);
+    for (const j of first.jobs) {
+      dispatched.push(j.id);
+      scriptedSynthesizer(root, j.prompt, behaviour(j.id, readBatchState(root, j.id).dispatches));
+    }
+    const second = refill(root, ['synth-000', 'synth-001']);
+    assert.deepEqual(second.validated.map((v) => [v.id, v.status]), [['synth-000', 'failed'], ['synth-001', 'failed']]);
+    assert.deepEqual(second.jobs.map((j) => j.prompt.split('\n')[0]), ['Synthesize group synth-000 (fix round 1 of 3).', 'Synthesize group synth-001 (fix round 1 of 3).']);
+    for (const j of second.jobs) {
+      dispatched.push(j.id);
+      scriptedSynthesizer(root, j.prompt, behaviour(j.id, readBatchState(root, j.id).dispatches));
+    }
+    // The session dies here, with synth-000, synth-001 and synth-002 left running.
+    assert.deepEqual(status(root).synthesis.running, ['synth-000', 'synth-001', 'synth-002']);
+
+    // Session 2: run start stamps what was left; nothing done is redone; synth-001 uses up its dispatches.
+    const resumed = capture(() => runCommand(root, ['start']));
+    assert.equal(resumed.out[1], 'run: 3 synthesis groups were left running by an earlier session: synth-000 done, synth-001 failed, synth-002 done.');
+    let more = refill(root, []);
+    while (more.jobs.length > 0) {
+      for (const j of more.jobs) {
+        dispatched.push(j.id);
+        scriptedSynthesizer(root, j.prompt, behaviour(j.id, readBatchState(root, j.id).dispatches));
+      }
+      more = refill(root, more.jobs.map((j) => j.id));
+    }
+    assert.deepEqual(dispatched, ['synth-000', 'synth-001', 'synth-002', 'synth-000', 'synth-001', 'synth-001', 'synth-001']);
+    assert.deepEqual([more.stage, more.exhausted, readBatchState(root, 'synth-001').dispatches], ['score', ['synth-001'], MAX_DISPATCHES]);
+    stages.push(stageOf(root));
+
+    // Score: the exhausted group's processes are priced on their counted part and flagged.
+    const scored = capture(() => scoreCommand(root, []));
+    assert.equal(scored.code, 0, scored.err.join('\n'));
+    assert.match(scored.out[0] ?? '', /; 7 opportunities \(0 A, 0 B, 7 C\); 3 estimates missing; wrote out\/opportunities\.json\.$/);
+    const opportunities = JSON.parse(readFileSync(join(root, 'out', 'opportunities.json'), 'utf8')) as Opportunities;
+    const byKey = new Map(opportunities.opportunities.map((o) => [o.key, o]));
+    for (const key of ['delta-work', 'echo-work', 'foxtrot-work']) {
+      assert.deepEqual([byKey.get(key)?.flags, byKey.get(key)?.estimated], [['synthesis_missing', 'estimate_missing'], null], key);
+      assert.ok((byKey.get(key)?.counted.email_x100.today ?? 0) > 0, `${key} keeps its counted part`);
+    }
+    assert.deepEqual([byKey.get('alpha-work')?.estimated?.minutes_per_occurrence.mid, byKey.get('widget-checks')?.origin, byKey.get('widget-checks')?.estimated?.source], [30, 'promoted', 'model']);
+    assert.equal(byKey.get('alpha-work')?.counted.occurrences, 5, 'the mapped key counts under alpha');
+    stages.push(stageOf(root));
+    assert.deepEqual(stages, ['taxonomy', 'extraction', 'merge', 'rollup', 'synthesis', 'score', 'done']);
+    assert.equal(capture(() => runCommand(root, ['end'])).code, 0);
+
+    // Session 3: nothing changed, so nothing is dispatched and no ledger file changes.
+    const ledger = () => readdirSync(join(root, 'out', 'ledger')).filter((f) => /^(?:batch|synth)-/.test(f)).map((f) => readFileSync(join(root, 'out', 'ledger', f), 'utf8'));
+    const before = ledger();
+    capture(() => runCommand(root, ['start']));
+    const idle = refill(root, []);
+    assert.deepEqual([idle.jobs, idle.stage], [[], 'done']);
+    assert.deepEqual(ledger(), before);
+
+    // verify re-checks both kinds.
+    assert.deepEqual(capture(() => verifyCommand(root, [])).out, [
+      'verify: 6 done batches and 2 done synthesis groups re-checked against the corpus and their inputs; every validated file matches (1 synthesis group not done, not verified).',
+    ]);
+    const file = join(root, 'out', 'synthesis', 'validated', 'synth-002.json');
+    const good2 = readFileSync(file, 'utf8');
+    writeFileSync(file, good2.replace('"Read the request"', '"Read it"'));
+    const edited = capture(() => verifyCommand(root, []));
+    assert.equal(edited.code, 1);
+    assert.equal(edited.out[1], '  - synth-002: out/synthesis/validated/synth-002.json differs from what out/synthesis/raw/synth-002.json validates to now');
+    writeFileSync(file, good2);
+  } finally {
+    if (saved === undefined) delete process.env.OBS_IN_FLIGHT;
+    else process.env.OBS_IN_FLIGHT = saved;
+  }
 });

@@ -6,7 +6,7 @@
 // Either way a message's ID is its exact Git path, e.g. "corpus/farmer-d/logistics/1.".
 import { spawnSync } from 'node:child_process';
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
-import { join, resolve } from 'node:path';
+import { join } from 'node:path';
 import { gitBlobSha } from '../util/hash.ts';
 
 export type CorpusEntry = { id: string; blob_sha: string; size: number };
@@ -26,12 +26,12 @@ function git(root: string, args: string[], input?: string) {
   return spawnSync('git', args, { cwd: root, input, maxBuffer: 512 * 1024 * 1024 });
 }
 
-// True only when `root` itself is the top of a Git checkout (not some parent repo).
+// True only when `root` itself is the top of a Git checkout (not a folder inside some other repo).
+// Asks Git for the way back to the top rather than comparing paths, which can differ for the
+// same folder: symlinks on macOS (/var -> /private/var), short names on Windows (RUNNER~1).
 function isGitCheckout(root: string): boolean {
-  const r = git(root, ['rev-parse', '--show-toplevel']);
-  if (r.status !== 0) return false;
-  const norm = (p: string) => (process.platform === 'win32' ? resolve(p).toLowerCase() : resolve(p));
-  return norm(r.stdout.toString().trim()) === norm(root);
+  const r = git(root, ['rev-parse', '--show-cdup']);
+  return r.status === 0 && r.stdout.toString().trim() === '';
 }
 
 function listFromGit(root: string): CorpusEntry[] {

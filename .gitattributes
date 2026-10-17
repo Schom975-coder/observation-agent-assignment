@@ -1,2 +1,5 @@
+# Text files use LF on every OS, so golden outputs and hashes match across machines.
+* text=auto eol=lf
+
 # The corpus is raw evidence: never convert its line endings on any OS.
-corpus/** -text
+corpus/** -text -eol

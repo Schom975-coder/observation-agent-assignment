@@ -33,5 +33,11 @@ One line per non-obvious choice: what we chose, what we rejected, why. Newest la
 
 - **Keep the agent-loop orchestration (M-1 passed); the Stop gate uses the payload's `background_tasks`.** Rejected: the `claude -p` worker-pool fallback, no longer needed. Git Bash users prefix `MSYS_NO_PATHCONV=1` so `/observe` isn't rewritten into a path.
 
+## Build
+- **TypeScript 7.0.2 and `@types/node` 22.20.5, pinned, as the only dev dependencies; no runtime dependencies.** Node types match the oldest supported Node (22.18) so the typecheck rejects APIs that Node lacks. Rejected: `@types/node` 24 (would accept APIs missing on 22).
+- **All text files use LF on every OS (`* text=auto eol=lf`); the corpus keeps its raw bytes (`-text -eol`).** Rejected: platform-default line endings, which would make golden outputs and hashes differ on Windows.
+- **CI also runs on Node 22.18.0**, so the `engines` claim is tested rather than asserted.
+- **CLAUDE.md's greppable rules are tests (`tests/source-guards.test.ts`)**, proven by planting violations that each guard caught.
+
 ## Working method
 - **Minimal `.claude/`:** the plan, this file, the notes log, and the pipeline's own skills/agents/hooks/settings. No per-branch session folders or merge-request files (Scott's global workflow, overridden for this repo). Everything in `.claude/` is reviewed, so clutter costs us.

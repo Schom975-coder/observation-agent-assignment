@@ -1,0 +1,46 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    name: ${{ matrix.os }} / node ${{ matrix.node }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { os: ubuntu-latest, node: '24' }
+          - { os: ubuntu-latest, node: '22.18.0' } # oldest supported Node
+          - { os: macos-latest, node: '24' }
+          - { os: windows-latest, node: '24' }
+    steps:
+      - name: Check out
+        if: runner.os != 'Windows'
+        uses: actions/checkout@v4
+
+      # Every corpus file name ends in a dot, which Windows cannot create, so a normal
+      # checkout fails. Same recipe as CLAUDE.md: corpus stays in Git objects, off disk.
+      - name: Check out (Windows recipe)
+        if: runner.os == 'Windows'
+        shell: bash
+        env:
+          MSYS_NO_PATHCONV: '1'
+        run: |
+          git clone -q --no-checkout "https://github.com/${{ github.repository }}.git" .
+          git config core.protectNTFS false
+          git sparse-checkout set --no-cone '/*' '!/corpus/'
+          git fetch -q origin "${{ github.sha }}"
+          git checkout -q "${{ github.sha }}"
+          test -z "$(git status --porcelain)" || { git status --short | head; exit 1; }
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test

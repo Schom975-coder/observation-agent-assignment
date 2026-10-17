@@ -1,2 +1,10 @@
 # Read-only, Windows-safe copy of the corpus for browsing (see CLAUDE.md). Never cited, never read by code.
 corpus-view/
+
+node_modules/
+
+# Batch files are the corpus repackaged for the extractors; rebuilt in seconds, never committed.
+out/batches/
+
+# Git Bash crash dumps on Windows.
+*.stackdump

@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "minutes": {
+    "authored_short": 2,
+    "authored_medium": 6,
+    "authored_long": 15,
+    "forward": 2,
+    "chaser": 3,
+    "read": 1
+  },
+  "automatable_pct": {
+    "authored_short": 60,
+    "authored_medium": 40,
+    "authored_long": 30,
+    "forward": 80,
+    "chaser": 100,
+    "read": 50
+  },
+  "rationale": {
+    "authored_short": "A one-line acknowledgement or confirmation; templatable or system-generated.",
+    "authored_medium": "A paragraph with specifics (meter numbers, volumes, deal numbers) and a lookup or two; lookups and framing can be pre-filled, the judgement stays human.",
+    "authored_long": "A multi-paragraph write-up or pasted data; reports and pasted tables can be generated, narrative cannot.",
+    "forward": "Open, add a one-liner, pick recipients; routing rules and shared queues replace it.",
+    "chaser": "Re-find the thread and restate the ask; a chaser exists only because there is no tracker, and reminders remove it.",
+    "read": "Open, skim, decide; FYI copies can be replaced by a status board, action items still need reading."
+  },
+  "read_cap_per_message": 5,
+  "own_chars_buckets": {
+    "short_max": 300,
+    "medium_max": 1500
+  },
+  "priced_domains": ["enron.com"]
+}

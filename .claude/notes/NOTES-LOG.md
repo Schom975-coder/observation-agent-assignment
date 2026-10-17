@@ -19,6 +19,8 @@ Raw material for `NOTES.md`. NOTES.md is two pages, about 900 words: roughly 110
 ## 2. What we handed to subagents and why
 - 2026-10-16, plan/architecture: Architecture blueprint to an `architect` subagent on Fable: a fresh context could read the brief, sample the corpus and fetch the Claude Code docs without filling the main session. About 215k tokens, 39 tool calls, 24 minutes. Resumed once (about 8 minutes) to apply Scott's decisions, since it already held the document's structure.
 
+- 2026-10-16, feat/m2-parse: M2 split across three implementation subagents running at once (strict date parser; header/body/flag parser; email-trail action classifier). The main session first wrote the shared record contract (`src/types.ts`) so all three built against one shape; each owned disjoint files and ran no state-changing git commands, keeping the commit gate with Scott. Git worktrees were not an option: a worktree checkout hits the trailing-dot corpus names on Windows.
+
 ## 3. How we budgeted their context
 - 2026-10-16: Gave the architect the facts we had already measured (folder counts, size distribution, CRLF and encoding results, the Windows setup) and told it to use scripts for corpus statistics instead of reading thousands of files.
 - Planned for the pipeline: batches capped at about 64 KB because Read returns at most 25,000 tokens per call; tokens estimated as bytes/3 for number-heavy text.
@@ -34,6 +36,8 @@ Raw material for `NOTES.md`. NOTES.md is two pages, about 900 words: roughly 110
 - 2026-10-16, plan/architecture: Static deny rules in the blueprint would have blocked our own development sessions; 90 KB batches sat too close to the Read cap. Both caught in review.
 - 2026-10-16, docs/m-1-results: Running `claude -p "/m1test"` from Git Bash, the slash command arrived as `C:/Program Files/Git/m1test` (Git Bash path conversion), so the skill never triggered; the orchestrator recovered only by searching the disk for it. Caught in the experiment's stream log before any real run depended on it; the plan now requires `MSYS_NO_PATHCONV=1` for Git Bash, and the README will say so.
 - 2026-10-16, feat/m1-reader: The reader decided "is this folder a Git checkout?" by comparing path strings. It passed locally and on Ubuntu but failed on CI's macOS (`/var` is a symlink to `/private/var`) and Windows (`RUNNER~1` short names): the reader silently fell back to walking the disk and skipped the byte check against Git. Caught by the three-OS CI matrix on the first push; fixed by asking Git directly (`rev-parse --show-cdup`).
+- 2026-10-16, feat/m2-parse: The independent Sonnet code review (run before any of the main session's own testing) found that a reply whose quoted history contained an old "Forwarded by" banner was labelled a forward: 77 of 974 forwards in the corpus (e.g. `farmer-d/logistics/1046.`). The three implementers' tests had all passed, because the classifier's tests used hand-built segments and nothing ran real parser output through it. It also found a date assertion that could not fail and corpus-wide bounds too loose to catch regressions. Fixed with a parse-then-classify test on real emails, 7 hand-read golden segmentations, and exact regression pins.
+- 2026-10-16, feat/m2-parse: While applying the review, a `sed` replacement of an invisible byte-order mark wrote `FEFF` instead of `﻿` (GNU sed reads `\u` as "uppercase next"); the code then stripped the literal text "FEFF" and the existing test still passed. Caught by reading the result back; fixed and a test added that ordinary text spelling FEFF survives.
 - 2026-10-16, plan/architecture: The architect noticed external senders (Calpine, TXU, CAISO) would be priced at $85/h as staff, and raised it as a decision instead of deciding silently.
 
 ## 6. What we would build next with another week
@@ -43,6 +47,8 @@ Raw material for `NOTES.md`. NOTES.md is two pages, about 900 words: roughly 110
 - Which emails belong to which process is model judgment (cached); to be quantified against ~50 hand-confirmed labels.
 - Threading by normalized subject: the corpus has no In-Reply-To or References headers.
 - The email trail is a floor: phone calls, spreadsheets and system entry leave no messages.
+- Forwarded reports whose headers were stripped carry no marker, so their whole text counts as the sender's own and they are priced as long written emails (15 min, 30% automatable) instead of forwards (2 min, 80%). 13 messages: `williams-w3/inbox/23, 35, 49, 57, 62, 75, 86, 92`, `farmer-d/logistics/25`, `giron-d/inbox/127, 180, 468`, `lokay-m/sent_items/147`. The parser subagent found the shape; the code review counted all 13.
+- The injection scanner is phrase-based and tuned on the one planted example; a trap worded differently ("note to the LLM") would pass it. The extractor prompt is the second line of defence.
 
 ## 8. What it took on faith
 - The per-action minutes and automatable shares (published, same for every process, re-scorable without a model).
@@ -54,3 +60,4 @@ Raw material for `NOTES.md`. NOTES.md is two pages, about 900 words: roughly 110
 - 2026-10-16: The brief says the corpus is "about thirty times larger than a single context window". Measured 6.9 MB raw, about 1.2M tokens prepared: roughly 6-8x a 200k window.
 - 2026-10-16: JavaScript's `new Date("Thu, 31 Apr 2001 10:00:00 -0700")` silently returns May 1; Python rejects it. Strict hand-rolled date parser required.
 - 2026-10-16: Every corpus file name ends in a trailing dot; a plain `git clone` on Windows checks out nothing at all.
+- 2026-10-16, feat/m2-parse: Not every fault is planted. `lokay-m/inbox/50.` (an ordinary Concur expense notice with a normal Message-ID) is dated `26 Nov 0001`. The plan, built from the architect's corpus census, expected one out-of-range date; the date-parser subagent measured two, traced the second to this message, and changed the expectation rather than bending the parser.

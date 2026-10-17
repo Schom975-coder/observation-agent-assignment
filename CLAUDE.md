@@ -6,6 +6,7 @@ The assignment brief is `README.md`. The reviewer may run this on Windows, macOS
 - Node >= 22.18 runs the TypeScript sources directly; there is no build step. `npm install` once.
 - `npm test` runs every test with no model call; `npm run typecheck` runs `tsc`. Both must pass before asking Scott to review a commit.
 - `node obs.mjs --help` lists the pipeline commands.
+- After every implementation session, a separate code-review subagent (Sonnet) reads the new code before the main session runs its own verification. Fix or answer every finding before Scott sees the diff.
 - `tests/source-guards.test.ts` enforces the greppable rules below (no built-in date parsing, no Message-ID-shape logic, no API keys, no `corpus-view/` in pipeline code). Fix the code, never the guard.
 
 ## Public repo

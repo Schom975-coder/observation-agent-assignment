@@ -45,7 +45,9 @@ Do not create:
 - `.claude/sessions/` folders, `MERGE-REQUEST.md`, `QUESTIONS.md`, handoff documents, or per-branch copies of any of the above.
 - Scratch scripts, experiment files or drafts in the repo. Use the session scratchpad and delete experiments when done.
 
-Branches and merging: work on feature branches. Claude may merge a branch into `main` locally once its tests pass and the work is ready, and tells Scott in chat. Pushing `main` still follows Scott's global rule: show the command and get confirmation first.
+Commits: never commit without Scott's review. Stop with the changes uncommitted, show the diff, and commit only after Scott approves it.
+
+Branches and merging: work on feature branches. Claude may merge an approved branch into `main` locally once its tests pass, and tells Scott in chat. Pushing `main` still follows Scott's global rule: show the command and get confirmation first.
 
 ## Cloning on Windows
 A plain `git clone` fails on Windows and checks out nothing, not even the code. Use this instead (PowerShell):

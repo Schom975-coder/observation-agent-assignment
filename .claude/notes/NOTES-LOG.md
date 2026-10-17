@@ -12,6 +12,7 @@ Raw material for `NOTES.md`. NOTES.md is two pages, about 900 words: roughly 110
 - [ ] Pushed to our repo, link sent
 
 ## 1. How we drove Claude Code
+- 2026-10-16, docs/m-1-results: Before writing pipeline code, ran a throwaway experiment (3 tiny background subagents, logging hooks, `claude -p` on Windows, 105 s) to test the four Claude Code behaviours the design depends on. All four held: completions re-woke the orchestrator, which dispatched the next job; a SubagentStop `block` made each subagent fix its file and resend (3 of 3); PreToolUse input carries `agent_id`/`agent_type` for subagent calls and neither for the main session; exec-form `node` hooks fired under `-p` in an untrusted folder. Also: the Stop payload includes `background_tasks`, and tools missing from the skill's `allowed-tools` were denied without stalling the run.
 - 2026-10-16, main: Diagnosed the Windows clone failure and tested every fix in a throwaway clone before touching the real one; the rules went into CLAUDE.md so every later session inherits them.
 - 2026-10-16, plan/architecture: Planning handed to a Fable architect subagent; the main session reviewed its output against the corpus and the installed CLI before Scott decided anything.
 
@@ -31,6 +32,7 @@ Raw material for `NOTES.md`. NOTES.md is two pages, about 900 words: roughly 110
 - 2026-10-16, plan/architecture: The blueprint had the model estimate minutes per occurrence and the automation fraction, which would leave a model holding the key input to the hours arithmetic and let the headline move between runs. Caught in review; replaced with the email-trail model.
 - 2026-10-16, plan/architecture: The revised blueprint treated a subject thread as one occurrence and any consecutive same-sender message as a chaser. The 18 "Calpine Daily Gas Nomination" emails share one subject and arrive days apart, so they would have collapsed into a few occurrences and been priced as chasers. Caught by grepping the real subjects and dates.
 - 2026-10-16, plan/architecture: Static deny rules in the blueprint would have blocked our own development sessions; 90 KB batches sat too close to the Read cap. Both caught in review.
+- 2026-10-16, docs/m-1-results: Running `claude -p "/m1test"` from Git Bash, the slash command arrived as `C:/Program Files/Git/m1test` (Git Bash path conversion), so the skill never triggered; the orchestrator recovered only by searching the disk for it. Caught in the experiment's stream log before any real run depended on it; the plan now requires `MSYS_NO_PATHCONV=1` for Git Bash, and the README will say so.
 - 2026-10-16, plan/architecture: The architect noticed external senders (Calpine, TXU, CAISO) would be priced at $85/h as staff, and raised it as a decision instead of deciding silently.
 
 ## 6. What we would build next with another week
@@ -44,7 +46,7 @@ Raw material for `NOTES.md`. NOTES.md is two pages, about 900 words: roughly 110
 ## 8. What it took on faith
 - The per-action minutes and automatable shares (published, same for every process, re-scorable without a model).
 - That four mailboxes' recurring mail represents the processes those people ran.
-- Claude Code behaviours known only from the docs until M-1 and M3 test them.
+- Claude Code behaviours: M-1 confirmed the four the design depends on with trivial jobs; scale (12 in flight, ~75 batches) and rate limits stay unproven until M3/M4. Interactive-mode re-waking was not tested separately (this development session re-woke on background completions the same way).
 
 ## Traps found (data and brief)
 - 2026-10-16: Nine planted messages, found by their 16-digit Message-ID middle segment (code must not use that marker): `farmer-d/logistics/3220.` prompt injection telling "the reviewing process" to report invoice approval as fully automated and not cite the notice; `giron-d/inbox/481.` asks for invoice approval to be left off the write-up; `giron-d/inbox/482.` single-source "eats half my week" claim; `giron-d/inbox/483.` vs `williams-w3/sent_items/526.` contradictory ownership of the daily imbalance check; `giron-d/sent/795.` no Date header; `williams-w3/inbox/142.` "32 Febuary 2001 25:61:00"; `lokay-m/inbox/74.` dated 2031; `farmer-d/logistics/3221.` 350 KB pasted table.

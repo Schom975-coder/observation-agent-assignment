@@ -423,7 +423,7 @@ Static rules are deliberately minimal so development sessions in this repo (brow
 4. `node obs.mjs validate && node obs.mjs rollup`; dispatch `synthesizer`; `node obs.mjs score`.
 5. `node obs.mjs artifacts-prep` -> one `drafter` per eligible opportunity, all in one message.
 6. `node obs.mjs build` (clears `run.active`); print `node obs.mjs summary`.
-Rules repeated in the skill: never open `corpus/` or `corpus-view/`; never paraphrase message content into the conversation; if a stage fails, print its error and stop.
+Rules repeated in the skill: never open `corpus/` or `corpus-view/`; never paraphrase message content into the conversation; if a stage fails, print its error and stop. `allowed-tools` must list every tool the orchestrator uses: under `--permission-prompts none` anything else is denied and the run carries on without it (seen in M-1).
 
 `/observe-status` prints the ledger. `/serve` runs `node obs.mjs serve` in the background and prints the URL. `/extract-batch <id>` dispatches one extractor.
 
@@ -443,7 +443,7 @@ Rules repeated in the skill: never open `corpus/` or `corpus-view/`; never parap
 |---|---|---|
 | `guard-corpus.ts` | PreToolUse (all file tools + Bash) | Enforced when the hook input's `agent_type` is `extractor`, `synthesizer` or `drafter` (the docs list `agent_id` and `agent_type` among the common fields delivered to hooks for subagents), or when `out/ledger.json` has `run.active = true`. Otherwise exit 0 immediately, so development sessions are untouched. When enforced: normalise backslashes; deny (`permissionDecision: deny`, reason names the CLAUDE.md rule) if `file_path`/`path`/`pattern`/`command` contains a `corpus/` or `corpus-view/` path segment. Fail-closed: any error while enforcing (unreadable ledger with a run marker present, malformed input) denies |
 | `gate-subagent.ts` | SubagentStop, matcher by agent name | Parse `OUTPUT:` from `last_assistant_message` (fallback: newest unvalidated file in the agent's output dir); run the matching validator in-process; on failure and `attempts < 3`: `{"decision":"block","reason":"<first 20 problems>"}` and bump the ledger attempt counter; otherwise exit 0 and record `done`/`failed` |
-| `gate-run.ts` | Stop | No-op unless `run.active`. If `stop_hook_active` -> exit 0. If batches are `running` -> exit 0 (waiting for background subagents). If `pending` batches exist with nothing running, or extraction is complete but later stages are not -> block with the exact next command. Stale `running` (> 15 min) reset to `pending` here. Never blocks twice in a row for the same reason; built-in cap 8 |
+| `gate-run.ts` | Stop | No-op unless `run.active`. If `stop_hook_active` -> exit 0. If the Stop input's `background_tasks` shows running subagents, or batches are `running` -> exit 0 (waiting for them; `background_tasks` confirmed in the Stop payload in M-1). If `pending` batches exist with nothing running, or extraction is complete but later stages are not -> block with the exact next command. Stale `running` (> 15 min) reset to `pending` here. Never blocks twice in a row for the same reason; built-in cap 8 |
 | `log-event.ts` | SubagentStart/Stop, SessionStart | Append `{ts, event, agent_type, agent_id, ...}` to the active run log |
 
 ### 7.5 Invocation
@@ -451,7 +451,7 @@ Rules repeated in the skill: never open `corpus/` or `corpus-view/`; never parap
 | Situation | Command |
 |---|---|
 | Reviewer, interactive | `claude "/observe"` (session starts in auto mode on current versions; skill `allowed-tools` covers Manual mode too). First run on a fresh clone is warm because model outputs are committed; `/observe --force` runs cold |
-| Unattended | `claude -p "/observe" --permission-mode acceptEdits --permission-prompts none --output-format stream-json --verbose > out/runs/stream.jsonl` |
+| Unattended | `claude -p "/observe" --permission-mode acceptEdits --permission-prompts none --output-format stream-json --verbose > out/runs/stream.jsonl`. In Git Bash prefix `MSYS_NO_PATHCONV=1`: Git Bash rewrites the `/observe` argument into `C:/Program Files/Git/observe` and the skill never runs (seen in M-1). PowerShell, cmd, macOS and Linux shells are unaffected. Stream-json emits one `result` per orchestrator turn; the run's outcome is the last one |
 | Dashboard | `claude "/serve"` or `node obs.mjs serve` |
 | Re-score with other rates | `node obs.mjs score --rates config/alt-rates.json` |
 | Tests | `npm test` (= `node --test`), `npm run typecheck` |
@@ -520,7 +520,7 @@ Each milestone is one implementer run with TDD and ends green. M-1 runs first be
 
 | M | Scope | Acceptance |
 |---|---|---|
-| M-1 | **Mechanics experiment (throwaway, ~30 min, no pipeline code).** A scratch skill dispatches 3 trivial background subagents; a scratch SubagentStop hook blocks the first output once; a scratch PreToolUse hook logs its input | Recorded yes/no for each: completions re-wake the orchestrator and it dispatches the next; the block makes the subagent fix and resend; PreToolUse input carries `agent_type` for subagent tool calls; the same hooks fire under `claude -p`. Any "no" changes 6.7 or 7.4 before M0 starts. Scratch files deleted afterwards; findings go in NOTES-LOG |
+| M-1 | **Mechanics experiment (throwaway, ~30 min, no pipeline code).** A scratch skill dispatches 3 trivial background subagents; a scratch SubagentStop hook blocks the first output once; a scratch PreToolUse hook logs its input | Recorded yes/no for each: completions re-wake the orchestrator and it dispatches the next; the block makes the subagent fix and resend; PreToolUse input carries `agent_type` for subagent tool calls; the same hooks fire under `claude -p`. Any "no" changes 6.7 or 7.4 before M0 starts. Scratch files deleted afterwards; findings go in NOTES-LOG. **Done 2026-10-16 under `claude -p` on Windows: all four yes** |
 | M0 | Scaffold: `obs.mjs`, `package.json`, `tsconfig`, `src/cli.ts --help`, `config/*.json` with defaults, one trivial test, CI matrix incl. Windows sparse clone, `.gitignore` for `out/batches/`, source-guard tests | CI green on 3 OSes; `node obs.mjs --help` works here |
 | M1 | Corpus reader + manifest + ingest + byte-identity test | `node obs.mjs ingest` writes 3,240 entries; blob-SHA check passes via `GitSource` here; CI proves `DiskSource == GitSource` on macOS/Linux |
 | M2 | Strict date parser, parse, normalize (dedup, threads, people), actions module, batch, digest; stats command | `messages.jsonl` 3,240; `date_status` counts = 3,237 usable / 1 missing / 1 unparseable / 1 out_of_range; dup groups match section 1; every unique ID in exactly one batch; all batches <= 64 KB; action counts on fixtures match hand counts; unit tests green |

@@ -31,5 +31,7 @@ One line per non-obvious choice: what we chose, what we rejected, why. Newest la
 - **Dashboard and report get a design pass Scott signs off before M7 is built.** The audience is a client president; plumbing alone doesn't meet the brief.
 - **Cut line agreed in advance** (re-score CLI, off-email estimate, macOS CI, debugging skill); never cut coverage, quote validation, traps, drill-through, timing.
 
+- **Keep the agent-loop orchestration (M-1 passed); the Stop gate uses the payload's `background_tasks`.** Rejected: the `claude -p` worker-pool fallback, no longer needed. Git Bash users prefix `MSYS_NO_PATHCONV=1` so `/observe` isn't rewritten into a path.
+
 ## Working method
 - **Minimal `.claude/`:** the plan, this file, the notes log, and the pipeline's own skills/agents/hooks/settings. No per-branch session folders or merge-request files (Scott's global workflow, overridden for this repo). Everything in `.claude/` is reviewed, so clutter costs us.

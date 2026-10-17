@@ -3,6 +3,7 @@
 import { fileURLToPath } from 'node:url';
 import { ingestCommand } from './corpus/ingest.ts';
 import { prepareCommand } from './pipeline/prepare.ts';
+import { dispatchCommand, runCommand, statusCommand, validateCommand } from './run/commands.ts';
 
 // The repo root, wherever the command is run from.
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
@@ -24,9 +25,26 @@ export const COMMANDS: Record<string, Command> = {
     milestone: 'M1',
     run: () => ingestCommand(ROOT),
   },
-  status: { summary: 'Show the run ledger: what is done, running and pending', milestone: 'M3' },
-  dispatch: { summary: 'Mark a batch as handed to an extractor', milestone: 'M3' },
-  validate: { summary: 'Check model output: schema, coverage, verbatim quotes', milestone: 'M3' },
+  status: {
+    summary: 'Show the run ledger: what is done, running and pending (--json for the orchestrator)',
+    milestone: 'M3',
+    run: (args) => statusCommand(ROOT, args),
+  },
+  dispatch: {
+    summary: 'Mark a batch as handed to an extractor and print the extractor prompt',
+    milestone: 'M3',
+    run: (args) => dispatchCommand(ROOT, args),
+  },
+  validate: {
+    summary: 'Check model output: schema, coverage, verbatim quotes',
+    milestone: 'M3',
+    run: (args) => validateCommand(ROOT, args),
+  },
+  run: {
+    summary: 'Start or end a pipeline run (start | end); the corpus guard covers every tool call during one',
+    milestone: 'M3',
+    run: (args) => runCommand(ROOT, args),
+  },
   rollup: { summary: 'Count occurrences, actions, participants and stalls per process', milestone: 'M5' },
   score: { summary: 'Price counted actions at the published rates and $85/hour', milestone: 'M5' },
   'artifacts-prep': { summary: 'Write briefs for the opportunities that earn a drafted artifact', milestone: 'M6' },

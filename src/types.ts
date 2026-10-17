@@ -107,3 +107,86 @@ export type MessageActions = {
   sender_priced: boolean; // sender's domain is a priced (company) domain
   reads: Array<{ email: string; priced: boolean }>; // distinct recipients, sender excluded, capped
 };
+
+// ---- Model stages (M3 on). What extractor subagents write, and what validation makes of it. ----
+// No model-facing type has a field for hours, minutes, dollars, counts or rank: the headline
+// numbers come only from counted actions (CLAUDE.md "Hours and dollars").
+
+export const MESSAGE_ROLES = [
+  'request',
+  'response',
+  'forward',
+  'fyi',
+  'automated',
+  'personal',
+  'noise',
+  'injection_attempt',
+] as const;
+export type MessageRole = (typeof MESSAGE_ROLES)[number];
+
+export const STALL_KINDS = [
+  'waiting_on_reply',
+  'rework',
+  'handoff_confusion',
+  'ownership_conflict',
+  'avoidance',
+  'system_failure',
+  'other',
+] as const;
+export type StallKind = (typeof STALL_KINDS)[number];
+
+// out/extract/<batch_id>.json, written by an extractor subagent. Strict: unknown keys are errors.
+export type Extraction = {
+  batch_id: string;
+  messages: Array<{
+    id: string; // exactly the batch's message IDs, each once
+    processes: string[]; // taxonomy keys or "new:<slug>"; [] only for personal, noise, automated, injection_attempt
+    role: MessageRole;
+    stall: null | { kind: StallKind; quote: string };
+    ownership_claim: null | { person: string; quote: string };
+  }>;
+  evidence: Array<{
+    process: string; // one of that message's processes
+    message_id: string;
+    field: 'body' | 'subject';
+    quote: string; // verbatim, 20-400 characters (a whole subject may be shorter)
+    note: string; // <= 200 characters: why this quote is evidence
+  }>;
+  new_processes: Array<{ key: string; name: string; definition: string; example_ids: string[] }>; // key "new:<slug>"
+  batch_notes: string; // <= 100 words
+};
+
+export type QuoteMatch = 'exact' | 'repaired' | 'rejected';
+
+// Where a quote sits in the raw message. Offsets index into bytes.toString('utf8') of the whole raw
+// message (the Segment convention), so the dashboard can highlight the raw text itself.
+export type QuoteCheck = {
+  match: QuoteMatch;
+  start: number | null;
+  end: number | null;
+  segment: SegmentKind | 'subject' | null; // where the quote starts
+  raw_text: string | null; // the raw span the quote resolved to: what the dashboard shows
+  reason: string | null; // for rejected: not_found | too_short | too_long | empty | wrong_message
+};
+
+export type ValidatedEvidence = Extraction['evidence'][number] & QuoteCheck & { evidence_id: string };
+
+// out/validated/<batch_id>.json: the extraction with every quote checked and located.
+export type ValidatedExtraction = {
+  batch_id: string;
+  content_sha: string; // of the batch file the extraction was made from
+  messages: Extraction['messages'];
+  evidence: ValidatedEvidence[]; // rejected ones kept with match "rejected"; they never ship
+  stall_checks: Array<{ message_id: string } & QuoteCheck>;
+  ownership_checks: Array<{ message_id: string; person: string } & QuoteCheck>;
+  new_processes: Extraction['new_processes'];
+  batch_notes: string;
+  quote_stats: { exact: number; repaired: number; rejected: number };
+};
+
+// Result of checking one extraction file. `problems` are what the SubagentStop hook sends back.
+export type ExtractionCheck = {
+  ok: boolean; // no blocking problems
+  problems: string[]; // most important first, each naming the message ID or quote involved
+  validated: ValidatedExtraction | null; // null when the file can't be read or fails the schema
+};

@@ -120,6 +120,17 @@ export class Corpus {
     return bytes as Buffer;
   }
 
+  // Some messages, keyed by ID in the order given. One git process on Windows however many there
+  // are; an unknown ID is an error before anything is read.
+  readMany(ids: readonly string[]): Map<string, Buffer> {
+    const entries = ids.map((id) => this.#entry(id));
+    const blobs =
+      this.readFrom === 'disk'
+        ? entries.map((e) => readFileSync(join(this.root, e.id)))
+        : catFileBatch(this.root, entries.map((e) => e.blob_sha));
+    return new Map(entries.map((e, i) => [e.id, blobs[i] as Buffer]));
+  }
+
   // All messages in ID order. One git process on Windows instead of 3,240.
   readAll(): Map<string, Buffer> {
     const blobs =

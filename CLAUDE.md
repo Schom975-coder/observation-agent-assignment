@@ -26,7 +26,7 @@ Commits and notes about how we built this never name the AI models used: credit 
 
 ## Same output on every OS
 - Read bytes and decode as UTF-8 explicitly (all 3,240 messages decode cleanly). Never rely on the platform default encoding (cp1252 on Windows).
-- Quote validation normalizes CRLF to LF on both sides the same way before matching. 3,231 of the 3,240 messages use CRLF.
+- Quote validation normalizes CRLF to LF on both sides the same way before matching. 3,231 of the 3,240 messages contain CRLF, mostly in their headers: 3,144 bodies are LF-only and only 54 use CRLF throughout. Some bodies keep quoted-printable residue (`=` soft breaks); quotes must copy it as written.
 - Dates are stored in UTC. Iterate in message-ID order, never directory-listing order.
 - File names built from model output (SOP titles and the like) go through one slug function: no `\ / : * ? " < > |`, no trailing dot or space, no Windows reserved names (`CON`, `PRN`, `AUX`, `NUL`, `COM1`-`COM9`, `LPT1`-`LPT9`).
 - Hooks and scripts run on all three OSes: no bash-only tooling, no assumption about `python` vs `python3`.

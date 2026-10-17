@@ -71,15 +71,17 @@ const MAX_ATTRIBUTION_LINES = 8;
 // the body (=09 tab, =20 space, = soft break) undone so markers read as written. Offsets are untouched.
 type Line = { start: number; text: string };
 
+// Lines end at CRLF, LF or a lone CR (the same three endings the header parser and
+// normalizeNewlines accept), so a body with old Mac line endings is segmented like its twins.
 function bodyLines(text: string, bodyStart: number): Line[] {
   const lines: Line[] = [];
   let pos = bodyStart;
   while (pos < text.length) {
-    const nl = text.indexOf('\n', pos);
-    const end = nl === -1 ? text.length : nl;
-    const raw = text.slice(pos, end).replace(/\r$/, '');
+    let end = pos;
+    while (end < text.length && text.charCodeAt(end) !== 0x0a && text.charCodeAt(end) !== 0x0d) end++;
+    const raw = text.slice(pos, end);
     lines.push({ start: pos, text: raw.replace(/=(?:09|20)/gi, ' ').replace(/=$/, '') });
-    pos = end + 1;
+    pos = text.charCodeAt(end) === 0x0d && text.charCodeAt(end + 1) === 0x0a ? end + 2 : end + 1;
   }
   return lines;
 }

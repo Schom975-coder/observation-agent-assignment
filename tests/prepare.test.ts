@@ -248,16 +248,57 @@ test('a 70,000-character subject is cut for display and still packs into one bat
   assert.equal(parsed.subject, subject);
 });
 
-test('a message with lone-CR line endings parses like its CRLF twin', () => {
-  const crlf = 'From: a@enron.com\r\nTo: b@enron.com\r\nSubject: Volumes for\r\n June\r\nDate: Mon, 14 May 2001 10:00:00 -0700\r\n\r\nline one\r\nline two\r\n';
-  const mini = miniRoot('mini-cr', { 'x/inbox/1': crlf, 'x/inbox/2': crlf.replaceAll('\r\n', '\r') });
+test('a reply with lone-CR line endings parses like its CRLF and LF twins: same segments, own_chars and fresh_send', () => {
+  // No re: prefix on the subject, so fresh_send depends only on finding the quoted block.
+  const lines = [
+    'From: a@enron.com',
+    'To: b@enron.com',
+    'Subject: Volumes for',
+    ' June',
+    'Date: Mon, 14 May 2001 10:00:00 -0700',
+    '',
+    'Numbers are below.',
+    '',
+    'Jane',
+    '',
+    '-----Original Message-----',
+    'From: Smith, Bob',
+    'Sent: Monday, May 14, 2001 9:00 AM',
+    'To: Doe, Jane',
+    'Subject: June volumes',
+    '',
+    'What are the June volumes?',
+    '',
+  ];
+  const texts = ['\r\n', '\n', '\r'].map((eol) => lines.join(eol));
+  const mini = miniRoot('mini-cr', { 'x/inbox/1': texts[0] as string, 'x/inbox/2': texts[1] as string, 'x/inbox/3': texts[2] as string });
   const out = join(mini, 'out');
   prepare(mini, out);
-  const [a, b] = readFileSync(join(out, 'messages.jsonl'), 'utf8').trimEnd().split('\n').map((l) => JSON.parse(l) as ParsedMessage);
-  assert.ok(a !== undefined && b !== undefined);
-  for (const field of ['from', 'to', 'subject', 'subject_norm', 'date_utc', 'fresh_send'] as const) assert.deepEqual(b[field], a[field], field);
-  assert.equal(b.subject, 'Volumes for June');
-  assert.equal(b.body_start, 'From: a@enron.com\rTo: b@enron.com\rSubject: Volumes for\r June\rDate: Mon, 14 May 2001 10:00:00 -0700\r\r'.length);
+  const parsed = readFileSync(join(out, 'messages.jsonl'), 'utf8').trimEnd().split('\n').map((l) => JSON.parse(l) as ParsedMessage);
+  assert.deepEqual(parsed.map((m) => m.id), ['corpus/x/inbox/1', 'corpus/x/inbox/2', 'corpus/x/inbox/3']);
+  // Segments compared by kind and text (offsets differ: a CRLF line break is two characters).
+  const shape = (i: number) => {
+    const m = parsed[i] as ParsedMessage;
+    const text = texts[i] as string;
+    return {
+      segments: m.segments.map((s) => [s.kind, normalizeNewlines(text.slice(s.start, s.end))]),
+      own_chars: m.own_chars,
+      fresh_send: m.fresh_send,
+      from: m.from,
+      to: m.to,
+      subject: m.subject,
+      subject_norm: m.subject_norm,
+      date_utc: m.date_utc,
+    };
+  };
+  const crlf = shape(0);
+  assert.deepEqual(crlf.segments.map(([kind]) => kind), ['own', 'quoted']);
+  assert.equal(crlf.fresh_send, false);
+  assert.equal(crlf.own_chars, 'Numbers are below. Jane'.length);
+  assert.equal(crlf.subject, 'Volumes for June');
+  assert.deepEqual(shape(1), crlf, 'LF twin');
+  assert.deepEqual(shape(2), crlf, 'lone-CR twin');
+  assert.equal((parsed[2] as ParsedMessage).body_start, lines.slice(0, 6).join('\r').length + 1);
 });
 
 test('writing starts by removing the old stats, so a run that dies mid-write leaves no prepare-stats.json', () => {

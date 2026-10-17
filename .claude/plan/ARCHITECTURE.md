@@ -47,7 +47,7 @@ Organic facts that also matter: no `In-Reply-To`/`References` headers anywhere (
 | R7 | Dashboard on localhost, ranked, running total, drill-through on every number | Static SPA + `node:http` on `127.0.0.1:8765`; every number renders its formula (actions x rates) with each action count linked to the messages it was counted from, each evidence quote linked to the message viewer with the quote highlighted | `server.test.ts`; click-through in M7 acceptance |
 | R8 | No paid API, subscription only | All model work is Claude Code subagents; no SDK, no `ANTHROPIC_API_KEY`, no `--bare` (bare mode needs an API key per docs) | CI grep: no `@anthropic-ai` import, no `ANTHROPIC_API_KEY` |
 | R9 | Full run unattended < 30 min | 12 extractors in flight, <= 64 KB batches, background completions, no prompts (skill `allowed-tools` + agent `permissionMode` + `--permission-prompts none`) | M8 timed cold run on this machine, logged in `out/runs/` |
-| R10 | Rerun on unchanged corpus repeats no finished work | `ledger.json` stamps every stage with input hashes; model outputs keyed by batch content + agent definition + taxonomy hash; committed `out/extract/*.json`, `taxonomy.json`, `synthesis.json` | `ledger.test.ts`; M8 warm run shows 0 subagent launches |
+| R10 | Rerun on unchanged corpus repeats no finished work | per-batch ledger files (`out/ledger/<batch>.json`) record a cache key of batch content + extractor definition + taxonomy; model outputs keyed by batch content + agent definition + taxonomy hash; committed `out/extract/*.json`, `taxonomy.json`, `synthesis.json` | `ledger.test.ts`; M8 warm run shows 0 subagent launches |
 | R11 | Exact things are deterministic code; "I will check whether a model was left holding any of it" | Parsing, dedup, threading, action counting, rates, arithmetic, quote validation, slugging, server: all `src/` + `config/`. Model output schemas contain labels, quotes, prose and one clearly separated display-only estimate | Section 4 marks each stage D/M; section 4.1 definitions; reviewer can read `src/score.ts` |
 | R12 | Tests pass without a model | `node --test`; model stages replaced by recorded fixtures | CI matrix green |
 | R13 | Python or TypeScript | TypeScript on Node >= 22.18, zero runtime deps | `package.json` |
@@ -154,7 +154,7 @@ flowchart TB
   UI["Dashboard SPA: ranked table, running total,<br/>formula -> actions/evidence -> message viewer"]:::det
   SV --> UI
 
-  L[("out/ledger.json + out/runs/*.jsonl")]:::data
+  L[("out/ledger/*.json + out/runs/*.jsonl")]:::data
   I -.-> L
   M2 -.-> L
   H2 -.-> L
@@ -399,7 +399,7 @@ Every total is labelled "observed in 4 mailboxes, 1999-2002". No extrapolation t
 ```json
 {
   "permissions": {
-    "allow": ["Bash(node obs.mjs *)", "Read(./out/**)", "Edit(./out/**)"],
+    "allow": ["Bash(node obs.mjs *)"],
     "deny":  ["Edit(./corpus/**)"]
   },
   "hooks": {
@@ -444,7 +444,7 @@ Rules repeated in the skill: never open `corpus/` or `corpus-view/`; never parap
 | Hook | Event | Logic |
 |---|---|---|
 | `guard-corpus.ts` | PreToolUse (all file tools + Bash) | Enforced when the hook input's `agent_type` is `extractor`, `synthesizer` or `drafter` (the docs list `agent_id` and `agent_type` among the common fields delivered to hooks for subagents), or when `out/ledger.json` has `run.active = true`. Otherwise exit 0 immediately, so development sessions are untouched. When enforced: normalise backslashes; deny (`permissionDecision: deny`, reason names the CLAUDE.md rule) if `file_path`/`path`/`pattern`/`command` contains a `corpus/` or `corpus-view/` path segment. Fail-closed: any error while enforcing (unreadable ledger with a run marker present, malformed input) denies |
-| `gate-subagent.ts` | SubagentStop, matcher by agent name | Parse `OUTPUT:` from `last_assistant_message` (fallback: newest unvalidated file in the agent's output dir); run the matching validator in-process; on failure and `attempts < 3`: `{"decision":"block","reason":"<first 20 problems>"}` and bump the ledger attempt counter; otherwise exit 0 and record `done`/`failed` |
+| `gate-subagent.ts` | SubagentStop, matcher by agent name | Parse `OUTPUT:` from `last_assistant_message` (no line, or an unknown batch: block, counted per agent ID, also capped at 3); run the matching validator in-process; on failure and `attempts < 3`: `{"decision":"block","reason":"<first 20 problems>"}` and bump the ledger attempt counter; otherwise exit 0 and record `done`/`failed` |
 | `gate-run.ts` | Stop | No-op unless `run.active`. If `stop_hook_active` -> exit 0. If the Stop input's `background_tasks` shows running subagents, or batches are `running` -> exit 0 (waiting for them; `background_tasks` confirmed in the Stop payload in M-1). If `pending` batches exist with nothing running, or extraction is complete but later stages are not -> block with the exact next command. Stale `running` (> 15 min) reset to `pending` here. Never blocks twice in a row for the same reason; built-in cap 8 |
 | `log-event.ts` | SubagentStart/Stop, SessionStart | Append `{ts, event, agent_type, agent_id, ...}` to the active run log |
 

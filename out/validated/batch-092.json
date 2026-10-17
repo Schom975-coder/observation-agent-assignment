@@ -1,0 +1,292 @@
+{
+  "batch_id": "batch-092",
+  "content_sha": "b040e15ebd63c5787e7438f902cbf25c6c0bf9e9bdad4356aeabc3a45c8f6dd7",
+  "messages": [
+    {
+      "id": "corpus/williams-w3/inbox/64.",
+      "processes": [],
+      "role": "noise",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/lokay-m/sent_items/78.",
+      "processes": [],
+      "role": "personal",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/williams-w3/inbox/63.",
+      "processes": [
+        "expense-report-approval"
+      ],
+      "role": "automated",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/williams-w3/inbox/62.",
+      "processes": [
+        "new:energy-market-report-distribution"
+      ],
+      "role": "forward",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/williams-w3/inbox/61.",
+      "processes": [],
+      "role": "automated",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/williams-w3/sent_items/4.",
+      "processes": [
+        "user-access-setup"
+      ],
+      "role": "response",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/williams-w3/inbox/60.",
+      "processes": [
+        "system-enhancement-request"
+      ],
+      "role": "response",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/williams-w3/inbox/59.",
+      "processes": [],
+      "role": "noise",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/williams-w3/inbox/58.",
+      "processes": [],
+      "role": "noise",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/lokay-m/sent_items/79.",
+      "processes": [
+        "weekly-commercial-reporting"
+      ],
+      "role": "fyi",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/giron-d/inbox/35.",
+      "processes": [
+        "credit-exposure-reporting"
+      ],
+      "role": "request",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/giron-d/inbox/34.",
+      "processes": [
+        "new:desk-pnl-responsibility-assignment"
+      ],
+      "role": "forward",
+      "stall": null,
+      "ownership_claim": {
+        "person": "Andy Lewis",
+        "quote": "Andy Lewis - Basis and Gas Daily"
+      }
+    },
+    {
+      "id": "corpus/giron-d/inbox/33.",
+      "processes": [
+        "new:desk-pnl-responsibility-assignment"
+      ],
+      "role": "response",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/williams-w3/inbox/57.",
+      "processes": [
+        "new:energy-market-report-distribution"
+      ],
+      "role": "forward",
+      "stall": null,
+      "ownership_claim": null
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "batch-092:e0",
+      "process": "expense-report-approval",
+      "message_id": "corpus/williams-w3/inbox/63.",
+      "field": "body",
+      "quote": "The following expense report is ready for approval:",
+      "note": "Concur notice that an expense report awaits approval.",
+      "match": "exact",
+      "start": 519,
+      "end": 570,
+      "segment": "own",
+      "raw_text": "The following expense report is ready for approval:",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-092:e1",
+      "process": "new:energy-market-report-distribution",
+      "message_id": "corpus/williams-w3/inbox/62.",
+      "field": "body",
+      "quote": "Western Pre-Scheduled Firm Electricity Prices($/MWh)",
+      "note": "Daily energy market report forwarded to the trading group.",
+      "match": "exact",
+      "start": 1641,
+      "end": 1693,
+      "segment": "own",
+      "raw_text": "Western Pre-Scheduled Firm Electricity Prices($/MWh)",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-092:e2",
+      "process": "new:energy-market-report-distribution",
+      "message_id": "corpus/williams-w3/inbox/57.",
+      "field": "body",
+      "quote": "Western Pre-Scheduled Firm Electricity Prices($/MWh)",
+      "note": "Next daily energy market report forwarded to the trading group.",
+      "match": "exact",
+      "start": 1638,
+      "end": 1690,
+      "segment": "own",
+      "raw_text": "Western Pre-Scheduled Firm Electricity Prices($/MWh)",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-092:e3",
+      "process": "user-access-setup",
+      "message_id": "corpus/williams-w3/sent_items/4.",
+      "field": "body",
+      "quote": "Here are the remaining hourly traders.",
+      "note": "Supplies list of traders to be set up for hourly trading.",
+      "match": "exact",
+      "start": 544,
+      "end": 582,
+      "segment": "own",
+      "raw_text": "Here are the remaining hourly traders.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-092:e4",
+      "process": "system-enhancement-request",
+      "message_id": "corpus/williams-w3/inbox/60.",
+      "field": "body",
+      "quote": "This occurs when your H drive is not mapped.",
+      "note": "Answers a reported tool profile error with a fix.",
+      "match": "exact",
+      "start": 678,
+      "end": 722,
+      "segment": "own",
+      "raw_text": "This occurs when your H drive is not mapped.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-092:e5",
+      "process": "weekly-commercial-reporting",
+      "message_id": "corpus/lokay-m/sent_items/79.",
+      "field": "body",
+      "quote": "Transwestern's average deliveries to California were 1058 MMBtu/d (97%), with San Juan lateral throughput at 864 MMBtu/d.",
+      "note": "Weekly California capacity and deliveries report.",
+      "match": "exact",
+      "start": 1337,
+      "end": 1458,
+      "segment": "own",
+      "raw_text": "Transwestern's average deliveries to California were 1058 MMBtu/d (97%), with San Juan lateral throughput at 864 MMBtu/d.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-092:e6",
+      "process": "credit-exposure-reporting",
+      "message_id": "corpus/giron-d/inbox/35.",
+      "field": "body",
+      "quote": "we will need Risk and Credit Aggregation to pull the same Post IDs in order to have counterparties $ exposure to reconcile.",
+      "note": "Asks groups to align counterparty exposure data for reconciliation.",
+      "match": "exact",
+      "start": 1281,
+      "end": 1404,
+      "segment": "own",
+      "raw_text": "we will need Risk and Credit Aggregation to pull the same Post IDs in order to have counterparties $ exposure to reconcile.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-092:e7",
+      "process": "new:desk-pnl-responsibility-assignment",
+      "message_id": "corpus/giron-d/inbox/34.",
+      "field": "body",
+      "quote": "Andy Lewis - Basis and Gas Daily",
+      "note": "Forwarded list assigning P&L responsibility per trader and region.",
+      "match": "exact",
+      "start": 732,
+      "end": 764,
+      "segment": "quoted",
+      "raw_text": "Andy Lewis - Basis and Gas Daily",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-092:e8",
+      "process": "new:desk-pnl-responsibility-assignment",
+      "message_id": "corpus/giron-d/inbox/33.",
+      "field": "body",
+      "quote": "will most likely reside on the east desk",
+      "note": "Answers where Gulf Coast P&L responsibility will sit.",
+      "match": "exact",
+      "start": 540,
+      "end": 580,
+      "segment": "own",
+      "raw_text": "will most likely reside on the east desk",
+      "reason": null
+    }
+  ],
+  "stall_checks": [],
+  "ownership_checks": [
+    {
+      "message_id": "corpus/giron-d/inbox/34.",
+      "person": "Andy Lewis",
+      "match": "exact",
+      "start": 732,
+      "end": 764,
+      "segment": "quoted",
+      "raw_text": "Andy Lewis - Basis and Gas Daily",
+      "reason": null
+    }
+  ],
+  "new_processes": [
+    {
+      "key": "new:energy-market-report-distribution",
+      "name": "Energy market report distribution",
+      "definition": "Forwarding the daily Energy Market Report of western and eastern power prices, outages and gas prices to the trading group.",
+      "example_ids": [
+        "corpus/williams-w3/inbox/62.",
+        "corpus/williams-w3/inbox/57."
+      ]
+    },
+    {
+      "key": "new:desk-pnl-responsibility-assignment",
+      "name": "Desk P&L responsibility assignment",
+      "definition": "Defining and circulating which traders and desks hold P&L responsibility for which regions and pipeline points.",
+      "example_ids": [
+        "corpus/giron-d/inbox/34.",
+        "corpus/giron-d/inbox/33."
+      ]
+    }
+  ],
+  "batch_notes": "No injection attempts. HR drug-test notice and Portland office reorganization updates tagged noise with no process; password reset automated. Two new keys proposed.",
+  "quote_stats": {
+    "exact": 10,
+    "repaired": 0,
+    "rejected": 0
+  }
+}

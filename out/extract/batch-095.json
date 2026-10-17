@@ -1,0 +1,53 @@
+{
+  "batch_id": "batch-095",
+  "messages": [
+    {"id": "corpus/williams-w3/inbox/35.", "processes": [], "role": "automated", "stall": null, "ownership_claim": null},
+    {"id": "corpus/williams-w3/inbox/34.", "processes": [], "role": "automated", "stall": null, "ownership_claim": null},
+    {"id": "corpus/lokay-m/sent_items/81.", "processes": [], "role": "noise", "stall": null, "ownership_claim": null},
+    {"id": "corpus/williams-w3/inbox/32.", "processes": ["market-rule-change-review"], "role": "automated", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/inbox/14.", "processes": ["new:ubsw-data-migration"], "role": "fyi", "stall": null, "ownership_claim": null},
+    {"id": "corpus/williams-w3/inbox/28.", "processes": ["expense-report-approval"], "role": "automated", "stall": null, "ownership_claim": null},
+    {"id": "corpus/williams-w3/inbox/31.", "processes": ["new:trading-assistant-hiring"], "role": "request", "stall": null, "ownership_claim": null},
+    {"id": "corpus/williams-w3/sent_items/1.", "processes": ["new:trading-assistant-hiring"], "role": "response", "stall": null, "ownership_claim": null},
+    {"id": "corpus/williams-w3/inbox/30.", "processes": ["new:ubsw-onboarding-admin"], "role": "request", "stall": null, "ownership_claim": null},
+    {"id": "corpus/williams-w3/inbox/29.", "processes": ["new:ubsw-onboarding-admin"], "role": "request", "stall": null, "ownership_claim": null},
+    {"id": "corpus/williams-w3/inbox/27.", "processes": ["new:ubsw-onboarding-admin"], "role": "request", "stall": null, "ownership_claim": null},
+    {"id": "corpus/williams-w3/inbox/140.", "processes": ["new:ubsw-data-migration"], "role": "request", "stall": null, "ownership_claim": null},
+    {"id": "corpus/williams-w3/inbox/26.", "processes": ["system-enhancement-request"], "role": "fyi", "stall": null, "ownership_claim": null},
+    {"id": "corpus/williams-w3/inbox/25.", "processes": [], "role": "personal", "stall": null, "ownership_claim": null},
+    {"id": "corpus/lokay-m/sent_items/82.", "processes": [], "role": "personal", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/inbox/12.", "processes": ["curve-postid-mapping"], "role": "request", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/inbox/11.", "processes": ["system-enhancement-request"], "role": "fyi", "stall": {"kind": "system_failure", "quote": "the latest version does not include information for the 'Y' curve"}, "ownership_claim": null},
+    {"id": "corpus/giron-d/inbox/10.", "processes": ["user-access-setup"], "role": "fyi", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/inbox/9.", "processes": ["system-enhancement-request"], "role": "forward", "stall": {"kind": "system_failure", "quote": "I don't think the systems are synchronized yet."}, "ownership_claim": null},
+    {"id": "corpus/giron-d/inbox/8.", "processes": [], "role": "noise", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/inbox/7.", "processes": ["new:ubsw-data-migration"], "role": "request", "stall": null, "ownership_claim": null},
+    {"id": "corpus/williams-w3/inbox/24.", "processes": ["new:ubsw-data-migration"], "role": "fyi", "stall": {"kind": "system_failure", "quote": "I was also unable to get into CAPS (Trading cluster is not reconfigured)."}, "ownership_claim": null},
+    {"id": "corpus/williams-w3/inbox/22.", "processes": ["market-rule-change-review"], "role": "fyi", "stall": null, "ownership_claim": null}
+  ],
+  "evidence": [
+    {"process": "market-rule-change-review", "message_id": "corpus/williams-w3/inbox/32.", "field": "body", "quote": "The ISO has posted on its web site four documents related to the discussion", "note": "ISO market design 2002 documents posted for participants."},
+    {"process": "new:ubsw-data-migration", "message_id": "corpus/giron-d/inbox/14.", "field": "body", "quote": "All compliant data and email should be copied to the UBSWE environment no later than Midnight (CST), Thursday, February 7, 2002", "note": "Staff told to copy data to the new environment by a deadline."},
+    {"process": "expense-report-approval", "message_id": "corpus/williams-w3/inbox/28.", "field": "body", "quote": "The following expense report is ready for approval:", "note": "Concur notice asking for approval of an expense report."},
+    {"process": "new:trading-assistant-hiring", "message_id": "corpus/williams-w3/inbox/31.", "field": "body", "quote": "Based on the criteria listed below, you have been selected to be interviewed for this role.", "note": "Candidates selected and asked for availability for interviews."},
+    {"process": "new:trading-assistant-hiring", "message_id": "corpus/williams-w3/sent_items/1.", "field": "body", "quote": "I will be available all week.", "note": "Candidate replies with interview availability."},
+    {"process": "new:ubsw-onboarding-admin", "message_id": "corpus/williams-w3/inbox/30.", "field": "body", "quote": "Our records indicate that you have not taken your pre-employment drug test for UBS.", "note": "Chasing a pre-employment requirement for the UBS transfer."},
+    {"process": "new:ubsw-onboarding-admin", "message_id": "corpus/williams-w3/inbox/29.", "field": "body", "quote": "Our records indicate that you have not taken your pre-employment drug test for UBS.", "note": "Same pre-employment drug test chase for another employee."},
+    {"process": "new:ubsw-onboarding-admin", "message_id": "corpus/williams-w3/inbox/27.", "field": "body", "quote": "Please try to attend this additional session as valuable information will be presented", "note": "UBS benefits orientation session with forms to complete."},
+    {"process": "new:ubsw-data-migration", "message_id": "corpus/williams-w3/inbox/140.", "field": "body", "quote": "the attached protocol regarding the process for migration of any information or data to UBS has been developed.", "note": "Protocol and certification for migrating data to UBS."},
+    {"process": "system-enhancement-request", "message_id": "corpus/williams-w3/inbox/26.", "field": "body", "quote": "Log into the stack manager on Wednesday afternoon and ensure that your products are ready to be activated on Thursday morning.", "note": "Traders asked to take part in a trading system test simulation."},
+    {"process": "curve-postid-mapping", "message_id": "corpus/giron-d/inbox/12.", "field": "body", "quote": "There is a new directory for the curve files.", "note": "Curve files moved to a new directory; owners asked to move them."},
+    {"process": "system-enhancement-request", "message_id": "corpus/giron-d/inbox/11.", "field": "body", "quote": "the latest version does not include information for the 'Y' curve", "note": "Reports a tool issue in the TDS Curve Manager."},
+    {"process": "user-access-setup", "message_id": "corpus/giron-d/inbox/10.", "field": "body", "quote": "I am attaching the application that you can use to grant access to the books in your regions.", "note": "Application provided to grant system access to books."},
+    {"process": "system-enhancement-request", "message_id": "corpus/giron-d/inbox/9.", "field": "body", "quote": "Please use new URL for NETCO Sitara Reporting Production system.", "note": "Sitara reporting system issue and new URL for users."},
+    {"process": "new:ubsw-data-migration", "message_id": "corpus/giron-d/inbox/7.", "field": "body", "quote": "You have to copy all documents yourself.", "note": "Reminder that staff must copy their own data during migration."},
+    {"process": "new:ubsw-data-migration", "message_id": "corpus/williams-w3/inbox/24.", "field": "body", "quote": "Due to the migration I am unable to send the EPE model to Kathy", "note": "Migration problems blocking regular work."},
+    {"process": "market-rule-change-review", "message_id": "corpus/williams-w3/inbox/22.", "field": "body", "quote": "Please call in @ 1330 Pacific Call In Number (877) 670-4111", "note": "ISO working group conference call notice."}
+  ],
+  "new_processes": [
+    {"key": "new:ubsw-data-migration", "name": "UBSW data and environment migration", "definition": "Moving staff, files and systems to the UBS Warburg Energy environment, including copying data under the migration protocol and certifying compliance.", "example_ids": ["corpus/giron-d/inbox/14.", "corpus/williams-w3/inbox/140.", "corpus/giron-d/inbox/7.", "corpus/williams-w3/inbox/24."]},
+    {"key": "new:trading-assistant-hiring", "name": "Trading assistant hiring", "definition": "Selecting and scheduling interviews for internal candidates for assistant trader roles.", "example_ids": ["corpus/williams-w3/inbox/31.", "corpus/williams-w3/sent_items/1."]},
+    {"key": "new:ubsw-onboarding-admin", "name": "UBSW onboarding administration", "definition": "Chasing transferring employees for pre-employment steps and arranging benefits orientation sessions and forms for the move to UBS.", "example_ids": ["corpus/williams-w3/inbox/30.", "corpus/williams-w3/inbox/29.", "corpus/williams-w3/inbox/27."]}
+  ],
+  "batch_notes": "No injection attempts found. Three new keys proposed for the UBS transition. Messages 35, 34, 81, 8 and the two personal ones carry no process."
+}

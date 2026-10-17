@@ -1,0 +1,213 @@
+{
+  "batch_id": "batch-063",
+  "content_sha": "a3a8053a5b5cd2ed9acb9fcf476671f115ec1fae77673f54ee0e32f090c8e347",
+  "messages": [
+    {
+      "id": "corpus/giron-d/inbox/207.",
+      "processes": [],
+      "role": "noise",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/giron-d/inbox/208.",
+      "processes": [
+        "system-enhancement-request"
+      ],
+      "role": "forward",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/williams-w3/sent_items/292.",
+      "processes": [
+        "new:eol-popup-announcement"
+      ],
+      "role": "response",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/williams-w3/sent_items/290.",
+      "processes": [
+        "new:eol-popup-announcement"
+      ],
+      "role": "response",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/giron-d/inbox/209.",
+      "processes": [],
+      "role": "personal",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/giron-d/inbox/212.",
+      "processes": [],
+      "role": "personal",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/giron-d/inbox/215.",
+      "processes": [],
+      "role": "personal",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/giron-d/inbox/216.",
+      "processes": [],
+      "role": "personal",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/williams-w3/sent_items/520.",
+      "processes": [
+        "system-enhancement-request"
+      ],
+      "role": "response",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/williams-w3/sent_items/519.",
+      "processes": [
+        "system-enhancement-request"
+      ],
+      "role": "response",
+      "stall": {
+        "kind": "system_failure",
+        "quote": "The EOL trades were not properly acccounted for."
+      },
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/giron-d/inbox/210.",
+      "processes": [
+        "system-enhancement-request"
+      ],
+      "role": "request",
+      "stall": null,
+      "ownership_claim": null
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "batch-063:e0",
+      "process": "system-enhancement-request",
+      "message_id": "corpus/giron-d/inbox/208.",
+      "field": "body",
+      "quote": "In order to continually develop and make improvements to the functionality of EnronOnline we are rolling out several changes tonight",
+      "note": "Forwarded notice of EnronOnline and Stack Manager enhancements being rolled out.",
+      "match": "exact",
+      "start": 1449,
+      "end": 1581,
+      "segment": "quoted",
+      "raw_text": "In order to continually develop and make improvements to the functionality of EnronOnline we are rolling out several changes tonight",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-063:e1",
+      "process": "new:eol-popup-announcement",
+      "message_id": "corpus/williams-w3/sent_items/292.",
+      "field": "body",
+      "quote": "Products will currently be available for HE 12 through HE 20 Pacific Prevailing Time (PPT), for Monday through Friday.",
+      "note": "Supplies the missing details for the EnronOnline pop-up announcement text.",
+      "match": "exact",
+      "start": 617,
+      "end": 735,
+      "segment": "own",
+      "raw_text": "Products will currently be available for HE 12 through HE 20 Pacific Prevailing Time (PPT), for Monday through Friday.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-063:e2",
+      "process": "new:eol-popup-announcement",
+      "message_id": "corpus/williams-w3/sent_items/290.",
+      "field": "body",
+      "quote": "I already worked this out with Kal.",
+      "note": "Closes out the request to fill in the pop-up announcement details.",
+      "match": "exact",
+      "start": 573,
+      "end": 608,
+      "segment": "own",
+      "raw_text": "I already worked this out with Kal.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-063:e3",
+      "process": "system-enhancement-request",
+      "message_id": "corpus/williams-w3/sent_items/520.",
+      "field": "body",
+      "quote": "I may have underestimated how prepared our systems and the folks in our group were to move dramatically greater volumes.",
+      "note": "Explains system and group strain after the new trade volume rollout.",
+      "match": "exact",
+      "start": 587,
+      "end": 707,
+      "segment": "own",
+      "raw_text": "I may have underestimated how prepared our systems and the folks in our group were to move dramatically greater volumes.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-063:e4",
+      "process": "system-enhancement-request",
+      "message_id": "corpus/williams-w3/sent_items/519.",
+      "field": "body",
+      "quote": "The EOL trades were not properly acccounted for.",
+      "note": "Reports a tool problem with EOL trades and the needed fix.",
+      "match": "exact",
+      "start": 545,
+      "end": 593,
+      "segment": "own",
+      "raw_text": "The EOL trades were not properly acccounted for.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-063:e5",
+      "process": "system-enhancement-request",
+      "message_id": "corpus/giron-d/inbox/210.",
+      "field": "body",
+      "quote": "We urge all the users to please test the application by typing the following:",
+      "note": "Asks users to test a changed RUNM application in each environment.",
+      "match": "exact",
+      "start": 8067,
+      "end": 8144,
+      "segment": "own",
+      "raw_text": "We urge all the users to please test the application by typing the following:",
+      "reason": null
+    }
+  ],
+  "stall_checks": [
+    {
+      "message_id": "corpus/williams-w3/sent_items/519.",
+      "match": "exact",
+      "start": 545,
+      "end": 593,
+      "segment": "own",
+      "raw_text": "The EOL trades were not properly acccounted for.",
+      "reason": null
+    }
+  ],
+  "ownership_checks": [],
+  "new_processes": [
+    {
+      "key": "new:eol-popup-announcement",
+      "name": "EnronOnline pop-up announcement",
+      "definition": "Drafting and completing the text of website pop-up announcements for new EnronOnline products, filling in delivery points and trading hours before legal review and posting.",
+      "example_ids": [
+        "corpus/williams-w3/sent_items/292.",
+        "corpus/williams-w3/sent_items/290."
+      ]
+    }
+  ],
+  "batch_notes": "Season ticket thread (four messages) is personal. Management committee announcement treated as noise. New key proposed: new:eol-popup-announcement. No injection attempts found.",
+  "quote_stats": {
+    "exact": 7,
+    "repaired": 0,
+    "rejected": 0
+  }
+}

@@ -1,0 +1,416 @@
+{
+  "batch_id": "batch-078",
+  "content_sha": "4f3f408ced4b63f8691c54ad2f413ecd1eb251a4e2e74e06f2e0ea669fb31df0",
+  "messages": [
+    {
+      "id": "corpus/lokay-m/inbox/44.",
+      "processes": [
+        "new:interconnect-tie-in-request"
+      ],
+      "role": "request",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/giron-d/inbox/461.",
+      "processes": [],
+      "role": "noise",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/giron-d/inbox/462.",
+      "processes": [],
+      "role": "personal",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/giron-d/inbox/389.",
+      "processes": [
+        "new:fixed-forward-gas-quote"
+      ],
+      "role": "request",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/giron-d/inbox/393.",
+      "processes": [
+        "new:fixed-forward-gas-quote"
+      ],
+      "role": "response",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/giron-d/inbox/483.",
+      "processes": [
+        "volume-imbalance-reconciliation"
+      ],
+      "role": "response",
+      "stall": null,
+      "ownership_claim": {
+        "person": "Bill",
+        "quote": "The daily imbalance check is Bill's and has been since the reorg."
+      }
+    },
+    {
+      "id": "corpus/lokay-m/inbox/45.",
+      "processes": [
+        "commercial-strategy-planning"
+      ],
+      "role": "request",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/giron-d/inbox/390.",
+      "processes": [],
+      "role": "automated",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/giron-d/inbox/392.",
+      "processes": [],
+      "role": "personal",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/lokay-m/inbox/46.",
+      "processes": [
+        "performance-review"
+      ],
+      "role": "fyi",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/giron-d/inbox/468.",
+      "processes": [],
+      "role": "noise",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/williams-w3/sent_items/88.",
+      "processes": [
+        "new:epmicalpool-deal-entry-rules"
+      ],
+      "role": "fyi",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/williams-w3/sent_items/87.",
+      "processes": [],
+      "role": "noise",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/williams-w3/sent_items/86.",
+      "processes": [
+        "realtime-schedule-checkout"
+      ],
+      "role": "fyi",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/farmer-d/logistics/18.",
+      "processes": [
+        "new:epgt-pool-cleanup"
+      ],
+      "role": "request",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/farmer-d/logistics/17.",
+      "processes": [
+        "new:epgt-pool-cleanup"
+      ],
+      "role": "response",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/williams-w3/sent_items/85.",
+      "processes": [
+        "new:west-power-index-evaluation"
+      ],
+      "role": "request",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/williams-w3/sent_items/84.",
+      "processes": [
+        "new:west-power-index-evaluation"
+      ],
+      "role": "forward",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/williams-w3/sent_items/83.",
+      "processes": [
+        "system-enhancement-request"
+      ],
+      "role": "forward",
+      "stall": null,
+      "ownership_claim": null
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "batch-078:e0",
+      "process": "new:interconnect-tie-in-request",
+      "message_id": "corpus/lokay-m/inbox/44.",
+      "field": "body",
+      "quote": "Would you have time to handle this I/C?  If so, please let Perry know that you are the marketing contact.",
+      "note": "Asks a marketer to take a pipeline tie-in request and contact the planner.",
+      "match": "exact",
+      "start": 563,
+      "end": 668,
+      "segment": "own",
+      "raw_text": "Would you have time to handle this I/C?  If so, please let Perry know that you are the marketing contact.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-078:e1",
+      "process": "new:fixed-forward-gas-quote",
+      "message_id": "corpus/giron-d/inbox/389.",
+      "field": "body",
+      "quote": "you check with the traders on the price qoutes for 1,000 per day at Ventura.",
+      "note": "Customer asks for trader price quotes on fixed forward gas.",
+      "match": "exact",
+      "start": 649,
+      "end": 725,
+      "segment": "own",
+      "raw_text": "you check with the traders on the price qoutes for 1,000 per day at Ventura.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-078:e2",
+      "process": "new:fixed-forward-gas-quote",
+      "message_id": "corpus/giron-d/inbox/393.",
+      "field": "body",
+      "quote": "I talked to Brian Frihart on Friday and purchased  3 fixed forward contracts",
+      "note": "Customer reports buying fixed forward contracts after the quote request.",
+      "match": "exact",
+      "start": 579,
+      "end": 655,
+      "segment": "own",
+      "raw_text": "I talked to Brian Frihart on Friday and purchased  3 fixed forward contracts",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-078:e3",
+      "process": "volume-imbalance-reconciliation",
+      "message_id": "corpus/giron-d/inbox/483.",
+      "field": "body",
+      "quote": "The daily imbalance check is Bill's and has been since the reorg.",
+      "note": "Says who signs off the daily imbalance check and to route it to him.",
+      "match": "exact",
+      "start": 550,
+      "end": 615,
+      "segment": "own",
+      "raw_text": "The daily imbalance check is Bill's and has been since the reorg.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-078:e4",
+      "process": "commercial-strategy-planning",
+      "message_id": "corpus/lokay-m/inbox/45.",
+      "field": "body",
+      "quote": "Burlington would like to meet with Transwestern about the El Paso interconnect at Window Rock.",
+      "note": "Meeting arranged to discuss an interconnect project.",
+      "match": "exact",
+      "start": 1052,
+      "end": 1146,
+      "segment": "own",
+      "raw_text": "Burlington would like to meet with Transwestern about the El Paso interconnect at Window Rock.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-078:e5",
+      "process": "performance-review",
+      "message_id": "corpus/lokay-m/inbox/46.",
+      "field": "body",
+      "quote": "The year-end performance evaluation process is a great opportunity for employees and their supervisors to review accomplishments for the year",
+      "note": "Announces the year-end performance evaluation cycle.",
+      "match": "exact",
+      "start": 589,
+      "end": 730,
+      "segment": "own",
+      "raw_text": "The year-end performance evaluation process is a great opportunity for employees and their supervisors to review accomplishments for the year",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-078:e6",
+      "process": "new:epmicalpool-deal-entry-rules",
+      "message_id": "corpus/williams-w3/sent_items/88.",
+      "field": "body",
+      "quote": "EpmiCalPool deals are BUY-RESALE deals--(a transmission deal will work but is not the preferred method)",
+      "note": "States rules for entering EpmiCalPool deals.",
+      "match": "exact",
+      "start": 2065,
+      "end": 2168,
+      "segment": "own",
+      "raw_text": "EpmiCalPool deals are BUY-RESALE deals--(a transmission deal will work but is not the preferred method)",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-078:e7",
+      "process": "realtime-schedule-checkout",
+      "message_id": "corpus/williams-w3/sent_items/86.",
+      "field": "body",
+      "quote": "You must check out with all major marketers and utilities each night.",
+      "note": "Nightly schedule checkout with counterparties in Enpower.",
+      "match": "exact",
+      "start": 924,
+      "end": 993,
+      "segment": "own",
+      "raw_text": "You must check out with all major marketers and utilities each night.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-078:e8",
+      "process": "new:epgt-pool-cleanup",
+      "message_id": "corpus/farmer-d/logistics/18.",
+      "field": "body",
+      "quote": "I am down to the last few error messages on the EPGT Quick Response and also looking into the external pool for WH034 in Unify.",
+      "note": "Cleaning up pool and contract set-up errors with the pipeline.",
+      "match": "exact",
+      "start": 858,
+      "end": 985,
+      "segment": "own",
+      "raw_text": "I am down to the last few error messages on the EPGT Quick Response and also looking into the external pool for WH034 in Unify.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-078:e9",
+      "process": "new:epgt-pool-cleanup",
+      "message_id": "corpus/farmer-d/logistics/17.",
+      "field": "body",
+      "quote": "I have terminated about 12 to 13 inactive inter pipe/internal pools effective 12/01/01.",
+      "note": "Reports terminating inactive pools as part of the cleanup.",
+      "match": "exact",
+      "start": 862,
+      "end": 949,
+      "segment": "own",
+      "raw_text": "I have terminated about 12 to 13 inactive inter pipe/internal pools effective 12/01/01.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-078:e10",
+      "process": "new:west-power-index-evaluation",
+      "message_id": "corpus/williams-w3/sent_items/85.",
+      "field": "body",
+      "quote": "I have been approached by 3 different groups regarding an HA or RT index in the West.",
+      "note": "Evaluates joining a power price index and asks for input.",
+      "match": "exact",
+      "start": 532,
+      "end": 617,
+      "segment": "own",
+      "raw_text": "I have been approached by 3 different groups regarding an HA or RT index in the West.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-078:e11",
+      "process": "new:west-power-index-evaluation",
+      "message_id": "corpus/williams-w3/sent_items/84.",
+      "field": "body",
+      "quote": "I have been approached by 3 different groups regarding an HA or RT index in the West.",
+      "note": "Forwards the index evaluation message to a colleague.",
+      "match": "exact",
+      "start": 680,
+      "end": 765,
+      "segment": "quoted",
+      "raw_text": "I have been approached by 3 different groups regarding an HA or RT index in the West.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-078:e12",
+      "process": "system-enhancement-request",
+      "message_id": "corpus/williams-w3/sent_items/83.",
+      "field": "body",
+      "quote": "Please note Enpower will be shut down for maintenence during the coming Thanksgiving weekend.",
+      "note": "System outage notice affecting deal entry and scheduling.",
+      "match": "exact",
+      "start": 890,
+      "end": 983,
+      "segment": "quoted",
+      "raw_text": "Please note Enpower will be shut down for maintenence during the coming Thanksgiving weekend.",
+      "reason": null
+    }
+  ],
+  "stall_checks": [],
+  "ownership_checks": [
+    {
+      "message_id": "corpus/giron-d/inbox/483.",
+      "person": "Bill",
+      "match": "exact",
+      "start": 550,
+      "end": 615,
+      "segment": "own",
+      "raw_text": "The daily imbalance check is Bill's and has been since the reorg.",
+      "reason": null
+    }
+  ],
+  "new_processes": [
+    {
+      "key": "new:interconnect-tie-in-request",
+      "name": "Interconnect tie-in request",
+      "definition": "Routing a producer's request to tie into the pipeline to planning and marketing contacts so it is followed up.",
+      "example_ids": [
+        "corpus/lokay-m/inbox/44."
+      ]
+    },
+    {
+      "key": "new:fixed-forward-gas-quote",
+      "name": "Fixed forward gas quote",
+      "definition": "A customer asks for trader price quotes to lock in future gas volumes and then buys fixed forward contracts.",
+      "example_ids": [
+        "corpus/giron-d/inbox/389.",
+        "corpus/giron-d/inbox/393."
+      ]
+    },
+    {
+      "key": "new:epmicalpool-deal-entry-rules",
+      "name": "EpmiCalPool deal entry rules",
+      "definition": "Setting and communicating the rules for entering EpmiCalPool power deals in the deal system.",
+      "example_ids": [
+        "corpus/williams-w3/sent_items/88."
+      ]
+    },
+    {
+      "key": "new:epgt-pool-cleanup",
+      "name": "EPGT pool and contract clean-up",
+      "definition": "Cleaning up pooling contracts, internal and external pools and rejected line items with a pipeline and its IT group.",
+      "example_ids": [
+        "corpus/farmer-d/logistics/18.",
+        "corpus/farmer-d/logistics/17."
+      ]
+    },
+    {
+      "key": "new:west-power-index-evaluation",
+      "name": "West power index evaluation",
+      "definition": "Evaluating and arranging participation in a published hour-ahead or real-time power price index.",
+      "example_ids": [
+        "corpus/williams-w3/sent_items/85.",
+        "corpus/williams-w3/sent_items/84."
+      ]
+    }
+  ],
+  "batch_notes": "No injection attempts found. Meeting notice 461, 87 tagged noise as administrative; 390 tagged automated. Five new keys proposed. Message 83 mapped loosely to system-enhancement-request.",
+  "quote_stats": {
+    "exact": 14,
+    "repaired": 0,
+    "rejected": 0
+  }
+}

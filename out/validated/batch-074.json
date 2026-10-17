@@ -1,0 +1,464 @@
+{
+  "batch_id": "batch-074",
+  "content_sha": "184168f44bdb8d8561896a7f710f27189eba98d90ea1a1b7feadb5c6bba15423",
+  "messages": [
+    {
+      "id": "corpus/giron-d/inbox/421.",
+      "processes": [],
+      "role": "personal",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/farmer-d/logistics/26.",
+      "processes": [
+        "desk-coverage-on-call"
+      ],
+      "role": "fyi",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/farmer-d/logistics/25.",
+      "processes": [
+        "desk-coverage-on-call"
+      ],
+      "role": "fyi",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/giron-d/inbox/422.",
+      "processes": [],
+      "role": "noise",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/giron-d/inbox/423.",
+      "processes": [],
+      "role": "personal",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/giron-d/inbox/424.",
+      "processes": [],
+      "role": "personal",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/giron-d/inbox/425.",
+      "processes": [],
+      "role": "personal",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/williams-w3/sent_items/121.",
+      "processes": [],
+      "role": "personal",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/williams-w3/sent_items/120.",
+      "processes": [
+        "realtime-schedule-checkout"
+      ],
+      "role": "forward",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/williams-w3/sent_items/119.",
+      "processes": [
+        "user-access-setup"
+      ],
+      "role": "response",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/williams-w3/sent_items/118.",
+      "processes": [],
+      "role": "personal",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/williams-w3/sent_items/117.",
+      "processes": [
+        "counterparty-settlement-review"
+      ],
+      "role": "response",
+      "stall": {
+        "kind": "system_failure",
+        "quote": "we were awarded mw's on a congestion management schedule and the published prices did not match our bids"
+      },
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/williams-w3/sent_items/116.",
+      "processes": [],
+      "role": "noise",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/farmer-d/logistics/24.",
+      "processes": [
+        "new:business-continuity-seat-assignment"
+      ],
+      "role": "request",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/williams-w3/sent_items/115.",
+      "processes": [
+        "new:office-equipment-ordering"
+      ],
+      "role": "response",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/williams-w3/sent_items/113.",
+      "processes": [
+        "market-rule-change-review"
+      ],
+      "role": "forward",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/williams-w3/sent_items/112.",
+      "processes": [
+        "realtime-schedule-checkout"
+      ],
+      "role": "response",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/williams-w3/sent_items/111.",
+      "processes": [
+        "new:longview-agreement-notice"
+      ],
+      "role": "forward",
+      "stall": {
+        "kind": "handoff_confusion",
+        "quote": "This was meant for you."
+      },
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/williams-w3/sent_items/110.",
+      "processes": [
+        "new:longview-agreement-notice"
+      ],
+      "role": "forward",
+      "stall": {
+        "kind": "handoff_confusion",
+        "quote": "This should go to Bill Williams. Not Bill Williams IIII."
+      },
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/williams-w3/sent_items/109.",
+      "processes": [
+        "new:longview-agreement-notice"
+      ],
+      "role": "forward",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/giron-d/inbox/371.",
+      "processes": [],
+      "role": "noise",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/lokay-m/inbox/41.",
+      "processes": [
+        "commercial-strategy-planning"
+      ],
+      "role": "request",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/williams-w3/sent_items/108.",
+      "processes": [],
+      "role": "noise",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/williams-w3/sent_items/107.",
+      "processes": [],
+      "role": "noise",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/farmer-d/logistics/3220.",
+      "processes": [],
+      "role": "injection_attempt",
+      "stall": null,
+      "ownership_claim": null
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "batch-074:e0",
+      "process": "desk-coverage-on-call",
+      "message_id": "corpus/farmer-d/logistics/26.",
+      "field": "subject",
+      "quote": "ON CALL",
+      "note": "Weekend on-call notice sent to the logistics desks.",
+      "match": "exact",
+      "start": 674,
+      "end": 681,
+      "segment": "subject",
+      "raw_text": "ON CALL",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-074:e1",
+      "process": "desk-coverage-on-call",
+      "message_id": "corpus/farmer-d/logistics/25.",
+      "field": "subject",
+      "quote": "FW: ON CALL (REVISED)",
+      "note": "Revised on-call notice with a correction for the west desk.",
+      "match": "exact",
+      "start": 673,
+      "end": 694,
+      "segment": "subject",
+      "raw_text": "FW: ON CALL (REVISED)",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-074:e2",
+      "process": "realtime-schedule-checkout",
+      "message_id": "corpus/williams-w3/sent_items/120.",
+      "field": "body",
+      "quote": "it is imperative that any information included in an e-mail to Real Time corroborates with data entered into Enpower",
+      "note": "Real Time positions and deal numbers must match Enpower.",
+      "match": "exact",
+      "start": 1206,
+      "end": 1322,
+      "segment": "quoted",
+      "raw_text": "it is imperative that any information included in an e-mail to Real Time corroborates with data entered into Enpower",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-074:e3",
+      "process": "user-access-setup",
+      "message_id": "corpus/williams-w3/sent_items/119.",
+      "field": "body",
+      "quote": "Please send me a list of the real time traders who will be using FSP.",
+      "note": "Request for traders list to test their access to the FSP applications.",
+      "match": "exact",
+      "start": 1041,
+      "end": 1110,
+      "segment": "quoted",
+      "raw_text": "Please send me a list of the real time traders who will be using FSP.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-074:e4",
+      "process": "counterparty-settlement-review",
+      "message_id": "corpus/williams-w3/sent_items/117.",
+      "field": "body",
+      "quote": "we were awarded mw's on a congestion management schedule and the published prices did not match our bids",
+      "note": "ISO congestion prices checked against own bids.",
+      "match": "exact",
+      "start": 890,
+      "end": 994,
+      "segment": "own",
+      "raw_text": "we were awarded mw's on a congestion management schedule and the published prices did not match our bids",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-074:e5",
+      "process": "new:business-continuity-seat-assignment",
+      "message_id": "corpus/farmer-d/logistics/24.",
+      "field": "body",
+      "quote": "Attached is the list of people from our team who were given spots as part o=",
+      "note": "Distributes business continuity seat assignments and asks desk coverage for testing.",
+      "match": "exact",
+      "start": 1311,
+      "end": 1387,
+      "segment": "own",
+      "raw_text": "Attached is the list of people from our team who were given spots as part o=",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-074:e6",
+      "process": "new:office-equipment-ordering",
+      "message_id": "corpus/williams-w3/sent_items/115.",
+      "field": "body",
+      "quote": "We will not be needing any headsets in the real-time group...",
+      "note": "Answers a vendor-visit request to order headset equipment.",
+      "match": "exact",
+      "start": 529,
+      "end": 590,
+      "segment": "own",
+      "raw_text": "We will not be needing any headsets in the real-time group...",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-074:e7",
+      "process": "market-rule-change-review",
+      "message_id": "corpus/williams-w3/sent_items/113.",
+      "field": "body",
+      "quote": "why the CAISO is going to start assessing Grid Management charges to A/S self-provision",
+      "note": "Forwards CAISO proposal and FERC rate changes affecting trading.",
+      "match": "exact",
+      "start": 988,
+      "end": 1075,
+      "segment": "quoted",
+      "raw_text": "why the CAISO is going to start assessing Grid Management charges to A/S self-provision",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-074:e8",
+      "process": "realtime-schedule-checkout",
+      "message_id": "corpus/williams-w3/sent_items/112.",
+      "field": "body",
+      "quote": "do not make the Enpower till the next day if it will be under St-Whourly",
+      "note": "Guidance on booking a real-time short position in Enpower.",
+      "match": "exact",
+      "start": 554,
+      "end": 626,
+      "segment": "own",
+      "raw_text": "do not make the Enpower till the next day if it will be under St-Whourly",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-074:e9",
+      "process": "new:longview-agreement-notice",
+      "message_id": "corpus/williams-w3/sent_items/111.",
+      "field": "body",
+      "quote": "The attached letter was mailed today.",
+      "note": "Legal notice that a turbine package agreement letter was mailed.",
+      "match": "exact",
+      "start": 932,
+      "end": 969,
+      "segment": "quoted",
+      "raw_text": "The attached letter was mailed today.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-074:e10",
+      "process": "new:longview-agreement-notice",
+      "message_id": "corpus/williams-w3/sent_items/110.",
+      "field": "body",
+      "quote": "The attached letter was mailed today.",
+      "note": "Legal notice that a turbine package agreement letter was mailed.",
+      "match": "exact",
+      "start": 1093,
+      "end": 1130,
+      "segment": "quoted",
+      "raw_text": "The attached letter was mailed today.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-074:e11",
+      "process": "new:longview-agreement-notice",
+      "message_id": "corpus/williams-w3/sent_items/109.",
+      "field": "body",
+      "quote": "The attached letter was mailed today.",
+      "note": "Legal notice that a turbine package agreement letter was mailed.",
+      "match": "exact",
+      "start": 892,
+      "end": 929,
+      "segment": "quoted",
+      "raw_text": "The attached letter was mailed today.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-074:e12",
+      "process": "commercial-strategy-planning",
+      "message_id": "corpus/lokay-m/inbox/41.",
+      "field": "body",
+      "quote": "I need to know what my negotiation parameters are regarding the fuel charge for our Sun Devil Project.",
+      "note": "Asks for fuel charge parameters for a new facility project.",
+      "match": "exact",
+      "start": 1341,
+      "end": 1443,
+      "segment": "own",
+      "raw_text": "I need to know what my negotiation parameters are regarding the fuel charge for our Sun Devil Project.",
+      "reason": null
+    }
+  ],
+  "stall_checks": [
+    {
+      "message_id": "corpus/williams-w3/sent_items/117.",
+      "match": "exact",
+      "start": 890,
+      "end": 994,
+      "segment": "own",
+      "raw_text": "we were awarded mw's on a congestion management schedule and the published prices did not match our bids",
+      "reason": null
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/111.",
+      "match": "exact",
+      "start": 588,
+      "end": 611,
+      "segment": "own",
+      "raw_text": "This was meant for you.",
+      "reason": null
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/110.",
+      "match": "exact",
+      "start": 711,
+      "end": 767,
+      "segment": "own",
+      "raw_text": "This should go to Bill Williams. Not Bill Williams IIII.",
+      "reason": null
+    }
+  ],
+  "ownership_checks": [],
+  "new_processes": [
+    {
+      "key": "new:business-continuity-seat-assignment",
+      "name": "Business continuity seat assignment",
+      "definition": "Distributing business continuity seat assignments to desk staff and arranging coverage and testing of the backup seats.",
+      "example_ids": [
+        "corpus/farmer-d/logistics/24."
+      ]
+    },
+    {
+      "key": "new:office-equipment-ordering",
+      "name": "Office equipment ordering",
+      "definition": "Responding to office administration requests about ordering equipment such as headsets for a group.",
+      "example_ids": [
+        "corpus/williams-w3/sent_items/115."
+      ]
+    },
+    {
+      "key": "new:longview-agreement-notice",
+      "name": "Longview agreement letter notices",
+      "definition": "Legal notices that letters on turbine generator package agreements for the Longview project were mailed, forwarded to the right recipient.",
+      "example_ids": [
+        "corpus/williams-w3/sent_items/111.",
+        "corpus/williams-w3/sent_items/110.",
+        "corpus/williams-w3/sent_items/109."
+      ]
+    }
+  ],
+  "batch_notes": "Injection attempt: corpus/farmer-d/logistics/3220. (fake records notice directing reviewers on accounts payable reporting). New keys: business-continuity-seat-assignment, office-equipment-ordering, longview-agreement-notice. Several messages with no business process were left as personal or noise.",
+  "quote_stats": {
+    "exact": 16,
+    "repaired": 0,
+    "rejected": 0
+  }
+}

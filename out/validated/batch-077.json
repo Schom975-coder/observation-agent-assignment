@@ -1,0 +1,156 @@
+{
+  "batch_id": "batch-077",
+  "content_sha": "ce1132c33d19bad2a8b3dd2d3238f40c5f4f299587ca0a2ff612ea6f02467efe",
+  "messages": [
+    {
+      "id": "corpus/giron-d/inbox/456.",
+      "processes": [],
+      "role": "noise",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/farmer-d/logistics/19.",
+      "processes": [
+        "new:gisb-standards-meeting-notes"
+      ],
+      "role": "fyi",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/giron-d/inbox/386.",
+      "processes": [],
+      "role": "noise",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/giron-d/inbox/458.",
+      "processes": [],
+      "role": "noise",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/giron-d/inbox/475.",
+      "processes": [],
+      "role": "noise",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/giron-d/inbox/294.",
+      "processes": [],
+      "role": "noise",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/giron-d/inbox/299.",
+      "processes": [],
+      "role": "noise",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/giron-d/inbox/300.",
+      "processes": [],
+      "role": "noise",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/giron-d/inbox/305.",
+      "processes": [],
+      "role": "noise",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/williams-w3/sent_items/526.",
+      "processes": [
+        "volume-imbalance-reconciliation"
+      ],
+      "role": "response",
+      "stall": null,
+      "ownership_claim": {
+        "person": "Darron",
+        "quote": "Darron has owned the daily imbalance check since March."
+      }
+    },
+    {
+      "id": "corpus/giron-d/inbox/387.",
+      "processes": [],
+      "role": "noise",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/giron-d/inbox/388.",
+      "processes": [],
+      "role": "personal",
+      "stall": null,
+      "ownership_claim": null
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "batch-077:e0",
+      "process": "new:gisb-standards-meeting-notes",
+      "message_id": "corpus/farmer-d/logistics/19.",
+      "field": "body",
+      "quote": "Finalized the Transactional Information (FT, IT, and Capacity Release).",
+      "note": "Meeting notes summarising GISB informational reporting standards work.",
+      "match": "exact",
+      "start": 1857,
+      "end": 1928,
+      "segment": "own",
+      "raw_text": "Finalized the Transactional Information (FT, IT, and Capacity Release).",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-077:e1",
+      "process": "volume-imbalance-reconciliation",
+      "message_id": "corpus/williams-w3/sent_items/526.",
+      "field": "body",
+      "quote": "Send him the Tuesday numbers directly and it will move a lot faster.",
+      "note": "Directs the daily imbalance check numbers to the person who owns that check.",
+      "match": "exact",
+      "start": 664,
+      "end": 732,
+      "segment": "own",
+      "raw_text": "Send him the Tuesday numbers directly and it will move a lot faster.",
+      "reason": null
+    }
+  ],
+  "stall_checks": [],
+  "ownership_checks": [
+    {
+      "message_id": "corpus/williams-w3/sent_items/526.",
+      "person": "Darron",
+      "match": "exact",
+      "start": 518,
+      "end": 573,
+      "segment": "own",
+      "raw_text": "Darron has owned the daily imbalance check since March.",
+      "reason": null
+    }
+  ],
+  "new_processes": [
+    {
+      "key": "new:gisb-standards-meeting-notes",
+      "name": "GISB standards meeting notes",
+      "definition": "Circulating notes from GISB industry standards committee meetings on data sets, code values and reporting documents to the logistics staff.",
+      "example_ids": [
+        "corpus/farmer-d/logistics/19."
+      ]
+    }
+  ],
+  "batch_notes": "Mostly newsletters and personal mail in the giron-d mailbox. Proposed new:gisb-standards-meeting-notes. Message 387 (Excel class project) treated as noise. No injection attempts found.",
+  "quote_stats": {
+    "exact": 3,
+    "repaired": 0,
+    "rejected": 0
+  }
+}

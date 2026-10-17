@@ -1,0 +1,50 @@
+{
+  "batch_id": "batch-026",
+  "messages": [
+    {"id": "corpus/farmer-d/logistics/1433.", "processes": ["volume-imbalance-reconciliation"], "role": "request", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/sent/625.", "processes": ["counterparty-settlement-review"], "role": "response", "stall": {"kind": "waiting_on_reply", "quote": "Have you had a chance to look at this."}, "ownership_claim": null},
+    {"id": "corpus/giron-d/sent/623.", "processes": ["trading-book-setup"], "role": "response", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/sent/622.", "processes": [], "role": "personal", "stall": null, "ownership_claim": null},
+    {"id": "corpus/farmer-d/logistics/1436.", "processes": ["time-activity-reporting"], "role": "request", "stall": null, "ownership_claim": null},
+    {"id": "corpus/farmer-d/logistics/1445.", "processes": ["time-activity-reporting"], "role": "request", "stall": {"kind": "waiting_on_reply", "quote": "As a reminder, today is the deadline for completion of the OPM Survey."}, "ownership_claim": null},
+    {"id": "corpus/farmer-d/logistics/1447.", "processes": ["time-activity-reporting"], "role": "request", "stall": null, "ownership_claim": null},
+    {"id": "corpus/farmer-d/logistics/1437.", "processes": ["time-activity-reporting"], "role": "fyi", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/sent/621.", "processes": [], "role": "personal", "stall": null, "ownership_claim": null},
+    {"id": "corpus/farmer-d/logistics/1438.", "processes": ["counterparty-settlement-review"], "role": "request", "stall": null, "ownership_claim": null},
+    {"id": "corpus/farmer-d/logistics/1440.", "processes": ["counterparty-settlement-review"], "role": "response", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/sent/620.", "processes": [], "role": "personal", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/sent/619.", "processes": ["deal-book-transfer"], "role": "request", "stall": null, "ownership_claim": null},
+    {"id": "corpus/farmer-d/logistics/1439.", "processes": ["new:meter-replacement-changeover"], "role": "request", "stall": null, "ownership_claim": null},
+    {"id": "corpus/farmer-d/logistics/1442.", "processes": ["new:meter-replacement-changeover"], "role": "response", "stall": null, "ownership_claim": null},
+    {"id": "corpus/farmer-d/logistics/1444.", "processes": ["new:meter-replacement-changeover"], "role": "response", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/sent/618.", "processes": ["user-access-setup"], "role": "request", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/sent/617.", "processes": [], "role": "personal", "stall": null, "ownership_claim": null},
+    {"id": "corpus/farmer-d/logistics/1443.", "processes": ["desk-coverage-on-call"], "role": "fyi", "stall": null, "ownership_claim": {"person": "Tom Acton", "quote": "absence Tom Acton will be handling the Oasis & Lonestar interconnects at"}},
+    {"id": "corpus/giron-d/sent/616.", "processes": [], "role": "noise", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/sent/615.", "processes": ["new:gas-daily-deal-booking-standard"], "role": "request", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/sent/613.", "processes": [], "role": "personal", "stall": null, "ownership_claim": null}
+  ],
+  "evidence": [
+    {"process": "volume-imbalance-reconciliation", "message_id": "corpus/farmer-d/logistics/1433.", "field": "body", "quote": "I would like us to continue to pursue Channel/ El Paso/ Tenngasco for our", "note": "Asks the team to pursue payback and resolve contract imbalances."},
+    {"process": "counterparty-settlement-review", "message_id": "corpus/giron-d/sent/625.", "field": "body", "quote": "Have you had a chance to look at this.  Dave at The New Power Group is", "note": "Counterparty wants payment while unrecognized deals are checked."},
+    {"process": "trading-book-setup", "message_id": "corpus/giron-d/sent/623.", "field": "body", "quote": "Darron - please provide me with the trader's name for the following books:", "note": "Request for trader names tied to books, answered in the reply."},
+    {"process": "time-activity-reporting", "message_id": "corpus/farmer-d/logistics/1436.", "field": "body", "quote": "is ready for your input for the month of September.", "note": "Monthly OPM hours survey sent for completion."},
+    {"process": "time-activity-reporting", "message_id": "corpus/farmer-d/logistics/1445.", "field": "body", "quote": "As a reminder, today is the deadline for completion of the OPM Survey.", "note": "Deadline reminder for the hours survey."},
+    {"process": "time-activity-reporting", "message_id": "corpus/farmer-d/logistics/1447.", "field": "body", "quote": "Thanks for your spreadsheet.  One thing I still need from you is what", "note": "Follow-up on submitted hours survey needing more detail."},
+    {"process": "time-activity-reporting", "message_id": "corpus/farmer-d/logistics/1437.", "field": "body", "quote": "The attached spreadsheet could be used to help you in the collection of the", "note": "Help sheet for collecting hours for the survey."},
+    {"process": "counterparty-settlement-review", "message_id": "corpus/farmer-d/logistics/1438.", "field": "body", "quote": "There are five HPLC purchase deals for 09/99 from Ocean Energy Inc.", "note": "Payment on purchase deals was suspended and is being investigated."},
+    {"process": "counterparty-settlement-review", "message_id": "corpus/farmer-d/logistics/1440.", "field": "body", "quote": "I just found the answer this afternoon.", "note": "Resolves the suspended payment question."},
+    {"process": "deal-book-transfer", "message_id": "corpus/giron-d/sent/619.", "field": "body", "quote": "I want to move all deals currently in the INTRA-EMWMEH book into the", "note": "Requests moving deals from one book to another."},
+    {"process": "new:meter-replacement-changeover", "message_id": "corpus/farmer-d/logistics/1439.", "field": "body", "quote": "Please change the confirmed noms to zero for all contracts that have be", "note": "Stepwise instructions to retire a meter and move to its replacement."},
+    {"process": "new:meter-replacement-changeover", "message_id": "corpus/farmer-d/logistics/1442.", "field": "body", "quote": "Step # 1 has been completed.", "note": "Reports progress on the meter changeover steps."},
+    {"process": "new:meter-replacement-changeover", "message_id": "corpus/farmer-d/logistics/1444.", "field": "body", "quote": "Steps 2 - 4 have been done.", "note": "Reports progress and hands verification to another person."},
+    {"process": "user-access-setup", "message_id": "corpus/giron-d/sent/618.", "field": "body", "quote": "As we discussed yesterday, I need access to West deals in Sitara.", "note": "Requests system access after a role change."},
+    {"process": "desk-coverage-on-call", "message_id": "corpus/farmer-d/logistics/1443.", "field": "body", "quote": "absence Tom Acton will be handling the Oasis & Lonestar interconnects at", "note": "Names who covers duties during an absence."},
+    {"process": "new:gas-daily-deal-booking-standard", "message_id": "corpus/giron-d/sent/615.", "field": "body", "quote": "It looks like we need to be consistent in booking the GD spread deals.", "note": "Asks book admins to follow one booking method for Gas Daily deals."}
+  ],
+  "new_processes": [
+    {"key": "new:meter-replacement-changeover", "name": "Meter replacement changeover", "definition": "Coordinating a stepwise switch from an old meter to its replacement across nominations, allocation, facility data, scheduling and accounting set-up.", "example_ids": ["corpus/farmer-d/logistics/1439.", "corpus/farmer-d/logistics/1442.", "corpus/farmer-d/logistics/1444."]},
+    {"key": "new:gas-daily-deal-booking-standard", "name": "Gas Daily deal booking standard", "definition": "Instructing book administrators to enter multi-leg Gas Daily deals in a consistent leg order so confirmations work.", "example_ids": ["corpus/giron-d/sent/615."]}
+  ],
+  "batch_notes": "No injection attempts. Several personal chain-mail forwards. Message 616 is an empty forward, tagged noise. Message 623 tagged trading-book-setup tentatively. Proposed new keys: meter-replacement-changeover, gas-daily-deal-booking-standard."
+}

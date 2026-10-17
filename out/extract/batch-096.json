@@ -1,0 +1,50 @@
+{
+  "batch_id": "batch-096",
+  "messages": [
+    {"id": "corpus/williams-w3/inbox/23.", "processes": [], "role": "noise", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/inbox/6.", "processes": ["user-access-setup"], "role": "fyi", "stall": null, "ownership_claim": null},
+    {"id": "corpus/williams-w3/inbox/14.", "processes": ["user-access-setup"], "role": "fyi", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/inbox/5.", "processes": ["new:test-deal-booking-review"], "role": "request", "stall": null, "ownership_claim": null},
+    {"id": "corpus/williams-w3/inbox/21.", "processes": ["user-access-setup"], "role": "request", "stall": null, "ownership_claim": null},
+    {"id": "corpus/williams-w3/inbox/20.", "processes": ["user-access-setup"], "role": "response", "stall": null, "ownership_claim": null},
+    {"id": "corpus/williams-w3/inbox/19.", "processes": ["user-access-setup"], "role": "response", "stall": null, "ownership_claim": null},
+    {"id": "corpus/williams-w3/inbox/18.", "processes": ["user-access-setup"], "role": "request", "stall": null, "ownership_claim": null},
+    {"id": "corpus/williams-w3/inbox/17.", "processes": ["user-access-setup"], "role": "response", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/inbox/3.", "processes": [], "role": "personal", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/inbox/4.", "processes": ["new:ubs-transition-coordination"], "role": "request", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/inbox/2.", "processes": ["new:ubs-transition-coordination"], "role": "fyi", "stall": null, "ownership_claim": null},
+    {"id": "corpus/williams-w3/inbox/16.", "processes": ["new:ubs-transition-coordination"], "role": "fyi", "stall": null, "ownership_claim": null},
+    {"id": "corpus/williams-w3/inbox/15.", "processes": ["new:ubs-transition-coordination"], "role": "request", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/inbox/1.", "processes": ["new:ubs-transition-coordination"], "role": "fyi", "stall": null, "ownership_claim": null},
+    {"id": "corpus/williams-w3/inbox/13.", "processes": [], "role": "noise", "stall": null, "ownership_claim": null},
+    {"id": "corpus/williams-w3/inbox/12.", "processes": ["market-rule-change-review"], "role": "fyi", "stall": null, "ownership_claim": null},
+    {"id": "corpus/williams-w3/inbox/10.", "processes": ["market-rule-change-review"], "role": "fyi", "stall": {"kind": "rework", "quote": "There appears to be an issue with the pdf versions of the automation\nspecifications."}, "ownership_claim": null},
+    {"id": "corpus/williams-w3/inbox/11.", "processes": ["new:ubs-transition-coordination"], "role": "fyi", "stall": null, "ownership_claim": null},
+    {"id": "corpus/williams-w3/inbox/8.", "processes": ["new:ubs-transition-coordination"], "role": "fyi", "stall": null, "ownership_claim": null},
+    {"id": "corpus/williams-w3/inbox/7.", "processes": [], "role": "noise", "stall": null, "ownership_claim": null}
+  ],
+  "evidence": [
+    {"process": "user-access-setup", "message_id": "corpus/giron-d/inbox/6.", "field": "body", "quote": "Your PRODUCTION User ID and Password has been set up on UBSWenergy.", "note": "Notice of production account set-up."},
+    {"process": "user-access-setup", "message_id": "corpus/williams-w3/inbox/14.", "field": "body", "quote": "Your PRODUCTION User ID and Password has been set up on UBSWenergy.", "note": "Notice of production account set-up."},
+    {"process": "new:test-deal-booking-review", "message_id": "corpus/giron-d/inbox/5.", "field": "body", "quote": "I pushed a few test deals for Canadian products through and need you to review these deals in Tagg and Sitara", "note": "Asks reviewers to verify test deals book correctly."},
+    {"process": "user-access-setup", "message_id": "corpus/williams-w3/inbox/21.", "field": "body", "quote": "I need to know now who will need an exception to this. ASAP.", "note": "Asks who needs an account exception before accounts are disabled."},
+    {"process": "user-access-setup", "message_id": "corpus/williams-w3/inbox/20.", "field": "body", "quote": "However, I do not feel that the accounts for the resources should be disabled.", "note": "Objects to disabling accounts."},
+    {"process": "user-access-setup", "message_id": "corpus/williams-w3/inbox/19.", "field": "body", "quote": "It is in the best interest of the Estate to keep these accounts active until the Estate has a solid alternative plan established!", "note": "Argues to keep accounts active."},
+    {"process": "user-access-setup", "message_id": "corpus/williams-w3/inbox/18.", "field": "body", "quote": "What do we need to do to make sure these accounts stay active past Sunday?", "note": "Asks how to keep accounts active."},
+    {"process": "user-access-setup", "message_id": "corpus/williams-w3/inbox/17.", "field": "body", "quote": "Dan has layed out a process for this to happen that I will follow.", "note": "Will follow the account extension process."},
+    {"process": "new:ubs-transition-coordination", "message_id": "corpus/giron-d/inbox/4.", "field": "body", "quote": "Could you please let me know if there are any procedures that any UBS people are still running that should be run by the estate team?", "note": "Asks for procedures to hand over to the estate team."},
+    {"process": "new:ubs-transition-coordination", "message_id": "corpus/giron-d/inbox/2.", "field": "body", "quote": "Orientation will be split into two sessions and divided by alpha-order.", "note": "UBSW orientation logistics."},
+    {"process": "new:ubs-transition-coordination", "message_id": "corpus/williams-w3/inbox/16.", "field": "body", "quote": "When exporting your EMAIL messages listed in the instructions or via the Outlook Export utility, attachments WILL NOT BE SAVED!", "note": "Email migration instruction for UBS move."},
+    {"process": "new:ubs-transition-coordination", "message_id": "corpus/williams-w3/inbox/15.", "field": "body", "quote": "I am going to send all of our File Migration compliance forms in one batch", "note": "Collecting migration compliance forms."},
+    {"process": "new:ubs-transition-coordination", "message_id": "corpus/giron-d/inbox/1.", "field": "body", "quote": "please read the announcement below from Security about how you can obtain a new UBS Warburg access card", "note": "Access card transition for UBS staff."},
+    {"process": "market-rule-change-review", "message_id": "corpus/williams-w3/inbox/12.", "field": "body", "quote": "The Market Simulation will be conducted from February 11 through 15, 2002.", "note": "ISO market simulation notice."},
+    {"process": "market-rule-change-review", "message_id": "corpus/williams-w3/inbox/10.", "field": "body", "quote": "There appears to be an issue with the pdf versions of the automation\nspecifications.", "note": "Follow-up on ISO simulation specification files."},
+    {"process": "new:ubs-transition-coordination", "message_id": "corpus/williams-w3/inbox/11.", "field": "body", "quote": "Please read the document at:", "note": "Email backup instructions for UBSW move."},
+    {"process": "new:ubs-transition-coordination", "message_id": "corpus/williams-w3/inbox/8.", "field": "body", "quote": "The estate will be settling CAPS each day (creating DA and HA finals) beginning on Friday.", "note": "Transition work split between estate and UBS."}
+  ],
+  "new_processes": [
+    {"key": "new:test-deal-booking-review", "name": "Test deal booking review", "definition": "Reviewing test deals in deal and valuation systems to verify they book correctly for a new product.", "example_ids": ["corpus/giron-d/inbox/5."]},
+    {"key": "new:ubs-transition-coordination", "name": "UBS transition coordination", "definition": "Logistics of moving staff and work to UBS and the estate: orientation, access cards, email and file migration, compliance forms, handover of procedures.", "example_ids": ["corpus/giron-d/inbox/4.", "corpus/giron-d/inbox/2.", "corpus/williams-w3/inbox/16.", "corpus/williams-w3/inbox/15.", "corpus/giron-d/inbox/1.", "corpus/williams-w3/inbox/11.", "corpus/williams-w3/inbox/8."]}
+  ],
+  "batch_notes": "No injection attempts. Market report, news article and interview confirmation marked noise. Proposed two new keys."
+}

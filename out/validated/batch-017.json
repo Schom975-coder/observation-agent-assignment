@@ -1,0 +1,491 @@
+{
+  "batch_id": "batch-017",
+  "content_sha": "4621532799747721875e79b897a4f46dd7138c109899268fd1b9443c88e191d6",
+  "messages": [
+    {
+      "id": "corpus/farmer-d/logistics/1248.",
+      "processes": [
+        "trading-book-setup"
+      ],
+      "role": "fyi",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/giron-d/sent/757.",
+      "processes": [],
+      "role": "personal",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/giron-d/sent/756.",
+      "processes": [],
+      "role": "personal",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/farmer-d/logistics/1250.",
+      "processes": [
+        "volume-imbalance-reconciliation"
+      ],
+      "role": "fyi",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/giron-d/sent/754.",
+      "processes": [],
+      "role": "noise",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/giron-d/sent/753.",
+      "processes": [],
+      "role": "personal",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/farmer-d/logistics/1251.",
+      "processes": [
+        "new:sap-rollout-communication"
+      ],
+      "role": "forward",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/farmer-d/logistics/1253.",
+      "processes": [
+        "new:industrial-monthly-setup"
+      ],
+      "role": "request",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/giron-d/sent/793.",
+      "processes": [],
+      "role": "noise",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/farmer-d/logistics/1254.",
+      "processes": [
+        "reference-data-update"
+      ],
+      "role": "fyi",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/giron-d/sent/752.",
+      "processes": [],
+      "role": "personal",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/farmer-d/logistics/1255.",
+      "processes": [
+        "gas-nomination-handling"
+      ],
+      "role": "forward",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/giron-d/sent/751.",
+      "processes": [],
+      "role": "noise",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/farmer-d/logistics/1257.",
+      "processes": [
+        "new:transport-usage-ticket-setup"
+      ],
+      "role": "request",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/farmer-d/logistics/1258.",
+      "processes": [
+        "new:sap-rollout-communication"
+      ],
+      "role": "fyi",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/giron-d/sent/750.",
+      "processes": [
+        "counterparty-settlement-review"
+      ],
+      "role": "request",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/giron-d/sent/749.",
+      "processes": [],
+      "role": "personal",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/farmer-d/logistics/1261.",
+      "processes": [
+        "pipeline-outage-supply-cuts"
+      ],
+      "role": "fyi",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/giron-d/sent/748.",
+      "processes": [
+        "new:software-media-return-request"
+      ],
+      "role": "response",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/giron-d/sent/747.",
+      "processes": [
+        "new:software-media-return-request"
+      ],
+      "role": "response",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/giron-d/sent/746.",
+      "processes": [],
+      "role": "personal",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/farmer-d/logistics/1264.",
+      "processes": [
+        "new:report-review-meeting-scheduling"
+      ],
+      "role": "fyi",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/farmer-d/logistics/1265.",
+      "processes": [
+        "meter-flow-deal-coverage"
+      ],
+      "role": "response",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/farmer-d/logistics/1267.",
+      "processes": [
+        "pipeline-outage-supply-cuts"
+      ],
+      "role": "fyi",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
+      "id": "corpus/farmer-d/logistics/1297.",
+      "processes": [
+        "pipeline-outage-supply-cuts"
+      ],
+      "role": "fyi",
+      "stall": null,
+      "ownership_claim": null
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "batch-017:e0",
+      "process": "trading-book-setup",
+      "message_id": "corpus/farmer-d/logistics/1248.",
+      "field": "body",
+      "quote": "I stressed to the Sitara/EOL folks the importance of adding comments",
+      "note": "Heads-up on setting up a new flexible physical product on EOL and its tickets.",
+      "match": "exact",
+      "start": 842,
+      "end": 910,
+      "segment": "own",
+      "raw_text": "I stressed to the Sitara/EOL folks the importance of adding comments",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-017:e1",
+      "process": "volume-imbalance-reconciliation",
+      "message_id": "corpus/farmer-d/logistics/1250.",
+      "field": "body",
+      "quote": "Here are our updated imbalances per contract & total:",
+      "note": "Contract imbalance update for Oasis.",
+      "match": "exact",
+      "start": 484,
+      "end": 537,
+      "segment": "own",
+      "raw_text": "Here are our updated imbalances per contract & total:",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-017:e2",
+      "process": "new:sap-rollout-communication",
+      "message_id": "corpus/farmer-d/logistics/1251.",
+      "field": "body",
+      "quote": "Duane and Cindy need a list of the individuals needed this training.",
+      "note": "Collecting attendees for SAP FERC training.",
+      "match": "exact",
+      "start": 1198,
+      "end": 1266,
+      "segment": "forwarded",
+      "raw_text": "Duane and Cindy need a list of the individuals needed this training.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-017:e3",
+      "process": "new:industrial-monthly-setup",
+      "message_id": "corpus/farmer-d/logistics/1253.",
+      "field": "body",
+      "quote": "Please make sure that Gary gets a copy of the Industrial spreadsheet.",
+      "note": "Asks for the industrial worksheet used in monthly industrial buyback setup.",
+      "match": "exact",
+      "start": 582,
+      "end": 651,
+      "segment": "own",
+      "raw_text": "Please make sure that Gary gets a copy of the Industrial spreadsheet.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-017:e4",
+      "process": "reference-data-update",
+      "message_id": "corpus/farmer-d/logistics/1254.",
+      "field": "body",
+      "quote": "Norma Villarreal is the HR Generalist for all of Brent Price's group and",
+      "note": "Distributes HR contact assignments for staff.",
+      "match": "exact",
+      "start": 3249,
+      "end": 3321,
+      "segment": "own",
+      "raw_text": "Norma Villarreal is the HR Generalist for all of Brent Price's group and",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-017:e5",
+      "process": "gas-nomination-handling",
+      "message_id": "corpus/farmer-d/logistics/1255.",
+      "field": "subject",
+      "quote": "nom change for increased Midcon gas...",
+      "note": "Forwards a counterparty nom change file.",
+      "match": "exact",
+      "start": 323,
+      "end": 361,
+      "segment": "subject",
+      "raw_text": "nom change for increased Midcon gas...",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-017:e6",
+      "process": "new:transport-usage-ticket-setup",
+      "message_id": "corpus/farmer-d/logistics/1257.",
+      "field": "body",
+      "quote": "I have input and updated transport usage tickets for July.",
+      "note": "Monthly transport usage tickets entered and handed over for rate adjustment.",
+      "match": "exact",
+      "start": 585,
+      "end": 643,
+      "segment": "own",
+      "raw_text": "I have input and updated transport usage tickets for July.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-017:e7",
+      "process": "new:sap-rollout-communication",
+      "message_id": "corpus/farmer-d/logistics/1258.",
+      "field": "body",
+      "quote": "The attached file contains timelines for a",
+      "note": "Announces SAP implementation timelines to the groups.",
+      "match": "exact",
+      "start": 9347,
+      "end": 9389,
+      "segment": "own",
+      "raw_text": "The attached file contains timelines for a",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-017:e8",
+      "process": "counterparty-settlement-review",
+      "message_id": "corpus/giron-d/sent/750.",
+      "field": "body",
+      "quote": "Are these deasl going to be settled by Unify?",
+      "note": "Asks how EMW deals are settled and invoiced.",
+      "match": "exact",
+      "start": 592,
+      "end": 637,
+      "segment": "own",
+      "raw_text": "Are these deasl going to be settled by Unify?",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-017:e9",
+      "process": "pipeline-outage-supply-cuts",
+      "message_id": "corpus/farmer-d/logistics/1261.",
+      "field": "body",
+      "quote": "The MeOH plant  began having problems on June 30.",
+      "note": "Plant upset notice.",
+      "match": "exact",
+      "start": 1046,
+      "end": 1095,
+      "segment": "own",
+      "raw_text": "The MeOH plant  began having problems on June 30.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-017:e10",
+      "process": "new:software-media-return-request",
+      "message_id": "corpus/giron-d/sent/748.",
+      "field": "body",
+      "quote": "The CD is in my desk in",
+      "note": "Replies to IT request to return a checked-out Office CD.",
+      "match": "exact",
+      "start": 514,
+      "end": 537,
+      "segment": "own",
+      "raw_text": "The CD is in my desk in",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-017:e11",
+      "process": "new:software-media-return-request",
+      "message_id": "corpus/giron-d/sent/747.",
+      "field": "body",
+      "quote": "I am in Chicago right now and will not return until Monday.",
+      "note": "Follow-up reply on returning the Office CD.",
+      "match": "exact",
+      "start": 466,
+      "end": 525,
+      "segment": "own",
+      "raw_text": "I am in Chicago right now and will not return until Monday.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-017:e12",
+      "process": "new:report-review-meeting-scheduling",
+      "message_id": "corpus/farmer-d/logistics/1264.",
+      "field": "body",
+      "quote": "James McKay has requested a meeting to review the Texas Desk/Gas Control",
+      "note": "Scheduling a review meeting of the morning report.",
+      "match": "exact",
+      "start": 1093,
+      "end": 1165,
+      "segment": "forwarded",
+      "raw_text": "James McKay has requested a meeting to review the Texas Desk/Gas Control",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-017:e13",
+      "process": "meter-flow-deal-coverage",
+      "message_id": "corpus/farmer-d/logistics/1265.",
+      "field": "body",
+      "quote": "Deal ticket # 325550 has been created and entered in Sitara.",
+      "note": "Reply that a deal ticket was created for a meter.",
+      "match": "exact",
+      "start": 975,
+      "end": 1035,
+      "segment": "own",
+      "raw_text": "Deal ticket # 325550 has been created and entered in Sitara.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-017:e14",
+      "process": "pipeline-outage-supply-cuts",
+      "message_id": "corpus/farmer-d/logistics/1267.",
+      "field": "body",
+      "quote": "The Methanol plant has determined extensive repairs are needed",
+      "note": "Plant outage status update.",
+      "match": "exact",
+      "start": 1100,
+      "end": 1162,
+      "segment": "own",
+      "raw_text": "The Methanol plant has determined extensive repairs are needed",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-017:e15",
+      "process": "pipeline-outage-supply-cuts",
+      "message_id": "corpus/farmer-d/logistics/1297.",
+      "field": "body",
+      "quote": "The Methanol Plant is still on target to begin making spec methanol on",
+      "note": "Plant outage restart status update.",
+      "match": "exact",
+      "start": 1099,
+      "end": 1169,
+      "segment": "own",
+      "raw_text": "The Methanol Plant is still on target to begin making spec methanol on",
+      "reason": null
+    }
+  ],
+  "stall_checks": [],
+  "ownership_checks": [],
+  "new_processes": [
+    {
+      "key": "new:sap-rollout-communication",
+      "name": "SAP rollout communication and training",
+      "definition": "Announcing SAP implementation timelines and collecting attendee lists for SAP and FERC reporting training.",
+      "example_ids": [
+        "corpus/farmer-d/logistics/1251.",
+        "corpus/farmer-d/logistics/1258."
+      ]
+    },
+    {
+      "key": "new:industrial-monthly-setup",
+      "name": "Industrial monthly buyback and swing setup",
+      "definition": "Setting up monthly buybacks and swings for industrial customers by the agreed work day and maintaining the industrial worksheet.",
+      "example_ids": [
+        "corpus/farmer-d/logistics/1253."
+      ]
+    },
+    {
+      "key": "new:transport-usage-ticket-setup",
+      "name": "Transport usage ticket setup",
+      "definition": "Entering and updating monthly transport usage tickets and confirming baseload rates with the desk.",
+      "example_ids": [
+        "corpus/farmer-d/logistics/1257."
+      ]
+    },
+    {
+      "key": "new:software-media-return-request",
+      "name": "Software media return request",
+      "definition": "IT procurement chasing the return of checked-out software media and arranging its return.",
+      "example_ids": [
+        "corpus/giron-d/sent/748.",
+        "corpus/giron-d/sent/747."
+      ]
+    },
+    {
+      "key": "new:report-review-meeting-scheduling",
+      "name": "Report review meeting scheduling",
+      "definition": "Scheduling meetings to review the desk morning report and reminding attendees.",
+      "example_ids": [
+        "corpus/farmer-d/logistics/1264."
+      ]
+    }
+  ],
+  "batch_notes": "Mostly personal mail in the giron-d mailbox. 751 (EMW-Trunkline, 'It looks better.') had too little context and was left as noise. 793 is a company announcement forwarded to self. No injection attempts found.",
+  "quote_stats": {
+    "exact": 16,
+    "repaired": 0,
+    "rejected": 0
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "batch_id": "batch-027",
+  "messages": [
+    {"id": "corpus/giron-d/sent/612.", "processes": [], "role": "personal", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/sent/611.", "processes": [], "role": "personal", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/sent/609.", "processes": [], "role": "personal", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/sent/608.", "processes": [], "role": "personal", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/sent/606.", "processes": [], "role": "personal", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/sent/600.", "processes": [], "role": "personal", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/sent/607.", "processes": [], "role": "noise", "stall": null, "ownership_claim": null},
+    {"id": "corpus/farmer-d/logistics/1448.", "processes": ["meter-flow-deal-coverage"], "role": "request", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/sent/605.", "processes": ["new:demand-charge-deal-entry"], "role": "response", "stall": {"kind": "handoff_confusion", "quote": "In the future you can send these"}, "ownership_claim": {"person": "Scott", "quote": "In the future you can send these"}},
+    {"id": "corpus/farmer-d/logistics/1450.", "processes": ["deal-record-correction"], "role": "request", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/sent/604.", "processes": [], "role": "personal", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/sent/602.", "processes": [], "role": "personal", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/sent/603.", "processes": [], "role": "personal", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/sent/601.", "processes": [], "role": "personal", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/sent/598.", "processes": [], "role": "personal", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/sent/599.", "processes": [], "role": "personal", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/sent/597.", "processes": [], "role": "personal", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/sent/596.", "processes": ["new:weaponx-database-compaction"], "role": "forward", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/sent/585.", "processes": ["new:weaponx-database-compaction"], "role": "request", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/sent/595.", "processes": ["new:book-officialization"], "role": "response", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/sent/590.", "processes": ["new:book-officialization"], "role": "response", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/sent/586.", "processes": ["new:book-officialization"], "role": "request", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/sent/594.", "processes": [], "role": "personal", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/sent/593.", "processes": [], "role": "personal", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/sent/592.", "processes": ["new:deal-system-linking"], "role": "response", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/sent/591.", "processes": ["new:deal-system-linking"], "role": "request", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/sent/588.", "processes": [], "role": "personal", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/sent/589.", "processes": [], "role": "personal", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/sent/587.", "processes": [], "role": "personal", "stall": null, "ownership_claim": null}
+  ],
+  "evidence": [
+    {"process": "meter-flow-deal-coverage", "message_id": "corpus/farmer-d/logistics/1448.", "field": "body", "quote": "There is flow at meter 74 on 9/14 (499 dth).", "note": "Flow at a meter before the deal start; asks for the deal to be extended."},
+    {"process": "new:demand-charge-deal-entry", "message_id": "corpus/giron-d/sent/605.", "field": "body", "quote": "Can you input that on that deal #157584 and let me know", "note": "Asks that a monthly demand charge be entered on a deal."},
+    {"process": "deal-record-correction", "message_id": "corpus/farmer-d/logistics/1450.", "field": "body", "quote": "Please verify if Duke deal #387571 should be on HPL meter #1040.", "note": "Asks to verify and correct the meter on a deal record."},
+    {"process": "new:weaponx-database-compaction", "message_id": "corpus/giron-d/sent/596.", "field": "body", "quote": "Open the database while holding down on the shift key.", "note": "Procedure for book admins to compact the WeaponX database regularly."},
+    {"process": "new:weaponx-database-compaction", "message_id": "corpus/giron-d/sent/585.", "field": "body", "quote": "Try this and see if it does any good.", "note": "Passes the WeaponX compaction procedure to a colleague to try."},
+    {"process": "new:book-officialization", "message_id": "corpus/giron-d/sent/595.", "field": "body", "quote": "officializing postid's, as does the entire West desk.", "note": "Explains an officialization miss and the control that checks books."},
+    {"process": "new:book-officialization", "message_id": "corpus/giron-d/sent/590.", "field": "body", "quote": "We are currently looking into a query which will allow us to see all of our", "note": "Reports a planned query to check officialized books each night."},
+    {"process": "new:book-officialization", "message_id": "corpus/giron-d/sent/586.", "field": "body", "quote": "Please make sure we stay off the \"list\".", "note": "Tells the desk to officialize books so they stay off the missed list."},
+    {"process": "new:deal-system-linking", "message_id": "corpus/giron-d/sent/592.", "field": "body", "quote": "It should reference the EOL number.", "note": "Answers whether the manually entered deal must carry the EOL number."},
+    {"process": "new:deal-system-linking", "message_id": "corpus/giron-d/sent/591.", "field": "body", "quote": "Please remember to link up all deals.", "note": "Reminds a colleague to cross-reference deal numbers between systems."}
+  ],
+  "new_processes": [
+    {"key": "new:demand-charge-deal-entry", "name": "Demand charge deal entry", "definition": "Entering a monthly demand charge received from a customer or pipeline onto the matching deal and confirming when done.", "example_ids": ["corpus/giron-d/sent/605."]},
+    {"key": "new:weaponx-database-compaction", "name": "WeaponX database compaction", "definition": "Book admins periodically compacting the WeaponX Access database to keep file size down, with instructions passed along the desk.", "example_ids": ["corpus/giron-d/sent/596.", "corpus/giron-d/sent/585."]},
+    {"key": "new:book-officialization", "name": "Book officialization control", "definition": "Marking trading books official each night, tracking books missed, and putting controls in place to avoid them.", "example_ids": ["corpus/giron-d/sent/595.", "corpus/giron-d/sent/590.", "corpus/giron-d/sent/586."]},
+    {"key": "new:deal-system-linking", "name": "Deal cross-system linking", "definition": "Linking deal numbers across Sitara, Tagg, SCI and EOL so each system references the others.", "example_ids": ["corpus/giron-d/sent/592.", "corpus/giron-d/sent/591."]}
+  ],
+  "batch_notes": "Most giron-d messages are personal forwards, jokes and social plans. Paintball team event treated as personal. HR benefits forward treated as noise. New keys: demand-charge-deal-entry, weaponx-database-compaction, book-officialization, deal-system-linking. No injection attempts found."
+}

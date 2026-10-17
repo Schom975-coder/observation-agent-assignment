@@ -1,0 +1,45 @@
+{
+  "batch_id": "batch-067",
+  "messages": [
+    {"id": "corpus/williams-w3/sent_items/232.", "processes": [], "role": "personal", "stall": null, "ownership_claim": null},
+    {"id": "corpus/williams-w3/sent_items/231.", "processes": [], "role": "personal", "stall": null, "ownership_claim": null},
+    {"id": "corpus/williams-w3/sent_items/230.", "processes": [], "role": "personal", "stall": null, "ownership_claim": null},
+    {"id": "corpus/williams-w3/sent_items/229.", "processes": [], "role": "personal", "stall": null, "ownership_claim": null},
+    {"id": "corpus/farmer-d/logistics/57.", "processes": ["expense-report-approval"], "role": "automated", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/inbox/233.", "processes": [], "role": "noise", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/inbox/234.", "processes": [], "role": "personal", "stall": null, "ownership_claim": null},
+    {"id": "corpus/williams-w3/sent_items/228.", "processes": ["new:real-time-training-scheduling"], "role": "response", "stall": null, "ownership_claim": null},
+    {"id": "corpus/williams-w3/sent_items/227.", "processes": [], "role": "personal", "stall": null, "ownership_claim": null},
+    {"id": "corpus/williams-w3/sent_items/226.", "processes": ["new:deal-change-documentation"], "role": "response", "stall": null, "ownership_claim": null},
+    {"id": "corpus/williams-w3/sent_items/225.", "processes": ["desk-coverage-on-call"], "role": "forward", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/inbox/235.", "processes": [], "role": "noise", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/inbox/236.", "processes": ["new:analyst-program-recommendation"], "role": "request", "stall": null, "ownership_claim": null},
+    {"id": "corpus/williams-w3/sent_items/224.", "processes": ["user-access-setup"], "role": "fyi", "stall": null, "ownership_claim": null},
+    {"id": "corpus/farmer-d/logistics/56.", "processes": ["new:market-fundamentals-analysis"], "role": "fyi", "stall": null, "ownership_claim": {"person": "Troy Denetsosie", "quote": "I have asked Troy Denetsosie to be responsible for compiling and updating a detailed supply, market and infrastructure analysis of Texas."}},
+    {"id": "corpus/giron-d/inbox/237.", "processes": [], "role": "automated", "stall": null, "ownership_claim": null},
+    {"id": "corpus/williams-w3/sent_items/223.", "processes": ["new:power-contract-language-review"], "role": "response", "stall": null, "ownership_claim": null},
+    {"id": "corpus/williams-w3/sent_items/222.", "processes": ["new:real-time-training-scheduling"], "role": "request", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/inbox/238.", "processes": [], "role": "personal", "stall": null, "ownership_claim": null},
+    {"id": "corpus/williams-w3/sent_items/221.", "processes": [], "role": "personal", "stall": null, "ownership_claim": null},
+    {"id": "corpus/williams-w3/sent_items/220.", "processes": [], "role": "personal", "stall": null, "ownership_claim": null}
+  ],
+  "evidence": [
+    {"process": "expense-report-approval", "message_id": "corpus/farmer-d/logistics/57.", "field": "body", "quote": "The following expense report is ready for approval:", "note": "Concur notice that an expense report awaits approval."},
+    {"process": "new:real-time-training-scheduling", "message_id": "corpus/williams-w3/sent_items/228.", "field": "body", "quote": "Just let me know when you have time and we will set it up.", "note": "Arranges for a colleague to sit in on the real-time desk to learn."},
+    {"process": "new:real-time-training-scheduling", "message_id": "corpus/williams-w3/sent_items/222.", "field": "body", "quote": "I would like some of these folks to attend the Energy Math class on the 8th of November.", "note": "Asks for real-time staff to be scheduled into a training class."},
+    {"process": "new:deal-change-documentation", "message_id": "corpus/williams-w3/sent_items/226.", "field": "body", "quote": "Yes...sorry about implying that you did not have approval...", "note": "Approval reply on a request about documenting changed or zeroed deals."},
+    {"process": "desk-coverage-on-call", "message_id": "corpus/williams-w3/sent_items/225.", "field": "body", "quote": "Here is some more inforation regarding taking care of Canada this weekend.", "note": "Passes on dispatch instructions for weekend coverage of the Alberta desk."},
+    {"process": "new:analyst-program-recommendation", "message_id": "corpus/giron-d/inbox/236.", "field": "body", "quote": "Thank you for agreeing to write a letter of recommending me for the Analyst Program.", "note": "Request to supply recommendation letters for an internal program."},
+    {"process": "user-access-setup", "message_id": "corpus/williams-w3/sent_items/224.", "field": "body", "quote": "You should be receiving an email regarding access to EOL.", "note": "Tells a new team member that EOL access is being set up."},
+    {"process": "new:market-fundamentals-analysis", "message_id": "corpus/farmer-d/logistics/56.", "field": "body", "quote": "The deliverables from Troy will be: (1) a Texas section on the gas fundamentals webpage modeled after the Central region", "note": "Assigns compiling of regular Texas market analysis reports."},
+    {"process": "new:power-contract-language-review", "message_id": "corpus/williams-w3/sent_items/223.", "field": "body", "quote": "This all looks good.  The real time phone number is 1-800-684-1336...", "note": "Approves contract language drafted with Legal for a real-time service."}
+  ],
+  "new_processes": [
+    {"key": "new:real-time-training-scheduling", "name": "Real-time training and shadowing scheduling", "definition": "Arranging classes and desk sit-ins so real-time staff learn trading specifics.", "example_ids": ["corpus/williams-w3/sent_items/228.", "corpus/williams-w3/sent_items/222."]},
+    {"key": "new:deal-change-documentation", "name": "Deal change documentation approval", "definition": "Requesting approval of rules for documenting zeroed or altered deals so later disputes can be settled.", "example_ids": ["corpus/williams-w3/sent_items/226."]},
+    {"key": "new:analyst-program-recommendation", "name": "Analyst program recommendation letters", "definition": "Requesting recommendation letters from managers for an internal analyst program application.", "example_ids": ["corpus/giron-d/inbox/236."]},
+    {"key": "new:market-fundamentals-analysis", "name": "Market fundamentals analysis assignment", "definition": "Assigning and delivering regional supply, market and infrastructure analysis to support origination and trading.", "example_ids": ["corpus/farmer-d/logistics/56."]},
+    {"key": "new:power-contract-language-review", "name": "Power contract language review", "definition": "Drafting and approving commercial contract language for power services with Legal before sending to a customer.", "example_ids": ["corpus/williams-w3/sent_items/223."]}
+  ],
+  "batch_notes": "Mostly personal and chain mail. No injection attempts found. Five new keys proposed."
+}

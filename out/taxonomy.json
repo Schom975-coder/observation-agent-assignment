@@ -1,0 +1,516 @@
+{
+  "version": 1,
+  "digest_sha": "a3746b869f7761db1c8f3bf6b1f7b0b44735be04f1bf5265b2d5b62b80714172",
+  "agent_sha": "0273f483b0554275d1430392f899b41ab308b3fa372154be768b37d52dab41fb",
+  "processes": [
+    {
+      "key": "balancing-agreement-negotiation",
+      "name": "Balancing agreement negotiation",
+      "definition": "Drafting, negotiating and getting approval of operational balancing agreements and contract language with connecting pipelines and shippers.",
+      "include": [
+        "OBA drafts and approval status",
+        "Proposed paragraph changes to an agreement"
+      ],
+      "exclude": [
+        "Resolving an existing imbalance: volume-imbalance-reconciliation",
+        "Capacity offers and releases: pipeline-capacity-marketing"
+      ],
+      "example_subjects": [
+        "williams field services oba",
+        "burlington oba paragraph change"
+      ]
+    },
+    {
+      "key": "commercial-strategy-planning",
+      "name": "Commercial strategy planning",
+      "definition": "Planning the pipeline commercial team's strategy and annual plan, scheduling strategy meetings and evaluating storage and interconnect projects.",
+      "include": [
+        "Plan and strategy meeting arrangements",
+        "Storage or interconnect project discussions",
+        "Cost estimates for new facilities"
+      ],
+      "exclude": [
+        "Capacity offers to shippers: pipeline-capacity-marketing",
+        "Performance review meetings: performance-review"
+      ],
+      "example_subjects": [
+        "2002 plan strategy meeting",
+        "strategy meeting - tw commercial team",
+        "aquila red lake/tw strategy meeting",
+        "red lake storage project"
+      ]
+    },
+    {
+      "key": "counterparty-settlement-review",
+      "name": "Counterparty settlement review",
+      "definition": "Checking invoices, payments, penalties and ISO settlement charges or revenues against deals, and resolving price or amount discrepancies with counterparties.",
+      "include": [
+        "Invoices questioned for responsibility or amount",
+        "Exchange or buyback settlement requests",
+        "Penalty charges and payments to counterparties",
+        "ISO congestion or settlement amounts checked"
+      ],
+      "exclude": [
+        "Volume imbalances without a billing dispute: volume-imbalance-reconciliation",
+        "Employee expense reports: expense-report-approval"
+      ],
+      "example_subjects": [
+        "pan energy marketing exchange settlement",
+        "penalty charges",
+        "check for mpc",
+        "congestion",
+        "blue dolpin /august and september 2001"
+      ]
+    },
+    {
+      "key": "credit-exposure-reporting",
+      "name": "Credit exposure reporting",
+      "definition": "Preparing and sending the regular credit report of counterparty positions and exposure to the credit group.",
+      "include": [
+        "Dated credit reports sent with attachments",
+        "Questions about counterparty exposure figures"
+      ],
+      "exclude": [
+        "Daily P&L or position reports: pnl-position-reporting",
+        "Lists of deals moved because of exposure: deal-book-transfer"
+      ],
+      "example_subjects": [
+        "credit report--5/9/01",
+        "credit report--4/3/01",
+        "credit report--2/15/01"
+      ]
+    },
+    {
+      "key": "curve-postid-mapping",
+      "name": "Curve and post ID mapping",
+      "definition": "Maintaining forward price curve files and the mapping of curves and post IDs to books in the risk system, including lists of new or changed post IDs.",
+      "include": [
+        "Curve mapping files and their status",
+        "Lists of post IDs for a region or month",
+        "Central or regional curve file updates"
+      ],
+      "exclude": [
+        "Creating new books: trading-book-setup",
+        "Daily P&L results: pnl-position-reporting"
+      ],
+      "example_subjects": [
+        "curve mappings",
+        "central curves",
+        "west postids",
+        "dec-00 postid's"
+      ]
+    },
+    {
+      "key": "deal-book-transfer",
+      "name": "Deal book transfer",
+      "definition": "Moving trades from one risk book to another, including lists of deals to be flipped to a different book and deals moved to bankruptcy books, and checking the books after the move.",
+      "include": [
+        "Lists of deals to move or flip to another book",
+        "Termination lists and deals moved to bankruptcy books",
+        "Follow-up lists of additional deals to move"
+      ],
+      "exclude": [
+        "Creating a new book: trading-book-setup",
+        "Zeroing out or fixing a deal record: deal-record-correction"
+      ],
+      "example_subjects": [
+        "deals to be flipped to ft-us/cand-erms book right away",
+        "hub deals",
+        "termination list for deals to be moved to bankruptcy book",
+        "additional deals to move to bankruptcy books - phy gas",
+        "deals to be moved to bankruptcy books (from russell's exposure report)"
+      ]
+    },
+    {
+      "key": "deal-record-correction",
+      "name": "Deal record correction",
+      "definition": "Correcting individual deal records in the deal capture and scheduling systems: zeroing out or killing deals, releasing changed deals and clearing deals that fail to bridge to downstream systems.",
+      "include": [
+        "Lists of deals to kill or zero out in Sitara",
+        "Bridge errors for deals not flowing to downstream systems",
+        "Releases of deals after a change to a counterparty or contract"
+      ],
+      "exclude": [
+        "New deals needed for meter flow: meter-flow-deal-coverage",
+        "Moving deals to another book: deal-book-transfer",
+        "Changes to how a system works: system-enhancement-request"
+      ],
+      "example_subjects": [
+        "killing ena to ena deals in sitara",
+        "bridge errors",
+        "sitara release (re: changes in global due to consent to assignment)"
+      ]
+    },
+    {
+      "key": "desk-coverage-on-call",
+      "name": "Desk coverage and on-call",
+      "definition": "Arranging shift, holiday and weekend on-call coverage for the trading and logistics desks, and passing on the on-call notes of what happened during the shift.",
+      "include": [
+        "Shift schedules for the real-time desk",
+        "Holiday staffing for trading days",
+        "On-call rotations",
+        "Weekend on-call notes of deals and issues"
+      ],
+      "exclude": [
+        "Hourly schedule corrections themselves: realtime-schedule-checkout",
+        "Contact list updates: reference-data-update"
+      ],
+      "example_subjects": [
+        "on call",
+        "on-call notes",
+        "on call notes for weekend; april 7th thru april 9th",
+        "new real time schedule for december 2001",
+        "tuesday, december 26th"
+      ]
+    },
+    {
+      "key": "expense-report-approval",
+      "name": "Expense report approval",
+      "definition": "Submitting, approving and tracking employee expense reports and collecting outstanding invoices to be expensed.",
+      "include": [
+        "Expense document approval notices",
+        "Requests for outstanding items to expense"
+      ],
+      "exclude": [
+        "Counterparty invoices and payments: counterparty-settlement-review"
+      ],
+      "example_subjects": [
+        "<<concur expense document>> - meyers, bert 1/25/02",
+        "<<concur expense document>> - expenses 11/26/01",
+        "expense"
+      ]
+    },
+    {
+      "key": "gas-nomination-handling",
+      "name": "Gas nomination handling",
+      "definition": "Receiving, confirming and scheduling daily and monthly gas nominations from customers and suppliers, and processing revised nominations and nom changes when volumes change.",
+      "include": [
+        "Daily or monthly nomination sheets sent by a customer or supplier",
+        "Revised nominations and nom changes for a day or month",
+        "Requests to confirm nominated volumes at a meter or plant"
+      ],
+      "exclude": [
+        "Flow at a meter with no deal or contract behind it: meter-flow-deal-coverage",
+        "After-the-fact differences between scheduled and measured volumes: volume-imbalance-reconciliation",
+        "Supply cut or reduced because of maintenance or an upset: pipeline-outage-supply-cuts"
+      ],
+      "example_subjects": [
+        "calpine daily gas nomination",
+        "calpine daily gas nomination and monthly (july) nomination",
+        "revised nomination - june, 2000",
+        "natural gas nomination for 07/00",
+        "nom change for increased midcon gas"
+      ]
+    },
+    {
+      "key": "market-rule-change-review",
+      "name": "Market rule change review",
+      "definition": "Following ISO and FERC proposals and rule changes, joining stakeholder calls and working out how changes affect trading and scheduling.",
+      "include": [
+        "ISO market design proposals",
+        "ISO working group conference calls",
+        "FERC notices of proposed rules"
+      ],
+      "exclude": [
+        "Hourly derates and schedule fixes: realtime-schedule-checkout",
+        "Weekly pipeline reports: weekly-commercial-reporting"
+      ],
+      "example_subjects": [
+        "caiso notice: market design 2002 draft proposal",
+        "caiso notification - tswg conference call",
+        "ferc issues nopr on intra-day recalls of released capacity"
+      ]
+    },
+    {
+      "key": "meter-flow-deal-coverage",
+      "name": "Meter flow deal and contract coverage",
+      "definition": "Finding gas that flowed at a meter without a valid deal ticket or transport contract, and getting a deal created, extended or a contract set up so the volume can be allocated and booked.",
+      "include": [
+        "Meter flow with an expired or missing deal ticket",
+        "Requests to create or extend a deal ticket for a meter and month",
+        "Transport contracts needed at a meter",
+        "Replies that a deal ticket was created in Sitara"
+      ],
+      "exclude": [
+        "Reconciling scheduled and measured volumes with a party: volume-imbalance-reconciliation",
+        "Fixing deal records that fail to bridge or must be zeroed out: deal-record-correction",
+        "Moving deals between risk books: deal-book-transfer"
+      ],
+      "example_subjects": [
+        "meter # 0986725 - 1/00 production - encina gas marketing",
+        "valero -- meter 8018",
+        "meter 1517",
+        "copano line gain contract needed at meter 5310",
+        "ena 202 and hpl 216 transport contracts needed at meter 378 for march 2000"
+      ]
+    },
+    {
+      "key": "month-end-close-coordination",
+      "name": "Month-end close coordination",
+      "definition": "Setting and revising the month-end close calendar for the logistics and accounting systems and coordinating the deadlines each group must meet.",
+      "include": [
+        "Month-end close schedules and revisions",
+        "Close deadlines for a scheduling system"
+      ],
+      "exclude": [
+        "Daily P&L reports: pnl-position-reporting",
+        "Time reports and surveys: time-activity-reporting"
+      ],
+      "example_subjects": [
+        "revised month end close schedule",
+        "unify close schedule"
+      ]
+    },
+    {
+      "key": "performance-review",
+      "name": "Performance review",
+      "definition": "Running the mid-year and year-end performance review cycle: scheduling review meetings and collecting employees' accomplishment lists.",
+      "include": [
+        "PRC meeting scheduling",
+        "Requests for year-end accomplishments"
+      ],
+      "exclude": [
+        "Time reports and surveys: time-activity-reporting",
+        "Strategy meetings: commercial-strategy-planning"
+      ],
+      "example_subjects": [
+        "mid year prc meeting",
+        "year end accomplishments"
+      ]
+    },
+    {
+      "key": "pipeline-capacity-marketing",
+      "name": "Pipeline capacity marketing",
+      "definition": "Posting and marketing available firm pipeline capacity to shippers and handling capacity release transactions, including fixing problems with the capacity postings.",
+      "include": [
+        "Available firm capacity offers on Transwestern",
+        "Capacity release transactions between shippers",
+        "Errors on the unsubscribed capacity posting"
+      ],
+      "exclude": [
+        "Weekly delivery reports: weekly-commercial-reporting",
+        "Balancing agreements with connecting parties: balancing-agreement-negotiation"
+      ],
+      "example_subjects": [
+        "available firm capacity on transwestern",
+        "tw - available capacity",
+        "transwestern capacity release - ena/burlington",
+        "error message tw unsubscribed capacity"
+      ]
+    },
+    {
+      "key": "pipeline-outage-supply-cuts",
+      "name": "Pipeline outage and supply cut handling",
+      "definition": "Handling notices of pipeline maintenance, pigging, plant upsets, force majeure and supply cuts: identifying affected meters and customers, notifying them and rearranging supply.",
+      "include": [
+        "Planned maintenance or pigging affecting meters",
+        "Plant upsets and force majeure notices",
+        "Supply cuts on a pipeline for specific days",
+        "Letters to producers about affected meters"
+      ],
+      "exclude": [
+        "Ordinary nomination revisions: gas-nomination-handling",
+        "Power transmission derates and hourly cuts: realtime-schedule-checkout"
+      ],
+      "example_subjects": [
+        "meoh upset",
+        "baytown 12'' pigging affected meters",
+        "3rd party maintenance at meter 6040 for 29th & 30th",
+        "conoco supply cuts on oasis 5/21-5/22",
+        "calpine force majeure"
+      ]
+    },
+    {
+      "key": "pnl-position-reporting",
+      "name": "P&L and position reporting",
+      "definition": "Producing, checking and explaining the daily profit and loss, mark-to-market and position reports for trading books and desks.",
+      "include": [
+        "Daily P&L or mark-to-market files and questions on them",
+        "Daily position reports for a desk or counterparty",
+        "Desk summary reports"
+      ],
+      "exclude": [
+        "Counterparty credit exposure reports: credit-exposure-reporting",
+        "Weekly pipeline delivery reports: weekly-commercial-reporting",
+        "Close calendar coordination: month-end-close-coordination"
+      ],
+      "example_subjects": [
+        "p&l",
+        "enovate dpr",
+        "12/29/2000 - mtm",
+        "desk summary report"
+      ]
+    },
+    {
+      "key": "realtime-schedule-checkout",
+      "name": "Real-time power schedule checkout",
+      "definition": "Confirming and correcting hourly power schedules, imports, ancillary service trades and positions with the ISO and counterparties, and responding to transmission derates and cuts.",
+      "include": [
+        "Corrections to hourly imports or schedules at a delivery point",
+        "Short or long positions for the next day",
+        "Transmission derate notices for specific hours",
+        "Cut procedures and inter-SC trades"
+      ],
+      "exclude": [
+        "ISO market design proposals and stakeholder calls: market-rule-change-review",
+        "Gas supply cuts: pipeline-outage-supply-cuts",
+        "Settlement amounts from the ISO: counterparty-settlement-review"
+      ],
+      "example_subjects": [
+        "imports for 01/02/02 @ mead",
+        "short pos",
+        "cuts procedure - don't forget",
+        "a/s inter-sc trade",
+        "derate of pdci for 2/6/02 he23 &24 and 2-7-02 he01-08"
+      ]
+    },
+    {
+      "key": "reference-data-update",
+      "name": "Contact and counterparty reference updates",
+      "definition": "Collecting and distributing staff and counterparty contact lists and updating counterparty identifiers such as scheduling coordinator IDs and DUNS numbers.",
+      "include": [
+        "Requests for phone numbers for a contact list",
+        "Counterparty contact lists",
+        "Notices that a counterparty ID or DUNS number is changing"
+      ],
+      "exclude": [
+        "Out-of-office notices",
+        "On-call or shift rosters: desk-coverage-on-call"
+      ],
+      "example_subjects": [
+        "announcement: allegheny energy supply scid changing",
+        "duns number changes",
+        "phone numbers",
+        "aep contact list",
+        "info for updated contact list please"
+      ]
+    },
+    {
+      "key": "system-enhancement-request",
+      "name": "System issue and enhancement requests",
+      "definition": "Reporting problems with trading, scheduling and position tools, requesting enhancements, tracking them and taking part in requirements or test sessions.",
+      "include": [
+        "Enhancement tracking lists for a system",
+        "Reports of tool problems or issues",
+        "Requirements or use case meetings for a system",
+        "Demonstrations of a new position tool"
+      ],
+      "exclude": [
+        "Individual deals failing to bridge: deal-record-correction",
+        "Account or access changes: user-access-setup"
+      ],
+      "example_subjects": [
+        "position manager",
+        "consolidated position manager",
+        "unify enhancement tracking list for ena upstream",
+        "eol issues",
+        "rescheduling of usecase analysis for enom mtg"
+      ]
+    },
+    {
+      "key": "time-activity-reporting",
+      "name": "Time and activity reporting",
+      "definition": "Submitting time reports by the deadline and completing the periodic hours and activity surveys used for cost allocation.",
+      "include": [
+        "Reminders that time reports are due",
+        "Holiday or absence entries for a time report",
+        "Monthly hours or activity surveys"
+      ],
+      "exclude": [
+        "Expense reports: expense-report-approval",
+        "Performance reviews: performance-review"
+      ],
+      "example_subjects": [
+        "time reports are due",
+        "time reports due today",
+        "may hours survey",
+        "may activity survey",
+        "february surveys"
+      ]
+    },
+    {
+      "key": "trading-book-setup",
+      "name": "Trading book and product set-up",
+      "definition": "Requesting and setting up new trading books, portfolios and online trading products in the risk and trading systems so new business can be booked.",
+      "include": [
+        "Book requests and new book requests",
+        "Lists of new books to be created",
+        "Set-up of a new online trading product"
+      ],
+      "exclude": [
+        "Moving existing deals between books: deal-book-transfer",
+        "Curve or post ID mappings for books: curve-postid-mapping",
+        "User access to systems: user-access-setup"
+      ],
+      "example_subjects": [
+        "book request",
+        "new books",
+        "new book req",
+        "new eol product"
+      ]
+    },
+    {
+      "key": "user-access-setup",
+      "name": "User access set-up",
+      "definition": "Requesting, approving, changing and removing user accounts and system access for staff, including new employees and traders who must be set up to trade.",
+      "include": [
+        "Access request submissions and requests for more information",
+        "Disabling or changing accounts and roles",
+        "Confirming traders are set up in a trading tool",
+        "New employee set-up"
+      ],
+      "exclude": [
+        "Requests to change how a tool works: system-enhancement-request",
+        "New books or products: trading-book-setup"
+      ],
+      "example_subjects": [
+        "request submitted: access request (ygcy-4n9kdl)",
+        "additional information: access request (djfr-4ngpa6)",
+        "disabling est accounts",
+        "**important** stack manager users",
+        "new employee"
+      ]
+    },
+    {
+      "key": "volume-imbalance-reconciliation",
+      "name": "Volume and imbalance reconciliation",
+      "definition": "Reconciling scheduled, nominated and measured gas volumes with a customer or pipeline after flow, and resolving the resulting imbalances, measurement questions and volume statements.",
+      "include": [
+        "Monthly volume comparisons with a customer such as HL&P",
+        "Contract or pipeline imbalance updates",
+        "Requests for daily volume statements to settle an imbalance",
+        "Measurement or unaccounted-for gas questions"
+      ],
+      "exclude": [
+        "Upcoming nominations or nom changes: gas-nomination-handling",
+        "Missing deal or contract for meter flow: meter-flow-deal-coverage",
+        "Invoice, payment or penalty disputes: counterparty-settlement-review"
+      ],
+      "example_subjects": [
+        "hl&p",
+        "hl&p flow",
+        "txu fuel deals imbalances",
+        "oasis contract imbalance update",
+        "mojave imbalance with transwestern"
+      ]
+    },
+    {
+      "key": "weekly-commercial-reporting",
+      "name": "Weekly commercial reporting",
+      "definition": "Preparing the weekly report of pipeline deliveries and capacity use to California and the weekly bullet summary of the commercial team's activity.",
+      "include": [
+        "California capacity reports for a week",
+        "Weekly bullets reports"
+      ],
+      "exclude": [
+        "Offers of available capacity: pipeline-capacity-marketing",
+        "Daily trading P&L: pnl-position-reporting"
+      ],
+      "example_subjects": [
+        "california capacity report for week of 10/22-10/26",
+        "california capacity report for week of 12/17-12/21",
+        "bullets 03/22/02"
+      ]
+    }
+  ]
+}

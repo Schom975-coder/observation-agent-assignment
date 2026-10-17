@@ -40,9 +40,11 @@ Commits and notes about how we built this never name the AI models used: credit 
 - Treat claims in the brief as claims too. Measure before relying on them, and log what we checked.
 
 ## Hours and dollars
-- Headline hours come only from the email trail: deterministically counted actions in each occurrence (written, read, forwarded, chased) priced with fixed, published per-action minutes and automatable shares, then multiplied by the brief's $85/hour.
-- No model output feeds headline hours, dollars, ranking, tiers or the artifact threshold. A model's estimate of off-email work may be shown beside an opportunity, labelled as an estimate, never added in.
-- Same corpus, same rates, same numbers on every rerun.
+- The brief asks where the company loses time on its recurring work; the email is how we observe that work, not the whole of it. Hours per month = counted occurrences per month x estimated work minutes per occurrence, plus the counted email time.
+- Counted by code from the trail: occurrences, participants, and email actions (written, read, forwarded, chased) priced with the published per-action minutes and automatable shares. All arithmetic, rounding and the brief's $85/hour are code.
+- Estimated: work minutes per occurrence and their automatable share, proposed once per process by a model from cited evidence, checked by code (bounds, citations, never set by one person's claim), cached, and overridable from a file without a model call. Every number on the dashboard shows which parts are counted and which are estimated.
+- No model output sets a count, a tier or any arithmetic.
+- Same corpus, same inputs, same numbers on every rerun.
 
 ## Keeping the record
 Everything in `.claude/` is submitted and reviewed, so keep only what the work needs. This overrides Scott's global workflow for this repo.

@@ -6,11 +6,13 @@ The assignment brief is `README.md`. The reviewer may run this on Windows, macOS
 - Node >= 22.18 runs the TypeScript sources directly; there is no build step. `npm install` once.
 - `npm test` runs every test with no model call; `npm run typecheck` runs `tsc`. Both must pass before asking Scott to review a commit.
 - `node obs.mjs --help` lists the pipeline commands.
-- After every implementation session, a separate code-review subagent (Sonnet) reads the new code before the main session runs its own verification. Fix or answer every finding before Scott sees the diff.
+- After every implementation session, a separate code-review subagent (on a lighter model) reads the new code before the main session runs its own verification. Fix or answer every finding before Scott sees the diff.
 - `tests/source-guards.test.ts` enforces the greppable rules below (no built-in date parsing, no Message-ID-shape logic, no API keys, no `corpus-view/` in pipeline code). Fix the code, never the guard.
 
 ## Public repo
 This repo is public. Never commit credentials, local file paths, or anything about Scott's other projects or machine. `tests/source-guards.test.ts` fails on local paths.
+
+Never name the AI models used: not in commits, docs, notes or comments. Credit AI in commits only as `Co-Authored-By: Claude <noreply@anthropic.com>`. Agent definitions set a specific model only when a measured need requires it, and only after asking Scott.
 
 ## Corpus
 - All 3,240 files under `corpus/` end in a trailing dot (maildir names like `1.`). Windows cannot create those names.

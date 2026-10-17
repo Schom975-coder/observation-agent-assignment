@@ -38,6 +38,8 @@ One line per non-obvious choice: what we chose, what we rejected, why. Newest la
 - **All text files use LF on every OS (`* text=auto eol=lf`); the corpus keeps its raw bytes (`-text -eol`).** Rejected: platform-default line endings, which would make golden outputs and hashes differ on Windows.
 - **CI also runs on Node 22.18.0**, so the `engines` claim is tested rather than asserted.
 - **CLAUDE.md's greppable rules are tests (`tests/source-guards.test.ts`)**, proven by planting violations that each guard caught.
+- **The message list comes from Git HEAD; a disk walk (skipping hidden files like `.DS_Store`) only when there is no Git checkout**, e.g. a ZIP download on macOS. Bytes are read from disk when every listed file is there, from Git objects when none are, and a partial checkout is refused rather than half-read. Rejected: walking the disk always (picks up stray files, and can't see the corpus on Windows).
+- **The manifest holds no machine-specific fields (no source, no timestamps)**, so every OS writes identical bytes and caches key on `corpus_hash`. Any byte mismatch against Git stops the run.
 
 ## Working method
 - **Minimal `.claude/`:** the plan, this file, the notes log, and the pipeline's own skills/agents/hooks/settings. No per-branch session folders or merge-request files (Scott's global workflow, overridden for this repo). Everything in `.claude/` is reviewed, so clutter costs us.

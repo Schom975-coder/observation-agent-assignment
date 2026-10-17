@@ -1,5 +1,10 @@
 // Command-line entry for every deterministic stage. The /observe skill calls these;
 // a person can too. Commands land milestone by milestone (see .claude/plan/ARCHITECTURE.md).
+import { fileURLToPath } from 'node:url';
+import { ingestCommand } from './corpus/ingest.ts';
+
+// The repo root, wherever the command is run from.
+const ROOT = fileURLToPath(new URL('..', import.meta.url));
 
 type Command = {
   summary: string;
@@ -9,7 +14,11 @@ type Command = {
 
 export const COMMANDS: Record<string, Command> = {
   prepare: { summary: 'Run ingest, parse, normalize and batch in one go', milestone: 'M2' },
-  ingest: { summary: 'List every corpus message and check its bytes against Git', milestone: 'M1' },
+  ingest: {
+    summary: 'List every corpus message and check its bytes against Git',
+    milestone: 'M1',
+    run: () => ingestCommand(ROOT),
+  },
   parse: { summary: 'Parse headers, UTC dates and body segments', milestone: 'M2' },
   normalize: { summary: 'Find duplicates, build threads and occurrences, list people', milestone: 'M2' },
   batch: { summary: 'Pack messages into batch files for the extractor subagents', milestone: 'M2' },

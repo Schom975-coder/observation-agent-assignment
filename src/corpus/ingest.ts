@@ -19,15 +19,17 @@ export type IngestResult = {
   readFrom: Source;
   checkedAgainstGit: boolean;
   mismatches: string[];
+  bytes: Map<string, Buffer>; // every message, as verified
 };
 
-// Writes `${outDir}/manifest.json` only when every byte checks out.
-export function ingest(root: string, outDir: string, options: { readFrom?: Source } = {}): IngestResult {
+// Writes `${outDir}/manifest.json` only when every byte checks out. `write: false` writes nothing,
+// for a caller (prepare) that writes the manifest along with its own outputs once they all succeed.
+export function ingest(root: string, outDir: string, options: { readFrom?: Source; write?: boolean } = {}): IngestResult {
   const corpus = openCorpus(root, options);
-  const { checkedAgainstGit, mismatches } = corpus.verify();
+  const { checkedAgainstGit, mismatches, bytes } = corpus.verify();
   const manifest = buildManifest(corpus.entries);
-  if (mismatches.length === 0) writeJson(join(outDir, 'manifest.json'), manifest);
-  return { manifest, listedFrom: corpus.listedFrom, readFrom: corpus.readFrom, checkedAgainstGit, mismatches };
+  if (mismatches.length === 0 && options.write !== false) writeJson(join(outDir, 'manifest.json'), manifest);
+  return { manifest, listedFrom: corpus.listedFrom, readFrom: corpus.readFrom, checkedAgainstGit, mismatches, bytes };
 }
 
 export function ingestCommand(root: string): number {

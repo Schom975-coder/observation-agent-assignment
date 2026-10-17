@@ -1,0 +1,291 @@
+// The whole deterministic front half on the real corpus, checked against what must hold
+// whatever the exact counts: nothing lost, nothing doubled, every batch readable in one call.
+// A few counts are pinned as well; see the note on those.
+import { after, test } from 'node:test';
+import assert from 'node:assert/strict';
+import { copyFileSync, existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { BATCH_MAX_BYTES, BATCH_MAX_LINES, BATCH_MAX_TOKENS, bodyTag, lineCount } from '../src/batch/build.ts';
+import { ConfigError } from '../src/config.ts';
+import { openCorpus } from '../src/corpus/reader.ts';
+import { bodyKey } from '../src/normalize/dedup.ts';
+import { prepare, prepareCommand } from '../src/pipeline/prepare.ts';
+import { normalizeNewlines } from '../src/util/text.ts';
+import { DAY_MS, utcMs } from '../src/util/time.ts';
+import type { BatchEntry, DuplicateGroup, ParsedMessage, Thread } from '../src/types.ts';
+
+const root = fileURLToPath(new URL('..', import.meta.url));
+const tmp = mkdtempSync(join(tmpdir(), 'obs-prepare-'));
+after(() => rmSync(tmp, { recursive: true, force: true }));
+
+const outA = join(tmp, 'a');
+const { stats } = prepare(root, outA);
+const read = (file: string) => JSON.parse(readFileSync(join(outA, file), 'utf8'));
+const messages: ParsedMessage[] = readFileSync(join(outA, 'messages.jsonl'), 'utf8').trimEnd().split('\n').map((l) => JSON.parse(l));
+const byId = new Map(messages.map((m) => [m.id, m]));
+const dedup: { duplicates: number; groups: DuplicateGroup[] } = read('dedup.json');
+const threads: Thread[] = read('threads.json');
+const index: BatchEntry[] = read('batches/index.json');
+const duplicateIds = new Set(dedup.groups.flatMap((g) => g.duplicates.map((d) => d.id)));
+const uniqueIds = messages.map((m) => m.id).filter((id) => !duplicateIds.has(id));
+const get = (id: string) => byId.get(id) as ParsedMessage;
+const raw = openCorpus(root).readAll();
+const rawText = (id: string) => (raw.get(id) as Buffer).toString('utf8');
+
+test('every message is parsed once, in ID order', () => {
+  assert.equal(messages.length, 3240);
+  assert.equal(stats.messages, 3240);
+  const ids = messages.map((m) => m.id);
+  assert.deepEqual(ids, [...ids].sort());
+});
+
+// Pinned counts. 39 duplicates / 3,201 unique were measured two independent ways before they were
+// pinned. Threads, occurrences and batches are regression pins taken from this code's own run: if
+// one moves, explain why in the change (and in DECISIONS.md if the rule changed), don't just update it.
+test('pinned counts: 39 duplicates, 3,201 unique; threads, occurrences and batches unchanged', () => {
+  assert.equal(stats.duplicates, 39);
+  assert.equal(stats.unique, 3201);
+  assert.equal(stats.threads, 2601);
+  assert.equal(stats.occurrences, 2701);
+  assert.equal(stats.batches, 99);
+});
+
+test('duplicates: each copy points at a canonical that is itself unique: the lowest dated ID in its group', () => {
+  assert.equal(dedup.duplicates, duplicateIds.size);
+  assert.equal(stats.unique + stats.duplicates, 3240);
+  for (const g of dedup.groups) {
+    assert.ok(!duplicateIds.has(g.canonical), g.canonical);
+    const ids = [g.canonical, ...g.duplicates.map((d) => d.id)].sort();
+    const dated = ids.filter((id) => get(id).date_utc !== null);
+    assert.equal(g.canonical, dated[0] ?? ids[0], `${g.canonical} is the lowest dated ID`);
+  }
+});
+
+test('every content duplicate matches its canonical and sits under 24 h from its cluster anchor', () => {
+  const key = (m: ParsedMessage) => `${m.from?.email}\0${m.subject_norm}\0${bodyKey(rawText(m.id), m.body_start)}`;
+  for (const g of dedup.groups) {
+    const canonical = get(g.canonical);
+    const copies = g.duplicates.filter((d) => d.rule === 'content').map((d) => get(d.id));
+    const cluster = [canonical, ...copies];
+    const dated = cluster.filter((m) => m.date_utc !== null).sort((a, b) => utcMs(a.date_utc as string) - utcMs(b.date_utc as string));
+    const anchor = dated[0] as ParsedMessage;
+    for (const m of copies) {
+      assert.ok(canonical.from !== null && m.from?.email === canonical.from.email, `${m.id}: same sender`);
+      assert.equal(m.subject_norm, canonical.subject_norm, `${m.id}: same subject`);
+      assert.equal(key(m), key(canonical), `${m.id}: same body`);
+    }
+    for (const m of cluster) {
+      if (m.date_utc !== null) {
+        assert.ok(utcMs(m.date_utc) - utcMs(anchor.date_utc as string) < DAY_MS, `${m.id}: under 24 h after ${anchor.id}`);
+        continue;
+      }
+      // The allowed undated case: every dated copy of this content in the corpus is one cluster.
+      const all = messages.filter((x) => x.date_utc !== null && key(x) === key(canonical)).map((x) => utcMs(x.date_utc as string));
+      assert.ok(Math.max(...all) - Math.min(...all) < DAY_MS, `${m.id}: undated, and its content has one dated cluster`);
+    }
+  }
+});
+
+test('the one Message-ID shared by two files merges them, with the lower ID as canonical', () => {
+  const holders = new Map<string, string[]>();
+  for (const m of messages) if (m.message_id !== null) holders.set(m.message_id, [...(holders.get(m.message_id) ?? []), m.id]);
+  assert.deepEqual([...holders.values()].filter((ids) => ids.length > 1), [['corpus/farmer-d/logistics/880.', 'corpus/williams-w3/inbox/143.']]);
+  const g = dedup.groups.find((x) => x.canonical === 'corpus/farmer-d/logistics/880.');
+  assert.ok(g !== undefined);
+  assert.deepEqual(g.duplicates.map((d) => d.id), ['corpus/williams-w3/inbox/143.']);
+  assert.equal(get('corpus/farmer-d/logistics/880.').message_id, get('corpus/williams-w3/inbox/143.').message_id);
+});
+
+test('every unique message is in exactly one thread and one occurrence; no duplicate is in any', () => {
+  const inThreads = threads.flatMap((t) => t.message_ids);
+  const inOccurrences = threads.flatMap((t) => t.occurrences.flatMap((o) => o.message_ids));
+  assert.deepEqual([...inThreads].sort(), [...uniqueIds].sort());
+  assert.deepEqual([...inOccurrences].sort(), [...uniqueIds].sort());
+  assert.equal(new Set(threads.map((t) => t.thread_id)).size, threads.length, 'thread IDs are unique');
+});
+
+test('every unique message is in exactly one batch, and every batch fits one Read call', () => {
+  const inBatches = index.flatMap((b) => b.message_ids);
+  assert.deepEqual([...inBatches].sort(), [...uniqueIds].sort());
+  for (const b of index) {
+    const content = readFileSync(join(outA, 'batches', `${b.batch_id}.md`), 'utf8');
+    assert.equal(b.bytes, Buffer.byteLength(content), b.batch_id);
+    assert.equal(b.lines, lineCount(content), b.batch_id);
+    assert.ok(b.bytes <= BATCH_MAX_BYTES, `${b.batch_id}: ${b.bytes} bytes`);
+    assert.ok(b.est_tokens <= BATCH_MAX_TOKENS, `${b.batch_id}: ~${b.est_tokens} tokens`);
+    assert.ok(b.lines <= BATCH_MAX_LINES, `${b.batch_id}: ${b.lines} lines`);
+    assert.ok(!content.includes('\r'), `${b.batch_id} holds a CR`);
+    assert.match(b.file, /^out\/batches\/batch-\d{3}\.md$/);
+  }
+  assert.deepEqual(readdirSync(join(outA, 'batches')).sort(), [...index.map((b) => `${b.batch_id}.md`), 'index.json'].sort());
+});
+
+test('the batch files show the injection flag and cut the oversize table', () => {
+  assert.deepEqual(stats.suspected_injection, ['corpus/farmer-d/logistics/3220.']);
+  assert.deepEqual(stats.oversize, ['corpus/farmer-d/logistics/3221.']);
+  const contentOf = (id: string) => {
+    const b = index.find((x) => x.message_ids.includes(id));
+    assert.ok(b !== undefined, id);
+    return readFileSync(join(outA, 'batches', `${b.batch_id}.md`), 'utf8');
+  };
+  assert.match(contentOf('corpus/farmer-d/logistics/3220.'), /Flags: suspected_injection\n\[NOTE: this body contains text addressed to automated readers/);
+  assert.match(contentOf('corpus/farmer-d/logistics/3221.'), /lines omitted: oversize body/);
+});
+
+test('every shown body is the message text verbatim (LF line endings), or a head and tail of it around one marker', () => {
+  const marker = /\n\[\.\.\. \d+ (?:lines|bytes) omitted[^\n]*\.\.\.\]\n/;
+  const cut: string[] = [];
+  for (const b of index) {
+    const content = readFileSync(join(outA, 'batches', `${b.batch_id}.md`), 'utf8');
+    for (const id of b.message_ids) {
+      const open = `[BODY ${bodyTag(get(id))}]\n`;
+      const start = content.indexOf(open);
+      const end = content.indexOf(`\n[/BODY ${bodyTag(get(id))}]\n`, start + open.length);
+      assert.ok(start >= 0 && end >= start + open.length, `${id}: body markers`);
+      const parts = content.slice(start + open.length, end).split(marker);
+      assert.ok(parts.length <= 2, `${id}: one marker at most`);
+      // The body as written: from body_start, LF line endings, trailing newlines dropped.
+      const body = normalizeNewlines(rawText(id).slice(get(id).body_start)).replace(/\n+$/, '');
+      if (parts.length === 1) {
+        assert.equal(parts[0], body, `${id}: shown whole, exactly`);
+      } else {
+        cut.push(id);
+        assert.ok(body.startsWith(parts[0] as string), `${id}: the head is the start of the body`);
+        assert.ok(body.endsWith(parts[1] as string), `${id}: the tail is the end of the body`);
+      }
+    }
+  }
+  assert.deepEqual(cut, ['corpus/farmer-d/logistics/3221.'], 'only the oversize table is cut');
+});
+
+test('the stats name the corpus they were built from', () => {
+  assert.match(stats.corpus_hash, /^[0-9a-f]+$/);
+  assert.equal(stats.corpus_hash, read('manifest.json').corpus_hash);
+  assert.equal(read('prepare-stats.json').corpus_hash, stats.corpus_hash);
+});
+
+test('the daily Calpine nominations are separate occurrences, not one long thread', () => {
+  const daily = messages.filter((m) => m.subject === 'Calpine Daily Gas Nomination' && !duplicateIds.has(m.id));
+  assert.ok(daily.length >= 15, `${daily.length} daily sends`);
+  const occurrenceOf = new Map(threads.flatMap((t) => t.occurrences.flatMap((o) => o.message_ids.map((id) => [id, o.occurrence_id] as const))));
+  assert.equal(new Set(daily.map((m) => occurrenceOf.get(m.id))).size, daily.length);
+});
+
+test('the message with no date is kept, in exactly one thread and exactly one batch', () => {
+  const id = 'corpus/giron-d/sent/795.';
+  assert.equal(get(id).date_utc, null);
+  assert.ok(uniqueIds.includes(id));
+  assert.equal(threads.filter((t) => t.message_ids.includes(id)).length, 1);
+  assert.equal(index.filter((b) => b.message_ids.includes(id)).length, 1);
+});
+
+test('a second run writes byte-identical files', () => {
+  const outB = join(tmp, 'b');
+  prepare(root, outB);
+  const files = (dir: string) => [
+    ...['manifest.json', 'messages.jsonl', 'dedup.json', 'threads.json', 'people.json', 'prepare-stats.json'],
+    ...readdirSync(join(dir, 'batches')).map((f) => join('batches', f)),
+  ];
+  assert.deepEqual(files(outB), files(outA));
+  for (const f of files(outA)) assert.ok(readFileSync(join(outA, f)).equals(readFileSync(join(outB, f))), f);
+});
+
+// A tiny corpus on disk, outside any Git checkout (file names without the trailing dot, which
+// Windows cannot create; the reader takes whatever names it finds).
+function miniRoot(name: string, files: Record<string, string>): string {
+  const dir = join(tmp, name);
+  mkdirSync(join(dir, 'config'), { recursive: true });
+  copyFileSync(join(root, 'config', 'effort-rates.json'), join(dir, 'config', 'effort-rates.json'));
+  for (const [rel, text] of Object.entries(files)) {
+    mkdirSync(join(dir, 'corpus', rel, '..'), { recursive: true });
+    writeFileSync(join(dir, 'corpus', rel), text);
+  }
+  return dir;
+}
+
+function errorsOf(run: () => number): { code: number; lines: string[] } {
+  const lines: string[] = [];
+  const original = console.error;
+  console.error = (...args: unknown[]) => void lines.push(args.join(' '));
+  try {
+    return { code: run(), lines };
+  } finally {
+    console.error = original;
+  }
+}
+
+const goodMessage = 'From: a@enron.com\r\nSubject: Volumes\r\nDate: Mon, 14 May 2001 10:00:00 -0700\r\n\r\nbody\r\n';
+
+test('a run that fails before writing leaves the previous manifest, batches and stats as they were', () => {
+  const mini = miniRoot('mini-fail', { 'x/inbox/1': goodMessage });
+  writeFileSync(join(mini, 'config', 'effort-rates.json'), '{"version": 0}'); // fails after ingest
+  const out = join(mini, 'out');
+  mkdirSync(join(out, 'batches'), { recursive: true });
+  writeFileSync(join(out, 'batches', 'batch-000.md'), 'previous run');
+  writeFileSync(join(out, 'prepare-stats.json'), 'previous stats');
+  writeFileSync(join(out, 'manifest.json'), 'previous manifest');
+  assert.throws(() => prepare(mini, out), ConfigError);
+  assert.equal(readFileSync(join(out, 'manifest.json'), 'utf8'), 'previous manifest');
+  assert.equal(readFileSync(join(out, 'batches', 'batch-000.md'), 'utf8'), 'previous run');
+  assert.equal(readFileSync(join(out, 'prepare-stats.json'), 'utf8'), 'previous stats');
+  assert.ok(!existsSync(join(out, 'messages.jsonl')) && !existsSync(join(out, 'threads.json')));
+});
+
+test('a 70,000-character subject is cut for display and still packs into one batch; the parse keeps it whole', () => {
+  const subject = 's'.repeat(70_000);
+  const mini = miniRoot('mini-long', {
+    'x/inbox/1': `From: a@enron.com\r\nSubject: ${subject}\r\nDate: Mon, 14 May 2001 10:00:00 -0700\r\n\r\nbody\r\n`,
+  });
+  const out = join(mini, 'out');
+  const result = prepare(mini, out);
+  assert.equal(result.stats.batches, 1);
+  const content = readFileSync(join(out, 'batches', 'batch-000.md'), 'utf8');
+  assert.ok(content.includes(`\nSubject: ${'s'.repeat(500)} [... 69500 more characters]\n`));
+  assert.ok(content.includes(` | ${'s'.repeat(500)} [... 69500 more characters] | 1 messages ===\n`), 'thread header too');
+  const [parsed] = readFileSync(join(out, 'messages.jsonl'), 'utf8').trimEnd().split('\n').map((l) => JSON.parse(l));
+  assert.equal(parsed.subject, subject);
+});
+
+test('a message with lone-CR line endings parses like its CRLF twin', () => {
+  const crlf = 'From: a@enron.com\r\nTo: b@enron.com\r\nSubject: Volumes for\r\n June\r\nDate: Mon, 14 May 2001 10:00:00 -0700\r\n\r\nline one\r\nline two\r\n';
+  const mini = miniRoot('mini-cr', { 'x/inbox/1': crlf, 'x/inbox/2': crlf.replaceAll('\r\n', '\r') });
+  const out = join(mini, 'out');
+  prepare(mini, out);
+  const [a, b] = readFileSync(join(out, 'messages.jsonl'), 'utf8').trimEnd().split('\n').map((l) => JSON.parse(l) as ParsedMessage);
+  assert.ok(a !== undefined && b !== undefined);
+  for (const field of ['from', 'to', 'subject', 'subject_norm', 'date_utc', 'fresh_send'] as const) assert.deepEqual(b[field], a[field], field);
+  assert.equal(b.subject, 'Volumes for June');
+  assert.equal(b.body_start, 'From: a@enron.com\rTo: b@enron.com\rSubject: Volumes for\r June\rDate: Mon, 14 May 2001 10:00:00 -0700\r\r'.length);
+});
+
+test('writing starts by removing the old stats, so a run that dies mid-write leaves no prepare-stats.json', () => {
+  const mini = miniRoot('mini-write', { 'x/inbox/1': goodMessage });
+  const out = join(mini, 'out');
+  mkdirSync(join(out, 'people.json'), { recursive: true }); // a folder where a file must go: that write fails
+  writeFileSync(join(out, 'prepare-stats.json'), 'previous stats');
+  assert.throws(() => prepare(mini, out), (err: NodeJS.ErrnoException) => err.code === 'EISDIR' && /people\.json/.test(err.message));
+  assert.ok(!existsSync(join(out, 'prepare-stats.json')));
+  rmSync(join(out, 'people.json'), { recursive: true });
+  prepare(mini, out);
+  assert.equal(JSON.parse(readFileSync(join(out, 'prepare-stats.json'), 'utf8')).messages, 1);
+});
+
+test('a bad config file prints one clean line and exits 1', () => {
+  const mini = miniRoot('mini-config', { 'x/inbox/1': goodMessage });
+  writeFileSync(join(mini, 'config', 'effort-rates.json'), '{"version": 0}');
+  const { code, lines } = errorsOf(() => prepareCommand(mini));
+  assert.equal(code, 1);
+  assert.equal(lines.length, 1);
+  assert.match(lines[0] ?? '', /^prepare: .*effort-rates\.json is invalid: - version must be a positive integer/);
+});
+
+test('prepare with no corpus prints one clean line and exits 1', () => {
+  const empty = join(tmp, 'empty');
+  mkdirSync(empty);
+  const { code, lines } = errorsOf(() => prepareCommand(empty));
+  assert.equal(code, 1);
+  assert.equal(lines.length, 1);
+  assert.match(lines[0] ?? '', /^prepare: No corpus found/);
+});

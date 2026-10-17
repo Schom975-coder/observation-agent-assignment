@@ -12,15 +12,24 @@ export type HeaderBlock = {
 
 const FIELD = /^([^\s:]+)[ \t]*:/;
 
+// Where the line starting at `pos` ends, and where the next one starts: CRLF, LF or a lone CR.
+function lineEnd(text: string, pos: number): { end: number; next: number } {
+  for (let i = pos; i < text.length; i++) {
+    const c = text.charCodeAt(i);
+    if (c === 0x0a) return { end: i, next: i + 1 };
+    if (c === 0x0d) return { end: i, next: text.charCodeAt(i + 1) === 0x0a ? i + 2 : i + 1 };
+  }
+  return { end: text.length, next: text.length };
+}
+
 export function splitHeaders(text: string): HeaderBlock {
   const fields = new Map<string, string>();
   let current: string | null = null; // field that continuation lines extend; null after a repeat or junk line
   let pos = 0;
   while (pos < text.length) {
-    const nl = text.indexOf('\n', pos);
-    const next = nl === -1 ? text.length : nl + 1;
+    const { end, next } = lineEnd(text, pos);
     // A byte-order mark before the first field would otherwise become part of its name.
-    const line = text.slice(pos, nl === -1 ? text.length : nl).replace(/\r$/, '').replace(/^﻿/, '');
+    const line = text.slice(pos, end).replace(/^﻿/, '');
     pos = next;
     if (line === '') return { fields, bodyStart: next };
     if (line.startsWith(' ') || line.startsWith('\t')) {
@@ -82,6 +91,21 @@ function splitList(value: string): string[] {
   return parts;
 }
 
+// Each "(...)" comment replaced by a space, left to right; a "(" with no ")" after it ends the scan.
+// Same result as part.replace(/\([^)]*\)/g, ' '), by indexOf: that regex retries at every "(" of a
+// long run with no ")", quadratically. The first comment, likewise, is the first "(" and the next ")".
+function stripComments(s: string): string {
+  let out = '';
+  let pos = 0;
+  for (let open = s.indexOf('('); open !== -1; open = s.indexOf('(', pos)) {
+    const close = s.indexOf(')', open + 1);
+    if (close === -1) break;
+    out += `${s.slice(pos, open)} `;
+    pos = close + 1;
+  }
+  return out + s.slice(pos);
+}
+
 function parseAddress(part: string): Address | null {
   let email: string;
   let name: string | null = null;
@@ -92,9 +116,10 @@ function parseAddress(part: string): Address | null {
     name = cleanName(part.slice(0, lt));
   } else {
     // Bare address, possibly with an old-style "(Name)" comment or a group label "Team:".
-    const comment = /\(([^)]*)\)/.exec(part);
-    if (comment !== null) name = cleanName(comment[1] ?? '');
-    const bare = part.replace(/\([^)]*\)/g, ' ');
+    const open = part.indexOf('(');
+    const close = open === -1 ? -1 : part.indexOf(')', open + 1);
+    if (close !== -1) name = cleanName(part.slice(open + 1, close));
+    const bare = stripComments(part);
     const token = bare.slice(bare.lastIndexOf(':') + 1).split(/\s+/).find((t) => t.includes('@')) ?? '';
     email = token.replace(/^(['"])(.*)\1$/, '$2');
   }
@@ -127,13 +152,15 @@ export function xFromName(value: string | null): string | null {
 }
 
 // One leading reply/forward prefix: "re:", "fw:" or "fwd:", any case, with optional whitespace,
-// optionally opening a bracket as in "[Fwd: Fw: subject]".
-const SUBJECT_PREFIX = /^\s*(\[?)\s*(?:re|fwd?)\s*:/i;
-const TRAILING_PUNCT = /[\s.,;:!?'"`*~_\-–—…]+$/u;
+// optionally opening a bracket as in "[Fwd: Fw: subject]". Written so that no two `\s*` can share
+// one run of whitespace, which would backtrack quadratically on a long run.
+const SUBJECT_PREFIX = /^\s*(?:(\[)\s*)?(?:re|fwd?)\s*:/i;
+// One character of trailing punctuation or whitespace (all in the BMP, so one UTF-16 unit).
+const TRAILING_PUNCT_CHAR = /[\s.,;:!?'"`*~_\-–—…]/u;
 
 // The first prefix is a forward ("FW:", "Fw :", "[Fwd: ...]"). Same grammar as SUBJECT_PREFIX,
 // so parsing and action counting agree on every subject; "RE: FW:" is a reply.
-const FORWARD_PREFIX = /^\s*\[?\s*fwd?\s*:/i;
+const FORWARD_PREFIX = /^\s*(?:\[\s*)?fwd?\s*:/i;
 
 export function isReplyOrForward(subject: string): boolean {
   return SUBJECT_PREFIX.test(subject);
@@ -154,5 +181,8 @@ export function normalizeSubject(subject: string): string {
   }
   s = s.replace(/\s+/g, ' ').trim();
   for (; brackets > 0 && s.endsWith(']'); brackets--) s = s.slice(0, -1).trimEnd();
-  return s.replace(TRAILING_PUNCT, '');
+  // A backwards scan: an end-anchored regex retries at every position of a long run, quadratically.
+  let end = s.length;
+  while (end > 0 && TRAILING_PUNCT_CHAR.test(s[end - 1] as string)) end--;
+  return s.slice(0, end);
 }

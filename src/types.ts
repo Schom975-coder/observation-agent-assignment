@@ -50,6 +50,54 @@ export type ParsedMessage = {
   };
 };
 
+// The same email stored more than once (exported twice, or copied into several mailboxes).
+// Only the canonical (lowest dated ID, else lowest ID) goes on to threads, batches and counting.
+export type DuplicateGroup = {
+  canonical: string;
+  duplicates: Array<{
+    id: string;
+    // content: in the canonical's own content cluster (same sender, subject and body, under 24 h
+    // after the cluster's first copy), even if a Message-ID matches too; message_id: reached
+    // through a shared Message-ID header, directly or via one of that copy's content copies.
+    rule: 'content' | 'message_id';
+    recipients_differ: boolean; // To+Cc address set differs from the canonical's
+  }>;
+};
+
+// One round of a recurring piece of work: a fresh send and the replies and forwards after it.
+export type Occurrence = { occurrence_id: string; message_ids: string[] };
+
+export type Thread = {
+  thread_id: string; // "t-" + 12 hex of the first message's ID hash: stable when other threads change
+  subject_norm: string;
+  message_ids: string[]; // unique messages only; dated in time order, then undated by ID
+  first_utc: string | null;
+  last_utc: string | null;
+  participants: string[]; // sender and To/Cc addresses, sorted
+  occurrences: Occurrence[];
+};
+
+export type Person = {
+  email: string;
+  name: string | null; // most frequent display name seen for this address
+  sent: number; // unique messages sent
+  received: number; // unique messages received (To/Cc)
+  priced: boolean; // company staff, per config priced_domains
+};
+
+export type BatchEntry = {
+  batch_id: string; // "batch-000"
+  file: string; // "out/batches/batch-000.md"
+  message_ids: string[];
+  thread_ids: string[];
+  bytes: number;
+  lines: number; // as the Read tool numbers them
+  // (bytes + 8 per line for Read's line-number prefix) / 3, rounded up: deliberately pessimistic
+  // for number-heavy text
+  est_tokens: number;
+  content_sha: string;
+};
+
 // What one message counts as in the email-trail model (see ARCHITECTURE.md 4.1).
 export type AuthoredAction = 'chaser' | 'forward' | 'authored_short' | 'authored_medium' | 'authored_long';
 

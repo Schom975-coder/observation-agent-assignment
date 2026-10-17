@@ -12,7 +12,7 @@ The assignment brief is `README.md`. The reviewer may run this on Windows, macOS
 ## Public repo
 This repo is public. Never commit credentials, local file paths, or anything about Scott's other projects or machine. `tests/source-guards.test.ts` fails on local paths.
 
-Never name the AI models used: not in commits, docs, notes or comments. Credit AI in commits only as `Co-Authored-By: Claude <noreply@anthropic.com>`. Agent definitions set a specific model only when a measured need requires it, and only after asking Scott.
+Commits and notes about how we built this never name the AI models used: credit AI in commits only as `Co-Authored-By: Claude <noreply@anthropic.com>`. The pipeline's own agent definitions do name their model and effort (extractors and drafters `sonnet`, extractor effort `medium`, synthesizer `inherit`): that is configuration the reviewer is meant to see, and the plan may describe it. Changing those choices needs Scott's approval.
 
 ## Corpus
 - All 3,240 files under `corpus/` end in a trailing dot (maildir names like `1.`). Windows cannot create those names.

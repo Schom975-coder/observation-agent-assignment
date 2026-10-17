@@ -130,12 +130,14 @@ export class Corpus {
   }
 
   // Do the bytes we read hash to the blob IDs Git lists? Only meaningful when listed from Git.
-  verify(): { checkedAgainstGit: boolean; mismatches: string[] } {
+  // Returns the bytes too, so a caller that verifies doesn't have to read everything twice.
+  verify(): { checkedAgainstGit: boolean; mismatches: string[]; bytes: Map<string, Buffer> } {
+    const bytes = this.readAll();
     const mismatches: string[] = [];
-    for (const [id, bytes] of this.readAll()) {
-      if (gitBlobSha(bytes) !== this.#entry(id).blob_sha) mismatches.push(id);
+    for (const [id, data] of bytes) {
+      if (gitBlobSha(data) !== this.#entry(id).blob_sha) mismatches.push(id);
     }
-    return { checkedAgainstGit: this.listedFrom === 'git', mismatches };
+    return { checkedAgainstGit: this.listedFrom === 'git', mismatches, bytes };
   }
 }
 

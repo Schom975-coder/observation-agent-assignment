@@ -2,6 +2,7 @@
 // a person can too. Commands land milestone by milestone (see .claude/plan/ARCHITECTURE.md).
 import { fileURLToPath } from 'node:url';
 import { ingestCommand } from './corpus/ingest.ts';
+import { prepareCommand } from './pipeline/prepare.ts';
 
 // The repo root, wherever the command is run from.
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
@@ -13,15 +14,16 @@ type Command = {
 };
 
 export const COMMANDS: Record<string, Command> = {
-  prepare: { summary: 'Run ingest, parse, normalize and batch in one go', milestone: 'M2' },
+  prepare: {
+    summary: 'Ingest, parse, de-duplicate, thread and batch every message',
+    milestone: 'M2',
+    run: () => prepareCommand(ROOT),
+  },
   ingest: {
     summary: 'List every corpus message and check its bytes against Git',
     milestone: 'M1',
     run: () => ingestCommand(ROOT),
   },
-  parse: { summary: 'Parse headers, UTC dates and body segments', milestone: 'M2' },
-  normalize: { summary: 'Find duplicates, build threads and occurrences, list people', milestone: 'M2' },
-  batch: { summary: 'Pack messages into batch files for the extractor subagents', milestone: 'M2' },
   status: { summary: 'Show the run ledger: what is done, running and pending', milestone: 'M3' },
   dispatch: { summary: 'Mark a batch as handed to an extractor', milestone: 'M3' },
   validate: { summary: 'Check model output: schema, coverage, verbatim quotes', milestone: 'M3' },

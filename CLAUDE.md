@@ -8,6 +8,9 @@ The assignment brief is `README.md`. The reviewer may run this on Windows, macOS
 - `node obs.mjs --help` lists the pipeline commands.
 - `tests/source-guards.test.ts` enforces the greppable rules below (no built-in date parsing, no Message-ID-shape logic, no API keys, no `corpus-view/` in pipeline code). Fix the code, never the guard.
 
+## Public repo
+This repo is public. Never commit credentials, local file paths, or anything about Scott's other projects or machine. `tests/source-guards.test.ts` fails on local paths.
+
 ## Corpus
 - All 3,240 files under `corpus/` end in a trailing dot (maildir names like `1.`). Windows cannot create those names.
 - Never rename, move, re-encode or rewrite anything under `corpus/`. `.gitattributes` marks it `-text` so Git never converts its line endings.

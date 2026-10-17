@@ -8,8 +8,11 @@ import { fileURLToPath } from 'node:url';
 const root = fileURLToPath(new URL('..', import.meta.url));
 const self = relative(root, fileURLToPath(import.meta.url)).replaceAll('\\', '/');
 const CODE = /\.(ts|mts|js|mjs|cjs|json)$/;
+const TEXT = /\.(ts|mts|js|mjs|cjs|json|md|yml|yaml)$/;
 
-function codeFiles(...dirs: string[]): string[] {
+const codeFiles = (...dirs: string[]) => filesIn(CODE, ...dirs);
+
+function filesIn(kind: RegExp, ...dirs: string[]): string[] {
   const files: string[] = [];
   for (const dir of dirs) {
     const abs = join(root, dir);
@@ -20,7 +23,7 @@ function codeFiles(...dirs: string[]): string[] {
     }
     for (const entry of readdirSync(abs, { recursive: true, encoding: 'utf8' })) {
       const rel = `${dir}/${entry.replaceAll('\\', '/')}`;
-      if (CODE.test(rel) && rel !== self) files.push(rel);
+      if (kind.test(rel) && rel !== self) files.push(rel);
     }
   }
   return files;
@@ -61,4 +64,9 @@ test('no paid API: no Anthropic SDK and no API key anywhere in code or config', 
 
 test('pipeline code never reads the browsing copy corpus-view/', () => {
   assert.deepEqual(violations(pipeline, /corpus-view/), []);
+});
+
+test('public repo: no local file paths in anything we commit', () => {
+  const ours = filesIn(TEXT, 'src', 'tests', 'config', '.claude', '.github', 'CLAUDE.md', 'package.json', 'obs.mjs');
+  assert.deepEqual(violations(ours, /[A-Za-z]:[\\/]Users[\\/]|\/Users\/[A-Za-z]|\/home\/[A-Za-z]|AppData[\\/]/), []);
 });

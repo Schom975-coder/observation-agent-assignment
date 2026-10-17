@@ -481,11 +481,12 @@ test('the loop continues through merge, rollup, synthesis and score: a merge fix
     const prompt = capture(() => mergeCommand(root, [])).out[0] as string;
     assert.match(prompt, /^Merge the proposed process keys into the taxonomy\.\n/);
     const good = {
-      merges: [{ from: 'new:alpha-extra', to: 'alpha-work' }, { from: 'new:one-off', to: 'unassigned' }],
-      promoted: [{ key: 'widget-checks', name: 'Widget checks', definition: 'Checking the widget counts with the desk each round and fixing them.', include: [], exclude: [], aliases: ['new:widget-audit', 'new:widget-review'] }],
+      mapped: { 'alpha-work': ['new:alpha-extra'] },
+      unassigned: ['new:one-off'],
+      promoted: [{ key: 'widget-checks', name: 'Widget checks', definition: 'Checking the widget counts with the desk each round and fixing them.', aliases: ['new:widget-audit', 'new:widget-review'] }],
     };
     const proposed = field(prompt, 'Output file') as string;
-    writeFileSync(proposed, JSON.stringify({ ...good, merges: [{ from: 'new:alpha-extra', to: 'nominations' }, good.merges[1]] }));
+    writeFileSync(proposed, JSON.stringify({ ...good, mapped: { nominations: ['new:alpha-extra'] } }));
     assert.match(capture(() => mergeCommand(root, ['accept'])).out[0] ?? '', /not accepted: 1 problem/);
     assert.match(capture(() => mergeCommand(root, [])).out[0] ?? '', /^Fix the process-key merge proposal\.\n/);
     writeFileSync(proposed, JSON.stringify(good));

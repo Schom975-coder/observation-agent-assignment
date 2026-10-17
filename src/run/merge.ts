@@ -13,7 +13,7 @@
 import { statSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { ConfigError, loadScoring } from '../config.ts';
-import { MERGE_PROPOSAL_MAX_BYTES, MergeInputError, buildMergeInput, canonicalMergeTable, checkMergeProposal, slugFacts, type SlugFacts } from '../model/merge.ts';
+import { MERGE_PROPOSAL_MAX_BYTES, MergeInputError, buildMergeInput, canonicalMergeTable, checkMergeProposal, duplicateKeyProblems, slugFacts, type SlugFacts } from '../model/merge.ts';
 import type { Taxonomy } from '../model/taxonomy.ts';
 import { sha256 } from '../util/hash.ts';
 import { normalizeNewlines } from '../util/text.ts';
@@ -272,18 +272,21 @@ function checkAndRecord(root: string, inputs: MergeInputs, shas: MergeShas, prop
   let table: MergeTable | null = null;
   const { text, bytes } = proposal;
   if (text === null || bytes > MERGE_PROPOSAL_MAX_BYTES) {
-    problems = [`the proposal is ${bytes} bytes, over the cap of ${MERGE_PROPOSAL_MAX_BYTES}: shorten definitions and notes (the input is not repeated in it)`];
+    problems = [`the proposal is ${bytes} bytes, over the cap of ${MERGE_PROPOSAL_MAX_BYTES}: write it in the compact layout, without indentation, and shorten the definitions (the input is not repeated in it)`];
   } else {
+    const json = text.startsWith(BOM) ? text.slice(1) : text;
     let value: unknown;
     try {
-      value = JSON.parse(text.startsWith(BOM) ? text.slice(1) : text);
+      value = JSON.parse(json);
     } catch (err) {
       problems = [`the proposal is not valid JSON (${(err as Error).message.replace(/\s+/g, ' ').slice(0, 200)}). Write the whole file again as strict JSON.`];
     }
     if (problems.length === 0) {
+      // A repeated key first: JSON.parse dropped all but its last copy, which may be why keys are missing.
+      const repeated = duplicateKeyProblems(json);
       const check = checkMergeProposal(value, new Set(inputs.facts.map((f) => f.slug)), new Set(inputs.taxonomy.processes.map((p) => p.key)));
-      problems = check.problems.map((p) => withoutRoot(p, root));
-      if (check.proposal !== null) table = canonicalMergeTable(check.proposal, inputs.facts, promoteMin(root), inputs.flagged, shas);
+      problems = [...repeated, ...check.problems].map((p) => withoutRoot(p, root));
+      if (repeated.length === 0 && check.proposal !== null) table = canonicalMergeTable(check.proposal, inputs.facts, promoteMin(root), inputs.flagged, shas);
     }
   }
   const before = currentState(root, shas);
@@ -333,7 +336,7 @@ function nextCommand(root: string): number {
   }
   // Nothing proposed: the table is empty and no merger is needed.
   if (inputs.facts.length === 0) {
-    const table = canonicalMergeTable({ merges: [], promoted: [] }, [], promoteMin(root), inputs.flagged, shas);
+    const table = canonicalMergeTable({ mapped: {}, unassigned: [], promoted: [] }, [], promoteMin(root), inputs.flagged, shas);
     writeJsonAtomic(mergeFile(root), table);
     writeState(root, { ...currentState(root, shas), status: 'accepted', problems: 0, last_problems: [], reason: null, finished_utc: nowUtc() });
     console.error('merge: the extractors proposed no new keys; wrote an empty out/merge.json.');

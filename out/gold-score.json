@@ -278,14 +278,14 @@
   ],
   "merged": {
     "exact": {
-      "agree": 39,
+      "agree": 44,
       "of": 52,
-      "pct": 75
+      "pct": 84.6
     },
     "overlap": {
-      "agree": 40,
+      "agree": 45,
       "of": 52,
-      "pct": 76.9
+      "pct": 86.5
     },
     "role": {
       "agree": 43,
@@ -293,24 +293,6 @@
       "pct": 82.7
     },
     "mismatches": [
-      {
-        "id": "corpus/farmer-d/logistics/223.",
-        "label": {
-          "processes": [
-            "new:supply-contract-termination"
-          ],
-          "role": "response"
-        },
-        "extracted": {
-          "processes": [
-            "new:contract-termination-letter"
-          ],
-          "role": "response"
-        },
-        "exact": false,
-        "overlap": false,
-        "role": true
-      },
       {
         "id": "corpus/farmer-d/logistics/811.",
         "label": {
@@ -373,8 +355,8 @@
           ],
           "role": "response"
         },
-        "exact": false,
-        "overlap": false,
+        "exact": true,
+        "overlap": true,
         "role": false
       },
       {
@@ -478,24 +460,6 @@
         "role": false
       },
       {
-        "id": "corpus/lokay-m/sent_items/125.",
-        "label": {
-          "processes": [
-            "new:index-price-lookup"
-          ],
-          "role": "response"
-        },
-        "extracted": {
-          "processes": [
-            "new:index-price-request"
-          ],
-          "role": "response"
-        },
-        "exact": false,
-        "overlap": false,
-        "role": true
-      },
-      {
         "id": "corpus/lokay-m/sent_items/155.",
         "label": {
           "processes": [],
@@ -510,24 +474,6 @@
         "role": false
       },
       {
-        "id": "corpus/lokay-m/sent_items/84.",
-        "label": {
-          "processes": [
-            "new:gas-sale-confirmation"
-          ],
-          "role": "fyi"
-        },
-        "extracted": {
-          "processes": [
-            "new:gas-sales-confirmation"
-          ],
-          "role": "fyi"
-        },
-        "exact": false,
-        "overlap": false,
-        "role": true
-      },
-      {
         "id": "corpus/williams-w3/sent_items/16.",
         "label": {
           "processes": [
@@ -540,24 +486,6 @@
             "new:enpower-deal-entry-guidance"
           ],
           "role": "forward"
-        },
-        "exact": false,
-        "overlap": false,
-        "role": true
-      },
-      {
-        "id": "corpus/williams-w3/sent_items/253.",
-        "label": {
-          "processes": [
-            "new:annual-budget-planning"
-          ],
-          "role": "response"
-        },
-        "extracted": {
-          "processes": [
-            "new:annual-budget-preparation"
-          ],
-          "role": "response"
         },
         "exact": false,
         "overlap": false,

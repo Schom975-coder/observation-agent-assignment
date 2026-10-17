@@ -260,6 +260,33 @@ test('gold score: the same rates on the merged keys, where a mapped new: key cou
   assert.equal(scoreGold(labels, extracted).merged, null, 'no table, no merged rates');
 });
 
+test("gold score on the merged keys: a label's new: key agrees with any extracted key the merge left outside the taxonomy; a taxonomy key only with itself", () => {
+  type Status = MergeTable['slugs'][number]['status'];
+  const rows: Array<[string, Status, string | null]> = [
+    ['new:p-one', 'mapped', 'k-a'],
+    ['new:q-main', 'promoted', 'q-main'],
+    ['new:q-other', 'alias', 'q-main'],
+    ['new:r-small', 'demoted', null],
+    ['new:u', 'unassigned', null],
+  ];
+  const table: MergeTable = { ...tableOf([]), slugs: rows.map(([slug, status, to]) => ({ slug, messages: 1, batches: 1, status, to, reason: status === 'demoted' ? 'too small' : null })) };
+  const cases: Array<[string[], string[]]> = [
+    [['new:x'], ['new:q-main']], // 1: promoted: outside the taxonomy, agrees
+    [['new:x'], ['new:q-other']], // 2: an alias of a promoted process: agrees
+    [['new:x'], ['new:r-small']], // 3: demoted: agrees
+    [['new:x'], ['new:p-one']], // 4: mapped to k-a: disagrees
+    [['k-a'], ['new:q-main']], // 5: a taxonomy key never agrees with a promoted process
+    [['new:p-one'], ['new:u']], // 6: the label's slug is a proposed key the merge mapped, but labels are never re-keyed
+    [['k-a', 'new:x'], ['new:p-one', 'new:q-other']], // 7: k-a and outside, on both sides
+  ];
+  const labels = { version: 1 as const, taxonomy_sha: 's', labels: cases.map(([processes], i) => entry(i + 1, processes, 'request')) as GoldLabel[] };
+  const extracted = new Map(cases.map(([, processes], i) => [`corpus/m/inbox/${i + 1}`, { processes, role: 'request' }]));
+  const score = scoreGold(labels, extracted, table);
+  assert.deepEqual(score.mismatches.map((m) => m.id), ['corpus/m/inbox/5', 'corpus/m/inbox/7'], 'raw: every new: key is new:*');
+  assert.deepEqual(score.merged?.mismatches.map((m) => [m.id, m.overlap]), [['corpus/m/inbox/4', false], ['corpus/m/inbox/5', false]]);
+  assert.deepEqual([score.merged?.exact, score.merged?.overlap], [{ agree: 5, of: 7, pct: 71.4 }, { agree: 5, of: 7, pct: 71.4 }]);
+});
+
 test('gold score: with a fresh merge table the command also prints the merged rates; a stale one is ignored', () => {
   const root = scoreProject('merged', { version: 1, taxonomy_sha: TAXONOMY_SHA, labels: LABELS });
   mkdirSync(join(root, '.claude', 'agents'), { recursive: true });

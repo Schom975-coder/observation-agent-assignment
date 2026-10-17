@@ -17,6 +17,7 @@ import {
   buildMergeInput,
   canonicalMergeTable,
   checkMergeProposal,
+  duplicateKeyProblems,
   effectiveKeys,
   slugFacts,
   type SlugFacts,
@@ -196,8 +197,10 @@ test('buildMergeInput caps: definitions cut first, then subjects dropped, then M
 
 // ---- The proposal ----
 
-test('checkMergeProposal: a good proposal passes', () => {
+test('checkMergeProposal: a good proposal passes; the recorded one is in the compact layout the merger is asked for', () => {
   assert.deepEqual(checkMergeProposal(GOOD, SLUGS, TAXONOMY_KEYS), { proposal: GOOD, problems: [] });
+  const text = readFileSync(join(fixtures, 'proposal.json'), 'utf8');
+  for (const line of text.trimEnd().split('\n')) assert.ok(!/^\s/.test(line) && (line.match(/"new:/g) ?? []).length <= 1, line);
 });
 
 test('checkMergeProposal: every key exactly once, and nothing else', () => {
@@ -206,19 +209,34 @@ test('checkMergeProposal: every key exactly once, and nothing else', () => {
     change(p);
     return checkMergeProposal(p, SLUGS, TAXONOMY_KEYS).problems;
   };
-  assert.deepEqual(problems((p) => p.merges.pop()), [
-    '1 proposed key is in neither merges nor promoted aliases: new:lunch-plans (place every key of the input exactly once: in merges with "to" a taxonomy key or "unassigned", or as an alias of a promoted process)',
+  assert.deepEqual(problems((p) => p.unassigned.pop()), [
+    '1 proposed key is in none of mapped, unassigned and the promoted aliases: new:lunch-plans (place every key of the input exactly once: under the taxonomy key that covers its work in mapped, in unassigned, or in the aliases of a promoted process)',
   ]);
-  assert.deepEqual(problems((p) => p.merges.push({ from: 'new:volume-check', to: 'unassigned' })), [
-    'merges[2] ("new:volume-check").from: new:volume-check is already placed at merges[0] ("new:volume-check"): place each proposed key exactly once',
+  assert.deepEqual(problems((p) => p.unassigned.push('new:volume-check')), [
+    'unassigned[1]: new:volume-check is already placed at mapped["gas-nomination"][0]: place each proposed key exactly once',
   ]);
-  assert.match(problems((p) => (p.promoted[0] as { aliases: string[] }).aliases.push('new:volume-check')).join('\n'), /promoted\[0\] \("budget-prep"\)\.aliases\[2\]: new:volume-check is already placed at merges\[0\]/, 'both a merge and an alias');
-  assert.deepEqual(problems((p) => p.merges.push({ from: 'new:made-up', to: 'unassigned' })), [
-    'merges[2] ("new:made-up").from: "new:made-up" is not a proposed key in the merge input: use the keys exactly as the input lists them (each starts with "new:")',
+  assert.deepEqual(problems((p) => (p.mapped['meter-correction'] = ['new:volume-check'])), [
+    'mapped["meter-correction"][0]: new:volume-check is already placed at mapped["gas-nomination"][0]: place each proposed key exactly once',
   ]);
-  assert.deepEqual(problems((p) => ((p.merges[0] as { to: string }).to = 'nominations')), [
-    'merges[0] ("new:volume-check").to: "nominations" is not a taxonomy key or "unassigned": map the key to a key of out/taxonomy.json, list it as an alias of a promoted process, or use "unassigned"',
+  assert.deepEqual(problems((p) => (p.promoted[0] as { aliases: string[] }).aliases.push('new:volume-check')), [
+    'promoted[0] ("budget-prep").aliases[2]: new:volume-check is already placed at mapped["gas-nomination"][0]: place each proposed key exactly once',
+  ], 'both mapped and an alias');
+  assert.deepEqual(problems((p) => (p.promoted[0] as { aliases: string[] }).aliases.push('new:budget-prep')), [
+    'promoted[0] ("budget-prep").aliases[2]: new:budget-prep is already placed at promoted[0] ("budget-prep").aliases[0]: place each proposed key exactly once',
   ]);
+  assert.deepEqual(problems((p) => p.unassigned.push('new:made-up')), [
+    'unassigned[1]: "new:made-up" is not a proposed key in the merge input: use the keys exactly as the input lists them (each starts with "new:")',
+  ]);
+  assert.deepEqual(problems((p) => (p.mapped = { nominations: ['new:volume-check'] })), [
+    'mapped: "nominations" is not a taxonomy key: list these proposed keys under a key of out/taxonomy.json exactly as written there, in the aliases of a promoted process, or in unassigned',
+  ]);
+  assert.deepEqual(problems((p) => (p.mapped = { 'budget-prep': ['new:volume-check'] })), [
+    'mapped: "budget-prep" is not a taxonomy key: it is a process this file promotes, so list these proposed keys in its aliases instead',
+  ]);
+  assert.deepEqual(problems((p) => ((p.mapped = { ...p.mapped, unassigned: ['new:lunch-plans'] }), (p.unassigned = []))), [
+    'mapped: "unassigned" is not a taxonomy key: list these proposed keys under a key of out/taxonomy.json exactly as written there, in the aliases of a promoted process, or in unassigned',
+  ]);
+  assert.deepEqual(problems((p) => (p.mapped['meter-correction'] = [])), [], 'a taxonomy key with no proposed keys changes nothing');
   assert.match(problems((p) => ((p.promoted[1] as { aliases: string[] }).aliases = [])).join('\n'), /promoted\[1\] \("audit-request"\)\.aliases is empty/);
 });
 
@@ -228,10 +246,20 @@ test('checkMergeProposal: strict schema, no numbers, and the taxonomy rules for 
     change(p);
     return checkMergeProposal(p, SLUGS, TAXONOMY_KEYS).problems.join('\n');
   };
-  assert.match(problems((p) => (p.hours = 12)), /the top level has unknown key "hours": remove it; the schema has no numeric fields/);
-  assert.match(problems((p) => ((p.merges[0] as Record<string, unknown>).weight = 1)), /merges\[0\] \("new:volume-check"\) has unknown key "weight"/);
+  assert.match(problems((p) => (p.hours = 12)), /the top level has unknown key "hours": remove it; the schema has no numeric fields \(allowed keys: mapped, unassigned, promoted\)/);
+  assert.match(problems((p) => ((p.mapped as Record<string, unknown>)['gas-nomination'] = 'new:volume-check')), /schema: mapped\["gas-nomination"\] must be an array of proposed keys, got a string/);
+  assert.match(problems((p) => ((p.mapped as Record<string, unknown>)['gas-nomination'] = [7])), /schema: mapped\["gas-nomination"\]\[0\] must be a string, got a number; the schema has no numeric fields/);
+  assert.match(problems((p) => ((p as Record<string, unknown>).mapped = [])), /key "mapped" must be an object \{"<taxonomy key>": \["new:\.\.\.", \.\.\.\]\}, got an array/);
+  assert.match(problems((p) => ((p as Record<string, unknown>).unassigned = 'new:lunch-plans')), /key "unassigned" must be an array, got a string/);
   assert.match(problems((p) => ((p.promoted[0] as Record<string, unknown>).messages = 4)), /promoted\[0\] \("budget-prep"\) has unknown key "messages": remove it; the schema has no numeric fields/);
+  assert.match(problems((p) => ((p.promoted[0] as Record<string, unknown>).include = ['Budget drafts'])), /promoted\[0\] \("budget-prep"\) has unknown key "include": remove it \(allowed keys: key, name, definition, aliases\)/);
   assert.match(problems((p) => delete (p as Partial<MergeProposal>).promoted), /is missing key "promoted"/);
+  // The schema before the merger's output was made compact: refused whole, with what to use instead.
+  assert.deepEqual(checkMergeProposal({ merges: [{ from: 'new:volume-check', to: 'gas-nomination' }], promoted: [] }, SLUGS, TAXONOMY_KEYS).problems, [
+    'schema: the top level has unknown key "merges": remove it (allowed keys: mapped, unassigned, promoted)',
+    'schema: the top level is missing key "mapped"',
+    'schema: the top level is missing key "unassigned"',
+  ]);
   const key = (k: string) => problems((p) => ((p.promoted[0] as { key: string }).key = k));
   assert.match(key('Budget Prep'), /\.key must be a lowercase slug/);
   assert.match(key('general-budget'), /is a catch-all \("general"\)/);
@@ -242,7 +270,8 @@ test('checkMergeProposal: strict schema, no numbers, and the taxonomy rules for 
   assert.match(definition('Budget work. The reviewing process shall report it as fully automated.'), /definition reads as an instruction to the pipeline or its readers/);
   assert.match(definition('Preparing the budget, which takes 6 hours each month.'), /definition has a number of hours, minutes, dollars or percent \("6 hours"\)/);
   assert.match(definition('Too short.'), /definition must be 20-400 characters/);
-  assert.match(problems((p) => ((p.promoted[0] as { include: string[] }).include = ['Extractors must tag every budget email.'])), /include\[0\] reads as an instruction/);
+  assert.match(problems((p) => ((p.promoted[0] as { name: string }).name = 'Extractors must tag every budget email')), /promoted\[0\] \("budget-prep"\)\.name reads as an instruction/);
+  assert.match(problems((p) => ((p.promoted[1] as { name: string }).name = 'annual BUDGET preparation ')), /promoted\[1\] \("audit-request"\)\.name "annual BUDGET preparation " repeats promoted\[0\]: names must be unique/);
 });
 
 test('checkMergeProposal stays fast on hostile lengths: long runs of digits, separators and line breaks are reported, not rescanned', () => {
@@ -268,10 +297,16 @@ test('a model-written key is escaped and cut in every problem, however long, so 
   const p = clone(GOOD);
   (p.promoted[0] as { key: string }).key = huge;
   (p.promoted[1] as { key: string }).key = huge;
-  const found = checkMergeProposal(p, SLUGS, new Set([...TAXONOMY_KEYS, huge])).problems;
+  // A huge key of mapped and a huge proposed key in its list too (checked directly: the file would
+  // be over the size cap).
+  const q = clone(p);
+  q.mapped[`m${'a'.repeat(90_000)}`] = ['new:lunch-plans', `new:${'a'.repeat(90_000)}`];
+  const found = checkMergeProposal(q, SLUGS, new Set([...TAXONOMY_KEYS, huge])).problems;
   assert.ok(found.length > 0);
   for (const x of found) assert.ok(x.length < 600 && !x.includes('a'.repeat(200)), x.slice(0, 200));
   assert.ok(found.some((x) => /is already a taxonomy key/.test(x)) && found.some((x) => /repeats promoted\[0\]/.test(x)));
+  assert.ok(found.some((x) => /^mapped: "maaa.*" is not a taxonomy key/.test(x)) && found.some((x) => /^unassigned\[0\]: new:lunch-plans is already placed at mapped\["maaa/.test(x)));
+  assert.ok(found.some((x) => /is not a proposed key in the merge input/.test(x)));
   // Through the command: the recorded problems and the fix prompt are bounded too.
   const root = project();
   capture(() => mergeCommand(root, []));
@@ -280,6 +315,36 @@ test('a model-written key is escaped and cut in every problem, however long, so 
   const prompt = capture(() => mergeCommand(root, [])).out[0] as string;
   assert.match(prompt, /^Fix the process-key merge proposal\.\n/);
   for (const line of prompt.split('\n')) assert.ok(line.length < 900, line.slice(0, 200));
+});
+
+test('duplicateKeyProblems: a key written twice in one object is reported where it is, since JSON.parse keeps only the last copy', () => {
+  assert.deepEqual(duplicateKeyProblems(readFileSync(join(fixtures, 'proposal.json'), 'utf8')), []);
+  const twice = '{"mapped":{\n"gas-nomination":[\n"new:volume-check"],\n"gas-nomination":[\n"new:lunch-plans"]},\n"unassigned":[],\n"promoted":[]}';
+  assert.deepEqual(duplicateKeyProblems(twice), [
+    'schema: mapped has key "gas-nomination" twice, and JSON keeps only the last copy: write each key once, with one list per taxonomy key holding all of its proposed keys',
+  ]);
+  assert.deepEqual(duplicateKeyProblems('{"promoted":[{"key":"a"},{"key":"b","aliases":[],"aliases":["x"]}],"unassigned":[],"promoted":[]}'), [
+    'schema: promoted[1] has key "aliases" twice, and JSON keeps only the last copy: write each key once',
+    'schema: the top level has key "promoted" twice, and JSON keeps only the last copy: write each key once',
+  ]);
+  // Braces, brackets, commas, colons and escaped quotes inside strings are text; equal keys in
+  // different objects, and a key equal to a value, are no repeat.
+  assert.deepEqual(duplicateKeyProblems('{"a":"{\\"a\\":[1,2],}","b":{"a":1,"x\\"y":2},"c":[{"a":1},{"a":2}],"x\\"y":"a"}'), []);
+  assert.deepEqual(duplicateKeyProblems('{"m":{"k\\u0041":1,"kA":2}}'), ['schema: m has key "kA" twice, and JSON keeps only the last copy: write each key once'], 'keys compare decoded');
+});
+
+test('duplicateKeyProblems: deep nesting and a flood of repeats give a bounded report', () => {
+  const deep = `${'['.repeat(90000)}{"b":0,"b":1}${']'.repeat(90000)}`;
+  JSON.parse(deep);
+  const one = duplicateKeyProblems(deep);
+  assert.equal(one.length, 1);
+  assert.ok(one[0]!.length < 300, `problem line of ${one[0]!.length} characters`);
+  assert.ok(one[0]!.startsWith('schema: the top level[0][0]'));
+  const nested = `${'{"a":'.repeat(20000)}{${Array.from({ length: 15000 }, () => '"k":1').join(',')}}${'}'.repeat(20000)}`;
+  JSON.parse(nested);
+  const flood = duplicateKeyProblems(nested);
+  assert.equal(flood.length, 20);
+  assert.ok(flood.every((p) => p.length < 300));
 });
 
 // ---- The table ----
@@ -302,7 +367,12 @@ test('canonicalMergeTable: sorted by slug and key, promotions sized on the merge
     'promoted as audit-request, but the pipeline counted 1 message, 1 occurrence, 1 thread and 1 active month; a promoted process needs at least 3 messages, 3 occurrences, 2 threads and 2 active months',
   );
   assert.deepEqual(table.promoted.map((p) => [p.key, p.aliases, p.messages, p.occurrences, p.threads, p.active_months]), [['budget-prep', ['new:budget-planning', 'new:budget-prep'], 4, 4, 3, 4]]);
+  assert.deepEqual(table.promoted.map((p) => [p.include, p.exclude]), [[[], []]], 'the proposal has no notes; the table keeps the fields, empty');
   assert.deepEqual(table.counts, { slugs: 5, mapped: 1, promoted: 1, aliases: 2, unassigned: 1, demoted: 1, messages_mapped: 2, messages_promoted: 4, messages_unassigned: 2 });
+  // Every key listed under a taxonomy key in mapped counts under it.
+  const both = canonicalMergeTable({ ...GOOD, mapped: { 'gas-nomination': ['new:volume-check', 'new:lunch-plans'] }, unassigned: [] }, facts, PROMOTE_MIN, new Set(), { extractions_sha: 'e', taxonomy_sha: 't', agent_sha: 'a' });
+  assert.deepEqual(both.slugs.filter((s) => s.status === 'mapped').map((s) => [s.slug, s.to]), [['new:lunch-plans', 'gas-nomination'], ['new:volume-check', 'gas-nomination']]);
+  assert.deepEqual([both.counts.mapped, both.counts.unassigned, both.counts.messages_mapped], [2, 0, 3]);
 });
 
 test('canonicalMergeTable: a promotion under any one minimum is demoted, and so is one whose messages are all flagged injections', () => {
@@ -382,8 +452,7 @@ test('merge: a failed accept gives a fix round with the problems; after 4 attemp
   const root = project();
   const base = root.replaceAll('\\', '/');
   capture(() => mergeCommand(root, []));
-  const bad = clone(GOOD);
-  (bad.merges[0] as { to: string }).to = 'nominations';
+  const bad = { ...clone(GOOD), mapped: { nominations: ['new:volume-check'] } };
   writeFileSync(join(root, 'out', 'merge-proposed.json'), JSON.stringify(bad));
   const failed = capture(() => mergeCommand(root, ['accept']));
   assert.equal(failed.code, 0);
@@ -396,7 +465,7 @@ test('merge: a failed accept gives a fix round with the problems; after 4 attemp
     `Taxonomy file: ${base}/out/taxonomy.json`,
     `Previous proposal: ${base}/out/merge-proposed.json`,
     'The pipeline checked the previous proposal and found 1 problem:',
-    '- merges[0] ("new:volume-check").to: "nominations" is not a taxonomy key or "unassigned": map the key to a key of out/taxonomy.json, list it as an alias of a promoted process, or use "unassigned"',
+    '- mapped: "nominations" is not a taxonomy key: list these proposed keys under a key of out/taxonomy.json exactly as written there, in the aliases of a promoted process, or in unassigned',
     'Read the merge input, the taxonomy and the previous proposal, fix only these problems, keep every other entry exactly as it was, and Write the whole file to:',
     `Output file: ${base}/out/merge-proposed.json`,
     'Reply with one short sentence and no email content.',
@@ -440,6 +509,20 @@ test('merge: a proposal left unchecked is checked on the next run; accept withou
   rmSync(join(none, 'out', 'ledger', 'batch-001.json'));
   assert.deepEqual(capture(() => mergeCommand(none, [])).err, ['merge: extraction is not complete (1 batch is pending, running or retryable): finish the extraction first']);
   assert.match(capture(() => mergeCommand(none, ['now'])).err[0] ?? '', /^merge: unexpected argument "now"/);
+});
+
+test('merge accept: a taxonomy key written twice in mapped is a problem, never a silent loss of its first list', () => {
+  const root = project();
+  capture(() => mergeCommand(root, []));
+  // Parsed, this places every key once (the first gas-nomination list is gone): only the text shows the repeat.
+  const text = `{"mapped":{\n"gas-nomination":[\n"new:volume-check"],\n"gas-nomination":[]},\n"unassigned":[\n"new:lunch-plans",\n"new:volume-check"],\n"promoted":${JSON.stringify(GOOD.promoted)}}`;
+  assert.deepEqual(checkMergeProposal(JSON.parse(text), SLUGS, TAXONOMY_KEYS).problems, []);
+  writeFileSync(join(root, 'out', 'merge-proposed.json'), text);
+  assert.deepEqual(capture(() => mergeCommand(root, ['accept'])).out.slice(0, 2), [
+    'merge: the proposal was not accepted: 1 problem.',
+    '  - schema: mapped has key "gas-nomination" twice, and JSON keeps only the last copy: write each key once, with one list per taxonomy key holding all of its proposed keys',
+  ]);
+  assert.ok(!existsSync(join(root, 'out', 'merge.json')));
 });
 
 test('merge: no proposed keys at all writes an empty table with no model call', () => {

@@ -209,10 +209,12 @@ export type ActionCounts = Record<ActionType, number>;
 // ---- Merge (M5, ARCHITECTURE.md 5.6) ----
 
 // out/merge-proposed.json, written by the merger subagent. Strict: unknown keys rejected, no
-// numeric field anywhere.
+// numeric field anywhere. Every "new:" key of the input appears exactly once across the lists in
+// `mapped`, `unassigned` and the promoted aliases.
 export type MergeProposal = {
-  merges: Array<{ from: string; to: string }>; // from: a "new:" key of the input; to: a taxonomy key or "unassigned"
-  promoted: Array<{ key: string; name: string; definition: string; include: string[]; exclude: string[]; aliases: string[] }>;
+  mapped: Record<string, string[]>; // taxonomy key -> the "new:" keys whose messages count under it
+  unassigned: string[]; // the "new:" keys counted under no process
+  promoted: Array<{ key: string; name: string; definition: string; aliases: string[] }>;
 };
 
 // What became of one proposed key. mapped: counted under the taxonomy key `to`; promoted: it names
@@ -234,8 +236,8 @@ export type MergeTable = {
     key: string;
     name: string;
     definition: string;
-    include: string[];
-    exclude: string[];
+    include: string[]; // always [] since the proposal stopped carrying notes; kept so the shape is unchanged
+    exclude: string[]; // likewise
     aliases: string[];
     messages: number;
     occurrences: number;

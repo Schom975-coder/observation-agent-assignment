@@ -396,7 +396,7 @@ test('on the committed M4 outputs, with every proposed key unassigned: the appro
   }
   const stats = json('prepare-stats.json') as { suspected_injection: string[] };
   const facts = slugFacts(validated, threads, messages);
-  const table = canonicalMergeTable({ merges: facts.map((f) => ({ from: f.slug, to: 'unassigned' })), promoted: [] }, facts, { messages: 3, occurrences: 3, threads: 2, active_months: 2 }, new Set(stats.suspected_injection), {
+  const table = canonicalMergeTable({ mapped: {}, unassigned: facts.map((f) => f.slug), promoted: [] }, facts, { messages: 3, occurrences: 3, threads: 2, active_months: 2 }, new Set(stats.suspected_injection), {
     extractions_sha: 'e',
     taxonomy_sha: 't',
     agent_sha: 'a',

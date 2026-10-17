@@ -2,10 +2,12 @@
 // Over confirmed entries only: exact key-set agreement, any-overlap agreement (both empty counts as
 // agreement) and role agreement, with every disagreement listed. Any "new:<slug>" key, on either
 // side, counts as the one key "new:*": the question is whether a message belongs to a known process.
-// From M5 the same three rates are also given on the merged keys when a merge table is passed: a
-// new: key (on either side) that the merge maps or promotes counts as its target, any other as
-// "new:*", so the two scores side by side show how much the merge recovers.
-import { mergeTarget } from '../model/merge.ts';
+// From M5 the same three rates are also given on the merged keys when a merge table is passed, so
+// the two scores side by side show how much the merge recovers. The labels predate the merge, so a
+// label's new: key cannot name a promoted process: on the merged keys it still means "outside the
+// taxonomy" ("new:*") and agrees with an extracted key that ended outside the taxonomy after the
+// merge (promoted, unassigned or demoted); a label's taxonomy key agrees only with an extracted key
+// that is that taxonomy key, or was mapped to it.
 import { MESSAGE_ROLES, type MergeTable, type MessageRole } from '../types.ts';
 import type { GoldLabel, GoldLabels } from './sample.ts';
 
@@ -85,20 +87,27 @@ export type GoldScore = {
 
 const agreement = (agree: number, of: number): Agreement => ({ agree, of, pct: of === 0 ? null : Math.round((1000 * agree) / of) / 10 });
 const byText = (a: string, b: string): number => (a < b ? -1 : a > b ? 1 : 0);
-// The key set compared: a new: key is "new:*", unless `table` maps or promotes it.
-const keySet = (processes: readonly string[], table: MergeTable | null): string[] =>
-  [...new Set(processes.map((p) => (p.startsWith('new:') ? ((table === null ? null : mergeTarget(p, table)) ?? 'new:*') : p)))].sort(byText);
+// The key set compared: a new: key is "new:*", unless `mapped` maps it to a taxonomy key.
+const keySet = (processes: readonly string[], mapped: ReadonlyMap<string, string> | null): string[] =>
+  [...new Set(processes.map((p) => (p.startsWith('new:') ? (mapped?.get(p) ?? 'new:*') : p)))].sort(byText);
+
+// A proposed key -> the taxonomy key the merge mapped it to; promoted, alias, unassigned and demoted
+// keys are left out (they ended outside the taxonomy).
+const mappedKeys = (table: MergeTable): Map<string, string> =>
+  new Map(table.slugs.flatMap((s) => (s.status === 'mapped' && s.to !== null ? [[s.slug, s.to] as const] : [])));
 
 type Scored = { label: GoldLabel & { role: MessageRole }; extracted: Tagging };
 
+// Without `table` the raw rates; with it the merged ones, where only the extracted side is re-keyed.
 function rates(scored: readonly Scored[], table: MergeTable | null): GoldRates {
+  const mapped = table === null ? null : mappedKeys(table);
   const mismatches: GoldMismatch[] = [];
   let exact = 0;
   let overlap = 0;
   let role = 0;
   for (const { label: l, extracted: e } of scored) {
-    const a = keySet(l.processes, table);
-    const b = keySet(e.processes, table);
+    const a = keySet(l.processes, null);
+    const b = keySet(e.processes, mapped);
     const same = a.length === b.length && a.every((k, i) => k === b[i]);
     const shared = (a.length === 0 && b.length === 0) || a.some((k) => b.includes(k));
     const sameRole = l.role === e.role;

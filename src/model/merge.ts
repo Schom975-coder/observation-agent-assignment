@@ -23,8 +23,6 @@ export const DEFINITION_CUT_CHARS = 100; // the first step down when the input i
 export const NAME_SHOWN_CHARS = 60;
 export const SUBJECTS_SHOWN = 2;
 export const SUBJECT_SHOWN_CHARS = 60;
-// What a proposal's `to` may be besides a taxonomy key.
-export const UNASSIGNED = 'unassigned';
 
 export class MergeInputError extends Error {
   override name = 'MergeInputError';
@@ -144,9 +142,9 @@ function kindOf(v: unknown): string {
 }
 const numericHint = (v: unknown): string => (typeof v === 'number' ? '; the schema has no numeric fields' : '');
 
-const TOP_KEYS = ['merges', 'promoted'] as const;
-const MERGE_KEYS = ['from', 'to'] as const;
-const PROMOTED_KEYS = ['key', 'name', 'definition', 'include', 'exclude', 'aliases'] as const;
+// The proposal's fields, as the merger's schema lists them (a seam test reads them).
+export const PROPOSAL_KEYS = ['mapped', 'unassigned', 'promoted'] as const;
+export const PROMOTED_KEYS = ['key', 'name', 'definition', 'aliases'] as const;
 export const LIST_MAX_ITEMS = 15; // keys listed in one problem before "and K more"
 
 const listed = (items: readonly string[]): string =>
@@ -154,56 +152,63 @@ const listed = (items: readonly string[]): string =>
 
 // The proposal typed, or null with every problem found, each naming where it is and what to do.
 // `slugs`: the proposed keys of the input; `taxonomyKeys`: out/taxonomy.json's. Every proposed key
-// must appear exactly once across merges[].from and promoted[].aliases, and nothing else may.
+// must appear exactly once across the lists in `mapped`, `unassigned` and the promoted aliases, and
+// nothing else may; every key of `mapped` must be a taxonomy key. A taxonomy key with an empty list
+// changes nothing and is accepted.
 export function checkMergeProposal(value: unknown, slugs: ReadonlySet<string>, taxonomyKeys: ReadonlySet<string>): { proposal: MergeProposal | null; problems: string[] } {
   const problems: string[] = [];
   const add = (p: string) => void problems.push(p);
   if (!isObject(value)) {
-    add(`schema: the top level must be an object {"merges": [...], "promoted": [...]}, got ${kindOf(value)}`);
+    add(`schema: the top level must be an object {"mapped": {...}, "unassigned": [...], "promoted": [...]}, got ${kindOf(value)}`);
     return { proposal: null, problems };
   }
   for (const k of Object.keys(value)) {
-    if (!(TOP_KEYS as readonly string[]).includes(k)) add(`schema: the top level has unknown key ${modelText(k, 60)}: remove it${numericHint(value[k])} (allowed keys: ${TOP_KEYS.join(', ')})`);
+    if (!(PROPOSAL_KEYS as readonly string[]).includes(k)) add(`schema: the top level has unknown key ${modelText(k, 60)}: remove it${numericHint(value[k])} (allowed keys: ${PROPOSAL_KEYS.join(', ')})`);
   }
-  for (const k of TOP_KEYS) if (!Array.isArray(value[k])) add(`schema: the top level ${value[k] === undefined ? `is missing key "${k}"` : `key "${k}" must be an array, got ${kindOf(value[k])}`}`);
+  if (!isObject(value.mapped)) {
+    add(`schema: the top level ${value.mapped === undefined ? 'is missing key "mapped"' : `key "mapped" must be an object {"<taxonomy key>": ["new:...", ...]}, got ${kindOf(value.mapped)}`}`);
+  }
+  for (const k of ['unassigned', 'promoted'] as const) {
+    if (!Array.isArray(value[k])) add(`schema: the top level ${value[k] === undefined ? `is missing key "${k}"` : `key "${k}" must be an array, got ${kindOf(value[k])}`}`);
+  }
   if (problems.length > 0) return { proposal: null, problems };
+  const promotedList = value.promoted as unknown[];
 
   // Where each proposed key was placed, to report a second placement.
   const placed = new Map<string, string>();
-  const place = (at: string, slug: unknown, field: string): void => {
+  const place = (at: string, slug: unknown): void => {
     if (typeof slug !== 'string') {
-      add(`schema: ${at}.${field} must be a string, got ${kindOf(slug)}${numericHint(slug)}`);
+      add(`schema: ${at} must be a string, got ${kindOf(slug)}${numericHint(slug)}`);
       return;
     }
     if (!slugs.has(slug)) {
-      add(`${at}.${field}: ${modelText(slug)} is not a proposed key in the merge input: use the keys exactly as the input lists them (each starts with "new:")`);
+      add(`${at}: ${modelText(slug)} is not a proposed key in the merge input: use the keys exactly as the input lists them (each starts with "new:")`);
       return;
     }
     const first = placed.get(slug);
-    if (first !== undefined) add(`${at}.${field}: ${slug} is already placed at ${first}: place each proposed key exactly once`);
+    if (first !== undefined) add(`${at}: ${slug} is already placed at ${first}: place each proposed key exactly once`);
     else placed.set(slug, at);
   };
 
-  (value.merges as unknown[]).forEach((m, i) => {
-    const at = isObject(m) && typeof m.from === 'string' ? `merges[${i}] (${modelText(m.from)})` : `merges[${i}]`;
-    if (!isObject(m)) {
-      add(`schema: ${at} must be an object {"from", "to"}, got ${kindOf(m)}`);
-      return;
+  const promotedHere = new Set(promotedList.flatMap((p) => (isObject(p) && typeof p.key === 'string' ? [p.key] : [])));
+  for (const [key, list] of Object.entries(value.mapped as Obj)) {
+    const at = `mapped[${modelText(key, 60)}]`;
+    if (!taxonomyKeys.has(key)) {
+      add(
+        `mapped: ${modelText(key, 60)} is not a taxonomy key: ` +
+          (promotedHere.has(key)
+            ? 'it is a process this file promotes, so list these proposed keys in its aliases instead'
+            : 'list these proposed keys under a key of out/taxonomy.json exactly as written there, in the aliases of a promoted process, or in unassigned'),
+      );
     }
-    for (const k of Object.keys(m)) if (!(MERGE_KEYS as readonly string[]).includes(k)) add(`schema: ${at} has unknown key ${modelText(k, 60)}: remove it${numericHint(m[k])} (allowed keys: from, to)`);
-    for (const k of MERGE_KEYS) if (!Object.hasOwn(m, k)) add(`schema: ${at} is missing key "${k}"`);
-    if (m.from !== undefined) place(at, m.from, 'from');
-    if (m.to !== undefined) {
-      if (typeof m.to !== 'string') add(`schema: ${at}.to must be a string, got ${kindOf(m.to)}${numericHint(m.to)}`);
-      else if (m.to !== UNASSIGNED && !taxonomyKeys.has(m.to)) {
-        add(`${at}.to: ${modelText(m.to)} is not a taxonomy key or "${UNASSIGNED}": map the key to a key of out/taxonomy.json, list it as an alias of a promoted process, or use "${UNASSIGNED}"`);
-      }
-    }
-  });
+    if (!Array.isArray(list)) add(`schema: ${at} must be an array of proposed keys, got ${kindOf(list)}${numericHint(list)}`);
+    else list.forEach((slug, j) => place(`${at}[${j}]`, slug));
+  }
+  (value.unassigned as unknown[]).forEach((slug, j) => place(`unassigned[${j}]`, slug));
 
   const promotedKeys = new Map<string, number>();
   const names = new Map<string, number>();
-  (value.promoted as unknown[]).forEach((p, i) => {
+  promotedList.forEach((p, i) => {
     const at = isObject(p) && typeof p.key === 'string' ? `promoted[${i}] (${modelText(p.key)})` : `promoted[${i}]`;
     if (!isObject(p)) {
       add(`schema: ${at} must be an object, got ${kindOf(p)}`);
@@ -215,12 +220,13 @@ export function checkMergeProposal(value: unknown, slugs: ReadonlySet<string>, t
     for (const k of PROMOTED_KEYS) if (!Object.hasOwn(p, k)) add(`schema: ${at} is missing key "${k}"`);
     const key = checkKey(at, p.key, add);
     if (key !== null) {
-      if (taxonomyKeys.has(key)) add(`${at}.key ${modelText(key)} is already a taxonomy key: map the proposed keys to it in merges instead of promoting`);
+      if (taxonomyKeys.has(key)) add(`${at}.key ${modelText(key)} is already a taxonomy key: list the proposed keys under it in mapped instead of promoting`);
       const first = promotedKeys.get(key);
       if (first !== undefined) add(`${at}.key ${modelText(key)} repeats promoted[${first}]: promote each process once, with every key that means the same work as an alias`);
       else promotedKeys.set(key, i);
     }
-    checkProcessText(at, p, add, (name) => {
+    // The name and the definition only: a promoted process carries no include or exclude notes.
+    checkProcessText(at, { name: p.name, definition: p.definition }, add, (name) => {
       const folded = name.trim().toLowerCase();
       const first = names.get(folded);
       if (first !== undefined) add(`${at}.name ${modelText(name, 60)} repeats promoted[${first}]: names must be unique`);
@@ -229,18 +235,65 @@ export function checkMergeProposal(value: unknown, slugs: ReadonlySet<string>, t
     if (p.aliases !== undefined) {
       if (!Array.isArray(p.aliases)) add(`schema: ${at}.aliases must be an array of strings, got ${kindOf(p.aliases)}`);
       else if (p.aliases.length === 0) add(`${at}.aliases is empty: list every proposed key this process absorbs (at least one)`);
-      else p.aliases.forEach((a, j) => place(at, a, `aliases[${j}]`));
+      else p.aliases.forEach((a, j) => place(`${at}.aliases[${j}]`, a));
     }
   });
 
   const missing = [...slugs].filter((s) => !placed.has(s)).sort(byText);
   if (missing.length > 0) {
     add(
-      `${count(missing.length, 'proposed key is', 'proposed keys are')} in neither merges nor promoted aliases: ${listed(missing)} ` +
-        `(place every key of the input exactly once: in merges with "to" a taxonomy key or "${UNASSIGNED}", or as an alias of a promoted process)`,
+      `${count(missing.length, 'proposed key is', 'proposed keys are')} in none of mapped, unassigned and the promoted aliases: ${listed(missing)} ` +
+        '(place every key of the input exactly once: under the taxonomy key that covers its work in mapped, in unassigned, or in the aliases of a promoted process)',
     );
   }
   return { proposal: problems.length === 0 ? (value as MergeProposal) : null, problems };
+}
+
+const DUPLICATE_PATH_MAX = 120;
+const DUPLICATE_PROBLEMS_MAX = 20;
+
+// A key written twice in one object of a JSON text: JSON.parse keeps the last copy without a word,
+// so a taxonomy key written twice in `mapped` would silently drop its first list. One problem per
+// repeat, at most DUPLICATE_PROBLEMS_MAX, naming the object as the other problems do ("the top
+// level", "mapped", "promoted[2]"), cut to DUPLICATE_PATH_MAX characters. `text` must already parse
+// as JSON; one linear pass.
+export function duplicateKeyProblems(text: string): string[] {
+  type Frame = { object: boolean; path: string; keys: Set<string>; expectKey: boolean; key: string; index: number };
+  const name = (key: string): string => (/^[\w:-]{1,60}$/.test(key) ? key : modelText(key, 60));
+  // Deep nesting would otherwise grow a path, and the problem line quoting it, without limit.
+  const bounded = (path: string): string => (path.length > DUPLICATE_PATH_MAX ? `${path.slice(0, DUPLICATE_PATH_MAX - 3)}...` : path);
+  const stack: Frame[] = [];
+  const problems: string[] = [];
+  for (let i = 0; i < text.length && problems.length < DUPLICATE_PROBLEMS_MAX; i++) {
+    const c = text[i];
+    if (c === '"') {
+      let j = i + 1;
+      while (j < text.length && text[j] !== '"') j += text[j] === '\\' ? 2 : 1;
+      const top = stack.at(-1);
+      if (top !== undefined && top.object && top.expectKey) {
+        const key = JSON.parse(text.slice(i, j + 1)) as string;
+        if (top.keys.has(key)) {
+          problems.push(
+            `schema: ${top.path} has key ${modelText(key, 60)} twice, and JSON keeps only the last copy: write each key once` +
+              (top.path === 'mapped' ? ', with one list per taxonomy key holding all of its proposed keys' : ''),
+          );
+        } else top.keys.add(key);
+        top.key = key;
+        top.expectKey = false;
+      }
+      i = j;
+    } else if (c === '{' || c === '[') {
+      const top = stack.at(-1);
+      const path = top === undefined ? 'the top level' : !top.object ? `${top.path}[${top.index}]` : top.path === 'the top level' ? name(top.key) : `${top.path}.${name(top.key)}`;
+      stack.push({ object: c === '{', path: bounded(path), keys: new Set(), expectKey: c === '{', key: '', index: 0 });
+    } else if (c === '}' || c === ']') stack.pop();
+    else if (c === ',') {
+      const top = stack.at(-1);
+      if (top?.object) top.expectKey = true;
+      else if (top !== undefined) top.index++;
+    }
+  }
+  return problems;
 }
 
 // ---- The canonical table ----
@@ -260,9 +313,8 @@ export function canonicalMergeTable(
 ): MergeTable {
   const fact = new Map(facts.map((f) => [f.slug, f]));
   const fate = new Map<string, { status: MergeTable['slugs'][number]['status']; to: string | null; reason: string | null }>();
-  for (const m of proposal.merges) {
-    fate.set(m.from, m.to === UNASSIGNED ? { status: 'unassigned', to: null, reason: null } : { status: 'mapped', to: m.to, reason: null });
-  }
+  for (const [to, list] of Object.entries(proposal.mapped)) for (const slug of list) fate.set(slug, { status: 'mapped', to, reason: null });
+  for (const slug of proposal.unassigned) fate.set(slug, { status: 'unassigned', to: null, reason: null });
   const promoted: MergeTable['promoted'] = [];
   for (const p of [...proposal.promoted].sort((a, b) => byText(a.key, b.key))) {
     const members = p.aliases.map((a) => fact.get(a)).filter((f): f is SlugFacts => f !== undefined);
@@ -290,7 +342,8 @@ export function canonicalMergeTable(
     }
     const aliases = [...p.aliases].sort(byText);
     for (const a of aliases) fate.set(a, { status: a === `new:${p.key}` ? 'promoted' : 'alias', to: p.key, reason: null });
-    promoted.push({ key: p.key, name: p.name, definition: p.definition, include: [...p.include], exclude: [...p.exclude], aliases, ...size });
+    // The proposal has no notes; the table keeps the fields, empty, so its shape does not change.
+    promoted.push({ key: p.key, name: p.name, definition: p.definition, include: [], exclude: [], aliases, ...size });
   }
   const slugs: MergeTable['slugs'] = [...facts]
     .sort((a, b) => byText(a.slug, b.slug))
@@ -353,5 +406,5 @@ export function effectiveKeys(tags: readonly string[], table: MergeTable): strin
   return [...keys].sort(byText);
 }
 
-// The key a proposed key counts under, or null: for re-keying evidence and for the gold score.
+// The key a proposed key counts under, or null: for re-keying evidence.
 export const mergeTarget = (slug: string, table: MergeTable): string | null => lookup(table).get(slug) ?? null;

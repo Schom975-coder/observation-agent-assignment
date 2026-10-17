@@ -1,13 +1,16 @@
 // Checks one extractor output file (out/extract/<batch>.json) against the batch it was made from:
 // the strict schema, coverage of every message, process keys, and every quote located in the raw
-// message (ARCHITECTURE.md 5.2, 6.11). Deterministic and model-free: the SubagentStop hook sends
-// `problems` back to the extractor, and the validate stage writes `validated`.
+// message (ARCHITECTURE.md 5.2, 6.11). Deterministic and model-free: a fix round hands `problems`
+// back to the extractor (through out/fix/<batch>.txt), and the ledger records `validated`.
 //
 // Problems are written for the model that has to fix them: each names the message ID or quote,
-// says what is wrong and what to do, and they come most important first (the setup, the schema,
-// coverage, process keys, evidence, tags left without evidence, stall and ownership claims,
-// lengths). All are returned; callers truncate. Only failures the model cannot fix (out/ missing
-// or stale, the corpus unreadable) start with "setup: ", and none carries an absolute local path.
+// says what is wrong and what to do, and they come most important first (the schema, coverage,
+// process keys, evidence, tags left without evidence, stall and ownership claims, lengths). All
+// are returned; callers truncate. Text the model wrote (IDs not in the batch, process keys, quotes,
+// names) appears only escaped and cut (`modelText`), and lists stop after LIST_MAX_ITEMS with
+// "and K more", so every problem is one bounded line whose instruction survives. A failure the
+// model cannot fix (out/ missing or stale, the corpus unreadable) is returned as `setup` with no
+// problems, so no text the model wrote can pose as one. None carries an absolute local path.
 //
 // Injection-flagged messages get no special treatment here: their evidence is checked like any
 // other, and quarantining a process backed only by flagged messages belongs to the rollup.
@@ -16,7 +19,7 @@ import { basename, isAbsolute, join, relative } from 'node:path';
 import { openCorpus } from '../corpus/reader.ts';
 import { gitBlobSha } from '../util/hash.ts';
 import { QUOTE_MAX_CHARS, QUOTE_MIN_CHARS, checkQuote, mentions, quoteLength, rejectedQuote, type QuoteField } from '../validate/quotes.ts';
-import { checkExtractionSchema } from './schema.ts';
+import { checkExtractionSchema, modelText } from './schema.ts';
 import type { BatchEntry, Extraction, ExtractionCheck, ParsedMessage, QuoteCheck, ValidatedEvidence, ValidatedExtraction } from '../types.ts';
 
 export const NOTE_MAX_CHARS = 200;
@@ -68,13 +71,37 @@ const chars = (s: string): number => {
 };
 const words = (s: string): number => s.split(/\s+/).filter((w) => w !== '').length;
 
-// The start of a quote as shown in a problem: its first 60 characters, JSON-escaped.
-function preview(quote: string): string {
-  const all = Array.from(quote.trim());
-  return JSON.stringify(all.length > 60 ? `${all.slice(0, 60).join('')}...` : all.join(''));
+// The start of a quote as shown in a problem: its first 60 characters, escaped.
+const preview = (quote: string): string => modelText(quote.trim(), 60);
+
+// The longest a problem gets, and the most items it lists before "and K more". The coverage problem
+// has its own larger budget, so 15 of the corpus's IDs (up to 34 characters) fit before its
+// instruction. Model text is cut at the source, so no other problem comes near these.
+export const PROBLEM_MAX_CHARS = 500;
+export const COVERAGE_MAX_CHARS = 800;
+export const LIST_MAX_ITEMS = 15;
+
+// Items joined with ", ": at most LIST_MAX_ITEMS, and only as many as fit in `budget` characters,
+// then ", and K more", so a long list never pushes the instruction after it out of the problem.
+export function listed(items: readonly string[], budget: number): string {
+  const shown: string[] = [];
+  let used = 0;
+  for (const item of items) {
+    const add = (shown.length === 0 ? 0 : 2) + item.length;
+    if (shown.length === LIST_MAX_ITEMS || (shown.length > 0 && used + add + ', and 9999 more'.length > budget)) break;
+    shown.push(item);
+    used += add;
+  }
+  const more = items.length - shown.length;
+  return more === 0 ? shown.join(', ') : `${shown.join(', ')}, and ${more} more`;
 }
 
-const failed = (problems: string[]): ExtractionCheck => ({ ok: false, problems, validated: null });
+// A problem that lists `items` between `head` and `tail`, kept within `budget`.
+const listProblem = (head: string, items: readonly string[], tail: string, budget = PROBLEM_MAX_CHARS): string =>
+  `${head}${listed(items, budget - head.length - tail.length)}${tail}`;
+
+const failed = (problems: string[]): ExtractionCheck => ({ ok: false, setup: null, problems, validated: null });
+const setupFailed = (setup: string): ExtractionCheck => ({ ok: false, setup, problems: [], validated: null });
 
 // The process keys an extraction may use besides new:<slug>: given, else out/taxonomy.json's, else none.
 function loadTaxonomy(
@@ -93,7 +120,7 @@ function loadTaxonomy(
     if (!keys.every((k): k is string => typeof k === 'string' && k !== '')) throw new Error('a process has no "key" string');
     return { keys: new Set(keys) };
   } catch (err) {
-    return { problem: `setup: cannot read the taxonomy in ${shown(file)} (${errorText(err)})` };
+    return { problem: `cannot read the taxonomy in ${shown(file)} (${errorText(err)})` };
   }
 }
 
@@ -113,19 +140,19 @@ function loadSources(
       if (wanted.has(m.id)) parsed.set(m.id, m);
     }
   } catch (err) {
-    return { problem: `setup: cannot read ${shown(join(outDir, 'messages.jsonl'))} (${errorText(err)}); run "node obs.mjs prepare"` };
+    return { problem: `cannot read ${shown(join(outDir, 'messages.jsonl'))} (${errorText(err)}); run "node obs.mjs prepare"` };
   }
   const absent = ids.filter((id) => !parsed.has(id));
   if (absent.length > 0) {
     return {
-      problem: `setup: ${absent.length} of the batch's messages are not in ${shown(join(outDir, 'messages.jsonl'))} (first: ${absent[0]}); run "node obs.mjs prepare"`,
+      problem: `${absent.length} of the batch's messages are not in ${shown(join(outDir, 'messages.jsonl'))} (first: ${absent[0]}); run "node obs.mjs prepare"`,
     };
   }
   let bytes: Map<string, Buffer>;
   try {
     bytes = openCorpus(root).readMany(ids);
   } catch (err) {
-    return { problem: `setup: cannot read the batch's messages from the corpus (${errorText(err)})` };
+    return { problem: `cannot read the batch's messages from the corpus (${errorText(err)})` };
   }
   const sources = new Map<string, Source>();
   const changed: string[] = [];
@@ -137,17 +164,21 @@ function loadSources(
   }
   if (changed.length > 0) {
     return {
-      problem: `setup: ${changed.length} of the batch's messages changed since prepare ran (first: ${changed[0]}); run "node obs.mjs prepare" again`,
+      problem: `${changed.length} of the batch's messages changed since prepare ran (first: ${changed[0]}); run "node obs.mjs prepare" again`,
     };
   }
   return { sources };
 }
 
-// An ID the model wrote that is not in the batch, with the likely intended one when it only lost
-// its trailing dot.
+// An ID the model wrote that is not in the batch (model text, so escaped and cut), with the likely
+// intended one when it only lost its trailing dot.
 function unknownId(id: string, batch: Batch): string {
-  return batch.inBatch.has(`${id}.`) ? `${id} (did you mean ${id}.? IDs keep their trailing dot)` : id;
+  return batch.inBatch.has(`${id}.`) ? `${modelText(id)} (did you mean ${id}.? IDs keep their trailing dot)` : modelText(id);
 }
+
+// A message ID as a problem shows it: as written when it is one of the batch's own IDs (then it is
+// the index's text, not the model's), otherwise as model text.
+const idText = (id: string, batch: Batch): string => (batch.inBatch.has(id) ? id : modelText(id));
 
 export function checkExtraction(root: string, batchId: string, options: CheckOptions = {}): ExtractionCheck {
   const outDir = options.outDir ?? join(root, 'out');
@@ -157,10 +188,10 @@ export function checkExtraction(root: string, batchId: string, options: CheckOpt
   try {
     index = JSON.parse(readFileSync(join(outDir, 'batches', 'index.json'), 'utf8'));
   } catch (err) {
-    return failed([`setup: cannot read ${shown(join(outDir, 'batches', 'index.json'))} (${errorText(err)}); run "node obs.mjs prepare"`]);
+    return setupFailed(`cannot read ${shown(join(outDir, 'batches', 'index.json'))} (${errorText(err)}); run "node obs.mjs prepare"`);
   }
   const entry = Array.isArray(index) ? (index as BatchEntry[]).find((b) => b?.batch_id === batchId) : undefined;
-  if (entry === undefined) return failed([`setup: ${batchId} is not a batch in ${shown(join(outDir, 'batches', 'index.json'))}`]);
+  if (entry === undefined) return setupFailed(`${batchId} is not a batch in ${shown(join(outDir, 'batches', 'index.json'))}`);
   const batch: Batch = { entry, ids: entry.message_ids, inBatch: new Set(entry.message_ids) };
 
   const file = join(outDir, 'extract', `${batchId}.json`);
@@ -184,9 +215,9 @@ export function checkExtraction(root: string, batchId: string, options: CheckOpt
   const x = schema.extraction;
 
   const taxonomy = loadTaxonomy(outDir, options.taxonomyKeys, shown);
-  if ('problem' in taxonomy) return failed([taxonomy.problem]);
+  if ('problem' in taxonomy) return setupFailed(taxonomy.problem);
   const loaded = loadSources(root, outDir, batch.ids, shown);
-  if ('problem' in loaded) return failed([loaded.problem]);
+  if ('problem' in loaded) return setupFailed(loaded.problem);
   return check(x, batchId, batch, taxonomy.keys, loaded.sources);
 }
 
@@ -195,7 +226,7 @@ function check(x: Extraction, batchId: string, batch: Batch, taxonomy: ReadonlyS
   const add = (p: string) => void problems.push(p);
   const lengths: string[] = []; // note and batch_notes lengths, reported last
 
-  if (x.batch_id !== batchId) add(`batch_id is ${JSON.stringify(x.batch_id)} but this file is for ${batchId}: set "batch_id": "${batchId}"`);
+  if (x.batch_id !== batchId) add(`batch_id is ${modelText(x.batch_id)} but this file is for ${batchId}: set "batch_id": "${batchId}"`);
 
   // Coverage: exactly the batch's messages, each once. Later checks use the first entry per ID.
   const first = new Map<string, Message>();
@@ -210,14 +241,18 @@ function check(x: Extraction, batchId: string, batch: Batch, taxonomy: ReadonlyS
   const missing = batch.ids.filter((id) => !first.has(id));
   if (missing.length > 0) {
     add(
-      `messages[] is missing ${missing.length} of the ${batch.ids.length} messages in ${batchId}: ${missing.join(', ')} ` +
-        '(add one entry for each, with the ID copied exactly from its MESSAGE line)',
+      listProblem(
+        `messages[] is missing ${missing.length} of the ${batch.ids.length} messages in ${batchId}: `,
+        missing,
+        ' (add one entry for each, with the ID copied exactly from its MESSAGE line)',
+        COVERAGE_MAX_CHARS,
+      ),
     );
   }
   if (extra.length > 0) {
-    add(`messages[] has ${extra.length} ID(s) that are not in ${batchId}: ${extra.map((id) => unknownId(id, batch)).join(', ')} (remove them or correct the ID)`);
+    add(listProblem(`messages[] has ${extra.length} ID(s) that are not in ${batchId}: `, extra.map((id) => unknownId(id, batch)), ' (remove them or correct the ID)'));
   }
-  if (doubled.size > 0) add(`messages[] lists ${[...doubled].join(', ')} more than once (keep one entry per message)`);
+  if (doubled.size > 0) add(listProblem('messages[] lists ', [...doubled], ' more than once (keep one entry per message)'));
   const entries = [...first.values()];
 
   // Process keys.
@@ -226,19 +261,19 @@ function check(x: Extraction, batchId: string, batch: Batch, taxonomy: ReadonlyS
     const seen = new Set<string>();
     for (const key of m.processes) {
       if (seen.has(key)) {
-        add(`${m.id}: process ${JSON.stringify(key)} is listed twice in processes (list it once)`);
+        add(`${m.id}: process ${modelText(key)} is listed twice in processes (list it once)`);
         continue;
       }
       seen.add(key);
       if (key.startsWith('new:')) {
         if (!NEW_KEY.test(key)) {
-          add(`${m.id}: ${JSON.stringify(key)} is not a valid new process key: use "new:" and lowercase words joined by hyphens, e.g. "new:meter-reconciliation"`);
+          add(`${m.id}: ${modelText(key)} is not a valid new process key: use "new:" and lowercase words joined by hyphens, e.g. "new:meter-reconciliation"`);
         } else if (taxonomy.has(key.slice(4))) {
-          add(`${m.id}: ${JSON.stringify(key)} proposes a key the taxonomy already has: use ${JSON.stringify(key.slice(4))}`);
+          add(`${m.id}: ${modelText(key)} proposes a key the taxonomy already has: use ${JSON.stringify(key.slice(4))}`);
         } else usedNew.set(key, [...(usedNew.get(key) ?? []), m.id]);
       } else if (!taxonomy.has(key)) {
         const valid = taxonomy.size > 0 ? 'use a key from out/taxonomy.json, or' : 'there is no taxonomy yet, so';
-        add(`${m.id}: unknown process key ${JSON.stringify(key)} (${valid} propose "new:<slug>" and declare it in new_processes)`);
+        add(`${m.id}: unknown process key ${modelText(key)} (${valid} propose "new:<slug>" and declare it in new_processes)`);
       }
     }
     if (m.processes.length === 0 && !ROLES_WITHOUT_PROCESS.includes(m.role)) {
@@ -252,27 +287,27 @@ function check(x: Extraction, batchId: string, batch: Batch, taxonomy: ReadonlyS
   // Proposed processes: every new: key used is declared, every declaration is used.
   const declared = new Map<string, number>();
   x.new_processes.forEach((p, i) => {
-    const at = `new_processes[${i}] (${JSON.stringify(p.key)})`;
+    const at = `new_processes[${i}] (${modelText(p.key)})`;
     if (!NEW_KEY.test(p.key)) add(`${at}: key must be "new:" and lowercase words joined by hyphens, e.g. "new:meter-reconciliation"`);
-    if (declared.has(p.key)) add(`${at}: ${JSON.stringify(p.key)} is declared more than once (declare it once)`);
+    if (declared.has(p.key)) add(`${at}: ${modelText(p.key)} is declared more than once (declare it once)`);
     else declared.set(p.key, i);
     if (p.name.trim() === '') add(`${at}: name is empty`);
     if (p.definition.trim() === '') add(`${at}: definition is empty`);
     for (const id of p.example_ids) {
       if (!batch.inBatch.has(id)) add(`${at}: example ID ${unknownId(id, batch)} is not in ${batchId}`);
-      else if (!first.get(id)?.processes.includes(p.key)) add(`${at}: example ${id} is not tagged ${JSON.stringify(p.key)} (tag it or drop it from example_ids)`);
+      else if (!first.get(id)?.processes.includes(p.key)) add(`${at}: example ${id} is not tagged ${modelText(p.key)} (tag it or drop it from example_ids)`);
     }
   });
   for (const [key, ids] of usedNew) {
     if (!declared.has(key)) {
-      add(`${JSON.stringify(key)} is used by ${ids.join(', ')} but not declared in new_processes (add {"key", "name", "definition", "example_ids"} for it)`);
+      add(listProblem(`${modelText(key)} is used by `, ids, ' but not declared in new_processes (add {"key", "name", "definition", "example_ids"} for it)'));
     }
   }
   // Any new: key a message lists counts as used here, even one already reported as invalid.
   const listedNew = new Set(entries.flatMap((m) => m.processes.filter((k) => k.startsWith('new:'))));
   for (const [key, i] of declared) {
     if (NEW_KEY.test(key) && !listedNew.has(key)) {
-      add(`new_processes[${i}] declares ${JSON.stringify(key)} but no message uses it (tag the messages it covers, or remove it)`);
+      add(`new_processes[${i}] declares ${modelText(key)} but no message uses it (tag the messages it covers, or remove it)`);
     }
   }
 
@@ -320,7 +355,7 @@ function check(x: Extraction, batchId: string, batch: Batch, taxonomy: ReadonlyS
   const rejectedFor = new Map<string, number>();
   const evidenceProblems: Array<{ text: string; tag: string | null }> = []; // tag: blocks only if unsupported
   x.evidence.forEach((e, i) => {
-    const where = `${e.message_id}: evidence[${i}] (${JSON.stringify(e.process)})`;
+    const where = `${idText(e.message_id, batch)}: evidence[${i}] (${modelText(e.process)})`;
     const source = sources.get(e.message_id);
     if (source === undefined) {
       checks.push(rejectedQuote('wrong_message'));
@@ -332,9 +367,12 @@ function check(x: Extraction, batchId: string, batch: Batch, taxonomy: ReadonlyS
     const tags = first.get(e.message_id)?.processes ?? [];
     const tagged = tags.includes(e.process);
     if (!tagged) {
-      const listed = tags.map((t) => JSON.stringify(t)).join(', ');
       evidenceProblems.push({
-        text: `${where}: ${JSON.stringify(e.process)} is not one of this message's processes [${listed}] (tag the message with it, or cite the right process)`,
+        text: listProblem(
+          `${where}: ${modelText(e.process)} is not one of this message's processes [`,
+          tags.map((t) => modelText(t)),
+          '] (tag the message with it, or cite the right process)',
+        ),
         tag: null,
       });
     }
@@ -364,7 +402,7 @@ function check(x: Extraction, batchId: string, batch: Batch, taxonomy: ReadonlyS
       if (supported.has(`${m.id}\0${key}`)) continue;
       const rejected = rejectedFor.get(`${m.id}\0${key}`) ?? 0;
       const why = rejected > 0 ? ` (its ${rejected} quote${rejected > 1 ? 's were' : ' was'} rejected)` : '';
-      add(`${m.id}: process ${JSON.stringify(key)} has no accepted evidence quote${why}: add an evidence entry quoting this message verbatim for it, or remove the tag`);
+      add(`${m.id}: process ${modelText(key)} has no accepted evidence quote${why}: add an evidence entry quoting this message verbatim for it, or remove the tag`);
     }
   }
 
@@ -434,5 +472,5 @@ function check(x: Extraction, batchId: string, batch: Batch, taxonomy: ReadonlyS
     // Over every quote checked: evidence, stall and ownership.
     quote_stats: { exact: count('exact'), repaired: count('repaired'), rejected: count('rejected') },
   };
-  return { ok: problems.length === 0, problems, validated };
+  return { ok: problems.length === 0, setup: null, problems, validated };
 }

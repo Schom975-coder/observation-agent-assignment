@@ -8,10 +8,12 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { BATCH_MAX_BYTES, BATCH_MAX_LINES, BATCH_MAX_TOKENS, bodyTag, lineCount } from '../src/batch/build.ts';
+import { DIGEST_MAX_BYTES, DIGEST_MAX_LINES } from '../src/batch/digest.ts';
 import { ConfigError } from '../src/config.ts';
 import { openCorpus } from '../src/corpus/reader.ts';
 import { bodyKey } from '../src/normalize/dedup.ts';
 import { prepare, prepareCommand } from '../src/pipeline/prepare.ts';
+import { sha256 } from '../src/util/hash.ts';
 import { normalizeNewlines } from '../src/util/text.ts';
 import { DAY_MS, utcMs } from '../src/util/time.ts';
 import type { BatchEntry, DuplicateGroup, ParsedMessage, Thread } from '../src/types.ts';
@@ -166,6 +168,63 @@ test('the stats name the corpus they were built from', () => {
   assert.equal(read('prepare-stats.json').corpus_hash, stats.corpus_hash);
 });
 
+test('the taxonomy digest: written, one Read call, its hash in the stats, no message IDs', () => {
+  const digest = readFileSync(join(outA, 'taxonomy-digest.md'), 'utf8');
+  const bytes = Buffer.byteLength(digest);
+  const lines = lineCount(digest);
+  assert.ok(bytes <= DIGEST_MAX_BYTES, `${bytes} bytes`);
+  assert.ok(lines <= DIGEST_MAX_LINES, `${lines} lines`);
+  assert.equal(stats.digest_sha, sha256(digest));
+  assert.equal(read('prepare-stats.json').digest_sha, stats.digest_sha);
+  assert.deepEqual(
+    digest.split('\n').filter((l) => l.startsWith('#')),
+    ['# Taxonomy digest', '## A. Subject words', '## B. Recurring subjects', '## C. Sample messages', '## D. Frequent senders'],
+  );
+  // View B: subjects that recur, ranked by occurrences and then distinct months; every one a real
+  // thread subject.
+  const text = digest.split('\n');
+  const rows = text
+    .slice(text.indexOf('## B. Recurring subjects'), text.indexOf('## C. Sample messages'))
+    .filter((l) => l.startsWith('- '))
+    .map((l) => /^- ("(?:[^"\\]|\\.)*") \| (\d+) occurrences \| (\d+) months? \(/.exec(l));
+  assert.equal(rows.length, 60);
+  const rank = rows.map((m) => {
+    assert.ok(m !== null);
+    assert.ok(new Set(threads.map((t) => t.subject_norm)).has(JSON.parse(m[1] as string)), m[1]);
+    return [Number(m[2]), Number(m[3])] as const;
+  });
+  for (const [i, [occurrences, months]] of rank.entries()) {
+    assert.ok(occurrences >= 2, `row ${i}: ${occurrences} occurrences`);
+    const prev = rank[i - 1];
+    if (prev !== undefined) assert.ok(prev[0] > occurrences || (prev[0] === occurrences && prev[1] >= months), `row ${i} is ranked`);
+  }
+  assert.ok(!digest.includes('corpus/') && !digest.includes('\r'));
+  // Every sampled subject that is shown whole is a real thread subject, ready to be an example.
+  const subjects = new Set(threads.map((t) => t.subject_norm));
+  const sampled = [...digest.matchAll(/^- [a-z0-9-]+ \| (?:\d{4}-\d\d|undated) \| "(?:[^"\\]|\\.)*" \| ("(?:[^"\\]|\\.)*") \|/gm)].map((m) => JSON.parse(m[1] as string) as string);
+  assert.equal(sampled.length, 100, 'a sample of 100 messages');
+  for (const s of sampled) if (!s.endsWith('...') && s !== '(no subject)') assert.ok(subjects.has(s), s);
+});
+
+test('the taxonomy digest leaves out the flagged messages: no line of the injection, nothing of the oversize table', () => {
+  const digest = readFileSync(join(outA, 'taxonomy-digest.md'), 'utf8').toLowerCase();
+  for (const id of [...stats.suspected_injection, ...stats.oversize]) {
+    assert.ok(!digest.includes(get(id).subject_norm), `${id}: its subject`);
+    // Lines of the raw message, as written and as the digest would escape them: every line of the
+    // injection; the oversize table's first rows (a short line of it, such as a sign-off, could
+    // match any sampled message).
+    const injection = stats.suspected_injection.includes(id);
+    const lines = rawText(id).split(/\r?\n/).map((l) => l.replace(/\s+/g, ' ').trim().toLowerCase());
+    for (const line of injection ? lines : lines.slice(0, 80)) {
+      if (line.length < (injection ? 6 : 30)) continue;
+      assert.ok(!digest.includes(line), `${id}: ${JSON.stringify(line.slice(0, 60))}`);
+      assert.ok(!digest.includes(JSON.stringify(line).slice(1, -1)), `${id}: escaped ${JSON.stringify(line.slice(0, 60))}`);
+    }
+  }
+  assert.ok(!digest.includes('farmer-d/logistics/3220.'));
+  assert.ok(!digest.includes('reviewing process') && !digest.includes('processing directive'));
+});
+
 test('the daily Calpine nominations are separate occurrences, not one long thread', () => {
   const daily = messages.filter((m) => m.subject === 'Calpine Daily Gas Nomination' && !duplicateIds.has(m.id));
   assert.ok(daily.length >= 15, `${daily.length} daily sends`);
@@ -185,7 +244,7 @@ test('a second run writes byte-identical files', () => {
   const outB = join(tmp, 'b');
   prepare(root, outB);
   const files = (dir: string) => [
-    ...['manifest.json', 'messages.jsonl', 'dedup.json', 'threads.json', 'people.json', 'prepare-stats.json'],
+    ...['manifest.json', 'messages.jsonl', 'dedup.json', 'threads.json', 'people.json', 'prepare-stats.json', 'taxonomy-digest.md'],
     ...readdirSync(join(dir, 'batches')).map((f) => join('batches', f)),
   ];
   assert.deepEqual(files(outB), files(outA));

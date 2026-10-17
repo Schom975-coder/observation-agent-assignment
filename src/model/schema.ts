@@ -28,6 +28,18 @@ function kindOf(v: unknown): string {
 
 const list = (options: readonly string[]) => options.map((o) => `"${o}"`).join(', ');
 
+// Model-written text as a problem shows it: cut to `max` characters, then JSON-escaped, so it is one
+// short line with no control characters whatever the model wrote. JSON leaves NEL, LS and PS raw,
+// and some readers take them as line breaks, so they are escaped too.
+export const MODEL_TEXT_MAX_CHARS = 80;
+const UNICODE_BREAKS = new RegExp(`[${String.fromCharCode(0x85, 0x2028, 0x2029)}]`, 'g');
+const BACKSLASH = String.fromCharCode(92);
+export function modelText(text: string, max: number = MODEL_TEXT_MAX_CHARS): string {
+  const points = Array.from(text);
+  const cut = points.length > max ? `${points.slice(0, max).join('')}...` : text;
+  return JSON.stringify(cut).replace(UNICODE_BREAKS, (c) => `${BACKSLASH}u${c.charCodeAt(0).toString(16).padStart(4, '0')}`);
+}
+
 class Checker {
   readonly errors: string[] = [];
 
@@ -44,8 +56,7 @@ class Checker {
     for (const k of Object.keys(v)) {
       if (keys.includes(k)) continue;
       const numeric = typeof v[k] === 'number' ? '; the schema has no numeric fields' : '';
-      const name = JSON.stringify(k.length > 60 ? `${k.slice(0, 60)}...` : k);
-      this.#add(where, `has unknown key ${name}: remove it${numeric} (allowed keys: ${keys.join(', ')})`);
+      this.#add(where, `has unknown key ${modelText(k, 60)}: remove it${numeric} (allowed keys: ${keys.join(', ')})`);
     }
     for (const k of keys) {
       if (Object.hasOwn(v, k)) continue;
@@ -70,7 +81,7 @@ class Checker {
   oneOf(where: string, v: unknown, options: readonly string[]): void {
     if (v === undefined) return;
     if (typeof v === 'string' && options.includes(v)) return;
-    const got = typeof v === 'string' ? JSON.stringify(v.length > 60 ? `${v.slice(0, 60)}...` : v) : kindOf(v);
+    const got = typeof v === 'string' ? modelText(v, 60) : kindOf(v);
     this.#add(where, `must be one of ${list(options)}, got ${got}`);
   }
 
@@ -85,9 +96,10 @@ class Checker {
   }
 }
 
-// The message ID in a label when it is readable, so the model can find the entry.
+// The message ID in a label when it is readable, so the model can find the entry. It is model
+// text, so it is shown escaped and cut.
 const labelled = (where: string, v: unknown): string =>
-  isObject(v) && typeof v.id === 'string' ? `${where} (${v.id})` : where;
+  isObject(v) && typeof v.id === 'string' ? `${where} (${modelText(v.id)})` : where;
 
 // The extraction typed, or null with every reason it does not fit the contract.
 export function checkExtractionSchema(value: unknown): { extraction: Extraction | null; errors: string[] } {

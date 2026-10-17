@@ -3,8 +3,28 @@ corpus-view/
 
 node_modules/
 
-# Batch files are the corpus repackaged for the extractors; rebuilt in seconds, never committed.
+# Corpus text repackaged for the model stages (batch files, the taxonomy digest, the gold sample);
+# rebuilt in seconds, never committed.
 out/batches/
+out/taxonomy-digest.md
+out/gold-sample.md
+
+# Run-time state with no meaning after the run (ARCHITECTURE.md 6.17): the taxonomist's unchecked
+# proposal, fix-round problem lists (they quote model output), the active-run marker, extractor
+# bindings, the Stop hook's repeat guard, the log of hook events outside a run, and the ledger's
+# locks and half-written files.
+out/taxonomy-proposed.json
+out/fix/
+out/ledger/run.json
+out/ledger/agents/
+out/ledger/stop-gate.json
+out/runs/adhoc.jsonl
+*.lock
+*.lock.takeover
+*.tmp
 
 # Git Bash crash dumps on Windows.
 *.stackdump
+
+# Raw stream from headless runs: carries absolute paths from prompts.
+out/runs/stream.jsonl

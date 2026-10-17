@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "digest_sha": "a8caae770fd1667bffad00324b5f01e99680a6760bed6c202387472a002f5349",
+  "agent_sha": "0e69f695a160abdbfd4b661de8eff741107831334ecdfbaeccf4f64b346b8f0c",
+  "processes": [
+    {
+      "key": "close-schedule",
+      "name": "Month-end close schedule",
+      "definition": "Agreeing and circulating the dates and deadlines of the monthly accounting close.",
+      "include": [],
+      "exclude": [],
+      "example_subjects": [
+        "monthly close schedule"
+      ]
+    },
+    {
+      "key": "credit-report-request",
+      "name": "Credit report request",
+      "definition": "Asking the credit group for a counterparty's credit report before trading with it.",
+      "include": [
+        "Requests for a credit report or credit limit"
+      ],
+      "exclude": [],
+      "example_subjects": [
+        "credit report request"
+      ]
+    },
+    {
+      "key": "deal-ticket-setup",
+      "name": "Deal ticket set-up",
+      "definition": "Creating or extending a deal ticket in the trading system so that gas can be scheduled against it.",
+      "include": [
+        "Requests for a new or extended ticket"
+      ],
+      "exclude": [],
+      "example_subjects": [
+        "deal ticket setup"
+      ]
+    },
+    {
+      "key": "meter-volume-correction",
+      "name": "Meter volume correction",
+      "definition": "Correcting the recorded volume at a meter for a past day or month after someone finds a discrepancy.",
+      "include": [
+        "Requests to correct, reallocate or rebook a meter's volume"
+      ],
+      "exclude": [],
+      "example_subjects": [
+        "meter correction for may",
+        "imbalance statement"
+      ]
+    },
+    {
+      "key": "pipeline-nomination",
+      "name": "Pipeline nomination",
+      "definition": "Sending and confirming the volumes nominated on a pipeline for the next gas day, and revising them.",
+      "include": [
+        "Nominations, confirmations and revised nominations"
+      ],
+      "exclude": [],
+      "example_subjects": [
+        "pipeline nomination",
+        "capacity release notice"
+      ]
+    },
+    {
+      "key": "system-access-request",
+      "name": "System access request",
+      "definition": "Requesting, approving and confirming a person's access to a company system.",
+      "include": [],
+      "exclude": [
+        "Password resets for one's own account"
+      ],
+      "example_subjects": [
+        "access request submitted"
+      ]
+    },
+    {
+      "key": "volume-reporting",
+      "name": "Daily volume reporting",
+      "definition": "Sending the day's flowing volumes to the team each morning and answering questions about them.",
+      "include": [
+        "The morning volume report and replies to it"
+      ],
+      "exclude": [
+        "Corrections to a past month's meter volumes: meter-volume-correction"
+      ],
+      "example_subjects": [
+        "daily volume report"
+      ]
+    },
+    {
+      "key": "weekend-on-call",
+      "name": "Weekend on-call handover",
+      "definition": "Handing over to the weekend on-call scheduler and recording what happened while on call.",
+      "include": [],
+      "exclude": [],
+      "example_subjects": [
+        "on call notes for weekend"
+      ]
+    }
+  ]
+}

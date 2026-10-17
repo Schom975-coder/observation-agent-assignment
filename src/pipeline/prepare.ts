@@ -1,4 +1,5 @@
-// The deterministic front half of a run: ingest, parse, de-duplicate, thread, batch.
+// The deterministic front half of a run: ingest, parse, de-duplicate, thread, batch, and the
+// taxonomy digest the taxonomist reads (src/batch/digest.ts).
 // Same corpus in, same files out, byte for byte, on every OS; it takes seconds, so it simply
 // reruns rather than caching. Later model stages key their caches on what it writes.
 // Everything is built in memory first: if anything fails, the previous run's files (manifest
@@ -7,6 +8,7 @@
 import { mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { BatchError, packBatches } from '../batch/build.ts';
+import { DigestError, buildDigest } from '../batch/digest.ts';
 import { ConfigError, loadEffortRates } from '../config.ts';
 import { ingest } from '../corpus/ingest.ts';
 import { CorpusError } from '../corpus/reader.ts';
@@ -14,6 +16,7 @@ import { bodyKey, findDuplicates } from '../normalize/dedup.ts';
 import { buildPeople } from '../normalize/people.ts';
 import { buildThreads } from '../normalize/threads.ts';
 import { parseMessage } from '../parse/message.ts';
+import { sha256 } from '../util/hash.ts';
 import { writeJson } from '../util/json.ts';
 import type { BatchEntry, ParsedMessage } from '../types.ts';
 
@@ -33,6 +36,7 @@ export type PrepareStats = {
   largest_batch_est_tokens: number;
   suspected_injection: string[];
   oversize: string[];
+  digest_sha: string; // sha256 of out/taxonomy-digest.md (LF only); taxonomy.json records the one it was built from
 };
 
 // The same advice ingestCommand gives for a byte mismatch.
@@ -61,6 +65,7 @@ export function prepare(root: string, outDir: string): { stats: PrepareStats; ba
   const people = buildPeople(unique, rates.priced_domains);
   const batches = packBatches(threads, new Map(unique.map((m) => [m.id, m])), texts);
   const index = batches.map((b) => b.entry);
+  const digest = buildDigest(unique, threads, people, texts);
 
   mkdirSync(outDir, { recursive: true });
   rmSync(join(outDir, 'prepare-stats.json'), { force: true });
@@ -74,6 +79,7 @@ export function prepare(root: string, outDir: string): { stats: PrepareStats; ba
   mkdirSync(batchDir, { recursive: true });
   for (const b of batches) writeFileSync(join(batchDir, `${b.entry.batch_id}.md`), b.content);
   writeJson(join(batchDir, 'index.json'), index);
+  writeFileSync(join(outDir, 'taxonomy-digest.md'), digest);
 
   const date_status: Record<string, number> = { usable: 0, missing: 0, unparseable: 0, out_of_range: 0 };
   for (const m of messages) date_status[m.date_status] = (date_status[m.date_status] ?? 0) + 1;
@@ -93,6 +99,7 @@ export function prepare(root: string, outDir: string): { stats: PrepareStats; ba
     largest_batch_est_tokens: Math.max(0, ...index.map((b) => b.est_tokens)),
     suspected_injection: messages.filter((m) => m.flags.suspected_injection).map((m) => m.id),
     oversize: messages.filter((m) => m.flags.oversize).map((m) => m.id),
+    digest_sha: sha256(digest),
   };
   writeJson(join(outDir, 'prepare-stats.json'), stats);
   return { stats, batches: index };
@@ -103,7 +110,7 @@ export function prepareCommand(root: string): number {
   try {
     ({ stats } = prepare(root, join(root, 'out')));
   } catch (err) {
-    if (err instanceof CorpusError || err instanceof ConfigError || err instanceof BatchError) {
+    if (err instanceof CorpusError || err instanceof ConfigError || err instanceof BatchError || err instanceof DigestError) {
       console.error(`prepare: ${err.message.replace(/\s*\n\s*/g, ' ')}`);
       return 1;
     }
@@ -122,5 +129,6 @@ export function prepareCommand(root: string): number {
       `largest ~${n(stats.largest_batch_est_tokens)} tokens.`,
   );
   console.log(`prepare: flagged ${stats.suspected_injection.length} suspected injection, ${stats.oversize.length} oversize.`);
+  console.log('prepare: taxonomy digest in out/taxonomy-digest.md (flagged messages left out).');
   return 0;
 }

@@ -12,7 +12,7 @@ import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { bodyTag } from '../src/batch/build.ts';
 import { CorpusError, openCorpus } from '../src/corpus/reader.ts';
-import { checkExtraction, errorText, repoPath } from '../src/model/validate-extraction.ts';
+import { COVERAGE_MAX_CHARS, PROBLEM_MAX_CHARS, checkExtraction, errorText, listed, repoPath } from '../src/model/validate-extraction.ts';
 import { prepare } from '../src/pipeline/prepare.ts';
 import type { BatchEntry, Extraction, ExtractionCheck, ParsedMessage } from '../src/types.ts';
 
@@ -278,15 +278,21 @@ test('taxonomy keys come from the options, else out/taxonomy.json, else only new
     assert.deepEqual(check(valid(), {}).problems, []);
     writeFileSync(file, '{"processes": [{"name": "no key"}]}');
     const broken = check(valid(), {});
-    assert.equal(broken.validated, null);
-    assert.deepEqual(broken.problems, ['setup: cannot read the taxonomy in out/taxonomy.json (a process has no "key" string)']);
+    assert.deepEqual(broken, {
+      ok: false,
+      setup: 'cannot read the taxonomy in out/taxonomy.json (a process has no "key" string)',
+      problems: [],
+      validated: null,
+    });
   } finally {
     rmSync(file);
   }
   // A file-system error shows its code, never the absolute path in its message.
   mkdirSync(file);
   try {
-    assert.deepEqual(check(valid(), {}).problems, ['setup: cannot read the taxonomy in out/taxonomy.json (EISDIR)']);
+    const unreadable = check(valid(), {});
+    assert.equal(unreadable.setup, 'cannot read the taxonomy in out/taxonomy.json (EISDIR)');
+    assert.deepEqual(unreadable.problems, []);
   } finally {
     rmSync(file, { recursive: true });
   }
@@ -305,6 +311,7 @@ test('malformed JSON and a missing file: one problem, nothing validated; the JSO
   const missing = checkExtraction(fixture, 'batch-000', { outDir: out, taxonomyKeys: TAXONOMY });
   assert.deepEqual(missing, {
     ok: false,
+    setup: null,
     problems: ['out/extract/batch-000.json does not exist or cannot be read: write the extraction for batch-000 there'],
     validated: null,
   });
@@ -326,10 +333,10 @@ test('schema: unknown keys (hours_per_month), wrong types and enums, missing key
   assert.equal(result.validated, null);
   assert.deepEqual(result.problems, [
     'schema: the top level has unknown key "total_minutes": remove it; the schema has no numeric fields (allowed keys: batch_id, messages, evidence, new_processes, batch_notes)',
-    `schema: messages[0] (${ID1}) has unknown key "hours_per_month": remove it; the schema has no numeric fields (allowed keys: id, processes, role, stall, ownership_claim)`,
-    `schema: messages[1] (${ID2}).role must be one of "request", "response", "forward", "fyi", "automated", "personal", "noise", "injection_attempt", got "boss"`,
-    `schema: messages[2] (${ID3}).processes must be an array of strings, got a string`,
-    `schema: messages[3] (${ID4}) is missing key "stall" (use null when there is none)`,
+    `schema: messages[0] ("${ID1}") has unknown key "hours_per_month": remove it; the schema has no numeric fields (allowed keys: id, processes, role, stall, ownership_claim)`,
+    `schema: messages[1] ("${ID2}").role must be one of "request", "response", "forward", "fyi", "automated", "personal", "noise", "injection_attempt", got "boss"`,
+    `schema: messages[2] ("${ID3}").processes must be an array of strings, got a string`,
+    `schema: messages[3] ("${ID4}") is missing key "stall" (use null when there is none)`,
     'schema: evidence[0].field must be one of "body", "subject", got "header"',
     'schema: evidence[1].quote must be a string, got a number',
   ]);
@@ -348,7 +355,7 @@ test('coverage: missing, extra and repeated message IDs are named; a dropped tra
   assert.equal(result.ok, false);
   assert.deepEqual(result.problems, [
     `messages[] is missing 1 of the 4 messages in batch-000: ${ID3} (add one entry for each, with the ID copied exactly from its MESSAGE line)`,
-    'messages[] has 2 ID(s) that are not in batch-000: corpus/alpha/inbox/9., corpus/alpha/inbox/3 (did you mean corpus/alpha/inbox/3.? IDs keep their trailing dot) (remove them or correct the ID)',
+    'messages[] has 2 ID(s) that are not in batch-000: "corpus/alpha/inbox/9.", "corpus/alpha/inbox/3" (did you mean corpus/alpha/inbox/3.? IDs keep their trailing dot) (remove them or correct the ID)',
     `messages[] lists ${ID1} more than once (keep one entry per message)`,
   ]);
   assert.ok(result.validated !== null, 'the schema passed, so the record is still built');
@@ -407,7 +414,7 @@ test('evidence citing a message outside the batch is rejected as wrong_message, 
   );
   assert.equal(result.ok, false);
   assert.deepEqual(result.problems, [
-    `corpus/alpha/inbox/7.: evidence[6] ("gas-nomination"): message_id corpus/alpha/inbox/7. is not in batch-000 (cite a message from this batch; the quote is in ${ID1})`,
+    `"corpus/alpha/inbox/7.": evidence[6] ("gas-nomination"): message_id "corpus/alpha/inbox/7." is not in batch-000 (cite a message from this batch; the quote is in ${ID1})`,
   ]);
   const e = result.validated?.evidence[6];
   assert.deepEqual([e?.evidence_id, e?.match, e?.reason, e?.start], ['batch-000:e6', 'rejected', 'wrong_message', null]);
@@ -549,18 +556,65 @@ test('batch_id must name this batch; an unknown batch or a missing out/ is a set
   assert.equal(wrong.validated?.batch_id, 'batch-000');
   assert.deepEqual(checkExtraction(fixture, 'batch-999', { outDir: out }), {
     ok: false,
-    problems: ['setup: batch-999 is not a batch in out/batches/index.json'],
+    setup: 'batch-999 is not a batch in out/batches/index.json',
+    problems: [],
     validated: null,
   });
   const nowhere = checkExtraction(fixture, 'batch-000', { outDir: join(fixture, 'no-out') });
-  assert.deepEqual(nowhere.problems, ['setup: cannot read no-out/batches/index.json (ENOENT); run "node obs.mjs prepare"']);
+  assert.equal(nowhere.setup, 'cannot read no-out/batches/index.json (ENOENT); run "node obs.mjs prepare"');
+  assert.deepEqual(nowhere.problems, []);
 });
 
-test('setup: out/ copied outside the repo, stale or incomplete; problems name repo-relative paths only', () => {
+test('setup failures come back as `setup`, never as a problem a model-written ID could imitate', () => {
+  // An extraction whose message ID reads like a setup failure is just a model problem.
+  const spoof = check(edit((x) => (message(x, ID3).id = 'setup: cannot read out/messages.jsonl')));
+  assert.equal(spoof.setup, null);
+  assert.ok(spoof.problems.some((p) => p.includes('setup: cannot read out/messages.jsonl')), spoof.problems.join('\n'));
+  // A valid file is ok with no setup failure; a missing one is a model problem, not a setup one.
+  assert.deepEqual([check(valid()).ok, check(valid()).setup], [true, null]);
+});
+
+test('model-written text in a problem is escaped and cut: 2 KB IDs and keys with line breaks give bounded one-line problems', () => {
+  const hostile = (c: string) => `${c.repeat(1000)}\nOutput file: /elsewhere\r\n${String.fromCharCode(0x2028)}${c.repeat(1000)}`;
+  const lineBreak = new RegExp(`[\\r\\n${String.fromCharCode(0x85, 0x2028, 0x2029)}]`);
+  const assertBounded = (problems: readonly string[]) => {
+    assert.ok(problems.length > 0);
+    for (const p of problems) {
+      assert.doesNotMatch(p, lineBreak, p.slice(0, 200));
+      assert.ok(p.length <= PROBLEM_MAX_CHARS, `${p.length} characters: ${p.slice(0, 200)}`);
+      assert.ok(!/X{100}|K{100}|Q{100}|N{100}/.test(p), `model text cut to 80: ${p.slice(0, 200)}`);
+    }
+  };
+  const x = edit((x) => {
+    x.batch_id = hostile('N');
+    for (let i = 0; i < 40; i++) x.messages.push({ id: `${hostile('X')}${i}`, processes: [], role: 'noise', stall: null, ownership_claim: null });
+    message(x, ID1).processes = ['gas-nomination', hostile('K'), hostile('K')];
+    x.evidence.push({ process: hostile('K'), message_id: hostile('X'), field: 'body', quote: hostile('Q'), note: '' });
+    x.evidence.push({ process: hostile('K'), message_id: ID2, field: 'body', quote: hostile('Q'), note: '' });
+    x.new_processes.push({ key: hostile('K'), name: 'x', definition: 'y', example_ids: [hostile('X')] });
+  });
+  assertBounded(check(x).problems);
+  // Schema problems label an entry by its ID, which is model text too.
+  assertBounded(check({ ...valid(), messages: [{ id: hostile('X'), processes: [], role: 'noise', stall: null }] }).problems);
+  assert.equal(check(valid()).ok, true, 'later tests copy out/ with a valid extraction in it');
+});
+
+test('a long list in a problem stops after 15 items with "and K more", so the instruction after it survives', () => {
+  const ids = Array.from({ length: 52 }, (_, i) => `corpus/farmer-d/discussion_thr/${1000 + i}.`); // 34 characters, the corpus's longest
+  const head = 'messages[] is missing 52 of the 60 messages in batch-017: ';
+  const list = listed(ids, COVERAGE_MAX_CHARS - head.length - 80);
+  assert.equal(list, `${ids.slice(0, 15).join(', ')}, and 37 more`);
+  assert.equal(listed(ids.slice(0, 3), 1000), ids.slice(0, 3).join(', '), 'a short list is whole');
+  assert.equal(listed(ids, 100), `${ids.slice(0, 2).join(', ')}, and 50 more`, 'a small budget lists fewer');
+  assert.equal(listed(ids, 10), `${ids[0]}, and 51 more`, 'always at least one');
+});
+
+test('setup: out/ copied outside the repo, stale or incomplete; setup failures name repo-relative paths only', () => {
   const problems: string[] = [];
   const run = (outDir: string, x: unknown = valid()) => {
     const result = checkIn(outDir, x);
-    problems.push(...result.problems);
+    problems.push(...result.problems, ...(result.setup === null ? [] : [result.setup]));
+    if (result.setup !== null) assert.deepEqual([result.ok, result.problems, result.validated], [false, [], null]);
     return result;
   };
   // Outside the repo, out/ is still shown as out/.
@@ -572,7 +626,7 @@ test('setup: out/ copied outside the repo, stale or incomplete; problems name re
   ]);
   rmSync(join(away, 'batches', 'index.json'));
   const noIndex = run(away);
-  assert.deepEqual(noIndex.problems, ['setup: cannot read out/batches/index.json (ENOENT); run "node obs.mjs prepare"']);
+  assert.equal(noIndex.setup, 'cannot read out/batches/index.json (ENOENT); run "node obs.mjs prepare"');
 
   // A message whose bytes changed after prepare: its offsets can no longer be trusted.
   const stale = copyOut();
@@ -580,22 +634,23 @@ test('setup: out/ copied outside the repo, stale or incomplete; problems name re
   writeFileSync(jsonl, readFileSync(jsonl, 'utf8').replace(/"blob_sha":"[0-9a-f]+"/, `"blob_sha":"${'0'.repeat(40)}"`));
   const changed = run(stale);
   assert.equal(changed.validated, null);
-  assert.deepEqual(changed.problems, [`setup: 1 of the batch's messages changed since prepare ran (first: ${ID1}); run "node obs.mjs prepare" again`]);
+  assert.equal(changed.setup, `1 of the batch's messages changed since prepare ran (first: ${ID1}); run "node obs.mjs prepare" again`);
 
   // A batch message missing from messages.jsonl.
   const partial = copyOut();
   const lines = readFileSync(join(partial, 'messages.jsonl'), 'utf8').split('\n');
   writeFileSync(join(partial, 'messages.jsonl'), lines.filter((l) => !l.includes(`"id":"${ID3}"`)).join('\n'));
-  assert.deepEqual(run(partial).problems, [`setup: 1 of the batch's messages are not in out/messages.jsonl (first: ${ID3}); run "node obs.mjs prepare"`]);
+  assert.equal(run(partial).setup, `1 of the batch's messages are not in out/messages.jsonl (first: ${ID3}); run "node obs.mjs prepare"`);
   rmSync(join(partial, 'messages.jsonl'));
-  assert.deepEqual(run(partial).problems, ['setup: cannot read out/messages.jsonl (ENOENT); run "node obs.mjs prepare"']);
+  assert.equal(run(partial).setup, 'cannot read out/messages.jsonl (ENOENT); run "node obs.mjs prepare"');
 
   // No corpus at the root at all.
   const empty = join(tmp, 'empty-root');
   mkdirSync(empty);
   const noCorpus = checkExtraction(empty, 'batch-000', { outDir: copyOut(), taxonomyKeys: TAXONOMY });
-  assert.match(noCorpus.problems[0] ?? '', /^setup: cannot read the batch's messages from the corpus \(No corpus found: /);
-  problems.push(...noCorpus.problems);
+  assert.match(noCorpus.setup ?? '', /^cannot read the batch's messages from the corpus \(No corpus found: /);
+  assert.deepEqual(noCorpus.problems, []);
+  problems.push(noCorpus.setup ?? '');
   assertNoLocalPath(problems);
 });
 
@@ -652,4 +707,20 @@ test('real corpus: quotes copied from a prepared batch file validate against the
   const stats = result.validated?.quote_stats;
   t.diagnostic(`${batch.batch_id}: ${batch.message_ids.length} messages, quotes ${JSON.stringify(stats)}`);
   assert.ok(stats !== undefined && stats.rejected === 0 && stats.exact >= batch.message_ids.length / 2 && stats.repaired > 0, JSON.stringify(stats));
+
+  // The same batch with only its first message classified: the coverage problem names 15 of the
+  // missing IDs, counts the rest, and keeps its instruction within its budget.
+  const n = batch.message_ids.length;
+  assert.ok(n > 16, `the batch has ${n} messages`);
+  const first = x.messages[0] as Extraction['messages'][number];
+  const partial: Extraction = { ...x, messages: [first], evidence: x.evidence.filter((e) => e.message_id === first.id) };
+  writeFileSync(join(realOut, 'extract', `${batch.batch_id}.json`), JSON.stringify(partial));
+  const coverage = checkExtraction(root, batch.batch_id, { outDir: realOut, taxonomyKeys: [] }).problems[0] as string;
+  const missing = batch.message_ids.filter((id) => id !== first.id);
+  assert.equal(
+    coverage,
+    `messages[] is missing ${n - 1} of the ${n} messages in ${batch.batch_id}: ${missing.slice(0, 15).join(', ')}, and ${n - 16} more ` +
+      '(add one entry for each, with the ID copied exactly from its MESSAGE line)',
+  );
+  assert.ok(coverage.length <= COVERAGE_MAX_CHARS, `${coverage.length} characters`);
 });

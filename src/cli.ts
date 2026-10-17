@@ -3,7 +3,9 @@
 import { fileURLToPath } from 'node:url';
 import { ingestCommand } from './corpus/ingest.ts';
 import { prepareCommand } from './pipeline/prepare.ts';
-import { dispatchCommand, runCommand, statusCommand, validateCommand } from './run/commands.ts';
+import { dispatchCommand, runCommand, statusCommand, validateCommand, verifyCommand } from './run/commands.ts';
+import { goldCommand } from './run/gold.ts';
+import { taxonomyCommand } from './run/taxonomy.ts';
 
 // The repo root, wherever the command is run from.
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
@@ -44,6 +46,21 @@ export const COMMANDS: Record<string, Command> = {
     summary: 'Start or end a pipeline run (start | end); the corpus guard covers every tool call during one',
     milestone: 'M3',
     run: (args) => runCommand(ROOT, args),
+  },
+  taxonomy: {
+    summary: 'Print the taxonomist prompt (or "taxonomy: fresh"); "accept" validates the proposal and writes out/taxonomy.json',
+    milestone: 'M4',
+    run: (args) => taxonomyCommand(ROOT, args),
+  },
+  verify: {
+    summary: 'Re-check every done batch against the corpus and its committed validated file',
+    milestone: 'M4',
+    run: (args) => verifyCommand(ROOT, args),
+  },
+  gold: {
+    summary: 'Tagging accuracy: "sample" picks messages to label by hand; "score" compares confirmed labels with the extractions',
+    milestone: 'M4',
+    run: (args) => goldCommand(ROOT, args),
   },
   rollup: { summary: 'Count occurrences, actions, participants and stalls per process', milestone: 'M5' },
   score: { summary: 'Price counted actions at the published rates and $85/hour', milestone: 'M5' },

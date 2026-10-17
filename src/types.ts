@@ -184,9 +184,11 @@ export type ValidatedExtraction = {
   quote_stats: { exact: number; repaired: number; rejected: number };
 };
 
-// Result of checking one extraction file. `problems` are what the SubagentStop hook sends back.
+// Result of checking one extraction file. `problems` are what a fix-round prompt hands back to the
+// extractor; `setup` is a failure no model can fix, which is never recorded against the batch.
 export type ExtractionCheck = {
-  ok: boolean; // no blocking problems
-  problems: string[]; // most important first, each naming the message ID or quote involved
-  validated: ValidatedExtraction | null; // null when the file can't be read or fails the schema
+  ok: boolean; // no setup failure and no problems
+  setup: string | null; // unreadable out/, changed corpus bytes and the like; `problems` is then empty
+  problems: string[]; // model-fixable only, most important first, each naming the message ID or quote involved
+  validated: ValidatedExtraction | null; // null when the file can't be read, fails the schema, or on a setup failure
 };

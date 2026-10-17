@@ -2,15 +2,15 @@
 // see .claude/settings.json) with the hook input as JSON on stdin, and reads a decision from stdout
 // (https://code.claude.com/docs/en/hooks). A hook exits fast when it doesn't apply and never dies
 // with a stack trace: each script catches everything and decides what a failure means for it.
-import { appendFileSync, mkdirSync } from 'node:fs';
+import { appendFileSync, mkdirSync, readFileSync, realpathSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { readRun, withoutRoot } from '../../src/run/ledger.ts';
+import { readRun, stopGateFile, withoutRoot, writeJsonAtomic } from '../../src/run/ledger.ts';
 
 export type HookInput = Record<string, unknown>;
 
 // The pipeline's own subagents (frontmatter `name`, which hooks receive as `agent_type`).
-export const PIPELINE_AGENTS: readonly string[] = ['extractor', 'synthesizer', 'drafter'];
+export const PIPELINE_AGENTS: readonly string[] = ['extractor', 'taxonomist', 'synthesizer', 'drafter'];
 
 export const isRecord = (v: unknown): v is Record<string, unknown> => typeof v === 'object' && v !== null && !Array.isArray(v);
 export const str = (v: unknown): string | null => (typeof v === 'string' ? v : null);
@@ -39,6 +39,21 @@ export function projectRoot(input: HookInput | null): string {
   const cwd = input === null ? null : str(input.cwd);
   if (cwd !== null && cwd !== '') return cwd;
   return fileURLToPath(new URL('../..', import.meta.url));
+}
+
+// Every spelling of the project folder a tool path may start with: as given, and resolved through
+// symlinks and junctions both ways Node knows (a checkout reached through a link, macOS /tmp being
+// /private/tmp). A folder that can't be resolved is given as is.
+export function rootVariants(root: string): string[] {
+  const variants = [root];
+  for (const resolve of [realpathSync, realpathSync.native]) {
+    try {
+      variants.push(resolve(root));
+    } catch {
+      // not resolvable here: the given spelling is all there is
+    }
+  }
+  return [...new Set(variants)];
 }
 
 // One JSON line on stdout: the decision Claude Code reads.
@@ -72,3 +87,25 @@ export function appendRunLog(root: string, record: Record<string, unknown>): voi
 export function reportFailure(hook: string, err: unknown, root: string): void {
   process.stderr.write(`${hook}: ${withoutRoot(errorText(err), root)}\n`);
 }
+
+// ---- out/ledger/stop-gate.json: the Stop hook's memory for one run (git-ignored) ----
+//
+// session_id: the orchestrator's session, recorded by the corpus guard when a session starts a
+// pipeline subagent during the run, so the Stop hook steers that session only and never another
+// Claude Code session open in the same folder. last_block: the reason key of the Stop hook's
+// previous block, so it never blocks twice in a row for the same reason. Both belong to run_id:
+// what another run left behind reads as empty.
+export type StopGate = { run_id: string | null; session_id: string | null; last_block: string | null };
+
+// Missing, unreadable or another run's: empty. The file only ever narrows what the Stop hook does.
+export function readStopGate(root: string, runId: string | null): StopGate {
+  try {
+    const raw: unknown = JSON.parse(readFileSync(stopGateFile(root), 'utf8'));
+    if (isRecord(raw) && runId !== null && raw.run_id === runId) return { run_id: runId, session_id: str(raw.session_id), last_block: str(raw.last_block) };
+  } catch {
+    // fall through
+  }
+  return { run_id: runId, session_id: null, last_block: null };
+}
+
+export const writeStopGate = (root: string, gate: StopGate): void => writeJsonAtomic(stopGateFile(root), gate);

@@ -1,6 +1,7 @@
-// SubagentStart and SubagentStop: one line per event in the run log, out/runs/<run_id>.jsonl
-// (out/runs/adhoc.jsonl outside a run), so per-batch wall time and stop/block loops can be read
-// back afterwards. Logging must never get in the way: any failure is reported and ignored.
+// SubagentStart and SubagentStop (extractor, taxonomist): one line per event in the run log,
+// out/runs/<run_id>.jsonl (out/runs/adhoc.jsonl outside a run), so subagent launches and their
+// agent_ids can be read back next to the guard's bindings and the gate's records. Logging must
+// never get in the way: any failure is reported and ignored.
 import { appendRunLog, parseInput, projectRoot, readStdin, reportFailure, str } from './lib.ts';
 
 let root: string | null = null;

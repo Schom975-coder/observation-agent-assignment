@@ -1,6 +1,6 @@
 # Observation agent: architecture blueprint
 
-Branch `plan/architecture`. Status: revised with Scott's decisions (section 12); no code exists yet.
+Status: approved by Scott 2026-10-16 (decisions in section 12 and `.claude/notes/DECISIONS.md`). Living document: update it when the design changes.
 Inputs: `README.md` (brief), `CLAUDE.md` (project rules), the corpus (via `corpus-view/`), and the Claude Code docs listed in Appendix B (fetched 2026-10-16). Nothing here was assumed about Claude Code without a doc citation; the things only a run can confirm are listed in section 11 and gated by M3.
 
 ## 1. Summary
@@ -388,7 +388,8 @@ Every total is labelled "observed in 4 mailboxes, 1999-2002". No extrapolation t
     gate-subagent.ts       SubagentStop
     gate-run.ts            Stop
     log-event.ts           SubagentStart/SubagentStop/SessionStart -> out/runs/*.jsonl
-  sessions/...             planning artifacts (this file)
+  plan/ARCHITECTURE.md     this file
+  notes/                   DECISIONS.md, NOTES-LOG.md (raw material for NOTES.md)
 ```
 
 ### 7.1 `settings.json`
@@ -515,19 +516,22 @@ NOTES.md                written at M8
 
 ## 10. Build order
 
-Each milestone is one implementer run with TDD and ends green. M3 is a go/no-go gate: nothing from M4 on is started until it passes.
+Each milestone is one implementer run with TDD and ends green. M-1 runs first because the orchestration depends on Claude Code behaviour we have only read about; M3 is a go/no-go gate: nothing from M4 on is started until it passes.
 
 | M | Scope | Acceptance |
 |---|---|---|
+| M-1 | **Mechanics experiment (throwaway, ~30 min, no pipeline code).** A scratch skill dispatches 3 trivial background subagents; a scratch SubagentStop hook blocks the first output once; a scratch PreToolUse hook logs its input | Recorded yes/no for each: completions re-wake the orchestrator and it dispatches the next; the block makes the subagent fix and resend; PreToolUse input carries `agent_type` for subagent tool calls; the same hooks fire under `claude -p`. Any "no" changes 6.7 or 7.4 before M0 starts. Scratch files deleted afterwards; findings go in NOTES-LOG |
 | M0 | Scaffold: `obs.mjs`, `package.json`, `tsconfig`, `src/cli.ts --help`, `config/*.json` with defaults, one trivial test, CI matrix incl. Windows sparse clone, `.gitignore` for `out/batches/`, source-guard tests | CI green on 3 OSes; `node obs.mjs --help` works here |
 | M1 | Corpus reader + manifest + ingest + byte-identity test | `node obs.mjs ingest` writes 3,240 entries; blob-SHA check passes via `GitSource` here; CI proves `DiskSource == GitSource` on macOS/Linux |
 | M2 | Strict date parser, parse, normalize (dedup, threads, people), actions module, batch, digest; stats command | `messages.jsonl` 3,240; `date_status` counts = 3,237 usable / 1 missing / 1 unparseable / 1 out_of_range; dup groups match section 1; every unique ID in exactly one batch; all batches <= 64 KB; action counts on fixtures match hand counts; unit tests green |
 | M3 | **Go/no-go gate.** Model-in-the-loop spike on 2 batches: extractor agent, quote and extraction validators, `gate-subagent` and `guard-corpus` hooks, ledger `dispatch/status` | On Windows, via `/extract-batch 000` and `001`: hooks fire; a deliberately bad output is blocked with reasons; final outputs validate with >= 90% exact-or-repaired quotes; coverage 100% for both; the guard denies a `corpus/` read from the extractor and is silent in a plain dev session; background-completion notifications drive a new orchestrator turn (A1); per-batch wall time recorded. Fail -> decide on the `claude -p` pool fallback (6.7) before anything else is built |
-| M4 | Taxonomy stage, `/observe` skill loop, `gate-run` Stop hook, run log, caching of model outputs | Full extraction on all batches under 15 min with 12 in flight; rerun launches 0 subagents; `validation-report.json` produced; Scott reviews `out/taxonomy.json` once, regeneration noted in NOTES if needed. If the queue loop fails to reach 100% coverage in 2 of 3 runs, switch to the fallback |
+| M4 | Taxonomy stage, `/observe` skill loop, `gate-run` Stop hook, run log, caching of model outputs | Full extraction on all batches under 15 min with 12 in flight; rerun launches 0 subagents; `validation-report.json` produced; Scott reviews `out/taxonomy.json` once, regeneration noted in NOTES if needed; tagging accuracy measured against `tests/fixtures/gold-labels.json` (~50 messages spread across mailboxes, labels proposed by Claude and confirmed by Scott) and the agreement rate recorded for NOTES "most likely wrong". If the queue loop fails to reach 100% coverage in 2 of 3 runs, switch to the fallback |
 | M5 | rollup, synthesis input, synthesizer agent + gate, score with rates, tiers, eligibility | `opportunities.json` with formulas whose action counts tie to `action_sources`; `--rates` re-score works without a model and changes only totals; every evidence id resolves; `482.` replica is tier C with its estimate shown but not summed; `483./526.` conflict surfaced |
 | M6 | Artifact briefs, drafter agent + gate, slug | Artifacts for eligible opportunities, evidence footers correct, Windows-safe names |
-| M7 | Dashboard SPA, server, report.md, build | Click any number -> formula -> action sources or evidence -> message with highlight; `/api/message` works on Windows (git) and macOS/Linux (disk); Methodology page lists rates with hash, flagged content, "observed in 4 mailboxes" label; presentable without a library |
+| M7 | Design pass first (report outline and dashboard hierarchy, reviewed by Scott before building: the 3 findings in plain English, the "at least $X/month, observed in 4 mailboxes" total, what to do Monday, then the ranked table and drill-down), then dashboard SPA, server, report.md, build | Scott signs off the design; click any number -> formula -> action sources or evidence -> message with highlight; `/api/message` works on Windows (git) and macOS/Linux (disk); Methodology page lists rates with hash, flagged content, "observed in 4 mailboxes" label; presentable without a library |
 | M8 | End-to-end: cold timed run via `claude "/observe" --force`, warm rerun, `-p` unattended run, set `artifact_min_automatable_cents` from the distribution, NOTES.md, README (prereqs incl. Node >= 22.18 first, Windows recipe, warm/cold), commit `out/` and model outputs | Cold < 30 min logged; warm ~30 s with 0 launches; CI green; NOTES within two pages with numbers from `run-summary.json`, the rates table, the threshold defence, the taxonomy review, and the extrapolation "next week" item |
+
+**Cut line if time runs short**, in this order: the `--rates` re-score command, the off-email estimate, macOS in CI (keep Windows and Linux), the `/extract-batch` debugging skill. Never cut: reading every message, quote validation, trap handling, drill-through to the source message, the cold-run timing.
 
 ## 11. Failure modes, risks, and what is taken on faith
 
@@ -551,20 +555,7 @@ Each milestone is one implementer run with TDD and ends green. M3 is a go/no-go 
 
 ## 12. Decided (Scott, 2026-10-16)
 
-1. TypeScript/Node >= 22.18, zero runtime deps; no JS built-in date parsing, strict RFC 2822 parser with calendar validation.
-2. Headline hours and dollars come only from counted email actions x published per-action rates and automatable shares (`config/effort-rates.json`); no model minutes or automation fraction feed score; the synthesizer's off-email estimate is display-only.
-3. Extractor `sonnet`; switch only if M3 shows poor tagging. Synthesizer `inherit`, drafter `sonnet`.
-4. Artifact threshold: tier A/B, top 8 by automatable $/mo, floor 3; dollar bar set after the first full run and defended in NOTES.
-5. Dollar scope: observed in 4 mailboxes, 1999-2002; extrapolation is a next-week item.
-6. Model outputs (extractions, taxonomy, synthesis) are committed so a reviewer's first run is warm; `out/batches/` is not; README explains warm vs `--force`.
-7. Injection message shown as a flagged finding with citation.
-8. Taxonomy model-generated once and cached, human-reviewed in M4, never hand-edited.
-9. Personal/noise classified, excluded from processes, counted on the dashboard.
-10. Headline = tiers A+B automatable $/mo with "including low-confidence" beside it; tiers depend only on occurrences and participants.
-11. Port 8765; agent-loop orchestration; M3 is a go/no-go gate; `claude -p` pool is a last resort.
-12. Static `settings.json` denies only `Edit(./corpus/**)`; the corpus guard is run-scoped and agent-scoped, fail-closed during runs.
-13. Batches <= 64 KB with tokens estimated at bytes/3; ~75 batches; 12 in flight.
-14. Trap detection is content-based only; no planted-message markers in code or test logic.
+The decision list, with the alternatives rejected and why, lives in `.claude/notes/DECISIONS.md` so there is one copy. This document reflects every decision in it.
 
 ## Appendix A: corpus facts used above
 

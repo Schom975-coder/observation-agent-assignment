@@ -33,8 +33,19 @@ The assignment brief is `README.md`. The reviewer may run this on Windows, macOS
 - Same corpus, same rates, same numbers on every rerun.
 
 ## Keeping the record
-- `.claude/notes/NOTES-LOG.md` is the running source for the brief's NOTES.md. Append to it in the same session whenever: a subagent is used (what, why, context given), work runs in parallel, Claude Code gets something wrong and we catch it, something is taken on faith, a trap is found, or an idea is deferred to "next week".
-- Every branch logs its decisions in `.claude/sessions/<branch-slug>/DECISIONS.md` before each push.
+Everything in `.claude/` is submitted and reviewed, so keep only what the work needs. This overrides Scott's global workflow for this repo.
+
+Keep:
+- `.claude/plan/ARCHITECTURE.md`: the design. Update it when the design changes.
+- `.claude/notes/DECISIONS.md`: one line per non-obvious choice (chosen, rejected, why). Update before each push.
+- `.claude/notes/NOTES-LOG.md`: raw material for NOTES.md. Follow the entry rule at its top.
+- The pipeline's own skills, agents, hooks and `settings.json`.
+
+Do not create:
+- `.claude/sessions/` folders, `MERGE-REQUEST.md`, `QUESTIONS.md`, handoff documents, or per-branch copies of any of the above.
+- Scratch scripts, experiment files or drafts in the repo. Use the session scratchpad and delete experiments when done.
+
+Branches and merging: work on feature branches. Claude may merge a branch into `main` locally once its tests pass and the work is ready, and tells Scott in chat. Pushing `main` still follows Scott's global rule: show the command and get confirmation first.
 
 ## Cloning on Windows
 A plain `git clone` fails on Windows and checks out nothing, not even the code. Use this instead (PowerShell):

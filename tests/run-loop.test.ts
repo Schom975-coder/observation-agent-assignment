@@ -708,6 +708,10 @@ test('advance alone drives the run: one wave of batches, the merger in the foreg
     assert.deepEqual([end.stage, end.done, end.halt, end.wait, end.agents, end.running], ['done', true, false, false, [], []]);
     assert.equal(readRun(root).active, false);
 
+    // The first run's log, read now: a run ID is its start second, so on a fast machine the second
+    // session below can start in the same second and append to the same file.
+    const firstLog = readFileSync(join(root, 'out', 'runs', `${runId}.jsonl`), 'utf8');
+
     // A second session: run start, then advance hands out nothing and ends the run again.
     const ledger = () => readdirSync(join(root, 'out', 'ledger')).filter((f) => /^(?:batch|synth)-/.test(f)).map((f) => readFileSync(join(root, 'out', 'ledger', f), 'utf8'));
     const before = ledger();
@@ -717,7 +721,7 @@ test('advance alone drives the run: one wave of batches, the merger in the foreg
     assert.deepEqual(ledger(), before, 'no job dispatched or stamped');
 
     // The first run's log: one advance event per call and one stage event per step, each timed.
-    const log = readFileSync(join(root, 'out', 'runs', `${runId}.jsonl`), 'utf8').trimEnd().split('\n').map((l) => JSON.parse(l) as Record<string, unknown>);
+    const log = firstLog.trimEnd().split('\n').map((l) => JSON.parse(l) as Record<string, unknown>);
     const advances = log.filter((e) => e.event === 'advance');
     assert.equal(advances.length, 6);
     for (const e of advances) assert.ok(Number.isInteger(e.ms) && (e.ms as number) >= 0, JSON.stringify(e));

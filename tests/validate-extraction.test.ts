@@ -562,14 +562,19 @@ test('stall and ownership quotes are checked against their message, body first, 
   );
 });
 
-test('ownership_claim.person must appear in its message, headers or body, ignoring case and whitespace', () => {
-  for (const person of ['MIKE', ' mike ', 'Gas  Control', 'dan.ray@enron.com', 'Ops.Team']) {
-    const ok = check(edit((x) => (message(x, ID4).ownership_claim = { person, quote: 'Only Mike can restart the Tejas compressor' })));
-    assert.deepEqual(ok.problems, [], person);
+test('ownership_claim.person: every word of it is a word of its message, headers or body, in any order and case', () => {
+  const claim = (person: string) => check(edit((x) => (message(x, ID4).ownership_claim = { person, quote: 'Only Mike can restart the Tejas compressor' })));
+  // Words from the body and the headers, reordered, with other punctuation: the rollup's resolver
+  // compares names the same way (15.3).
+  for (const person of ['MIKE', ' mike ', 'Gas  Control', 'Control, Gas', 'dan.ray@enron.com', 'Ray, Dan', 'Dan Ray', 'Ops.Team', 'Mike (Tejas)']) {
+    assert.deepEqual(claim(person).problems, [], person);
   }
-  const result = check(edit((x) => (message(x, ID4).ownership_claim = { person: 'Michael Jones', quote: 'Only Mike can restart the Tejas compressor' })));
-  assert.deepEqual(result.problems, [`${ID4}: ownership_claim.person "Michael Jones" does not appear in this message (name the person as the message writes them)`]);
-  assert.deepEqual(result.validated?.ownership_checks.map((c) => [c.person, c.match]), [['Michael Jones', 'exact']]);
+  // A word the message does not have, or a name with no word of two or more letters.
+  for (const person of ['Michael Jones', 'Mike Jones', 'M. J.', 'D']) {
+    const result = claim(person);
+    assert.deepEqual(result.problems, [`${ID4}: ownership_claim.person "${person}" does not appear in this message (name the person as the message writes them)`], person);
+    assert.deepEqual(result.validated?.ownership_checks.map((c) => [c.person, c.match]), [[person, 'exact']]);
+  }
 });
 
 test('lengths: notes over 200 characters and batch_notes over 100 words come last', () => {

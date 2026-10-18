@@ -8,6 +8,7 @@ import { shownBody } from '../src/batch/build.ts';
 import { openCorpus } from '../src/corpus/reader.ts';
 import { parseMessage } from '../src/parse/message.ts';
 import { normalizeNewlines } from '../src/util/text.ts';
+import { claimant, nameTokens } from '../src/metrics/rollup.ts';
 import { QUOTE_MAX_CHARS, QUOTE_MIN_CHARS, checkQuote, mentions, quoteLength } from '../src/validate/quotes.ts';
 import type { ParsedMessage, QuoteCheck } from '../src/types.ts';
 
@@ -190,15 +191,37 @@ test('all corpus subjects validate as whole-subject quotes with raw offsets; fol
   assert.ok(exact > 3000, `${exact} single-line subjects`);
 });
 
-test('mentions: a name anywhere in the raw message, headers included, ignoring case and whitespace', () => {
+test('mentions: every word of the name is a whole word of the raw message, headers included, in any order and case', () => {
   const { raw, m } = message(['Only Mike  Smith can restart', 'the compressor.', 'Thanks, Gas', 'Control'], '\r\n', [
     ...HEADERS,
     'X-From: Doe, Jane </O=ENRON/OU=NA/CN=RECIPIENTS/CN=JDOE>',
   ]);
-  for (const name of ['Mike Smith', 'mike smith', ' MIKE\tSMITH ', 'Gas Control', 'Doe, Jane', 'jane.doe@enron.com']) {
+  for (const name of ['Mike Smith', 'mike smith', ' MIKE\tSMITH ', 'Smith, Mike', 'Gas Control', 'Doe, Jane', 'Jane Doe', 'jane.doe@enron.com', 'Mike S.']) {
     assert.equal(mentions(raw, m, name), true, name);
   }
-  for (const name of ['Sarah', 'Smith, Mike', '', '   ']) assert.equal(mentions(raw, m, name), false, name);
+  // A word the message lacks, part of a word only, or no word of two or more letters at all.
+  for (const name of ['Sarah', 'Mike Jones', 'Smit', 'Michael', '', '   ', 'M. S.', '-']) assert.equal(mentions(raw, m, name), false, name);
+});
+
+test('mentions: a claim naming "Darron Giron" is found in a header "Giron, Darron C" and a body "Darron"; "Darron Jones" is not', () => {
+  const { raw, m } = message(['Darron handles the daily imbalance check now.'], '\r\n', [...HEADERS, 'X-From: Giron, Darron C </O=ENRON/OU=NA/CN=RECIPIENTS/CN=DGIRON>']);
+  assert.equal(mentions(raw, m, 'Darron Giron'), true);
+  assert.equal(mentions(raw, m, 'Darron'), true);
+  assert.equal(mentions(raw, m, 'Darron Jones'), false);
+  // The same words the rollup's ownership resolver compares (4.1).
+  assert.deepEqual(nameTokens("Giron, Darron C. O'Neal"), ['giron', 'darron', 'oneal']);
+});
+
+test('mentions: words scattered over two people pass (the word-level rule of 15.2); the rollup then keeps both people as a tie', () => {
+  const { raw, m } = message(['Kate Fraser sends the schedule; Mark Symes checks it.'], '\r\n');
+  assert.equal(mentions(raw, m, 'Kate Symes'), true, 'a name assembled from two people is accepted');
+  // The resolver matches it to both, one word each, so it counts as either of them: a conflict
+  // needs another claim that names neither.
+  const people = [
+    { email: 'kate.fraser@enron.com', name: 'Kate Fraser' },
+    { email: 'mark.symes@enron.com', name: 'Mark Symes' },
+  ];
+  assert.deepEqual(claimant('Kate Symes', people, people), { known: ['kate.fraser@enron.com', 'mark.symes@enron.com'] });
 });
 
 test('subject quotes: a short quote is allowed only when it is the whole subject', () => {

@@ -3,7 +3,7 @@
 import { fileURLToPath } from 'node:url';
 import { ingestCommand } from './corpus/ingest.ts';
 import { prepareCommand } from './pipeline/prepare.ts';
-import { dispatchCommand, refillCommand, runCommand, statusCommand, validateCommand, verifyCommand } from './run/commands.ts';
+import { advanceCommand, dispatchCommand, refillCommand, runCommand, statusCommand, validateCommand, verifyCommand } from './run/commands.ts';
 import { goldCommand } from './run/gold.ts';
 import { mergeCommand } from './run/merge.ts';
 import { rollupCommand } from './run/rollup.ts';
@@ -49,6 +49,11 @@ export const COMMANDS: Record<string, Command> = {
     summary: 'After completions: validate the named jobs (--failed <id>: an Agent call that failed, recorded at once), dispatch everything next, print the prompts as JSON',
     milestone: 'M5',
     run: (args) => refillCommand(ROOT, args),
+  },
+  advance: {
+    summary: "The run's one command per turn: record the named jobs as refill does, run every ready stage step (taxonomy and merge accept, rollup, score, run end), print the next Agent calls as JSON",
+    milestone: 'M5',
+    run: (args) => advanceCommand(ROOT, args),
   },
   run: {
     summary: 'Start or end a pipeline run (start | end); the corpus guard covers every tool call during one',

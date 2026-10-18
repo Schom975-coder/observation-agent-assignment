@@ -21,6 +21,7 @@ import { bodyKey, findDuplicates } from '../normalize/dedup.ts';
 import { buildPeople } from '../normalize/people.ts';
 import { buildThreads } from '../normalize/threads.ts';
 import { parseMessage } from '../parse/message.ts';
+import { logRunEvent } from '../run/ledger.ts';
 import { sha256 } from '../util/hash.ts';
 import { normalizeNewlines } from '../util/text.ts';
 import type { BatchEntry, ParsedMessage } from '../types.ts';
@@ -180,7 +181,10 @@ export function prepareCommand(root: string, args: readonly string[] = []): numb
     console.error(`prepare: unexpected argument "${unknown[0]}". Usage: node obs.mjs prepare [--force]`);
     return 1;
   }
+  // During a run the run's log gets one `prepare` event with its duration (ARCHITECTURE.md 7.4).
+  const started = performance.now();
   if (!args.includes('--force') && prepareIsCurrent(root)) {
+    logRunEvent(root, { event: 'prepare', ms: Math.round(performance.now() - started), skipped: true });
     console.log('prepare: unchanged');
     return 0;
   }
@@ -194,6 +198,7 @@ export function prepareCommand(root: string, args: readonly string[] = []): numb
     }
     throw err;
   }
+  logRunEvent(root, { event: 'prepare', ms: Math.round(performance.now() - started), skipped: false });
   const n = (x: number) => x.toLocaleString('en-US');
   const d = stats.date_status;
   console.log(

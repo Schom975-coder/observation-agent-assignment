@@ -11,7 +11,7 @@ import { fileURLToPath } from 'node:url';
 import { ACTION_TYPES, loadEffortRates, loadScoring, type ActionType, type Scoring } from '../src/config.ts';
 import { CENTS_PER_HOUR, cents, hoursX100, modelEstimate, perMonthX100, score, tierOf, type ScoreInputs } from '../src/metrics/score.ts';
 import { currentRollupInputs } from '../src/run/rollup.ts';
-import { scoreCommand, scoreFreshness } from '../src/run/score.ts';
+import { scoreCommand, scoreFreshness, scoreStep } from '../src/run/score.ts';
 import { extractionsSha } from '../src/run/merge.ts';
 import type { ActionCounts, ActionSource, EstimatesOverride, Opportunities, ProcessRollup, Rollup, ValidatedSynthesis } from '../src/types.ts';
 
@@ -338,11 +338,20 @@ test('score command: an override for a process seen fewer than 3 times, or for n
   writeFileSync(join(root, 'config', 'estimates.json'), JSON.stringify({ version: 1, estimates: { rare: entry, gone: entry } }));
   const r = capture(() => scoreCommand(root, []));
   assert.equal(r.code, 0, r.err.join('\n'));
-  assert.deepEqual(r.err, [
+  const notes = [
     'score: config/estimates.json sets an estimate for "rare", seen 2 times; an estimate needs at least 3 occurrences, so it is ignored.',
     'score: config/estimates.json names "gone", which is not a process of this rollup; it is ignored.',
-  ]);
+  ];
+  assert.deepEqual(r.err, notes);
   assert.equal(read(root, 'opportunities.json').opportunities.find((o) => o.key === 'rare')?.estimated, null);
+  // The step itself returns them as notes and prints nothing: advance lists them in its steps, so
+  // nothing reaches stderr ahead of its JSON.
+  const step = capture(() => {
+    const result = scoreStep(root);
+    assert.deepEqual([result.notes, result.summary], [notes, r.out[0]]);
+    return 0;
+  });
+  assert.deepEqual([step.out, step.err], [[], []]);
 });
 
 test('score command: refuses a stale rollup, alternative rates that change how actions are counted, and stray arguments', () => {

@@ -11,8 +11,14 @@ import { cutChars, evenSteps, flatten, jsonText } from '../batch/digest.ts';
 import { sha256 } from '../util/hash.ts';
 import type { ParsedMessage, Person, ProcessRollup, Rollup, SynthCited, SynthEntry, SynthSidecar, Thread, ValidatedExtraction } from '../types.ts';
 
-export const SYNTH_GROUP_MAX = 3;
+export const SYNTH_GROUP_MAX = 4;
 export const SYNTH_INPUT_MAX_TOKENS = 24_000;
+// The most groups one wave holds: the platform's concurrent-subagent limit, a constant so the
+// grouping never depends on OBS_IN_FLIGHT (ARCHITECTURE.md 5.8).
+export const SYNTH_MAX_GROUPS = 20;
+// What a process costs a synthesizer beyond its section's tokens: the output it writes per process
+// is roughly fixed, and is most of its time.
+export const SYNTH_PROCESS_COST = 3_000;
 export const EVIDENCE_SAMPLE = 40;
 export const STALL_SAMPLE = 10;
 export const OWNERSHIP_SAMPLE = 6;
@@ -170,9 +176,43 @@ function groupText(id: string, sections: ReadonlyArray<{ key: string; text: stri
   return `${head.join('\n')}\n${sections.map((s) => s.text).join('\n')}`;
 }
 
-// The group inputs for every process of the rollup, in key order: packed greedily into groups of at
-// most SYNTH_GROUP_MAX processes and SYNTH_INPUT_MAX_TOKENS estimated tokens (one Read each).
-// `threads` place each quoted message in its occurrence.
+// The balanced assignment of processes to synthesis groups (ARCHITECTURE.md 5.8), pure and
+// deterministic. G = min(SYNTH_MAX_GROUPS, items) groups; the items, by cost descending then key,
+// go one by one to the group with the lowest total cost that still has room (`fits` with the item
+// added), ties to the lowest group index. If an item finds no room, the assignment starts again
+// with one group more (past SYNTH_MAX_GROUPS the stage needs a second wave). Each group's keys are
+// sorted, and the groups are ordered by their first key. An item that does not fit even alone is a
+// SynthesisInputError. One wave of balanced groups, rather than groups packed in key order, so no
+// group waits for a free slot and the slowest group is not much slower than the rest.
+export function planGroups(items: ReadonlyArray<{ key: string; cost: number }>, fits: (keys: readonly string[]) => boolean): string[][] {
+  for (const it of items) if (!fits([it.key])) throw new SynthesisInputError(`the synthesis input for ${it.key} does not fit in a group even alone`);
+  const order = [...items].sort((a, b) => b.cost - a.cost || byText(a.key, b.key));
+  for (let g = Math.min(SYNTH_MAX_GROUPS, items.length); ; g++) {
+    const groups = Array.from({ length: g }, (_, index) => ({ index, keys: [] as string[], cost: 0 }));
+    const placed = order.every((it) => {
+      // Lowest total cost first, then lowest index: the first that fits takes the item.
+      const by = [...groups].sort((a, b) => a.cost - b.cost || a.index - b.index);
+      const group = by.find((x) => fits([...x.keys, it.key].sort(byText)));
+      if (group === undefined) return false;
+      group.keys.push(it.key);
+      group.cost += it.cost;
+      return true;
+    });
+    // Every item fits alone, so with as many groups as items one is always free: this ends.
+    if (placed) {
+      return groups
+        .filter((x) => x.keys.length > 0)
+        .map((x) => [...x.keys].sort(byText))
+        .sort((a, b) => byText(a[0] as string, b[0] as string));
+    }
+  }
+}
+
+// The group inputs for every process of the rollup: balanced by planGroups into groups of at most
+// SYNTH_GROUP_MAX processes and SYNTH_INPUT_MAX_TOKENS estimated tokens (one Read each), each
+// group's processes in key order, the groups numbered in the order of their first keys. A process
+// costs its section's estimated tokens plus SYNTH_PROCESS_COST. `threads` place each quoted message
+// in its occurrence.
 export function buildSynthesisInputs(
   rollup: Rollup,
   validated: readonly ValidatedExtraction[],
@@ -192,23 +232,22 @@ export function buildSynthesisInputs(
     v.stall_checks.forEach((c, i) => void (stallIds.has(c.message_id) || stallIds.set(c.message_id, `${v.batch_id}:s${i}`)));
     v.ownership_checks.forEach((c, i) => void (ownershipIds.has(c.message_id) || ownershipIds.set(c.message_id, `${v.batch_id}:o${i}`)));
   }
-  const sections = [...rollup.processes]
-    .sort((a, b) => byText(a.key, b.key))
-    .map((p) => ({ key: p.key, occurrences: p.occurrences, ...section(p, quotesOf(p, byEvidence, stallIds, ownershipIds, src), src) }));
-
+  const sections = new Map(
+    [...rollup.processes]
+      .sort((a, b) => byText(a.key, b.key))
+      .map((p) => [p.key, { key: p.key, occurrences: p.occurrences, ...section(p, quotesOf(p, byEvidence, stallIds, ownershipIds, src), src) }] as const),
+  );
   const tokens = (text: string): number => estTokens(Buffer.byteLength(text, 'utf8'), lineCount(text));
-  const groups: Array<typeof sections> = [];
-  for (const s of sections) {
-    const current = groups.at(-1);
-    if (current !== undefined && current.length < SYNTH_GROUP_MAX && tokens(groupText(groupId(groups.length - 1), [...current, s])) <= SYNTH_INPUT_MAX_TOKENS) {
-      current.push(s);
-      continue;
-    }
-    if (tokens(groupText(groupId(groups.length), [s])) > SYNTH_INPUT_MAX_TOKENS) {
+  const sectionsOf = (keys: readonly string[]) => keys.map((k) => sections.get(k) as NonNullable<ReturnType<typeof sections.get>>);
+  for (const s of sections.values()) {
+    if (tokens(groupText(groupId(0), [s])) > SYNTH_INPUT_MAX_TOKENS) {
       throw new SynthesisInputError(`the synthesis input for ${s.key} alone would be over ${SYNTH_INPUT_MAX_TOKENS} estimated tokens`);
     }
-    groups.push([s]);
   }
+  // Every group ID has the same width up to synth-999, so the header's length does not depend on it.
+  const fits = (keys: readonly string[]): boolean => keys.length <= SYNTH_GROUP_MAX && tokens(groupText(groupId(0), sectionsOf(keys))) <= SYNTH_INPUT_MAX_TOKENS;
+  const items = [...sections.values()].map((s) => ({ key: s.key, cost: tokens(s.text) + SYNTH_PROCESS_COST }));
+  const groups = planGroups(items, fits).map(sectionsOf);
   return groups.map((g, n) => {
     const id = groupId(n);
     const markdown = groupText(id, g);

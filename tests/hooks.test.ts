@@ -42,10 +42,11 @@ import {
 } from '../src/model/taxonomy.ts';
 import { BATCH_NOTES_MAX_WORDS, NOTE_MAX_CHARS, checkExtraction } from '../src/model/validate-extraction.ts';
 import { prepare } from '../src/pipeline/prepare.ts';
-import { extractorPrompt, runCommand, type RefillReport } from '../src/run/commands.ts';
-import { descriptionFor, synthesizerPrompt } from '../src/run/jobs.ts';
+import { runCommand, type AdvanceReport, type AgentCall } from '../src/run/commands.ts';
+import { descriptionFor, jobPrompt } from '../src/run/jobs.ts';
 import {
   HALT_NO_OUTPUT,
+  JOB_KINDS,
   MAX_DISPATCHES,
   ORPHAN_GRACE_S,
   batchStateFile,
@@ -58,6 +59,7 @@ import {
   loadIndex,
   loadJobs,
   markDispatched,
+  projectFolder,
   readBatchState,
   recordValidation,
   rollupFile,
@@ -69,7 +71,7 @@ import {
 import { currentMergeShas, currentMergeStamp, mergerPrompt } from '../src/run/merge.ts';
 import { currentRollupInputs } from '../src/run/rollup.ts';
 import { estimatesFile, scoringFile, synthesisSha } from '../src/run/score.ts';
-import { currentShas } from '../src/run/taxonomy.ts';
+import { TAXONOMY_MAX_DISPATCHES, currentShas, taxonomistPrompt } from '../src/run/taxonomy.ts';
 import { sha256 } from '../src/util/hash.ts';
 import { QUOTE_MAX_CHARS, QUOTE_MIN_CHARS } from '../src/validate/quotes.ts';
 import { ARTIFACT_TYPES, ESTIMATE_BASES, type BatchEntry, type SynthEntry, type SynthSidecar, type ValidatedExtraction, type ValidatedSynthesis } from '../src/types.ts';
@@ -901,8 +903,8 @@ test('gate: an invalid output is recorded failed with its problems, for a fix ro
   assert.ok(fix !== null && fix.length > 0);
   const problems = readFileSync(join(proj, 'out', 'fix', `${BATCH}.txt`), 'utf8');
   for (const p of state.last_problems) assert.ok(problems.includes(p), p);
-  const prompt = extractorPrompt(proj, BATCH, fix);
-  assert.match(prompt, /^Problems file: .*\/out\/fix\/batch-000\.txt$/m);
+  const prompt = jobPrompt(proj, BATCH, fix);
+  assert.match(prompt, new RegExp(`^Extract batch-000 \\(fix round 1 of 3\\): ${state.problems} problems? in the problems file\\.\\nProject folder: `));
   for (const p of state.last_problems) assert.ok(!prompt.includes(p), 'the problems travel in the file, not the prompt');
   assert.ok(existsSync(extractPath), 'the previous output stays for the fix round');
   bindTo('agent-g3');
@@ -1108,7 +1110,11 @@ test('log-event: appends one line per event to the run log, adhoc outside a run'
 // ---- gate-run: the Stop hook ----
 
 const skill = readFileSync(join(repo, '.claude', 'skills', 'observe', 'SKILL.md'), 'utf8');
-const reasons: Record<string, string[]> = { validate: [], taxonomy: [], dispatch: [], merge: [], rollup: [], score: [], run_end: [] };
+// Every block reason seen, by kind: orphans to record, jobs to hand out, a stage step to run.
+const reasons: Record<string, string[]> = { record: [], hand_out: [], stage: [] };
+// The reasons' fixed endings: the one command of the run, and the step of /observe that acts on it.
+const ADVANCE_NEXT = 'Run `node obs.mjs advance --json` and act on its output as in step 2 of /observe.';
+const lastKey = (dir: string) => lastEvent('gate_run', dir, 'r-stop')?.key;
 
 // A project with `n` empty batches, a stand-in taxonomist definition and a digest; fresh taxonomy
 // unless told otherwise.
@@ -1220,29 +1226,81 @@ test('stop gate: silent without an active run', () => {
   assert.ok(!existsSync(stopGateFile(dir)) && !existsSync(join(dir, 'out', 'runs')), 'nothing written outside a run');
 });
 
-test('stop gate: a taxonomy that is not fresh comes first, unless a taxonomist is still working', () => {
+test('stop gate: a taxonomy that is not fresh is a stage to advance, unless a taxonomist is still working; a stopped one ends through the repeat guard', () => {
   const dir = runProject('stop-taxonomy', 3, { taxonomy: 'missing' });
-  const missing = stop(dir, []);
-  assert.match(missing ?? '', /^Pipeline run: the taxonomy is missing\. Run `node obs\.mjs taxonomy` and carry on with step 2 of \/observe\.$/);
+  assert.equal(stop(dir, []), `Pipeline run: the taxonomy is missing. ${ADVANCE_NEXT}`);
+  assert.equal(lastKey(dir), 'advance:taxonomy:0');
   forget(dir);
   writeFileSync(join(dir, 'out', 'taxonomy.json'), JSON.stringify({ version: 1, digest_sha: 'old', agent_sha: 'old', processes: [] }));
-  assert.match(stop(dir, []) ?? '', /the taxonomy is out of date/);
+  assert.match(stop(dir, []) ?? '', /^Pipeline run: the taxonomy is out of date\. /);
   forget(dir);
   assert.equal(stop(dir, [task('Build taxonomy', 'running', 'taxonomist')]), null, 'a live taxonomist is waited for');
+  assert.equal(stop(dir, [task('Build taxonomy', 'running', null)]), null, 'untyped, known by the description advance gives it');
+  // Each attempt is a new generation: a block after the taxonomist's attempt is not a repeat.
+  const taxonomyState = (dispatches: number, status: string) =>
+    writeFileSync(join(dir, 'out', 'ledger', 'taxonomy.json'), JSON.stringify({ ...currentShas(dir), status, dispatches, problems: 1, last_problems: ['p'], dispatched_utc: null, finished_utc: null }));
+  taxonomyState(1, 'dispatched');
+  assert.match(stop(dir, []) ?? '', /^Pipeline run: the taxonomy is out of date\./);
+  taxonomyState(2, 'dispatched');
+  assert.match(stop(dir, []) ?? '', /^Pipeline run: the taxonomy is out of date\./, 'attempt 2: another block');
+  assert.equal(lastKey(dir), 'advance:taxonomy:2');
+  // Stopped: advance halts and makes no attempt, so the next stop repeats the key and gives up.
+  taxonomyState(TAXONOMY_MAX_DISPATCHES, 'failed');
+  assert.match(stop(dir, []) ?? '', /^Pipeline run: the taxonomy is out of date\./);
+  assert.equal(stop(dir, []), null);
+  assert.equal(lastEvent('gate_run_gave_up', dir, 'r-stop')?.key, `advance:taxonomy:${TAXONOMY_MAX_DISPATCHES}`);
 });
 
-test('stop gate: free slots are filled by naming each dispatch command', () => {
+test('stop gate: attempts made for older inputs count as none, so the first attempt under new ones is a new block, not a repeat', () => {
+  // The taxonomy: a state left by an earlier taxonomist definition, one attempt in.
+  const dir = runProject('stop-old-attempts', 2, { taxonomy: 'missing' });
+  const taxonomyState = (shas: { digest_sha: string; agent_sha: string }, dispatches: number) =>
+    writeFileSync(join(dir, 'out', 'ledger', 'taxonomy.json'), JSON.stringify({ ...shas, status: 'failed', dispatches, problems: 1, last_problems: ['p'], dispatched_utc: null, finished_utc: null }));
+  taxonomyState({ digest_sha: 'an older digest', agent_sha: 'an older definition' }, 1);
+  assert.match(stop(dir, []) ?? '', /^Pipeline run: the taxonomy is missing\./);
+  assert.equal(lastKey(dir), 'advance:taxonomy:0', 'the old attempt is not counted');
+  taxonomyState(currentShas(dir), 1); // advance made the first attempt under the current inputs
+  assert.match(stop(dir, []) ?? '', /^Pipeline run: the taxonomy is missing\./, 'a new block, not a give-up');
+  assert.equal(lastKey(dir), 'advance:taxonomy:1');
+
+  // The merge, the same way: a state for other extractions.
+  const m = runProject('stop-old-merge', 2);
+  finishExtraction(m);
+  const mergeState = (shas: Record<string, string>, dispatches: number) =>
+    writeFileSync(join(m, 'out', 'ledger', 'merge.json'), JSON.stringify({ ...shas, status: 'failed', dispatches, problems: 1, last_problems: ['p'], reason: null, dispatched_utc: null, finished_utc: null }));
+  mergeState({ ...currentMergeShas(m), extractions_sha: 'older extractions' }, 1);
+  assert.match(stop(m, []) ?? '', /the merge is missing\./);
+  assert.equal(lastKey(m), 'advance:merge:0');
+  mergeState(currentMergeShas(m), 1);
+  assert.match(stop(m, []) ?? '', /the merge is missing\./, 'a new block, not a give-up');
+  assert.equal(lastKey(m), 'advance:merge:1');
+});
+
+test('stop gate: a record or hand-out block the orchestrator did not act on repeats its key, and the turn may end', () => {
+  // hand_out: the same jobs ready twice in a row.
+  const dir = runProject('stop-repeat-hand-out', 3);
+  assert.match(stop(dir, [], { inFlight: 2 }) ?? '', /^Pipeline run: batch-000, batch-001 are ready to hand out\./);
+  assert.equal(stop(dir, [], { inFlight: 2 }), null);
+  assert.deepEqual([lastEvent('gate_run_gave_up', dir, 'r-stop')?.kind, lastEvent('gate_run_gave_up', dir, 'r-stop')?.key], ['hand_out', 'advance:extraction:batch-000,batch-001']);
+  // record: the same orphans twice in a row.
+  const orphaned = runProject('stop-repeat-record', 2);
+  for (const id of ids(0, 1)) dispatch(orphaned, id);
+  age(orphaned, ids(0, 1), PAST_GRACE);
+  assert.match(stop(orphaned, []) ?? '', /^Pipeline run: batch-000, batch-001 are still running/);
+  assert.equal(stop(orphaned, []), null);
+  assert.deepEqual([lastEvent('gate_run_gave_up', orphaned, 'r-stop')?.kind, lastEvent('gate_run_gave_up', orphaned, 'r-stop')?.key], ['record', 'advance:extraction:batch-000,batch-001']);
+});
+
+test('stop gate: free slots and jobs to hand out name advance, keyed by the IDs, so the next wave is a new block', () => {
   const dir = runProject('stop-dispatch', 5);
   const reason = stop(dir, [], { inFlight: 3 });
-  assert.equal(
-    reason,
-    'Pipeline run: batch-000, batch-001, batch-002 are ready to dispatch. Run `node obs.mjs dispatch batch-000`, `node obs.mjs dispatch batch-001`, ' +
-      '`node obs.mjs dispatch batch-002`, then start one extractor per dispatched batch, all in one message, as in step 3 of /observe, and end your turn.',
-  );
-  // Two running and accounted for: one slot left.
+  assert.equal(reason, `Pipeline run: batch-000, batch-001, batch-002 are ready to hand out. ${ADVANCE_NEXT}`);
+  assert.equal(lastKey(dir), 'advance:extraction:batch-000,batch-001,batch-002');
+  // Two running and accounted for: one slot left, a different generation, so a block again.
   dispatch(dir, 'batch-000');
   dispatch(dir, 'batch-001');
-  assert.match(stop(dir, [task('Extract batch-000'), task('Extract batch-001')], { inFlight: 3 }) ?? '', /^Pipeline run: batch-002 is ready to dispatch\./);
+  assert.match(stop(dir, [task('Extract batch-000'), task('Extract batch-001')], { inFlight: 3 }) ?? '', /^Pipeline run: batch-002 is ready to hand out\./);
+  assert.equal(lastKey(dir), 'advance:extraction:batch-002');
   // All slots busy: wait for completions.
   dispatch(dir, 'batch-002');
   assert.equal(stop(dir, [task('Extract batch-000'), task('Extract batch-001'), task('Extract batch-002')], { inFlight: 3 }), null);
@@ -1252,16 +1310,17 @@ test('stop gate: free slots are filled by naming each dispatch command', () => {
   assert.deepEqual(logged?.tasks, [0, 1, 2].map((i) => ({ type: 'subagent', agent_type: 'extractor', status: 'running', description: `Extract batch-00${i}` })), 'raw statuses logged');
 });
 
-test('stop gate: a running batch no live extractor accounts for is named for validate, once past the grace period', () => {
+test('stop gate: a running batch no live extractor accounts for is named for advance to record, once past the grace period', () => {
   const dir = runProject('stop-orphans', 4);
   for (const id of ids(0, 2)) dispatch(dir, id);
   age(dir, ids(0, 2), PAST_GRACE);
   const reason = stop(dir, [task('Extract batch-000'), task('Extract batch-001', 'completed')]);
   assert.equal(
     reason,
-    'Pipeline run: batch-001, batch-002 are still running, but no extractor is working on them. Run `node obs.mjs validate batch-001`, ' +
-      '`node obs.mjs validate batch-002`, then `node obs.mjs status --json`, and carry on with step 4 of /observe.',
+    'Pipeline run: batch-001, batch-002 are still running, but no extractor is working on them. ' +
+      'Run `node obs.mjs advance batch-001 batch-002 --json` and act on its output as in step 3 of /observe.',
   );
+  assert.equal(lastKey(dir), 'advance:extraction:batch-001,batch-002');
   // Every finished status counts as finished, in any case.
   for (const status of ['completed', 'done', 'failed', 'stopped', 'killed', 'cancelled', 'Completed']) {
     forget(dir);
@@ -1271,7 +1330,7 @@ test('stop gate: a running batch no live extractor accounts for is named for val
   // Unknown statuses count as live; the batch number is matched loosely.
   forget(dir);
   const loose = [task('Extract batch 0', 'queued'), task('extract BATCH-001 (fix round)', 'something-new'), task('Extract batch-002', 'pending', null)];
-  assert.match(stop(dir, loose) ?? '', /^Pipeline run: batch-003 is ready to dispatch\./, 'no orphan, so on to dispatch');
+  assert.match(stop(dir, loose) ?? '', /^Pipeline run: batch-003 is ready to hand out\./, 'no orphan, so on to hand out');
   assert.equal(lastEvent('gate_run', dir, 'r-stop')?.orphan_check, 'checked');
   // A non-extractor task never accounts for a batch.
   forget(dir);
@@ -1311,7 +1370,7 @@ test('stop gate: a batch running for 15 minutes is validated whatever the regist
   const dir = runProject('stop-stale', 3);
   for (const id of ids(0, 2)) dispatch(dir, id);
   age(dir, ['batch-001'], PAST_MAX);
-  const expected = /^Pipeline run: batch-001 is still running, but no extractor is working on it\. Run `node obs\.mjs validate batch-001`/;
+  const expected = /^Pipeline run: batch-001 is still running, but no extractor is working on it\. Run `node obs\.mjs advance batch-001 --json`/;
   assert.match(stop(dir, undefined, { inFlight: 3 }) ?? '', expected, 'no registry');
   forget(dir);
   const unknownStatus = ids(0, 2).map((id) => task(`Extract ${id}`, 'succeeded'));
@@ -1320,55 +1379,55 @@ test('stop gate: a batch running for 15 minutes is validated whatever the regist
   assert.match(stop(dir, [{ id: 't1', type: 'subagent', status: 'running', description: 'Working on it' }], { inFlight: 3 }) ?? '', expected, 'unreadable registry');
 });
 
-test('stop gate: after extraction it names the merge, the rollup, each synthesis wave, the score and run end, in that order', () => {
+test('stop gate: after extraction it names advance for the merge, the rollup, each synthesis wave, the score and the run end, in that order', () => {
   const dir = runProject('stop-m5', 2);
   finishExtraction(dir);
-  // 5. The merge: named while it is not fresh, waited for while a merger is live.
-  assert.equal(stop(dir, []), 'Pipeline run: extraction is complete and the merge is missing. Run `node obs.mjs merge` and carry on with step 5 of /observe.');
-  assert.equal(stageOf(dir), 'merge');
+  // The merge: a stage to advance while it is not fresh, waited for while a merger is live.
+  assert.equal(stop(dir, []), `Pipeline run: extraction is complete and the merge is missing. ${ADVANCE_NEXT}`);
+  assert.deepEqual([stageOf(dir), lastKey(dir)], ['merge', 'advance:merge:0']);
   forget(dir);
   assert.equal(stop(dir, [task('Merge process keys', 'running', 'merger')]), null, 'a live merger is waited for');
-  assert.equal(stop(dir, [task('Merge process keys', 'running', null)]), null, 'untyped, known by the description /observe gives it');
+  assert.equal(stop(dir, [task('Merge process keys', 'running', null)]), null, 'untyped, known by the description advance gives it');
   assert.equal(lastEvent('gate_run', dir, 'r-stop')?.orphan_check, 'checked');
-  assert.match(stop(dir, [task('Merge process keys', 'completed', 'merger')]) ?? '', /Run `node obs\.mjs merge`/, 'a finished merger is not live');
+  assert.match(stop(dir, [task('Merge process keys', 'completed', 'merger')]) ?? '', /the merge is missing\. Run `node obs\.mjs advance --json`/, 'a finished merger is not live');
+  // The merger's attempt makes the next block a new generation; the same attempt twice gives up.
+  writeFileSync(join(dir, 'out', 'ledger', 'merge.json'), JSON.stringify({ ...currentMergeShas(dir), status: 'dispatched', dispatches: 1, problems: 0, last_problems: [], reason: null, dispatched_utc: null, finished_utc: null }));
+  assert.match(stop(dir, []) ?? '', /the merge is missing\./, 'attempt 1: a new block');
+  assert.equal(lastKey(dir), 'advance:merge:1');
+  assert.equal(stop(dir, []), null, 'no new attempt since: give up');
   forget(dir);
   freshMerge(dir);
   writeFileSync(join(dir, 'out', 'merge.json'), JSON.stringify({ version: 1, ...currentMergeStamp(dir), taxonomy_sha: 'an older taxonomy' }));
   assert.match(stop(dir, []) ?? '', /^Pipeline run: extraction is complete and the merge is out of date\./);
   forget(dir);
 
-  // 6. The rollup, once the merge is fresh.
+  // The rollup, once the merge is fresh.
   freshMerge(dir);
-  assert.equal(stop(dir, []), 'Pipeline run: the merge is done and the rollup is missing. Run `node obs.mjs rollup` and carry on with step 6 of /observe.');
-  assert.equal(stageOf(dir), 'rollup');
+  assert.equal(stop(dir, []), `Pipeline run: the merge is done and the rollup is missing. ${ADVANCE_NEXT}`);
+  assert.deepEqual([stageOf(dir), lastKey(dir)], ['rollup', 'advance:rollup:']);
 
-  // 7. Synthesis groups fill the free slots, then the turn ends while they work.
+  // Synthesis groups to hand out, then the turn ends while they work.
   currentRollup(dir, groupIds(0, 2));
-  assert.equal(
-    stop(dir, [], { inFlight: 2 }),
-    'Pipeline run: synth-000, synth-001 are ready to dispatch. Run `node obs.mjs dispatch synth-000`, `node obs.mjs dispatch synth-001`, ' +
-      'then start one synthesizer per dispatched group, all in one message, as in step 7 of /observe, and end your turn.',
-  );
-  assert.equal(stageOf(dir), 'synthesis');
+  assert.equal(stop(dir, [], { inFlight: 2 }), `Pipeline run: synth-000, synth-001 are ready to hand out. ${ADVANCE_NEXT}`);
+  assert.deepEqual([stageOf(dir), lastKey(dir)], ['synthesis', 'advance:synthesis:synth-000,synth-001']);
   for (const id of groupIds(0, 1)) dispatchGroup(dir, id);
   const live = [task('Synthesize synth-000', 'running', 'synthesizer'), task('Synthesize synth-001', 'running', null)];
   assert.equal(stop(dir, live, { inFlight: 2 }), null, 'both slots busy: wait');
   assert.equal(lastEvent('gate_run', dir, 'r-stop')?.orphan_check, 'checked');
-  assert.match(stop(dir, live.slice(0, 1), { inFlight: 3 }) ?? '', /^Pipeline run: synth-002 is ready to dispatch\./, 'synth-001 is too new to be an orphan');
+  assert.match(stop(dir, live.slice(0, 1), { inFlight: 3 }) ?? '', /^Pipeline run: synth-002 is ready to hand out\./, 'synth-001 is too new to be an orphan');
 
-  // 1. A group no live synthesizer names, past the grace period, is named for validate.
+  // A group no live synthesizer names, past the grace period, is named for advance to record.
   age(dir, ['synth-001'], PAST_GRACE);
   forget(dir);
   assert.equal(
     stop(dir, [task('Synthesize synth-000', 'running', 'synthesizer'), task('Extract batch-001', 'running')], { inFlight: 2 }),
-    'Pipeline run: synth-001 is still running, but no synthesizer is working on it. Run `node obs.mjs validate synth-001`, then `node obs.mjs status --json`, ' +
-      'and carry on with step 4 of /observe.',
+    'Pipeline run: synth-001 is still running, but no synthesizer is working on it. Run `node obs.mjs advance synth-001 --json` and act on its output as in step 3 of /observe.',
   );
   assert.equal(stop(dir, [task('Synthesize synth-000', 'running', 'synthesizer'), task('Synthesize group 1', 'running', 'synthesizer')], { inFlight: 2 }), null, 'the number is matched loosely');
   assert.equal(stop(dir, [task('Synthesize synth-000', 'running', 'synthesizer'), task('Synthesize the rest', 'running', 'synthesizer')], { inFlight: 2 }), null);
   assert.equal(lastEvent('gate_run', dir, 'r-stop')?.orphan_check, 'skipped: a live synthesizer description names no group');
 
-  // 8. Every group dispatched and some still running: wait. An exhausted group is not waited for.
+  // Every group dispatched and some still running: wait. An exhausted group is not waited for.
   dispatchGroup(dir, 'synth-002');
   stampGroup(dir, 'synth-000', true);
   stampGroup(dir, 'synth-001', true);
@@ -1381,18 +1440,32 @@ test('stop gate: after extraction it names the merge, the rollup, each synthesis
   }
   assert.equal(groupStatus(), 'exhausted');
 
-  // 9. The score, then 10. run end, once.
+  // The score, then the run end, once.
   forget(dir);
-  assert.equal(stop(dir, []), 'Pipeline run: synthesis is complete and the score is missing. Run `node obs.mjs score` and carry on with step 8 of /observe.');
+  assert.equal(stop(dir, []), `Pipeline run: synthesis is complete and the score is missing. ${ADVANCE_NEXT}`);
   assert.equal(stageOf(dir), 'score');
   currentScore(dir);
   const end = stop(dir, []);
-  assert.equal(end, 'Pipeline run: every stage is done. Run `node obs.mjs run end`, then `node obs.mjs status`, and print its output (step 9 of /observe).');
-  assert.equal(stageOf(dir), 'done');
+  assert.equal(end, `Pipeline run: every stage is done and the run is still active. ${ADVANCE_NEXT}`);
+  assert.deepEqual([stageOf(dir), lastKey(dir)], ['done', 'advance:done:']);
   assert.equal(stop(dir, []), null, 'the same reason twice in a row: give up');
   const gaveUp = lastEvent('gate_run_gave_up', dir, 'r-stop');
-  assert.deepEqual([gaveUp?.kind, gaveUp?.ids], ['run_end', []]);
+  assert.deepEqual([gaveUp?.kind, gaveUp?.ids, gaveUp?.key], ['stage', [], 'advance:done:']);
   assert.equal(stop(dir, []), end, 'after letting one turn end it may ask again');
+});
+
+test('stop gate: drafters are live pipeline agents, by type or by the description advance gives them', () => {
+  const dir = runProject('stop-drafter', 2);
+  finishExtraction(dir);
+  freshMerge(dir);
+  currentRollup(dir, []);
+  currentScore(dir);
+  assert.match(stop(dir, []) ?? '', /^Pipeline run: every stage is done/);
+  forget(dir);
+  assert.equal(stop(dir, [task('Draft draft-003', 'running', 'drafter')]), null, 'typed');
+  assert.equal(stop(dir, [task('Draft draft-003', 'running', null)]), null, 'untyped, by its description');
+  assert.equal(lastEvent('gate_run', dir, 'r-stop')?.decision, 'wait');
+  assert.match(stop(dir, [task('Draft draft-003', 'completed', 'drafter')]) ?? '', /^Pipeline run: every stage is done/, 'a finished drafter is not live');
 });
 
 test('stop gate: a stopped merge lets the turn end and never asks for run end', () => {
@@ -1404,7 +1477,7 @@ test('stop gate: a stopped merge lets the turn end and never asks for run end', 
   assert.equal(stop(dir, []), null, 'and again');
   // A fresh table beats the stopped attempts.
   freshMerge(dir);
-  assert.match(stop(dir, []) ?? '', /Run `node obs\.mjs rollup`/);
+  assert.match(stop(dir, []) ?? '', /^Pipeline run: the merge is done and the rollup is missing\./);
 });
 
 test('stop gate: an exhausted batch is reported, not waited for: the run moves on to the merge', () => {
@@ -1424,7 +1497,7 @@ test('stop gate: an exhausted batch is reported, not waited for: the run moves o
   freshMerge(dir);
   currentRollup(dir, []);
   currentScore(dir);
-  assert.match(stop(dir, []) ?? '', /^Pipeline run: every stage is done\. Run `node obs\.mjs run end`/);
+  assert.match(stop(dir, []) ?? '', /^Pipeline run: every stage is done and the run is still active\. Run `node obs\.mjs advance --json`/);
 });
 
 test('stop gate: when status reports a halt the turn may end, whatever else is pending', () => {
@@ -1444,10 +1517,10 @@ test('stop gate: only the orchestrator session is steered once one is recorded',
   writeFileSync(stopGateFile(dir), JSON.stringify({ run_id: 'r-stop', session_id: 's-orch', last_block: null }));
   assert.equal(stop(dir, [], { session: 's-dev' }), null);
   assert.equal(lastEvent('gate_run', dir, 'r-stop')?.decision, 'other_session');
-  assert.match(stop(dir, [], { session: 's-orch' }) ?? '', /ready to dispatch/);
+  assert.match(stop(dir, [], { session: 's-orch' }) ?? '', /ready to hand out/);
   // What another run recorded does not count.
-  writeFileSync(stopGateFile(dir), JSON.stringify({ run_id: 'r-earlier', session_id: 's-orch', last_block: 'dispatch:batch-000,batch-001' }));
-  assert.match(stop(dir, [], { session: 's-dev' }) ?? '', /ready to dispatch/, 'unclaimed in this run: whoever stops is steered, and an old block is no repeat');
+  writeFileSync(stopGateFile(dir), JSON.stringify({ run_id: 'r-earlier', session_id: 's-orch', last_block: 'advance:extraction:batch-000,batch-001' }));
+  assert.match(stop(dir, [], { session: 's-dev' }) ?? '', /ready to hand out/, 'unclaimed in this run: whoever stops is steered, and an old block is no repeat');
 });
 
 test('stop gate: a failure lets the turn end, reported without a trace or a local path', () => {
@@ -1460,7 +1533,7 @@ test('stop gate: a failure lets the turn end, reported without a trace or a loca
   assert.equal(lastEvent('gate_run_error', dir, 'r-stop')?.event, 'gate_run_error');
 });
 
-test('stop gate: well under the hook timeout on a 99-batch ledger, mid-extraction and mid-synthesis with 12 groups', () => {
+test('stop gate: within the hook budget (target under 2 s) on a 99-batch ledger, mid-extraction and mid-synthesis with 20 groups', () => {
   const dir = runProject('stop-99', 99);
   const padding = 'x'.repeat(40_000);
   const extract = (from: number, to: number) => {
@@ -1474,26 +1547,28 @@ test('stop gate: well under the hook timeout on a 99-batch ledger, mid-extractio
   // Timed on the second stop: the first reads files written a moment ago, which a virus scanner
   // may inspect first; in a run the hook fires at every turn's end over files minutes old.
   const timed = (tasks: Task[]): HookResult => {
-    hook('gate-run', stopInput(dir, tasks), dir, { OBS_IN_FLIGHT: '12' });
-    const r = hook('gate-run', stopInput(dir, tasks), dir, { OBS_IN_FLIGHT: '12' });
+    hook('gate-run', stopInput(dir, tasks), dir, { OBS_IN_FLIGHT: '20' });
+    const r = hook('gate-run', stopInput(dir, tasks), dir, { OBS_IN_FLIGHT: '20' });
     assert.equal(r.status, 0, r.stderr);
-    // About 0.7 s here; the bound leaves room for a slow CI runner, far inside the 30 s timeout.
+    // The hook fires at the end of every orchestrator turn: a cycle's hand-off waits on it. The
+    // target is under 2 s (about 0.7 s on the development machine); the bound asserted is 5 s, so a
+    // slow CI runner does not fail the build on timing alone.
     assert.ok(r.ms < 5000, `took ${Math.round(r.ms)} ms`);
     return r;
   };
-  extract(0, 84);
-  for (const id of ids(85, 96)) dispatch(dir, id);
-  assert.equal(decision(timed(ids(85, 96).map((id) => task(`Extract ${id}`)))), null, 'twelve live, nothing free: wait');
+  extract(0, 78);
+  for (const id of ids(79, 98)) dispatch(dir, id);
+  assert.equal(decision(timed(ids(79, 98).map((id) => task(`Extract ${id}`)))), null, 'twenty live, nothing free: wait');
 
-  extract(85, 98);
+  extract(79, 98);
   freshMerge(dir);
-  currentRollup(dir, groupIds(0, 11));
-  for (const id of groupIds(0, 8)) {
+  currentRollup(dir, groupIds(0, 19));
+  for (const id of groupIds(0, 16)) {
     dispatchGroup(dir, id);
     stampGroup(dir, id, true);
   }
-  for (const id of groupIds(9, 11)) dispatchGroup(dir, id);
-  assert.equal(decision(timed(groupIds(9, 11).map((id) => task(`Synthesize ${id}`, 'running', 'synthesizer')))), null, 'the last three groups live: wait');
+  for (const id of groupIds(17, 19)) dispatchGroup(dir, id);
+  assert.equal(decision(timed(groupIds(17, 19).map((id) => task(`Synthesize ${id}`, 'running', 'synthesizer')))), null, 'the last three groups live: wait');
   assert.equal(lastEvent('gate_run', dir, 'r-stop')?.stage, 'synthesis');
 });
 
@@ -1501,7 +1576,8 @@ test('stop gate: every reason quotes the /observe skill word for word', () => {
   for (const [kind, list] of Object.entries(reasons)) {
     assert.ok(list.length > 0, `a ${kind} reason was seen`);
     for (const reason of list) {
-      const commands = [...reason.matchAll(/`([^`]+)`/g)].map((m) => (m[1] as string).replace(/(?:batch|synth)-\d{3,6}/g, '<id>'));
+      // Job IDs normalised, and a run of them (one or more) written as the skill writes it.
+      const commands = [...reason.matchAll(/`([^`]+)`/g)].map((m) => (m[1] as string).replace(/(?:batch|synth|draft)-\d{3,6}/g, '<id>').replace(/<id>(?: <id>)*/g, '<id> ...'));
       assert.ok(commands.length > 0, reason);
       for (const command of commands) assert.ok(skill.includes(`\`${command}\``), `"${command}" is in observe/SKILL.md`);
       const step = /step (\d) of \/observe/.exec(reason)?.[1];
@@ -1551,17 +1627,76 @@ test('seam: the extractor definition keeps its name, tools, model and effort, an
   assert.ok(!text.includes('OUTPUT'), 'nothing parses the reply, so the prompt asks for no OUTPUT line');
 });
 
-test('seam: the extractor is told about every line the dispatch prompt gives it', () => {
-  const text = readFileSync(join(repo, '.claude', 'agents', 'extractor.md'), 'utf8');
-  const fresh = extractorPrompt(proj, BATCH, null);
-  const fix = extractorPrompt(proj, BATCH, ['corpus/x/1.: a problem']);
-  for (const prompt of [fresh, fix]) {
-    assert.ok(!prompt.includes('OUTPUT'), prompt);
-    assert.match(prompt, /Reply with one short sentence and no email content\.$/);
+// Every file each pipeline agent works with, as its definition names it: relative to the project
+// folder its task gives, `<id>` for the job's ID. The job agents' paths come from the ledger's own
+// JOB_KINDS, so a moved file breaks this seam.
+const jobFiles = (kind: 'batch' | 'synth'): string[] => {
+  const k = JOB_KINDS[kind];
+  return [`out/${k.dirs.input}/<id>${k.inputExt}`, `out/${k.dirs.output}/<id>.json`, 'out/fix/<id>.txt'];
+};
+const AGENT_FILES: Record<string, string[]> = {
+  extractor: [...jobFiles('batch'), 'out/taxonomy.json'],
+  synthesizer: jobFiles('synth'),
+  taxonomist: ['out/taxonomy-digest.md', 'out/taxonomy-proposed.json'],
+  merger: ['out/merge-input.md', 'out/taxonomy.json', 'out/merge-proposed.json'],
+};
+
+test('seam: every job prompt is two lines, the job and the project folder, and carries no other path', () => {
+  const folder = `Project folder: ${projectFolder(proj)}`;
+  assert.ok(!folder.includes('\\') && !folder.endsWith('/'), folder);
+  for (const id of [BATCH, 'synth-000']) {
+    const fresh = jobPrompt(proj, id, null).split('\n');
+    const fix = jobPrompt(proj, id, ['a problem']).split('\n');
+    for (const lines of [fresh, fix]) {
+      assert.equal(lines.length, 2, lines.join('\n'));
+      assert.equal(lines[1], folder);
+      const first = lines[0] as string;
+      assert.ok(first.length < 90, first);
+      assert.ok(first.startsWith(`${descriptionFor(id)}`), `the prompt starts with the Agent description: ${first}`);
+      assert.ok(!first.includes('/') && !first.includes('\\') && !first.includes('OUTPUT'), first);
+    }
+    assert.equal(fresh[0], `${descriptionFor(id)}.`);
+    assert.match(fix[0] as string, new RegExp(`^${descriptionFor(id)} \\(fix round \\d+(?: of \\d+)?\\): \\d+ problems? in the problems file\\.$`));
   }
-  for (const label of ['Batch file:', 'Taxonomy file:', 'Output file:', 'Previous output:', 'Problems file:', 'fix round']) {
-    assert.ok(fix.includes(label), `the fix prompt has "${label}"`);
-    assert.ok(text.includes(`\`${label}\``), `extractor.md explains "${label}"`);
+  // The taxonomist and the merger: the same two lines, a fix round's problems after them.
+  for (const prompt of [taxonomistPrompt, mergerPrompt]) {
+    const fresh = prompt(proj, null).split('\n');
+    const fix = prompt(proj, ['first problem', 'second problem'], 2).split('\n');
+    assert.equal(fresh.length, 2);
+    assert.deepEqual([fresh[1], fix[1]], [folder, folder]);
+    assert.match(fix[0] as string, /^Fix /);
+    assert.deepEqual(fix.slice(3, 5), ['- first problem', '- second problem']);
+    for (const line of [...fresh, ...fix].filter((l) => l !== folder)) assert.ok(!line.includes(base), line);
+  }
+});
+
+test('seam: every agent definition names its files relative to the project folder, and says what a fix round is', () => {
+  assert.deepEqual(Object.keys(AGENT_FILES).sort(), agentNames().sort());
+  for (const [name, files] of Object.entries(AGENT_FILES)) {
+    const text = readFileSync(join(repo, '.claude', 'agents', `${name}.md`), 'utf8');
+    for (const file of files) assert.ok(text.includes(`\`${file}\``), `${name}.md names ${file}`);
+    for (const phrase of ['# Your files', '`Project folder:`', 'fix round', 'Join the folder and the path with `/` and use that absolute path in every Read and Write', 'Read nothing else']) {
+      assert.ok(text.includes(phrase), `${name}.md says "${phrase}"`);
+    }
+    assert.ok(!/`(?:Batch file|Taxonomy file|Output file|Previous output|Problems file|Input file|Digest file|Merge input|Previous proposal):`/.test(text), `${name}.md describes no old prompt label`);
+  }
+  // The prompt's first line, both forms, as each job agent is shown it (the verb is the Agent
+  // description's, which jobPrompt starts with).
+  for (const [name, sample, example] of [['extractor', 'batch-000', 'batch-017'], ['synthesizer', 'synth-000', 'synth-NNN']] as const) {
+    const text = readFileSync(join(repo, '.claude', 'agents', `${name}.md`), 'utf8');
+    const verb = descriptionFor(sample).split(' ')[0] as string;
+    assert.ok(text.includes(`\`${verb} ${example}.\``), name);
+    assert.match(text, new RegExp(`\`${verb} ${example} \\(fix round \\d of \\d\\): \\d problems in the problems file\\.\``), name);
+  }
+});
+
+test('seam: every pipeline agent names its model and effort, as decided (ARCHITECTURE.md 6.15), never inherit', () => {
+  const decided: Record<string, [string, string]> = { extractor: ['sonnet', 'medium'], taxonomist: ['opus', 'medium'], merger: ['opus', 'medium'], synthesizer: ['opus', 'medium'] };
+  assert.deepEqual(Object.keys(decided).sort(), agentNames().sort());
+  for (const [name, [model, effort]] of Object.entries(decided)) {
+    const fm = frontmatter(`.claude/agents/${name}.md`);
+    assert.deepEqual([fm.model, fm.effort], [model, effort], name);
+    assert.ok(!Object.values(fm).includes('inherit'), name);
   }
 });
 
@@ -1634,51 +1769,44 @@ test('seam: the observe skill is user-only, pre-approves only obs commands and t
   for (const command of [
     'node obs.mjs run start $ARGUMENTS',
     'node obs.mjs prepare',
-    'node obs.mjs taxonomy',
-    'node obs.mjs taxonomy accept',
-    'node obs.mjs refill --json',
-    'node obs.mjs refill <id> ... --json',
-    'node obs.mjs refill --failed <id> ... --json',
-    'node obs.mjs refill <id> ... --failed <id> ... --json',
-    'node obs.mjs status --json',
-    'node obs.mjs dispatch <id>',
-    'node obs.mjs validate <id>',
-    'node obs.mjs merge',
-    'node obs.mjs merge accept',
-    'node obs.mjs rollup',
-    'node obs.mjs score',
-    'node obs.mjs run end',
+    'node obs.mjs advance --json',
+    'node obs.mjs advance <id> ... --json',
+    'node obs.mjs advance --failed <id> ... --json',
+    'node obs.mjs advance <id> ... --failed <id> ... --json',
     'node obs.mjs status',
   ]) {
     assert.ok(skill.includes(`\`${command}\``), command);
   }
-  // Steps 1-9 in order.
-  assert.deepEqual([...skill.matchAll(/^## (\d)\. /gm)].map((m) => Number(m[1])), [1, 2, 3, 4, 5, 6, 7, 8, 9]);
+  // One command per turn: the per-stage commands are for people, never the orchestrator's.
+  for (const command of ['refill', 'dispatch', 'validate', 'taxonomy', 'merge', 'rollup', 'score', 'run end', 'status --json']) {
+    assert.ok(!skill.includes(`\`node obs.mjs ${command}`), `the skill does not run node obs.mjs ${command}`);
+  }
+  // Steps 1-3 in order.
+  assert.deepEqual([...skill.matchAll(/^## (\d)\. /gm)].map((m) => Number(m[1])), [1, 2, 3]);
   // The run claim fires only on a bare `node obs.mjs run start` (the guard's pattern).
   assert.match(skill, /Run `node obs\.mjs run start \$ARGUMENTS`, exactly so, as its own Bash call\./);
   assert.ok(skill.includes('never put `cd` or anything else before it'));
-  // The Agent descriptions are the ones the jobs module gives and the Stop hook reads back.
+  // The Agent descriptions advance gives the job agents, which the skill reads the IDs back from.
   for (const id of ['batch-000', 'synth-000']) assert.ok(skill.includes(`\`${descriptionFor(id).replace(id, '<id>')}\``), descriptionFor(id));
   for (const phrase of [
-    '`subagent_type` `extractor` for a `batch-` ID or `synthesizer` for a `synth-` ID',
-    '`run_in_background` true',
-    '`subagent_type` `taxonomist`',
-    '`description` `Build taxonomy`',
-    '`subagent_type` `merger`',
-    '`description` `Merge process keys`',
+    "each with exactly that entry's four fields: `subagent_type`, `description`, `prompt` and `run_in_background`",
+    'if an entry ran in the foreground (`run_in_background` false: the taxonomist and the merger), run step 2 again as soon as it returns',
     'If `halt` is true, print its `halt_reason` and stop',
+    'If `done` is true, print its `steps`, then run `node obs.mjs status`, print its output, and stop.',
+    'if `wait` is true, end your turn and wait',
+    'Otherwise print the `refused` list and stop.',
     'An Agent call that fails or is refused counts as a completion',
     'name such jobs after `--failed`',
-    'If any of those Agent calls fails or is refused, report its job at once as in step 4.',
+    'If any of those Agent calls fails or is refused, report its job at once as in step 3.',
+    'without summarising or re-checking it',
   ]) {
     assert.ok(skill.includes(phrase), phrase);
   }
-  // Every field of refill's report the loop acts on, and every stage it routes by.
-  const fields: Array<keyof RefillReport> = ['halt', 'halt_reason', 'jobs', 'running', 'stage', 'refused'];
+  // Every field of advance's report the loop acts on, and every field of an Agent call.
+  const fields: Array<keyof AdvanceReport> = ['halt', 'halt_reason', 'done', 'steps', 'agents', 'wait', 'refused'];
   for (const f of fields) assert.ok(skill.includes(`\`${f}\``), f);
-  for (const [stage, step] of [['taxonomy', 2], ['merge', 5], ['rollup', 6], ['score', 8], ['done', 9]] as const) {
-    assert.ok(skill.includes(`\`${stage}\`, go ${stage === 'taxonomy' ? 'back ' : ''}to step ${step}`), `${stage} -> step ${step}`);
-  }
+  const call: Array<keyof AgentCall> = ['subagent_type', 'description', 'prompt', 'run_in_background'];
+  for (const f of call) assert.ok(skill.includes(`\`${f}\``), f);
 });
 
 test('seam: the extract-batch skill is user-only and pre-approves only obs commands and the job subagents', () => {
@@ -1713,7 +1841,7 @@ const thousands = (n: number) => n.toLocaleString('en-US');
 
 test('seam: the merger definition has the agreed frontmatter and states every rule merge accept enforces, from the constants', () => {
   const fm = frontmatter('.claude/agents/merger.md');
-  assert.deepEqual(fm, { name: 'merger', description: fm.description, tools: 'Read, Write', model: 'inherit', effort: 'medium', permissionMode: 'acceptEdits', maxTurns: '8' });
+  assert.deepEqual(fm, { name: 'merger', description: fm.description, tools: 'Read, Write', model: 'opus', effort: 'medium', permissionMode: 'acceptEdits', maxTurns: '8' });
   const { text } = agentText('merger');
   const pm = loadScoring(join(repo, 'config', 'scoring.json')).merge.promote_min;
   for (const phrase of [
@@ -1768,22 +1896,20 @@ test('seam: the merger definition has the agreed frontmatter and states every ru
   assert.ok(!text.includes('OUTPUT:'));
 });
 
-test('seam: the merger is told about every line the merge prompt gives it', () => {
+test('seam: the merger is told both forms of the first line of its task, and its fix prompt names its files', () => {
   const { text } = agentText('merger');
-  const fresh = mergerPrompt(proj, null);
-  const fix = mergerPrompt(proj, ['mapped: "x" is not a taxonomy key'], 1);
-  for (const prompt of [fresh, fix]) assert.match(prompt, /Reply with one short sentence and no email content\.$/);
-  for (const label of ['Merge input:', 'Taxonomy file:', 'Output file:', 'Previous proposal:']) {
-    assert.ok(fix.includes(label), `the fix prompt has "${label}"`);
-    assert.ok(text.includes(`\`${label}\``), `merger.md explains "${label}"`);
-  }
-  assert.match(fix, /^Fix /);
+  const fresh = mergerPrompt(proj, null).split('\n');
+  const fix = mergerPrompt(proj, ['mapped: "x" is not a taxonomy key'], 1).split('\n');
+  assert.ok(text.includes(`\`${fresh[0]}\``) && text.includes(`\`${fix[0]}\``));
   assert.ok(text.includes('(its first line says `Fix`)'));
+  for (const file of AGENT_FILES.merger as string[]) assert.ok((fix.at(-1) as string).includes(file), file);
+  const taxonomist = agentText('taxonomist').text;
+  for (const line of [taxonomistPrompt(proj, null).split('\n')[0], taxonomistPrompt(proj, ['x'], 1).split('\n')[0]]) assert.ok(taxonomist.includes(`\`${line}\``), line);
 });
 
 test('seam: the synthesizer definition has the agreed frontmatter and states every bound the validator enforces, from the constants', () => {
   const fm = frontmatter('.claude/agents/synthesizer.md');
-  assert.deepEqual(fm, { name: 'synthesizer', description: fm.description, tools: 'Read, Write', model: 'inherit', permissionMode: 'acceptEdits', maxTurns: '8' });
+  assert.deepEqual(fm, { name: 'synthesizer', description: fm.description, tools: 'Read, Write', model: 'opus', effort: 'medium', permissionMode: 'acceptEdits', maxTurns: '8' });
   const { text, numbers } = agentText('synthesizer');
   const e = loadScoring(join(repo, 'config', 'scoring.json')).estimates;
   for (const phrase of [
@@ -1842,15 +1968,4 @@ test('seam: the synthesizer definition has the agreed frontmatter and states eve
   assert.equal(EFFORT_NUMBER.test(text), false, 'it states no hours, minutes or percent of its own');
   for (const field of ['group_id', 'key', 'description', 'approach', 'rationale']) assert.match(text, new RegExp(`\\n\\s+${field}: string;`));
   assert.ok(!text.includes('OUTPUT:'));
-});
-
-test('seam: the synthesizer is told about every line the dispatch prompt gives it', () => {
-  const { text } = agentText('synthesizer');
-  const fresh = synthesizerPrompt(proj, 'synth-000', null);
-  const fix = synthesizerPrompt(proj, 'synth-000', ['processes[0]: a problem']);
-  for (const prompt of [fresh, fix]) assert.match(prompt, /Reply with one short sentence and no email content\.$/);
-  for (const label of ['Input file:', 'Output file:', 'Previous output:', 'Problems file:', 'fix round']) {
-    assert.ok(fix.includes(label), `the fix prompt has "${label}"`);
-    assert.ok(text.includes(`\`${label}\``), `synthesizer.md explains "${label}"`);
-  }
 });

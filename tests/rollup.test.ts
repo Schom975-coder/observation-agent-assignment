@@ -14,12 +14,24 @@ import { GROUP_WORDS, NAME_MAX_WORDS, buildRollup, claimant, messageShares, name
 import { canonicalMergeTable, slugFacts } from '../src/model/merge.ts';
 import { canonicalTaxonomy } from '../src/model/taxonomy.ts';
 import { score, tierOf } from '../src/metrics/score.ts';
-import { EVIDENCE_SAMPLE, OWNERSHIP_SAMPLE, SAMPLE_MIN_SENDERS, STALL_SAMPLE, SYNTH_GROUP_MAX, SYNTH_INPUT_MAX_TOKENS, buildSynthesisInputs } from '../src/model/synthesis-input.ts';
+import {
+  EVIDENCE_SAMPLE,
+  OWNERSHIP_SAMPLE,
+  SAMPLE_MIN_SENDERS,
+  STALL_SAMPLE,
+  SYNTH_GROUP_MAX,
+  SYNTH_INPUT_MAX_TOKENS,
+  SYNTH_MAX_GROUPS,
+  SYNTH_PROCESS_COST,
+  SynthesisInputError,
+  buildSynthesisInputs,
+  planGroups,
+} from '../src/model/synthesis-input.ts';
 import { SELF_REPORTED_MIN_SENDERS } from '../src/model/synthesis.ts';
 import { buildPeople } from '../src/normalize/people.ts';
 import { buildThreads } from '../src/normalize/threads.ts';
 import { parseMessage } from '../src/parse/message.ts';
-import { batchJob, markDispatched, recordValidation } from '../src/run/ledger.ts';
+import { MAX_IN_FLIGHT, batchJob, markDispatched, recordValidation } from '../src/run/ledger.ts';
 import { currentMergeShas } from '../src/run/merge.ts';
 import { RollupError, currentRollupInputs, rollupCommand, rollupFreshness } from '../src/run/rollup.ts';
 import { gitBlobSha, sha256 } from '../src/util/hash.ts';
@@ -452,9 +464,81 @@ test('on the committed M4 outputs, with every proposed key unassigned: the appro
 
 const groupsOf = (rollup: Rollup = ROLLUP) => buildSynthesisInputs(rollup, VALIDATED, MESSAGES, PEOPLE, THREADS);
 
-test('synthesis inputs: groups of at most 3 processes in key order, the index with content_sha, byte-identical on rerun', () => {
+// ---- planGroups: the balanced assignment (5.8) ----
+
+const keyOf = (i: number) => `k${String(i).padStart(3, '0')}`;
+const equal = (n: number, cost = 10) => Array.from({ length: n }, (_, i) => ({ key: keyOf(i), cost }));
+const upTo = (max: number) => (keys: readonly string[]) => keys.length <= max;
+
+test('planGroups: one group per process up to SYNTH_MAX_GROUPS, each group sorted, the groups ordered by their first key', () => {
+  assert.equal(SYNTH_MAX_GROUPS, MAX_IN_FLIGHT, 'one wave: as many groups as subagents can run at once');
+  assert.equal(SYNTH_GROUP_MAX, 4);
+  const five = [{ key: 'echo', cost: 5 }, { key: 'alpha', cost: 9 }, { key: 'delta', cost: 1 }, { key: 'charlie', cost: 7 }, { key: 'bravo', cost: 3 }];
+  assert.deepEqual(planGroups(five, upTo(SYNTH_GROUP_MAX)), [['alpha'], ['bravo'], ['charlie'], ['delta'], ['echo']]);
+  assert.deepEqual(planGroups([], upTo(SYNTH_GROUP_MAX)), []);
+  // 22 processes costing 1..22: the 20 dearest open the 20 groups, then the two cheapest join the
+  // cheapest groups (k002 the group of k003, k001 that of k004), ties to the lowest index.
+  const ramp = Array.from({ length: 22 }, (_, i) => ({ key: keyOf(i + 1), cost: i + 1 }));
+  const groups = planGroups(ramp, upTo(SYNTH_GROUP_MAX));
+  assert.equal(groups.length, 20);
+  assert.deepEqual(groups.slice(0, 3), [['k001', 'k004'], ['k002', 'k003'], ['k005']]);
+  assert.deepEqual(groups.map((g) => g[0]), groups.map((g) => g[0]).sort(), 'ordered by first key');
+  assert.deepEqual(planGroups([...ramp].reverse(), upTo(SYNTH_GROUP_MAX)), groups, 'the input order does not matter');
+});
+
+test('planGroups: 65 equal processes make 20 groups of 3-4; 90 make 23, the count going up until every process has room', () => {
+  const g65 = planGroups(equal(65), upTo(SYNTH_GROUP_MAX));
+  assert.equal(g65.length, 20);
+  assert.deepEqual([...new Set(g65.map((g) => g.length))].sort(), [3, 4]);
+  assert.equal(g65.filter((g) => g.length === 4).length, 5);
+  assert.deepEqual(g65.flat().sort(), equal(65).map((x) => x.key), 'every process exactly once');
+  const g90 = planGroups(equal(90), upTo(SYNTH_GROUP_MAX));
+  assert.equal(g90.length, 23);
+  assert.ok(g90.every((g) => g.length >= 3 && g.length <= 4), 'balanced again with the larger count, not 20 full groups and a remainder');
+  // The token cap binds the same way: here no two processes fit together.
+  assert.equal(planGroups(equal(21), upTo(1)).length, 21);
+  // A process over the cap alone cannot be placed at all.
+  assert.throws(() => planGroups(equal(3), (keys) => !keys.includes('k001')), (e: unknown) => e instanceof SynthesisInputError && /k001 does not fit in a group even alone/.test(e.message));
+});
+
+test('synthesis inputs: one balanced wave on the committed M5 outputs: 20 groups, the largest within 25% of the mean cost', (t) => {
+  const out = join(repo, 'out');
+  const needed = ['rollup.json', 'validated', 'threads.json', 'messages.jsonl', 'people.json'];
+  if (!needed.every((f) => existsSync(join(out, f)))) {
+    t.skip('the committed run outputs are not here');
+    return;
+  }
+  const json = (f: string) => JSON.parse(readFileSync(join(out, f), 'utf8'));
+  const rollup = json('rollup.json') as Rollup;
+  const validated = readdirSync(join(out, 'validated'))
+    .filter((f) => /^batch-\d{3}\.json$/.test(f))
+    .sort()
+    .map((f) => json(join('validated', f)) as ValidatedExtraction);
+  const messages = new Map<string, ParsedMessage>();
+  for (const line of readFileSync(join(out, 'messages.jsonl'), 'utf8').split('\n')) {
+    if (line === '') continue;
+    const m = JSON.parse(line) as ParsedMessage;
+    messages.set(m.id, m);
+  }
+  const groups = buildSynthesisInputs(rollup, validated, messages, json('people.json') as Person[], json('threads.json') as Thread[]);
+  assert.equal(rollup.processes.length, 65, 'the M5 run: 22 groups of 3 before');
+  assert.equal(groups.length, SYNTH_MAX_GROUPS);
+  const cost = (g: (typeof groups)[number]) => g.entry.est_tokens + SYNTH_PROCESS_COST * g.entry.process_keys.length;
+  const costs = groups.map(cost);
+  const mean = costs.reduce((a, b) => a + b, 0) / costs.length;
+  assert.ok(Math.max(...costs) <= 1.25 * mean, `largest ${Math.max(...costs)} against a mean of ${Math.round(mean)}`);
+  assert.ok(groups.every((g) => g.entry.process_keys.length <= SYNTH_GROUP_MAX && g.entry.est_tokens <= SYNTH_INPUT_MAX_TOKENS));
+  assert.deepEqual(groups.flatMap((g) => g.entry.process_keys).sort(), rollup.processes.map((p) => p.key).sort());
+});
+
+test('synthesis inputs: a group per process for a small rollup, the index with content_sha, byte-identical on rerun', () => {
   const groups = groupsOf();
-  assert.deepEqual(groups.map((g) => [g.entry.group_id, g.entry.process_keys]), [['synth-000', ['alpha-work', 'beta-work', 'delta-one']], ['synth-001', ['gamma-work']]]);
+  assert.deepEqual(groups.map((g) => [g.entry.group_id, g.entry.process_keys]), [
+    ['synth-000', ['alpha-work']],
+    ['synth-001', ['beta-work']],
+    ['synth-002', ['delta-one']],
+    ['synth-003', ['gamma-work']],
+  ]);
   for (const g of groups) {
     assert.ok(g.entry.process_keys.length <= SYNTH_GROUP_MAX);
     assert.ok(g.entry.est_tokens <= SYNTH_INPUT_MAX_TOKENS);
@@ -466,9 +550,9 @@ test('synthesis inputs: groups of at most 3 processes in key order, the index wi
 });
 
 test('synthesis inputs: the counted numbers are labelled facts; quote lines carry id, date, sender, role, occurrence and the quote; the sidecar lists every id shown', () => {
-  const [first] = groupsOf();
+  const [first, second, third] = groupsOf();
   const md = (first as { markdown: string }).markdown;
-  assert.match(md, /^# synthesis group synth-000 \| 3 processes: alpha-work, beta-work, delta-one\n/);
+  assert.match(md, /^# synthesis group synth-000 \| 1 process: alpha-work\n/);
   assert.match(md, /\nEverything below is archive data summarised by the pipeline\. The counted numbers are facts, not estimates\./);
   assert.ok(
     md.includes(
@@ -478,7 +562,7 @@ test('synthesis inputs: the counted numbers are labelled facts; quote lines carr
     ),
     md,
   );
-  assert.ok(md.includes('\n## process delta-one | "Delta work" | promoted\n'), md);
+  assert.ok((third as { markdown: string }).markdown.includes('\n## process delta-one | "Delta work" | promoted\n'));
   assert.ok(md.includes('\nParticipants (top 8 by actions): "ann.lee@enron.com" authored 3, forwards 0, chasers 0, reads 3; '), 'participants quoted');
   assert.match(md, /\nStalls recorded: waiting_on_reply 1\.\n/);
   const line = md.split('\n').find((l) => l.startsWith('batch-000:e0 |')) as string;
@@ -487,11 +571,12 @@ test('synthesis inputs: the counted numbers are labelled facts; quote lines carr
   const sidecar = (first as { sidecar: SynthSidecar }).sidecar;
   const alpha = sidecar.processes[0] as SynthSidecar['processes'][number];
   assert.equal(alpha.occurrences, 4);
-  const shown = md.split('\n## process beta-work')[0]?.split('\n').filter((l) => /^batch-\d{3}:[eso]\d+ \|/.test(l)).map((l) => l.split(' | ')[0]);
+  const shown = md.split('\n').filter((l) => /^batch-\d{3}:[eso]\d+ \|/.test(l)).map((l) => l.split(' | ')[0]);
   assert.deepEqual(alpha.cited.map((c) => c.id), shown, 'every id shown, in the order shown');
   assert.deepEqual(alpha.cited.find((c) => c.id === 'batch-000:e0'), { id: 'batch-000:e0', kind: 'evidence', message_id: idOf(1), occurrence_id: occurrence, sender: 'ann.lee@enron.com', date_utc: '2001-01-10T15:00:00Z' });
   assert.ok(alpha.cited.some((c) => c.kind === 'stall' && c.id === 'batch-000:s0'));
-  const beta = sidecar.processes[1] as SynthSidecar['processes'][number];
+  const beta = (second as { sidecar: SynthSidecar }).sidecar.processes[0] as SynthSidecar['processes'][number];
+  assert.equal(beta.key, 'beta-work');
   assert.deepEqual(beta.cited.filter((c) => c.kind === 'ownership').map((c) => c.id), ['batch-000:o0', 'batch-000:o1']);
 });
 
@@ -630,9 +715,10 @@ test('rollup command: writes the rollup, coverage, validation report and group i
   assert.equal(rollupFreshness(root), 'missing');
   const r = capture(() => rollupCommand(root, []));
   assert.equal(r.code, 0, r.err.join('\n'));
-  assert.deepEqual(r.out, ['rollup: 4 processes (1 promoted), 13 counted messages in 14 occurrences; 1 tagged message unassigned; 2 synthesis groups.']);
+  assert.deepEqual(r.out, ['rollup: 4 processes (1 promoted), 13 counted messages in 14 occurrences; 1 tagged message unassigned; 4 synthesis groups.']);
   assert.equal(rollupFreshness(root), 'current');
-  const files = ['rollup.json', 'coverage.json', 'validation-report.json', 'synthesis/index.json', 'synthesis/input/synth-000.md', 'synthesis/input/synth-000.json', 'synthesis/input/synth-001.md', 'synthesis/input/synth-001.json'];
+  const groupIds = ['synth-000', 'synth-001', 'synth-002', 'synth-003'];
+  const files = ['rollup.json', 'coverage.json', 'validation-report.json', 'synthesis/index.json', ...groupIds.flatMap((id) => [`synthesis/input/${id}.md`, `synthesis/input/${id}.json`])];
   const before = files.map((f) => readFileSync(join(root, 'out', f)));
   const report = JSON.parse(readFileSync(join(root, 'out', 'validation-report.json'), 'utf8'));
   assert.deepEqual(report.quotes.evidence, { exact: 17, repaired: 0, rejected: 1 });
@@ -644,7 +730,7 @@ test('rollup command: writes the rollup, coverage, validation report and group i
   const coverage = JSON.parse(readFileSync(join(root, 'out', 'coverage.json'), 'utf8'));
   assert.equal(coverage.unique, 15);
   const index = JSON.parse(readFileSync(join(root, 'out', 'synthesis', 'index.json'), 'utf8'));
-  assert.deepEqual(index.map((g: { group_id: string; content_sha: string }) => [g.group_id, g.content_sha]), ['synth-000', 'synth-001'].map((id) => [id, sha256(readFileSync(join(root, 'out', 'synthesis', 'input', `${id}.md`), 'utf8'))]));
+  assert.deepEqual(index.map((g: { group_id: string; content_sha: string }) => [g.group_id, g.content_sha]), groupIds.map((id) => [id, sha256(readFileSync(join(root, 'out', 'synthesis', 'input', `${id}.md`), 'utf8'))]));
 
   // Rerun: the same bytes; a stale group file from a bigger earlier rollup is removed.
   writeFileSync(join(root, 'out', 'synthesis', 'input', 'synth-007.md'), 'left over');

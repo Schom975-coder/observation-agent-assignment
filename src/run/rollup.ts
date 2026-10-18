@@ -18,6 +18,7 @@ import {
   LedgerError,
   coverageFile,
   fileSha,
+  logStage,
   mergeFile,
   prepareStatsFile,
   readText,
@@ -137,59 +138,74 @@ export function validationReport(validated: readonly ValidatedExtraction[], inpu
 
 // ---- The command ----
 
+// The rollup stage's one step, as `rollup` and `advance` take it: count, write every output, and
+// return the summary line. Throws RollupError (a synthesis input that cannot be built is one too),
+// MergeError, LedgerError or ConfigError, each one line for the caller to print.
+export function rollupStep(root: string): string {
+  const started = performance.now();
+  const merge = mergeFreshness(root);
+  if (merge !== 'fresh') throw new RollupError(`out/merge.json is ${merge === 'missing' ? 'missing' : `not fresh (${merge})`}: run node obs.mjs merge first.`);
+  const inputs = loadMergeInputs(root);
+  const table = JSON.parse(readText(mergeFile(root)) as string) as MergeTable;
+  const peopleText = readText(join(root, 'out', 'people.json'));
+  if (peopleText === null) throw new RollupError('out/people.json is missing: run node obs.mjs prepare first.');
+  const people = JSON.parse(peopleText) as Person[];
+  const rates = loadEffortRates(ratesFile(root));
+  const shas = currentRollupInputs(root, extractionsSha(root, inputs.views));
+  const { rollup, notes } = rollupWithNotes({
+    validated: inputs.validated,
+    merge: table,
+    threads: inputs.threads,
+    messages: inputs.messages,
+    people,
+    rates,
+    taxonomy: inputs.taxonomy,
+    flagged: inputs.flagged,
+    shas,
+  });
+  let groups: ReturnType<typeof buildSynthesisInputs>;
+  try {
+    groups = buildSynthesisInputs(rollup, inputs.validated, inputs.messages, people, inputs.threads);
+  } catch (err) {
+    if (err instanceof SynthesisInputError) throw new RollupError(err.message);
+    throw err;
+  }
+
+  writeJsonAtomic(rollupFile(root), rollup);
+  writeJsonAtomic(coverageFile(root), { version: 1, ...rollup.coverage });
+  writeJsonAtomic(validationReportFile(root), validationReport(inputs.validated, inputs, rollup, notes));
+  // The group inputs, then the index that names them; a group no longer in the index goes.
+  const keep = new Set<string>();
+  for (const g of groups) {
+    writeFileAtomic(join(inputDir(root), `${g.entry.group_id}.md`), g.markdown);
+    writeJsonAtomic(join(inputDir(root), `${g.entry.group_id}.json`), g.sidecar);
+    keep.add(`${g.entry.group_id}.md`).add(`${g.entry.group_id}.json`);
+  }
+  let names: string[] = [];
+  try {
+    names = readdirSync(inputDir(root));
+  } catch {
+    // nothing written before
+  }
+  for (const name of names) if (/^synth-\d{3,6}\.(?:md|json)$/.test(name) && !keep.has(name)) removeFile(join(inputDir(root), name));
+  writeJsonAtomic(synthIndexFile(root), groups.map((g) => g.entry));
+
+  const promoted = rollup.processes.filter((p) => p.origin === 'promoted').length;
+  const occurrences = rollup.processes.reduce((n, p) => n + p.occurrences, 0);
+  const line =
+    `rollup: ${plural(rollup.processes.length, 'process', 'processes')} (${promoted} promoted), ${plural(rollup.coverage.counted, 'counted message')} ` +
+    `in ${plural(occurrences, 'occurrence')}; ${plural(rollup.unassigned.messages, 'tagged message')} unassigned; ${plural(groups.length, 'synthesis group')}.`;
+  logStage(root, 'rollup', started, line);
+  return line;
+}
+
 export function rollupCommand(root: string, args: string[]): number {
   try {
     if (args.length > 0) throw new RollupError(`unexpected argument "${args[0]}". Usage: node obs.mjs rollup`);
-    const merge = mergeFreshness(root);
-    if (merge !== 'fresh') throw new RollupError(`out/merge.json is ${merge === 'missing' ? 'missing' : `not fresh (${merge})`}: run node obs.mjs merge first.`);
-    const inputs = loadMergeInputs(root);
-    const table = JSON.parse(readText(mergeFile(root)) as string) as MergeTable;
-    const peopleText = readText(join(root, 'out', 'people.json'));
-    if (peopleText === null) throw new RollupError('out/people.json is missing: run node obs.mjs prepare first.');
-    const people = JSON.parse(peopleText) as Person[];
-    const rates = loadEffortRates(ratesFile(root));
-    const shas = currentRollupInputs(root, extractionsSha(root, inputs.views));
-    const { rollup, notes } = rollupWithNotes({
-      validated: inputs.validated,
-      merge: table,
-      threads: inputs.threads,
-      messages: inputs.messages,
-      people,
-      rates,
-      taxonomy: inputs.taxonomy,
-      flagged: inputs.flagged,
-      shas,
-    });
-    const groups = buildSynthesisInputs(rollup, inputs.validated, inputs.messages, people, inputs.threads);
-
-    writeJsonAtomic(rollupFile(root), rollup);
-    writeJsonAtomic(coverageFile(root), { version: 1, ...rollup.coverage });
-    writeJsonAtomic(validationReportFile(root), validationReport(inputs.validated, inputs, rollup, notes));
-    // The group inputs, then the index that names them; a group no longer in the index goes.
-    const keep = new Set<string>();
-    for (const g of groups) {
-      writeFileAtomic(join(inputDir(root), `${g.entry.group_id}.md`), g.markdown);
-      writeJsonAtomic(join(inputDir(root), `${g.entry.group_id}.json`), g.sidecar);
-      keep.add(`${g.entry.group_id}.md`).add(`${g.entry.group_id}.json`);
-    }
-    let names: string[] = [];
-    try {
-      names = readdirSync(inputDir(root));
-    } catch {
-      // nothing written before
-    }
-    for (const name of names) if (/^synth-\d{3,6}\.(?:md|json)$/.test(name) && !keep.has(name)) removeFile(join(inputDir(root), name));
-    writeJsonAtomic(synthIndexFile(root), groups.map((g) => g.entry));
-
-    const promoted = rollup.processes.filter((p) => p.origin === 'promoted').length;
-    const occurrences = rollup.processes.reduce((n, p) => n + p.occurrences, 0);
-    console.log(
-      `rollup: ${plural(rollup.processes.length, 'process', 'processes')} (${promoted} promoted), ${plural(rollup.coverage.counted, 'counted message')} ` +
-        `in ${plural(occurrences, 'occurrence')}; ${plural(rollup.unassigned.messages, 'tagged message')} unassigned; ${plural(groups.length, 'synthesis group')}.`,
-    );
+    console.log(rollupStep(root));
     return 0;
   } catch (err) {
-    if (err instanceof RollupError || err instanceof MergeError || err instanceof LedgerError || err instanceof ConfigError || err instanceof SynthesisInputError) {
+    if (err instanceof RollupError || err instanceof MergeError || err instanceof LedgerError || err instanceof ConfigError) {
       console.error(`rollup: ${withoutRoot(err.message, root).replace(/\s*\n\s*/g, ' ')}`);
       return 1;
     }

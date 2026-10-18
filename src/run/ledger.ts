@@ -24,7 +24,7 @@
 // reads what a model replied: the ledger, the files and the bindings are the only control state.
 import { appendFileSync, closeSync, existsSync, mkdirSync, openSync, readdirSync, readFileSync, renameSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { randomBytes } from 'node:crypto';
-import { dirname, join } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
 import { sha256 } from '../util/hash.ts';
 import { normalizeNewlines } from '../util/text.ts';
 import { utcMs } from '../util/time.ts';
@@ -226,6 +226,14 @@ export function agentBindingFile(root: string, agentId: string): string {
 
 // A repo-relative path as messages show it, "/" separators.
 const rel = (root: string, file: string): string => withoutRoot(file, root).replaceAll('\\', '/');
+
+// The project folder as every prompt prints it (ARCHITECTURE.md 6.22): absolute, forward slashes on
+// every OS, no trailing separator. It is the one absolute path a prompt carries; each agent
+// definition names its files relative to it.
+export function projectFolder(root: string): string {
+  const folder = resolve(root).replaceAll('\\', '/').replace(/\/+$/, '');
+  return folder === '' ? '/' : folder;
+}
 
 // "YYYY-MM-DDTHH:MM:SSZ", the form every stored time uses.
 export const nowUtc = (): string => new Date().toISOString().replace(/\.\d+Z$/, 'Z');
@@ -964,16 +972,23 @@ export const writeRun = (root: string, run: RunState): void => writeJsonAtomic(r
 // "20261017T010203Z": sortable and safe as a file name on every OS.
 export const newRunId = (startedUtc: string): string => startedUtc.replace(/[-:]/g, '');
 
+const RUN_ID = /^[A-Za-z0-9_-]{1,64}$/;
+
 // Append one record to the active run's log, out/runs/<run_id>.jsonl, or out/runs/adhoc.jsonl when
-// no run is active. One short line per append, so concurrent writers (the hooks) don't interleave
+// no run is active. `forRun` names the run instead (a command that ended the run it started in
+// still logs to it). One short line per append, so concurrent writers (the hooks) don't interleave
 // inside a line. The log is committed, so the project folder is cut out of everything in it.
-export function appendRunLog(root: string, record: Record<string, unknown>): void {
+export function appendRunLog(root: string, record: Record<string, unknown>, forRun?: string): void {
   let runId = 'adhoc';
-  try {
-    const run = readRun(root);
-    if (run.active && run.run_id !== null && /^[A-Za-z0-9_-]{1,64}$/.test(run.run_id)) runId = run.run_id;
-  } catch {
-    // an unreadable run state still gets its events logged, as adhoc
+  if (forRun !== undefined && RUN_ID.test(forRun)) {
+    runId = forRun;
+  } else {
+    try {
+      const run = readRun(root);
+      if (run.active && run.run_id !== null && RUN_ID.test(run.run_id)) runId = run.run_id;
+    } catch {
+      // an unreadable run state still gets its events logged, as adhoc
+    }
   }
   const dir = join(root, 'out', 'runs');
   mkdirSync(dir, { recursive: true });
@@ -992,6 +1007,50 @@ export function activeRunId(root: string): string | null {
     return null;
   }
 }
+
+// ---- Timing events of the pipeline's own commands (ARCHITECTURE.md 7.4, 15.3) ----
+//
+// `advance`, every deterministic stage step and `prepare` log one event each with its duration in
+// milliseconds, so a run's time breaks down from its log alone: a stage's hand-off is the gap
+// between its `stage` event and the next SubagentStart, a cycle's cost the gap between an `advance`
+// and the SubagentStarts it dispatched. Logged only during a run (to `runId`, the active run by
+// default): a command typed outside one leaves no file behind. Never in the way: a failure to log
+// is ignored, the step's result stands.
+export function logRunEvent(root: string, record: Record<string, unknown>, runId: string | null = activeRunId(root)): void {
+  if (runId === null) return;
+  try {
+    appendRunLog(root, record, runId);
+  } catch {
+    // the step's outcome matters more than its log line
+  }
+}
+
+// One deterministic step done: `{ event: 'stage', name, attempt?, ms, summary }`. `startedMs` is
+// performance.now() when the step began.
+export type StageName =
+  | 'taxonomy prompt'
+  | 'taxonomy accept'
+  | 'merge prompt'
+  | 'merge accept'
+  | 'rollup'
+  | 'score'
+  | 'artifacts prepare'
+  | 'artifacts collect'
+  | 'run end';
+export function logStage(root: string, name: StageName, startedMs: number, summary: string, attempt?: number): void {
+  logRunEvent(root, { event: 'stage', name, ...(attempt === undefined ? {} : { attempt }), ms: Math.round(performance.now() - startedMs), summary });
+}
+
+// What a single-call stage (the taxonomy, the merge) needs next, as `advance` and the stage's own
+// command read it (ARCHITECTURE.md 15.2): nothing (fresh: accepted now or before), one agent run
+// with this prompt (attempt: the prompts printed for these inputs, this one included), or nothing
+// more without a person (stopped: one line for advance's halt_reason; `details`: the lines the
+// stage's command prints). `notes`: what happened on the way (a waiting proposal accepted or not),
+// one line each, which the command prints to stderr and advance lists in its steps.
+export type StageStep =
+  | { kind: 'fresh'; notes: string[] }
+  | { kind: 'prompt'; prompt: string; attempt: number; notes: string[] }
+  | { kind: 'stopped'; reason: string; details: string[]; notes: string[] };
 
 // ---- The run claim ----
 //

@@ -8,7 +8,21 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadScoring } from '../src/config.ts';
-import { SELF_REPORTED_MIN_SENDERS, STEPS_MAX, SYNTHESIS_OUTPUT_MAX_BYTES, checkSynthesis, checkSynthesisSchema } from '../src/model/synthesis.ts';
+import {
+  APPROACH_MAX_CHARS,
+  DESCRIPTION_MAX_CHARS,
+  DESCRIPTION_MIN_CHARS,
+  LENGTH_MARGIN_PCT,
+  RATIONALE_MAX_CHARS,
+  SELF_REPORTED_MIN_SENDERS,
+  STEP_MAX_CHARS,
+  STEPS_MAX,
+  SUMMARY_MAX_CHARS,
+  SYNTHESIS_OUTPUT_MAX_BYTES,
+  checkSynthesis,
+  checkSynthesisSchema,
+  withMargin,
+} from '../src/model/synthesis.ts';
 import { sha256 } from '../src/util/hash.ts';
 import type { SynthCited, SynthSidecar, SynthesisGroup, WorkEstimate } from '../src/types.ts';
 
@@ -134,6 +148,28 @@ test('lengths, steps, and free text: no instruction anywhere, effort numbers onl
   assert.deepEqual(problems((g) => ((g.processes[0] as { description: string }).description = 'The desk spends about 2 hours each round confirming figures with the pipeline.')), [], 'a number in the description is allowed');
   assert.match(problems((g) => ((g.processes[0] as { steps: string[] }).steps = ['Spend 2 hours confirming'])).join('\n'), /steps\[0\] has a number of hours, minutes, dollars or percent \("2 hours"\)/);
   assert.match(problems((g) => ((g.processes[0] as { automation: { approach: string } }).automation.approach = 'Automate 80% of it')).join('\n'), /automation\.approach has a number of hours, minutes, dollars or percent/);
+});
+
+test('lengths with the margin: a cap is enforced 20% over what the prompt states, and the problem states the cap', () => {
+  assert.deepEqual([LENGTH_MARGIN_PCT, withMargin(DESCRIPTION_MAX_CHARS), withMargin(STEP_MAX_CHARS)], [20, 720, 240]);
+  const description = (n: number) => problems((g) => ((g.processes[0] as { description: string }).description = `The desk ${'x'.repeat(n - 9)}`));
+  assert.deepEqual(description(650), [], 'a description a few characters over 600, as in the cold run, is accepted');
+  assert.deepEqual(description(720), []);
+  assert.deepEqual(description(721), ['processes[0] (alpha).description must be 40-600 characters, got 721']);
+  const step = (n: number) => problems((g) => ((g.processes[0] as { steps: string[] }).steps = ['x'.repeat(n)]));
+  assert.deepEqual(step(240), []);
+  assert.deepEqual(step(241), ['processes[0] (alpha).steps[0] must be 1-200 characters, got 241']);
+  // Every other cap the same way.
+  const summary = (n: number) => problems((g) => ((g.processes[0] as { stalls: Array<{ summary: string }> }).stalls[0] as { summary: string }).summary = 's'.repeat(n));
+  assert.deepEqual([summary(withMargin(SUMMARY_MAX_CHARS)).length, summary(withMargin(SUMMARY_MAX_CHARS) + 1).length], [0, 1]);
+  const approach = (n: number) => problems((g) => ((g.processes[0] as { automation: { approach: string } }).automation.approach = 'a'.repeat(n)));
+  assert.deepEqual([approach(withMargin(APPROACH_MAX_CHARS)).length, approach(withMargin(APPROACH_MAX_CHARS) + 1).length], [0, 1]);
+  const rationale = (n: number) => problems((g) => (alphaEstimate(g).rationale = 'r'.repeat(n)));
+  assert.deepEqual([rationale(withMargin(RATIONALE_MAX_CHARS)).length, rationale(withMargin(RATIONALE_MAX_CHARS) + 1).length], [0, 1]);
+  // The agent is told the caps as written, never the margin (the hooks seam pins the stated caps).
+  const definition = readFileSync(join(repo, '.claude', 'agents', 'synthesizer.md'), 'utf8');
+  assert.ok(definition.includes(`${DESCRIPTION_MIN_CHARS}-${DESCRIPTION_MAX_CHARS} characters`) && definition.includes(`each at most ${STEP_MAX_CHARS} characters`));
+  for (const n of [LENGTH_MARGIN_PCT, withMargin(DESCRIPTION_MAX_CHARS), withMargin(STEP_MAX_CHARS)]) assert.ok(!new RegExp(`\\b${n}\\b`).test(definition), `${n} is not in the definition`);
 });
 
 test('E1: whole minutes, 1 <= low <= mid <= high <= 480, automatable 0-80', () => {

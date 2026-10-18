@@ -39,6 +39,7 @@ import {
 import { buildPeople } from '../src/normalize/people.ts';
 import { buildThreads } from '../src/normalize/threads.ts';
 import { parseMessage } from '../src/parse/message.ts';
+import { advanceCommand, type AdvanceReport } from '../src/run/commands.ts';
 import { TAXONOMY_MAX_DISPATCHES, taxonomistPrompt, taxonomyCommand } from '../src/run/taxonomy.ts';
 import { gitBlobSha, sha256 } from '../src/util/hash.ts';
 import type { ParsedMessage, Thread } from '../src/types.ts';
@@ -496,15 +497,7 @@ test('taxonomy: missing -> fresh prompt; accept writes the canonical file byte f
   const root = project('cycle');
   const first = run(root, []);
   assert.equal(first.code, 0);
-  assert.equal(
-    first.out,
-    [
-      'Propose the process taxonomy.',
-      `Digest file: ${slash(join(root, 'out', 'taxonomy-digest.md'))}`,
-      `Output file: ${slash(join(root, 'out', 'taxonomy-proposed.json'))}`,
-      'Reply with one short sentence and no email content.',
-    ].join('\n'),
-  );
+  assert.equal(first.out, ['Propose the process taxonomy.', `Project folder: ${slash(root)}`].join('\n'));
   assert.equal(state(root).dispatches, 1);
   assert.equal(state(root).status, 'dispatched');
 
@@ -564,13 +557,17 @@ test('taxonomy: a failed accept records the problems; the next prompt is a fix r
   assert.equal(fix.code, 0);
   const lines = fix.out.split('\n');
   assert.equal(lines[0], 'Fix the process taxonomy proposal.');
-  assert.equal(lines[2], `Previous proposal: ${slash(join(root, 'out', 'taxonomy-proposed.json'))}`);
-  assert.equal(lines[3], 'The pipeline checked the previous proposal and found 3 problems:');
+  assert.equal(lines[1], `Project folder: ${slash(root)}`);
+  assert.equal(lines[2], 'The pipeline checked the previous proposal and found 3 problems:');
   // In document order: processes[0] first.
-  assert.match(lines[4] ?? '', /^- processes\[0\] .*"no such subject" is not a subject in the corpus/);
-  assert.match(lines[5] ?? '', /^- processes\[0\] .*example_subjects cover 0 occurrences/);
-  assert.match(lines[6] ?? '', /^- schema: processes\[1\] .*has unknown key "hours_per_month"/);
-  assert.equal(lines.at(-2), `Output file: ${slash(join(root, 'out', 'taxonomy-proposed.json'))}`);
+  assert.match(lines[3] ?? '', /^- processes\[0\] .*"no such subject" is not a subject in the corpus/);
+  assert.match(lines[4] ?? '', /^- processes\[0\] .*example_subjects cover 0 occurrences/);
+  assert.match(lines[5] ?? '', /^- schema: processes\[1\] .*has unknown key "hours_per_month"/);
+  assert.equal(
+    lines.at(-1),
+    'Read the digest and the previous proposal, fix only these problems, keep every other entry exactly as it was, and Write the whole file again.',
+  );
+  assert.equal(lines.length, 7);
   assert.ok(!fix.out.includes('OUTPUT:'));
   assert.ok(existsSync(join(root, 'out', 'taxonomy-proposed.json')), 'a fix round keeps the previous proposal');
   assert.equal(state(root).dispatches, 2);
@@ -588,7 +585,7 @@ test('taxonomy: a fix prompt lists the first 20 problems and says how many there
   assert.match(rejected.out, /^taxonomy: the proposal was not accepted: 48 problems\.\n/);
   assert.match(rejected.out, /\n {2}\(28 more\)\n/);
   const fix = run(root, []).out.split('\n');
-  assert.equal(fix[3], 'The pipeline checked the previous proposal and found 48 problems; the first 20 are listed:');
+  assert.equal(fix[2], 'The pipeline checked the previous proposal and found 48 problems; the first 20 are listed:');
   assert.equal(fix.filter((l) => l.startsWith('- ')).length, 20);
 });
 
@@ -672,6 +669,54 @@ test('taxonomy: after an accepted taxonomy is cleared, the attempts start again'
   assert.equal(state(root).dispatches, 1);
 });
 
+test('advance takes the taxonomy stage: the taxonomist in the foreground, its proposal accepted on the next call, a stopped stage as a halt, a setup failure as one line', () => {
+  const advance = (root: string, args: string[] = []) => {
+    const out: string[] = [];
+    const err: string[] = [];
+    const [log, error] = [console.log, console.error];
+    console.log = (...a: unknown[]) => void out.push(a.join(' '));
+    console.error = (...a: unknown[]) => void err.push(a.join(' '));
+    try {
+      const code = advanceCommand(root, [...args, '--json']);
+      return { code, report: code === 0 ? (JSON.parse(out.join('\n')) as AdvanceReport) : null, err };
+    } finally {
+      [console.log, console.error] = [log, error];
+    }
+  };
+  const withBatches = (root: string) => {
+    mkdirSync(join(root, 'out', 'batches'), { recursive: true });
+    writeFileSync(join(root, 'out', 'batches', 'index.json'), '[]');
+    return root;
+  };
+  const root = withBatches(project('advance'));
+  const first = advance(root);
+  assert.equal(first.code, 0, first.err.join('\n'));
+  assert.deepEqual(first.report?.agents, [{ subagent_type: 'taxonomist', description: 'Build taxonomy', prompt: taxonomistPrompt(root, null), run_in_background: false }]);
+  assert.deepEqual([first.report?.stage, first.report?.wait, first.report?.halt, state(root).dispatches], ['taxonomy', false, false, 1]);
+  // The taxonomist wrote its proposal: the next call accepts it and goes on to the next stage,
+  // which here cannot run (no prepared messages): one line, exit 1.
+  writeFileSync(join(root, 'out', 'taxonomy-proposed.json'), readFileSync(join(fixtures, 'proposal.json')));
+  const second = advance(root);
+  assert.equal(second.code, 1);
+  assert.deepEqual(second.err, ['advance: out/messages.jsonl is missing: run node obs.mjs prepare first.']);
+  assert.ok(readFileSync(join(root, 'out', 'taxonomy.json')).equals(readFileSync(join(fixtures, 'taxonomy.json'))), 'accepted before the merge stage failed');
+
+  // Every attempt used up: a halt with the reason, nothing to start, exit 0.
+  const stopped = withBatches(project('advance-stopped'));
+  for (let i = 1; i <= TAXONOMY_MAX_DISPATCHES; i++) {
+    run(stopped, []);
+    propose(stopped, { processes: [] });
+    run(stopped, ['accept']);
+  }
+  const halted = advance(stopped);
+  assert.equal(halted.code, 0, halted.err.join('\n'));
+  assert.deepEqual([halted.report?.halt, halted.report?.agents, halted.report?.done], [true, [], false]);
+  assert.match(halted.report?.halt_reason ?? '', /^taxonomy: stopped: 4 proposals for this digest and taxonomist definition failed the check; the last had 1 problem \(node obs\.mjs taxonomy lists them\); change the taxonomist definition/);
+  assert.equal(state(stopped).dispatches, TAXONOMY_MAX_DISPATCHES, 'a halt is not an attempt');
+  // Bad arguments, as refill's.
+  assert.match(advance(stopped, ['--fast']).err[0] ?? '', /^advance: unexpected option "--fast"\. Usage: node obs\.mjs advance /);
+});
+
 test('taxonomy: setup problems and bad arguments are one clean line, exit 1', () => {
   const root = project('setup');
   rmSync(join(root, 'out', 'taxonomy-digest.md'));
@@ -697,7 +742,8 @@ test('seam: the taxonomist definition has the agreed frontmatter and states ever
   const fields = Object.fromEntries((fm[1] as string).split('\n').map((l) => [l.slice(0, l.indexOf(':')), l.slice(l.indexOf(':') + 1).trim()]));
   assert.equal(fields.name, 'taxonomist');
   assert.equal(fields.tools, 'Read, Write');
-  assert.equal(fields.model, 'inherit');
+  assert.equal(fields.model, 'opus');
+  assert.equal(fields.effort, 'medium');
   assert.equal(fields.permissionMode, 'acceptEdits');
   assert.equal(fields.maxTurns, '6');
   for (const phrase of [

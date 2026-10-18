@@ -26,7 +26,8 @@ import { canonicalTaxonomy, type Taxonomy } from '../src/model/taxonomy.ts';
 import { buildThreads } from '../src/normalize/threads.ts';
 import { parseMessage } from '../src/parse/message.ts';
 import { batchJob, markDispatched, recordValidation } from '../src/run/ledger.ts';
-import { MERGE_MAX_DISPATCHES, mergeCommand, mergeFreshness, mergerPrompt } from '../src/run/merge.ts';
+import { advanceCommand, type AdvanceReport } from '../src/run/commands.ts';
+import { MERGE_MAX_DISPATCHES, currentMergeShas, mergeCommand, mergeFreshness, mergerPrompt } from '../src/run/merge.ts';
 import { gitBlobSha, sha256 } from '../src/util/hash.ts';
 import type { BatchEntry, MergeProposal, MergeTable, ParsedMessage, ValidatedExtraction } from '../src/types.ts';
 
@@ -105,15 +106,24 @@ const VALIDATED = Object.keys(BATCHES).map((id) => validatedOf(id, sha256(id)));
 const MERGER = '---\nname: merger\n---\n\nA stand-in: only its hash matters here.\n';
 const PROMOTE_MIN = { messages: 3, occurrences: 3, threads: 2, active_months: 2 };
 
-// A project whose ledger counts both batches done, with everything the merge reads.
+// A project whose ledger counts both batches done, with everything the merge reads. freshTaxonomy:
+// the taxonomy accepted from a digest and taxonomist definition that are there (written before the
+// batches are stamped: the taxonomy is part of their cache keys), so the run's stage is the merge.
 let projects = 0;
-function project(): string {
+function project(opts: { freshTaxonomy?: boolean } = {}): string {
   const root = join(tmp, `p${projects++}`);
   for (const dir of ['out/batches', 'out/validated', 'config', '.claude/agents']) mkdirSync(join(root, dir), { recursive: true });
   writeFileSync(join(root, 'config', 'scoring.json'), readFileSync(join(repo, 'config', 'scoring.json')));
   writeFileSync(join(root, '.claude', 'agents', 'merger.md'), MERGER);
   writeFileSync(join(root, '.claude', 'agents', 'extractor.md'), '---\nname: extractor\n---\n');
   writeFileSync(join(root, 'out', 'taxonomy.json'), `${JSON.stringify(TAXONOMY, null, 2)}\n`);
+  if (opts.freshTaxonomy === true) {
+    const digest = '# digest\n';
+    const agent = '---\nname: taxonomist\n---\n';
+    writeFileSync(join(root, 'out', 'taxonomy-digest.md'), digest);
+    writeFileSync(join(root, '.claude', 'agents', 'taxonomist.md'), agent);
+    writeFileSync(join(root, 'out', 'taxonomy.json'), JSON.stringify(canonicalTaxonomy(TAXONOMY_PROCESSES, sha256(digest), sha256(agent))));
+  }
   writeFileSync(join(root, 'out', 'messages.jsonl'), MESSAGES.map((m) => `${JSON.stringify(m)}\n`).join(''));
   writeFileSync(join(root, 'out', 'threads.json'), `${JSON.stringify(THREADS, null, 2)}\n`);
   writeFileSync(join(root, 'out', 'prepare-stats.json'), JSON.stringify({ corpus_hash: 'c'.repeat(64), suspected_injection: [] }));
@@ -417,13 +427,7 @@ test('merge: prints the fresh prompt; accept on the recorded good proposal write
   assert.equal(mergeFreshness(root), 'missing');
   const r = capture(() => mergeCommand(root, []));
   assert.equal(r.code, 0, r.err.join('\n'));
-  assert.deepEqual((r.out[0] as string).split('\n'), [
-    'Merge the proposed process keys into the taxonomy.',
-    `Merge input: ${base}/out/merge-input.md`,
-    `Taxonomy file: ${base}/out/taxonomy.json`,
-    `Output file: ${base}/out/merge-proposed.json`,
-    'Reply with one short sentence and no email content.',
-  ]);
+  assert.deepEqual((r.out[0] as string).split('\n'), ['Merge the proposed process keys into the taxonomy.', `Project folder: ${base}`]);
   assert.equal(r.out.length, 1, 'only the prompt on stdout');
   assert.equal(readFileSync(join(root, 'out', 'merge-input.md'), 'utf8'), buildMergeInput(slugFacts(VALIDATED, THREADS, BY_ID), TAXONOMY));
   writeFileSync(join(root, 'out', 'merge-proposed.json'), readFileSync(join(fixtures, 'proposal.json')));
@@ -461,14 +465,10 @@ test('merge: a failed accept gives a fix round with the problems; after 4 attemp
   const fix = capture(() => mergeCommand(root, []));
   assert.deepEqual((fix.out[0] as string).split('\n'), [
     'Fix the process-key merge proposal.',
-    `Merge input: ${base}/out/merge-input.md`,
-    `Taxonomy file: ${base}/out/taxonomy.json`,
-    `Previous proposal: ${base}/out/merge-proposed.json`,
+    `Project folder: ${base}`,
     'The pipeline checked the previous proposal and found 1 problem:',
     '- mapped: "nominations" is not a taxonomy key: list these proposed keys under a key of out/taxonomy.json exactly as written there, in the aliases of a promoted process, or in unassigned',
-    'Read the merge input, the taxonomy and the previous proposal, fix only these problems, keep every other entry exactly as it was, and Write the whole file to:',
-    `Output file: ${base}/out/merge-proposed.json`,
-    'Reply with one short sentence and no email content.',
+    'Read the merge input out/merge-input.md, the taxonomy out/taxonomy.json and the previous proposal out/merge-proposed.json, fix only these problems, keep every other entry exactly as it was, and Write the whole file again.',
   ]);
   assert.equal(mergerPrompt(root, ['x'], 1).split('\n')[0], 'Fix the process-key merge proposal.');
   // Two more failures (attempts 2 and 3), then a fourth.
@@ -489,6 +489,38 @@ test('merge: a failed accept gives a fix round with the problems; after 4 attemp
   const tooSmall = clone(GOOD);
   writeFileSync(join(other, 'out', 'merge-proposed.json'), JSON.stringify(tooSmall));
   assert.match(capture(() => mergeCommand(other, ['accept'])).out[0] ?? '', /^merge: accepted on attempt 1: .*1 demoted/);
+});
+
+test('advance halts on a merge it cannot start: an input too large for one merger, and the attempts used up', () => {
+  const advance = (root: string) => {
+    const r = capture(() => advanceCommand(root, ['--json']));
+    assert.equal(r.code, 0, r.err.join('\n'));
+    assert.deepEqual(r.err, [], 'nothing on stderr ahead of the JSON');
+    return JSON.parse(r.out[0] as string) as AdvanceReport;
+  };
+  // 1,300 proposed keys: over the input's line cap even with definitions cut and subjects dropped.
+  const big = project({ freshTaxonomy: true });
+  const file = join(big, 'out', 'validated', 'batch-000.json');
+  const v = JSON.parse(readFileSync(file, 'utf8')) as ValidatedExtraction;
+  (v.messages[0] as { processes: string[] }).processes = Array.from({ length: 1300 }, (_, i) => `new:proposed-work-${i}`);
+  writeFileSync(file, JSON.stringify(v));
+  const tooLarge = advance(big);
+  assert.deepEqual([tooLarge.halt, tooLarge.agents, tooLarge.stage, tooLarge.done], [true, [], 'merge', false]);
+  assert.match(tooLarge.halt_reason ?? '', /^merge: stopped: .*over the cap of 48000 tokens and 1200 lines/);
+  assert.equal(mergeFreshness(big), 'stopped');
+  // The merge command says the same, as before: one line, exit 1.
+  const command = capture(() => mergeCommand(big, []));
+  assert.deepEqual([command.code, command.out, command.err], [1, [], [tooLarge.halt_reason]]);
+
+  // Every attempt for these inputs used up.
+  const used = project({ freshTaxonomy: true });
+  writeFileSync(
+    join(used, 'out', 'ledger', 'merge.json'),
+    JSON.stringify({ ...currentMergeShas(used), status: 'failed', dispatches: MERGE_MAX_DISPATCHES, problems: 1, last_problems: ['a problem'], reason: null, dispatched_utc: null, finished_utc: null }),
+  );
+  const halted = advance(used);
+  assert.deepEqual([halted.halt, halted.agents, halted.stage], [true, [], 'merge']);
+  assert.match(halted.halt_reason ?? '', /^merge: stopped: 4 proposals for these extractions, taxonomy and merger definition failed the check; the last had 1 problem \(node obs\.mjs merge lists them\); change the merger definition/);
 });
 
 test('merge: a proposal left unchecked is checked on the next run; accept without one; refusals before extraction is complete or without the merger definition', () => {

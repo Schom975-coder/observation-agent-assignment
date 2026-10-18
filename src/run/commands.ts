@@ -1,12 +1,14 @@
 // The ledger commands the orchestrator (and a person) runs: status, dispatch, validate, refill,
-// verify, run. Each takes a job of either kind: an extraction batch ("batch-NNN", or just the
-// number) or a synthesis group ("synth-NNN"). Output is short on purpose: the orchestrator reads
-// `status --json` (or one `refill`) after every subagent completion and passes each prompt on
-// unchanged. No command reads what a subagent replied; the ledger and the files on disk are the
-// only state.
+// advance, verify, run. Each takes a job of either kind: an extraction batch ("batch-NNN", or just
+// the number) or a synthesis group ("synth-NNN"). Output is short on purpose: during a run the
+// orchestrator calls one `advance` per turn, which records the completions, runs every
+// deterministic stage step that is ready and hands out the next subagents, whose Agent calls it
+// makes unchanged. No command reads what a subagent replied; the ledger and the files on disk are
+// the only state.
 import { existsSync } from 'node:fs';
+import { ConfigError } from '../config.ts';
 import { normalizeNewlines } from '../util/text.ts';
-import { checkJob, descriptionFor, extractorPrompt, jobPrompt } from './jobs.ts';
+import { checkJob, descriptionFor, jobPrompt } from './jobs.ts';
 import {
   LedgerError,
   HALT_NO_OUTPUT,
@@ -14,6 +16,7 @@ import {
   JOB_KINDS,
   MAX_DISPATCHES,
   ORPHAN_GRACE_S,
+  activeRunId,
   appendRunLog,
   batchViews,
   clearModelOutputs,
@@ -23,6 +26,8 @@ import {
   inFlight,
   kindOf,
   loadJobs,
+  logRunEvent,
+  logStage,
   markDispatched,
   newRunId,
   nextToDispatch,
@@ -50,14 +55,14 @@ import {
   type BatchView,
   type EffectiveStatus,
   type RunState,
+  type StageStep,
   type TaxonomyFreshness,
 } from './ledger.ts';
-import { extractionsSha, mergeFreshness, type MergeFreshness } from './merge.ts';
-import { rollupFreshness, type RollupFreshness } from './rollup.ts';
-import { scoreFreshness, synthesisSha, type ScoreFreshness } from './score.ts';
+import { MergeError, extractionsSha, mergeFreshness, mergeStep, type MergeFreshness } from './merge.ts';
+import { RollupError, rollupFreshness, rollupStep, type RollupFreshness } from './rollup.ts';
+import { ScoreError, scoreFreshness, scoreStep, synthesisSha, type ScoreFreshness } from './score.ts';
+import { TaxonomyError, taxonomyStep } from './taxonomy.ts';
 import type { JobEntry, JobKind } from '../types.ts';
-
-export { extractorPrompt };
 
 const plural = (n: number, one: string, many = `${one}s`): string => `${n} ${n === 1 ? one : many}`;
 
@@ -468,42 +473,62 @@ export const REFILL_MAX_BYTES = 64_000;
 // a row not counted toward MAX_DISPATCHES, and the stamp counted toward this run's circuit breaker.
 export const REFILL_USAGE = 'Usage: node obs.mjs refill [<job_id> ...] [--failed <job_id> ...] --json';
 
+// The jobs a refill or an advance names: completions, then after --failed the jobs whose Agent call
+// failed or was refused. `--json` is accepted anywhere (the output is JSON either way).
+function namedJobs(args: readonly string[], usage: string): { completed: string[]; gone: string[] } {
+  const rest = args.filter((a) => a !== '--json');
+  const cut = rest.indexOf('--failed');
+  const completed = (cut === -1 ? rest : rest.slice(0, cut)).map(normalizeJobId);
+  const gone = cut === -1 ? [] : rest.slice(cut + 1).map(normalizeJobId);
+  for (const a of [...completed, ...gone]) {
+    if (a.startsWith('-')) throw new LedgerError(`unexpected option "${a}". ${usage}`);
+  }
+  if (cut !== -1 && gone.length === 0) throw new LedgerError(`--failed needs the jobs whose Agent call failed. ${usage}`);
+  return { completed, gone };
+}
+
+// Record each named job exactly as `validate <id>` does (a job already stamped is reported, not
+// re-checked); a job named after --failed is recorded at once, never left "still starting". An ID
+// named twice is recorded once.
+function recordNamed(root: string, completed: readonly string[], gone: readonly string[]): RefillReport['validated'] {
+  const recorded: RefillReport['validated'] = [];
+  for (const id of [...new Set([...completed, ...gone])]) {
+    const job = jobOf(root, id);
+    if (readBatchState(root, id).status === 'pending') {
+      recorded.push({ id, status: 'pending', note: 'already recorded' });
+      continue;
+    }
+    const r = validateJob(root, job, { gone: gone.includes(id) });
+    if (r.kind === 'recorded') recorded.push({ id, status: r.state.status, note: 'recorded' });
+    else if (r.kind === 'already') recorded.push({ id, status: r.status, note: 'already recorded' });
+    else recorded.push({ id, status: 'running', note: r.kind === 'starting' ? 'still starting' : 'could not be checked' });
+  }
+  return recorded;
+}
+
+// Hand out each job exactly as `dispatch <id>` does; a refusal (an input changed since its stage
+// ran, say) is reported with its reason, not thrown.
+function dispatchAll(root: string, ids: readonly string[]): { jobs: RefillReport['jobs']; refused: RefillReport['refused'] } {
+  const jobs: RefillReport['jobs'] = [];
+  const refused: RefillReport['refused'] = [];
+  for (const id of ids) {
+    try {
+      const { fix } = markDispatched(root, jobOf(root, id));
+      jobs.push({ id, description: descriptionFor(id), prompt: jobPrompt(root, id, fix) });
+    } catch (err) {
+      if (!(err instanceof LedgerError)) throw err;
+      refused.push({ id, reason: err.message });
+    }
+  }
+  return { jobs, refused };
+}
+
 export function refillCommand(root: string, args: readonly string[]): number {
   return guarded('refill', () => {
-    const rest = args.filter((a) => a !== '--json');
-    const cut = rest.indexOf('--failed');
-    const completed = (cut === -1 ? rest : rest.slice(0, cut)).map(normalizeJobId);
-    const gone = cut === -1 ? [] : rest.slice(cut + 1).map(normalizeJobId);
-    for (const a of [...completed, ...gone]) {
-      if (a.startsWith('-')) throw new LedgerError(`unexpected option "${a}". ${REFILL_USAGE}`);
-    }
-    if (cut !== -1 && gone.length === 0) throw new LedgerError(`--failed needs the jobs whose Agent call failed. ${REFILL_USAGE}`);
-    const validated: RefillReport['validated'] = [];
-    for (const id of [...new Set([...completed, ...gone])]) {
-      const job = jobOf(root, id);
-      if (readBatchState(root, id).status === 'pending') {
-        validated.push({ id, status: 'pending', note: 'already recorded' });
-        continue;
-      }
-      const r = validateJob(root, job, { gone: gone.includes(id) });
-      if (r.kind === 'recorded') validated.push({ id, status: r.state.status, note: 'recorded' });
-      else if (r.kind === 'already') validated.push({ id, status: r.status, note: 'already recorded' });
-      else validated.push({ id, status: 'running', note: r.kind === 'starting' ? 'still starting' : 'could not be checked' });
-    }
+    const { completed, gone } = namedJobs(args, REFILL_USAGE);
+    const validated = recordNamed(root, completed, gone);
     const report = statusReport(root);
-    const jobs: RefillReport['jobs'] = [];
-    const refused: RefillReport['refused'] = [];
-    if (!report.halt) {
-      for (const id of [...report.next, ...report.synthesis.next]) {
-        try {
-          const { fix } = markDispatched(root, jobOf(root, id));
-          jobs.push({ id, description: descriptionFor(id), prompt: jobPrompt(root, id, fix) });
-        } catch (err) {
-          if (!(err instanceof LedgerError)) throw err;
-          refused.push({ id, reason: err.message });
-        }
-      }
-    }
+    const { jobs, refused } = report.halt ? { jobs: [], refused: [] } : dispatchAll(root, [...report.next, ...report.synthesis.next]);
     const out: RefillReport = {
       halt: report.halt,
       halt_reason: report.halt_reason,
@@ -520,6 +545,162 @@ export function refillCommand(root: string, args: readonly string[]): number {
     console.log(text);
     return 0;
   });
+}
+
+// ---- advance: the orchestrator's one command per turn (ARCHITECTURE.md 6.7, 15.3) ----
+
+// One Agent call, its fields named as the Agent tool names them, so the orchestrator copies them
+// over as they are.
+export type AgentCall = { subagent_type: 'taxonomist' | 'extractor' | 'merger' | 'synthesizer' | 'drafter'; description: string; prompt: string; run_in_background: boolean };
+
+// What `advance --json` prints. halt: the circuit breaker, or a stage that cannot go on without a
+// person (its attempts used up), with the reason; done: every stage is done (and the run ended);
+// wait: nothing to start and subagents still running, so the turn ends; steps: the summary line of
+// every deterministic step this call ran, in order; recorded: the named jobs, as refill reports
+// them; agents: the subagents to start now, in one message; refused: jobs listed as next but
+// refused by dispatch.
+export type AdvanceReport = {
+  stage: Stage;
+  halt: boolean;
+  halt_reason: string | null;
+  done: boolean;
+  wait: boolean;
+  steps: string[];
+  recorded: Array<{ id: string; status: BatchStatus; note: 'recorded' | 'already recorded' | 'still starting' | 'could not be checked' }>;
+  agents: AgentCall[];
+  refused: Array<{ id: string; reason: string }>;
+  running: string[];
+  exhausted: string[];
+};
+
+export const ADVANCE_USAGE = 'Usage: node obs.mjs advance [<job_id> ...] [--failed <job_id> ...] --json';
+
+// One pass per stage at most: a step that does not move its stage on is a bug, not a reason to spin.
+const ADVANCE_MAX_PASSES = 12;
+
+// The errors a stage reports as one line: advance prints `advance: <line>` and exits 1, and the
+// skill stops there.
+const isStageError = (err: unknown): err is Error =>
+  err instanceof LedgerError || err instanceof TaxonomyError || err instanceof MergeError || err instanceof RollupError || err instanceof ScoreError || err instanceof ConfigError;
+
+// `node obs.mjs advance [<id> ...] [--failed <id> ...] --json`: record the named jobs exactly as
+// `refill` does, then run every deterministic step that is ready, in stage order, until a model is
+// needed or the run is done:
+//   taxonomy   accept a waiting proposal and go on, or hand out the taxonomist (in the foreground),
+//              or halt when its attempts are used up;
+//   extraction hand out `next` as refill does;
+//   merge      as the taxonomy, with the merger;
+//   rollup     run it and go on;
+//   synthesis  hand out the groups' `next`;
+//   score      run it and go on;
+//   done       end the run if it is active.
+// It prints one JSON object (AdvanceReport): every Agent call to make now, with its parameters as
+// the Agent tool names them. A cycle is one Bash call and one message of Agent calls, and no stage
+// hand-off costs a turn of its own. Each call logs an `advance` event (and each step its `stage`
+// event) with its duration in the run's log.
+export function advanceCommand(root: string, args: readonly string[]): number {
+  const started = performance.now();
+  // The run this call belongs to, fixed now: the call that ends the run still logs to it.
+  const runId = activeRunId(root);
+  const event: Record<string, unknown> = { event: 'advance', named: [], recorded: [], stage_before: null, stage_after: null, dispatched: [], agents: 0 };
+  try {
+    const { completed, gone } = namedJobs(args, ADVANCE_USAGE);
+    event.named = [...new Set([...completed, ...gone])];
+    const recorded = recordNamed(root, completed, gone);
+    event.recorded = recorded.map(({ id, status }) => ({ id, status }));
+    const steps: string[] = [];
+    const agents: AgentCall[] = [];
+    const refused: AdvanceReport['refused'] = [];
+    const dispatched: string[] = [];
+    let halt_reason: string | null = null;
+    let done = false;
+    const passed = new Set<Stage>();
+    let report = statusReport(root);
+    event.stage_before = report.stage;
+    // A single-call stage's step: on to the next stage, or its agent in the foreground, or a halt.
+    const single = (step: StageStep, agent: AgentCall['subagent_type'], description: string): boolean => {
+      steps.push(...step.notes);
+      if (step.kind === 'prompt') agents.push({ subagent_type: agent, description, prompt: step.prompt, run_in_background: false });
+      if (step.kind === 'stopped') halt_reason = step.reason;
+      return step.kind === 'fresh';
+    };
+    const handOut = (ids: readonly string[]): void => {
+      const r = dispatchAll(root, ids);
+      for (const j of r.jobs) agents.push({ subagent_type: JOB_KINDS[kindOf(j.id)].worker as AgentCall['subagent_type'], description: j.description, prompt: j.prompt, run_in_background: true });
+      dispatched.push(...r.jobs.map((j) => j.id));
+      refused.push(...r.refused);
+    };
+    for (let pass = 0; ; pass++) {
+      if (report.halt) {
+        halt_reason = report.halt_reason;
+        break;
+      }
+      if (pass >= ADVANCE_MAX_PASSES || passed.has(report.stage)) {
+        throw new LedgerError(`the ${report.stage} stage did not move on after its step; this is a bug in the pipeline, not a problem with the run. Stop and report it.`);
+      }
+      passed.add(report.stage);
+      // true: the step is done and the next stage may have one too; false: this call's answer is ready.
+      const goOn = ((stage: Stage): boolean => {
+        switch (stage) {
+          case 'taxonomy':
+            return single(taxonomyStep(root), 'taxonomist', 'Build taxonomy');
+          case 'extraction':
+            handOut(report.next);
+            return false;
+          case 'merge':
+            return single(mergeStep(root), 'merger', 'Merge process keys');
+          case 'rollup':
+            steps.push(rollupStep(root));
+            return true;
+          case 'synthesis':
+            handOut(report.synthesis.next);
+            return false;
+          case 'score': {
+            const { summary, notes } = scoreStep(root);
+            steps.push(...notes, summary);
+            return true;
+          }
+          case 'done':
+            if (readRun(root).active) steps.push(endRun(root));
+            done = true;
+            return false;
+          default: {
+            // Every stage has its case: a new stage (M6's artifacts and drafting) fails to compile here.
+            const unhandled: never = stage;
+            throw new LedgerError(`advance has no step for the stage ${String(unhandled)}`);
+          }
+        }
+      })(report.stage);
+      if (!goOn) break;
+      report = statusReport(root);
+    }
+    const running = [...report.running, ...report.synthesis.running, ...dispatched];
+    const out: AdvanceReport = {
+      stage: report.stage,
+      halt: halt_reason !== null,
+      halt_reason,
+      done,
+      wait: agents.length === 0 && running.length > 0,
+      steps,
+      recorded,
+      agents,
+      refused,
+      running,
+      exhausted: [...report.exhausted, ...report.synthesis.exhausted],
+    };
+    Object.assign(event, { stage_after: report.stage, dispatched, agents: agents.length });
+    const text = JSON.stringify(out);
+    if (Buffer.byteLength(text) > REFILL_MAX_BYTES) throw new LedgerError(`the advance report is ${Buffer.byteLength(text)} bytes, over ${REFILL_MAX_BYTES}: lower OBS_IN_FLIGHT.`);
+    logRunEvent(root, { ...event, ms: Math.round(performance.now() - started) }, runId);
+    console.log(text);
+    return 0;
+  } catch (err) {
+    if (!isStageError(err)) throw err;
+    const line = withoutRoot(err.message, root).replace(/\s*\n\s*/g, ' ');
+    logRunEvent(root, { ...event, ms: Math.round(performance.now() - started), error: line }, runId);
+    console.error(`advance: ${line}`);
+    return 1;
+  }
 }
 
 // ---- run start / end ----
@@ -621,16 +802,26 @@ export function runCommand(root: string, args: readonly string[]): number {
       }
       return 0;
     }
-    let current: RunState = { active: false, run_id: null, started_utc: null };
-    try {
-      current = readRun(root);
-    } catch {
-      // reset below
-    }
-    writeRun(root, { ...current, active: false });
-    console.log(current.active ? `run: ended ${current.run_id}.` : 'run: no run was active; marked inactive.');
+    console.log(endRun(root));
     return 0;
   });
+}
+
+// What `run end` does, as `run end` and `advance` take it: mark the run inactive (an unreadable run
+// state is reset) and return the line that says so. The `run end` stage event goes into the run's
+// log first, while the run is still active: the run's total is from its run_start to this event.
+export function endRun(root: string): string {
+  const started = performance.now();
+  let current: RunState = { active: false, run_id: null, started_utc: null };
+  try {
+    current = readRun(root);
+  } catch {
+    // reset below
+  }
+  const line = current.active ? `run: ended ${current.run_id}.` : 'run: no run was active; marked inactive.';
+  if (current.active) logStage(root, 'run end', started, line);
+  writeRun(root, { ...current, active: false });
+  return line;
 }
 
 // ---- verify ----
@@ -664,14 +855,29 @@ function verifyKind(root: string, views: readonly BatchView[]): { done: number; 
 // done synthesis group from its committed output against its input's sidecar: each must still pass
 // and validate to exactly its committed validated file. Read-only. Exit 1 on any difference, so CI
 // catches a stale or hand-edited output.
+// Jobs whose state says done under a cache key that is no longer the current one: an agent
+// definition, the taxonomy or an input changed since. They count as pending, so verify does not
+// check them; it says how many there are, so a verify with little or nothing to check is visible.
+const staleDone = (views: readonly BatchView[]): number => views.filter((v) => v.state.status === 'done' && v.state.cache_key !== v.cache_key).length;
+
 export function verifyCommand(root: string, args: string[]): number {
   return guarded('verify', () => {
     if (args.length > 0) throw new LedgerError(`unexpected argument "${args[0]}". Usage: node obs.mjs verify`);
-    const batches = verifyKind(root, batchViews(root));
+    const views = batchViews(root);
+    const batches = verifyKind(root, views);
     const groupViews = synthViews(root);
     const groups = groupViews === null ? null : verifyKind(root, groupViews);
+    const stale = staleDone(views) + staleDone(groupViews ?? []);
+    const staleLine = (): void => {
+      if (stale === 0) return;
+      console.log(
+        `verify: ${plural(stale, 'job is', 'jobs are')} recorded done under an older agent definition or older inputs ` +
+          `(stale, not verified): the next run redoes ${stale === 1 ? 'it' : 'them'}.`,
+      );
+    };
     if (batches.done === 0 && (groups === null || groups.done === 0)) {
       console.log('verify: nothing to verify: no batch is done.');
+      staleLine();
       return 0;
     }
     const failures = [...batches.failures, ...(groups?.failures ?? [])];
@@ -687,10 +893,12 @@ export function verifyCommand(root: string, args: string[]): number {
     if (failures.length === 0) {
       const how = groups === null || groups.done === 0 ? 're-checked against the corpus' : 're-checked against the corpus and their inputs';
       console.log(`verify: ${what} ${how}; every validated file matches${rest}.`);
+      staleLine();
       return 0;
     }
     console.log(`verify: ${failures.length} of ${what} fail${rest}:`);
     for (const f of failures) console.log(`  - ${withoutRoot(f, root)}`);
+    staleLine();
     return 1;
   });
 }

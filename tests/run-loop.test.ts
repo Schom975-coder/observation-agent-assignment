@@ -22,7 +22,19 @@ import { fileURLToPath } from 'node:url';
 import { renderMessage } from '../src/batch/build.ts';
 import { checkExtraction } from '../src/model/validate-extraction.ts';
 import { parseMessage } from '../src/parse/message.ts';
-import { dispatchCommand, refillCommand, runCommand, statusCommand, validateCommand, verifyCommand, type RefillReport, type StatusReport } from '../src/run/commands.ts';
+import {
+  advanceCommand,
+  dispatchCommand,
+  refillCommand,
+  runCommand,
+  statusCommand,
+  validateCommand,
+  verifyCommand,
+  type AdvanceReport,
+  type RefillReport,
+  type StatusReport,
+} from '../src/run/commands.ts';
+import { SYNTH_MAX_GROUPS } from '../src/model/synthesis-input.ts';
 import { canonicalTaxonomy } from '../src/model/taxonomy.ts';
 import { buildPeople } from '../src/normalize/people.ts';
 import { buildThreads } from '../src/normalize/threads.ts';
@@ -38,6 +50,7 @@ import {
   loadIndex,
   outDir,
   readBatchState,
+  readRun,
   recordValidation,
   validatedFile,
 } from '../src/run/ledger.ts';
@@ -133,24 +146,35 @@ function capture(fn: () => number): { code: number; out: string[]; err: string[]
 // its session dies before anything checks it.
 type Behaviour = 'good' | 'bad' | 'fix' | 'crash';
 
-const field = (prompt: string, name: string): string | null => new RegExp(`^${name}: (.+)$`, 'm').exec(prompt)?.[1] ?? null;
+// A job prompt read the way the agent definitions say (ARCHITECTURE.md 6.22): the job and whether
+// it is a fix round from the first line, the project folder from the second, and every file as a
+// path under the folder joined with "/".
+type Task = { id: string; fix: boolean; at: (rel: string) => string };
+function task(prompt: string, verb: 'Extract' | 'Synthesize'): Task {
+  const lines = prompt.split('\n');
+  assert.equal(lines.length, 2, prompt);
+  const m = new RegExp(`^${verb} ((?:batch|synth)-\\d{3})(\\.| \\(fix round \\d+ of \\d+\\): \\d+ problems? in the problems file\\.)$`).exec(lines[0] as string);
+  assert.ok(m !== null, lines[0]);
+  const folder = /^Project folder: (.+)$/.exec(lines[1] as string)?.[1] as string;
+  assert.ok(folder !== undefined && !folder.includes('\\'), lines[1]);
+  return { id: m[1] as string, fix: m[2] !== '.', at: (rel) => `${folder}/${rel}` };
+}
 
 // Reads its prompt and files the way the agent definition tells it to, and writes the output file.
 function extractor(agentId: string, prompt: string, behaviour: Behaviour, root: string, session: Session): void {
-  const batchPath = field(prompt, 'Batch file') as string;
-  const batchId = /^Extract batch (batch-\d{3})[ .]/.exec(prompt)?.[1] as string;
+  const { id: batchId, fix, at } = task(prompt, 'Extract');
+  const batchPath = at(`out/batches/${batchId}.md`);
   // The guard binds the agent on its first batch-file read.
   const bound = bindAgent(root, agentId, /\/out\/batches\/(batch-\d{3})\.md$/.exec(batchPath)?.[1] as string);
   assert.ok(bound.ok, JSON.stringify(bound));
   const batch = readFileSync(batchPath, 'utf8');
-  const output = field(prompt, 'Output file') as string;
-  const previous = field(prompt, 'Previous output');
+  const output = at(`out/extract/${batchId}.json`);
   let x: Extraction;
-  if (previous !== null) {
-    assert.equal(previous, output, 'a fix round edits the file it wrote');
-    const problems = readFileSync(field(prompt, 'Problems file') as string, 'utf8');
+  if (fix) {
+    // A fix round edits the file it wrote, with the problems from the problems file.
+    const problems = readFileSync(at(`out/fix/${batchId}.txt`), 'utf8');
     session.problems.set(batchId, [...(session.problems.get(batchId) ?? []), problems]);
-    x = JSON.parse(readFileSync(previous, 'utf8')) as Extraction;
+    x = JSON.parse(readFileSync(output, 'utf8')) as Extraction;
     if (behaviour === 'fix') for (const e of x.evidence) e.quote = ownLine(batch);
   } else {
     const id = /^--- MESSAGE (.+) ---$/m.exec(batch)?.[1] as string;
@@ -252,10 +276,9 @@ test('the extraction loop runs to complete: a fix round, an exhausted batch, a d
 
     // batch-003: fixed on its second dispatch, from a fix prompt naming the previous output and its problems.
     const [fresh, fix] = one.prompts.get('batch-003') as string[];
-    assert.match(fresh as string, /^Extract batch batch-003\.\n/);
-    assert.match(fix as string, /^Extract batch batch-003 \(fix round 1 of 3\)\.\n/);
-    assert.match(fix as string, /\nPrevious output: .+\/out\/extract\/batch-003\.json\n/);
-    assert.match(fix as string, /\nProblems file: .+\/out\/fix\/batch-003\.txt\nThe pipeline checked the previous output and found 2 problems, listed in the problems file\. /);
+    const folder = `Project folder: ${root.replaceAll('\\', '/')}`;
+    assert.equal(fresh, `Extract batch-003.\n${folder}`);
+    assert.equal(fix, `Extract batch-003 (fix round 1 of 3): 2 problems in the problems file.\n${folder}`);
     assert.ok(!(fix as string).includes('A sentence that appears'), 'the problems go through the file, not the prompt');
     // The extractor read them from the problems file; it is gone once the batch is done.
     const [problems] = one.problems.get('batch-003') as string[];
@@ -273,9 +296,9 @@ test('the extraction loop runs to complete: a fix round, an exhausted batch, a d
     const done = loop(root, two, behaviour);
     assert.deepEqual(two.dispatched, ['batch-004', 'batch-004', 'batch-004'], 'nothing done is redone; batch-004 gets its last three dispatches');
     assert.deepEqual((two.prompts.get('batch-004') as string[]).map((p) => p.split('\n')[0]), [
-      'Extract batch batch-004 (fix round 1 of 3).',
-      'Extract batch batch-004 (fix round 2 of 3).',
-      'Extract batch batch-004 (fix round 3 of 3).',
+      'Extract batch-004 (fix round 1 of 3): 2 problems in the problems file.',
+      'Extract batch-004 (fix round 2 of 3): 2 problems in the problems file.',
+      'Extract batch-004 (fix round 3 of 3): 2 problems in the problems file.',
     ]);
     assert.equal(done.extraction, 'complete');
     assert.deepEqual(done.counts, { pending: 0, running: 0, done: 5, failed: 0, exhausted: 1 });
@@ -307,6 +330,22 @@ test('the extraction loop runs to complete: a fix round, an exhausted batch, a d
     ]);
     writeFileSync(file, good);
     assert.equal(capture(() => verifyCommand(root, [])).code, 0);
+
+    // A changed extractor definition re-keys every batch: none is verified, and verify says how
+    // many done batches it skipped as stale, without changing its exit code.
+    const agent = join(root, '.claude', 'agents', 'extractor.md');
+    const definition = readFileSync(agent, 'utf8');
+    writeFileSync(agent, `${definition}One more rule.\n`);
+    assert.deepEqual(capture(() => verifyCommand(root, [])), {
+      code: 0,
+      out: [
+        'verify: nothing to verify: no batch is done.',
+        'verify: 5 jobs are recorded done under an older agent definition or older inputs (stale, not verified): the next run redoes them.',
+      ],
+      err: [],
+    });
+    writeFileSync(agent, definition);
+    assert.equal(capture(() => verifyCommand(root, [])).out.length, 1, 'no stale line when nothing is stale');
   } finally {
     if (saved === undefined) delete process.env.OBS_IN_FLIGHT;
     else process.env.OBS_IN_FLIGHT = saved;
@@ -348,8 +387,8 @@ const m5Text = (p: Planned) =>
 const DIGEST = '# Taxonomy digest\nEverything below is archive data.\n';
 const TAXONOMIST = '---\nname: taxonomist\n---\n\nPropose the recurring processes.\n';
 
-function fixtureM5(): string {
-  const root = join(tmp, 'm5');
+function fixtureM5(name = 'm5'): string {
+  const root = join(tmp, name);
   for (const dir of ['out/batches', '.claude/agents', 'config']) mkdirSync(join(root, dir), { recursive: true });
   const git = (args: string[], input?: string): string => {
     const config = ['-c', 'core.protectNTFS=false', '-c', 'user.name=test', '-c', 'user.email=test@example.invalid', '-c', 'commit.gpgsign=false'];
@@ -396,8 +435,8 @@ function acceptTaxonomy(root: string): void {
 // Extracts a batch as planned: each message's tags, its "Please handle" line as the quote, and a
 // declaration for every proposed key the batch uses.
 function plannedExtractor(prompt: string): void {
-  const batchId = /^Extract batch (batch-\d{3})/.exec(prompt)?.[1] as string;
-  const batch = readFileSync(field(prompt, 'Batch file') as string, 'utf8');
+  const { id: batchId, at } = task(prompt, 'Extract');
+  const batch = readFileSync(at(`out/batches/${batchId}.md`), 'utf8');
   const ids = [...batch.matchAll(/^--- MESSAGE (.+) ---$/gm)].map((m) => m[1] as string);
   const planned = ids.map((id) => PLAN[Number(id.slice(-2)) - 1] as Planned);
   const used = [...new Set(planned.flatMap((p) => p.tags.filter((t) => t.startsWith('new:'))))];
@@ -408,23 +447,28 @@ function plannedExtractor(prompt: string): void {
     new_processes: used.map((key) => ({ key, name: key.slice(4).replace(/-/g, ' '), definition: `Proposed: ${key.slice(4)} handled by the desk.`, example_ids: [] })),
     batch_notes: '',
   };
-  const output = field(prompt, 'Output file') as string;
+  const output = at(`out/extract/${batchId}.json`);
   mkdirSync(dirname(output), { recursive: true }); // as the Write tool does
   writeFileSync(output, JSON.stringify(x, null, 2));
 }
 
-// The synthesizer as a script: good, bad (a mid of 900: E1), or fix (the previous output with the
-// minutes put back). It reads the sidecar to choose ids from three occurrences and two senders;
-// the real agent reads the same facts from the group input's lines.
-type SynthBehaviour = 'good' | 'bad' | 'fix';
+// The synthesizer as a script: good, bad (a mid of 900: E1), long (a 650-character description:
+// over the stated 600, inside the margin), unknown (a stall citing an id the input does not show),
+// or fix (the previous output with the minutes put back and the unknown id dropped). It reads the
+// sidecar to choose ids from three occurrences and two senders; the real agent reads the same facts
+// from the group input's lines.
+type SynthBehaviour = 'good' | 'bad' | 'long' | 'unknown' | 'fix';
+const UNKNOWN_ID = 'batch-099:e99';
 function scriptedSynthesizer(root: string, prompt: string, behaviour: SynthBehaviour): void {
-  const groupId = /^Synthesize group (synth-\d{3})/.exec(prompt)?.[1] as string;
-  const output = field(prompt, 'Output file') as string;
+  const { id: groupId, fix, at } = task(prompt, 'Synthesize');
+  const output = at(`out/synthesis/raw/${groupId}.json`);
   mkdirSync(dirname(output), { recursive: true });
-  const previous = field(prompt, 'Previous output');
-  if (previous !== null && behaviour === 'fix') {
-    const g = JSON.parse(readFileSync(previous, 'utf8')) as SynthesisGroup;
-    for (const p of g.processes) if (p.work_estimate !== null) p.work_estimate.minutes_per_occurrence = { low: 20, mid: 30, high: 45 };
+  if (fix && behaviour === 'fix') {
+    const g = JSON.parse(readFileSync(output, 'utf8')) as SynthesisGroup;
+    for (const p of g.processes) {
+      if (p.work_estimate !== null) p.work_estimate.minutes_per_occurrence = { low: 20, mid: 30, high: 45 };
+      p.stalls = p.stalls.filter((s) => !s.evidence_ids.includes(UNKNOWN_ID));
+    }
     writeFileSync(output, JSON.stringify(g));
     return;
   }
@@ -434,11 +478,12 @@ function scriptedSynthesizer(root: string, prompt: string, behaviour: SynthBehav
     processes: sidecar.processes.map((p) => {
       const seen = new Set<string>();
       const ids = p.cited.filter((c) => c.kind === 'evidence' && !seen.has(c.occurrence_id) && seen.add(c.occurrence_id)).slice(0, 3).map((c) => c.id);
+      const description = `The desk handles the ${p.key.split('-')[0]} requests that come round every other month and confirms each one.`;
       return {
         key: p.key,
-        description: `The desk handles the ${p.key.split('-')[0]} requests that come round every other month and confirms each one.`,
+        description: behaviour === 'long' ? `${description} ${'And it checks the figures again. '.repeat(30)}`.slice(0, 650) : description,
         steps: ['Read the request', 'Handle it', 'Confirm back'],
-        stalls: [],
+        stalls: behaviour === 'unknown' ? [{ summary: 'A request waits on the desk', evidence_ids: [UNKNOWN_ID] }] : [],
         contradictions: [],
         automation: { approach: 'A request tracker with a confirmation template', artifact_type: 'checklist' as const, rationale: 'Each round repeats the same steps.' },
         work_estimate:
@@ -485,7 +530,8 @@ test('the loop continues through merge, rollup, synthesis and score: a merge fix
       unassigned: ['new:one-off'],
       promoted: [{ key: 'widget-checks', name: 'Widget checks', definition: 'Checking the widget counts with the desk each round and fixing them.', aliases: ['new:widget-audit', 'new:widget-review'] }],
     };
-    const proposed = field(prompt, 'Output file') as string;
+    assert.equal(prompt.split('\n')[1], `Project folder: ${root.replaceAll('\\', '/')}`);
+    const proposed = join(root, 'out', 'merge-proposed.json');
     writeFileSync(proposed, JSON.stringify({ ...good, mapped: { nominations: ['new:alpha-extra'] } }));
     assert.match(capture(() => mergeCommand(root, ['accept'])).out[0] ?? '', /not accepted: 1 problem/);
     assert.match(capture(() => mergeCommand(root, [])).out[0] ?? '', /^Fix the process-key merge proposal\.\n/);
@@ -494,32 +540,40 @@ test('the loop continues through merge, rollup, synthesis and score: a merge fix
     stages.push(stageOf(root));
 
     const rolled = capture(() => rollupCommand(root, []));
-    assert.deepEqual(rolled.out, ['rollup: 7 processes (1 promoted), 29 counted messages in 29 occurrences; 1 tagged message unassigned; 3 synthesis groups.']);
+    // One group per process: seven processes, fewer than a wave's twenty groups (5.8).
+    assert.deepEqual(rolled.out, ['rollup: 7 processes (1 promoted), 29 counted messages in 29 occurrences; 1 tagged message unassigned; 7 synthesis groups.']);
     stages.push(stageOf(root));
+    const GROUPS = Array.from({ length: 7 }, (_, i) => `synth-00${i}`);
 
-    // Synthesis, session 1: synth-000 wrong then fixed, synth-001 always wrong, synth-002 right
-    // but its session dies before anything checks it.
+    // Synthesis, session 1: synth-000 (alpha) wrong then fixed, synth-001 (bravo) always wrong, the
+    // rest right but their session dies before anything checks them.
     const behaviour = (id: string, dispatch: number): SynthBehaviour => (id === 'synth-000' ? (dispatch === 1 ? 'bad' : 'fix') : id === 'synth-001' ? 'bad' : 'good');
     const dispatched: string[] = [];
     const first = refill(root, []);
-    assert.deepEqual(first.jobs.map((j) => [j.id, j.description]), [['synth-000', 'Synthesize synth-000'], ['synth-001', 'Synthesize synth-001'], ['synth-002', 'Synthesize synth-002']]);
+    assert.deepEqual(first.jobs.map((j) => [j.id, j.description]), GROUPS.map((id) => [id, `Synthesize ${id}`]), 'every group in one wave');
     for (const j of first.jobs) {
       dispatched.push(j.id);
       scriptedSynthesizer(root, j.prompt, behaviour(j.id, readBatchState(root, j.id).dispatches));
     }
     const second = refill(root, ['synth-000', 'synth-001']);
     assert.deepEqual(second.validated.map((v) => [v.id, v.status]), [['synth-000', 'failed'], ['synth-001', 'failed']]);
-    assert.deepEqual(second.jobs.map((j) => j.prompt.split('\n')[0]), ['Synthesize group synth-000 (fix round 1 of 3).', 'Synthesize group synth-001 (fix round 1 of 3).']);
+    assert.deepEqual(second.jobs.map((j) => j.prompt.split('\n')[0]?.replace(/: \d+ problems?/, ': N problems')), [
+      'Synthesize synth-000 (fix round 1 of 3): N problems in the problems file.',
+      'Synthesize synth-001 (fix round 1 of 3): N problems in the problems file.',
+    ]);
     for (const j of second.jobs) {
       dispatched.push(j.id);
       scriptedSynthesizer(root, j.prompt, behaviour(j.id, readBatchState(root, j.id).dispatches));
     }
-    // The session dies here, with synth-000, synth-001 and synth-002 left running.
-    assert.deepEqual(status(root).synthesis.running, ['synth-000', 'synth-001', 'synth-002']);
+    // The session dies here, with every group left running.
+    assert.deepEqual(status(root).synthesis.running, GROUPS);
 
     // Session 2: run start stamps what was left; nothing done is redone; synth-001 uses up its dispatches.
     const resumed = capture(() => runCommand(root, ['start']));
-    assert.equal(resumed.out[1], 'run: 3 synthesis groups were left running by an earlier session: synth-000 done, synth-001 failed, synth-002 done.');
+    assert.equal(
+      resumed.out[1],
+      'run: 7 synthesis groups were left running by an earlier session: synth-000 done, synth-001 failed, synth-002 done, synth-003 done, synth-004 done, synth-005 done, synth-006 done.',
+    );
     let more = refill(root, []);
     while (more.jobs.length > 0) {
       for (const j of more.jobs) {
@@ -528,17 +582,17 @@ test('the loop continues through merge, rollup, synthesis and score: a merge fix
       }
       more = refill(root, more.jobs.map((j) => j.id));
     }
-    assert.deepEqual(dispatched, ['synth-000', 'synth-001', 'synth-002', 'synth-000', 'synth-001', 'synth-001', 'synth-001']);
+    assert.deepEqual(dispatched, [...GROUPS, 'synth-000', 'synth-001', 'synth-001', 'synth-001']);
     assert.deepEqual([more.stage, more.exhausted, readBatchState(root, 'synth-001').dispatches], ['score', ['synth-001'], MAX_DISPATCHES]);
     stages.push(stageOf(root));
 
-    // Score: the exhausted group's processes are priced on their counted part and flagged.
+    // Score: the exhausted group's process is priced on its counted part and flagged.
     const scored = capture(() => scoreCommand(root, []));
     assert.equal(scored.code, 0, scored.err.join('\n'));
-    assert.match(scored.out[0] ?? '', /; 7 opportunities \(0 A, 0 B, 7 C\); 3 estimates missing; wrote out\/opportunities\.json\.$/);
+    assert.match(scored.out[0] ?? '', /; 7 opportunities \(0 A, 0 B, 7 C\); 1 estimate missing; wrote out\/opportunities\.json\.$/);
     const opportunities = JSON.parse(readFileSync(join(root, 'out', 'opportunities.json'), 'utf8')) as Opportunities;
     const byKey = new Map(opportunities.opportunities.map((o) => [o.key, o]));
-    for (const key of ['delta-work', 'echo-work', 'foxtrot-work']) {
+    for (const key of ['bravo-work']) {
       assert.deepEqual([byKey.get(key)?.flags, byKey.get(key)?.estimated], [['synthesis_missing', 'estimate_missing'], null], key);
       assert.ok((byKey.get(key)?.counted.email_x100.today ?? 0) > 0, `${key} keeps its counted part`);
     }
@@ -558,7 +612,7 @@ test('the loop continues through merge, rollup, synthesis and score: a merge fix
 
     // verify re-checks both kinds.
     assert.deepEqual(capture(() => verifyCommand(root, [])).out, [
-      'verify: 6 done batches and 2 done synthesis groups re-checked against the corpus and their inputs; every validated file matches (1 synthesis group not done, not verified).',
+      'verify: 6 done batches and 6 done synthesis groups re-checked against the corpus and their inputs; every validated file matches (1 synthesis group not done, not verified).',
     ]);
     const file = join(root, 'out', 'synthesis', 'validated', 'synth-002.json');
     const good2 = readFileSync(file, 'utf8');
@@ -567,6 +621,121 @@ test('the loop continues through merge, rollup, synthesis and score: a merge fix
     assert.equal(edited.code, 1);
     assert.equal(edited.out[1], '  - synth-002: out/synthesis/validated/synth-002.json differs from what out/synthesis/raw/synth-002.json validates to now');
     writeFileSync(file, good2);
+  } finally {
+    if (saved === undefined) delete process.env.OBS_IN_FLIGHT;
+    else process.env.OBS_IN_FLIGHT = saved;
+  }
+});
+
+// ---- advance: the whole run, one command per turn (ARCHITECTURE.md 6.7, 15.3) ----
+
+test('advance alone drives the run: one wave of batches, the merger in the foreground, accept, rollup and one wave of groups, then score and run end; a second session repeats nothing; the log times every step', () => {
+  const root = fixtureM5('m5-advance');
+  const saved = process.env.OBS_IN_FLIGHT;
+  delete process.env.OBS_IN_FLIGHT;
+  const advance = (args: string[]): AdvanceReport => {
+    const r = capture(() => advanceCommand(root, [...args, '--json']));
+    assert.equal(r.code, 0, r.err.join('\n'));
+    assert.equal(r.out.length, 1, 'one JSON object on stdout');
+    assert.ok(Buffer.byteLength(r.out[0] as string) < 64_000);
+    return JSON.parse(r.out[0] as string) as AdvanceReport;
+  };
+  const folder = `Project folder: ${root.replaceAll('\\', '/')}`;
+  try {
+    const started = capture(() => runCommand(root, ['start']));
+    assert.equal(started.code, 0, started.err.join('\n'));
+    const runId = /^run: started (\S+?)[ .]/.exec(started.out[0] ?? '')?.[1] as string;
+    acceptTaxonomy(root);
+
+    // Extraction: the six batches in one wave, each Agent call's parameters ready to copy.
+    const first = advance([]);
+    assert.deepEqual(Object.keys(first), ['stage', 'halt', 'halt_reason', 'done', 'wait', 'steps', 'recorded', 'agents', 'refused', 'running', 'exhausted']);
+    const batches = Array.from({ length: 6 }, (_, i) => batchName(i));
+    assert.deepEqual(
+      first.agents.map((a) => [a.subagent_type, a.description, a.prompt, a.run_in_background]),
+      batches.map((id) => ['extractor', `Extract ${id}`, `Extract ${id}.\n${folder}`, true]),
+    );
+    assert.deepEqual([first.stage, first.halt, first.done, first.wait, first.steps, first.recorded, first.running], ['extraction', false, false, false, [], [], batches]);
+    for (const a of first.agents) plannedExtractor(a.prompt);
+
+    // Completions in two waves: the first records three and waits; the last hands out the merger,
+    // in the foreground, with nothing else to start.
+    const some = advance(batches.slice(0, 3));
+    assert.deepEqual(some.recorded, batches.slice(0, 3).map((id) => ({ id, status: 'done', note: 'recorded' })));
+    assert.deepEqual([some.agents, some.wait, some.running], [[], true, batches.slice(3)]);
+    const last = advance(batches.slice(3));
+    assert.deepEqual(last.recorded.map((r) => r.status), ['done', 'done', 'done']);
+    assert.deepEqual(last.agents, [{ subagent_type: 'merger', description: 'Merge process keys', prompt: `Merge the proposed process keys into the taxonomy.\n${folder}`, run_in_background: false }]);
+    assert.deepEqual([last.stage, last.wait, last.running], ['merge', false, []]);
+
+    // The merger writes; one advance accepts it, rolls up and hands out every group in one wave.
+    const proposal = {
+      mapped: { 'alpha-work': ['new:alpha-extra'] },
+      unassigned: ['new:one-off'],
+      promoted: [{ key: 'widget-checks', name: 'Widget checks', definition: 'Checking the widget counts with the desk each round and fixing them.', aliases: ['new:widget-audit', 'new:widget-review'] }],
+    };
+    writeFileSync(join(root, 'out', 'merge-proposed.json'), JSON.stringify(proposal));
+    const wave = advance([]);
+    assert.deepEqual(wave.steps, [
+      'merge: accepted the proposal the last merger run left: 4 proposed keys: 1 mapped, 2 in 1 promoted process, 1 unassigned, 0 demoted; 1 message left unassigned; wrote out/merge.json.',
+      'rollup: 7 processes (1 promoted), 29 counted messages in 29 occurrences; 1 tagged message unassigned; 7 synthesis groups.',
+    ]);
+    const groups = Array.from({ length: Math.min(SYNTH_MAX_GROUPS, 7) }, (_, i) => `synth-00${i}`);
+    assert.deepEqual(
+      wave.agents.map((a) => [a.subagent_type, a.description, a.prompt, a.run_in_background]),
+      groups.map((id) => ['synthesizer', `Synthesize ${id}`, `Synthesize ${id}.\n${folder}`, true]),
+      'one wave: a group per process, every one handed out at once',
+    );
+    assert.equal(wave.stage, 'synthesis');
+
+    // synth-000 writes a description over the stated cap but inside the margin: accepted. synth-001
+    // cites an id its input does not show: a fix round, then good.
+    const behaviour = (id: string, dispatch: number): SynthBehaviour => (id === 'synth-000' ? 'long' : id === 'synth-001' ? (dispatch === 1 ? 'unknown' : 'fix') : 'good');
+    for (const a of wave.agents) scriptedSynthesizer(root, a.prompt, behaviour(a.description.split(' ')[1] as string, 1));
+    const fixRound = advance(groups);
+    assert.deepEqual(fixRound.recorded.map((r) => [r.id, r.status]), groups.map((id) => [id, id === 'synth-001' ? 'failed' : 'done']));
+    assert.deepEqual(fixRound.agents.map((a) => [a.description, a.prompt]), [['Synthesize synth-001', `Synthesize synth-001 (fix round 1 of 3): 1 problem in the problems file.\n${folder}`]]);
+    assert.match(readFileSync(join(root, 'out', 'fix', 'synth-001.txt'), 'utf8'), /"batch-099:e99" is not an id the input shows/);
+    const kept = JSON.parse(readFileSync(join(root, 'out', 'synthesis', 'validated', 'synth-000.json'), 'utf8')) as { processes: Array<{ description: string }> };
+    assert.equal([...(kept.processes[0]?.description ?? '')].length, 650, 'over the stated cap, inside the margin, kept as written');
+    scriptedSynthesizer(root, fixRound.agents[0]?.prompt as string, behaviour('synth-001', 2));
+
+    // The advance after the last group scores, ends the run and says so.
+    const end = advance(['synth-001']);
+    assert.deepEqual(end.recorded, [{ id: 'synth-001', status: 'done', note: 'recorded' }]);
+    assert.match(end.steps[0] ?? '', /^score: tiers A\+B .*; 7 opportunities \(0 A, 0 B, 7 C\); 0 estimates missing; wrote out\/opportunities\.json\.$/);
+    assert.equal(end.steps[1], `run: ended ${runId}.`);
+    assert.deepEqual([end.stage, end.done, end.halt, end.wait, end.agents, end.running], ['done', true, false, false, [], []]);
+    assert.equal(readRun(root).active, false);
+
+    // A second session: run start, then advance hands out nothing and ends the run again.
+    const ledger = () => readdirSync(join(root, 'out', 'ledger')).filter((f) => /^(?:batch|synth)-/.test(f)).map((f) => readFileSync(join(root, 'out', 'ledger', f), 'utf8'));
+    const before = ledger();
+    assert.equal(capture(() => runCommand(root, ['start'])).code, 0);
+    const again = advance([]);
+    assert.deepEqual([again.agents, again.done, again.steps.length, again.running], [[], true, 1, []]);
+    assert.deepEqual(ledger(), before, 'no job dispatched or stamped');
+
+    // The first run's log: one advance event per call and one stage event per step, each timed.
+    const log = readFileSync(join(root, 'out', 'runs', `${runId}.jsonl`), 'utf8').trimEnd().split('\n').map((l) => JSON.parse(l) as Record<string, unknown>);
+    const advances = log.filter((e) => e.event === 'advance');
+    assert.equal(advances.length, 6);
+    for (const e of advances) assert.ok(Number.isInteger(e.ms) && (e.ms as number) >= 0, JSON.stringify(e));
+    assert.deepEqual(advances.map((e) => [e.stage_before, e.stage_after, (e.dispatched as string[]).length, e.agents]), [
+      ['extraction', 'extraction', 6, 6],
+      ['extraction', 'extraction', 0, 0],
+      ['merge', 'merge', 0, 1],
+      ['merge', 'synthesis', 7, 7],
+      ['synthesis', 'synthesis', 1, 1],
+      ['score', 'done', 0, 0],
+    ]);
+    assert.deepEqual(advances[1]?.named, batches.slice(0, 3));
+    assert.deepEqual(advances[1]?.recorded, batches.slice(0, 3).map((id) => ({ id, status: 'done' })));
+    const stages = log.filter((e) => e.event === 'stage');
+    assert.deepEqual(stages.map((e) => [e.name, e.attempt ?? null]), [['merge prompt', 1], ['merge accept', 1], ['rollup', null], ['score', null], ['run end', null]]);
+    for (const e of stages) assert.ok(Number.isInteger(e.ms) && typeof e.summary === 'string' && e.summary !== '', JSON.stringify(e));
+    assert.equal(log.at(-1)?.event, 'advance', 'the call that ended the run logged to it');
+    assert.equal(stages.at(-1)?.name, 'run end');
   } finally {
     if (saved === undefined) delete process.env.OBS_IN_FLIGHT;
     else process.env.OBS_IN_FLIGHT = saved;

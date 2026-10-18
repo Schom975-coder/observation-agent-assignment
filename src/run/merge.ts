@@ -11,7 +11,7 @@
 // Freshness (also what `status` and the Stop hook see): out/merge.json records the hashes of the
 // done batches' validated extractions, out/taxonomy.json and .claude/agents/merger.md as they are now.
 import { statSync } from 'node:fs';
-import { join, resolve } from 'node:path';
+import { join } from 'node:path';
 import { ConfigError, loadScoring } from '../config.ts';
 import { MERGE_PROPOSAL_MAX_BYTES, MergeInputError, buildMergeInput, canonicalMergeTable, checkMergeProposal, duplicateKeyProblems, slugFacts, type SlugFacts } from '../model/merge.ts';
 import type { Taxonomy } from '../model/taxonomy.ts';
@@ -21,6 +21,7 @@ import {
   LedgerError,
   batchViews,
   fileSha,
+  logStage,
   mergeFile,
   mergeInputFile,
   mergeProposedFile,
@@ -28,6 +29,7 @@ import {
   mergerFile,
   nowUtc,
   prepareStatsFile,
+  projectFolder,
   readText,
   removeFile,
   taxonomyFile,
@@ -36,6 +38,7 @@ import {
   writeFileAtomic,
   writeJsonAtomic,
   type BatchView,
+  type StageStep,
 } from './ledger.ts';
 import type { MergeTable, ParsedMessage, Thread, ValidatedExtraction } from '../types.ts';
 
@@ -46,6 +49,10 @@ export type MergeFreshness = 'fresh' | 'stale' | 'missing' | 'stopped';
 
 export class MergeError extends Error {
   override name = 'MergeError';
+}
+// The merge input could not be built (too large for one merger): the stage stops for these inputs.
+class MergeStoppedError extends MergeError {
+  override name = 'MergeStoppedError';
 }
 
 const BOM = String.fromCharCode(0xfeff);
@@ -168,30 +175,24 @@ const writeState = (root: string, state: MergeState): void => writeJsonAtomic(me
 
 // ---- Prompt ----
 
-// Absolute, forward slashes on every OS: the form the subagent's file tools take everywhere.
-const absolute = (root: string, file: string): string => resolve(root, file).replaceAll('\\', '/');
+// A file under the project folder as the merger's fix prompt names it: repo-relative, "/" separators.
+const relative = (root: string, file: string): string => withoutRoot(file, root).replaceAll('\\', '/');
 
-// The prompt for one merger run (ARCHITECTURE.md 14.3). The agent definition holds the
-// instructions; this names the files and, on a fix round, the problems the last check found
+// The prompt for one merger run (ARCHITECTURE.md 15.5): the task and the project folder; the agent
+// definition names the files under it. On a fix round the problems the last check found follow
 // (`total` of them, the first ones listed: they are the pipeline's text, model text in them escaped
-// and cut, and no email content).
+// and cut, and no email content), then which files to read, by their paths under the folder.
 export function mergerPrompt(root: string, fix: string[] | null, total: number = fix?.length ?? 0): string {
-  const input = `Merge input: ${absolute(root, mergeInputFile(root))}`;
-  const taxonomy = `Taxonomy file: ${absolute(root, taxonomyFile(root))}`;
-  const output = `Output file: ${absolute(root, mergeProposedFile(root))}`;
-  const reply = 'Reply with one short sentence and no email content.';
-  if (fix === null) return ['Merge the proposed process keys into the taxonomy.', input, taxonomy, output, reply].join('\n');
+  const folder = `Project folder: ${projectFolder(root)}`;
+  if (fix === null) return ['Merge the proposed process keys into the taxonomy.', folder].join('\n');
   const shown = fix.slice(0, MERGE_MAX_PROBLEMS);
   return [
     'Fix the process-key merge proposal.',
-    input,
-    taxonomy,
-    `Previous proposal: ${absolute(root, mergeProposedFile(root))}`,
+    folder,
     `The pipeline checked the previous proposal and found ${plural(total, 'problem')}${total > shown.length ? `; the first ${shown.length} are listed` : ''}:`,
     ...shown.map((p) => `- ${p}`),
-    'Read the merge input, the taxonomy and the previous proposal, fix only these problems, keep every other entry exactly as it was, and Write the whole file to:',
-    output,
-    reply,
+    `Read the merge input ${relative(root, mergeInputFile(root))}, the taxonomy ${relative(root, taxonomyFile(root))} and the previous proposal ${relative(root, mergeProposedFile(root))}, ` +
+      'fix only these problems, keep every other entry exactly as it was, and Write the whole file again.',
   ].join('\n');
 }
 
@@ -321,54 +322,78 @@ function prepareInput(root: string): { inputs: MergeInputs; shas: MergeShas } {
     if (!(err instanceof MergeInputError)) throw err;
     const state = currentState(root, shas);
     writeState(root, { ...state, status: 'stopped', reason: err.message, finished_utc: nowUtc() });
-    throw new MergeError(`stopped: ${err.message}.`);
+    throw new MergeStoppedError(`stopped: ${err.message}.`);
   }
   writeFileAtomic(mergeInputFile(root), text);
   if (readText(mergerFile(root)) === null) throw new MergeError('.claude/agents/merger.md is missing: the merger definition is part of the repo; restore it.');
   return { inputs, shas };
 }
 
-function nextCommand(root: string): number {
-  const { inputs, shas } = prepareInput(root);
-  if (mergeFreshness(root, shas.extractions_sha) === 'fresh') {
-    console.log('merge: fresh');
-    return 0;
+// A MergeError as the merge command prints it: one line, the project folder cut out.
+const oneLine = (root: string, message: string): string => withoutRoot(message, root).replace(/\s*\n\s*/g, ' ');
+
+// The merge stage's next step, as `merge` and `advance` take it (ARCHITECTURE.md 15.2): the input
+// built, then fresh (already, or with no proposed keys an empty table, or a proposal left waiting by
+// the last merger checked and accepted now); else the prompt for one more attempt (counted, and the
+// state recorded as dispatched); else stopped, its attempts for these inputs used up or its input
+// too large for one merger. Setup failures throw MergeError (or LedgerError, ConfigError).
+export function mergeStep(root: string): StageStep {
+  let prepared: { inputs: MergeInputs; shas: MergeShas };
+  try {
+    prepared = prepareInput(root);
+  } catch (err) {
+    if (!(err instanceof MergeStoppedError)) throw err;
+    const line = `merge: ${oneLine(root, err.message)}`;
+    return { kind: 'stopped', reason: line, details: [line], notes: [] };
   }
+  const { inputs, shas } = prepared;
+  if (mergeFreshness(root, shas.extractions_sha) === 'fresh') return { kind: 'fresh', notes: [] };
   // Nothing proposed: the table is empty and no merger is needed.
   if (inputs.facts.length === 0) {
+    const started = performance.now();
     const table = canonicalMergeTable({ mapped: {}, unassigned: [], promoted: [] }, [], promoteMin(root), inputs.flagged, shas);
     writeJsonAtomic(mergeFile(root), table);
     writeState(root, { ...currentState(root, shas), status: 'accepted', problems: 0, last_problems: [], reason: null, finished_utc: nowUtc() });
-    console.error('merge: the extractors proposed no new keys; wrote an empty out/merge.json.');
-    console.log('merge: fresh');
-    return 0;
+    const note = 'merge: the extractors proposed no new keys; wrote an empty out/merge.json.';
+    logStage(root, 'merge accept', started, note);
+    return { kind: 'fresh', notes: [note] };
   }
   let state = currentState(root, shas);
+  const notes: string[] = [];
   // Stopped only because the input could not be built; it just was, so the attempts start afresh.
   if (state.status === 'stopped') state = { ...state, status: 'dispatched', dispatches: 0, reason: null };
   // A proposal from the last prompt may be waiting unchecked (the merger finished but `accept`
-  // never ran): check it rather than throw a finished run away. Notes go to stderr.
+  // never ran: the orchestrator's next call is `advance`, which takes it here): check it rather
+  // than throw a finished run away.
   const waitingText = state.status === 'dispatched' && state.dispatches > 0 ? readProposal(root) : null;
   if (waitingText !== null) {
+    const started = performance.now();
     const waiting = checkAndRecord(root, inputs, shas, waitingText);
     if (waiting.table !== null) {
-      console.error(`merge: accepted the proposal the last merger run left: ${summary(waiting.table)}; wrote out/merge.json.`);
-      console.log('merge: fresh');
-      return 0;
+      const note = `merge: accepted the proposal the last merger run left: ${summary(waiting.table)}; wrote out/merge.json.`;
+      logStage(root, 'merge accept', started, note, waiting.state.dispatches);
+      return { kind: 'fresh', notes: [note] };
     }
-    console.error(`merge: the proposal the last merger run left was not accepted: ${plural(waiting.problems.length, 'problem')}.`);
+    const note = `merge: the proposal the last merger run left was not accepted: ${plural(waiting.problems.length, 'problem')}.`;
+    logStage(root, 'merge accept', started, note, waiting.state.dispatches);
+    notes.push(note);
     state = waiting.state;
   }
   if (state.dispatches >= MERGE_MAX_DISPATCHES) {
-    console.error(`merge: stopped: ${state.dispatches} proposals for these extractions, taxonomy and merger definition failed the check; the last had ${plural(state.problems, 'problem')}:`);
-    for (const p of state.last_problems) console.error(`  - ${p}`);
-    if (state.problems > state.last_problems.length) console.error(`  (${state.problems - state.last_problems.length} more)`);
-    console.error('merge: change the merger definition (.claude/agents/merger.md), then run the stage again; never edit the merge table by hand.');
-    return 1;
+    const failed = `${state.dispatches} proposals for these extractions, taxonomy and merger definition failed the check; the last had ${plural(state.problems, 'problem')}`;
+    const remedy = 'change the merger definition (.claude/agents/merger.md), then run the stage again; never edit the merge table by hand.';
+    const details = [
+      `merge: stopped: ${failed}:`,
+      ...state.last_problems.map((p) => `  - ${p}`),
+      ...(state.problems > state.last_problems.length ? [`  (${state.problems - state.last_problems.length} more)`] : []),
+      `merge: ${remedy}`,
+    ];
+    return { kind: 'stopped', reason: `merge: stopped: ${failed} (node obs.mjs merge lists them); ${remedy}`, details, notes };
   }
   // A fix round needs something to fix: a recorded failure and a previous proposal that is at least
   // a JSON object. Otherwise the prompt is the fresh one and a stale proposal is removed, so that
   // `accept` only ever sees what this run's merger writes.
+  const started = performance.now();
   let fix: string[] | null = null;
   if (state.status === 'failed' && state.last_problems.length > 0) {
     try {
@@ -379,9 +404,34 @@ function nextCommand(root: string): number {
     }
   }
   if (fix === null) removeFile(mergeProposedFile(root));
-  writeState(root, { ...state, status: 'dispatched', dispatches: state.dispatches + 1, dispatched_utc: nowUtc() });
-  // Only the prompt goes to stdout, so the orchestrator can pass it on unchanged.
-  console.log(mergerPrompt(root, fix, state.problems));
+  const attempt = state.dispatches + 1;
+  writeState(root, { ...state, status: 'dispatched', dispatches: attempt, dispatched_utc: nowUtc() });
+  const prompt = mergerPrompt(root, fix, state.problems);
+  logStage(root, 'merge prompt', started, `attempt ${attempt} of ${MERGE_MAX_DISPATCHES}${fix === null ? '' : `, a fix round for ${plural(state.problems, 'problem')}`}`, attempt);
+  return { kind: 'prompt', prompt, attempt, notes };
+}
+
+// The attempts made for the current extractions, taxonomy and merger definition (0 with no such
+// state, after an accepted table, or when an input cannot be read): what the Stop hook uses to tell
+// one merge round from the next. A state left by other inputs counts as none, so its count can
+// never equal the first attempt under the new ones.
+export function mergeAttempts(root: string): number {
+  try {
+    return currentState(root, currentMergeShas(root)).dispatches;
+  } catch {
+    return 0;
+  }
+}
+
+function nextCommand(root: string): number {
+  const step = mergeStep(root);
+  // Notes go to stderr; stdout stays the answer alone, so the prompt can be passed on unchanged.
+  for (const note of step.notes) console.error(note);
+  if (step.kind === 'stopped') {
+    for (const line of step.details) console.error(line);
+    return 1;
+  }
+  console.log(step.kind === 'fresh' ? 'merge: fresh' : step.prompt);
   return 0;
 }
 
@@ -398,7 +448,9 @@ function acceptCommand(root: string): number {
     return 1;
   }
   const { inputs, shas } = prepareInput(root);
+  const started = performance.now();
   const { table, problems, state } = checkAndRecord(root, inputs, shas, text);
+  logStage(root, 'merge accept', started, table === null ? `not accepted: ${plural(problems.length, 'problem')}` : `accepted: ${summary(table)}`, state.dispatches);
   if (table === null) {
     console.log(`merge: the proposal was not accepted: ${plural(problems.length, 'problem')}.`);
     for (const p of problems.slice(0, MERGE_MAX_PROBLEMS)) console.log(`  - ${p}`);
@@ -422,7 +474,7 @@ export function mergeCommand(root: string, args: string[]): number {
     throw new MergeError(`unexpected argument "${args.join(' ')}". Usage: node obs.mjs merge [accept]`);
   } catch (err) {
     if (err instanceof MergeError || err instanceof LedgerError || err instanceof ConfigError) {
-      console.error(`merge: ${withoutRoot(err.message, root).replace(/\s*\n\s*/g, ' ')}`);
+      console.error(`merge: ${oneLine(root, err.message)}`);
       return 1;
     }
     throw err;

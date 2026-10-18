@@ -6,18 +6,22 @@
 // problems, and after TAXONOMY_MAX_DISPATCHES prompts for the same digest and taxonomist definition
 // the stage stops and says why. The attempt count starts again when either of those changes (the
 // remedy for a bad taxonomy is to change one of them, never to edit the file) or after an accepted
-// taxonomy is cleared (run start --force removes the state file too).
+// taxonomy is cleared (run start --force removes the state file too). During a run, `advance` takes
+// the same step through taxonomyStep: it accepts the proposal the last taxonomist left, or hands out
+// the next prompt.
 //
 // Freshness is the ledger's taxonomyFreshness, the same answer `status` and the Stop hook get:
 // taxonomy.json's digest_sha and agent_sha equal the hashes, newlines normalised, of
 // out/taxonomy-digest.md and .claude/agents/taxonomist.md as they are now.
-import { join, resolve } from 'node:path';
+import { join } from 'node:path';
 import { checkTaxonomyProposal, canonicalTaxonomy, subjectStats, type SubjectStats, type Taxonomy, type TaxonomyProcess } from '../model/taxonomy.ts';
 import { sha256 } from '../util/hash.ts';
 import { normalizeNewlines } from '../util/text.ts';
 import {
   digestFile,
+  logStage,
   nowUtc,
+  projectFolder,
   readText,
   removeFile,
   taxonomistFile,
@@ -27,8 +31,11 @@ import {
   taxonomyStateFile,
   withoutRoot,
   writeJsonAtomic,
+  type StageStep,
 } from './ledger.ts';
 import type { Thread } from '../types.ts';
+
+export type { StageStep };
 
 export const TAXONOMY_MAX_DISPATCHES = 4;
 export const TAXONOMY_MAX_PROBLEMS = 20; // kept in the state file and shown in a fix prompt
@@ -104,26 +111,19 @@ function currentState(root: string, shas: { digest_sha: string; agent_sha: strin
   return { ...shas, status: 'dispatched', dispatches: 0, problems: 0, last_problems: [], dispatched_utc: null, finished_utc: null };
 }
 
-// Absolute, forward slashes on every OS: the form the subagent's file tools take everywhere.
-const absolute = (root: string, rel: string): string => resolve(root, rel).replaceAll('\\', '/');
-
-// The prompt for one taxonomist run. The agent definition holds the instructions; this names the
-// files and, on a fix round, the problems the last check found (`total` of them, the first ones listed).
+// The prompt for one taxonomist run (ARCHITECTURE.md 15.5): the task and the project folder; the
+// agent definition names the files under it. On a fix round the problems the last check found
+// follow (`total` of them, the first ones listed): one call and no fix file, so they go inline.
 export function taxonomistPrompt(root: string, fix: string[] | null, total: number = fix?.length ?? 0): string {
-  const digest = `Digest file: ${absolute(root, 'out/taxonomy-digest.md')}`;
-  const output = `Output file: ${absolute(root, 'out/taxonomy-proposed.json')}`;
-  const reply = 'Reply with one short sentence and no email content.';
-  if (fix === null) return ['Propose the process taxonomy.', digest, output, reply].join('\n');
+  const folder = `Project folder: ${projectFolder(root)}`;
+  if (fix === null) return ['Propose the process taxonomy.', folder].join('\n');
   const shown = fix.slice(0, TAXONOMY_MAX_PROBLEMS);
   return [
     'Fix the process taxonomy proposal.',
-    digest,
-    `Previous proposal: ${absolute(root, 'out/taxonomy-proposed.json')}`,
+    folder,
     `The pipeline checked the previous proposal and found ${total} problem${total === 1 ? '' : 's'}${total > shown.length ? `; the first ${shown.length} are listed` : ''}:`,
     ...shown.map((p) => `- ${p}`),
-    'Read the digest and the previous proposal, fix only these problems, keep every other entry exactly as it was, and Write the whole file to:',
-    output,
-    reply,
+    'Read the digest and the previous proposal, fix only these problems, keep every other entry exactly as it was, and Write the whole file again.',
   ].join('\n');
 }
 
@@ -176,39 +176,47 @@ function checkAndRecord(root: string, shas: { digest_sha: string; agent_sha: str
   return { taxonomy, problems: [], state };
 }
 
-function nextCommand(root: string): number {
+// The taxonomy stage's next step, as `taxonomy` and `advance` take it (ARCHITECTURE.md 15.2):
+// fresh, or a proposal left waiting by the last taxonomist checked and accepted now; else the
+// prompt for one more attempt (counted, and the state recorded as dispatched); else stopped, its
+// attempts for this digest and taxonomist definition used up. Setup failures throw TaxonomyError.
+export function taxonomyStep(root: string): StageStep {
   const shas = currentShas(root);
-  if (taxonomyFreshness(root) === 'fresh') {
-    console.log('taxonomy: fresh');
-    return 0;
-  }
+  if (taxonomyFreshness(root) === 'fresh') return { kind: 'fresh', notes: [] };
   let state = currentState(root, shas);
+  const notes: string[] = [];
   // A proposal from the last prompt may be waiting unchecked: its taxonomist finished but `accept`
-  // never ran (the session ended, or the Stop hook sent the orchestrator here first). Check it
-  // rather than throw a finished run away. Notes go to stderr; stdout stays the answer alone.
+  // never ran (the orchestrator's next call is `advance`, which takes it here; or the session
+  // ended). Check it rather than throw a finished run away.
   const waitingText = state.status === 'dispatched' && state.dispatches > 0 ? readText(taxonomyProposedFile(root)) : null;
   if (waitingText !== null) {
+    const started = performance.now();
     const waiting = checkAndRecord(root, shas, waitingText);
     if (waiting.taxonomy !== null) {
-      console.error(`taxonomy: accepted the proposal the last taxonomist run left: ${plural(waiting.taxonomy.processes.length, 'process', 'processes')}; wrote out/taxonomy.json.`);
-      console.log('taxonomy: fresh');
-      return 0;
+      const note = `taxonomy: accepted the proposal the last taxonomist run left: ${plural(waiting.taxonomy.processes.length, 'process', 'processes')}; wrote out/taxonomy.json.`;
+      logStage(root, 'taxonomy accept', started, note, waiting.state.dispatches);
+      return { kind: 'fresh', notes: [note] };
     }
-    console.error(`taxonomy: the proposal the last taxonomist run left was not accepted: ${plural(waiting.problems.length, 'problem')}.`);
+    const note = `taxonomy: the proposal the last taxonomist run left was not accepted: ${plural(waiting.problems.length, 'problem')}.`;
+    logStage(root, 'taxonomy accept', started, note, waiting.state.dispatches);
+    notes.push(note);
     state = waiting.state;
   }
   if (state.dispatches >= TAXONOMY_MAX_DISPATCHES) {
-    console.error(
-      `taxonomy: stopped: ${state.dispatches} proposals for this digest and taxonomist definition failed the check; the last had ${plural(state.problems, 'problem')}:`,
-    );
-    for (const p of state.last_problems) console.error(`  - ${p}`);
-    if (state.problems > state.last_problems.length) console.error(`  (${state.problems - state.last_problems.length} more)`);
-    console.error('taxonomy: change the taxonomist definition (.claude/agents/taxonomist.md) or the digest builder, then run the stage again; never edit the taxonomy by hand.');
-    return 1;
+    const failed = `${state.dispatches} proposals for this digest and taxonomist definition failed the check; the last had ${plural(state.problems, 'problem')}`;
+    const remedy = 'change the taxonomist definition (.claude/agents/taxonomist.md) or the digest builder, then run the stage again; never edit the taxonomy by hand.';
+    const details = [
+      `taxonomy: stopped: ${failed}:`,
+      ...state.last_problems.map((p) => `  - ${p}`),
+      ...(state.problems > state.last_problems.length ? [`  (${state.problems - state.last_problems.length} more)`] : []),
+      `taxonomy: ${remedy}`,
+    ];
+    return { kind: 'stopped', reason: `taxonomy: stopped: ${failed} (node obs.mjs taxonomy lists them); ${remedy}`, details, notes };
   }
   // A fix round needs something to fix: a recorded failure and a previous proposal that is at least
   // a JSON object. Otherwise the prompt is the fresh one, and a stale proposal is removed so that
   // `accept` can only ever see what this run's taxonomist writes.
+  const started = performance.now();
   let fix: string[] | null = null;
   if (state.status === 'failed' && state.last_problems.length > 0) {
     const text = readText(taxonomyProposedFile(root));
@@ -216,14 +224,34 @@ function nextCommand(root: string): number {
     if (parsed?.ok && isObject(parsed.value)) fix = state.last_problems;
   }
   if (fix === null) removeFile(taxonomyProposedFile(root));
-  writeJsonAtomic(taxonomyStateFile(root), {
-    ...state,
-    status: 'dispatched',
-    dispatches: state.dispatches + 1,
-    dispatched_utc: nowUtc(),
-  } satisfies TaxonomyState);
-  // Only the prompt goes to stdout, so the orchestrator can pass it on unchanged.
-  console.log(taxonomistPrompt(root, fix, state.problems));
+  const attempt = state.dispatches + 1;
+  writeJsonAtomic(taxonomyStateFile(root), { ...state, status: 'dispatched', dispatches: attempt, dispatched_utc: nowUtc() } satisfies TaxonomyState);
+  const prompt = taxonomistPrompt(root, fix, state.problems);
+  logStage(root, 'taxonomy prompt', started, `attempt ${attempt} of ${TAXONOMY_MAX_DISPATCHES}${fix === null ? '' : `, a fix round for ${plural(state.problems, 'problem')}`}`, attempt);
+  return { kind: 'prompt', prompt, attempt, notes };
+}
+
+// The attempts made for the current digest and taxonomist definition (0 with no such state, after
+// an accepted taxonomy, or when either file is missing): what the Stop hook uses to tell one
+// taxonomy round from the next. A state left by other inputs counts as none, so its count can
+// never equal the first attempt under the new ones.
+export function taxonomyAttempts(root: string): number {
+  try {
+    return currentState(root, currentShas(root)).dispatches;
+  } catch {
+    return 0;
+  }
+}
+
+function nextCommand(root: string): number {
+  const step = taxonomyStep(root);
+  // Notes go to stderr; stdout stays the answer alone, so the prompt can be passed on unchanged.
+  for (const note of step.notes) console.error(note);
+  if (step.kind === 'stopped') {
+    for (const line of step.details) console.error(line);
+    return 1;
+  }
+  console.log(step.kind === 'fresh' ? 'taxonomy: fresh' : step.prompt);
   return 0;
 }
 
@@ -241,7 +269,15 @@ function acceptCommand(root: string): number {
     console.error('taxonomy: no proposal to check: out/taxonomy-proposed.json was not written. Run node obs.mjs taxonomy for a new prompt.');
     return 1;
   }
+  const started = performance.now();
   const { taxonomy, problems, state } = checkAndRecord(root, shas, text);
+  logStage(
+    root,
+    'taxonomy accept',
+    started,
+    taxonomy === null ? `not accepted: ${plural(problems.length, 'problem')}` : `accepted ${plural(taxonomy.processes.length, 'process', 'processes')}`,
+    state.dispatches,
+  );
   if (taxonomy === null) {
     console.log(`taxonomy: the proposal was not accepted: ${plural(problems.length, 'problem')}.`);
     for (const p of problems.slice(0, TAXONOMY_MAX_PROBLEMS)) console.log(`  - ${p}`);

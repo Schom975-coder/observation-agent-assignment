@@ -4,12 +4,10 @@
 // cache-key parts of each kind live in the ledger (JOB_KINDS) and are re-exported here; this module
 // adds what needs the checkers and the prompts. The ledger, the commands, the Stop hook and the
 // skill all go through these functions, so a third kind would be added here and in JOB_KINDS only.
-import { existsSync } from 'node:fs';
-import { resolve } from 'node:path';
 import { checkSynthesis } from '../model/synthesis.ts';
 import { checkExtraction } from '../model/validate-extraction.ts';
-import { MAX_DISPATCHES, countedDispatches, jobPaths, kindOf, loadJobs, outDir, readBatchState, sharedKeyParts, taxonomyFile, type JobPaths } from './ledger.ts';
-import type { JobCheck, ValidatedExtraction, ValidatedSynthesis } from '../types.ts';
+import { MAX_DISPATCHES, countedDispatches, jobPaths, kindOf, loadJobs, outDir, projectFolder, readBatchState, sharedKeyParts, type JobPaths } from './ledger.ts';
+import type { JobCheck, JobKind, ValidatedExtraction, ValidatedSynthesis } from '../types.ts';
 
 export { jobPaths, kindOf, loadJobs, sharedKeyParts, type JobPaths };
 
@@ -25,14 +23,13 @@ export function checkJob(root: string, id: string): JobCheck<ValidatedExtraction
   return kindOf(id) === 'batch' ? checkExtraction(root, id, { outDir: outDir(root) }) : checkSynthesis(root, id, { outDir: outDir(root) });
 }
 
-// Absolute, forward slashes on every OS: the form the subagent's file tools take everywhere.
-const absolute = (root: string, file: string): string => resolve(root, file).replaceAll('\\', '/');
-
 const plural = (n: number, one: string, many = `${one}s`): string => `${n} ${n === 1 ? one : many}`;
 
-const REPLY = 'Reply with one short sentence and no email content.';
+// The verb a job prompt starts with, by kind: the same word the Agent description starts with.
+const VERB: Record<JobKind, string> = { batch: 'Extract', synth: 'Synthesize' };
 
-// "(fix round 2 of 3)": the job's counted dispatches, read from the ledger after dispatch.
+// "fix round 2 of 3": the job's counted dispatches, read from the ledger after dispatch. A forced
+// dispatch past the usual rounds says only which round it is.
 function fixRound(root: string, id: string): string {
   const round = Math.max(1, countedDispatches(readBatchState(root, id)) - 1);
   return `fix round ${round}${round <= MAX_DISPATCHES - 1 ? ` of ${MAX_DISPATCHES - 1}` : ''}`;
@@ -41,51 +38,19 @@ function fixRound(root: string, id: string): string {
 // How many problems a fix round names: the recorded count, else the fix file's lines.
 const problemCount = (root: string, id: string, fix: readonly string[]): number => readBatchState(root, id).problems ?? fix.length;
 
-// The prompt an extractor gets. The agent definition holds the instructions; this names the files.
-// On a fix round (`fix` = the lines of the batch's fix file) it also names the previous output and
-// the problems file, and says how many problems there are. The problems themselves go only through
-// that file, never through this prompt, which the orchestrator passes on and so reads.
-export function extractorPrompt(root: string, batchId: string, fix: string[] | null): string {
-  const paths = jobPaths(root, batchId);
-  const batch = `Batch file: ${absolute(root, paths.input)}`;
-  const taxonomy = existsSync(taxonomyFile(root))
-    ? `Taxonomy file: ${absolute(root, taxonomyFile(root))}`
-    : 'Taxonomy file: none yet. Every process key must be new:<slug>, each defined in new_processes.';
-  const output = `Output file: ${absolute(root, paths.output)}`;
-  if (fix === null) return [`Extract batch ${batchId}.`, batch, taxonomy, output, REPLY].join('\n');
-  return [
-    `Extract batch ${batchId} (${fixRound(root, batchId)}).`,
-    batch,
-    taxonomy,
-    `Previous output: ${absolute(root, paths.output)}`,
-    `Problems file: ${absolute(root, paths.fix)}`,
-    `The pipeline checked the previous output and found ${plural(problemCount(root, batchId, fix), 'problem')}, listed in the problems file. ` +
-      'Read the batch file, the previous output and the problems file, fix only those problems, keep every other entry exactly as it was, and Write the whole file to:',
-    output,
-    REPLY,
-  ].join('\n');
-}
-
-// The prompt a synthesizer gets (ARCHITECTURE.md 14.3): the group input and the output file; on a
-// fix round also the previous output and the problems file, problems again only through the file.
-export function synthesizerPrompt(root: string, groupId: string, fix: string[] | null): string {
-  const paths = jobPaths(root, groupId);
-  const input = `Input file: ${absolute(root, paths.input)}`;
-  const output = `Output file: ${absolute(root, paths.output)}`;
-  if (fix === null) return [`Synthesize group ${groupId}.`, input, output, REPLY].join('\n');
-  return [
-    `Synthesize group ${groupId} (${fixRound(root, groupId)}).`,
-    input,
-    `Previous output: ${absolute(root, paths.output)}`,
-    `Problems file: ${absolute(root, paths.fix)}`,
-    `The pipeline checked the previous output and found ${plural(problemCount(root, groupId, fix), 'problem')}, listed in the problems file. ` +
-      'Read the input file, the previous output and the problems file, fix only those problems, keep every other entry exactly as it was, and Write the whole file to:',
-    output,
-    REPLY,
-  ].join('\n');
-}
-
-// The prompt for a job of either kind.
+// The prompt for a job of either kind (ARCHITECTURE.md 6.22, 15.5): two lines, the job and the
+// project folder.
+//   Extract batch-017.
+//   Project folder: <abs>
+// On a fix round (`fix` = the lines of the job's fix file) the first line also says which round
+// and how many problems there are:
+//   Extract batch-017 (fix round 2 of 3): 2 problems in the problems file.
+// The agent definition names every file relative to the folder, so the prompt carries no other
+// path; the orchestrator types this text into each Agent call, and short is what makes a wave of
+// twenty start quickly. The problems themselves go only through the fix file, never through the
+// prompt, which the orchestrator passes on and so reads.
 export function jobPrompt(root: string, id: string, fix: string[] | null): string {
-  return kindOf(id) === 'batch' ? extractorPrompt(root, id, fix) : synthesizerPrompt(root, id, fix);
+  const job = `${VERB[kindOf(id)]} ${id}`;
+  const first = fix === null ? `${job}.` : `${job} (${fixRound(root, id)}): ${plural(problemCount(root, id, fix), 'problem')} in the problems file.`;
+  return [first, `Project folder: ${projectFolder(root)}`].join('\n');
 }

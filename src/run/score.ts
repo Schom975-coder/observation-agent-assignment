@@ -13,7 +13,7 @@ import { ConfigError, loadEffortRates, loadEstimatesOverride, loadScoring, type 
 import { score } from '../metrics/score.ts';
 import { sha256 } from '../util/hash.ts';
 import { normalizeNewlines } from '../util/text.ts';
-import { LedgerError, batchViews, fileSha, opportunitiesFile, readText, rollupFile, synthIndexFile, validatedFile, withoutRoot, writeJsonAtomic, type BatchView } from './ledger.ts';
+import { LedgerError, batchViews, fileSha, logStage, opportunitiesFile, readText, rollupFile, synthIndexFile, validatedFile, withoutRoot, writeJsonAtomic, type BatchView } from './ledger.ts';
 import { rollupFreshness } from './rollup.ts';
 import type { EstimatesOverride, Opportunities, Rollup, ValidatedSynthesis } from '../types.ts';
 
@@ -109,78 +109,28 @@ function sameCounting(base: EffortRates, alt: EffortRates): boolean {
   );
 }
 
+// What a score says: the headline line, and notes about groups not done and overrides that cannot
+// apply, one line each.
+export type ScoreResult = { summary: string; notes: string[] };
+
+// The score stage's one step, as `score` and `advance` take it: price every process with the
+// published rates and the default estimates override, write out/opportunities.json, and return the
+// headline line and the notes (the command prints them to stderr, advance lists them in its steps,
+// so nothing reaches stderr ahead of advance's JSON). Throws ScoreError, ConfigError or
+// LedgerError, each one line for the caller to print.
+export function scoreStep(root: string): ScoreResult {
+  const started = performance.now();
+  const result = runScore(root, { rates: null, estimates: null });
+  logStage(root, 'score', started, result.summary);
+  return result;
+}
+
 export function scoreCommand(root: string, args: string[]): number {
   try {
     const opts = parseArgs(args);
-    const fromCwd = (f: string) => (isAbsolute(f) ? f : resolve(process.cwd(), f));
-    // Repo-relative; a file outside the repo by its name only (the output may be committed).
-    const rel = (f: string) => {
-      const r = withoutRoot(f, root).replaceAll('\\', '/');
-      return isAbsolute(r) || /^[A-Za-z]:\//.test(r) ? basename(f) : r;
-    };
-    const rollupState = rollupFreshness(root);
-    if (rollupState !== 'current') throw new ScoreError(`out/rollup.json is ${rollupState === 'missing' ? 'missing' : 'not current'}: run node obs.mjs rollup first.`);
-    const rollup = JSON.parse(readText(rollupFile(root)) as string) as Rollup;
-
-    const base = loadEffortRates(baseRatesFile(root));
-    const ratesPath = opts.rates === null ? baseRatesFile(root) : fromCwd(opts.rates);
-    const rates = opts.rates === null ? base : loadEffortRates(ratesPath);
-    if (!sameCounting(base, rates)) {
-      throw new ScoreError(
-        `${rel(ratesPath)} changes how actions are counted (length buckets, read cap or priced domains), which the rollup fixed: --rates may change minutes and automatable shares only. ` +
-          'To count differently, change config/effort-rates.json and run node obs.mjs rollup.',
-      );
-    }
-    const scoring = loadScoring(scoringFile(root));
-    const estimatesPath = opts.estimates !== null ? fromCwd(opts.estimates) : existsSync(estimatesFile(root)) ? estimatesFile(root) : null;
-    if (estimatesPath !== null && !existsSync(estimatesPath)) throw new ScoreError(`${rel(estimatesPath)} does not exist.`);
-    const estimates: EstimatesOverride | null = estimatesPath === null ? null : loadEstimatesOverride(estimatesPath, scoring.estimates);
-
-    // The done groups' syntheses; the processes of any other group are scored without one.
-    const groups = existsSync(synthIndexFile(root)) ? batchViews(root, 'synth') : null;
-    const done = (groups ?? []).filter((v) => v.status === 'done');
-    const synthesis = done.map((v) => JSON.parse(readText(validatedFile(root, v.entry.id)) as string) as ValidatedSynthesis);
-    const open = (groups ?? []).filter((v) => v.status !== 'done' && v.status !== 'exhausted').map((v) => v.entry.id);
-    if (open.length > 0) console.error(`score: ${plural(open.length, 'synthesis group is', 'synthesis groups are')} not done (${open.join(', ')}); their processes are scored without a synthesis.`);
-
-    // Overrides that cannot apply are said out loud, one line each.
-    const seen = new Map(rollup.processes.map((p) => [p.key, p.occurrences]));
-    for (const k of Object.keys(estimates?.estimates ?? {})) {
-      const n = seen.get(k);
-      if (n === undefined) console.error(`score: ${rel(estimatesPath as string)} names "${k}", which is not a process of this rollup; it is ignored.`);
-      else if (n < scoring.estimates.min_occurrences) {
-        console.error(`score: ${rel(estimatesPath as string)} sets an estimate for "${k}", seen ${plural(n, 'time')}; an estimate needs at least ${scoring.estimates.min_occurrences} occurrences, so it is ignored.`);
-      }
-    }
-
-    const result: Opportunities = score({
-      rollup,
-      synthesis,
-      rates,
-      scoring,
-      estimates,
-      files: { rates: rel(ratesPath), estimates: estimatesPath === null ? null : rel(estimatesPath) },
-      shas: {
-        rollup_sha: fileSha(rollupFile(root)) ?? sha256('none'),
-        synthesis_sha: synthesisSha(root, groups),
-        rates_sha: fileSha(ratesPath) ?? sha256('none'),
-        scoring_sha: fileSha(scoringFile(root)) ?? sha256('none'),
-        estimates_sha: estimatesPath === null ? null : fileSha(estimatesPath),
-      },
-    });
-    const names = [...(opts.rates === null ? [] : [namePart(opts.rates)]), ...(opts.estimates === null ? [] : [namePart(opts.estimates)])];
-    const out = names.length === 0 ? opportunitiesFile(root) : join(root, 'out', `opportunities.${names.join('.')}.json`);
-    writeJsonAtomic(out, result);
-
-    const h = result.headline;
-    const tiers = { A: 0, B: 0, C: 0 };
-    for (const o of result.opportunities) tiers[o.tier]++;
-    const missing = result.opportunities.filter((o) => o.estimated === null).length;
-    console.log(
-      `score: tiers A+B ${money(h.tiers_ab_cents.total)}/mo automatable (counted email ${money(h.tiers_ab_cents.counted_email)} + estimated work ${money(h.tiers_ab_cents.estimated_work)}), ` +
-        `all tiers ${money(h.all_tiers_cents.total)}/mo, ${h.label}; ${plural(result.opportunities.length, 'opportunity', 'opportunities')} ` +
-        `(${tiers.A} A, ${tiers.B} B, ${tiers.C} C); ${plural(missing, 'estimate')} missing; wrote ${rel(out)}.`,
-    );
+    const { summary, notes } = opts.rates === null && opts.estimates === null ? scoreStep(root) : runScore(root, opts);
+    for (const note of notes) console.error(note);
+    console.log(summary);
     return 0;
   } catch (err) {
     if (err instanceof ScoreError || err instanceof ConfigError || err instanceof LedgerError) {
@@ -189,4 +139,80 @@ export function scoreCommand(root: string, args: string[]): number {
     }
     throw err;
   }
+}
+
+// A score with these rates and estimates (null: the defaults), written to out/opportunities.json
+// or, for another file, out/opportunities.<name>.json. Notes about groups not done and overrides
+// that cannot apply are returned as notes, beside the headline line.
+function runScore(root: string, opts: { rates: string | null; estimates: string | null }): ScoreResult {
+  const notes: string[] = [];
+  const fromCwd = (f: string) => (isAbsolute(f) ? f : resolve(process.cwd(), f));
+  // Repo-relative; a file outside the repo by its name only (the output may be committed).
+  const rel = (f: string) => {
+    const r = withoutRoot(f, root).replaceAll('\\', '/');
+    return isAbsolute(r) || /^[A-Za-z]:\//.test(r) ? basename(f) : r;
+  };
+  const rollupState = rollupFreshness(root);
+  if (rollupState !== 'current') throw new ScoreError(`out/rollup.json is ${rollupState === 'missing' ? 'missing' : 'not current'}: run node obs.mjs rollup first.`);
+  const rollup = JSON.parse(readText(rollupFile(root)) as string) as Rollup;
+
+  const base = loadEffortRates(baseRatesFile(root));
+  const ratesPath = opts.rates === null ? baseRatesFile(root) : fromCwd(opts.rates);
+  const rates = opts.rates === null ? base : loadEffortRates(ratesPath);
+  if (!sameCounting(base, rates)) {
+    throw new ScoreError(
+      `${rel(ratesPath)} changes how actions are counted (length buckets, read cap or priced domains), which the rollup fixed: --rates may change minutes and automatable shares only. ` +
+        'To count differently, change config/effort-rates.json and run node obs.mjs rollup.',
+    );
+  }
+  const scoring = loadScoring(scoringFile(root));
+  const estimatesPath = opts.estimates !== null ? fromCwd(opts.estimates) : existsSync(estimatesFile(root)) ? estimatesFile(root) : null;
+  if (estimatesPath !== null && !existsSync(estimatesPath)) throw new ScoreError(`${rel(estimatesPath)} does not exist.`);
+  const estimates: EstimatesOverride | null = estimatesPath === null ? null : loadEstimatesOverride(estimatesPath, scoring.estimates);
+
+  // The done groups' syntheses; the processes of any other group are scored without one.
+  const groups = existsSync(synthIndexFile(root)) ? batchViews(root, 'synth') : null;
+  const done = (groups ?? []).filter((v) => v.status === 'done');
+  const synthesis = done.map((v) => JSON.parse(readText(validatedFile(root, v.entry.id)) as string) as ValidatedSynthesis);
+  const open = (groups ?? []).filter((v) => v.status !== 'done' && v.status !== 'exhausted').map((v) => v.entry.id);
+  if (open.length > 0) notes.push(`score: ${plural(open.length, 'synthesis group is', 'synthesis groups are')} not done (${open.join(', ')}); their processes are scored without a synthesis.`);
+
+  // Overrides that cannot apply are said out loud, one line each.
+  const seen = new Map(rollup.processes.map((p) => [p.key, p.occurrences]));
+  for (const k of Object.keys(estimates?.estimates ?? {})) {
+    const n = seen.get(k);
+    if (n === undefined) notes.push(`score: ${rel(estimatesPath as string)} names "${k}", which is not a process of this rollup; it is ignored.`);
+    else if (n < scoring.estimates.min_occurrences) {
+      notes.push(`score: ${rel(estimatesPath as string)} sets an estimate for "${k}", seen ${plural(n, 'time')}; an estimate needs at least ${scoring.estimates.min_occurrences} occurrences, so it is ignored.`);
+    }
+  }
+
+  const result: Opportunities = score({
+    rollup,
+    synthesis,
+    rates,
+    scoring,
+    estimates,
+    files: { rates: rel(ratesPath), estimates: estimatesPath === null ? null : rel(estimatesPath) },
+    shas: {
+      rollup_sha: fileSha(rollupFile(root)) ?? sha256('none'),
+      synthesis_sha: synthesisSha(root, groups),
+      rates_sha: fileSha(ratesPath) ?? sha256('none'),
+      scoring_sha: fileSha(scoringFile(root)) ?? sha256('none'),
+      estimates_sha: estimatesPath === null ? null : fileSha(estimatesPath),
+    },
+  });
+  const names = [...(opts.rates === null ? [] : [namePart(opts.rates)]), ...(opts.estimates === null ? [] : [namePart(opts.estimates)])];
+  const out = names.length === 0 ? opportunitiesFile(root) : join(root, 'out', `opportunities.${names.join('.')}.json`);
+  writeJsonAtomic(out, result);
+
+  const h = result.headline;
+  const tiers = { A: 0, B: 0, C: 0 };
+  for (const o of result.opportunities) tiers[o.tier]++;
+  const missing = result.opportunities.filter((o) => o.estimated === null).length;
+  const summary =
+    `score: tiers A+B ${money(h.tiers_ab_cents.total)}/mo automatable (counted email ${money(h.tiers_ab_cents.counted_email)} + estimated work ${money(h.tiers_ab_cents.estimated_work)}), ` +
+    `all tiers ${money(h.all_tiers_cents.total)}/mo, ${h.label}; ${plural(result.opportunities.length, 'opportunity', 'opportunities')} ` +
+    `(${tiers.A} A, ${tiers.B} B, ${tiers.C} C); ${plural(missing, 'estimate')} missing; wrote ${rel(out)}.`;
+  return { summary, notes };
 }

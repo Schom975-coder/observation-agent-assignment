@@ -456,6 +456,15 @@ test('prepare skips itself when the corpus listing, the code and every output ar
   assert.match(full(['--force'])[0] ?? '', /^prepare: 3 messages parsed/, '--force always runs');
   const bad = outputOf(() => prepareCommand(mini, ['--fast']));
   assert.deepEqual([bad.code, bad.err], [1, ['prepare: unexpected argument "--fast". Usage: node obs.mjs prepare [--force]']]);
+  assert.ok(!existsSync(join(out, 'runs')), 'outside a run, no run log');
+
+  // During a run, each prepare logs one event with its duration and whether it skipped itself.
+  mkdirSync(join(out, 'ledger'), { recursive: true });
+  writeFileSync(join(out, 'ledger', 'run.json'), JSON.stringify({ active: true, run_id: 'r-prepare', started_utc: '2026-10-18T00:00:00Z' }));
+  full();
+  full(['--force']);
+  const events = readFileSync(join(out, 'runs', 'r-prepare.jsonl'), 'utf8').trimEnd().split('\n').map((l) => JSON.parse(l) as Record<string, unknown>);
+  assert.deepEqual(events.map((e) => [e.event, e.skipped, Number.isInteger(e.ms)]), [['prepare', true, true], ['prepare', false, true]]);
 });
 
 test('codeSha covers src/**/*.ts and the rates file, newline-normalised, and nothing else', () => {

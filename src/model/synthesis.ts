@@ -15,6 +15,7 @@
 //   E3 basis self_reported needs SELF_REPORTED_MIN_SENDERS senders: one person's statement of how
 //      long something takes is a claim, corroborated or not used;
 //   E4 a process the input shows with fewer than min_occurrences occurrences has work_estimate null.
+// Character caps are enforced LENGTH_MARGIN_PCT over the cap the agent definition states.
 // The validated record is the raw one, keys in contract order and processes in the input's order,
 // plus the input's content_sha and, per estimate, the occurrences and senders its ids come from.
 import { existsSync, readFileSync, statSync } from 'node:fs';
@@ -45,8 +46,14 @@ export const SUMMARY_MAX_CHARS = 400;
 export const APPROACH_MAX_CHARS = 600;
 export const RATIONALE_MAX_CHARS = 600;
 export const SELF_REPORTED_MIN_SENDERS = 3;
-// The largest raw output read: three processes at every limit come to well under half of it.
+// The largest raw output read: four processes at every limit, the margin included, come to about
+// two thirds of it.
 export const SYNTHESIS_OUTPUT_MAX_BYTES = 100_000;
+// Every character cap above is stated to the model as written and enforced with this margin
+// (ARCHITECTURE.md 5.3): a description a few characters over its stated cap is not worth a serial
+// fix round at the stage's tail. The validated file keeps the text as written.
+export const LENGTH_MARGIN_PCT = 20;
+export const withMargin = (max: number): number => Math.floor((max * (100 + LENGTH_MARGIN_PCT)) / 100);
 
 type Obj = Record<string, unknown>;
 const BOM = String.fromCharCode(0xfeff);
@@ -256,9 +263,10 @@ function check(g: SynthesisGroup, groupId: string, entry: SynthEntry, sidecar: S
       }
     };
     // Lengths, then the steering check (and, where numbers are not allowed, the effort-number check).
+    // A cap is enforced LENGTH_MARGIN_PCT over; the problem states the cap as the prompt does.
     const text = (where: string, s: string, min: number, max: number, numbers: boolean): void => {
       const n = chars(s.trim());
-      if (n < min || chars(s) > max) add(`${at}.${where} must be ${min}-${max} characters, got ${chars(s)}`);
+      if (n < min || chars(s) > withMargin(max)) add(`${at}.${where} must be ${min}-${max} characters, got ${chars(s)}`);
       checkProse(at, where, s, add, numbers);
     };
     text('description', p.description, DESCRIPTION_MIN_CHARS, DESCRIPTION_MAX_CHARS, true);

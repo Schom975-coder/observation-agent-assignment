@@ -13,6 +13,7 @@
 //
 // Every step is linear in the message: one pass to build each view, indexOf to search (V8's
 // string search does not backtrack quadratically), no regular expression applied to the quote.
+import { nameTokens } from '../metrics/rollup.ts';
 import type { ParsedMessage, QuoteCheck, Segment, SegmentKind } from '../types.ts';
 import { normalizeNewlines } from '../util/text.ts';
 
@@ -108,7 +109,7 @@ function span(v: View, j: number, length: number): { start: number; end: number 
 }
 
 // Views are built once per message and reused for every quote checked against it.
-type Target = { raw: string; body?: View; collapsedBody?: View; subject?: View; folded?: string };
+type Target = { raw: string; body?: View; collapsedBody?: View; subject?: View; words?: ReadonlySet<string> };
 const targets = new WeakMap<ParsedMessage, Target>();
 
 function target(raw: string, m: ParsedMessage): Target {
@@ -235,15 +236,21 @@ function checkSubject(raw: string, m: ParsedMessage, q: string, length: number):
   return { match, start: at.start, end: at.end, segment: 'subject', raw_text: raw.slice(at.start, at.end), reason: null };
 }
 
-// Whether `name` appears anywhere in the raw message, headers or body, ignoring case and
-// differences in whitespace (line breaks included). An ownership claim must name someone the
-// message itself names.
+// Whether the raw message, headers or body, names `name`: every word of the name is a whole word
+// of the message. Words are what the rollup's ownership resolver compares (nameTokens: case-folded,
+// apostrophes dropped, anything but letters and digits a separator, words of two or more
+// characters), so word order and punctuation do not matter: "Darron Giron" is named by a header
+// "Giron, Darron C". A name with no such word (empty, or initials only) names no one. An ownership
+// claim must name someone the message itself names (ARCHITECTURE.md 15.3). The words may come from
+// different people: "Kate Symes" passes in a message naming Kate Fraser and Mark Symes, and the
+// rollup's `claimant` then keeps both of them as a tie, so such a claim takes part in a conflict
+// only against a claim that names neither.
 export function mentions(raw: string, message: ParsedMessage, name: string): boolean {
-  const needle = collapse(name.trim()).toLowerCase();
-  if (needle === '') return false;
+  const words = nameTokens(name);
+  if (words.length === 0) return false;
   const t = target(raw, message);
-  t.folded ??= collapse(raw).toLowerCase();
-  return t.folded.includes(needle);
+  const inMessage = (t.words ??= new Set(nameTokens(raw)));
+  return words.every((w) => inMessage.has(w));
 }
 
 // Check one quote against one message. `raw` is the whole raw message text; `field` says where the

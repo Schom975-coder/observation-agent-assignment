@@ -770,12 +770,14 @@ export function advanceCommand(root: string, args: readonly string[]): number {
 
 // ---- run start / end ----
 
-// Run start: stamp every job whose state is running. A run has just begun, so no agent should be
-// alive: whatever file each left is checked as validate would check it, a missing or bad one is
-// failed (with attempts left), a good one done. Left running, with the reason: a job still starting
-// (no output file yet, dispatched under ORPHAN_GRACE_S ago, as validate leaves it), and one that
-// can't be checked yet (no index before prepare or rollup, or a setup failure).
-export type Orphan = { batch_id: string; status: BatchStatus; reason?: 'starting' | 'unchecked' };
+// Run start: stamp every job whose state is running. Every run start begins a new run and its
+// session takes over, so a running job was handed out by an earlier session whose agents ended with
+// it: whatever file each left is checked as validate would check it, a missing or bad one is failed
+// (with attempts left), a good one done. There is no ORPHAN_GRACE_S wait here, unlike validate and
+// advance: a job handed out seconds before the interruption has no agent left to start, and waiting
+// would end a restarted `-p` run with nothing to do. Left running, with the reason: a job that can't
+// be checked yet (no index before prepare or rollup, or a setup failure).
+export type Orphan = { batch_id: string; status: BatchStatus; reason?: 'unchecked' };
 
 export function stampOrphans(root: string): Orphan[] {
   const ids = recordedRunning(root);
@@ -795,7 +797,6 @@ export function stampOrphans(root: string): Orphan[] {
     return jobs;
   };
   return ids.map((batch_id): Orphan => {
-    if (stillStarting(root, readBatchState(root, batch_id))) return { batch_id, status: 'running', reason: 'starting' };
     const entry = jobsOf(kindOf(batch_id)).find((j) => j.id === batch_id);
     if (entry === undefined) return { batch_id, status: 'running', reason: 'unchecked' };
     const check = checkJob(root, batch_id);
@@ -860,9 +861,7 @@ export function runCommand(root: string, args: readonly string[]): number {
       }
       for (const s of stamped.filter((x) => x.status === 'running')) {
         console.log(
-          s.reason === 'starting'
-            ? `run: ${s.batch_id} was dispatched under ${ORPHAN_GRACE_S} seconds ago and has no output yet; it stays running.`
-            : `run: ${s.batch_id} was left running and can't be checked yet; after node obs.mjs ${JOB_KINDS[kindOf(s.batch_id)].rebuild}, run node obs.mjs validate ${s.batch_id}.`,
+          `run: ${s.batch_id} was left running and can't be checked yet; after node obs.mjs ${JOB_KINDS[kindOf(s.batch_id)].rebuild}, run node obs.mjs validate ${s.batch_id}.`,
         );
       }
       return 0;

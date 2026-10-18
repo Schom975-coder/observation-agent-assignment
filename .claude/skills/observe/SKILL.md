@@ -4,6 +4,7 @@ description: Run the observation pipeline over the email archive. Prepares the b
 argument-hint: "[--force]"
 disable-model-invocation: true
 allowed-tools: Bash(node obs.mjs *) Agent(extractor) Agent(taxonomist) Agent(merger) Agent(synthesizer) Agent(drafter)
+effort: medium
 ---
 
 Run the observation pipeline. You are the orchestrator. One command, `node obs.mjs advance`, keeps the record of every job (the run ledger), runs every step that needs no model, and says which subagents to start next; the subagents read the email. You run the commands and start the subagents, following the steps below exactly.

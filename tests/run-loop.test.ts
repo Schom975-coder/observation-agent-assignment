@@ -43,6 +43,7 @@ import { buildThreads } from '../src/normalize/threads.ts';
 import { mergeCommand } from '../src/run/merge.ts';
 import { rollupCommand } from '../src/run/rollup.ts';
 import { scoreCommand } from '../src/run/score.ts';
+import { peopleLine } from '../src/model/artifacts.ts';
 import { BODIES } from './fixtures/drafts.ts';
 import {
   MAX_DISPATCHES,
@@ -791,7 +792,12 @@ test('advance alone drives the run: one wave of batches, the merger in the foreg
     assert.equal(record.artifacts.find((a) => a.key === 'echo-work')?.reason, 'no document type was chosen for this process');
     assert.ok(!existsSync(join(root, 'out', 'artifacts', 'bravo-work')), 'no file for the exhausted draft');
     const sop = readFileSync(join(root, 'out', 'artifacts', 'alpha-work', 'sop.md'), 'utf8');
-    assert.ok(sop.startsWith(`# alpha work: SOP\n\nDraft prepared from 5 emails about this process, for the process owner to review. The supporting evidence is listed at the end.\n\n${BODIES.sop}\n\n## Evidence\n`), sop.slice(0, 400));
+    // The body as the drafter wrote it, with the code-written people line under its Owner heading.
+    const alphaBrief = JSON.parse(readFileSync(join(root, 'out', 'artifacts', 'input', `${alpha}.json`), 'utf8')) as ArtifactBrief;
+    const people = peopleLine(alphaBrief);
+    assert.match(people, /^People doing this work \(counted from the emails\): (?:Ann Lee|Bob Ray) \(\d+ written\)/);
+    const body = BODIES.sop.replace('## Owner\n\n', `## Owner\n\n${people}\n\n`);
+    assert.ok(sop.startsWith(`# alpha work: SOP\n\nDraft prepared from 5 emails about this process, for the process owner to review. Evidence about this process, quoted exactly from the emails, is listed at the end.\n\n${body}\n\n## Evidence\n`), sop.slice(0, 600));
     assert.match(sop, /\n- `corpus\/m5\/inbox\/01` \(2001-01-15, from Ann Lee\):\n\n {2}> Please handle the alpha round 1 for the desk today, item 1\.\n/);
     assert.match(sop, /\nCounted from the emails: this work came up \d+ times over \d+ active months \(2001-\d\d-\d\d to 2001-\d\d-\d\d\), across 5 emails, with \d+ staff taking part\.\n\nEstimated, not counted: about 30 minutes of hands-on work each time \(range 20 to 45\), about 50% of it automatable\. Basis: seen in the emails; proposed by a model and checked by code\.\n$/);
     assert.ok(!sop.includes('corpus/x/1.'), 'the refused first body never reached the artifact');

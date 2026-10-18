@@ -11,7 +11,7 @@
 // is shown to every later reader.
 import { cutChars, flatten, jsonText } from '../batch/digest.ts';
 import { estTokens, lineCount } from '../batch/build.ts';
-import { checkKey, checkProcessText, type Taxonomy } from './taxonomy.ts';
+import { catchAllWord, checkKey, checkProcessText, type Taxonomy } from './taxonomy.ts';
 import { modelText } from './schema.ts';
 import type { MergeProposal, MergeTable, ParsedMessage, Thread, ValidatedExtraction } from '../types.ts';
 
@@ -96,6 +96,13 @@ const monthRange = (months: readonly string[]): string =>
 // Email-derived and extractor-written text: one line, cut, JSON-quoted (as in the digest).
 const quoted = (s: string, max: number): string => jsonText(cutChars(flatten(s), max));
 
+// A proposed key whose slug the promoted-key rules refuse as a catch-all is marked on its line, so
+// the merger renames it when it decides to promote rather than in a fix round (the M6 rehearsals
+// lost a fix round each to `new:business-continuity-planning` promoted as it was). One source of
+// truth: the validator's own catchAllWord. Part of the line in every cap tier, so the caps count it.
+export const reservedWordOf = (slug: string): string | null => catchAllWord(isNewKey(slug) ? slug.slice('new:'.length) : slug);
+export const reservedFlag = (word: string): string => `reserved word ${JSON.stringify(word)}: if promoted, name the work itself`;
+
 function inputLine(f: SlugFacts, definitionChars: number, subjects: boolean): string {
   const counts = [count(f.message_ids.length, 'msg'), `${f.occurrence_ids.length} occ`, count(f.thread_ids.length, 'thread'), count(f.batches.length, 'batch', 'batches'), monthRange(f.months)];
   const parts = [f.slug, counts.join(', '), quoted(f.name, NAME_SHOWN_CHARS), quoted(f.definition, definitionChars)];
@@ -103,6 +110,8 @@ function inputLine(f: SlugFacts, definitionChars: number, subjects: boolean): st
     const shown = f.subjects.slice(0, SUBJECTS_SHOWN).map((s) => quoted(s, SUBJECT_SHOWN_CHARS));
     parts.push(`subjects: ${shown.length === 0 ? 'none' : shown.join(', ')}`);
   }
+  const reserved = reservedWordOf(f.slug);
+  if (reserved !== null) parts.push(reservedFlag(reserved));
   return parts.join(' | ');
 }
 

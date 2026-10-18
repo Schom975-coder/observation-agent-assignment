@@ -975,7 +975,7 @@ test('run start and end set and clear run.active, and run start clears the Stop 
   assert.equal(readRun(root).active, false);
 });
 
-test('run start stamps every batch left running: a missing or bad file fails with attempts left; one still starting or not checkable yet stays running', () => {
+test('run start stamps every batch left running, however recently it was handed out: a missing or bad file fails with attempts left; one not checkable yet stays running', () => {
   const root = project(6, { taxonomy: true });
   finish(root, 'batch-005', passed('batch-005'));
   dispatch(root, 'batch-000'); // the session died before its extractor wrote anything, long ago
@@ -984,24 +984,20 @@ test('run start stamps every batch left running: a missing or bad file fails wit
   writeExtract(root, 'batch-001', 'half a file {');
   dispatch(root, 'batch-002');
   writeExtract(root, 'batch-002', schemaValid('batch-002')); // needs messages this project lacks: a setup failure
-  dispatch(root, 'batch-003'); // dispatched just now, nothing written yet: still starting
+  dispatch(root, 'batch-003'); // handed out seconds before the session died: no agent is left to start it
   const r = capture(() => runCommand(root, ['start']));
   assert.equal(r.code, 0, r.err.join('\n'));
   assert.deepEqual(r.out.slice(1), [
-    'run: 2 batches were left running by an earlier session: batch-000 failed, batch-001 failed.',
+    'run: 3 batches were left running by an earlier session: batch-000 failed, batch-001 failed, batch-003 failed.',
     "run: batch-002 was left running and can't be checked yet; after node obs.mjs prepare, run node obs.mjs validate batch-002.",
-    `run: batch-003 was dispatched under ${ORPHAN_GRACE_S} seconds ago and has no output yet; it stays running.`,
   ]);
-  assert.deepEqual(batchViews(root).map((v) => v.status), ['failed', 'failed', 'running', 'running', 'pending', 'done']);
+  assert.deepEqual(batchViews(root).map((v) => v.status), ['failed', 'failed', 'running', 'failed', 'pending', 'done']);
   assert.deepEqual(readBatchState(root, 'batch-000').last_problems, ['out/extract/batch-000.json does not exist or cannot be read: write the extraction for batch-000 there']);
-  assert.deepEqual(statusReport(root).retryable, ['batch-000', 'batch-001'], 'both have attempts left');
+  assert.deepEqual(statusReport(root).retryable, ['batch-000', 'batch-001', 'batch-003'], 'all three have attempts left: handed out again at once, no wait');
 
   // Before prepare (no batch index), nothing can be checked, and nothing is lost.
   rmSync(join(root, 'out', 'batches', 'index.json'));
-  assert.deepEqual(stampOrphans(root), [
-    { batch_id: 'batch-002', status: 'running', reason: 'unchecked' },
-    { batch_id: 'batch-003', status: 'running', reason: 'starting' },
-  ]);
+  assert.deepEqual(stampOrphans(root), [{ batch_id: 'batch-002', status: 'running', reason: 'unchecked' }]);
   assert.equal(readBatchState(root, 'batch-002').status, 'running');
 });
 

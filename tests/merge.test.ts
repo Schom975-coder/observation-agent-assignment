@@ -19,10 +19,13 @@ import {
   checkMergeProposal,
   duplicateKeyProblems,
   effectiveKeys,
+  reservedFlag,
+  reservedWordOf,
   slugFacts,
   type SlugFacts,
 } from '../src/model/merge.ts';
-import { canonicalTaxonomy, type Taxonomy } from '../src/model/taxonomy.ts';
+import { estTokens, lineCount } from '../src/batch/build.ts';
+import { CATCHALL_WORDS, RESERVED_KEYS, canonicalTaxonomy, checkKey, type Taxonomy } from '../src/model/taxonomy.ts';
 import { buildThreads } from '../src/normalize/threads.ts';
 import { parseMessage } from '../src/parse/message.ts';
 import { batchJob, markDispatched, recordValidation } from '../src/run/ledger.ts';
@@ -203,6 +206,54 @@ test('buildMergeInput caps: definitions cut first, then subjects dropped, then M
   assert.ok(!dropped.includes('subjects: '), 'subjects dropped');
   assert.throws(() => buildMergeInput(many(1300, 's'), TAXONOMY), (e: unknown) => e instanceof MergeInputError && /over the cap of 48000 tokens and 1200 lines/.test(e.message));
   assert.equal(MERGE_INPUT_MAX_TOKENS, 48_000);
+});
+
+test('buildMergeInput: a key the catch-all rule would refuse as a promoted key is marked on its line; an ordinary key is not', () => {
+  const base = slugFacts(VALIDATED, THREADS, BY_ID)[0] as SlugFacts;
+  const facts = ['new:business-continuity-planning', 'new:travel-arrangement', 'new:general-ledger-close', 'new:invoice-correspondence', 'new:budget-business-review', 'new:new']
+    .sort()
+    .map((slug) => ({ ...base, slug }));
+  const lines = buildMergeInput(facts, TAXONOMY).trimEnd().split('\n').slice(2);
+  const line = (slug: string) => lines.find((l) => l.startsWith(`${slug} | `)) as string;
+  assert.match(line('new:business-continuity-planning'), / \| subjects: [^|]+ \| reserved word "business": if promoted, name the work itself$/, 'the last field, after the subjects');
+  assert.ok(line('new:general-ledger-close').endsWith(' | reserved word "general": if promoted, name the work itself'));
+  assert.ok(line('new:invoice-correspondence').endsWith(' | reserved word "correspondence": if promoted, name the work itself'));
+  assert.ok(line('new:new').endsWith(' | reserved word "new": if promoted, name the work itself'), 'a reserved key too');
+  assert.ok(!line('new:travel-arrangement').includes('reserved word'), 'an ordinary key carries no mark');
+  assert.ok(!line('new:budget-business-review').includes('reserved word'), 'only a first or last word counts, as in the rule');
+  assert.equal(reservedFlag('business'), 'reserved word "business": if promoted, name the work itself');
+});
+
+test('buildMergeInput: the mark agrees with the validator: a key is marked exactly when checkKey would refuse it as a catch-all', () => {
+  const base = slugFacts(VALIDATED, THREADS, BY_ID)[0] as SlugFacts;
+  const keys = [...CATCHALL_WORDS.flatMap((w) => [w, `${w}-review`, `invoice-${w}`, `budget-${w}-review`]), ...RESERVED_KEYS, 'travel-arrangement', 'meter-volume-correction'];
+  const slugs = [...new Set(keys)].sort().map((k) => `new:${k}`);
+  const lines = buildMergeInput(slugs.map((slug) => ({ ...base, slug })), TAXONOMY).trimEnd().split('\n').slice(2);
+  for (const slug of slugs) {
+    const problems: string[] = [];
+    checkKey('promoted[0]', slug.slice('new:'.length), (p) => void problems.push(p));
+    const refused = problems.some((p) => / is a catch-all \(/.test(p));
+    const line = lines.find((l) => l.startsWith(`${slug} | `)) as string;
+    assert.equal(line.includes(' | reserved word "'), refused, slug);
+    if (refused) assert.ok(line.endsWith(` | ${reservedFlag(reservedWordOf(slug) as string)}`), line);
+  }
+});
+
+test('buildMergeInput caps: the marks count toward the cap, in every tier', () => {
+  const base = slugFacts(VALIDATED, THREADS, BY_ID)[0] as SlugFacts;
+  const many = (n: number, last: string): SlugFacts[] =>
+    Array.from({ length: n }, (_, i) => ({ ...base, slug: `new:key-${String(i).padStart(4, '0')}-${last}`, definition: 'd'.repeat(200), subjects: ['s'.repeat(60), 'S'.repeat(60)] }));
+  const full = (text: string) => text.includes(`"${'d'.repeat(DEFINITION_SHOWN_CHARS)}..."`);
+  // Somewhere the same number of keys fits whole unmarked, but must cut its definitions once marked.
+  let boundary: number | null = null;
+  for (let n = 300; n <= 420 && boundary === null; n++) if (full(buildMergeInput(many(n, 'plan'), TAXONOMY)) && !full(buildMergeInput(many(n, 'business'), TAXONOMY))) boundary = n;
+  assert.ok(boundary !== null, 'the marks change which tier fits');
+  // In the tier without subjects the marks stay, and the input stays under its cap.
+  const dropped = buildMergeInput(many(500, 'business'), TAXONOMY);
+  assert.ok(!dropped.includes('subjects: '), 'subjects dropped');
+  const lines = dropped.trimEnd().split('\n').slice(2);
+  assert.ok(lines.every((l) => l.endsWith(` | ${reservedFlag('business')}`)), 'every key still marked');
+  assert.ok(estTokens(Buffer.byteLength(dropped, 'utf8'), lineCount(dropped)) <= MERGE_INPUT_MAX_TOKENS);
 });
 
 // ---- The proposal ----

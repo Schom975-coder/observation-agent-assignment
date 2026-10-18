@@ -1,44 +1,57 @@
-// Everything that differs between the two kinds of ledger job, in one place (ARCHITECTURE.md 6.21):
-// an extraction batch ("batch-NNN": one extractor, checked by checkExtraction) and a synthesis
-// group ("synth-NNN": one synthesizer, checked by checkSynthesis). The paths, index, agent file and
-// cache-key parts of each kind live in the ledger (JOB_KINDS) and are re-exported here; this module
-// adds what needs the checkers and the prompts. The ledger, the commands, the Stop hook and the
-// skill all go through these functions, so a third kind would be added here and in JOB_KINDS only.
+// Everything that differs between the three kinds of ledger job, in one place (ARCHITECTURE.md
+// 6.21): an extraction batch ("batch-NNN": one extractor, checked by checkExtraction), a synthesis
+// group ("synth-NNN": one synthesizer, checked by checkSynthesis) and an artifact draft
+// ("draft-NNN": one drafter, checked by checkDraft). The paths, index, agent file, dispatch limit
+// and cache-key parts of each kind live in the ledger (JOB_KINDS) and are re-exported here; this
+// module adds what needs the checkers and the prompts. The ledger, the commands, the Stop hook and
+// the skill all go through these functions, so another kind would be added here and in JOB_KINDS
+// only.
+import { checkDraft } from '../model/artifacts.ts';
 import { checkSynthesis } from '../model/synthesis.ts';
 import { checkExtraction } from '../model/validate-extraction.ts';
-import { MAX_DISPATCHES, countedDispatches, jobPaths, kindOf, loadJobs, outDir, projectFolder, readBatchState, sharedKeyParts, type JobPaths } from './ledger.ts';
-import type { JobCheck, JobKind, ValidatedExtraction, ValidatedSynthesis } from '../types.ts';
+import { countedDispatches, jobPaths, kindOf, loadJobs, maxDispatches, outDir, projectFolder, readBatchState, sharedKeyParts, type JobPaths } from './ledger.ts';
+import type { JobCheck, JobKind, ValidatedDraft, ValidatedExtraction, ValidatedSynthesis } from '../types.ts';
 
 export { jobPaths, kindOf, loadJobs, sharedKeyParts, type JobPaths };
 
+// The verb a job prompt and its Agent description start with, by kind.
+const VERB: Record<JobKind, string> = { batch: 'Extract', synth: 'Synthesize', draft: 'Draft' };
+
 // The Agent call's description for a job: the skill uses it, and the Stop hook reads the job back
-// out of it ("Extract batch-017", "Synthesize synth-003").
+// out of it ("Extract batch-017", "Synthesize synth-003", "Draft draft-002").
 export function descriptionFor(id: string): string {
-  return kindOf(id) === 'batch' ? `Extract ${id}` : `Synthesize ${id}`;
+  return `${VERB[kindOf(id)]} ${id}`;
 }
 
 // Check a job's output file the way its kind's validator does: the same call for the gate,
 // `validate`, run start and `verify`.
-export function checkJob(root: string, id: string): JobCheck<ValidatedExtraction | ValidatedSynthesis> {
-  return kindOf(id) === 'batch' ? checkExtraction(root, id, { outDir: outDir(root) }) : checkSynthesis(root, id, { outDir: outDir(root) });
+export function checkJob(root: string, id: string): JobCheck<ValidatedExtraction | ValidatedSynthesis | ValidatedDraft> {
+  const opts = { outDir: outDir(root) };
+  switch (kindOf(id)) {
+    case 'batch':
+      return checkExtraction(root, id, opts);
+    case 'synth':
+      return checkSynthesis(root, id, opts);
+    case 'draft':
+      return checkDraft(root, id, opts);
+  }
 }
 
 const plural = (n: number, one: string, many = `${one}s`): string => `${n} ${n === 1 ? one : many}`;
 
-// The verb a job prompt starts with, by kind: the same word the Agent description starts with.
-const VERB: Record<JobKind, string> = { batch: 'Extract', synth: 'Synthesize' };
-
-// "fix round 2 of 3": the job's counted dispatches, read from the ledger after dispatch. A forced
-// dispatch past the usual rounds says only which round it is.
+// "fix round 2 of 3" ("fix round 1 of 1" for a draft): the job's counted dispatches, read from the
+// ledger after dispatch, against its kind's limit. A forced dispatch past the usual rounds says only
+// which round it is.
 function fixRound(root: string, id: string): string {
+  const rounds = maxDispatches(kindOf(id)) - 1;
   const round = Math.max(1, countedDispatches(readBatchState(root, id)) - 1);
-  return `fix round ${round}${round <= MAX_DISPATCHES - 1 ? ` of ${MAX_DISPATCHES - 1}` : ''}`;
+  return `fix round ${round}${round <= rounds ? ` of ${rounds}` : ''}`;
 }
 
 // How many problems a fix round names: the recorded count, else the fix file's lines.
 const problemCount = (root: string, id: string, fix: readonly string[]): number => readBatchState(root, id).problems ?? fix.length;
 
-// The prompt for a job of either kind (ARCHITECTURE.md 6.22, 15.5): two lines, the job and the
+// The prompt for a job of any kind (ARCHITECTURE.md 6.22, 15.5): two lines, the job and the
 // project folder.
 //   Extract batch-017.
 //   Project folder: <abs>
@@ -50,7 +63,7 @@ const problemCount = (root: string, id: string, fix: readonly string[]): number 
 // twenty start quickly. The problems themselves go only through the fix file, never through the
 // prompt, which the orchestrator passes on and so reads.
 export function jobPrompt(root: string, id: string, fix: string[] | null): string {
-  const job = `${VERB[kindOf(id)]} ${id}`;
+  const job = descriptionFor(id);
   const first = fix === null ? `${job}.` : `${job} (${fixRound(root, id)}): ${plural(problemCount(root, id, fix), 'problem')} in the problems file.`;
   return [first, `Project folder: ${projectFolder(root)}`].join('\n');
 }

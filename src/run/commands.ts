@@ -1,6 +1,6 @@
 // The ledger commands the orchestrator (and a person) runs: status, dispatch, validate, refill,
-// advance, verify, run. Each takes a job of either kind: an extraction batch ("batch-NNN", or just
-// the number) or a synthesis group ("synth-NNN"). Output is short on purpose: during a run the
+// advance, verify, run. Each takes a job of any kind: an extraction batch ("batch-NNN", or just the
+// number), a synthesis group ("synth-NNN") or an artifact draft ("draft-NNN"). Output is short on purpose: during a run the
 // orchestrator calls one `advance` per turn, which records the completions, runs every
 // deterministic stage step that is ready and hands out the next subagents, whose Agent calls it
 // makes unchanged. No command reads what a subagent replied; the ledger and the files on disk are
@@ -8,15 +8,16 @@
 import { existsSync } from 'node:fs';
 import { ConfigError } from '../config.ts';
 import { normalizeNewlines } from '../util/text.ts';
+import { ArtifactError, artifactsCollectStep, artifactsCollected, artifactsFreshness, artifactsPrepareStep, verifyArtifacts, type ArtifactsFreshness } from './artifacts.ts';
 import { checkJob, descriptionFor, jobPrompt } from './jobs.ts';
 import {
   LedgerError,
   HALT_NO_OUTPUT,
   HALT_WINDOW_S,
   JOB_KINDS,
-  MAX_DISPATCHES,
   ORPHAN_GRACE_S,
   activeRunId,
+  artifactIndexFile,
   appendRunLog,
   batchViews,
   clearModelOutputs,
@@ -29,6 +30,7 @@ import {
   logRunEvent,
   logStage,
   markDispatched,
+  maxDispatches,
   newRunId,
   nextToDispatch,
   normalizeJobId,
@@ -132,26 +134,33 @@ export function timingFrom(states: readonly BatchState[], run: RunState): Timing
 
 // ---- Status ----
 
-// Where the run is: the first stage whose output is not yet current (ARCHITECTURE.md 7.2).
-export type Stage = 'taxonomy' | 'extraction' | 'merge' | 'rollup' | 'synthesis' | 'score' | 'done';
+// Where the run is: the first stage whose output is not yet current (ARCHITECTURE.md 7.2, 15.2).
+// artifacts: the briefs are missing or stale; drafting: drafts to finish, or done drafts not yet
+// collected into their artifacts.
+export type Stage = 'taxonomy' | 'extraction' | 'merge' | 'rollup' | 'synthesis' | 'score' | 'artifacts' | 'drafting' | 'done';
 
+// The jobs of the synthesis groups or of the drafts.
 export type SynthesisStatus = {
   counts: Record<EffectiveStatus, number>;
   next: string[];
   running: string[];
   retryable: string[];
   exhausted: string[];
-  complete: boolean; // the rollup is current, its groups are indexed, and none is pending, running or retryable
+  // Groups: the rollup is current, its groups are indexed, and none is pending, running or
+  // retryable. Drafts: the same with the briefs for the rollup.
+  complete: boolean;
 };
+export type DraftingStatus = SynthesisStatus;
 
 // What `status --json` prints: counts and the short lists the loop acts on, never the done list.
 // The top-level lists are the extraction batches'; `synthesis` has the groups'. extraction:
 // complete = nothing pending, running or retryable (exhausted batches are reported, not waited
 // for); blocked = not complete and the taxonomy is not fresh, so nothing can be dispatched until
 // the taxonomy stage runs; incomplete otherwise. Synthesis groups are dispatched only once
-// extraction is complete, the merge fresh and the rollup current. halt: the circuit breaker
-// (haltFrom, over both kinds); while it is on, both `next` lists are empty and the loop stops with
-// halt_reason. Both kinds share the in-flight cap.
+// extraction is complete, the merge fresh and the rollup current; drafts only once synthesis is
+// complete, the score current and the briefs current (`artifacts`). halt: the circuit breaker
+// (haltFrom, over every kind); while it is on, every `next` list is empty and the loop stops with
+// halt_reason. All kinds share the in-flight cap.
 export type StatusReport = {
   batches: number;
   counts: Record<EffectiveStatus, number>;
@@ -166,6 +175,8 @@ export type StatusReport = {
   rollup: RollupFreshness;
   synthesis: SynthesisStatus;
   score: ScoreFreshness;
+  artifacts: ArtifactsFreshness;
+  drafting: DraftingStatus;
   stage: Stage;
   halt: boolean;
   halt_reason: string | null;
@@ -187,8 +198,9 @@ export function haltFrom(states: readonly BatchState[], run: RunState, nowS: num
     .map((s) => s.batch_id);
   if (recent.length < HALT_NO_OUTPUT) return null;
   const kinds = new Set(recent.map(kindOf));
-  const what = kinds.size === 1 && kinds.has('batch') ? 'batches' : kinds.size === 1 ? 'synthesis groups' : 'jobs';
-  const who = kinds.size === 1 && kinds.has('batch') ? 'extractors' : kinds.size === 1 ? 'synthesizers' : 'subagents';
+  const only = kinds.size === 1 ? JOB_KINDS[[...kinds][0] as JobKind] : null;
+  const what = only === null ? 'jobs' : only.nouns;
+  const who = only === null ? 'subagents' : `${only.worker}s`;
   return (
     `${recent.length} ${what} ended with no output file in the last ${HALT_WINDOW_S / 60} minutes (${compactIds(recent)}): ` +
     `${who} are being stopped before they write, perhaps by a usage limit. Stop the run now; run /observe again later to resume.`
@@ -208,21 +220,33 @@ export function synthViews(root: string): BatchView[] | null {
   return batchViews(root, 'synth');
 }
 
-export function statusReport(root: string, views: readonly BatchView[] = batchViews(root), groups: readonly BatchView[] | null = synthViews(root)): StatusReport {
+// The drafts' views, or null when there is no artifact index yet.
+export function draftViews(root: string): BatchView[] | null {
+  if (!existsSync(artifactIndexFile(root))) return null;
+  return batchViews(root, 'draft');
+}
+
+export function statusReport(
+  root: string,
+  views: readonly BatchView[] = batchViews(root),
+  groups: readonly BatchView[] | null = synthViews(root),
+  drafts: readonly BatchView[] | null = draftViews(root),
+): StatusReport {
   const counts = countsOf(views);
   const sCounts = countsOf(groups ?? []);
+  const dCounts = countsOf(drafts ?? []);
   const taxonomy = taxonomyFreshness(root);
   const in_flight = inFlight();
   const run = readRun(root);
-  const halt_reason = haltFrom([...views, ...(groups ?? [])].map((v) => v.state), run);
-  const batch = nextToDispatch(views, taxonomy === 'fresh', in_flight - sCounts.running);
+  const halt_reason = haltFrom([...views, ...(groups ?? []), ...(drafts ?? [])].map((v) => v.state), run);
+  const batch = nextToDispatch(views, taxonomy === 'fresh', in_flight - sCounts.running - dCounts.running);
   const complete = counts.pending + counts.running + counts.failed === 0;
   const extraction = complete ? 'complete' : taxonomy === 'fresh' ? 'incomplete' : 'blocked';
   const extractions = extractionsSha(root, views);
   const merge = mergeFreshness(root, extractions);
   const rollup = rollupFreshness(root, extractions);
   const synthReady = extraction === 'complete' && merge === 'fresh' && rollup === 'current';
-  const synth = nextToDispatch(groups ?? [], synthReady, in_flight - counts.running);
+  const synth = nextToDispatch(groups ?? [], synthReady, in_flight - counts.running - dCounts.running);
   const synthesis: SynthesisStatus = {
     counts: sCounts,
     next: halt_reason === null ? synth.next : [],
@@ -232,6 +256,16 @@ export function statusReport(root: string, views: readonly BatchView[] = batchVi
     complete: rollup === 'current' && groups !== null && sCounts.pending + sCounts.running + sCounts.failed === 0,
   };
   const score = scoreFreshness(root, synthesisSha(root, groups));
+  const artifacts = synthReady && synthesis.complete && score === 'current' ? artifactsFreshness(root) : existsSync(artifactIndexFile(root)) ? 'stale' : 'missing';
+  const draft = nextToDispatch(drafts ?? [], synthReady && synthesis.complete && score === 'current' && artifacts === 'current', in_flight - counts.running - sCounts.running);
+  const drafting: DraftingStatus = {
+    counts: dCounts,
+    next: halt_reason === null ? draft.next : [],
+    running: idsWith(drafts ?? [], 'running'),
+    retryable: draft.retryable,
+    exhausted: draft.exhausted,
+    complete: artifacts === 'current' && drafts !== null && dCounts.pending + dCounts.running + dCounts.failed === 0,
+  };
   const stage: Stage =
     taxonomy !== 'fresh'
       ? 'taxonomy'
@@ -245,7 +279,11 @@ export function statusReport(root: string, views: readonly BatchView[] = batchVi
               ? 'synthesis'
               : score !== 'current'
                 ? 'score'
-                : 'done';
+                : artifacts !== 'current'
+                  ? 'artifacts'
+                  : !drafting.complete || !artifactsCollected(root, drafts ?? [])
+                    ? 'drafting'
+                    : 'done';
   return {
     batches: views.length,
     counts,
@@ -260,6 +298,8 @@ export function statusReport(root: string, views: readonly BatchView[] = batchVi
     rollup,
     synthesis,
     score,
+    artifacts,
+    drafting,
     stage,
     halt: halt_reason !== null,
     halt_reason,
@@ -292,12 +332,17 @@ function timingLine(t: Timing, label: string, one: string, many: string): string
   return `  ${label}: ${parts.join('; ')}.`;
 }
 
+// "2 of 3 groups done (1 exhausted)": a job kind's progress for the stage line.
+function progress(c: Record<EffectiveStatus, number>, total: number | null, one: string, none: string): string {
+  const extra = [c.running > 0 ? `${c.running} running` : '', c.failed > 0 ? `${c.failed} failed` : '', c.exhausted > 0 ? `${c.exhausted} exhausted` : ''].filter((x) => x !== '');
+  return total === null ? none : `${c.done} of ${plural(total, one)} done${extra.length > 0 ? ` (${extra.join(', ')})` : ''}`;
+}
+
 // The stage line of the human status.
-function stageLine(r: StatusReport, groups: number | null): string {
-  const s = r.synthesis.counts;
-  const extra = [s.running > 0 ? `${s.running} running` : '', s.failed > 0 ? `${s.failed} failed` : '', s.exhausted > 0 ? `${s.exhausted} exhausted` : ''].filter((x) => x !== '');
-  const synthesis = groups === null ? 'no groups yet' : `${s.done} of ${plural(groups, 'group')} done${extra.length > 0 ? ` (${extra.join(', ')})` : ''}`;
-  return `  stage: ${r.stage} (merge ${r.merge}; rollup ${r.rollup}; synthesis ${synthesis}; score ${r.score}).`;
+function stageLine(r: StatusReport, groups: number | null, drafts: number | null): string {
+  const synthesis = progress(r.synthesis.counts, groups, 'group', 'no groups yet');
+  const drafting = progress(r.drafting.counts, drafts, 'draft', 'no drafts yet');
+  return `  stage: ${r.stage} (merge ${r.merge}; rollup ${r.rollup}; synthesis ${synthesis}; score ${r.score}; artifacts ${r.artifacts}; drafting ${drafting}).`;
 }
 
 function failureLines(views: readonly BatchView[]): string[] {
@@ -306,7 +351,7 @@ function failureLines(views: readonly BatchView[]): string[] {
     const s = v.state;
     const counted = countedDispatches(s);
     if (v.status === 'failed') {
-      lines.push(`  ${v.entry.id} failed: ${plural(s.problems ?? 0, 'problem')}; ${counted} of ${MAX_DISPATCHES} dispatches used.`);
+      lines.push(`  ${v.entry.id} failed: ${plural(s.problems ?? 0, 'problem')}; ${counted} of ${maxDispatches(kindOf(v.entry.id))} dispatches used.`);
     } else if (v.status === 'exhausted') {
       lines.push(
         `  ${v.entry.id} exhausted: ${plural(s.problems ?? 0, 'problem')} after ${plural(counted, 'dispatch', 'dispatches')}; ` +
@@ -324,7 +369,8 @@ export function statusCommand(root: string, args: readonly string[]): number {
     if (unknown.length > 0) throw new LedgerError(`unexpected argument "${unknown[0]}". Usage: node obs.mjs status [--json]`);
     const views = batchViews(root);
     const groups = synthViews(root);
-    const report = statusReport(root, views, groups);
+    const drafts = draftViews(root);
+    const report = statusReport(root, views, groups, drafts);
     if (json) {
       console.log(JSON.stringify(report));
       return 0;
@@ -336,14 +382,14 @@ export function statusCommand(root: string, args: readonly string[]): number {
       `status: ${report.batches} batches: ${c.done} done, ${c.running} running, ${c.pending} pending, ${c.failed} failed, ${c.exhausted} exhausted; ` +
         `taxonomy ${report.taxonomy}; extraction ${extraction}; ${run}.`,
     );
-    console.log(stageLine(report, groups === null ? null : groups.length));
-    const all = [...views, ...(groups ?? [])];
+    console.log(stageLine(report, groups === null ? null : groups.length, drafts === null ? null : drafts.length));
+    const all = [...views, ...(groups ?? []), ...(drafts ?? [])];
     for (const status of ['running', 'pending', 'failed', 'exhausted', 'done'] as const) {
       const ids = idsWith(all, status);
       if (ids.length > 0) console.log(`  ${status}: ${compactIds(ids)}`);
     }
     if (report.halt_reason !== null) console.log(`  halt: ${report.halt_reason}`);
-    const next = [...report.next, ...report.synthesis.next];
+    const next = [...report.next, ...report.synthesis.next, ...report.drafting.next];
     if (next.length > 0) console.log(`  next: ${compactIds(next)}`);
     for (const line of failureLines(all)) console.log(line);
     if (report.timing !== null) console.log(timingLine(report.timing, 'timing', 'batch', 'batches'));
@@ -355,10 +401,10 @@ export function statusCommand(root: string, args: readonly string[]): number {
 
 // ---- dispatch, validate ----
 
-// One job ID: "batch-074", just "74", or "synth-003".
+// One job ID: "batch-074", just "74", "synth-003" or "draft-002".
 function oneJobArg(command: string, args: readonly string[], options = ''): string {
   if (args.length !== 1 || (args[0] as string).startsWith('-')) {
-    throw new LedgerError(`expected one job ID. Usage: node obs.mjs ${command} <job_id>${options} (batch-074, or just 74; or synth-003)`);
+    throw new LedgerError(`expected one job ID. Usage: node obs.mjs ${command} <job_id>${options} (batch-074, or just 74; synth-003; draft-002)`);
   }
   return normalizeJobId(args[0] as string);
 }
@@ -528,7 +574,7 @@ export function refillCommand(root: string, args: readonly string[]): number {
     const { completed, gone } = namedJobs(args, REFILL_USAGE);
     const validated = recordNamed(root, completed, gone);
     const report = statusReport(root);
-    const { jobs, refused } = report.halt ? { jobs: [], refused: [] } : dispatchAll(root, [...report.next, ...report.synthesis.next]);
+    const { jobs, refused } = report.halt ? { jobs: [], refused: [] } : dispatchAll(root, [...report.next, ...report.synthesis.next, ...report.drafting.next]);
     const out: RefillReport = {
       halt: report.halt,
       halt_reason: report.halt_reason,
@@ -537,8 +583,8 @@ export function refillCommand(root: string, args: readonly string[]): number {
       validated,
       jobs,
       refused,
-      running: [...report.running, ...report.synthesis.running, ...jobs.map((j) => j.id)],
-      exhausted: [...report.exhausted, ...report.synthesis.exhausted],
+      running: [...report.running, ...report.synthesis.running, ...report.drafting.running, ...jobs.map((j) => j.id)],
+      exhausted: [...report.exhausted, ...report.synthesis.exhausted, ...report.drafting.exhausted],
     };
     const text = JSON.stringify(out);
     if (Buffer.byteLength(text) > REFILL_MAX_BYTES) throw new LedgerError(`the refill report is ${Buffer.byteLength(text)} bytes, over ${REFILL_MAX_BYTES}: lower OBS_IN_FLIGHT.`);
@@ -581,7 +627,13 @@ const ADVANCE_MAX_PASSES = 12;
 // The errors a stage reports as one line: advance prints `advance: <line>` and exits 1, and the
 // skill stops there.
 const isStageError = (err: unknown): err is Error =>
-  err instanceof LedgerError || err instanceof TaxonomyError || err instanceof MergeError || err instanceof RollupError || err instanceof ScoreError || err instanceof ConfigError;
+  err instanceof LedgerError ||
+  err instanceof TaxonomyError ||
+  err instanceof MergeError ||
+  err instanceof RollupError ||
+  err instanceof ScoreError ||
+  err instanceof ArtifactError ||
+  err instanceof ConfigError;
 
 // `node obs.mjs advance [<id> ...] [--failed <id> ...] --json`: record the named jobs exactly as
 // `refill` does, then run every deterministic step that is ready, in stage order, until a model is
@@ -593,6 +645,9 @@ const isStageError = (err: unknown): err is Error =>
 //   rollup     run it and go on;
 //   synthesis  hand out the groups' `next`;
 //   score      run it and go on;
+//   artifacts  write the briefs (artifacts prepare) and go on;
+//   drafting   hand out the drafts' `next`; once every draft is done or exhausted, render the
+//              artifacts and record them (artifacts collect) and go on;
 //   done       end the run if it is active.
 // It prints one JSON object (AdvanceReport): every Agent call to make now, with its parameters as
 // the Agent tool names them. A cycle is one Bash call and one message of Agent calls, and no stage
@@ -660,12 +715,22 @@ export function advanceCommand(root: string, args: readonly string[]): number {
             steps.push(...notes, summary);
             return true;
           }
+          case 'artifacts':
+            steps.push(artifactsPrepareStep(root));
+            return true;
+          case 'drafting':
+            if (report.drafting.complete) {
+              steps.push(artifactsCollectStep(root));
+              return true;
+            }
+            handOut(report.drafting.next);
+            return false;
           case 'done':
             if (readRun(root).active) steps.push(endRun(root));
             done = true;
             return false;
           default: {
-            // Every stage has its case: a new stage (M6's artifacts and drafting) fails to compile here.
+            // Every stage has its case: a new stage fails to compile here.
             const unhandled: never = stage;
             throw new LedgerError(`advance has no step for the stage ${String(unhandled)}`);
           }
@@ -674,7 +739,7 @@ export function advanceCommand(root: string, args: readonly string[]): number {
       if (!goOn) break;
       report = statusReport(root);
     }
-    const running = [...report.running, ...report.synthesis.running, ...dispatched];
+    const running = [...report.running, ...report.synthesis.running, ...report.drafting.running, ...dispatched];
     const out: AdvanceReport = {
       stage: report.stage,
       halt: halt_reason !== null,
@@ -686,7 +751,7 @@ export function advanceCommand(root: string, args: readonly string[]): number {
       agents,
       refused,
       running,
-      exhausted: [...report.exhausted, ...report.synthesis.exhausted],
+      exhausted: [...report.exhausted, ...report.synthesis.exhausted, ...report.drafting.exhausted],
     };
     Object.assign(event, { stage_after: report.stage, dispatched, agents: agents.length });
     const text = JSON.stringify(out);
@@ -782,7 +847,7 @@ export function runCommand(root: string, args: readonly string[]): number {
       if (force) {
         console.log(
           'run: --force cleared the model outputs: job states, agent bindings, the taxonomy, the merge, the validated extractions, ' +
-            'the rollup and the synthesis inputs, the validated syntheses, the opportunities and the fix files.',
+            'the rollup and the synthesis inputs, the validated syntheses, the opportunities, the artifact briefs, drafts and artifacts (not the raw drafts) and the fix files.',
         );
       }
       const recorded = stamped.filter((s) => s.status !== 'running');
@@ -834,7 +899,7 @@ function verifyKind(root: string, views: readonly BatchView[]): { done: number; 
   for (const v of done) {
     const id = v.entry.id;
     const paths = JOB_KINDS[kindOf(id)];
-    const output = `out/${paths.dirs.output}/${id}.json`;
+    const output = `out/${paths.dirs.output}/${id}${paths.outputExt}`;
     const validated = `out/${paths.dirs.validated}/${id}.json`;
     const check = checkJob(root, id);
     if (check.setup !== null) {
@@ -851,10 +916,10 @@ function verifyKind(root: string, views: readonly BatchView[]): { done: number; 
   return { done: done.length, notDone: views.length - done.length, failures };
 }
 
-// Every done batch re-checked from its committed extraction against the corpus bytes, and every
-// done synthesis group from its committed output against its input's sidecar: each must still pass
-// and validate to exactly its committed validated file. Read-only. Exit 1 on any difference, so CI
-// catches a stale or hand-edited output.
+// Every done batch re-checked from its committed extraction against the corpus bytes, every done
+// synthesis group from its committed output against its input's sidecar, and every done draft from
+// its committed body against its brief: each must still pass and validate to exactly its committed
+// validated file. Read-only. Exit 1 on any difference, so CI catches a stale or hand-edited output.
 // Jobs whose state says done under a cache key that is no longer the current one: an agent
 // definition, the taxonomy or an input changed since. They count as pending, so verify does not
 // check them; it says how many there are, so a verify with little or nothing to check is visible.
@@ -867,7 +932,16 @@ export function verifyCommand(root: string, args: string[]): number {
     const batches = verifyKind(root, views);
     const groupViews = synthViews(root);
     const groups = groupViews === null ? null : verifyKind(root, groupViews);
-    const stale = staleDone(views) + staleDone(groupViews ?? []);
+    const draftViewList = draftViews(root);
+    const drafts = draftViewList === null ? null : verifyKind(root, draftViewList);
+    const stale = staleDone(views) + staleDone(groupViews ?? []) + staleDone(draftViewList ?? []);
+    // The collected artifacts and the briefs, checked apart from the jobs (N1).
+    const artifacts = verifyArtifacts(root);
+    const artifactLines = (): void => {
+      if (artifacts.failures.length === 0) return;
+      console.log(`verify: the artifacts do not match (${plural(artifacts.failures.length, 'problem')}):`);
+      for (const f of artifacts.failures) console.log(`  - ${withoutRoot(f, root)}`);
+    };
     const staleLine = (): void => {
       if (stale === 0) return;
       console.log(
@@ -875,29 +949,37 @@ export function verifyCommand(root: string, args: string[]): number {
           `(stale, not verified): the next run redoes ${stale === 1 ? 'it' : 'them'}.`,
       );
     };
-    if (batches.done === 0 && (groups === null || groups.done === 0)) {
+    if (batches.done === 0 && (groups === null || groups.done === 0) && (drafts === null || drafts.done === 0)) {
       console.log('verify: nothing to verify: no batch is done.');
       staleLine();
-      return 0;
+      artifactLines();
+      return artifacts.failures.length === 0 ? 0 : 1;
     }
-    const failures = [...batches.failures, ...(groups?.failures ?? [])];
+    const failures = [...batches.failures, ...(groups?.failures ?? []), ...(drafts?.failures ?? [])];
     const notDone = [
       ...(batches.notDone > 0 ? [plural(batches.notDone, 'batch', 'batches')] : []),
       ...(groups !== null && groups.notDone > 0 ? [plural(groups.notDone, 'synthesis group')] : []),
+      ...(drafts !== null && drafts.notDone > 0 ? [plural(drafts.notDone, 'draft')] : []),
     ];
     const rest = notDone.length > 0 ? ` (${notDone.join(' and ')} not done, not verified)` : '';
-    const what =
-      groups === null || groups.done === 0
-        ? `${plural(batches.done, 'done batch', 'done batches')}`
-        : `${plural(batches.done, 'done batch', 'done batches')} and ${plural(groups.done, 'done synthesis group')}`;
-    if (failures.length === 0) {
-      const how = groups === null || groups.done === 0 ? 're-checked against the corpus' : 're-checked against the corpus and their inputs';
-      console.log(`verify: ${what} ${how}; every validated file matches${rest}.`);
+    const doneParts = [
+      plural(batches.done, 'done batch', 'done batches'),
+      ...(groups !== null && groups.done > 0 ? [plural(groups.done, 'done synthesis group')] : []),
+      ...(drafts !== null && drafts.done > 0 ? [plural(drafts.done, 'done draft')] : []),
+    ];
+    const what = doneParts.length <= 2 ? doneParts.join(' and ') : `${doneParts.slice(0, -1).join(', ')} and ${doneParts.at(-1)}`;
+    const collected = artifacts.collected && artifacts.failures.length === 0 ? '; the collected artifacts match what collect writes' : '';
+    if (failures.length === 0 && artifacts.failures.length === 0) {
+      const how = doneParts.length === 1 ? 're-checked against the corpus' : 're-checked against the corpus and their inputs';
+      console.log(`verify: ${what} ${how}; every validated file matches${collected}${rest}.`);
       staleLine();
       return 0;
     }
-    console.log(`verify: ${failures.length} of ${what} fail${rest}:`);
-    for (const f of failures) console.log(`  - ${withoutRoot(f, root)}`);
+    if (failures.length > 0) {
+      console.log(`verify: ${failures.length} of ${what} fail${rest}:`);
+      for (const f of failures) console.log(`  - ${withoutRoot(f, root)}`);
+    }
+    artifactLines();
     staleLine();
     return 1;
   });

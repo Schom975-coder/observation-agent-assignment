@@ -1,6 +1,6 @@
-// SubagentStop (matcher: extractor|synthesizer): check a finished agent's output and record the
-// result in the ledger. The same gate for both kinds of ledger job: an extractor's batch and a
-// synthesizer's synthesis group (ARCHITECTURE.md 6.21, 7.4).
+// SubagentStop (matcher: extractor|synthesizer|drafter): check a finished agent's output and record
+// the result in the ledger. The same gate for every kind of ledger job: an extractor's batch, a
+// synthesizer's synthesis group and a drafter's artifact draft (ARCHITECTURE.md 6.21, 7.4).
 //
 // The gate records; it never blocks. In auto mode a subagent delivers its reply through its
 // hand-back tool before it stops, so a block could not reach it anyway; fix rounds are new
@@ -16,8 +16,8 @@
 //   moved on): log gate_superseded and stop (that output belongs to the newer agent);
 // - the job is no longer running (already validated): log gate_not_running and stop;
 // - otherwise run the job's own check, exactly as `node obs.mjs validate` does (checkJob:
-//   checkExtraction for a batch, checkSynthesis for a group), and record done, or failed with the
-//   problem list, in the job's ledger file.
+//   checkExtraction for a batch, checkSynthesis for a group, checkDraft for a draft), and record
+//   done, or failed with the problem list, in the job's ledger file.
 // A problem the model cannot fix (unreadable out/, changed corpus bytes, a stale group input)
 // stamps nothing: the job stays running for a later validate. If the gate itself fails, it logs
 // the error and exits 0. Nothing it logs contains the project's path. Log records name the job in
@@ -25,8 +25,8 @@
 import { appendRunLog, errorText, parseInput, projectRoot, readStdin, reportFailure, str, type HookInput } from './lib.ts';
 import { JOB_KINDS, bindingIsCurrent, boundJob, findJob, kindOf, loadJobs, readJobState, recordValidation, withoutRoot } from '../../src/run/ledger.ts';
 
-// The agents this gate checks, and the kind of job each works on.
-const WORKERS: readonly string[] = [JOB_KINDS.batch.worker, JOB_KINDS.synth.worker];
+// The agents this gate checks: the worker of every job kind.
+const WORKERS: readonly string[] = Object.values(JOB_KINDS).map((k) => k.worker);
 
 async function gate(root: string, input: HookInput, agentType: string): Promise<void> {
   const agentId = str(input.agent_id);

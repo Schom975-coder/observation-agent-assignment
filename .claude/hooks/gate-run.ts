@@ -12,7 +12,8 @@
 // is a subagent task with agent_type extractor, synthesizer, taxonomist, merger or drafter (or,
 // untyped, a description that names it the way /observe does: "Extract batch-017", "Synthesize
 // synth-003", "Draft draft-003", "Build taxonomy", "Merge process keys") whose status is not a
-// finished one. A job agent's job is the number in its description, matched loosely on the kind.
+// finished one. A job agent's job is the number in its description, matched loosely on the kind
+// (an extractor's batch, a synthesizer's group, a drafter's draft).
 // Then, in order (ARCHITECTURE.md 6.7, 7.4), every block naming the one command of the run,
 // `node obs.mjs advance`:
 //   1. orphans (below) of any kind: block, naming `node obs.mjs advance <id> ... --json` with
@@ -23,8 +24,9 @@
 //      grace period, or the registry unreadable): let the turn end (each completion wakes the
 //      orchestrator; a `-p` run waits for background subagents);
 //   4. the merge is stopped (its attempts used up): let the turn end, the run stays active;
-//   5. otherwise (a stage step to run, or the run still active after every stage is done): block,
-//      naming `node obs.mjs advance --json` (step 2).
+//   5. otherwise (a stage step to run: the merge, the rollup, the score, the briefs, collecting the
+//      done drafts; or the run still active after every stage is done): block, naming
+//      `node obs.mjs advance --json` (step 2).
 // Exhausted jobs are reported by status, not waited for. A stopped taxonomy ends through the repeat
 // guard below: advance halts on it, and the key does not change. The registry is not trusted
 // blindly. A running job is an orphan when no live agent of its kind names it and it was dispatched
@@ -59,9 +61,10 @@ const FINISHED = new Set(['completed', 'done', 'failed', 'stopped', 'killed', 'c
 
 type Agent = 'extractor' | 'synthesizer' | 'taxonomist' | 'merger' | 'drafter';
 const AGENTS: readonly Agent[] = ['extractor', 'synthesizer', 'taxonomist', 'merger', 'drafter'];
-// The agents that work on ledger jobs (JOB_KINDS[kind].worker), and their job kind. The drafter
-// gets its kind with the draft jobs (M6); until then a live drafter is a live pipeline agent only.
-const KIND_OF_AGENT: Partial<Record<Agent, JobKind>> = { extractor: 'batch', synthesizer: 'synth' };
+// The agents that work on ledger jobs (JOB_KINDS[kind].worker), and their job kind.
+const KIND_OF_AGENT: Partial<Record<Agent, JobKind>> = Object.fromEntries(
+  (Object.keys(JOB_KINDS) as JobKind[]).map((kind) => [JOB_KINDS[kind].worker as Agent, kind]),
+) as Partial<Record<Agent, JobKind>>;
 
 type Task = { type: string | null; agent_type: string | null; status: string | null; description: string | null };
 
@@ -75,9 +78,8 @@ const isSubagent = (t: Task): boolean => t.type === 'subagent' || (t.agent_type 
 const untyped = (t: Task): boolean => (t.agent_type ?? '') === '';
 
 // How advance describes each agent's Agent call: the job agents by the verb their
-// descriptionFor() starts with ("Extract", "Synthesize", with -ise accepted too; "Draft" for the
-// drafter, whose job kind arrives with M6), the two single-call stages by their descriptions
-// ("Build taxonomy", "Merge process keys").
+// descriptionFor() starts with ("Extract", "Synthesize", with -ise accepted too, "Draft"), the two
+// single-call stages by their descriptions ("Build taxonomy", "Merge process keys").
 type Recognisers = Record<Agent, RegExp>;
 function recognisers(descriptionFor: (id: string) => string): Recognisers {
   const verb = (id: string) => (/^[A-Za-z]+/.exec(descriptionFor(id))?.[0] ?? id).replace(/i[sz]e$/i, 'i[sz]e');
@@ -86,7 +88,7 @@ function recognisers(descriptionFor: (id: string) => string): Recognisers {
     synthesizer: new RegExp(`^\\s*${verb('synth-000')}\\b`, 'i'),
     taxonomist: /\btaxonomy\b/i,
     merger: /\bmerge\b/i,
-    drafter: /^\s*Draft\b/i,
+    drafter: new RegExp(`^\\s*${verb('draft-000')}\\b`, 'i'),
   };
 }
 
@@ -98,8 +100,13 @@ function agentOf(t: Task, r: Recognisers): Agent | null {
 }
 
 // The job number a description names, loosely, for the kind of job its agent works on: "Extract
-// batch-017", "batch 17"; "Synthesize synth-003", "group 3". Null when it names none.
-const JOB_NUMBER: Record<JobKind, RegExp> = { batch: /\bbatch[-_ ]?(\d{1,6})\b/i, synth: /\b(?:synth|group)[-_ ]?(\d{1,6})\b/i };
+// batch-017", "batch 17"; "Synthesize synth-003", "group 3"; "Draft draft-002", "draft 2". Null when
+// it names none.
+const JOB_NUMBER: Record<JobKind, RegExp> = {
+  batch: /\bbatch[-_ ]?(\d{1,6})\b/i,
+  synth: /\b(?:synth|group)[-_ ]?(\d{1,6})\b/i,
+  draft: /\bdraft[-_ ]?(\d{1,6})\b/i,
+};
 function jobNumber(kind: JobKind, description: string | null): number | null {
   const m = JOB_NUMBER[kind].exec(description ?? '');
   return m === null ? null : Number(m[1]);
@@ -147,6 +154,10 @@ function stageReason(report: StatusReport): string {
       return `the merge is done and the rollup is ${state(report.rollup)}`;
     case 'score':
       return `synthesis is complete and the score is ${state(report.score)}`;
+    case 'artifacts':
+      return `the score is done and the artifact briefs are ${state(report.artifacts)}`;
+    case 'drafting':
+      return 'every artifact draft is done or exhausted and the artifacts are not collected yet';
     case 'done':
       return 'every stage is done and the run is still active';
     default:
@@ -175,7 +186,7 @@ function decide(report: StatusReport, views: readonly BatchView[], tasks: Task[]
     if (kind !== undefined && n !== null) working.add(jobKey(kind, n));
   }
   const byId = new Map(views.map((v) => [v.entry.id, v]));
-  const running = [...report.running, ...report.synthesis.running];
+  const running = [...report.running, ...report.synthesis.running, ...report.drafting.running];
   const orphans = running.filter((id) => {
     const age = ageOf(byId.get(id), nowMs);
     if (age === null) return false;
@@ -197,7 +208,7 @@ function decide(report: StatusReport, views: readonly BatchView[], tasks: Task[]
     return decided({ kind: 'record', ids: orphans, reason }, orphans.join(','));
   }
   // 2. Free slots and jobs to hand out, of any kind.
-  const next = [...report.next, ...report.synthesis.next];
+  const next = [...report.next, ...report.synthesis.next, ...report.drafting.next];
   if (next.length > 0) {
     const reason = `Pipeline run: ${next.join(', ')} ${are(next)} ready to hand out. Run ${ADVANCE} ${ACT}`;
     return decided({ kind: 'hand_out', ids: next, reason }, next.join(','));
@@ -226,13 +237,14 @@ async function gateRun(root: string, input: HookInput): Promise<void> {
     return;
   }
   const tasks = readTasks(input.background_tasks);
-  const { statusReport, synthViews } = await import('../../src/run/commands.ts');
+  const { draftViews, statusReport, synthViews } = await import('../../src/run/commands.ts');
   const { descriptionFor } = await import('../../src/run/jobs.ts');
   const { taxonomyAttempts } = await import('../../src/run/taxonomy.ts');
   const { mergeAttempts } = await import('../../src/run/merge.ts');
   const views = batchViews(root);
   const groups = synthViews(root);
-  const report = statusReport(root, views, groups);
+  const drafts = draftViews(root);
+  const report = statusReport(root, views, groups, drafts);
   const rawTasks = tasks?.map((t) => ({ type: t.type, agent_type: t.agent_type, status: t.status, description: (t.description ?? '').slice(0, 60) })) ?? null;
   if (report.halt) {
     // The run has stopped itself (status says why); the orchestrator prints the reason and stops.
@@ -241,7 +253,7 @@ async function gateRun(root: string, input: HookInput): Promise<void> {
     return;
   }
   const attempts: Attempts = { taxonomy: () => taxonomyAttempts(root), merge: () => mergeAttempts(root) };
-  const { block, decision, orphan_check } = decide(report, [...views, ...(groups ?? [])], tasks, Date.now(), recognisers(descriptionFor), attempts);
+  const { block, decision, orphan_check } = decide(report, [...views, ...(groups ?? []), ...(drafts ?? [])], tasks, Date.now(), recognisers(descriptionFor), attempts);
   const logged = { event: 'gate_run', stage: report.stage, stop_hook_active: input.stop_hook_active === true, orphan_check, tasks: rawTasks };
   if (block === null) {
     writeStopGate(root, { ...gate, last_block: null });

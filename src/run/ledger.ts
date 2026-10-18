@@ -1,9 +1,10 @@
 // The run ledger: which jobs are pending, running, done, failed or exhausted, which agent is
 // working on which job, and why a finished job can be trusted on the next run. A job is an
-// extraction batch ("batch-NNN", one extractor) or a synthesis group ("synth-NNN", one
-// synthesizer); the two kinds go through the same states, refusals, fix rounds, bindings and
-// orphan stamping, and differ only in their files, agent definition and checker (ARCHITECTURE.md
-// 6.21: JOB_KINDS below, and src/run/jobs.ts for the checkers and prompts).
+// extraction batch ("batch-NNN", one extractor), a synthesis group ("synth-NNN", one synthesizer)
+// or an artifact draft ("draft-NNN", one drafter); the kinds go through the same states, refusals,
+// fix rounds, bindings and orphan stamping, and differ only in their files, agent definition,
+// checker and dispatch limit (ARCHITECTURE.md 6.21: JOB_KINDS below, and src/run/jobs.ts for the
+// checkers and prompts).
 //
 // Concurrency by construction. Up to 20 subagents can finish at once, each firing a hook process,
 // so there is no shared ledger file that several processes rewrite. Each job has its own state
@@ -20,7 +21,8 @@
 // pending again; change none and a rerun repeats no finished work. Only a running job (one handed
 // out by dispatch) can be stamped done or failed, and a running job is never handed out again until
 // it is stamped. A failed job is retried with a fix prompt until MAX_DISPATCHES under one key are
-// used; after that it is exhausted and only `dispatch --force` sends it out again. Nothing here
+// used (maxDispatches: two for a draft); after that it is exhausted and only `dispatch --force`
+// sends it out again. Nothing here
 // reads what a model replied: the ledger, the files and the bindings are the only control state.
 import { appendFileSync, closeSync, existsSync, mkdirSync, openSync, readdirSync, readFileSync, renameSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { randomBytes } from 'node:crypto';
@@ -28,7 +30,7 @@ import { dirname, join, resolve } from 'node:path';
 import { sha256 } from '../util/hash.ts';
 import { normalizeNewlines } from '../util/text.ts';
 import { utcMs } from '../util/time.ts';
-import type { BatchEntry, JobCheck, JobEntry, JobKind, ValidatedExtraction, ValidatedSynthesis } from '../types.ts';
+import type { BatchEntry, JobCheck, JobEntry, JobKind, ValidatedDraft, ValidatedExtraction, ValidatedSynthesis } from '../types.ts';
 
 export const BATCH_STATUSES = ['pending', 'running', 'done', 'failed'] as const;
 export type BatchStatus = (typeof BATCH_STATUSES)[number];
@@ -38,6 +40,7 @@ export type QuoteStats = ValidatedExtraction['quote_stats'];
 export type TaxonomyFreshness = 'fresh' | 'stale' | 'missing';
 
 export const MAX_DISPATCHES = 4; // counted dispatches per cache key: first pass + 3 fix rounds
+export const DRAFT_MAX_DISPATCHES = 2; // a draft: first pass + 1 fix round (ARCHITECTURE.md 6.21)
 export const DEFAULT_IN_FLIGHT = 20; // the platform's concurrent-subagent limit (ARCHITECTURE.md 6.6)
 export const MAX_IN_FLIGHT = 20; // Claude Code's default limit on concurrent subagents
 export const MAX_PROBLEMS_KEPT = 20; // problems kept in the job's state file
@@ -63,7 +66,7 @@ export function inFlight(): number {
 // out/ledger/<job_id>.json. The name and the `batch_id` field predate synthesis groups; both kinds
 // use this shape.
 export type BatchState = {
-  batch_id: string; // the job ID: "batch-017" or "synth-003"
+  batch_id: string; // the job ID: "batch-017", "synth-003" or "draft-002"
   status: BatchStatus;
   dispatches: number; // dispatches under cache_key: 1 for the first, +1 for each after; back to 1 when the key changes
   cache_key: string | null; // the inputs at the last dispatch; the recorded status belongs to them
@@ -98,11 +101,16 @@ export class LedgerError extends Error {
   override name = 'LedgerError';
 }
 
-// ---- Job kinds: everything that differs between a batch and a synthesis group ----
+// ---- Job kinds: everything that differs between a batch, a synthesis group and a draft ----
 
 type KindInfo = {
   dirs: { input: string; output: string; validated: string }; // under out/
   inputExt: string;
+  outputExt: '.json' | '.md'; // what the agent writes
+  // The previous output is something a fix round can edit: a JSON object for a batch or a group,
+  // non-empty text for a draft. Otherwise a failed job goes out fresh.
+  holdsOutput: (file: string) => boolean;
+  max_dispatches: number; // counted dispatches per cache key before the job is exhausted
   index: string; // repo-relative
   agent: string; // repo-relative agent definition: its hash is part of every cache key of the kind
   worker: string; // the agent's name, for messages
@@ -117,6 +125,9 @@ export const JOB_KINDS: Record<JobKind, KindInfo> = {
   batch: {
     dirs: { input: 'batches', output: 'extract', validated: 'validated' },
     inputExt: '.md',
+    outputExt: '.json',
+    holdsOutput: (file) => holdsJsonObject(file),
+    max_dispatches: MAX_DISPATCHES,
     index: 'out/batches/index.json',
     agent: '.claude/agents/extractor.md',
     worker: 'extractor',
@@ -129,6 +140,9 @@ export const JOB_KINDS: Record<JobKind, KindInfo> = {
   synth: {
     dirs: { input: 'synthesis/input', output: 'synthesis/raw', validated: 'synthesis/validated' },
     inputExt: '.md',
+    outputExt: '.json',
+    holdsOutput: (file) => holdsJsonObject(file),
+    max_dispatches: MAX_DISPATCHES,
     index: 'out/synthesis/index.json',
     agent: '.claude/agents/synthesizer.md',
     worker: 'synthesizer',
@@ -138,15 +152,35 @@ export const JOB_KINDS: Record<JobKind, KindInfo> = {
     verb: 'synthesize',
     rebuild: 'rollup',
   },
+  draft: {
+    dirs: { input: 'artifacts/input', output: 'artifacts/raw', validated: 'artifacts/validated' },
+    inputExt: '.json',
+    outputExt: '.md',
+    holdsOutput: (file) => holdsText(file),
+    max_dispatches: DRAFT_MAX_DISPATCHES,
+    index: 'out/artifacts/index.json',
+    agent: '.claude/agents/drafter.md',
+    worker: 'drafter',
+    noun: 'artifact draft',
+    nouns: 'artifact drafts',
+    short: 'draft',
+    verb: 'draft',
+    rebuild: 'artifacts prepare',
+  },
 };
+
+// Counted dispatches per cache key before a job of this kind is exhausted.
+export const maxDispatches = (kind: JobKind): number => JOB_KINDS[kind].max_dispatches;
 
 // Job and agent IDs come from index files, but also from what is typed and from tool inputs, so
 // they are checked before they become part of a file name.
 const BATCH_ID = /^batch-\d{3,6}$/;
 const SYNTH_ID = /^synth-\d{3,6}$/;
+const DRAFT_ID = /^draft-\d{3,6}$/;
 export const isBatchId = (s: string): boolean => BATCH_ID.test(s);
 export const isSynthId = (s: string): boolean => SYNTH_ID.test(s);
-export const isJobId = (s: string): boolean => BATCH_ID.test(s) || SYNTH_ID.test(s);
+export const isDraftId = (s: string): boolean => DRAFT_ID.test(s);
+export const isJobId = (s: string): boolean => BATCH_ID.test(s) || SYNTH_ID.test(s) || DRAFT_ID.test(s);
 const AGENT_ID = /^[A-Za-z0-9_-]{1,128}$/;
 export const isAgentId = (s: string): boolean => AGENT_ID.test(s);
 
@@ -154,7 +188,8 @@ export const isAgentId = (s: string): boolean => AGENT_ID.test(s);
 export function kindOf(id: string): JobKind {
   if (BATCH_ID.test(id)) return 'batch';
   if (SYNTH_ID.test(id)) return 'synth';
-  throw new LedgerError(`"${id.slice(0, 80)}" is not a job ID (expected batch-NNN or synth-NNN; a bare number means a batch).`);
+  if (DRAFT_ID.test(id)) return 'draft';
+  throw new LedgerError(`"${id.slice(0, 80)}" is not a job ID (expected batch-NNN, synth-NNN or draft-NNN; a bare number means a batch).`);
 }
 
 // What a person or the orchestrator types: "batch-074", or just "74" / "074".
@@ -188,6 +223,10 @@ export const validationReportFile = (root: string): string => join(root, 'out', 
 export const synthesisDir = (root: string): string => join(root, 'out', 'synthesis');
 export const synthIndexFile = (root: string): string => join(root, 'out', 'synthesis', 'index.json');
 export const opportunitiesFile = (root: string): string => join(root, 'out', 'opportunities.json');
+// The M6 stage's files (ARCHITECTURE.md 5.9).
+export const artifactsDir = (root: string): string => join(root, 'out', 'artifacts');
+export const artifactIndexFile = (root: string): string => join(root, 'out', 'artifacts', 'index.json');
+export const artifactsFile = (root: string): string => join(root, 'out', 'artifacts', 'artifacts.json');
 export const prepareStatsFile = (root: string): string => join(root, 'out', 'prepare-stats.json');
 
 // Where a job's files are, by kind. Batch paths are as they were before synthesis groups existed.
@@ -197,7 +236,7 @@ export function jobPaths(root: string, id: string): JobPaths {
   const k = JOB_KINDS[kindOf(id)];
   return {
     input: join(root, 'out', k.dirs.input, `${id}${k.inputExt}`),
-    output: join(root, 'out', k.dirs.output, `${id}.json`),
+    output: join(root, 'out', k.dirs.output, `${id}${k.outputExt}`),
     validated: join(root, 'out', k.dirs.validated, `${id}.json`),
     fix: join(root, 'out', 'fix', `${id}.txt`),
     index: join(root, k.index),
@@ -455,8 +494,9 @@ export function updateBatchState(root: string, id: string, change: (state: Batch
   });
 }
 
-// The job IDs with a state file, by name: batches first, then synthesis groups. Read from the
-// ledger folder, not the indexes, so it works before prepare or rollup has rebuilt them.
+// The job IDs with a state file, by name: batches first, then synthesis groups, then drafts. Read
+// from the ledger folder, not the indexes, so it works before prepare, rollup or artifacts prepare
+// has rebuilt them.
 function recordedJobs(root: string): string[] {
   let names: string[];
   try {
@@ -465,8 +505,8 @@ function recordedJobs(root: string): string[] {
     if (codeOf(err) === 'ENOENT') return [];
     throw err;
   }
-  const ids = names.filter((n) => /^(?:batch|synth)-\d{3,6}\.json$/.test(n)).map((n) => n.slice(0, -'.json'.length));
-  return [...ids.filter(isBatchId).sort(), ...ids.filter(isSynthId).sort()];
+  const ids = names.filter((n) => /^(?:batch|synth|draft)-\d{3,6}\.json$/.test(n)).map((n) => n.slice(0, -'.json'.length));
+  return [...ids.filter(isBatchId).sort(), ...ids.filter(isSynthId).sort(), ...ids.filter(isDraftId).sort()];
 }
 
 // The jobs whose recorded state is running: what run start must stamp.
@@ -492,9 +532,11 @@ export function loadIndex(root: string): BatchEntry[] {
 // A batch index entry as a job.
 export const batchJob = (b: BatchEntry): JobEntry => ({ id: b.batch_id, file: b.file, content_sha: b.content_sha });
 
-// The jobs of one kind, in index order: out/batches/index.json or out/synthesis/index.json.
+// The jobs of one kind, in index order: out/batches/index.json, out/synthesis/index.json or the
+// `jobs` of out/artifacts/index.json.
 export function loadJobs(root: string, kind: JobKind): JobEntry[] {
   if (kind === 'batch') return loadIndex(root).map(batchJob);
+  if (kind === 'draft') return loadDraftJobs(root);
   const text = readText(synthIndexFile(root));
   if (text === null) throw new LedgerError('No synthesis groups yet: out/synthesis/index.json is missing. Run node obs.mjs rollup first.');
   let index: unknown;
@@ -512,6 +554,22 @@ export function loadJobs(root: string, kind: JobKind): JobEntry[] {
   return (index as Array<{ group_id: string; file: string; content_sha: string }>).map((g) => ({ id: g.group_id, file: g.file, content_sha: g.content_sha }));
 }
 
+function loadDraftJobs(root: string): JobEntry[] {
+  const text = readText(artifactIndexFile(root));
+  if (text === null) throw new LedgerError('No artifact drafts yet: out/artifacts/index.json is missing. Run node obs.mjs artifacts prepare first.');
+  let index: unknown;
+  try {
+    index = JSON.parse(text);
+  } catch {
+    throw new LedgerError('out/artifacts/index.json is not valid JSON. Run node obs.mjs artifacts prepare again.');
+  }
+  const jobs = isRecord(index) ? index.jobs : undefined;
+  if (!Array.isArray(jobs) || !jobs.every((j) => isRecord(j) && typeof j.job_id === 'string' && isDraftId(j.job_id) && typeof j.file === 'string' && typeof j.content_sha === 'string')) {
+    throw new LedgerError('out/artifacts/index.json is not an artifact index. Run node obs.mjs artifacts prepare again.');
+  }
+  return (jobs as Array<{ job_id: string; file: string; content_sha: string }>).map((j) => ({ id: j.job_id, file: j.file, content_sha: j.content_sha }));
+}
+
 export function findJob(jobs: readonly JobEntry[], id: string): JobEntry {
   const entry = jobs.find((j) => j.id === id);
   if (entry === undefined) {
@@ -527,7 +585,7 @@ export const findBatch = (index: readonly BatchEntry[], batchId: string): JobEnt
 
 // The parts of the cache key every job of a kind shares. Line endings are normalized first, so a
 // checkout that converted them doesn't invalidate finished work. A missing file hashes as "none".
-// A synthesis group has no taxonomy part: its input embeds the merged membership it was built from.
+// A synthesis group or a draft has no taxonomy part: its input embeds everything it was built from.
 export type SharedKeyParts = { agent_sha: string; taxonomy_sha: string };
 
 // The newline-normalised hash of a text file, or null when it doesn't exist.
@@ -564,12 +622,12 @@ function validatedMatches(root: string, job: JobEntry): boolean {
 // dispatch: its agent may still be writing, so only a stamp (gate, validate, run start) moves it
 // on, and dispatch refuses it until then. Otherwise a changed key makes any recorded status
 // pending; done also needs the validated file for this input; and a failed job whose counted
-// dispatches under this key are used up is exhausted.
+// dispatches under this key are used up (maxDispatches for its kind) is exhausted.
 export function effectiveStatus(root: string, state: BatchState, job: JobEntry, currentKey: string): EffectiveStatus {
   if (state.status === 'running') return 'running';
   if (state.status === 'pending' || state.cache_key !== currentKey) return 'pending';
   if (state.status === 'done') return validatedMatches(root, job) ? 'done' : 'pending';
-  return countedDispatches(state) >= MAX_DISPATCHES ? 'exhausted' : 'failed';
+  return countedDispatches(state) >= maxDispatches(kindOf(state.batch_id)) ? 'exhausted' : 'failed';
 }
 
 export type BatchView = { entry: JobEntry; state: BatchState; status: EffectiveStatus; cache_key: string };
@@ -590,7 +648,7 @@ export const jobViews = batchViews;
 // What the orchestrator dispatches next: failed jobs with dispatches left (fix rounds), then
 // pending ones, in index order, up to `cap` minus what is running. Nothing until the kind is
 // `ready`: for batches the taxonomy is fresh (every extraction depends on it), for synthesis
-// groups the rollup is current.
+// groups the rollup is current, for drafts the briefs are.
 export function nextToDispatch(
   views: readonly BatchView[],
   ready: boolean,
@@ -662,10 +720,21 @@ function holdsJsonObject(file: string): boolean {
   }
 }
 
+// The file holds some text: a draft body a fix round can edit.
+function holdsText(file: string): boolean {
+  try {
+    const text = readText(file);
+    return text !== null && text.replace(BOM, '').trim() !== '';
+  } catch {
+    return false;
+  }
+}
+
 // Hand a job to its agent. The input file must be the one the index describes (prepare or rollup
 // may have rerun since). Refused while the job is running (validate it first), and when it is done
-// or exhausted unless forced. A failed (or forced exhausted) job whose previous output is a JSON
-// object goes out as a fix round: its problems are in its fix file, out/fix/<job_id>.txt (written
+// or exhausted unless forced. A failed (or forced exhausted) job whose previous output is something
+// to fix (its kind's holdsOutput: a JSON object, or a draft's non-empty text) goes out as a fix
+// round: its problems are in its fix file, out/fix/<job_id>.txt (written
 // when it was stamped; rebuilt here from the state's first problems if it has gone), `fix` is the
 // lines of that file, and the output stays for the agent to edit. Otherwise `fix` is null, the
 // previous output and any fix file are removed (a stale file must never be validated in place of
@@ -699,7 +768,7 @@ export function markDispatched(root: string, job: JobEntry, opts: { force?: bool
       );
     }
     let lines = readFixLines(root, id);
-    const fixRound = (status === 'failed' || status === 'exhausted') && (lines.length > 0 || s.last_problems.length > 0) && holdsJsonObject(paths.output);
+    const fixRound = (status === 'failed' || status === 'exhausted') && (lines.length > 0 || s.last_problems.length > 0) && k.holdsOutput(paths.output);
     if (fixRound) {
       if (lines.length === 0) {
         writeFileAtomic(paths.fix, fixText(s.last_problems, s.problems ?? s.last_problems.length));
@@ -741,8 +810,8 @@ export function requireRunning(root: string, id: string): BatchState {
   return state;
 }
 
-// The quote statistics of a validated extraction; a synthesis has none.
-const quoteStatsOf = (v: ValidatedExtraction | ValidatedSynthesis | null): QuoteStats | null => (v !== null && 'quote_stats' in v ? v.quote_stats : null);
+// The quote statistics of a validated extraction; a synthesis or a draft has none.
+const quoteStatsOf = (v: ValidatedExtraction | ValidatedSynthesis | ValidatedDraft | null): QuoteStats | null => (v !== null && 'quote_stats' in v ? v.quote_stats : null);
 
 // The outcome of a validation, recorded the same way by `obs validate`, run start and the
 // SubagentStop gate. Only a running job is stamped, under the cache key recorded at its dispatch;
@@ -758,7 +827,7 @@ const quoteStatsOf = (v: ValidatedExtraction | ValidatedSynthesis | null): Quote
 export function recordValidation(
   root: string,
   job: JobEntry,
-  check: JobCheck<ValidatedExtraction | ValidatedSynthesis>,
+  check: JobCheck<ValidatedExtraction | ValidatedSynthesis | ValidatedDraft>,
   opts: { runId?: string | null } = {},
 ): BatchState {
   const id = job.id;
@@ -912,12 +981,14 @@ export const boundJob = boundBatch;
 
 // ---- Run state ----
 
-// --force: every model output and the state that refers to it: job states of both kinds, agent
+// --force: every model output and the state that refers to it: job states of every kind, agent
 // bindings, the taxonomy (canonical, proposed, and its attempt count), the merge (table, proposal,
 // input and attempt count), the validated extractions, the rollup and everything built from it
-// (coverage, validation report, synthesis inputs and validated syntheses), the opportunities, and
-// the fix files. The raw model outputs stay (out/extract/, out/synthesis/raw/): a fresh dispatch
-// removes its job's file, and until then they are evidence of what the previous run produced.
+// (coverage, validation report, synthesis inputs and validated syntheses), the opportunities, the
+// artifacts (index, briefs, validated drafts, artifacts.json and the rendered artifacts), and the
+// fix files. The raw model outputs stay (out/extract/, out/synthesis/raw/, out/artifacts/raw/): a
+// fresh dispatch removes its job's file, and until then they are evidence of what the previous run
+// produced.
 export function clearModelOutputs(root: string): void {
   for (const id of recordedJobs(root)) removeFile(jobStateFile(root, id));
   const out = join(root, 'out');
@@ -948,6 +1019,13 @@ export function clearModelOutputs(root: string): void {
     if (codeOf(err) !== 'ENOENT') throw err;
   }
   for (const name of names) if (/^opportunities(?:\.[^/\\]+)?\.json$/.test(name)) removeFile(join(out, name));
+  let artifacts: string[] = [];
+  try {
+    artifacts = readdirSync(artifactsDir(root));
+  } catch (err) {
+    if (codeOf(err) !== 'ENOENT') throw err;
+  }
+  for (const name of artifacts) if (name !== 'raw') removeFile(join(artifactsDir(root), name));
 }
 
 // The run state. A missing file means no run; a file that can't be read is an error, which the

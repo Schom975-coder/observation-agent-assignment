@@ -46,14 +46,23 @@ const idOrder = (a: string, b: string): number => {
   return byText(ab, bb) || ai - bi;
 };
 
-// One quote the group input can show, with what the sidecar records about it.
-type Quoted = SynthCited & { text: string; label: string };
+// One quote the group input can show, with what the sidecar records about it. `text` is the
+// validated raw span (the model's quote when no span was recorded), `label` the message's role, the
+// stall kind or the claim.
+export type Quoted = SynthCited & { text: string; label: string };
 
-type Sources = {
+// What placing a quote needs: the prepared messages, display names by address, each message's
+// occurrence, and the validated quotes by id (accepted evidence, and each message's first stall and
+// ownership check). Built once (quoteSources) for every process.
+export type QuoteSources = {
   messages: ReadonlyMap<string, ParsedMessage>;
   names: ReadonlyMap<string, string | null>;
   occurrenceOf: ReadonlyMap<string, string>;
+  byEvidence: ReadonlyMap<string, { message_id: string; raw: string; role: string }>;
+  stallIds: ReadonlyMap<string, string>;
+  ownershipIds: ReadonlyMap<string, string>;
 };
+type Sources = QuoteSources;
 
 const usable = (m: ParsedMessage | undefined): string | null => (m !== undefined && m.date_status === 'usable' && m.date_utc !== null ? m.date_utc : null);
 const senderEmail = (m: ParsedMessage | undefined): string => (m?.from?.email ?? '').toLowerCase();
@@ -73,15 +82,32 @@ function cited(id: string, kind: SynthCited['kind'], messageId: string, text: st
   return { id, kind, message_id: messageId, occurrence_id: src.occurrenceOf.get(messageId) ?? '', sender: senderEmail(m), date_utc: usable(m), text, label };
 }
 
+// The id maps every process's quotes are looked up in, built once from the validated extractions.
+export function quoteSources(
+  validated: readonly ValidatedExtraction[],
+  messages: ReadonlyMap<string, ParsedMessage>,
+  people: readonly Person[],
+  threads: readonly Thread[],
+): QuoteSources {
+  const occurrenceOf = new Map<string, string>();
+  for (const t of threads) for (const o of t.occurrences) for (const id of o.message_ids) occurrenceOf.set(id, o.occurrence_id);
+  const byEvidence = new Map<string, { message_id: string; raw: string; role: string }>();
+  const stallIds = new Map<string, string>();
+  const ownershipIds = new Map<string, string>();
+  for (const v of validated) {
+    const roles = new Map(v.messages.map((m) => [m.id, m.role]));
+    for (const e of v.evidence) if (e.match !== 'rejected') byEvidence.set(e.evidence_id, { message_id: e.message_id, raw: e.raw_text ?? e.quote, role: roles.get(e.message_id) ?? '' });
+    v.stall_checks.forEach((c, i) => void (stallIds.has(c.message_id) || stallIds.set(c.message_id, `${v.batch_id}:s${i}`)));
+    v.ownership_checks.forEach((c, i) => void (ownershipIds.has(c.message_id) || ownershipIds.set(c.message_id, `${v.batch_id}:o${i}`)));
+  }
+  return { messages, names: new Map(people.map((p) => [p.email, p.name])), occurrenceOf, byEvidence, stallIds, ownershipIds };
+}
+
 // Every quote of a process the input may show: accepted evidence re-keyed to it, validated stall
-// quotes and ownership claims of its messages; none from a flagged message.
-function quotesOf(
-  p: ProcessRollup,
-  byEvidence: ReadonlyMap<string, { message_id: string; raw: string; role: string }>,
-  stallIds: ReadonlyMap<string, string>,
-  ownershipIds: ReadonlyMap<string, string>,
-  src: Sources,
-): { evidence: Quoted[]; stalls: Quoted[]; ownership: Quoted[] } {
+// quotes and ownership claims of its messages; none from a flagged message. The synthesis input and
+// the artifact briefs (src/model/artifacts.ts) both sample from these.
+export function quotesFrom(p: ProcessRollup, src: QuoteSources): { evidence: Quoted[]; stalls: Quoted[]; ownership: Quoted[] } {
+  const { byEvidence, stallIds, ownershipIds } = src;
   const ok = (id: string) => src.messages.get(id)?.flags.suspected_injection !== true;
   const evidence = p.evidence_ids
     .map((id) => ({ id, e: byEvidence.get(id) }))
@@ -96,16 +122,29 @@ function quotesOf(
   return { evidence, stalls, ownership };
 }
 
+// The same for one process with the id maps built here (ARCHITECTURE.md 15.2); quoteSources once and
+// quotesFrom per process when there are several.
+export function processQuotes(
+  p: ProcessRollup,
+  validated: readonly ValidatedExtraction[],
+  messages: ReadonlyMap<string, ParsedMessage>,
+  people: readonly Person[],
+  threads: readonly Thread[],
+): { evidence: Quoted[]; stalls: Quoted[]; ownership: Quoted[] } {
+  return quotesFrom(p, quoteSources(validated, messages, people, threads));
+}
+
 // One per occurrence at even steps through the occurrences in ID order; within an occurrence the
 // first quote in id order. Then, while the sample shows fewer than SAMPLE_MIN_SENDERS senders, the
 // first quote (id order) of each sender it does not show, in id order, as long as there are such
 // senders. All of them listed by occurrence, then id. `extra`: how many the second rule added.
-function evidenceSample(evidence: readonly Quoted[]): { sample: Quoted[]; extra: number } {
+// `k`: the occurrences sampled (the artifact briefs take fewer than the synthesis input).
+export function evidenceSample(evidence: readonly Quoted[], k: number = EVIDENCE_SAMPLE): { sample: Quoted[]; extra: number } {
   const ordered = [...evidence].sort((a, b) => idOrder(a.id, b.id));
   const byOccurrence = new Map<string, Quoted>();
   for (const q of ordered) if (!byOccurrence.has(q.occurrence_id)) byOccurrence.set(q.occurrence_id, q);
   const occurrences = [...byOccurrence.keys()].sort(byText);
-  const sample = evenSteps(occurrences.length, EVIDENCE_SAMPLE).map((i) => byOccurrence.get(occurrences[i] as string) as Quoted);
+  const sample = evenSteps(occurrences.length, k).map((i) => byOccurrence.get(occurrences[i] as string) as Quoted);
   const senders = new Set(sample.map((q) => q.sender).filter((s) => s !== ''));
   const extra: Quoted[] = [];
   for (const q of ordered) {
@@ -220,22 +259,11 @@ export function buildSynthesisInputs(
   people: readonly Person[],
   threads: readonly Thread[],
 ): Array<{ entry: SynthEntry; markdown: string; sidecar: SynthSidecar }> {
-  const occurrenceOf = new Map<string, string>();
-  for (const t of threads) for (const o of t.occurrences) for (const id of o.message_ids) occurrenceOf.set(id, o.occurrence_id);
-  const src: Sources = { messages, names: new Map(people.map((p) => [p.email, p.name])), occurrenceOf };
-  const byEvidence = new Map<string, { message_id: string; raw: string; role: string }>();
-  const stallIds = new Map<string, string>();
-  const ownershipIds = new Map<string, string>();
-  for (const v of validated) {
-    const roles = new Map(v.messages.map((m) => [m.id, m.role]));
-    for (const e of v.evidence) if (e.match !== 'rejected') byEvidence.set(e.evidence_id, { message_id: e.message_id, raw: e.raw_text ?? e.quote, role: roles.get(e.message_id) ?? '' });
-    v.stall_checks.forEach((c, i) => void (stallIds.has(c.message_id) || stallIds.set(c.message_id, `${v.batch_id}:s${i}`)));
-    v.ownership_checks.forEach((c, i) => void (ownershipIds.has(c.message_id) || ownershipIds.set(c.message_id, `${v.batch_id}:o${i}`)));
-  }
+  const src = quoteSources(validated, messages, people, threads);
   const sections = new Map(
     [...rollup.processes]
       .sort((a, b) => byText(a.key, b.key))
-      .map((p) => [p.key, { key: p.key, occurrences: p.occurrences, ...section(p, quotesOf(p, byEvidence, stallIds, ownershipIds, src), src) }] as const),
+      .map((p) => [p.key, { key: p.key, occurrences: p.occurrences, ...section(p, quotesFrom(p, src), src) }] as const),
   );
   const tokens = (text: string): number => estTokens(Buffer.byteLength(text, 'utf8'), lineCount(text));
   const sectionsOf = (keys: readonly string[]) => keys.map((k) => sections.get(k) as NonNullable<ReturnType<typeof sections.get>>);

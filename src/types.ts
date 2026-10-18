@@ -188,8 +188,8 @@ export type ValidatedExtraction = {
 
 // ---- Jobs (M5): extraction batches and synthesis groups go through one ledger ----
 
-// A job's kind is its ID prefix: "batch-NNN" or "synth-NNN" (ARCHITECTURE.md 6.21).
-export type JobKind = 'batch' | 'synth';
+// A job's kind is its ID prefix: "batch-NNN", "synth-NNN" or "draft-NNN" (ARCHITECTURE.md 6.21).
+export type JobKind = 'batch' | 'synth' | 'draft';
 // What the ledger needs of any index entry: the job's ID, its input file and that file's hash.
 export type JobEntry = { id: string; file: string; content_sha: string };
 
@@ -454,4 +454,101 @@ export type Opportunities = {
   headline: { label: 'observed in 4 mailboxes, 1999-2002'; tiers_ab_cents: HeadlineCents; all_tiers_cents: HeadlineCents };
   opportunities: Opportunity[]; // ranked by automatable cents, ties by key
   unassigned: { messages: number; slugs: number };
+};
+
+// ---- Artifacts (M6, ARCHITECTURE.md 5.9, 6.23) ----
+
+// The artifact types a draft can have: every ArtifactType but "none", which gets no artifact.
+export type DraftType = Exclude<ArtifactType, 'none'>;
+
+// out/artifacts/index.json, written by `artifacts prepare`: the ledger's job index for the draft-
+// kind. One job per eligible opportunity whose synthesis chose an artifact type, in rank order
+// (draft-000 is the first of them); the other eligible opportunities are listed as skipped.
+export type ArtifactIndex = {
+  version: 1;
+  inputs: { opportunities_sha: string; rollup_sha: string };
+  jobs: Array<{
+    job_id: string;
+    key: string;
+    rank: number;
+    slug: string;
+    artifact_type: DraftType;
+    file: string; // "out/artifacts/input/draft-000.json": the brief
+    bytes: number;
+    lines: number;
+    est_tokens: number;
+    content_sha: string; // of the brief's text
+  }>;
+  skipped: Array<{ key: string; rank: number; reason: 'artifact_type none' | 'synthesis missing' }>;
+};
+
+type BriefQuote = { id: string; message_id: string; date: string | null; sender: string };
+
+// out/artifacts/input/draft-NNN.json: the drafter's one input, under BRIEF_MAX_TOKENS by
+// construction. Everything in it was counted, validated or chosen by code; the quotes are the
+// validated raw spans (CRLF -> LF), which the Evidence footer prints as they are.
+export type ArtifactBrief = {
+  version: 1;
+  job_id: string;
+  key: string;
+  name: string;
+  slug: string;
+  artifact_type: DraftType;
+  definition: string;
+  synthesis: { description: string; steps: string[]; stalls: string[]; contradictions: string[]; approach: string; rationale: string };
+  counted: {
+    label: 'facts counted by the pipeline';
+    occurrences: number;
+    active_months: number;
+    first_day: string | null;
+    last_day: string | null;
+    messages: number;
+    staff_participants: number;
+    actions: { short: number; medium: number; long: number; forwards: number; chasers: number; reads: number };
+    stalls: Record<StallKind, number>;
+  };
+  participants: Array<{ name: string | null; staff: boolean; authored: number; forwards: number; chasers: number; reads: number }>; // no addresses
+  ownership: { claims: Array<{ person: string; date: string | null }>; conflict: boolean };
+  estimate: null | {
+    label: 'estimate, not a count';
+    minutes_per_occurrence: { low: number; mid: number; high: number };
+    automatable_pct: number;
+    basis: string;
+    rationale: string;
+    source: 'model' | 'override';
+  };
+  evidence: Array<BriefQuote & { role: string; quote: string }>;
+  stall_quotes: Array<BriefQuote & { kind: StallKind; quote: string }>;
+  ownership_quotes: Array<BriefQuote & { person: string; quote: string }>;
+};
+
+// out/artifacts/validated/draft-NNN.json: what the gate recorded; the body stays in out/artifacts/raw/.
+export type ValidatedDraft = {
+  job_id: string;
+  content_sha: string; // the brief's
+  key: string;
+  slug: string;
+  artifact_type: DraftType;
+  body_sha: string; // of the body with its line endings normalised
+  body_bytes: number;
+  headings: string[];
+  blockquotes: number;
+};
+
+export type ArtifactStatus = 'done' | 'failed' | 'exhausted' | 'pending' | 'running' | 'skipped';
+
+// out/artifacts/artifacts.json, written by `artifacts collect`: every eligible opportunity, drafted
+// or not, in rank order.
+export type Artifacts = {
+  version: 1;
+  artifacts: Array<{
+    key: string;
+    rank: number;
+    slug: string;
+    artifact_type: ArtifactType;
+    status: ArtifactStatus;
+    path: string | null; // the rendered artifact, when done
+    dispatches: number;
+    reason: string | null;
+  }>;
 };

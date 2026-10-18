@@ -3,6 +3,7 @@
 import { fileURLToPath } from 'node:url';
 import { ingestCommand } from './corpus/ingest.ts';
 import { prepareCommand } from './pipeline/prepare.ts';
+import { artifactsCommand } from './run/artifacts.ts';
 import { advanceCommand, dispatchCommand, refillCommand, runCommand, statusCommand, validateCommand, verifyCommand } from './run/commands.ts';
 import { goldCommand } from './run/gold.ts';
 import { mergeCommand } from './run/merge.ts';
@@ -36,12 +37,12 @@ export const COMMANDS: Record<string, Command> = {
     run: (args) => statusCommand(ROOT, args),
   },
   dispatch: {
-    summary: 'Mark a batch or synthesis group as handed to its subagent and print the prompt',
+    summary: 'Mark a batch, synthesis group or artifact draft as handed to its subagent and print the prompt',
     milestone: 'M3',
     run: (args) => dispatchCommand(ROOT, args),
   },
   validate: {
-    summary: 'Check the model output of a batch or synthesis group (schema, coverage, quotes, estimate rules) and record it',
+    summary: 'Check the model output of a batch, synthesis group or artifact draft (schema, coverage, quotes, estimate rules, draft gate) and record it',
     milestone: 'M3',
     run: (args) => validateCommand(ROOT, args),
   },
@@ -51,7 +52,7 @@ export const COMMANDS: Record<string, Command> = {
     run: (args) => refillCommand(ROOT, args),
   },
   advance: {
-    summary: "The run's one command per turn: record the named jobs as refill does, run every ready stage step (taxonomy and merge accept, rollup, score, run end), print the next Agent calls as JSON",
+    summary: "The run's one command per turn: record the named jobs as refill does, run every ready stage step (taxonomy and merge accept, rollup, score, artifacts prepare and collect, run end), print the next Agent calls as JSON",
     milestone: 'M5',
     run: (args) => advanceCommand(ROOT, args),
   },
@@ -66,7 +67,7 @@ export const COMMANDS: Record<string, Command> = {
     run: (args) => taxonomyCommand(ROOT, args),
   },
   verify: {
-    summary: 'Re-check every done batch and synthesis group against its inputs and its committed validated file',
+    summary: 'Re-check every done batch, synthesis group and artifact draft against its inputs and its committed validated file',
     milestone: 'M4',
     run: (args) => verifyCommand(ROOT, args),
   },
@@ -90,7 +91,11 @@ export const COMMANDS: Record<string, Command> = {
     milestone: 'M5',
     run: (args) => scoreCommand(ROOT, args),
   },
-  'artifacts-prep': { summary: 'Write briefs for the opportunities that earn a drafted artifact', milestone: 'M6' },
+  artifacts: {
+    summary: '"prepare" writes a brief for each opportunity that earns a drafted artifact; "collect" renders every checked draft into out/artifacts/<process>/ and lists them all in out/artifacts/artifacts.json',
+    milestone: 'M6',
+    run: (args) => artifactsCommand(ROOT, args),
+  },
   build: { summary: 'Build the report and the dashboard data', milestone: 'M7' },
   summary: { summary: 'Print the run summary', milestone: 'M8' },
   serve: { summary: 'Serve the dashboard on 127.0.0.1', milestone: 'M7' },

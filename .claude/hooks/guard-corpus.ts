@@ -6,13 +6,15 @@
 // Two modes:
 // - A pipeline subagent (agent_type extractor, taxonomist, merger, synthesizer or drafter) gets an
 //   allowlist: only the tools and paths its stage needs; everything else is denied. Agents without
-//   a list yet are denied everything, so a new stage can't run unguarded. An extractor or a
-//   synthesizer is also bound to one ledger job: the first job file it reads binds its agent_id
+//   a list are denied everything, so a new stage can't run unguarded. An extractor, a synthesizer
+//   or a drafter is also bound to one ledger job: the first job file it reads binds its agent_id
 //   to that job, provided the job is running and no other agent holds its current dispatch
-//   (out/ledger/agents/<agent_id>.json, with the dispatch it was bound under). For an extractor that is a batch (out/batches/batch-NNN.md, its previous
-//   output out/extract/batch-NNN.json or its problems file out/fix/batch-NNN.txt); for a
-//   synthesizer a synthesis group (out/synthesis/input/synth-NNN.md, out/synthesis/raw/
-//   synth-NNN.json or out/fix/synth-NNN.txt). After that it may not read another job's files, and
+//   (out/ledger/agents/<agent_id>.json, with the dispatch it was bound under). For an extractor
+//   that is a batch (out/batches/batch-NNN.md, its previous output out/extract/batch-NNN.json or its
+//   problems file out/fix/batch-NNN.txt); for a synthesizer a synthesis group
+//   (out/synthesis/input/synth-NNN.md, out/synthesis/raw/synth-NNN.json or out/fix/synth-NNN.txt);
+//   for a drafter a draft (its brief out/artifacts/input/draft-NNN.json, its previous body
+//   out/artifacts/raw/draft-NNN.md or out/fix/draft-NNN.txt). After that it may not read another job's files, and
 //   it may write only its own job's output, only while that job is still running under the same
 //   dispatch. The SubagentStop gate checks the job the agent is bound to, so no model text decides
 //   which file is checked. The taxonomist and the merger have fixed files and no binding.
@@ -94,15 +96,19 @@ const ofJob = (pattern: RegExp): PathRule => (rel) => {
 };
 const either = (...rules: PathRule[]): PathRule => (rel) => rules.map((r) => r(rel)).find((m) => m.ok) ?? NO;
 
-// An extractor's batch files; a synthesizer's group files. The job ID is the captured part.
+// An extractor's batch files; a synthesizer's group files; a drafter's draft files. The job ID is
+// the captured part.
 const BATCH_FILE = /^out\/batches\/(batch-\d{3,6})\.md$/;
 const EXTRACT_FILE = /^out\/extract\/(batch-\d{3,6})\.json$/;
 const BATCH_FIX_FILE = /^out\/fix\/(batch-\d{3,6})\.txt$/;
 const GROUP_FILE = /^out\/synthesis\/input\/(synth-\d{3,6})\.md$/;
 const SYNTHESIS_FILE = /^out\/synthesis\/raw\/(synth-\d{3,6})\.json$/;
 const GROUP_FIX_FILE = /^out\/fix\/(synth-\d{3,6})\.txt$/;
+const BRIEF_FILE = /^out\/artifacts\/input\/(draft-\d{3,6})\.json$/;
+const DRAFT_FILE = /^out\/artifacts\/raw\/(draft-\d{3,6})\.md$/;
+const DRAFT_FIX_FILE = /^out\/fix\/(draft-\d{3,6})\.txt$/;
 
-// One entry per pipeline agent; the drafter (M6) gets its own with its stage.
+// One entry per pipeline agent.
 const POLICIES: Record<string, Policy> = {
   extractor: {
     read: either(exactly('out/taxonomy.json'), ofJob(BATCH_FILE), ofJob(EXTRACT_FILE), ofJob(BATCH_FIX_FILE)),
@@ -130,6 +136,14 @@ const POLICIES: Record<string, Policy> = {
       'Read of its own group input out/synthesis/input/synth-NNN.md, its own output out/synthesis/raw/synth-NNN.json and its own ' +
       'problems file out/fix/synth-NNN.txt, and Write of its own output out/synthesis/raw/synth-NNN.json ' +
       '(its group is the first group file it reads)',
+  },
+  drafter: {
+    // Not the index, the validated record or any rendered artifact: only its own draft's files.
+    read: either(ofJob(BRIEF_FILE), ofJob(DRAFT_FILE), ofJob(DRAFT_FIX_FILE)),
+    write: ofJob(DRAFT_FILE),
+    summary:
+      'Read of its own brief out/artifacts/input/draft-NNN.json, its own body out/artifacts/raw/draft-NNN.md and its own problems file ' +
+      'out/fix/draft-NNN.txt, and Write of its own body out/artifacts/raw/draft-NNN.md (its draft is the first draft file it reads)',
   },
 };
 
@@ -170,10 +184,10 @@ function relativeTo(value: string, root: string, cwd: string): string | null {
 }
 
 // What the binding messages call a job's input file and its work, by kind.
-const INPUT_FILE = { batch: 'batch file', synth: 'input file' } as const;
-const BEING = { batch: 'extracted', synth: 'synthesized' } as const;
+const INPUT_FILE = { batch: 'batch file', synth: 'input file', draft: 'brief' } as const;
+const BEING = { batch: 'extracted', synth: 'synthesized', draft: 'drafted' } as const;
 
-// Why an extractor or synthesizer (`agent`) may not touch this job's file, or null when it may. The
+// Why an extractor, synthesizer or drafter (`agent`) may not touch this job's file, or null when it may. The
 // first job file it reads binds it; a write needs that binding, the same job, and the job still
 // running under the dispatch the binding recorded (a re-dispatch hands the job to a new agent).
 // Which kind of job an agent may bind to is fixed by its allowlist's path patterns.

@@ -2,6 +2,98 @@
   "group_id": "synth-010",
   "processes": [
     {
+      "key": "iso-bid-strategy",
+      "occurrences": 5,
+      "cited": [
+        {
+          "id": "batch-066:e19",
+          "kind": "evidence",
+          "message_id": "corpus/williams-w3/sent_items/235.",
+          "occurrence_id": "t-704c3abfdaf9-o1",
+          "sender": "bill.williams@enron.com",
+          "date_utc": "2001-09-18T19:06:18Z"
+        },
+        {
+          "id": "batch-066:e5",
+          "kind": "evidence",
+          "message_id": "corpus/williams-w3/sent_items/250.",
+          "occurrence_id": "t-852859202325-o1",
+          "sender": "bill.williams@enron.com",
+          "date_utc": "2001-09-14T00:31:22Z"
+        },
+        {
+          "id": "batch-057:e24",
+          "kind": "evidence",
+          "message_id": "corpus/williams-w3/sent_items/408.",
+          "occurrence_id": "t-9a91f18842e9-o1",
+          "sender": "bill.williams@enron.com",
+          "date_utc": "2001-07-12T03:14:14Z"
+        },
+        {
+          "id": "batch-054:e6",
+          "kind": "evidence",
+          "message_id": "corpus/williams-w3/sent_items/497.",
+          "occurrence_id": "t-cd3822d3c514-o1",
+          "sender": "bill.williams@enron.com",
+          "date_utc": "2001-06-15T18:19:17Z"
+        },
+        {
+          "id": "batch-054:e4",
+          "kind": "evidence",
+          "message_id": "corpus/williams-w3/sent_items/500.",
+          "occurrence_id": "t-f936333dea0c-o1",
+          "sender": "bill.williams@enron.com",
+          "date_utc": "2001-06-14T21:13:35Z"
+        }
+      ]
+    },
+    {
+      "key": "ledger-review-writeoffs",
+      "occurrences": 4,
+      "cited": [
+        {
+          "id": "batch-010:e11",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/1017.",
+          "occurrence_id": "t-07b28c325b85-o1",
+          "sender": "yvette.connevey@enron.com",
+          "date_utc": "2000-04-05T15:53:00Z"
+        },
+        {
+          "id": "batch-028:e22",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/1468.",
+          "occurrence_id": "t-2c9fa8de99cd-o1",
+          "sender": "fred.boas@enron.com",
+          "date_utc": "2000-10-24T09:04:00Z"
+        },
+        {
+          "id": "batch-046:e23",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/2116.",
+          "occurrence_id": "t-6c9a1df5d713-o1",
+          "sender": "david.baumbach@enron.com",
+          "date_utc": "2001-03-12T14:05:00Z"
+        },
+        {
+          "id": "batch-086:e3",
+          "kind": "evidence",
+          "message_id": "corpus/giron-d/inbox/138.",
+          "occurrence_id": "t-a43dddf54ca4-o1",
+          "sender": "richard.tomaski@enron.com",
+          "date_utc": "2002-01-10T19:05:45Z"
+        },
+        {
+          "id": "batch-010:s2",
+          "kind": "stall",
+          "message_id": "corpus/farmer-d/logistics/1017.",
+          "occurrence_id": "t-07b28c325b85-o1",
+          "sender": "yvette.connevey@enron.com",
+          "date_utc": "2000-04-05T15:53:00Z"
+        }
+      ]
+    },
+    {
       "key": "liquidation-support",
       "occurrences": 3,
       "cited": [
@@ -28,426 +120,6 @@
           "occurrence_id": "t-f1ed2f4ffc33-o1",
           "sender": "darron.giron@enron.com",
           "date_utc": "2001-03-29T15:42:00Z"
-        }
-      ]
-    },
-    {
-      "key": "market-information-distribution",
-      "occurrences": 8,
-      "cited": [
-        {
-          "id": "batch-053:e8",
-          "kind": "evidence",
-          "message_id": "corpus/farmer-d/logistics/135.",
-          "occurrence_id": "t-1803848f4e89-o1",
-          "sender": "a..martin@enron.com",
-          "date_utc": "2001-05-22T16:55:44Z"
-        },
-        {
-          "id": "batch-092:e2",
-          "kind": "evidence",
-          "message_id": "corpus/williams-w3/inbox/57.",
-          "occurrence_id": "t-1e0097a88cd8-o1",
-          "sender": "jill.chatterton@enron.com",
-          "date_utc": "2002-02-01T20:31:26Z"
-        },
-        {
-          "id": "batch-067:e7",
-          "kind": "evidence",
-          "message_id": "corpus/farmer-d/logistics/56.",
-          "occurrence_id": "t-27cd7fa8ada6-o1",
-          "sender": "brian.redmond@enron.com",
-          "date_utc": "2001-09-21T20:27:20Z"
-        },
-        {
-          "id": "batch-093:e12",
-          "kind": "evidence",
-          "message_id": "corpus/williams-w3/inbox/50.",
-          "occurrence_id": "t-5542290a879e-o1",
-          "sender": "theresa.villeggiante@enron.com",
-          "date_utc": "2002-02-04T19:22:38Z"
-        },
-        {
-          "id": "batch-073:e12",
-          "kind": "evidence",
-          "message_id": "corpus/giron-d/inbox/368.",
-          "occurrence_id": "t-861a30cc837a-o1",
-          "sender": "csulzer@grenergy.com",
-          "date_utc": "2001-10-31T16:08:02Z"
-        },
-        {
-          "id": "batch-092:e1",
-          "kind": "evidence",
-          "message_id": "corpus/williams-w3/inbox/62.",
-          "occurrence_id": "t-979a52264bf0-o1",
-          "sender": "jill.chatterton@enron.com",
-          "date_utc": "2002-01-31T22:18:20Z"
-        },
-        {
-          "id": "batch-098:e0",
-          "kind": "evidence",
-          "message_id": "corpus/lokay-m/sent_items/125.",
-          "occurrence_id": "t-d9948d1ca085-o1",
-          "sender": "michelle.lokay@enron.com",
-          "date_utc": "2002-03-04T21:18:22Z"
-        },
-        {
-          "id": "batch-075:e10",
-          "kind": "evidence",
-          "message_id": "corpus/giron-d/inbox/378.",
-          "occurrence_id": "t-e74f6f85a2ce-o1",
-          "sender": "patrick.tucker@enron.com",
-          "date_utc": "2001-11-12T16:25:00Z"
-        },
-        {
-          "id": "batch-093:s3",
-          "kind": "stall",
-          "message_id": "corpus/williams-w3/inbox/50.",
-          "occurrence_id": "t-5542290a879e-o1",
-          "sender": "theresa.villeggiante@enron.com",
-          "date_utc": "2002-02-04T19:22:38Z"
-        },
-        {
-          "id": "batch-067:o0",
-          "kind": "ownership",
-          "message_id": "corpus/farmer-d/logistics/56.",
-          "occurrence_id": "t-27cd7fa8ada6-o1",
-          "sender": "brian.redmond@enron.com",
-          "date_utc": "2001-09-21T20:27:20Z"
-        }
-      ]
-    },
-    {
-      "key": "market-rule-change-review",
-      "occurrences": 44,
-      "cited": [
-        {
-          "id": "batch-059:e38",
-          "kind": "evidence",
-          "message_id": "corpus/williams-w3/sent_items/359.",
-          "occurrence_id": "t-01307314e4c9-o1",
-          "sender": "bill.williams@enron.com",
-          "date_utc": "2001-07-27T19:31:03Z"
-        },
-        {
-          "id": "batch-077:e0",
-          "kind": "evidence",
-          "message_id": "corpus/farmer-d/logistics/19.",
-          "occurrence_id": "t-0131e53cf8a9-o1",
-          "sender": "tammy.jaquet@enron.com",
-          "date_utc": "2001-11-14T22:56:48Z"
-        },
-        {
-          "id": "batch-094:e11",
-          "kind": "evidence",
-          "message_id": "corpus/williams-w3/inbox/41.",
-          "occurrence_id": "t-03104acdb751-o1",
-          "sender": "crcommunications@caiso.com",
-          "date_utc": "2002-02-05T03:55:54Z"
-        },
-        {
-          "id": "batch-079:e10",
-          "kind": "evidence",
-          "message_id": "corpus/lokay-m/inbox/49.",
-          "occurrence_id": "t-084183f0f34c-o1",
-          "sender": "steven.harris@enron.com",
-          "date_utc": "2001-11-24T15:49:39Z"
-        },
-        {
-          "id": "batch-054:e20",
-          "kind": "evidence",
-          "message_id": "corpus/williams-w3/sent_items/479.",
-          "occurrence_id": "t-0a69e4ff8f28-o1",
-          "sender": "bill.williams@enron.com",
-          "date_utc": "2001-06-20T20:15:16Z"
-        },
-        {
-          "id": "batch-062:e4",
-          "kind": "evidence",
-          "message_id": "corpus/williams-w3/sent_items/303.",
-          "occurrence_id": "t-0b970be17ef4-o1",
-          "sender": "bill.williams@enron.com",
-          "date_utc": "2001-08-15T02:25:39Z"
-        },
-        {
-          "id": "batch-061:e12",
-          "kind": "evidence",
-          "message_id": "corpus/williams-w3/sent_items/320.",
-          "occurrence_id": "t-0e8fca9d087b-o1",
-          "sender": "bill.williams@enron.com",
-          "date_utc": "2001-08-08T01:08:13Z"
-        },
-        {
-          "id": "batch-066:e18",
-          "kind": "evidence",
-          "message_id": "corpus/williams-w3/sent_items/236.",
-          "occurrence_id": "t-1067a17b0a2b-o1",
-          "sender": "bill.williams@enron.com",
-          "date_utc": "2001-09-18T02:22:16Z"
-        },
-        {
-          "id": "batch-057:e19",
-          "kind": "evidence",
-          "message_id": "corpus/williams-w3/sent_items/415.",
-          "occurrence_id": "t-11f31c09449b-o1",
-          "sender": "bill.williams@enron.com",
-          "date_utc": "2001-07-11T02:19:17Z"
-        },
-        {
-          "id": "batch-058:e5",
-          "kind": "evidence",
-          "message_id": "corpus/williams-w3/sent_items/402.",
-          "occurrence_id": "t-1ca3691334aa-o1",
-          "sender": "bill.williams@enron.com",
-          "date_utc": "2001-07-13T02:39:07Z"
-        },
-        {
-          "id": "batch-094:e6",
-          "kind": "evidence",
-          "message_id": "corpus/williams-w3/inbox/44.",
-          "occurrence_id": "t-4845a6b6e1a7-o1",
-          "sender": "crcommunications@caiso.com",
-          "date_utc": "2002-02-05T03:09:39Z"
-        },
-        {
-          "id": "batch-071:e14",
-          "kind": "evidence",
-          "message_id": "corpus/williams-w3/sent_items/155.",
-          "occurrence_id": "t-57a86fc7c4fb-o1",
-          "sender": "bill.williams@enron.com",
-          "date_utc": "2001-10-23T22:31:34Z"
-        },
-        {
-          "id": "batch-097:e0",
-          "kind": "evidence",
-          "message_id": "corpus/williams-w3/inbox/5.",
-          "occurrence_id": "t-5ffb98e7aa1f-o1",
-          "sender": "crcommunications@caiso.com",
-          "date_utc": "2002-02-07T03:48:26Z"
-        },
-        {
-          "id": "batch-070:e14",
-          "kind": "evidence",
-          "message_id": "corpus/lokay-m/inbox/16.",
-          "occurrence_id": "t-6b36a305ccd7-o1",
-          "sender": "glen.hass@enron.com",
-          "date_utc": "2001-10-18T20:57:33Z"
-        },
-        {
-          "id": "batch-095:e0",
-          "kind": "evidence",
-          "message_id": "corpus/williams-w3/inbox/32.",
-          "occurrence_id": "t-70911ada78ae-o1",
-          "sender": "crcommunications@caiso.com",
-          "date_utc": "2002-02-05T22:29:09Z"
-        },
-        {
-          "id": "batch-070:e11",
-          "kind": "evidence",
-          "message_id": "corpus/farmer-d/logistics/42.",
-          "occurrence_id": "t-7590c1d1ac68-o1",
-          "sender": "tammy.jaquet@enron.com",
-          "date_utc": "2001-10-17T14:06:40Z"
-        },
-        {
-          "id": "batch-071:e21",
-          "kind": "evidence",
-          "message_id": "corpus/lokay-m/inbox/12.",
-          "occurrence_id": "t-75a034c52ccf-o1",
-          "sender": "glen.hass@enron.com",
-          "date_utc": "2001-10-25T18:00:39Z"
-        },
-        {
-          "id": "batch-072:e0",
-          "kind": "evidence",
-          "message_id": "corpus/williams-w3/sent_items/149.",
-          "occurrence_id": "t-797d0bd44abb-o1",
-          "sender": "bill.williams@enron.com",
-          "date_utc": "2001-10-25T19:59:06Z"
-        },
-        {
-          "id": "batch-058:e7",
-          "kind": "evidence",
-          "message_id": "corpus/williams-w3/sent_items/400.",
-          "occurrence_id": "t-81e944e8b250-o1",
-          "sender": "bill.williams@enron.com",
-          "date_utc": "2001-07-13T04:48:50Z"
-        },
-        {
-          "id": "batch-056:e24",
-          "kind": "evidence",
-          "message_id": "corpus/williams-w3/sent_items/438.",
-          "occurrence_id": "t-831a635e9f4c-o1",
-          "sender": "bill.williams@enron.com",
-          "date_utc": "2001-07-03T18:47:04Z"
-        },
-        {
-          "id": "batch-057:e23",
-          "kind": "evidence",
-          "message_id": "corpus/williams-w3/sent_items/409.",
-          "occurrence_id": "t-8e53710775fe-o1",
-          "sender": "bill.williams@enron.com",
-          "date_utc": "2001-07-12T00:36:58Z"
-        },
-        {
-          "id": "batch-089:e10",
-          "kind": "evidence",
-          "message_id": "corpus/williams-w3/inbox/89.",
-          "occurrence_id": "t-9727ed58f6fc-o1",
-          "sender": "crcommunications@caiso.com",
-          "date_utc": "2002-01-29T03:54:22Z"
-        },
-        {
-          "id": "batch-085:e13",
-          "kind": "evidence",
-          "message_id": "corpus/williams-w3/inbox/112.",
-          "occurrence_id": "t-98a352947160-o1",
-          "sender": "crcommunications@caiso.com",
-          "date_utc": "2002-01-09T20:43:00Z"
-        },
-        {
-          "id": "batch-065:e5",
-          "kind": "evidence",
-          "message_id": "corpus/williams-w3/sent_items/264.",
-          "occurrence_id": "t-9b99930b5c8c-o1",
-          "sender": "bill.williams@enron.com",
-          "date_utc": "2001-09-06T19:43:34Z"
-        },
-        {
-          "id": "batch-056:e11",
-          "kind": "evidence",
-          "message_id": "corpus/williams-w3/sent_items/449.",
-          "occurrence_id": "t-9ca02bfdd2a2-o1",
-          "sender": "bill.williams@enron.com",
-          "date_utc": "2001-07-02T17:42:17Z"
-        },
-        {
-          "id": "batch-069:e2",
-          "kind": "evidence",
-          "message_id": "corpus/williams-w3/sent_items/195.",
-          "occurrence_id": "t-9cc4fb2f761a-o1",
-          "sender": "bill.williams@enron.com",
-          "date_utc": "2001-10-08T15:44:04Z"
-        },
-        {
-          "id": "batch-089:e11",
-          "kind": "evidence",
-          "message_id": "corpus/williams-w3/inbox/88.",
-          "occurrence_id": "t-a1d87a74f804-o1",
-          "sender": "dfuller@caiso.com",
-          "date_utc": "2002-01-29T08:56:19Z"
-        },
-        {
-          "id": "batch-068:e13",
-          "kind": "evidence",
-          "message_id": "corpus/farmer-d/logistics/54.",
-          "occurrence_id": "t-a46970030e23-o1",
-          "sender": "suzanne.calcagno@enron.com",
-          "date_utc": "2001-09-26T21:43:20Z"
-        },
-        {
-          "id": "batch-054:e19",
-          "kind": "evidence",
-          "message_id": "corpus/williams-w3/sent_items/480.",
-          "occurrence_id": "t-be7a90e73a43-o1",
-          "sender": "bill.williams@enron.com",
-          "date_utc": "2001-06-20T18:08:05Z"
-        },
-        {
-          "id": "batch-094:e4",
-          "kind": "evidence",
-          "message_id": "corpus/williams-w3/inbox/46.",
-          "occurrence_id": "t-bfd869dc30e6-o1",
-          "sender": "crcommunications@caiso.com",
-          "date_utc": "2002-02-05T01:23:01Z"
-        },
-        {
-          "id": "batch-072:e8",
-          "kind": "evidence",
-          "message_id": "corpus/lokay-m/inbox/9.",
-          "occurrence_id": "t-cfec5ec5f9a9-o1",
-          "sender": "kimberly.watson@enron.com",
-          "date_utc": "2001-10-28T23:57:19Z"
-        },
-        {
-          "id": "batch-056:e16",
-          "kind": "evidence",
-          "message_id": "corpus/williams-w3/sent_items/443.",
-          "occurrence_id": "t-d63bd78ef2fb-o1",
-          "sender": "bill.williams@enron.com",
-          "date_utc": "2001-07-03T01:25:35Z"
-        },
-        {
-          "id": "batch-074:e7",
-          "kind": "evidence",
-          "message_id": "corpus/williams-w3/sent_items/113.",
-          "occurrence_id": "t-d7adfa4fa079-o1",
-          "sender": "bill.williams@enron.com",
-          "date_utc": "2001-11-07T00:08:24Z"
-        },
-        {
-          "id": "batch-007:e10",
-          "kind": "evidence",
-          "message_id": "corpus/farmer-d/logistics/906.",
-          "occurrence_id": "t-d7c0cd548693-o1",
-          "sender": "mary.hain@enron.com",
-          "date_utc": "2000-03-14T08:46:00Z"
-        },
-        {
-          "id": "batch-085:e0",
-          "kind": "evidence",
-          "message_id": "corpus/williams-w3/sent_items/31.",
-          "occurrence_id": "t-dac4001f89c9-o1",
-          "sender": "bill.williams@enron.com",
-          "date_utc": "2002-01-04T21:11:30Z"
-        },
-        {
-          "id": "batch-064:e5",
-          "kind": "evidence",
-          "message_id": "corpus/williams-w3/sent_items/286.",
-          "occurrence_id": "t-db46ba3e963b-o1",
-          "sender": "bill.williams@enron.com",
-          "date_utc": "2001-08-24T22:10:55Z"
-        },
-        {
-          "id": "batch-090:e6",
-          "kind": "evidence",
-          "message_id": "corpus/williams-w3/inbox/82.",
-          "occurrence_id": "t-dbf6b71428b9-o1",
-          "sender": "crcommunications@caiso.com",
-          "date_utc": "2002-01-30T03:48:28Z"
-        },
-        {
-          "id": "batch-096:e13",
-          "kind": "evidence",
-          "message_id": "corpus/williams-w3/inbox/12.",
-          "occurrence_id": "t-e02f5948d30d-o1",
-          "sender": "lfeusi@caiso.com",
-          "date_utc": "2002-02-07T01:21:52Z"
-        },
-        {
-          "id": "batch-083:e10",
-          "kind": "evidence",
-          "message_id": "corpus/williams-w3/inbox/129.",
-          "occurrence_id": "t-e1c7d21b2991-o1",
-          "sender": "alan.comnes@enron.com",
-          "date_utc": "2001-12-20T22:19:03Z"
-        },
-        {
-          "id": "batch-054:e1",
-          "kind": "evidence",
-          "message_id": "corpus/williams-w3/sent_items/504.",
-          "occurrence_id": "t-eea7670aea5c-o1",
-          "sender": "bill.williams@enron.com",
-          "date_utc": "2001-06-13T20:08:22Z"
-        },
-        {
-          "id": "batch-096:s0",
-          "kind": "stall",
-          "message_id": "corpus/williams-w3/inbox/10.",
-          "occurrence_id": "t-e02f5948d30d-o1",
-          "sender": "lfeusi@caiso.com",
-          "date_utc": "2002-02-07T01:52:12Z"
         }
       ]
     }

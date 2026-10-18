@@ -1,28 +1,28 @@
 {
   "group_id": "synth-008",
-  "content_sha": "220a74724e6c37ca6ff361c29ee3326aa46a4005b56dcee02f54e56725718a4d",
+  "content_sha": "90e7d9b2e77e8dfa41e49c86b725b5e6b8461710d66c87f49c34615723d9a436",
   "processes": [
     {
-      "key": "desk-equipment-requests",
-      "description": "The real-time desk lead asks IT trader deployments and telecom staff for desk equipment: an extra turret, handsets for each turret, headsets, PCs and cell phones on a group calling plan. Orders are assigned to a technician who reports progress and sends an installation-complete notice, and cabling and turret IDs are sorted out for the real-time desks. An admin who receives a vendor invoice asks the requester to confirm the items arrived. Phone plans are set up, capped per employee or cancelled, and usage is reported back to group members.",
+      "key": "desk-equipment-setup",
+      "description": "Desk leads, mainly Bill Williams, arrange the telephony and computer kit for trading and real-time desks: turret handsets, an extra turret, PCs, headsets, cable moves and a group mobile phone plan. A round starts with a request to IT, the telecoms team or a carrier. The order is logged and assigned to a deployment technician, who reports when installation is complete. Others check whether ordered or invoiced items arrived, collect turret IDs, set limits on the calling plan and cancel services no longer needed.",
       "steps": [
-        "The desk lead identifies equipment a desk or person needs: turret, handsets, headset, PC or cell phone.",
-        "The order is placed with IT trader deployments or the carrier, sometimes by phone.",
-        "The order is assigned to a technician, who reports progress and confirms the installation.",
-        "Cabling, desk moves and turret IDs are arranged for the real-time desks.",
-        "When the vendor invoice arrives, the admin asks the requester to confirm the items were received.",
-        "Mobile plans are set up, capped or cancelled, and each group member is told their average usage."
+        "A desk lead identifies equipment a desk or person needs, such as handsets, a turret, a PC, a headset or a phone plan.",
+        "The request goes to IT, the telecoms team or the carrier, by email or by phoning in the order.",
+        "The order is logged and assigned to a deployment technician, who confirms the work has started.",
+        "The technician installs the equipment or moves cabling and sends a completion notice.",
+        "The requester confirms that ordered items arrived and matches vendor invoices to what was received.",
+        "For phone plans, limits are set, members are told their usage, and services nobody uses are cancelled."
       ],
       "stalls": [
         {
-          "summary": "A phone request for a staff member waited on the carrier, and the desk lead had to ask again for any news.",
+          "summary": "A request for a phone for a new person sat with the outside carrier, and the desk lead had to chase for news.",
           "evidence_ids": [
             "batch-065:s2",
             "batch-065:e19"
           ]
         },
         {
-          "summary": "Receipt is checked only once the invoice arrives: the admin has to ask requesters whether invoiced items such as a printer maintenance kit were actually received before the bill is cleared.",
+          "summary": "Nothing confirms receipt automatically: after a vendor invoice for supplies turned up, a requester had to be asked to check whether the items had actually arrived.",
           "evidence_ids": [
             "batch-042:e16",
             "batch-042:e15"
@@ -31,192 +31,183 @@
       ],
       "contradictions": [],
       "automation": {
-        "approach": "A shared equipment log for the desk: requester, item, desk and turret ID, order date, assigned technician, install date and receipt confirmation, updated from the deployment system's assignment and completion notices, so invoices are matched to logged receipts instead of asking requesters. A regular per-person mobile usage report against the group cap could be produced from the carrier's billing data.",
+        "approach": "A shared equipment request tracker with one row per request: desk, person, item, vendor or carrier, order reference, assigned technician, status, receipt confirmed and invoice matched. Completion notices from the deployment system and vendor invoices update the row, and rows still open after their expected date are listed for follow-up. The same sheet keeps turret IDs and phone plan members, so those lists are not rebuilt each time someone asks.",
         "artifact_type": "template",
-        "rationale": "Most rounds are one request followed by a status question or a receipt check. A tracking layout that holds turret IDs, orders, installs and receipts answers those questions without a new thread and lets the admin match invoices to deliveries, while ordering decisions stay with the desk lead."
+        "rationale": "Rounds are small orders spread across IT, telecoms, a carrier and vendors. The work that repeats is keeping track of what was ordered, whether it arrived, which invoice it matches, and collecting turret IDs and plan details again. One tracking layout covers all of that. Placing orders and installing equipment stay manual."
       },
       "work_estimate": {
         "minutes_per_occurrence": {
-          "low": 10,
-          "mid": 20,
+          "low": 5,
+          "mid": 15,
           "high": 60
         },
         "automatable_pct": 30,
         "basis": "inferred",
-        "rationale": "Hands-on work is placing the order by phone or with deployments, gathering turret IDs and desk details, arranging cable and installation, checking receipt against an invoice, and setting up or cancelling phone plans and working out usage. About 20 minutes is typical; a simple receipt check takes 10, and re-cabling a desk or adding a turret up to 60. Logging, invoice matching and usage reports could be automated; choosing equipment and the physical install stay manual.",
+        "rationale": "The hands-on work in a round is phoning in or keying an order, a technician installing a PC or moving cable, checking receipt against an invoice, or compiling turret IDs or plan usage. Most rounds show one such small task, so the middle figure is 15 minutes. A simple order or cancellation takes 5 minutes, and an install or cable move up to 60. A tracker could take over the tracking, receipt matching and lists. Installs and carrier calls stay manual.",
         "evidence_ids": [
           "batch-056:e7",
-          "batch-064:e6",
-          "batch-065:e3",
           "batch-042:e16",
+          "batch-042:e15",
+          "batch-065:e7",
+          "batch-065:e3",
           "batch-068:e1",
           "batch-066:e9",
           "batch-065:e8"
         ]
       },
       "estimate_check": {
-        "occurrences_cited": 7,
+        "occurrences_cited": 8,
         "senders_cited": 3
       }
     },
     {
-      "key": "divestiture-transition",
-      "description": "Hand-over of sold businesses to new owners: first the HPL sale to AEP, where deal files go to the buyer and a transition-issues memo is circulated for comments, then the move of the gas and power trading business to UBS. In the UBS move, staff complete new-hire applications, drug tests and orientation, get new access cards, copy compliant data and email into the new environment with migration compliance forms, fix spreadsheet macros and book lists, and work out which files and daily procedures stay with the estate team.",
+      "key": "desk-responsibility-assignment",
+      "description": "Logistics and desk leads decide who schedules which pipelines, pooling points, meters, industrial accounts and counterparties, and announce the changes to the group. A round starts with a reorganisation, a new point or meter, cross-training or a change of role. A lead such as Pat Clynes sends out the new assignments, the person taking over confirms, and the previous owner hands over the accounts. Follow-ups flag items left unassigned, send error-report items to the right person, and ask someone to pick up work such as pipeline rates from another team.",
       "steps": [
-        "The seller circulates transition issues and deal or customer files for the buyer and asks for comments.",
-        "Planning meetings map out the implementation plan and which files, procedures and systems stay with the estate.",
-        "Transferring staff complete new-hire applications, drug tests and paperwork by the stated deadlines.",
-        "Staff attend orientation sessions and obtain new access cards.",
-        "Compliance sets the protocol for which data may move; staff copy compliant data and email and file migration compliance forms.",
-        "IT migrates systems and announces outages; users fix macros and refresh book lists in their spreadsheets.",
-        "The estate team takes over the daily settlement runs and any procedures the buyer's staff no longer run."
+        "A lead decides a change in coverage after a reorganisation, a new meter or point, cross-training or a change of role.",
+        "The lead announces who will handle which pipelines, meters, books or counterparties.",
+        "The incoming person confirms taking over, and the outgoing owner hands over the accounts and how to run them.",
+        "Each rep updates pathing and records in the scheduling system for the meters in their assigned zones.",
+        "Colleagues flag items that are unassigned or with the wrong person and ask who owns them.",
+        "The lead settles the open items and confirms the arrangement with everyone involved."
       ],
       "stalls": [
         {
-          "summary": "Systems were unavailable during the migration: a model could not be sent to a colleague and the trading cluster had not been reconfigured, so CAPS could not be reached.",
+          "summary": "Items fall through the announced assignments: one business unit is noticed to have no owner, and a later message asks who owns an item for the month and marks it unresolved.",
           "evidence_ids": [
-            "batch-095:s2",
-            "batch-095:e15"
+            "batch-001:s1",
+            "batch-001:e16",
+            "batch-001:s3",
+            "batch-001:e43"
           ]
         },
         {
-          "summary": "A transition request reached the wrong person and had to be passed on with a note that a response was required.",
+          "summary": "A handover leaves the new owner without the know-how: a person told to pick up another team's off-system pipeline rates says she has no idea how and asks for time to talk it through.",
           "evidence_ids": [
-            "batch-090:s0",
-            "batch-090:e1"
+            "batch-044:s3",
+            "batch-044:e15"
           ]
         },
         {
-          "summary": "New-hire paperwork went round again: applications missing information and pre-employment drug tests not yet taken drew follow-up requests against a same-day paperwork deadline.",
+          "summary": "The handover of the industrial accounts drags on: the outgoing scheduler says the new owner would not have known how to handle one account, and only later leaves the accounts to him.",
           "evidence_ids": [
-            "batch-094:e10",
-            "batch-095:e5",
-            "batch-095:e6",
-            "batch-088:e22"
+            "batch-001:s2",
+            "batch-001:e22",
+            "batch-001:e39"
           ]
         },
         {
-          "summary": "The split of work between the estate team and the buyer was unclear: staff were asked which files, directories and procedures the estate still needs or should take over.",
+          "summary": "A planned change waits on one person: the lead confirms the change is still on but has not yet spoken to one trader.",
           "evidence_ids": [
-            "batch-085:e12",
-            "batch-096:e8"
+            "batch-047:e26"
           ]
         },
         {
-          "summary": "Moved files broke spreadsheets: P&L macros had to be edited and hedge strip book lists refreshed after the folders changed.",
+          "summary": "Items on the error report sit with someone other than their owner until the owner asks for them to be referred to her.",
           "evidence_ids": [
-            "batch-090:e12",
-            "batch-090:e15"
-          ]
-        },
-        {
-          "summary": "The email export used for the migration does not save attachments, so staff had to save them separately or lose them.",
-          "evidence_ids": [
-            "batch-096:e10"
-          ]
-        }
-      ],
-      "contradictions": [],
-      "automation": {
-        "approach": "One transition checklist per person and per desk: new-hire application, drug test, orientation session, access card, data migration under the compliance protocol with its form, email export with attachments saved, spreadsheet macro and link updates after folders move, and a list of files and daily procedures that stay with the estate. A script could find spreadsheets still pointing at old folders, and a shared form could collect migration compliance forms in one batch.",
-        "artifact_type": "checklist",
-        "rationale": "The rounds are many small, deadline-driven tasks announced in separate messages, and the follow-ups show items being missed. One checklist gathers them in one place; deciding which data may move stays with compliance and the desk heads."
-      },
-      "work_estimate": {
-        "minutes_per_occurrence": {
-          "low": 10,
-          "mid": 30,
-          "high": 120
-        },
-        "automatable_pct": 25,
-        "basis": "inferred",
-        "rationale": "Hands-on work per round is the task the notice asks for: completing an application or paperwork, copying files into the new environment with a compliance form, editing macros or refreshing book lists, listing files and procedures for the estate, or preparing deal files and reviewing a transition memo. About 30 minutes is typical; a short form takes 10, a desk's data migration or deal-file preparation up to 120. Link fixes and form collection could be scripted; judging what may move cannot.",
-        "evidence_ids": [
-          "batch-095:e14",
-          "batch-090:e12",
-          "batch-090:e15",
-          "batch-096:e11",
-          "batch-085:e12",
-          "batch-045:e12",
-          "batch-049:e32",
-          "batch-094:e10"
-        ]
-      },
-      "estimate_check": {
-        "occurrences_cited": 8,
-        "senders_cited": 8
-      }
-    },
-    {
-      "key": "expense-report-approval",
-      "description": "Employees file expense reports and outstanding invoices in the expense system; the system emails the approver that a report is ready for approval and later reports status changes. Admins and corporate announcements ask staff to file outstanding items and approvers to approve or reject expenses waiting in their inboxes, and explain which bills fall before the bankruptcy cut-off. Login problems with the expense system are sent to support.",
-      "steps": [
-        "Staff gather receipts and outstanding invoices and enter an expense report in the expense system.",
-        "The system emails the approver that the report is ready for approval.",
-        "The approver reviews the report and approves or rejects it.",
-        "The system sends a notice when the approval status changes.",
-        "Admins and finance ask staff to file outstanding expenses and clear approval inboxes before cut-off dates.",
-        "Access problems with the expense system are referred to support."
-      ],
-      "stalls": [
-        {
-          "summary": "The approver could not get into the expense system and had to ask for the login and password to be looked into.",
-          "evidence_ids": [
-            "batch-076:s0",
-            "batch-076:e13"
-          ]
-        },
-        {
-          "summary": "Expenses sit unprocessed: notices ask approvers to approve or reject outstanding items in their inboxes and staff to file outstanding expenses as soon as possible.",
-          "evidence_ids": [
-            "batch-081:e9",
-            "batch-094:e12",
-            "batch-001:e31"
+            "batch-037:e4",
+            "batch-037:o0"
           ]
         }
       ],
       "contradictions": [
         {
-          "summary": "An announcement promises prompt reimbursement on submission, while a later notice says phone bills submitted before the cut-off date were treated as pre-petition.",
+          "summary": "The mail disagrees about who owns the industrial accounts. One message says they should be fully transferred to Robert, and Robert says he has taken over all of them. Yet the outgoing scheduler is still handling one account because Robert would not have known how.",
           "evidence_ids": [
-            "batch-083:e5",
-            "batch-084:e15"
+            "batch-001:o2",
+            "batch-001:e37",
+            "batch-001:s2"
           ]
         },
         {
-          "summary": "Approval notices come from the Concur system, while a finance request asks staff to file outstanding expenses through the XMS system.",
+          "summary": "A message states that each logistics rep paths all meters in their assigned zones, yet in the same round a business unit turns out to have no owner.",
           "evidence_ids": [
-            "batch-092:e0",
-            "batch-094:e12"
+            "batch-001:o1",
+            "batch-001:s1"
           ]
         }
       ],
       "automation": {
-        "approach": "Rules in the expense system that check each report against policy and attached receipts before it reaches the approver, a reminder report listing reports waiting in each approver's inbox, and self-service password resets. A short written procedure names the one system to file in, what the approver checks, and how the bankruptcy cut-off applies.",
-        "artifact_type": "sop",
-        "rationale": "The system already routes reports and sends notices; the friction in the mail is confusion over which system to use, the cut-off rules, outstanding items and access. A short procedure settles those, and policy checks shorten the approver's review while the approval decision stays with a person."
+        "approach": "A single maintained coverage roster listing every pipeline, pooling point, meter, book and counterparty with its primary and backup owner and the date each assignment takes effect. A change is entered once and the announcement is produced from the roster. A check lists entries with no owner, and error-report items held by someone other than the listed owner. A short handover checklist goes with each reassignment.",
+        "artifact_type": "template",
+        "rationale": "The stalls come from items left out of announcements and from owners changing without the knowledge moving with them. A roster that flags items with no owner catches the gaps before the month starts, and producing announcements from it removes the retyping. Deciding who covers what and training the successor remain work for people."
       },
       "work_estimate": {
         "minutes_per_occurrence": {
-          "low": 3,
-          "mid": 10,
-          "high": 30
+          "low": 10,
+          "mid": 25,
+          "high": 60
         },
-        "automatable_pct": 40,
+        "automatable_pct": 30,
         "basis": "inferred",
-        "rationale": "Hands-on work is the employee gathering receipts and invoices and entering the report, and the approver checking the line items before approving or rejecting. About 10 minutes a round; 3 for a routine approval, 30 for a report with many items or missing receipts. Policy and receipt checks and reminders could be automated; the decision stays manual.",
+        "rationale": "The hands-on work in a round is deciding the new split of pipelines and meters, writing up the assignment list, updating meter pathing and assignments in the scheduling system, and briefing the successor on the accounts. Most rounds are a short reassignment list, so the middle figure is 25 minutes. A single meter assignment takes 10, and a handover of several accounts with training up to 60. A roster could produce the lists and catch unassigned items. The decisions and the training stay manual.",
         "evidence_ids": [
-          "batch-092:e0",
-          "batch-095:e2",
-          "batch-088:e24",
-          "batch-081:e9",
-          "batch-094:e12",
-          "batch-001:e31"
+          "batch-001:e3",
+          "batch-013:e5",
+          "batch-023:e5",
+          "batch-001:e37",
+          "batch-044:e15",
+          "batch-001:o1",
+          "batch-005:e25",
+          "batch-037:e4"
         ]
       },
       "estimate_check": {
-        "occurrences_cited": 6,
-        "senders_cited": 4
+        "occurrences_cited": 8,
+        "senders_cited": 5
+      }
+    },
+    {
+      "key": "employee-hr-changes",
+      "description": "Managers and staff ask HR or payroll to change employee records. Requests include moving employees to a different operating company, stopping payroll deductions such as United Way contributions from a stated date, adding staff missing from the HR system, arranging an exit interview, and clarifying a departing employee's separation entitlements. In a round, someone sends a request to HR, HR looks up or changes the record, and HR confirms back to the requester, who may pass the answer on to the employee.",
+      "steps": [
+        "A manager or employee asks HR or payroll to change a record, a deduction or an entitlement.",
+        "HR looks up the employee in the HR system and checks what is recorded.",
+        "HR makes the change, adds the missing person, or works out the entitlement in question.",
+        "HR confirms the outcome to the requester.",
+        "The requester passes the answer on to the employee or arranges the next step, such as an exit interview."
+      ],
+      "stalls": [
+        {
+          "summary": "A manager answering a departing employee's request for clarification had to wait for HR and asked to be told as soon as there was an answer.",
+          "evidence_ids": [
+            "batch-082:s0",
+            "batch-082:e22"
+          ]
+        },
+        {
+          "summary": "One new employee was in the system and another was not, so the missing record had to be set up before the request could go ahead.",
+          "evidence_ids": [
+            "batch-031:e10"
+          ]
+        }
+      ],
+      "contradictions": [],
+      "automation": {
+        "approach": "A standard HR change request form that records the employee, the type of change (operating company, supervisor, deduction or separation), the date it takes effect and the approver. The form goes to the HR contact and shows the requester its status. Employees could stop deductions themselves, and a new-starter check could compare the HR system with the team roster to flag anyone missing.",
+        "artifact_type": "template",
+        "rationale": "The rounds are short requests, slowed by missing details and by waiting for a reply. A form with the fields HR needs, and a status the requester can see, cuts the back-and-forth. Separation entitlements and exits still need HR's judgement."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": {
+          "low": 5,
+          "mid": 10,
+          "high": 30
+        },
+        "automatable_pct": 35,
+        "basis": "inferred",
+        "rationale": "The hands-on work is HR looking up the employee and entering the record or deduction change, and for departures working out entitlements and holding the exit interview. Most rounds are a single record change, so the middle figure is 10 minutes. Stopping a deduction takes 5 minutes, and checking separation terms up to 30. A form and employee self-service could take over the routine changes. Entitlements and exits stay with HR.",
+        "evidence_ids": [
+          "batch-004:e13",
+          "batch-082:e37",
+          "batch-031:e10",
+          "batch-028:e15",
+          "batch-082:e22"
+        ]
+      },
+      "estimate_check": {
+        "occurrences_cited": 5,
+        "senders_cited": 5
       }
     }
   ]

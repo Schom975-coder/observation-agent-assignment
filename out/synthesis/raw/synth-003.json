@@ -3,120 +3,116 @@
   "processes": [
     {
       "key": "counterparty-trading-status",
-      "description": "A trading lead tells the desk which counterparties traders may deal with: a stop on all trades with a named counterparty until further notice, or word that a counterparty is cleared to buy and sell again. Notices from counterparties themselves, such as an energy services company announcing a change effective from a stated time that day, are forwarded to the traders. The notices are brief, sometimes in capitals, and say nothing about scope or when a stop will be lifted.",
+      "description": "The desk lead, Bill Williams III, tells the traders when a counterparty is halted or cleared again, for example no trades with Sempra until further notice, or WWP being good to buy and sell with again. Notices from others are passed on too: how a counterparty that wants to terminate must send its termination letter by fax, and a forwarded notice about AEP Energy Services taking effect at a stated time that day. Each round is a one-way notice that traders read and act on.",
       "steps": [
-        "Credit or a counterparty changes whether trading with that counterparty may continue.",
-        "The trading lead or a desk assistant receives the status change or the counterparty's notice.",
-        "The notice is sent or forwarded to the traders on the desk.",
-        "Traders stop or resume dealing with the named counterparty until a further notice changes it."
+        "The desk lead or credit learns that a counterparty is halted, suspended, terminating or cleared again.",
+        "A short notice naming the counterparty and its status is written or forwarded to the traders.",
+        "Termination notices say how the counterparty must deliver its letter; suspension notices say when they take effect.",
+        "Traders read the notice and stop or resume dealing with that counterparty."
       ],
       "stalls": [],
       "contradictions": [],
       "automation": {
-        "approach": "Keep one counterparty status list fed by credit, showing each counterparty's trading status, the effective time, the scope and the source of the change, and send desk notices from it in a fixed format so every stop also states when and how it will be reviewed. Deal entry could warn when a trade is booked against a blocked counterparty.",
+        "approach": "Keep one counterparty status list owned by credit that feeds deal entry, so halted counterparties are blocked when a deal is entered, and send every status change to the trading desks in a fixed notice naming the counterparty, the new status, when it takes effect and what traders must do.",
         "artifact_type": "email_template",
-        "rationale": "The notices in the mail are one-line messages such as a stop until further notice with no scope or end condition. A standard notice naming the counterparty, status, effective time, scope and contact would make each message unambiguous for traders the next morning, and the same fields could later feed a status list."
+        "rationale": "Rounds are short one-way notices written freehand in different styles, from a single capitalised line to forwarded legal notices. A fixed notice layout makes the status, effective time and required action unmistakable and can be used straight away, while blocking at deal entry needs system work first."
       },
       "work_estimate": {
         "minutes_per_occurrence": { "low": 2, "mid": 5, "high": 15 },
-        "automatable_pct": 40,
+        "automatable_pct": 30,
         "basis": "inferred",
-        "rationale": "Beyond the notice itself the hands-on work is small: confirming the status change with credit and making sure the desk's counterparty list or deal entry reflects the stop or reopening, about 5 minutes. A counterparty's own suspension notice may need checking against open deals, up to 15 minutes. Updating a list and flagging trades can be tooled; deciding and confirming status stays with people.",
-        "evidence_ids": ["batch-073:e21", "batch-069:e19", "batch-080:e17"]
+        "rationale": "Beyond the notice itself, a round means confirming the counterparty's status with credit and updating the desk's counterparty list or deal entry so traders stop or resume dealing. That is about 5 minutes; as little as 2 when a notice is only relayed, up to 15 when the change must be set up in more than one place.",
+        "evidence_ids": ["batch-073:e21", "batch-069:e19", "batch-081:e7", "batch-080:e17"]
       }
     },
     {
       "key": "credit-exposure-reporting",
-      "description": "For each trading day the risk group, in practice Darron Giron, produces a credit report of counterparty positions and exposure and forwards it to the credit group, mainly Carole Frank, with the report date in the subject. Reports usually go out the same or the next day. After an absence several dated reports were sent together with a note doubting the earlier ones had arrived, and system problems once delayed distribution. Later mail asks that Risk and Credit Aggregation pull the same post IDs so counterparty exposure can be reconciled.",
+      "description": "A round is one dated credit report: Darron Giron forwards the report for a trading date, titled with that date, to Carole Frank in the credit group, and a few other credit staff read it too. The report carries counterparty positions and exposure from the risk books. Most rounds are bare forwards; notes appear only when reports are late, as after a systems problem or an absence, when reports for several dates go together. In a later round credit asks that Risk and Credit Aggregation pull the same post IDs so counterparty exposure reconciles.",
       "steps": [
-        "After the day's positions are set, the credit report of counterparty positions and exposure is produced from the risk system.",
-        "The report is checked and labelled with its trading date.",
-        "The report is forwarded to the credit group with the date in the subject line.",
-        "When systems fail or the preparer is out, missed reports are sent later, sometimes several together.",
-        "For reconciliation, Risk and Credit Aggregation are asked to pull the same post IDs for counterparty exposure."
+        "Pull the counterparty position and exposure report for the trading date from the risk books.",
+        "Save it as the credit report titled with that trading date.",
+        "Forward it to the credit group contact, who reads it with other credit staff.",
+        "When systems fail or the preparer is away, send the missed reports together later with a note.",
+        "When credit reconciles exposure, make sure risk and credit aggregation pull the same post IDs."
       ],
       "stalls": [
         {
-          "summary": "System problems held up distribution of the credit report, and the preparer apologised for the delay.",
+          "summary": "A systems problem held up distribution of the report, and the preparer apologised for the late send.",
           "evidence_ids": ["batch-042:s0"]
         },
         {
-          "summary": "Reports depend on one preparer: after an absence several dated reports were forwarded together with a note doubting the earlier ones had reached credit, and earlier reports were also resent days after their date.",
-          "evidence_ids": ["batch-046:e30", "batch-046:e31", "batch-046:e32", "batch-046:e33", "batch-046:e34", "batch-042:e1", "batch-042:e3"]
+          "summary": "While the preparer was out, reports were not sent; on his return reports for several trading dates went out together, with a note that he did not know whether the recipient had received any of them.",
+          "evidence_ids": ["batch-046:e30", "batch-046:e31", "batch-046:e32", "batch-046:e33", "batch-046:e34"]
         },
         {
-          "summary": "Counterparty exposure from Risk and from Credit Aggregation has to be reconciled, and a request is made that both pull the same post IDs, which points to the two groups working from different pulls.",
+          "summary": "Reports also go out well after the trading date they cover, with earlier dates' reports forwarded together in one go.",
+          "evidence_ids": ["batch-042:e1", "batch-042:e3"]
+        },
+        {
+          "summary": "Counterparty exposure could not be reconciled until Risk and Credit Aggregation pulled the same post IDs.",
           "evidence_ids": ["batch-092:e6"]
         }
       ],
       "contradictions": [],
       "automation": {
-        "approach": "Schedule the credit report to run from the risk system once the night's official post ID is set, using the same post IDs Credit Aggregation uses, and send it automatically to a maintained credit distribution list. A daily check flags any business day with no report sent so a backup can run it.",
+        "approach": "Generate the credit report from the official post each night and send it to a credit distribution list, with a check that flags any trading date with no report sent and confirms that the post ID used matches the one credit aggregation pulls.",
         "artifact_type": "sop",
-        "rationale": "Every round in the mail is the same dated forward from one person, and the stalls come from system issues and absence. A written procedure for producing, checking and sending the report, including which post IDs to use, lets a backup cover it and keeps Risk and Credit Aggregation on the same figures."
+        "rationale": "The report itself is routine and comes from the risk system; what goes wrong is coverage and consistency. Reports pile up when the one sender is away or systems fail, and credit needs the same post IDs as risk to reconcile. A written procedure lets a backup run and send the report and fixes the post ID rule; scheduled distribution then removes the manual forward."
       },
       "work_estimate": {
-        "minutes_per_occurrence": { "low": 5, "mid": 15, "high": 30 },
+        "minutes_per_occurrence": { "low": 5, "mid": 10, "high": 30 },
         "automatable_pct": 60,
         "basis": "inferred",
-        "rationale": "The quotes show the dated forwards and a reconciliation need, not the preparation, so the minutes are inferred: about 15 to run the report for the day, check it and attach it; 5 when it runs cleanly; 30 when system issues or a post ID reconciliation intervene. Running and distributing is mechanical and can be scheduled; checking and reconciling stays manual.",
-        "evidence_ids": ["batch-042:e7", "batch-046:e30", "batch-050:e19", "batch-052:e6", "batch-092:e6", "batch-042:s0"]
+        "rationale": "A round means running or pulling the counterparty position and exposure report for the trading date, checking it ran on the right post, and saving it for sending. The quotes show a routine generated report with no rework beyond late or batched sends, so about 10 minutes; 5 when it runs cleanly, up to 30 when systems problems or post ID reconciliation get in the way.",
+        "evidence_ids": ["batch-044:e2", "batch-042:e3", "batch-046:e30", "batch-046:e34", "batch-052:e6", "batch-042:s0", "batch-092:e6"]
       }
     },
     {
       "key": "curve-postid-mapping",
-      "description": "Risk staff, chiefly Darron Giron and Kam Keiser, keep forward curve files and the mapping of curves, locations and post IDs to books. Rounds start when new curves are set up and must be added to downstream tools such as Tagg and Publ Names, when a desk is asked how a location should be mapped, or when the night's official post ID is circulated. A macro queries the official books for a portfolio. For Netco, staff list every curve to be loaded, check their regions for locations mapped to curves no longer set, and modify curve files to load in a new environment and directory.",
+      "description": "Risk analysts keep the forward curve files and the mapping of curves, locations and post IDs to books in the risk system. A round starts when a new curve is set up and must be added to Tagg or the publication names, when a book owner is asked how a location should be mapped, or when the nightly official post ID is run and passed on. Dated curve files and post ID lists are forwarded to other groups. The last rounds rebuild curve lists and mappings for Netco, moving modified curve files to a new directory ready to load for portcalc.",
       "steps": [
-        "A new or changed curve, location or book prompts a request from a desk, risk or IT.",
-        "Risk sets up the curve and asks for it to be added to downstream tools such as Tagg and Publ Names.",
-        "The desk or book owner confirms how the curve or location should be mapped to books.",
-        "The mapping is updated and the curve files are prepared and saved in the shared directory for loading.",
-        "The official post ID macro is run against the official books and the night's post IDs are circulated.",
-        "Lists of new or changed curves and post IDs are forwarded to the groups that load or use them."
+        "A new or changed curve or location is set up and flagged for mapping.",
+        "The analyst asks the book owner how it should be mapped and waits for the answer.",
+        "The curve is added to the publication names and Tagg, and its mapping is entered in the risk system.",
+        "The official post ID macro queries the official books and the night's post ID is sent on.",
+        "Dated curve files and lists of new or changed post IDs are forwarded to the groups that use them.",
+        "For Netco, curve lists are rebuilt, retired curves' locations are listed and remapped, and modified files are loaded."
       ],
       "stalls": [
         {
-          "summary": "Mapping changes wait on decisions from the desk or book owner: risk asks how an item should be mapped or whether anyone objects, and mappings have to be changed again after other changes.",
+          "summary": "Mapping changes wait on the book owner's decision about how a curve or location should be mapped.",
           "evidence_ids": ["batch-029:e6", "batch-006:e31", "batch-015:e14"]
         },
         {
-          "summary": "The nightly official post ID macro is not reliably run: it is described as run most nights and a reminder asks that it be done every night.",
+          "summary": "The nightly official post ID run is not done reliably: one colleague is named as running the macro most nights, and the thread asks that it be done every night.",
           "evidence_ids": ["batch-030:e18", "batch-030:o0"]
         },
         {
-          "summary": "Knowledge of the files rests with individuals: a file was obtained from a colleague just before she changed groups, and another region had to be checked by someone else while its owner was out.",
+          "summary": "The work depends on individuals: files were handed over just before a colleague changed groups, and checks for another region were done only because its owner was out.",
           "evidence_ids": ["batch-033:e15", "batch-036:e2"]
         },
         {
-          "summary": "New curves are set up in one place and then have to be added separately to other tools, and late additions depend on others agreeing to slip them in.",
-          "evidence_ids": ["batch-035:e3", "batch-028:e11", "batch-035:e22"]
-        },
-        {
-          "summary": "The move to Netco forced rework: curve files had to be modified for the new environment, regions checked for locations mapped to retired curves and remapped, and files ready by a fixed day.",
-          "evidence_ids": ["batch-093:e3", "batch-085:e4", "batch-093:e13", "batch-085:e8"]
+          "summary": "The Netco move forces rework: curve files must be modified before use in the new environment, locations mapped to curves no longer set must be listed and remapped, a full curve list is needed, and files move to a new directory ahead of a load deadline.",
+          "evidence_ids": ["batch-093:e3", "batch-085:e4", "batch-085:e8", "batch-095:e10", "batch-093:e13"]
         }
       ],
       "contradictions": [
         {
-          "summary": "Jason is named as the one running the official post ID macro most nights, yet Darron Giron distributes the macro file and circulates the official and physical post IDs himself in other rounds, leaving unclear who owns the nightly post ID.",
-          "evidence_ids": ["batch-030:o0", "batch-028:e1", "batch-028:e18", "batch-047:e6"]
-        },
-        {
-          "summary": "The Netco curve lists are said to be saved in one shared path, and later a new directory for the curve files is announced without saying whether the earlier location still applies.",
+          "summary": "Instructions on where curve material lives change: one note gives the shared-drive location where the curve lists are saved, and a later note announces a new directory for the curve files.",
           "evidence_ids": ["batch-085:e3", "batch-095:e10"]
         }
       ],
       "automation": {
-        "approach": "Keep one master mapping table of curve, location, book and post ID, with each curve's status and the downstream tools it must appear in. A change request in a fixed layout records old and new mappings and who approved them; a scheduled job runs the official post ID macro nightly and flags locations mapped to curves no longer set.",
-        "artifact_type": "template",
-        "rationale": "Most rounds are requests to add a curve, change a mapping or list post IDs, and stalls come from unanswered mapping questions, missed nightly runs and files known only to individuals. A standard mapping change layout makes each request complete and traceable, and the same table supports the stale mapping checks the Netco move needed."
+        "approach": "Keep one master table of curves, locations, post IDs and book mappings, with a check that flags locations mapped to curves no longer set and new curves missing from Tagg or the publication names. Schedule the official post ID macro every night and send the post ID and the list of changed post IDs to the groups that use them.",
+        "artifact_type": "sop",
+        "rationale": "The work rests on a few people's knowledge, handed over as files when someone changes groups and covered as needed when someone is out. A written procedure for adding and mapping a curve and running the nightly post lets anyone cover. The master table and scheduled macro then take over the repetitive lookups, while mapping decisions stay with the book owners."
       },
       "work_estimate": {
-        "minutes_per_occurrence": { "low": 10, "mid": 25, "high": 60 },
+        "minutes_per_occurrence": { "low": 15, "mid": 30, "high": 90 },
         "automatable_pct": 45,
         "basis": "inferred",
-        "rationale": "Rounds range from circulating a night's post ID to setting up curves in several tools or remapping a region. Mid 25 minutes covers setting up or checking a curve and its book mapping, adding it to downstream tools and running the post ID macro; 10 for a routine curve file or post ID list; 60 for checking a region for stale mappings or modifying curve files for Netco. Macro runs and stale mapping checks can be tooled; mapping decisions stay manual.",
-        "evidence_ids": ["batch-028:e1", "batch-028:e11", "batch-035:e3", "batch-029:e6", "batch-085:e4", "batch-093:e3", "batch-093:e13"]
+        "rationale": "A round means setting up or changing curves, entering mappings in the risk system and Tagg, running the post ID macro across the official books, or building lists of curves and remapped locations for Netco. A single curve change takes about 15 minutes; a typical round with checks about 30; list-building and file changes for the Netco move up to 90.",
+        "evidence_ids": ["batch-028:e11", "batch-035:e3", "batch-028:e1", "batch-015:e14", "batch-085:e4", "batch-085:e8", "batch-093:e3", "batch-086:e2"]
       }
     }
   ]

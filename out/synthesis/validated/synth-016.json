@@ -1,227 +1,205 @@
 {
   "group_id": "synth-016",
-  "content_sha": "a83098fd415bc8ef7853abd15019468684f2cd0229c39d2439d02250d994314c",
+  "content_sha": "972041cb16e319b58d99970d73779dbe67401b17175e2d271727f4c48ab426c2",
   "processes": [
     {
-      "key": "reference-data-update",
-      "description": "Staff and counterparties tell the desk about changed reference data: new phone, pager and cell numbers, extensions and contact sheets, and counterparty identifier changes such as scheduling coordinator IDs, contract numbers, DnB numbers, legal names, meter numbers and pooling points. Desk leads also ask staff for current contact details or for the codes and book owners used on their desk. Notices are forwarded to the people who use them, and counterparty records, contract entries, contact sheets and email lists are updated.",
+      "key": "price-index-evaluation",
+      "description": "Outside groups approach the West desk with proposed hourly-ahead or real-time power price indexes. The desk lead forwards each proposal, with the index definition and its template, to colleagues and asks for their feedback, then says which index he would take part in, provided it works. A round is the review of a proposal rather than a routine transaction.",
       "steps": [
-        "A counterparty, colleague or HR announces a change in contact details or identifiers, or a desk lead asks staff for their current details.",
-        "The notice is forwarded to the desk that uses the data, often with the new ID or contract number highlighted.",
-        "Staff reply with the missing details, such as cell numbers, org region codes or book owners.",
-        "Counterparty records, contract entries and contact sheets are updated with the new names, numbers and IDs.",
-        "Email distribution lists are corrected when names or addresses change.",
-        "A revised contact list or a final monthly list of counterparty name changes is circulated, and counterparties can object to identifier changes."
+        "An outside group approaches the desk with a proposed hourly-ahead or real-time index for the West, with its definition and template.",
+        "The desk lead forwards the proposal to colleagues and asks them to review it and the template.",
+        "Colleagues review the definition and template and send their feedback.",
+        "The desk lead decides which index to participate in, provided it works."
       ],
-      "stalls": [
-        {
-          "summary": "Distribution lists drift out of date: one trader reports he does not receive mail unless his name appears a particular way, asks to be removed from a list, and later asks again for lists to be changed.",
-          "evidence_ids": [
-            "batch-055:e12",
-            "batch-055:e17",
-            "batch-061:e20",
-            "batch-069:e9"
-          ]
-        },
-        {
-          "summary": "A counterparty sends its reference changes in an empty spreadsheet and has to resend the file.",
-          "evidence_ids": [
-            "batch-040:e9"
-          ]
-        },
-        {
-          "summary": "Contact details go missing or stale, so the desk has to ask again for current contact information and a working cell number, and staff ask for revised contact sheets to be passed on.",
-          "evidence_ids": [
-            "batch-088:e15",
-            "batch-088:e16",
-            "batch-011:e31"
-          ]
-        }
-      ],
-      "contradictions": [
-        {
-          "summary": "Instructions on how one trader's name should appear in email lists reverse: earlier mail says the name with the suffix III must appear or he does not receive the mail, later mail asks lists to read the name without III.",
-          "evidence_ids": [
-            "batch-055:e12",
-            "batch-069:e9"
-          ]
-        }
-      ],
-      "automation": {
-        "approach": "Keep one shared reference register for staff contacts and counterparty identifiers, fed by a standard change form that records the counterparty, the old and new value, the effective date and the systems and lists to update. A check could compare incoming notices against the register and flag records and distribution lists not yet updated.",
-        "artifact_type": "template",
-        "rationale": "Most rounds are a single notice that someone must re-key into several places. A fixed change form makes each notice complete on arrival, avoiding empty attachments and missing numbers, and gives one list to update from, while people still confirm identifier changes with the counterparty."
-      },
-      "work_estimate": {
-        "minutes_per_occurrence": {
-          "low": 3,
-          "mid": 10,
-          "high": 30
-        },
-        "automatable_pct": 40,
-        "basis": "inferred",
-        "rationale": "Many rounds are a contact change that takes a few minutes to enter into a contact sheet or list. Counterparty identifier, contract number or legal name changes take longer because the record has to be found, corrected in the counterparty and contract records and checked. About 10 minutes is typical, from 3 for a phone number to 30 for a counterparty change touching several records. Lookup, re-keying and list updates are the part a register and change form can take over.",
-        "evidence_ids": [
-          "batch-007:e5",
-          "batch-005:e31",
-          "batch-068:e16",
-          "batch-076:e11",
-          "batch-008:e30",
-          "batch-040:e6",
-          "batch-011:e31"
-        ]
-      },
-      "estimate_check": {
-        "occurrences_cited": 7,
-        "senders_cited": 5
-      }
-    },
-    {
-      "key": "staff-recruiting",
-      "description": "Managers open rounds to fill an analyst, associate or commercial opening: they ask the analyst program or HR for candidates, describe the role and reporting line, or forward internal candidates and referrals. Resumes are circulated, interviewers are named and schedules set, candidates are interviewed and feedback goes back to HR, and the hiring manager asks to bring a chosen person into the group. Some rounds settle whether a group needs anyone at all, justify replacement hires, or tell candidates that plans changed.",
-      "steps": [
-        "A manager identifies an opening and asks HR or the analyst program for candidates, or describes the role in a posting.",
-        "HR, colleagues or candidates send resumes, referrals and internal candidates for review.",
-        "The manager reviews candidates and, for transfers, settles with the current group where the person should go.",
-        "Interviewers are named and an interview schedule is set.",
-        "Candidates are interviewed and feedback goes back to HR.",
-        "The manager asks HR to bring the chosen candidate in, with justification for replacement hires.",
-        "Candidates are told of the outcome or of any change in plans."
-      ],
-      "stalls": [
-        {
-          "summary": "Two managers compete for the same analyst and the current manager refuses to release him unless forced, so the placement waits on a meeting to decide where he fits better.",
-          "evidence_ids": [
-            "batch-038:s3",
-            "batch-038:e31",
-            "batch-038:e32",
-            "batch-038:e30"
-          ]
-        },
-        {
-          "summary": "Interviews are cancelled or moved when an interviewer is out of the office, and feedback waits until every candidate has been seen.",
-          "evidence_ids": [
-            "batch-042:e19",
-            "batch-042:e20",
-            "batch-072:e4"
-          ]
-        },
-        {
-          "summary": "Plans change after candidates are engaged: a posting is reworded as possibly temporary and candidates have to be told of the change in plans.",
-          "evidence_ids": [
-            "batch-059:e5",
-            "batch-075:e2"
-          ]
-        },
-        {
-          "summary": "Staffing requests are routed to different HR contacts by job type, and managers wait for HR to call back.",
-          "evidence_ids": [
-            "batch-028:e17",
-            "batch-039:e19"
-          ]
-        }
-      ],
-      "contradictions": [
-        {
-          "summary": "The current manager and the requesting manager each claim the same analyst for their own group, one acknowledging why the other wants him while refusing to give him up.",
-          "evidence_ids": [
-            "batch-038:e31",
-            "batch-038:s3",
-            "batch-038:e32"
-          ]
-        }
-      ],
-      "automation": {
-        "approach": "A standard requisition form capturing role, level, reporting line, whether the post may be temporary and the justification for replacements, plus a shared candidate tracker listing resumes, interviewers, interview slots and feedback status for each opening. Scheduling and feedback reminders could be generated from the tracker.",
-        "artifact_type": "template",
-        "rationale": "The repeated work is assembling role details, routing resumes and collecting interview feedback. A requisition form and tracker keep these in one place and cut re-asking, while interviewing, judging fit and negotiating between groups stay with managers."
-      },
-      "work_estimate": {
-        "minutes_per_occurrence": {
-          "low": 15,
-          "mid": 60,
-          "high": 180
-        },
-        "automatable_pct": 20,
-        "basis": "inferred",
-        "rationale": "The hands-on work per round is reading resumes, interviewing, writing feedback and drafting the role description or requisition. A round often covers several resumes and at least one interview, so about 60 minutes is typical; a referral passed to HR takes 15, a round with several candidates and interviewers up to 180. Scheduling, requisition drafting and resume routing can be supported by tools; interviewing and selection remain people's work.",
-        "evidence_ids": [
-          "batch-038:e34",
-          "batch-039:e7",
-          "batch-060:e18",
-          "batch-059:e5",
-          "batch-072:e4",
-          "batch-073:e11",
-          "batch-069:e5"
-        ]
-      },
-      "estimate_check": {
-        "occurrences_cited": 7,
-        "senders_cited": 3
-      }
-    },
-    {
-      "key": "staff-training-coordination",
-      "description": "Desk leads arrange training for their staff: they choose topics, set dates for internal classes, presentations and system training, build class rosters of balanced groups, sign people up for courses such as an energy math class or a pilot program, and approve requests to attend. Requests come from managers asking for lists of who needs training or from staff asking to attend a suggested course; organisers confirm times, arrange for night-shift staff and approve registrations in the training system.",
-      "steps": [
-        "A manager or trainer proposes training: a class, a presentation, cross training or a system session.",
-        "Topics and content are chosen, such as specific deal types, models or contract clauses.",
-        "The organiser lists who needs the training and builds rosters or class groups.",
-        "A date and time are set, with arrangements for staff on other shifts.",
-        "Staff are signed up or ask to attend, and their manager approves the registration.",
-        "Attendees are told when classes start, and progress through course units is followed."
-      ],
-      "stalls": [
-        {
-          "summary": "Approving a training registration fails with a system error, so the approval has to be retried or handled another way.",
-          "evidence_ids": [
-            "batch-047:s1",
-            "batch-047:e18"
-          ]
-        },
-        {
-          "summary": "Sessions are planned at short notice and organisers drop out, so a class is discussed again on the day it starts or has to be moved.",
-          "evidence_ids": [
-            "batch-020:e9",
-            "batch-031:e21",
-            "batch-031:e22"
-          ]
-        },
-        {
-          "summary": "Trainers wait on managers for the list of individuals who need the training before they can schedule it.",
-          "evidence_ids": [
-            "batch-017:e2"
-          ]
-        }
-      ],
+      "stalls": [],
       "contradictions": [],
       "automation": {
-        "approach": "A shared training calendar and enrollment sheet listing course, date, attendees, shift, manager approval and completion, with sign-ups and approvals recorded in one place. Balanced class rosters and reminders to attendees could be generated from it.",
-        "artifact_type": "template",
-        "rationale": "Rounds repeat the same steps of listing attendees, setting dates and getting approvals. One enrollment sheet removes re-asking for lists and gives a fallback when the approval system errors, while the choice of topics and attendees stays with managers."
+        "approach": "A short evaluation checklist for each proposed index could record its definition, the delivery points and periods it covers, what the desk would submit and when, the template's format, who reviewed it and the participation decision, so competing proposals are compared on the same terms.",
+        "artifact_type": "checklist",
+        "rationale": "The work is occasional and rests on judgement about whether an index will work; the mail shows several groups proposing similar indexes and the desk lead asking colleagues for feedback. A checklist keeps those reviews consistent and records why the desk joins a particular index and not another."
+      },
+      "work_estimate": null,
+      "estimate_check": null
+    },
+    {
+      "key": "realtime-desk-briefing",
+      "description": "The real-time desk lead briefs the desk by email on what it needs on shift: links to transmission maps and the proposed OASIS, new and updated pages for the desk's information packet, BPA transmission prices from the start of October, handling rules such as logging out of the IPC website and not filling EnMax sales with MPC energy, how to report outages, market changes heading into winter, and forwarded counterparty feedback on the desk's performance.",
+      "steps": [
+        "The desk lead collects new information: transmission links and prices, rule changes, outage procedures or counterparty feedback.",
+        "He sends a briefing to the real-time desk, sometimes asking staff to print material such as a colour transmission map.",
+        "New and updated pages are added to the desk's information packet.",
+        "Staff apply the rules on shift, such as logging out of the IPC website and filling sales only with the right energy.",
+        "Outages are written up in an outage report sent to the Generation Outage Desk, with the Services Desk liaising with the outage desks."
+      ],
+      "stalls": [
+        {
+          "summary": "A new screen shown to the desk is only partly working: the ticker works and little else does.",
+          "evidence_ids": [
+            "batch-056:s2",
+            "batch-056:e22"
+          ]
+        },
+        {
+          "summary": "The IPC website locks the desk out when a session times out, so staff have to remember to log out after each use.",
+          "evidence_ids": [
+            "batch-056:e15"
+          ]
+        }
+      ],
+      "contradictions": [
+        {
+          "summary": "The same reply has the real-time desk filling out an outage report and sending it to the Generation Outage Desk, while naming the Services Desk as responsible for communicating with both the Generation and Real Time Outage Desks, leaving unclear who contacts the Generation Outage Desk.",
+          "evidence_ids": [
+            "batch-057:e13",
+            "batch-057:o0"
+          ]
+        }
+      ],
+      "automation": {
+        "approach": "Keep the desk information packet as a single maintained document organised by topic (transmission paths and prices, outage reporting, counterparty handling rules, system access and log-out rules, seasonal market notes), with each entry dated from when it takes effect, so a briefing becomes an update to the packet plus a short notice pointing to it.",
+        "artifact_type": "sop",
+        "rationale": "The briefings are standing rules the desk must follow on every shift, but they arrive as separate emails that staff must find and sometimes print. A single written procedure keeps the current rule in a known place, makes superseded prices and rules visible, and gives new staff a single document to read."
+      },
+      "work_estimate": null,
+      "estimate_check": null
+    },
+    {
+      "key": "realtime-schedule-checkout",
+      "description": "The real-time desk keeps each day's power schedules, imports and exports matched to the booked deals and to what the ISO and counterparties show. A round starts when the desk lead or a scheduler finds the desk long or short in a zone, a wrong schedule or import ID, a derated or cut path, or a counterparty limit. The email says what to buy or sell and for which book, which Enpower deals to enter, reprice or zero out, which tags and inc-sheet entries to complete, and whom to call, such as the CAISO, El Paso Electric or the preschedulers.",
+      "steps": [
+        "The desk lead or a scheduler spots a long or short position, a wrong import or export, or a transmission derate or cut.",
+        "The position is checked against the schedule sheets, the Enpower deal entries and the ISO's records such as CAPS.",
+        "Traders buy or sell to fill the position, or arrange lending with El Paso Electric, for the book and price the email names.",
+        "Deals are entered, repriced or zeroed out in Enpower and deal scheduling, including cut schedules and the value of cut deals.",
+        "Tags and tag numbers go into the inc sheet and the EPE schedule sheet, tagged for both light and heavy load.",
+        "The desk calls the CAISO or the counterparty to confirm or change the schedule and summarises each deal in Pacific time.",
+        "Revenue from corrected deals is routed to the group that captures it, such as volume management.",
+        "The previous day's printed dispatch and prescheduling sheet are filed in the agreed folder for follow-up."
+      ],
+      "stalls": [
+        {
+          "summary": "The CAISO's systems fail during checkout: its computers go down and it again has difficulty reading the desk's bids, so schedules wait or have to be confirmed another way.",
+          "evidence_ids": [
+            "batch-071:s0",
+            "batch-057:s1"
+          ]
+        },
+        {
+          "summary": "Schedule sheets carry errors that send rounds back for correction: a duplicate schedule in a sheet prepared ahead of the weekend, a wrong SPS volume, a wrong import ID, a period missing from the inc sheet, and an EPE schedule sheet that for yet another day leaves out schedules.",
+          "evidence_ids": [
+            "batch-059:s3",
+            "batch-090:s1",
+            "batch-084:e12",
+            "batch-071:e6",
+            "batch-093:s1"
+          ]
+        },
+        {
+          "summary": "Deal entries are corrected after the fact: an El Paso Electric deal price is changed, a deal is zeroed out for part of the day, and a new deal summary shows revenue its writer says he should not receive.",
+          "evidence_ids": [
+            "batch-059:e27",
+            "batch-059:s5",
+            "batch-061:e25"
+          ]
+        },
+        {
+          "summary": "Records that are lost or out of step have to be rebuilt: staff on shift must coordinate which deals were done and reconstruct a sheet, and a mismatch has to be squared away with the preschedulers.",
+          "evidence_ids": [
+            "batch-084:s1",
+            "batch-059:s2"
+          ]
+        },
+        {
+          "summary": "Cut deals stay in the systems: the instruction to zero out cut deals in Enpower and value them is repeated later in capitals for deal scheduling.",
+          "evidence_ids": [
+            "batch-081:e3",
+            "batch-081:e11"
+          ]
+        },
+        {
+          "summary": "The same procedures are restated in reminders, such as putting the tag number in the inc sheet, tagging both light and heavy load including the Southwest, and stating the Pacific time zone in deal summaries, which suggests these steps are often missed.",
+          "evidence_ids": [
+            "batch-066:e11",
+            "batch-076:e3",
+            "batch-072:e11"
+          ]
+        },
+        {
+          "summary": "Short positions can be hard to fill: the desk reports asking every counterparty in the Northwest to sell it energy.",
+          "evidence_ids": [
+            "batch-055:e6"
+          ]
+        },
+        {
+          "summary": "Follow-up work is put off to the next day when the desk lead has no time for it.",
+          "evidence_ids": [
+            "batch-059:s0"
+          ]
+        }
+      ],
+      "contradictions": [
+        {
+          "summary": "For the same schedule the desk expected a non-firm export, while CAPS showed a final firm import of the same size.",
+          "evidence_ids": [
+            "batch-053:e30",
+            "batch-053:s2"
+          ]
+        },
+        {
+          "summary": "Volumes in the schedule records disagree with what was agreed: the SPS schedule shows a larger figure than it should for a delivery period, and an import ID carries the wrong on-peak and off-peak volumes.",
+          "evidence_ids": [
+            "batch-090:s1",
+            "batch-084:e12"
+          ]
+        },
+        {
+          "summary": "After a deal price was changed, the new deal summary credits its writer with revenue he says he should not receive, while elsewhere revenue from a CAISO sale is said to go to the volume management group with no access for the real-time desk.",
+          "evidence_ids": [
+            "batch-059:e27",
+            "batch-059:s5",
+            "batch-061:o0",
+            "batch-061:e13"
+          ]
+        },
+        {
+          "summary": "Different people are named for El Paso Electric schedule details: Kate as the source of prices and deal numbers for EPE lending, later Diane Cutsforth as working on the EPE schedule, while the previous day's EPE sheets still go to Kate Symes' old desk.",
+          "evidence_ids": [
+            "batch-059:o0",
+            "batch-090:o0",
+            "batch-091:e4"
+          ]
+        }
+      ],
+      "automation": {
+        "approach": "A checkout report could compare Enpower deal entries, the inc and EPE schedule sheets, the tags and the ISO's final schedules for each delivery period, flagging long or short positions, wrong import IDs or volumes, missing tag numbers and cut schedules not yet zeroed out. Traders would still decide what to buy or sell, call the ISO and counterparties, and value cut deals. A shift checklist would carry the recurring rules the desk lead keeps restating.",
+        "artifact_type": "checklist",
+        "rationale": "The mail repeats the same reminders (tag numbers in the inc sheet, light and heavy load tags, Pacific time in deal summaries, zeroing out cut deals, filing the previous day's sheets) and shows errors that a routine check would catch before the ISO or a scheduler does. A shift checklist can be used straight away; the reconciliation report removes the manual comparison over time."
       },
       "work_estimate": {
         "minutes_per_occurrence": {
-          "low": 5,
+          "low": 10,
           "mid": 20,
           "high": 60
         },
-        "automatable_pct": 30,
-        "basis": "inferred",
-        "rationale": "Hands-on work per round is choosing topics, listing attendees, building balanced class rosters, booking the session and approving registrations. A single sign-up or approval takes about 5 minutes; building rosters or a topic outline for a class series takes up to 60. About 20 minutes is typical. Listing, enrolment and reminders can be supported by a shared sheet; picking topics and people stays with managers.",
+        "automatable_pct": 40,
+        "basis": "observed",
+        "rationale": "Most rounds centre on a single position or schedule: checking it against the schedule sheets, Enpower and the ISO's records, buying or selling to fill it, entering, repricing or zeroing the deal, updating the inc or EPE sheet and tags, and calling the ISO or counterparty. That is about 20 minutes; a plain notice of a position is nearer 10, while valuing cut deals or reconstructing a lost sheet runs toward 60. A reconciliation check could take over comparing deal entries, sheets, tags and ISO finals; buying, calling and judging cuts stay with people.",
         "evidence_ids": [
-          "batch-031:e13",
-          "batch-032:e13",
-          "batch-065:e20",
-          "batch-067:e2",
-          "batch-017:e2",
-          "batch-098:e15",
-          "batch-047:e18"
+          "batch-084:e12",
+          "batch-090:s1",
+          "batch-081:e3",
+          "batch-060:e14",
+          "batch-061:e25",
+          "batch-084:s1",
+          "batch-053:s2",
+          "batch-069:e11",
+          "batch-066:e11",
+          "batch-093:s1"
         ]
       },
       "estimate_check": {
-        "occurrences_cited": 7,
-        "senders_cited": 4
+        "occurrences_cited": 10,
+        "senders_cited": 2
       }
     }
   ]

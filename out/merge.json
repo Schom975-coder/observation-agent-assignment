@@ -2,7 +2,7 @@
   "version": 1,
   "extractions_sha": "16f22a0a997103988949c68b792a23fc0083ad68089aaa2fc2e1d778445240ca",
   "taxonomy_sha": "9f2eca0e89459b62abd599b4950ef3bc14994b4a027f839e12eccf2b087ee687",
-  "agent_sha": "cf7d0aa4f2c8192ac9a757153815dde9b3121f484f13491aaaa6e9fdca46446f",
+  "agent_sha": "f8ebe16ffb3bb9ecd3bddacc411829d7cdf017c2190d1d17ce5addd86c157652",
   "promote_min": {
     "messages": 3,
     "occurrences": 3,
@@ -23,7 +23,7 @@
       "messages": 2,
       "batches": 1,
       "status": "alias",
-      "to": "iso-adjustment-bidding",
+      "to": "iso-bid-strategy",
       "reason": null
     },
     {
@@ -39,7 +39,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "divestiture-transition",
+      "to": "ownership-transition-handover",
       "reason": null
     },
     {
@@ -47,23 +47,23 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "divestiture-transition",
+      "to": "ownership-transition-handover",
       "reason": null
     },
     {
       "slug": "new:allocation-actualization-payment-setup",
       "messages": 4,
       "batches": 1,
-      "status": "mapped",
-      "to": "volume-imbalance-reconciliation",
+      "status": "alias",
+      "to": "meter-allocation-correction",
       "reason": null
     },
     {
       "slug": "new:allocation-method-change",
       "messages": 1,
       "batches": 1,
-      "status": "mapped",
-      "to": "volume-imbalance-reconciliation",
+      "status": "alias",
+      "to": "meter-allocation-correction",
       "reason": null
     },
     {
@@ -71,15 +71,15 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "cost-center-allocation",
+      "to": "meter-allocation-correction",
       "reason": null
     },
     {
       "slug": "new:allocation-ranking-check",
       "messages": 2,
       "batches": 1,
-      "status": "mapped",
-      "to": "meter-flow-deal-coverage",
+      "status": "alias",
+      "to": "meter-allocation-correction",
       "reason": null
     },
     {
@@ -166,8 +166,8 @@
       "slug": "new:annual-budget-preparation",
       "messages": 7,
       "batches": 3,
-      "status": "alias",
-      "to": "budget-preparation",
+      "status": "promoted",
+      "to": "annual-budget-preparation",
       "reason": null
     },
     {
@@ -183,7 +183,7 @@
       "messages": 8,
       "batches": 1,
       "status": "alias",
-      "to": "audit-support-requests",
+      "to": "audit-request-support",
       "reason": null
     },
     {
@@ -191,7 +191,7 @@
       "messages": 3,
       "batches": 1,
       "status": "alias",
-      "to": "audit-support-requests",
+      "to": "audit-request-support",
       "reason": null
     },
     {
@@ -199,7 +199,7 @@
       "messages": 4,
       "batches": 1,
       "status": "alias",
-      "to": "audit-support-requests",
+      "to": "audit-request-support",
       "reason": null
     },
     {
@@ -207,7 +207,7 @@
       "messages": 3,
       "batches": 1,
       "status": "alias",
-      "to": "audit-support-requests",
+      "to": "audit-request-support",
       "reason": null
     },
     {
@@ -215,7 +215,7 @@
       "messages": 3,
       "batches": 1,
       "status": "alias",
-      "to": "audit-support-requests",
+      "to": "audit-request-support",
       "reason": null
     },
     {
@@ -238,24 +238,24 @@
       "slug": "new:bammel-pma-schedule-revision",
       "messages": 1,
       "batches": 1,
-      "status": "alias",
-      "to": "accounting-variance-resolution",
+      "status": "mapped",
+      "to": "counterparty-settlement-review",
       "reason": null
     },
     {
       "slug": "new:book-admin-list",
       "messages": 2,
       "batches": 1,
-      "status": "mapped",
-      "to": "pnl-position-reporting",
+      "status": "alias",
+      "to": "book-officialization",
       "reason": null
     },
     {
       "slug": "new:book-officialization",
       "messages": 3,
       "batches": 1,
-      "status": "mapped",
-      "to": "pnl-position-reporting",
+      "status": "promoted",
+      "to": "book-officialization",
       "reason": null
     },
     {
@@ -271,7 +271,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "realtime-desk-procedures",
+      "to": "realtime-desk-briefing",
       "reason": null
     },
     {
@@ -279,7 +279,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "budget-preparation",
+      "to": "annual-budget-preparation",
       "reason": null
     },
     {
@@ -295,7 +295,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "contingency-planning",
+      "to": "continuity-seat-planning",
       "reason": null
     },
     {
@@ -303,7 +303,7 @@
       "messages": 2,
       "batches": 1,
       "status": "alias",
-      "to": "deal-pathing-setup",
+      "to": "deal-entry-pathing",
       "reason": null
     },
     {
@@ -351,7 +351,7 @@
       "messages": 5,
       "batches": 1,
       "status": "alias",
-      "to": "desk-equipment-requests",
+      "to": "desk-equipment-setup",
       "reason": null
     },
     {
@@ -367,7 +367,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "contingency-planning",
+      "to": "continuity-seat-planning",
       "reason": null
     },
     {
@@ -375,7 +375,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "contingency-planning",
+      "to": "continuity-seat-planning",
       "reason": null
     },
     {
@@ -502,8 +502,8 @@
       "slug": "new:controls-standards-assessment",
       "messages": 1,
       "batches": 1,
-      "status": "alias",
-      "to": "process-documentation",
+      "status": "unassigned",
+      "to": null,
       "reason": null
     },
     {
@@ -511,15 +511,15 @@
       "messages": 4,
       "batches": 1,
       "status": "alias",
-      "to": "cost-center-allocation",
+      "to": "cost-center-charge-review",
       "reason": null
     },
     {
       "slug": "new:cost-center-allocation",
       "messages": 1,
       "batches": 1,
-      "status": "promoted",
-      "to": "cost-center-allocation",
+      "status": "alias",
+      "to": "cost-center-charge-review",
       "reason": null
     },
     {
@@ -527,7 +527,7 @@
       "messages": 2,
       "batches": 1,
       "status": "alias",
-      "to": "deal-lookup-linking",
+      "to": "deal-ticket-lookup",
       "reason": null
     },
     {
@@ -551,7 +551,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "contract-administration",
+      "to": "counterparty-trading-status",
       "reason": null
     },
     {
@@ -582,16 +582,16 @@
       "slug": "new:credit-reserve-allocation",
       "messages": 1,
       "batches": 1,
-      "status": "alias",
-      "to": "pnl-reserve-tracking",
+      "status": "unassigned",
+      "to": null,
       "reason": null
     },
     {
       "slug": "new:credit-reserve-request",
       "messages": 1,
       "batches": 1,
-      "status": "alias",
-      "to": "pnl-reserve-tracking",
+      "status": "unassigned",
+      "to": null,
       "reason": null
     },
     {
@@ -638,8 +638,8 @@
       "slug": "new:customer-finals-creation",
       "messages": 1,
       "batches": 1,
-      "status": "alias",
-      "to": "deal-pathing-setup",
+      "status": "unassigned",
+      "to": null,
       "reason": null
     },
     {
@@ -654,24 +654,24 @@
       "slug": "new:customer-list-building",
       "messages": 1,
       "batches": 1,
-      "status": "alias",
-      "to": "customer-list-compilation",
+      "status": "mapped",
+      "to": "reference-data-update",
       "reason": null
     },
     {
       "slug": "new:customer-list-request",
       "messages": 2,
       "batches": 1,
-      "status": "alias",
-      "to": "customer-list-compilation",
+      "status": "mapped",
+      "to": "reference-data-update",
       "reason": null
     },
     {
       "slug": "new:customer-list-sharing",
       "messages": 1,
       "batches": 1,
-      "status": "alias",
-      "to": "customer-list-compilation",
+      "status": "mapped",
+      "to": "reference-data-update",
       "reason": null
     },
     {
@@ -687,23 +687,23 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "meeting-scheduling",
+      "to": "customer-origination-outreach",
       "reason": null
     },
     {
       "slug": "new:customer-sales-review",
       "messages": 1,
       "batches": 1,
-      "status": "mapped",
-      "to": "volume-imbalance-reconciliation",
+      "status": "unassigned",
+      "to": null,
       "reason": null
     },
     {
       "slug": "new:customer-supply-outreach",
       "messages": 1,
       "batches": 1,
-      "status": "unassigned",
-      "to": null,
+      "status": "alias",
+      "to": "customer-origination-outreach",
       "reason": null
     },
     {
@@ -726,8 +726,8 @@
       "slug": "new:customer-trip-scheduling",
       "messages": 1,
       "batches": 1,
-      "status": "unassigned",
-      "to": null,
+      "status": "alias",
+      "to": "customer-event-planning",
       "reason": null
     },
     {
@@ -735,7 +735,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "deal-booking-standards",
+      "to": "deal-entry-standards",
       "reason": null
     },
     {
@@ -743,7 +743,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "deal-booking-standards",
+      "to": "deal-entry-standards",
       "reason": null
     },
     {
@@ -751,7 +751,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "deal-booking-standards",
+      "to": "deal-entry-standards",
       "reason": null
     },
     {
@@ -759,7 +759,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "deal-booking-standards",
+      "to": "deal-entry-standards",
       "reason": null
     },
     {
@@ -767,7 +767,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "deal-confirmation-handling",
+      "to": "deal-confirmation",
       "reason": null
     },
     {
@@ -775,7 +775,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "deal-lookup-linking",
+      "to": "deal-entry-standards",
       "reason": null
     },
     {
@@ -783,7 +783,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "deal-booking-standards",
+      "to": "deal-entry-standards",
       "reason": null
     },
     {
@@ -791,7 +791,7 @@
       "messages": 3,
       "batches": 1,
       "status": "alias",
-      "to": "deal-booking-standards",
+      "to": "deal-entry-standards",
       "reason": null
     },
     {
@@ -799,7 +799,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "deal-lookup-linking",
+      "to": "deal-ticket-lookup",
       "reason": null
     },
     {
@@ -807,7 +807,7 @@
       "messages": 4,
       "batches": 1,
       "status": "alias",
-      "to": "deal-pathing-setup",
+      "to": "deal-entry-pathing",
       "reason": null
     },
     {
@@ -815,7 +815,7 @@
       "messages": 2,
       "batches": 1,
       "status": "alias",
-      "to": "deal-lookup-linking",
+      "to": "deal-entry-standards",
       "reason": null
     },
     {
@@ -830,8 +830,8 @@
       "slug": "new:deal-ticket-lookup",
       "messages": 1,
       "batches": 1,
-      "status": "alias",
-      "to": "deal-lookup-linking",
+      "status": "promoted",
+      "to": "deal-ticket-lookup",
       "reason": null
     },
     {
@@ -839,7 +839,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "deal-lookup-linking",
+      "to": "deal-ticket-lookup",
       "reason": null
     },
     {
@@ -847,7 +847,7 @@
       "messages": 2,
       "batches": 1,
       "status": "alias",
-      "to": "iso-adjustment-bidding",
+      "to": "iso-bid-strategy",
       "reason": null
     },
     {
@@ -855,15 +855,15 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "transport-rate-ticket-entry",
+      "to": "transport-rate-ticket-maintenance",
       "reason": null
     },
     {
       "slug": "new:derivatives-business-development-outreach",
       "messages": 2,
       "batches": 1,
-      "status": "unassigned",
-      "to": null,
+      "status": "alias",
+      "to": "customer-origination-outreach",
       "reason": null
     },
     {
@@ -871,7 +871,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "staff-training-coordination",
+      "to": "desk-responsibility-assignment",
       "reason": null
     },
     {
@@ -879,7 +879,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "desk-equipment-requests",
+      "to": "desk-equipment-setup",
       "reason": null
     },
     {
@@ -887,7 +887,7 @@
       "messages": 2,
       "batches": 1,
       "status": "alias",
-      "to": "work-responsibility-assignment",
+      "to": "desk-responsibility-assignment",
       "reason": null
     },
     {
@@ -895,23 +895,23 @@
       "messages": 2,
       "batches": 1,
       "status": "alias",
-      "to": "deal-booking-standards",
+      "to": "deal-entry-standards",
       "reason": null
     },
     {
       "slug": "new:desk-record-keeping",
       "messages": 1,
       "batches": 1,
-      "status": "alias",
-      "to": "realtime-desk-procedures",
+      "status": "mapped",
+      "to": "realtime-schedule-checkout",
       "reason": null
     },
     {
       "slug": "new:desk-responsibility-assignment",
       "messages": 9,
       "batches": 1,
-      "status": "alias",
-      "to": "work-responsibility-assignment",
+      "status": "promoted",
+      "to": "desk-responsibility-assignment",
       "reason": null
     },
     {
@@ -919,7 +919,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "work-responsibility-assignment",
+      "to": "desk-responsibility-assignment",
       "reason": null
     },
     {
@@ -927,7 +927,7 @@
       "messages": 2,
       "batches": 1,
       "status": "alias",
-      "to": "desk-equipment-requests",
+      "to": "desk-equipment-setup",
       "reason": null
     },
     {
@@ -935,7 +935,7 @@
       "messages": 4,
       "batches": 1,
       "status": "alias",
-      "to": "desk-equipment-requests",
+      "to": "desk-equipment-setup",
       "reason": null
     },
     {
@@ -951,15 +951,15 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "desk-equipment-requests",
+      "to": "desk-equipment-setup",
       "reason": null
     },
     {
       "slug": "new:distribution-list-update",
       "messages": 3,
       "batches": 1,
-      "status": "unassigned",
-      "to": null,
+      "status": "alias",
+      "to": "daily-file-distribution",
       "reason": null
     },
     {
@@ -967,7 +967,7 @@
       "messages": 3,
       "batches": 1,
       "status": "alias",
-      "to": "daily-model-distribution",
+      "to": "daily-file-distribution",
       "reason": null
     },
     {
@@ -975,7 +975,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "daily-model-distribution",
+      "to": "daily-file-distribution",
       "reason": null
     },
     {
@@ -983,7 +983,7 @@
       "messages": 2,
       "batches": 1,
       "status": "alias",
-      "to": "daily-model-distribution",
+      "to": "daily-file-distribution",
       "reason": null
     },
     {
@@ -998,8 +998,8 @@
       "slug": "new:el-paso-data-scrape-update",
       "messages": 2,
       "batches": 1,
-      "status": "alias",
-      "to": "realtime-desk-procedures",
+      "status": "unassigned",
+      "to": null,
       "reason": null
     },
     {
@@ -1014,40 +1014,40 @@
       "slug": "new:el-paso-scrape-data",
       "messages": 1,
       "batches": 1,
-      "status": "alias",
-      "to": "realtime-desk-procedures",
+      "status": "unassigned",
+      "to": null,
       "reason": null
     },
     {
       "slug": "new:employee-departure-offboarding",
       "messages": 1,
       "batches": 1,
-      "status": "unassigned",
-      "to": null,
+      "status": "alias",
+      "to": "employee-hr-changes",
       "reason": null
     },
     {
       "slug": "new:employee-supervisor-change",
       "messages": 1,
       "batches": 1,
-      "status": "unassigned",
-      "to": null,
+      "status": "alias",
+      "to": "employee-hr-changes",
       "reason": null
     },
     {
       "slug": "new:emw-liquidation",
       "messages": 3,
       "batches": 1,
-      "status": "unassigned",
-      "to": null,
+      "status": "alias",
+      "to": "ownership-transition-handover",
       "reason": null
     },
     {
       "slug": "new:ena-hpl-sales-customer-research",
       "messages": 4,
       "batches": 1,
-      "status": "alias",
-      "to": "customer-list-compilation",
+      "status": "unassigned",
+      "to": null,
       "reason": null
     },
     {
@@ -1055,15 +1055,15 @@
       "messages": 2,
       "batches": 1,
       "status": "alias",
-      "to": "market-information-distribution",
+      "to": "daily-file-distribution",
       "reason": null
     },
     {
       "slug": "new:engineering-subcontractor-payment-terms",
       "messages": 3,
       "batches": 1,
-      "status": "unassigned",
-      "to": null,
+      "status": "alias",
+      "to": "power-project-contract-admin",
       "reason": null
     },
     {
@@ -1071,7 +1071,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "deal-booking-standards",
+      "to": "deal-entry-standards",
       "reason": null
     },
     {
@@ -1079,7 +1079,7 @@
       "messages": 2,
       "batches": 1,
       "status": "alias",
-      "to": "deal-booking-standards",
+      "to": "deal-entry-standards",
       "reason": null
     },
     {
@@ -1087,7 +1087,7 @@
       "messages": 5,
       "batches": 1,
       "status": "alias",
-      "to": "deal-booking-standards",
+      "to": "deal-entry-standards",
       "reason": null
     },
     {
@@ -1127,7 +1127,7 @@
       "messages": 2,
       "batches": 2,
       "status": "alias",
-      "to": "daily-model-distribution",
+      "to": "daily-file-distribution",
       "reason": null
     },
     {
@@ -1135,15 +1135,15 @@
       "messages": 2,
       "batches": 1,
       "status": "alias",
-      "to": "daily-model-distribution",
+      "to": "daily-file-distribution",
       "reason": null
     },
     {
       "slug": "new:epgt-pool-cleanup",
       "messages": 2,
       "batches": 1,
-      "status": "mapped",
-      "to": "gas-nomination-handling",
+      "status": "unassigned",
+      "to": null,
       "reason": null
     },
     {
@@ -1151,15 +1151,15 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "deal-booking-standards",
+      "to": "deal-entry-standards",
       "reason": null
     },
     {
       "slug": "new:ercot-load-analysis",
       "messages": 1,
       "batches": 1,
-      "status": "alias",
-      "to": "market-information-distribution",
+      "status": "unassigned",
+      "to": null,
       "reason": null
     },
     {
@@ -1174,8 +1174,8 @@
       "slug": "new:ethane-election-notice",
       "messages": 1,
       "batches": 1,
-      "status": "unassigned",
-      "to": null,
+      "status": "alias",
+      "to": "supply-change-notice",
       "reason": null
     },
     {
@@ -1191,7 +1191,7 @@
       "messages": 2,
       "batches": 1,
       "status": "alias",
-      "to": "audit-support-requests",
+      "to": "audit-request-support",
       "reason": null
     },
     {
@@ -1199,7 +1199,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "customer-price-quotes",
+      "to": "customer-quote-requests",
       "reason": null
     },
     {
@@ -1207,7 +1207,7 @@
       "messages": 2,
       "batches": 1,
       "status": "alias",
-      "to": "customer-price-quotes",
+      "to": "customer-quote-requests",
       "reason": null
     },
     {
@@ -1222,8 +1222,8 @@
       "slug": "new:forward-contract-closeout",
       "messages": 1,
       "batches": 1,
-      "status": "unassigned",
-      "to": null,
+      "status": "alias",
+      "to": "customer-quote-requests",
       "reason": null
     },
     {
@@ -1231,7 +1231,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "deal-confirmation-handling",
+      "to": "deal-confirmation",
       "reason": null
     },
     {
@@ -1255,7 +1255,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "deal-booking-standards",
+      "to": "deal-entry-standards",
       "reason": null
     },
     {
@@ -1263,7 +1263,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "market-information-distribution",
+      "to": "daily-file-distribution",
       "reason": null
     },
     {
@@ -1271,7 +1271,7 @@
       "messages": 2,
       "batches": 2,
       "status": "alias",
-      "to": "deal-confirmation-handling",
+      "to": "deal-confirmation",
       "reason": null
     },
     {
@@ -1279,7 +1279,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "iso-adjustment-bidding",
+      "to": "iso-bid-strategy",
       "reason": null
     },
     {
@@ -1295,7 +1295,7 @@
       "messages": 2,
       "batches": 1,
       "status": "alias",
-      "to": "accounting-variance-resolution",
+      "to": "ledger-review-writeoffs",
       "reason": null
     },
     {
@@ -1303,7 +1303,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "work-responsibility-assignment",
+      "to": "desk-responsibility-assignment",
       "reason": null
     },
     {
@@ -1327,7 +1327,7 @@
       "messages": 2,
       "batches": 1,
       "status": "alias",
-      "to": "customer-price-quotes",
+      "to": "customer-quote-requests",
       "reason": null
     },
     {
@@ -1335,15 +1335,15 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "daily-model-distribution",
+      "to": "daily-file-distribution",
       "reason": null
     },
     {
       "slug": "new:hourly-gas-deal-capture-review",
       "messages": 1,
       "batches": 1,
-      "status": "alias",
-      "to": "deal-booking-standards",
+      "status": "mapped",
+      "to": "system-enhancement-request",
       "reason": null
     },
     {
@@ -1375,7 +1375,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "divestiture-transition",
+      "to": "ownership-transition-handover",
       "reason": null
     },
     {
@@ -1391,7 +1391,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "divestiture-transition",
+      "to": "ownership-transition-handover",
       "reason": null
     },
     {
@@ -1406,8 +1406,8 @@
       "slug": "new:hub-destruction-draft-review",
       "messages": 1,
       "batches": 1,
-      "status": "alias",
-      "to": "process-documentation",
+      "status": "unassigned",
+      "to": null,
       "reason": null
     },
     {
@@ -1422,8 +1422,8 @@
       "slug": "new:index-price-request",
       "messages": 2,
       "batches": 1,
-      "status": "alias",
-      "to": "market-information-distribution",
+      "status": "unassigned",
+      "to": null,
       "reason": null
     },
     {
@@ -1431,7 +1431,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "deal-pathing-setup",
+      "to": "deal-entry-pathing",
       "reason": null
     },
     {
@@ -1439,23 +1439,23 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "deal-pathing-setup",
+      "to": "monthly-deal-spreadsheet",
       "reason": null
     },
     {
       "slug": "new:intercompany-accrual-variance",
       "messages": 2,
       "batches": 1,
-      "status": "alias",
-      "to": "accounting-variance-resolution",
+      "status": "mapped",
+      "to": "volume-imbalance-reconciliation",
       "reason": null
     },
     {
       "slug": "new:intercompany-cleanup-issue-tracking",
       "messages": 3,
       "batches": 1,
-      "status": "alias",
-      "to": "accounting-variance-resolution",
+      "status": "mapped",
+      "to": "volume-imbalance-reconciliation",
       "reason": null
     },
     {
@@ -1526,8 +1526,8 @@
       "slug": "new:king-ranch-restructure-scheduling",
       "messages": 3,
       "batches": 1,
-      "status": "alias",
-      "to": "deal-pathing-setup",
+      "status": "mapped",
+      "to": "gas-nomination-handling",
       "reason": null
     },
     {
@@ -1535,7 +1535,7 @@
       "messages": 2,
       "batches": 1,
       "status": "alias",
-      "to": "cost-center-allocation",
+      "to": "cost-center-charge-review",
       "reason": null
     },
     {
@@ -1543,7 +1543,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "cost-center-allocation",
+      "to": "cost-center-charge-review",
       "reason": null
     },
     {
@@ -1591,47 +1591,47 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "work-responsibility-assignment",
+      "to": "desk-responsibility-assignment",
       "reason": null
     },
     {
       "slug": "new:longview-agreement-notice",
       "messages": 3,
       "batches": 1,
-      "status": "unassigned",
-      "to": null,
+      "status": "alias",
+      "to": "power-project-contract-admin",
       "reason": null
     },
     {
       "slug": "new:longview-change-order-approval",
       "messages": 2,
       "batches": 1,
-      "status": "unassigned",
-      "to": null,
+      "status": "alias",
+      "to": "power-project-contract-admin",
       "reason": null
     },
     {
       "slug": "new:longview-equipment-delivery-schedule",
       "messages": 1,
       "batches": 1,
-      "status": "unassigned",
-      "to": null,
+      "status": "alias",
+      "to": "power-project-contract-admin",
       "reason": null
     },
     {
       "slug": "new:longview-project-inquiry",
       "messages": 2,
       "batches": 1,
-      "status": "unassigned",
-      "to": null,
+      "status": "alias",
+      "to": "power-project-contract-admin",
       "reason": null
     },
     {
       "slug": "new:machine-inventory-survey",
       "messages": 1,
       "batches": 1,
-      "status": "alias",
-      "to": "desk-equipment-requests",
+      "status": "unassigned",
+      "to": null,
       "reason": null
     },
     {
@@ -1647,7 +1647,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "market-information-distribution",
+      "to": "customer-origination-outreach",
       "reason": null
     },
     {
@@ -1655,23 +1655,23 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "market-information-distribution",
+      "to": "customer-origination-outreach",
       "reason": null
     },
     {
       "slug": "new:market-intelligence-briefing",
       "messages": 1,
       "batches": 1,
-      "status": "alias",
-      "to": "market-information-distribution",
+      "status": "unassigned",
+      "to": null,
       "reason": null
     },
     {
       "slug": "new:market-list-compilation",
       "messages": 1,
       "batches": 1,
-      "status": "alias",
-      "to": "customer-list-compilation",
+      "status": "unassigned",
+      "to": null,
       "reason": null
     },
     {
@@ -1695,15 +1695,15 @@
       "messages": 2,
       "batches": 1,
       "status": "alias",
-      "to": "meter-facility-setup",
+      "to": "desk-responsibility-assignment",
       "reason": null
     },
     {
       "slug": "new:meter-contract-allocation-fix",
       "messages": 4,
       "batches": 1,
-      "status": "mapped",
-      "to": "meter-flow-deal-coverage",
+      "status": "alias",
+      "to": "meter-allocation-correction",
       "reason": null
     },
     {
@@ -1759,23 +1759,23 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "transport-rate-ticket-entry",
+      "to": "transport-rate-ticket-maintenance",
       "reason": null
     },
     {
       "slug": "new:monthly-deal-spreadsheet-handoff",
       "messages": 1,
       "batches": 1,
-      "status": "unassigned",
-      "to": null,
+      "status": "alias",
+      "to": "monthly-deal-spreadsheet",
       "reason": null
     },
     {
       "slug": "new:monthly-deal-spreadsheet-update",
       "messages": 1,
       "batches": 1,
-      "status": "unassigned",
-      "to": null,
+      "status": "alias",
+      "to": "monthly-deal-spreadsheet",
       "reason": null
     },
     {
@@ -1791,7 +1791,7 @@
       "messages": 2,
       "batches": 1,
       "status": "alias",
-      "to": "deal-pathing-setup",
+      "to": "deal-entry-pathing",
       "reason": null
     },
     {
@@ -1807,7 +1807,7 @@
       "messages": 4,
       "batches": 1,
       "status": "alias",
-      "to": "divestiture-transition",
+      "to": "ownership-transition-handover",
       "reason": null
     },
     {
@@ -1815,7 +1815,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "divestiture-transition",
+      "to": "ownership-transition-handover",
       "reason": null
     },
     {
@@ -1823,7 +1823,7 @@
       "messages": 4,
       "batches": 1,
       "status": "alias",
-      "to": "divestiture-transition",
+      "to": "ownership-transition-handover",
       "reason": null
     },
     {
@@ -1831,7 +1831,7 @@
       "messages": 4,
       "batches": 1,
       "status": "alias",
-      "to": "divestiture-transition",
+      "to": "ownership-transition-handover",
       "reason": null
     },
     {
@@ -1839,7 +1839,7 @@
       "messages": 2,
       "batches": 1,
       "status": "alias",
-      "to": "divestiture-transition",
+      "to": "ownership-transition-handover",
       "reason": null
     },
     {
@@ -1847,15 +1847,15 @@
       "messages": 3,
       "batches": 1,
       "status": "alias",
-      "to": "divestiture-transition",
+      "to": "ownership-transition-handover",
       "reason": null
     },
     {
       "slug": "new:new-supply-start-notice",
       "messages": 1,
       "batches": 1,
-      "status": "mapped",
-      "to": "gas-nomination-handling",
+      "status": "alias",
+      "to": "supply-change-notice",
       "reason": null
     },
     {
@@ -1863,15 +1863,15 @@
       "messages": 4,
       "batches": 1,
       "status": "mapped",
-      "to": "deal-record-correction",
+      "to": "pnl-position-reporting",
       "reason": null
     },
     {
       "slug": "new:nss-deal-valuation-review",
       "messages": 1,
       "batches": 1,
-      "status": "alias",
-      "to": "deal-booking-standards",
+      "status": "unassigned",
+      "to": null,
       "reason": null
     },
     {
@@ -1886,8 +1886,8 @@
       "slug": "new:oa-process-improvement",
       "messages": 2,
       "batches": 1,
-      "status": "alias",
-      "to": "accounting-variance-resolution",
+      "status": "unassigned",
+      "to": null,
       "reason": null
     },
     {
@@ -1903,7 +1903,7 @@
       "messages": 2,
       "batches": 1,
       "status": "alias",
-      "to": "work-responsibility-assignment",
+      "to": "desk-responsibility-assignment",
       "reason": null
     },
     {
@@ -1911,7 +1911,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "work-responsibility-assignment",
+      "to": "desk-responsibility-assignment",
       "reason": null
     },
     {
@@ -1927,7 +1927,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "desk-equipment-requests",
+      "to": "desk-equipment-setup",
       "reason": null
     },
     {
@@ -1935,7 +1935,7 @@
       "messages": 2,
       "batches": 1,
       "status": "alias",
-      "to": "desk-equipment-requests",
+      "to": "desk-equipment-setup",
       "reason": null
     },
     {
@@ -1967,7 +1967,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "budget-preparation",
+      "to": "annual-budget-preparation",
       "reason": null
     },
     {
@@ -1975,15 +1975,15 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "cost-center-allocation",
+      "to": "employee-hr-changes",
       "reason": null
     },
     {
       "slug": "new:opm-activity-review",
       "messages": 1,
       "batches": 1,
-      "status": "alias",
-      "to": "process-documentation",
+      "status": "unassigned",
+      "to": null,
       "reason": null
     },
     {
@@ -2023,7 +2023,7 @@
       "messages": 2,
       "batches": 1,
       "status": "alias",
-      "to": "customer-list-compilation",
+      "to": "customer-origination-outreach",
       "reason": null
     },
     {
@@ -2063,7 +2063,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "deal-booking-standards",
+      "to": "deal-entry-standards",
       "reason": null
     },
     {
@@ -2071,7 +2071,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "deal-booking-standards",
+      "to": "deal-entry-standards",
       "reason": null
     },
     {
@@ -2086,8 +2086,8 @@
       "slug": "new:payroll-deduction-change",
       "messages": 2,
       "batches": 1,
-      "status": "unassigned",
-      "to": null,
+      "status": "alias",
+      "to": "employee-hr-changes",
       "reason": null
     },
     {
@@ -2095,7 +2095,7 @@
       "messages": 3,
       "batches": 1,
       "status": "alias",
-      "to": "desk-equipment-requests",
+      "to": "desk-equipment-setup",
       "reason": null
     },
     {
@@ -2119,7 +2119,7 @@
       "messages": 2,
       "batches": 1,
       "status": "alias",
-      "to": "accounting-variance-resolution",
+      "to": "ledger-review-writeoffs",
       "reason": null
     },
     {
@@ -2127,7 +2127,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "deal-booking-standards",
+      "to": "deal-entry-standards",
       "reason": null
     },
     {
@@ -2142,8 +2142,8 @@
       "slug": "new:pipeline-ebb-access-survey",
       "messages": 1,
       "batches": 1,
-      "status": "alias",
-      "to": "contingency-planning",
+      "status": "unassigned",
+      "to": null,
       "reason": null
     },
     {
@@ -2166,24 +2166,24 @@
       "slug": "new:plant-processing-election",
       "messages": 1,
       "batches": 1,
-      "status": "unassigned",
-      "to": null,
+      "status": "alias",
+      "to": "supply-change-notice",
       "reason": null
     },
     {
       "slug": "new:pma-report-review",
       "messages": 1,
       "batches": 1,
-      "status": "alias",
-      "to": "accounting-variance-resolution",
+      "status": "mapped",
+      "to": "counterparty-settlement-review",
       "reason": null
     },
     {
       "slug": "new:pops-meter-volume-override",
       "messages": 2,
       "batches": 1,
-      "status": "mapped",
-      "to": "volume-imbalance-reconciliation",
+      "status": "alias",
+      "to": "meter-allocation-correction",
       "reason": null
     },
     {
@@ -2198,8 +2198,8 @@
       "slug": "new:power-trade-dispute-tape-pull",
       "messages": 2,
       "batches": 1,
-      "status": "mapped",
-      "to": "counterparty-settlement-review",
+      "status": "alias",
+      "to": "trade-tape-retrieval",
       "reason": null
     },
     {
@@ -2207,7 +2207,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "accounting-variance-resolution",
+      "to": "ledger-review-writeoffs",
       "reason": null
     },
     {
@@ -2222,24 +2222,24 @@
       "slug": "new:prior-month-adjustment-review",
       "messages": 3,
       "batches": 1,
-      "status": "mapped",
-      "to": "pnl-position-reporting",
+      "status": "alias",
+      "to": "internal-annuity-booking",
       "reason": null
     },
     {
       "slug": "new:process-write-up-review",
       "messages": 1,
       "batches": 1,
-      "status": "alias",
-      "to": "process-documentation",
+      "status": "unassigned",
+      "to": null,
       "reason": null
     },
     {
       "slug": "new:producer-gas-rerouting",
       "messages": 3,
       "batches": 1,
-      "status": "mapped",
-      "to": "gas-nomination-handling",
+      "status": "alias",
+      "to": "supply-change-notice",
       "reason": null
     },
     {
@@ -2247,7 +2247,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "deal-lookup-linking",
+      "to": "deal-ticket-lookup",
       "reason": null
     },
     {
@@ -2255,7 +2255,7 @@
       "messages": 3,
       "batches": 1,
       "status": "alias",
-      "to": "deal-pathing-setup",
+      "to": "deal-entry-pathing",
       "reason": null
     },
     {
@@ -2263,7 +2263,7 @@
       "messages": 2,
       "batches": 1,
       "status": "alias",
-      "to": "desk-equipment-requests",
+      "to": "desk-equipment-setup",
       "reason": null
     },
     {
@@ -2279,7 +2279,7 @@
       "messages": 3,
       "batches": 1,
       "status": "alias",
-      "to": "cost-center-allocation",
+      "to": "cost-center-charge-review",
       "reason": null
     },
     {
@@ -2287,15 +2287,15 @@
       "messages": 2,
       "batches": 1,
       "status": "alias",
-      "to": "cost-center-allocation",
+      "to": "cost-center-charge-review",
       "reason": null
     },
     {
       "slug": "new:real-time-customer-retention",
       "messages": 1,
       "batches": 1,
-      "status": "unassigned",
-      "to": null,
+      "status": "alias",
+      "to": "customer-origination-outreach",
       "reason": null
     },
     {
@@ -2311,7 +2311,7 @@
       "messages": 3,
       "batches": 1,
       "status": "alias",
-      "to": "realtime-desk-procedures",
+      "to": "realtime-desk-briefing",
       "reason": null
     },
     {
@@ -2366,8 +2366,8 @@
       "slug": "new:regional-originator-list",
       "messages": 1,
       "batches": 1,
-      "status": "unassigned",
-      "to": null,
+      "status": "mapped",
+      "to": "reference-data-update",
       "reason": null
     },
     {
@@ -2398,8 +2398,8 @@
       "slug": "new:risk-book-officialization-guidance",
       "messages": 1,
       "batches": 1,
-      "status": "mapped",
-      "to": "pnl-position-reporting",
+      "status": "alias",
+      "to": "book-officialization",
       "reason": null
     },
     {
@@ -2407,7 +2407,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "work-responsibility-assignment",
+      "to": "desk-responsibility-assignment",
       "reason": null
     },
     {
@@ -2423,7 +2423,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "realtime-desk-procedures",
+      "to": "realtime-desk-briefing",
       "reason": null
     },
     {
@@ -2447,7 +2447,7 @@
       "messages": 4,
       "batches": 1,
       "status": "alias",
-      "to": "pnl-reserve-tracking",
+      "to": "schedule-c-notice",
       "reason": null
     },
     {
@@ -2455,7 +2455,7 @@
       "messages": 2,
       "batches": 1,
       "status": "alias",
-      "to": "pnl-reserve-tracking",
+      "to": "schedule-c-notice",
       "reason": null
     },
     {
@@ -2470,16 +2470,16 @@
       "slug": "new:separation-pay-inquiry",
       "messages": 2,
       "batches": 1,
-      "status": "unassigned",
-      "to": null,
+      "status": "alias",
+      "to": "employee-hr-changes",
       "reason": null
     },
     {
       "slug": "new:shared-spreadsheet-distribution",
       "messages": 1,
       "batches": 1,
-      "status": "unassigned",
-      "to": null,
+      "status": "alias",
+      "to": "monthly-deal-spreadsheet",
       "reason": null
     },
     {
@@ -2487,23 +2487,23 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "deal-pathing-setup",
+      "to": "deal-entry-pathing",
       "reason": null
     },
     {
       "slug": "new:sitara-rate-change-request",
       "messages": 1,
       "batches": 1,
-      "status": "mapped",
-      "to": "deal-record-correction",
+      "status": "alias",
+      "to": "transport-rate-ticket-maintenance",
       "reason": null
     },
     {
       "slug": "new:software-media-return-request",
       "messages": 2,
       "batches": 1,
-      "status": "unassigned",
-      "to": null,
+      "status": "alias",
+      "to": "desk-equipment-setup",
       "reason": null
     },
     {
@@ -2535,7 +2535,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "deal-booking-standards",
+      "to": "deal-entry-standards",
       "reason": null
     },
     {
@@ -2543,7 +2543,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "deal-pathing-setup",
+      "to": "deal-entry-pathing",
       "reason": null
     },
     {
@@ -2551,7 +2551,7 @@
       "messages": 4,
       "batches": 1,
       "status": "alias",
-      "to": "deal-pathing-setup",
+      "to": "deal-entry-pathing",
       "reason": null
     },
     {
@@ -2559,7 +2559,7 @@
       "messages": 2,
       "batches": 1,
       "status": "alias",
-      "to": "deal-pathing-setup",
+      "to": "deal-entry-pathing",
       "reason": null
     },
     {
@@ -2574,24 +2574,24 @@
       "slug": "new:supply-deal-continuation-notice",
       "messages": 1,
       "batches": 1,
-      "status": "unassigned",
-      "to": null,
+      "status": "alias",
+      "to": "supply-change-notice",
       "reason": null
     },
     {
       "slug": "new:swap-profile-review",
       "messages": 2,
       "batches": 1,
-      "status": "alias",
-      "to": "customer-price-quotes",
+      "status": "unassigned",
+      "to": null,
       "reason": null
     },
     {
       "slug": "new:system-maintenance-downtime",
       "messages": 1,
       "batches": 1,
-      "status": "mapped",
-      "to": "system-enhancement-request",
+      "status": "unassigned",
+      "to": null,
       "reason": null
     },
     {
@@ -2599,7 +2599,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "deal-lookup-linking",
+      "to": "deal-ticket-lookup",
       "reason": null
     },
     {
@@ -2607,15 +2607,15 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "audit-support-requests",
+      "to": "audit-request-support",
       "reason": null
     },
     {
       "slug": "new:tcr-surcharge-billing",
       "messages": 1,
       "batches": 1,
-      "status": "unassigned",
-      "to": null,
+      "status": "mapped",
+      "to": "counterparty-settlement-review",
       "reason": null
     },
     {
@@ -2654,8 +2654,8 @@
       "slug": "new:term-deal-opportunity-pitch",
       "messages": 1,
       "batches": 1,
-      "status": "unassigned",
-      "to": null,
+      "status": "alias",
+      "to": "customer-origination-outreach",
       "reason": null
     },
     {
@@ -2686,8 +2686,8 @@
       "slug": "new:trade-tape-retrieval",
       "messages": 1,
       "batches": 1,
-      "status": "mapped",
-      "to": "counterparty-settlement-review",
+      "status": "promoted",
+      "to": "trade-tape-retrieval",
       "reason": null
     },
     {
@@ -2711,7 +2711,7 @@
       "messages": 2,
       "batches": 1,
       "status": "alias",
-      "to": "deal-booking-standards",
+      "to": "deal-entry-standards",
       "reason": null
     },
     {
@@ -2783,15 +2783,15 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "deal-confirmation-handling",
+      "to": "deal-confirmation",
       "reason": null
     },
     {
       "slug": "new:transaction-flow-document-review",
       "messages": 1,
       "batches": 1,
-      "status": "alias",
-      "to": "process-documentation",
+      "status": "unassigned",
+      "to": null,
       "reason": null
     },
     {
@@ -2799,7 +2799,7 @@
       "messages": 5,
       "batches": 1,
       "status": "alias",
-      "to": "realtime-desk-procedures",
+      "to": "realtime-desk-briefing",
       "reason": null
     },
     {
@@ -2839,7 +2839,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "transport-rate-ticket-entry",
+      "to": "transport-rate-ticket-maintenance",
       "reason": null
     },
     {
@@ -2847,7 +2847,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "transport-rate-ticket-entry",
+      "to": "transport-rate-ticket-maintenance",
       "reason": null
     },
     {
@@ -2855,7 +2855,7 @@
       "messages": 2,
       "batches": 1,
       "status": "alias",
-      "to": "transport-rate-ticket-entry",
+      "to": "transport-rate-ticket-maintenance",
       "reason": null
     },
     {
@@ -2863,7 +2863,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "transport-rate-ticket-entry",
+      "to": "transport-rate-ticket-maintenance",
       "reason": null
     },
     {
@@ -2871,7 +2871,7 @@
       "messages": 2,
       "batches": 1,
       "status": "alias",
-      "to": "transport-rate-ticket-entry",
+      "to": "transport-rate-ticket-maintenance",
       "reason": null
     },
     {
@@ -2903,7 +2903,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "deal-booking-standards",
+      "to": "deal-entry-standards",
       "reason": null
     },
     {
@@ -2919,7 +2919,7 @@
       "messages": 7,
       "batches": 1,
       "status": "alias",
-      "to": "divestiture-transition",
+      "to": "ownership-transition-handover",
       "reason": null
     },
     {
@@ -2927,7 +2927,7 @@
       "messages": 2,
       "batches": 1,
       "status": "alias",
-      "to": "divestiture-transition",
+      "to": "ownership-transition-handover",
       "reason": null
     },
     {
@@ -2935,7 +2935,7 @@
       "messages": 4,
       "batches": 1,
       "status": "alias",
-      "to": "divestiture-transition",
+      "to": "ownership-transition-handover",
       "reason": null
     },
     {
@@ -2943,7 +2943,7 @@
       "messages": 3,
       "batches": 1,
       "status": "alias",
-      "to": "divestiture-transition",
+      "to": "ownership-transition-handover",
       "reason": null
     },
     {
@@ -2951,7 +2951,7 @@
       "messages": 4,
       "batches": 1,
       "status": "alias",
-      "to": "divestiture-transition",
+      "to": "ownership-transition-handover",
       "reason": null
     },
     {
@@ -2959,7 +2959,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "realtime-desk-procedures",
+      "to": "realtime-desk-briefing",
       "reason": null
     },
     {
@@ -2983,7 +2983,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "accounting-variance-resolution",
+      "to": "ledger-review-writeoffs",
       "reason": null
     },
     {
@@ -3039,7 +3039,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "work-responsibility-assignment",
+      "to": "desk-responsibility-assignment",
       "reason": null
     },
     {
@@ -3047,7 +3047,7 @@
       "messages": 1,
       "batches": 1,
       "status": "alias",
-      "to": "cost-center-allocation",
+      "to": "cost-center-charge-review",
       "reason": null
     },
     {
@@ -3061,53 +3061,27 @@
   ],
   "promoted": [
     {
-      "key": "accounting-variance-resolution",
-      "name": "Accounting variance and adjustment resolution",
-      "definition": "Investigating and clearing operational accounting differences: prior month adjustments, intercompany accrual variances, potential write-offs, and ledger, flash and inventory balances that do not agree.",
-      "include": [
-        "Monthly prior month adjustment files and schedules",
-        "Intercompany accrual or volume variances between affiliates",
-        "Potential write-offs in a ledger close",
-        "Volume write-off letters and approvals",
-        "Preliminary ledgers sent for review",
-        "Suggestions to improve the variance process"
-      ],
-      "exclude": [
-        "Volume reconciliation with a customer or pipeline: volume-imbalance-reconciliation",
-        "Invoice disputes with counterparties: counterparty-settlement-review",
-        "Close calendar: month-end-close-coordination"
-      ],
+      "key": "annual-budget-preparation",
+      "name": "Budget preparation and reporting",
+      "definition": "Collecting staffing needs and drafts for the next year's budget and distributing budget versus actual and O&M budget reports to managers.",
+      "include": [],
+      "exclude": [],
       "aliases": [
-        "new:bammel-pma-schedule-revision",
-        "new:gl-writeoff-resolution",
-        "new:intercompany-accrual-variance",
-        "new:intercompany-cleanup-issue-tracking",
-        "new:oa-process-improvement",
-        "new:physical-storage-inventory-schedules",
-        "new:pma-report-review",
-        "new:preliminary-ledger-review",
-        "new:volume-write-off-processing"
+        "new:annual-budget-preparation",
+        "new:budget-vs-actual-reporting",
+        "new:om-budget-report-distribution"
       ],
-      "messages": 15,
-      "occurrences": 11,
-      "threads": 11,
-      "active_months": 8
+      "messages": 9,
+      "occurrences": 8,
+      "threads": 7,
+      "active_months": 4
     },
     {
-      "key": "audit-support-requests",
-      "name": "Audit support requests",
-      "definition": "Answering external auditors' testing requests: deal tickets, confirmations, P&L top pages, curve shift backup, origination support and valuations for sampled deals, and deciding who on the desk gathers them.",
-      "include": [
-        "Monthly or quarterly auditor request lists for a desk",
-        "Deal tickets and confirmations for sampled deals",
-        "P&L top sheets and curve shift reports for testing",
-        "Valuations provided for a counterparty's auditors",
-        "Explanations of how recorded deal values were derived"
-      ],
-      "exclude": [
-        "Daily P&L production: pnl-position-reporting",
-        "Controls documentation: process-documentation"
-      ],
+      "key": "audit-request-support",
+      "name": "Auditor request support",
+      "definition": "Answering external auditors' testing requests for deal tickets, P&L top pages, valuations and deal support, and delegating them within the desk.",
+      "include": [],
+      "exclude": [],
       "aliases": [
         "new:audit-document-request",
         "new:audit-information-request",
@@ -3123,71 +3097,43 @@
       "active_months": 7
     },
     {
-      "key": "budget-preparation",
-      "name": "Budget preparation and reporting",
-      "definition": "Collecting staffing needs and drafts from managers for the next year's budget, and distributing monthly budget and budget-versus-actual reports to cost center managers.",
-      "include": [
-        "Budget questionnaires and staffing requirements",
-        "Draft budgets and revisions",
-        "Monthly budget versus actual reports",
-        "O&M budget reports by cost center"
-      ],
-      "exclude": [
-        "Monthly cost center allocation percentages: cost-center-allocation",
-        "Headcount for open positions: staff-recruiting"
-      ],
+      "key": "book-officialization",
+      "name": "Book officialization",
+      "definition": "Marking trading books official each night, listing the books officialized for a desk and following guidance so credit data is right.",
+      "include": [],
+      "exclude": [],
       "aliases": [
-        "new:annual-budget-preparation",
-        "new:budget-vs-actual-reporting",
-        "new:om-budget-report-distribution"
+        "new:book-admin-list",
+        "new:book-officialization",
+        "new:risk-book-officialization-guidance"
       ],
-      "messages": 9,
-      "occurrences": 8,
-      "threads": 7,
-      "active_months": 4
-    },
-    {
-      "key": "contingency-planning",
-      "name": "Business continuity planning",
-      "definition": "Preparing to run the desks away from the normal office: backup seat assignments and counts, testing of backup seats, and surveys of how nominations would be made remotely.",
-      "include": [
-        "Backup or contingency seat assignments and testing",
-        "Desk counts needed at a backup floor",
-        "Surveys of remote nomination access to pipelines"
-      ],
-      "exclude": [
-        "Regular office relocations: office-move-coordination",
-        "Shift and on-call coverage: desk-coverage-on-call"
-      ],
-      "aliases": [
-        "new:business-continuity-seat-assignment",
-        "new:contingency-plan-survey",
-        "new:contingency-seat-planning",
-        "new:pipeline-ebb-access-survey"
-      ],
-      "messages": 4,
+      "messages": 6,
       "occurrences": 4,
       "threads": 4,
       "active_months": 3
     },
     {
+      "key": "continuity-seat-planning",
+      "name": "Contingency seat planning",
+      "definition": "Planning backup seats and away-from-office operation for the desks: collecting seat counts, surveying how work would run and assigning and testing backup seats.",
+      "include": [],
+      "exclude": [],
+      "aliases": [
+        "new:business-continuity-seat-assignment",
+        "new:contingency-plan-survey",
+        "new:contingency-seat-planning"
+      ],
+      "messages": 3,
+      "occurrences": 3,
+      "threads": 3,
+      "active_months": 3
+    },
+    {
       "key": "contract-administration",
       "name": "Contract administration",
-      "definition": "Handling the life of gas transport, purchase and sale contracts: requests for new, amended or extended contracts, credit approval, routing for signature, status lists, contract system set-up, terminations and assignment reports.",
-      "include": [
-        "Shipper requests to amend, extend or increase a transport contract",
-        "Credit approval submissions for shipper contracts",
-        "Contracts routed for signature and executed copies returned",
-        "Contract status lists and assignment, termination and expiration reports",
-        "Termination letters and evergreen checks",
-        "Lists of contracts pulled from the contract system for review"
-      ],
-      "exclude": [
-        "Operational balancing agreements: balancing-agreement-negotiation",
-        "Capacity postings and releases: pipeline-capacity-marketing",
-        "Contract needed for meter flow: meter-flow-deal-coverage",
-        "Rates on transport usage tickets: transport-rate-ticket-entry"
-      ],
+      "definition": "Processing, amending, extending, routing for signature, credit-approving, tracking and terminating pipeline and transport contracts, and reporting their status.",
+      "include": [],
+      "exclude": [],
       "aliases": [
         "new:alt-point-contract-report",
         "new:capacity-credit-approval",
@@ -3204,7 +3150,6 @@
         "new:contract-termination-letter",
         "new:contract-termination-report",
         "new:contract-transfer-clarification",
-        "new:counterparty-termination-notice",
         "new:credit-approval-request",
         "new:hpl-expense-contract-list",
         "new:intercompany-contract-schedule",
@@ -3214,76 +3159,54 @@
         "new:transport-contract-extension",
         "new:transport-contract-legal-question"
       ],
-      "messages": 39,
-      "occurrences": 31,
-      "threads": 31,
+      "messages": 38,
+      "occurrences": 30,
+      "threads": 30,
       "active_months": 14
     },
     {
-      "key": "cost-center-allocation",
-      "name": "Cost center allocation and charge review",
-      "definition": "Setting the plan and monthly cost allocation percentages for groups and cost centers, and checking that charges, labor and workorders land on the right cost center and company.",
-      "include": [
-        "Plan and monthly allocation percentages and revisions",
-        "Charges on cost center reports questioned or corrected",
-        "Labor distribution reports checked for who charges a cost center",
-        "Workorders set up or corrected for project costs",
-        "Employees moved between operating companies"
-      ],
-      "exclude": [
-        "Annual budget: budget-preparation",
-        "Time reports and activity surveys: time-activity-reporting"
-      ],
+      "key": "cost-center-charge-review",
+      "name": "Cost center charge review and allocation",
+      "definition": "Reviewing charges and labor distribution on cost center reports, setting monthly cost allocation percentages and asking for corrections.",
+      "include": [],
+      "exclude": [],
       "aliases": [
-        "new:allocation-percentage-review",
         "new:cost-allocation-plan",
         "new:cost-center-allocation",
         "new:labor-distribution-report-request",
         "new:labor-distribution-verification",
-        "new:operating-company-change",
         "new:rc-report-charge-review",
         "new:rc-report-cost-review",
         "new:workorder-cost-tracking"
       ],
-      "messages": 16,
-      "occurrences": 15,
-      "threads": 14,
-      "active_months": 6
+      "messages": 14,
+      "occurrences": 13,
+      "threads": 12,
+      "active_months": 5
     },
     {
       "key": "counterparty-trading-status",
       "name": "Counterparty trading status notices",
-      "definition": "Telling traders which counterparties they may or may not trade with, and passing on counterparties' notices that they are suspending deliveries.",
-      "include": [
-        "Instructions to stop trading with a counterparty",
-        "Notices that a counterparty is cleared or not cleared",
-        "Supplier notices suspending gas deliveries"
-      ],
-      "exclude": [
-        "Credit exposure reports: credit-exposure-reporting",
-        "Contract termination procedures: contract-administration"
-      ],
+      "definition": "Telling traders which counterparties are cleared, halted or suspended, and passing on counterparty termination and delivery suspension notices.",
+      "include": [],
+      "exclude": [],
       "aliases": [
         "new:counterparty-delivery-suspension-notice",
+        "new:counterparty-termination-notice",
         "new:counterparty-trading-halt",
         "new:counterparty-trading-status-notice"
       ],
-      "messages": 3,
-      "occurrences": 3,
-      "threads": 3,
+      "messages": 4,
+      "occurrences": 4,
+      "threads": 4,
       "active_months": 2
     },
     {
       "key": "curve-validation-review",
       "name": "Forward curve validation review",
-      "definition": "Explaining to the monthly curve validation group why forward price curves changed shape, level or seasonality, and answering their follow-up questions.",
-      "include": [
-        "Monthly curve validation questions for a region",
-        "Explanations of curve changes"
-      ],
-      "exclude": [
-        "Curve files and post ID mappings: curve-postid-mapping"
-      ],
+      "definition": "Explaining to the validation group why monthly forward gas curves changed shape or level.",
+      "include": [],
+      "exclude": [],
       "aliases": [
         "new:curve-validation-inquiry",
         "new:curve-validation-review"
@@ -3296,162 +3219,89 @@
     {
       "key": "customer-event-planning",
       "name": "Customer event planning",
-      "definition": "Organizing customer appreciation events and trips: proposals and approval forms, guest lists, invitations, RSVPs, rooming lists, itineraries and rescheduling.",
-      "include": [
-        "Customer trip proposals, agendas and guest lists",
-        "Invitations and RSVP deadlines for customer meetings or trips",
-        "Rooming lists, itineraries and packing lists",
-        "Customer happy hour announcements and changes"
-      ],
-      "exclude": [
-        "Business meetings and calls with customers: meeting-scheduling"
-      ],
+      "definition": "Organizing customer trips, appreciation meetings and happy hours: proposals, guest lists, invitations, RSVPs, rooming lists and itineraries.",
+      "include": [],
+      "exclude": [],
       "aliases": [
         "new:customer-event-logistics",
         "new:customer-event-rsvp",
         "new:customer-happy-hour-planning",
         "new:customer-meeting-planning",
         "new:customer-trip-coordination",
-        "new:customer-trip-proposal"
+        "new:customer-trip-proposal",
+        "new:customer-trip-scheduling"
       ],
-      "messages": 8,
-      "occurrences": 7,
-      "threads": 7,
-      "active_months": 7
-    },
-    {
-      "key": "customer-list-compilation",
-      "name": "Customer list compilation",
-      "definition": "Compiling and passing on lists of customers, prospects and market participants with their volumes or contact details for commercial and origination staff.",
-      "include": [
-        "Requests for lists of the largest customers",
-        "Master customer lists built from team members' lists",
-        "Customer and prospect information sent to originators",
-        "Customers and contract volumes compiled for an agreement"
-      ],
-      "exclude": [
-        "Contact list updates: reference-data-update"
-      ],
-      "aliases": [
-        "new:customer-list-building",
-        "new:customer-list-request",
-        "new:customer-list-sharing",
-        "new:ena-hpl-sales-customer-research",
-        "new:market-list-compilation",
-        "new:origination-customer-leads"
-      ],
-      "messages": 11,
+      "messages": 9,
       "occurrences": 8,
       "threads": 8,
-      "active_months": 6
+      "active_months": 8
     },
     {
-      "key": "customer-price-quotes",
-      "name": "Customer price quotes",
-      "definition": "Getting trader quotes or bids for a customer's requested gas volumes, hedges, swaps or fixed forward purchases, and following up with the customer.",
-      "include": [
-        "Customer hedge volumes and swap quotes",
-        "Requests for bids on packages of gas",
-        "Fixed forward purchase quotes",
-        "Swap profile spreadsheets reviewed with the customer"
+      "key": "customer-origination-outreach",
+      "name": "Customer origination outreach",
+      "definition": "Following up customer leads, preparing customer and opportunity meetings, gathering market data for customers and pitching new products and term deals.",
+      "include": [],
+      "exclude": [],
+      "aliases": [
+        "new:customer-opportunity-meeting-planning",
+        "new:customer-supply-outreach",
+        "new:derivatives-business-development-outreach",
+        "new:market-data-request",
+        "new:market-fundamentals-analysis",
+        "new:origination-customer-leads",
+        "new:real-time-customer-retention",
+        "new:term-deal-opportunity-pitch"
       ],
-      "exclude": [
-        "Confirmations of agreed trades: deal-confirmation-handling"
-      ],
+      "messages": 10,
+      "occurrences": 9,
+      "threads": 9,
+      "active_months": 4
+    },
+    {
+      "key": "customer-quote-requests",
+      "name": "Customer price quote requests",
+      "definition": "Getting trader bids and quotes for customers' fixed forward, hedge and firm gas requests and handling close-outs of forward contracts.",
+      "include": [],
+      "exclude": [],
       "aliases": [
         "new:firm-gas-bid-request",
         "new:fixed-forward-gas-quote",
-        "new:hedge-quote-request",
-        "new:swap-profile-review"
+        "new:forward-contract-closeout",
+        "new:hedge-quote-request"
       ],
-      "messages": 7,
-      "occurrences": 5,
+      "messages": 6,
+      "occurrences": 4,
       "threads": 4,
-      "active_months": 4
+      "active_months": 3
     },
     {
-      "key": "daily-model-distribution",
-      "name": "Daily service model delivery",
-      "definition": "Completing, reconciling and sending the daily real-time deal models, sheets and hourly data files for service customers such as EES and El Paso Electric, and keeping the recipient lists right.",
-      "include": [
-        "Daily model or sheet files sent with the date",
-        "Reconciliation sheets checked against desk reports",
-        "Hourly data files in the daily send-out"
-      ],
-      "exclude": [
-        "Hourly schedule corrections: realtime-schedule-checkout",
-        "Daily P&L: pnl-position-reporting"
-      ],
+      "key": "daily-file-distribution",
+      "name": "Daily model and report distribution",
+      "definition": "Sending the daily models, reconciliation sheets, hourly data files and market price reports to settlement, external and desk contacts and keeping recipient lists correct.",
+      "include": [],
+      "exclude": [],
       "aliases": [
+        "new:distribution-list-update",
         "new:ees-daily-sheet-distribution",
         "new:ees-model-distribution",
         "new:ees-spreadsheet-distribution",
+        "new:energy-market-report-distribution",
         "new:epe-model-delivery",
         "new:epe-reconciliation-sheet",
+        "new:gas-daily-price-distribution",
         "new:hourly-data-mailout"
       ],
-      "messages": 11,
-      "occurrences": 10,
-      "threads": 10,
-      "active_months": 4
+      "messages": 17,
+      "occurrences": 16,
+      "threads": 16,
+      "active_months": 5
     },
     {
-      "key": "deal-booking-standards",
-      "name": "Deal booking rules and questions",
-      "definition": "Setting, explaining and enforcing how deals are entered, booked, linked and changed in the deal capture systems, and answering questions on how a specific deal should be booked.",
-      "include": [
-        "Deal entry instructions for a desk, book or deal type",
-        "Reminders of booking, linking and tagging rules",
-        "Controls on changing online or system-entered deals",
-        "Questions on whether a deal is booked correctly",
-        "Revised deal templates for book administrators",
-        "Reconciling entered deals against broker records"
-      ],
-      "exclude": [
-        "Fixing or zeroing a specific deal record: deal-record-correction",
-        "Moving deals between books: deal-book-transfer",
-        "New books or products: trading-book-setup"
-      ],
-      "aliases": [
-        "new:deal-booking-classification",
-        "new:deal-booking-procedure-reminder",
-        "new:deal-booking-query",
-        "new:deal-change-documentation",
-        "new:deal-entry-procedure",
-        "new:deal-entry-reconciliation",
-        "new:desk-procedure-reminders",
-        "new:enpower-deal-entry-guidance",
-        "new:enpower-deal-entry-procedure",
-        "new:eol-deal-change-controls",
-        "new:epmicalpool-deal-entry-rules",
-        "new:gas-daily-deal-booking-standard",
-        "new:hourly-gas-deal-capture-review",
-        "new:nss-deal-valuation-review",
-        "new:park-and-ride-accounting-question",
-        "new:parking-deal-procedure",
-        "new:physical-template-revision",
-        "new:storage-deal-booking",
-        "new:trading-control-policy-notice",
-        "new:trunkline-deal-booking"
-      ],
-      "messages": 29,
-      "occurrences": 26,
-      "threads": 26,
-      "active_months": 12
-    },
-    {
-      "key": "deal-confirmation-handling",
-      "name": "Deal confirmation handling",
-      "definition": "Sending, requesting and chasing written confirmations of gas purchases and sales between the desk, counterparties and the groups that record them.",
-      "include": [
-        "Executed gas sales confirmations sent on",
-        "Counterparties asking for confirmation copies",
-        "Chasing a missing purchase confirmation"
-      ],
-      "exclude": [
-        "Settlement disputes: counterparty-settlement-review",
-        "Cross-system deal links: deal-lookup-linking"
-      ],
+      "key": "deal-confirmation",
+      "name": "Deal confirmation",
+      "definition": "Sending, requesting and chasing written confirmations of gas sales and purchases with counterparties and internal groups.",
+      "include": [],
+      "exclude": [],
       "aliases": [
         "new:deal-confirmation-sending",
         "new:forward-purchase-confirmation",
@@ -3464,57 +3314,15 @@
       "active_months": 4
     },
     {
-      "key": "deal-lookup-linking",
-      "name": "Deal lookup and cross-system linking",
-      "definition": "Finding deal ticket numbers and existing deals across Sitara, Tagg, EOL and other systems on request, and linking deal numbers so each system references the others.",
-      "include": [
-        "Requests for the ticket or Sitara number of a deal",
-        "Queries for existing deals with a counterparty",
-        "Cross-references between deal numbers in two systems",
-        "Checks that new deals are linked between systems"
-      ],
-      "exclude": [
-        "Correcting or killing a deal record: deal-record-correction",
-        "Rules for how deals are booked: deal-booking-standards"
-      ],
-      "aliases": [
-        "new:counterparty-deal-lookup",
-        "new:deal-confirmation-tagg-sitara",
-        "new:deal-id-crossreference-lookup",
-        "new:deal-system-linking",
-        "new:deal-ticket-lookup",
-        "new:deal-ticket-number-lookup",
-        "new:production-counterparty-name-lookup",
-        "new:tagg-number-lookup"
-      ],
-      "messages": 10,
-      "occurrences": 9,
-      "threads": 9,
-      "active_months": 5
-    },
-    {
-      "key": "deal-pathing-setup",
-      "name": "Deal entry and pathing for scheduling",
-      "definition": "Entering gas deals and pathing them in the scheduling system each month: buybacks, swings, storage and transport paths and customer finals, so volumes schedule, actualize and balance.",
-      "include": [
-        "Monthly buyback and swing set-up for industrial customers",
-        "Requests to path deals at a meter, interconnect or storage point",
-        "Storage sale deals entered, pathed and balanced",
-        "Customer final schedules created for volume management",
-        "Reviews of monthly set-up and links in the scheduling system"
-      ],
-      "exclude": [
-        "Nominations from customers and suppliers: gas-nomination-handling",
-        "Flow with no deal or contract: meter-flow-deal-coverage",
-        "Deal booking rules: deal-booking-standards"
-      ],
+      "key": "deal-entry-pathing",
+      "name": "Deal entry and pathing",
+      "definition": "Entering requested purchase, sale, storage and buyback deals in the scheduling system and pathing them against transport and market deals so volumes balance.",
+      "include": [],
+      "exclude": [],
       "aliases": [
         "new:buyback-pathing",
-        "new:customer-finals-creation",
         "new:deal-pathing-interconnect",
         "new:industrial-monthly-setup",
-        "new:industrial-report-update",
-        "new:king-ranch-restructure-scheduling",
         "new:monthly-setup-review",
         "new:purchase-deal-entry-and-payment",
         "new:sitara-deal-entry-request",
@@ -3522,113 +3330,150 @@
         "new:storage-sale-deal-pathing",
         "new:storage-transport-pathing-setup"
       ],
-      "messages": 25,
-      "occurrences": 16,
-      "threads": 15,
-      "active_months": 9
+      "messages": 20,
+      "occurrences": 11,
+      "threads": 11,
+      "active_months": 8
     },
     {
-      "key": "desk-equipment-requests",
-      "name": "Desk equipment and telecom set-up",
-      "definition": "Ordering, installing and tracking desk equipment for traders and staff: turrets, phones, headsets, PCs and mobile phones, including order status, receipt confirmation and phone plan costs.",
-      "include": [
-        "Turret, handset and phone line set-up or moves",
-        "PC orders, installs and status notices",
-        "Headset and phone orders through the office assistant",
-        "Cell phone plans, limits and bills",
-        "Confirming ordered hardware was received so invoices can clear"
+      "key": "deal-entry-standards",
+      "name": "Deal entry standards and booking guidance",
+      "definition": "Setting, reminding staff of and answering questions about the rules for how deals are entered, linked, classified and changed in the deal systems.",
+      "include": [],
+      "exclude": [],
+      "aliases": [
+        "new:deal-booking-classification",
+        "new:deal-booking-procedure-reminder",
+        "new:deal-booking-query",
+        "new:deal-change-documentation",
+        "new:deal-confirmation-tagg-sitara",
+        "new:deal-entry-procedure",
+        "new:deal-entry-reconciliation",
+        "new:deal-system-linking",
+        "new:desk-procedure-reminders",
+        "new:enpower-deal-entry-guidance",
+        "new:enpower-deal-entry-procedure",
+        "new:eol-deal-change-controls",
+        "new:epmicalpool-deal-entry-rules",
+        "new:gas-daily-deal-booking-standard",
+        "new:park-and-ride-accounting-question",
+        "new:parking-deal-procedure",
+        "new:physical-template-revision",
+        "new:storage-deal-booking",
+        "new:trading-control-policy-notice",
+        "new:trunkline-deal-booking"
       ],
-      "exclude": [
-        "System accounts and access: user-access-setup",
-        "Moving staff to a new floor or building: office-move-coordination"
+      "messages": 30,
+      "occurrences": 27,
+      "threads": 27,
+      "active_months": 12
+    },
+    {
+      "key": "deal-ticket-lookup",
+      "name": "Deal ticket lookup",
+      "definition": "Finding deal, ticket or TAGG numbers and counterparty names across the deal systems for colleagues who ask for them.",
+      "include": [],
+      "exclude": [],
+      "aliases": [
+        "new:counterparty-deal-lookup",
+        "new:deal-id-crossreference-lookup",
+        "new:deal-ticket-lookup",
+        "new:deal-ticket-number-lookup",
+        "new:production-counterparty-name-lookup",
+        "new:tagg-number-lookup"
       ],
+      "messages": 7,
+      "occurrences": 6,
+      "threads": 6,
+      "active_months": 5
+    },
+    {
+      "key": "desk-equipment-setup",
+      "name": "Desk equipment and phone set-up",
+      "definition": "Ordering, installing and tracking desk PCs, turrets, phones, headsets and mobile phone plans, and confirming receipt of ordered equipment.",
+      "include": [],
+      "exclude": [],
       "aliases": [
         "new:cell-phone-billing",
         "new:desk-equipment-request",
         "new:desk-telecom-setup",
         "new:desk-telephone-equipment",
         "new:desk-turret-setup",
-        "new:machine-inventory-survey",
         "new:office-equipment-ordering",
         "new:office-equipment-orders",
         "new:pc-install-request",
-        "new:purchase-receipt-confirmation"
+        "new:purchase-receipt-confirmation",
+        "new:software-media-return-request"
       ],
-      "messages": 22,
+      "messages": 23,
       "occurrences": 19,
       "threads": 19,
       "active_months": 7
     },
     {
-      "key": "divestiture-transition",
-      "name": "Business sale transition",
-      "definition": "Coordinating the hand-over of a business sold to a new owner: transition issue lists, deal and customer lists for the buyer, data, file and system migration, and moving staff with orientation and paperwork.",
-      "include": [
-        "Transition issue lists and procedures for a pipeline or trading business hand-over",
-        "Deal or customer lists prepared for the buyer",
-        "Data, spreadsheet and system migration notices and fixes",
-        "Orientation sessions, access cards and new-employer paperwork for moving staff"
-      ],
-      "exclude": [
-        "Moving deals to bankruptcy books: deal-book-transfer",
-        "Ordinary new-employee account set-up: user-access-setup"
-      ],
+      "key": "desk-responsibility-assignment",
+      "name": "Desk responsibility assignment",
+      "definition": "Assigning and announcing which scheduler, trader or analyst handles which pipelines, meters, books and counterparties, and handing work over when duties change.",
+      "include": [],
+      "exclude": [],
       "aliases": [
-        "new:aep-hpl-transition-coordination",
-        "new:aep-transition-planning",
-        "new:hpl-sale-deal-lists",
-        "new:hpl-transition-planning",
-        "new:netco-customer-assignment-meeting",
-        "new:netco-data-migration-policy",
-        "new:netco-estate-split-transition",
-        "new:netco-spreadsheet-migration-fixes",
-        "new:netco-transition-planning",
-        "new:netco-ubs-migration-coordination",
-        "new:ubs-transition-coordination",
-        "new:ubs-transition-onboarding",
-        "new:ubsw-data-migration",
-        "new:ubsw-onboarding-admin",
-        "new:ubsw-transition-logistics"
+        "new:desk-cross-training",
+        "new:desk-pnl-responsibility-assignment",
+        "new:desk-responsibility-assignment",
+        "new:desk-staffing-role-change",
+        "new:global-data-management-routing",
+        "new:logistics-work-assignment",
+        "new:meter-assignment-notice",
+        "new:off-system-rate-transition",
+        "new:off-system-scheduling-rotation",
+        "new:risk-responsibility-assignment",
+        "new:work-distribution-assignment"
       ],
-      "messages": 42,
-      "occurrences": 37,
-      "threads": 34,
-      "active_months": 6
+      "messages": 22,
+      "occurrences": 16,
+      "threads": 15,
+      "active_months": 10
+    },
+    {
+      "key": "employee-hr-changes",
+      "name": "Employee record and payroll changes",
+      "definition": "Asking HR to change employee records, supervisors, operating companies, payroll deductions and separation entitlements, and handling departures.",
+      "include": [],
+      "exclude": [],
+      "aliases": [
+        "new:employee-departure-offboarding",
+        "new:employee-supervisor-change",
+        "new:operating-company-change",
+        "new:payroll-deduction-change",
+        "new:separation-pay-inquiry"
+      ],
+      "messages": 7,
+      "occurrences": 6,
+      "threads": 6,
+      "active_months": 4
     },
     {
       "key": "internal-annuity-booking",
-      "name": "Internal annuity deal booking",
-      "definition": "Entering, revising and explaining internal annuity deals that move revenue or profit shares between trading books for a specific transaction.",
-      "include": [
-        "Requests to enter or revise an annuity between books",
-        "Explanations of profit-share annuities for a deal"
-      ],
-      "exclude": [
-        "Origination credit: origination-credit-booking",
-        "Moving trades between books: deal-book-transfer"
-      ],
+      "name": "Internal annuity booking",
+      "definition": "Explaining, entering and revising internal annuity deals that move revenue between books, and reviewing prior month adjustments before month-end P&L.",
+      "include": [],
+      "exclude": [],
       "aliases": [
         "new:annuity-deal-revision",
-        "new:internal-profit-share-annuities"
+        "new:internal-profit-share-annuities",
+        "new:prior-month-adjustment-review"
       ],
-      "messages": 5,
-      "occurrences": 4,
-      "threads": 4,
-      "active_months": 2
+      "messages": 8,
+      "occurrences": 6,
+      "threads": 6,
+      "active_months": 3
     },
     {
-      "key": "iso-adjustment-bidding",
-      "name": "ISO adjustment and dec bidding",
-      "definition": "Setting up and running decremental and adjustment bids in the ISO markets for the desk and on behalf of generators, and instructing the real-time group how to enter and tier them.",
-      "include": [
-        "Dec bidding strategy and settlement",
-        "Instructions on tiered adjustment bids",
-        "Generator buy-back or dec bid actions"
-      ],
-      "exclude": [
-        "Hourly schedule checkout: realtime-schedule-checkout",
-        "ISO rule proposals: market-rule-change-review"
-      ],
+      "key": "iso-bid-strategy",
+      "name": "ISO adjustment and decremental bidding",
+      "definition": "Setting up, explaining and running decremental and tiered adjustment bids in the ISO markets, including on behalf of generators.",
+      "include": [],
+      "exclude": [],
       "aliases": [
         "new:adjustment-bid-tiering",
         "new:decremental-bidding",
@@ -3640,18 +3485,28 @@
       "active_months": 3
     },
     {
+      "key": "ledger-review-writeoffs",
+      "name": "Ledger review and write-offs",
+      "definition": "Reviewing preliminary ledgers and inventory schedules and researching and processing volume and general ledger write-offs.",
+      "include": [],
+      "exclude": [],
+      "aliases": [
+        "new:gl-writeoff-resolution",
+        "new:physical-storage-inventory-schedules",
+        "new:preliminary-ledger-review",
+        "new:volume-write-off-processing"
+      ],
+      "messages": 6,
+      "occurrences": 4,
+      "threads": 4,
+      "active_months": 4
+    },
+    {
       "key": "liquidation-support",
       "name": "Liquidation support",
-      "definition": "Supplying the supporting detail, deal lists and volume files behind monthly liquidation values requested by risk or accounting, and saving them to the shared directory.",
-      "include": [
-        "Support for liquidation flash values",
-        "Volumes files for monthly liquidations",
-        "Deal detail requested for liquidation support"
-      ],
-      "exclude": [
-        "Daily P&L reports: pnl-position-reporting",
-        "Auditor requests: audit-support-requests"
-      ],
+      "definition": "Supplying the supporting detail and volume files behind monthly liquidation values to risk and accounting contacts.",
+      "include": [],
+      "exclude": [],
       "aliases": [
         "new:liquidation-flash-support",
         "new:liquidation-support-request",
@@ -3663,51 +3518,13 @@
       "active_months": 2
     },
     {
-      "key": "market-information-distribution",
-      "name": "Market price and analysis distribution",
-      "definition": "Passing daily market reports, published price data, index prices and market analysis to traders, originators and customers, on schedule or on request.",
-      "include": [
-        "Daily energy market reports forwarded to traders",
-        "Published gas price data sent to the desk",
-        "Monthly index prices supplied on request",
-        "Load, supply and market analysis passed on"
-      ],
-      "exclude": [
-        "Evaluating a price index: price-index-evaluation",
-        "Weekly pipeline reports: weekly-commercial-reporting"
-      ],
-      "aliases": [
-        "new:energy-market-report-distribution",
-        "new:ercot-load-analysis",
-        "new:gas-daily-price-distribution",
-        "new:index-price-request",
-        "new:market-data-request",
-        "new:market-fundamentals-analysis",
-        "new:market-intelligence-briefing"
-      ],
-      "messages": 9,
-      "occurrences": 8,
-      "threads": 8,
-      "active_months": 7
-    },
-    {
       "key": "meeting-scheduling",
-      "name": "Meeting and conference call scheduling",
-      "definition": "Arranging internal and customer meetings and conference calls: inviting attendees, collecting attendance replies, booking rooms and catering, setting agendas and dial-in details, and scheduling off-sites.",
-      "include": [
-        "Management lunches, staff meetings and team off-sites",
-        "Attendance replies for group or trader meetings",
-        "Meeting room and catering reservations",
-        "Conference calls with a customer, with agenda and dial-in"
-      ],
-      "exclude": [
-        "Strategy meetings for the commercial plan: commercial-strategy-planning",
-        "Review meetings in the PRC cycle: performance-review",
-        "Customer appreciation events and trips: customer-event-planning"
-      ],
+      "name": "Meeting scheduling",
+      "definition": "Scheduling management, team and customer meetings, calls and off-sites, booking rooms and collecting attendance replies.",
+      "include": [],
+      "exclude": [],
       "aliases": [
         "new:customer-conference-call-scheduling",
-        "new:customer-opportunity-meeting-planning",
         "new:management-meeting-scheduling",
         "new:meeting-attendance-coordination",
         "new:meeting-room-booking",
@@ -3716,29 +3533,38 @@
         "new:team-offsite-follow-up",
         "new:team-offsite-scheduling"
       ],
-      "messages": 17,
-      "occurrences": 15,
-      "threads": 15,
-      "active_months": 6
+      "messages": 16,
+      "occurrences": 14,
+      "threads": 14,
+      "active_months": 5
+    },
+    {
+      "key": "meter-allocation-correction",
+      "name": "Meter allocation set-up and correction",
+      "definition": "Setting and correcting how a meter's monthly volumes are allocated among deals, contracts and parties, including rankings, percentages and volume overrides.",
+      "include": [],
+      "exclude": [],
+      "aliases": [
+        "new:allocation-actualization-payment-setup",
+        "new:allocation-method-change",
+        "new:allocation-percentage-review",
+        "new:allocation-ranking-check",
+        "new:meter-contract-allocation-fix",
+        "new:pops-meter-volume-override"
+      ],
+      "messages": 14,
+      "occurrences": 9,
+      "threads": 9,
+      "active_months": 5
     },
     {
       "key": "meter-facility-setup",
-      "name": "Meter and facility set-up",
-      "definition": "Setting up and maintaining meter, point and facility records in the facilities and scheduling systems: new meters and points, replacement changeovers, zone mapping, measurement and estimate files, and data checks.",
-      "include": [
-        "Notices that a new meter or point was created",
-        "Changeover from an old meter to its replacement",
-        "Meter set-up changes such as rate zone or pipe code",
-        "Zone or point re-mapping requests",
-        "State and county verification for meters"
-      ],
-      "exclude": [
-        "Flow with no deal or contract: meter-flow-deal-coverage",
-        "Counterparty identifiers and contacts: reference-data-update"
-      ],
+      "name": "Meter and point facility set-up",
+      "definition": "Creating, changing and verifying meter and point records in the facilities and scheduling systems, including replacements, zones and estimate files.",
+      "include": [],
+      "exclude": [],
       "aliases": [
         "new:hpl-zone-remap-request",
-        "new:meter-assignment-notice",
         "new:meter-estimate-file-update",
         "new:meter-measurement-removal-request",
         "new:meter-replacement-changeover",
@@ -3747,24 +3573,34 @@
         "new:meter-state-county-verification",
         "new:transwestern-point-setup"
       ],
-      "messages": 12,
-      "occurrences": 9,
-      "threads": 9,
-      "active_months": 7
+      "messages": 10,
+      "occurrences": 8,
+      "threads": 8,
+      "active_months": 6
+    },
+    {
+      "key": "monthly-deal-spreadsheet",
+      "name": "Monthly deal spreadsheet update",
+      "definition": "Updating and circulating the monthly spreadsheets and industrial reports of deals and splits for the desk.",
+      "include": [],
+      "exclude": [],
+      "aliases": [
+        "new:industrial-report-update",
+        "new:monthly-deal-spreadsheet-handoff",
+        "new:monthly-deal-spreadsheet-update",
+        "new:shared-spreadsheet-distribution"
+      ],
+      "messages": 4,
+      "occurrences": 4,
+      "threads": 4,
+      "active_months": 4
     },
     {
       "key": "office-move-coordination",
       "name": "Office move coordination",
-      "definition": "Coordinating staff relocations to a new floor or building: move schedules and labelling with facilities, packing and clean-up instructions, and clearing items left in vacated desks.",
-      "include": [
-        "Move dates, times and labelling instructions",
-        "Packing and clean-up reminders before a move",
-        "Requests to clear items left in unoccupied desks"
-      ],
-      "exclude": [
-        "Backup seats for an emergency: contingency-planning",
-        "Phones and turrets at the new desk: desk-equipment-requests"
-      ],
+      "definition": "Scheduling staff office moves, passing on packing and labelling instructions and clearing out vacated desks.",
+      "include": [],
+      "exclude": [],
       "aliases": [
         "new:office-desk-cleanout",
         "new:office-move-coordination",
@@ -3779,17 +3615,9 @@
     {
       "key": "origination-credit-booking",
       "name": "Origination credit booking",
-      "definition": "Granting origination credit for deals to the right books and groups, checking that claimed amounts were granted, reconciling recognized amounts between books, and keeping the origination schedule and report accurate.",
-      "include": [
-        "Requests to grant origination for a deal and month",
-        "Corrections to how origination is coded to books",
-        "Checks of claimed origination against tickets",
-        "Origination schedule or daily report corrections"
-      ],
-      "exclude": [
-        "Daily P&L reports: pnl-position-reporting",
-        "Internal annuity deals between books: internal-annuity-booking"
-      ],
+      "definition": "Granting, checking and correcting origination credit on deals and books, and keeping the origination schedule and daily origination report accurate.",
+      "include": [],
+      "exclude": [],
       "aliases": [
         "new:book-recognition-reconciliation",
         "new:origination-booking-correction",
@@ -3804,41 +3632,58 @@
       "active_months": 5
     },
     {
-      "key": "pnl-reserve-tracking",
-      "name": "P&L reserve tracking",
-      "definition": "Requesting, allocating and announcing reserves held against desk P&L: amounts put on or released from Schedule C and credit reserves taken on counterparty deals.",
-      "include": [
-        "Notices that amounts went on or came off Schedule C",
-        "Requests for a credit reserve on a transaction",
-        "Corrections to credit reserves charged to a desk"
-      ],
-      "exclude": [
-        "Credit exposure reports: credit-exposure-reporting",
-        "Daily P&L files: pnl-position-reporting"
-      ],
+      "key": "ownership-transition-handover",
+      "name": "Ownership transition handover",
+      "definition": "Planning and carrying out the handover of a business or pipeline to a new owner: issue lists, deal lists, data and system migration, staff onboarding and liquidation steps.",
+      "include": [],
+      "exclude": [],
       "aliases": [
-        "new:credit-reserve-allocation",
-        "new:credit-reserve-request",
-        "new:schedule-c-funding-notice",
-        "new:schedule-c-release-notice"
+        "new:aep-hpl-transition-coordination",
+        "new:aep-transition-planning",
+        "new:emw-liquidation",
+        "new:hpl-sale-deal-lists",
+        "new:hpl-transition-planning",
+        "new:netco-customer-assignment-meeting",
+        "new:netco-data-migration-policy",
+        "new:netco-estate-split-transition",
+        "new:netco-spreadsheet-migration-fixes",
+        "new:netco-transition-planning",
+        "new:netco-ubs-migration-coordination",
+        "new:ubs-transition-coordination",
+        "new:ubs-transition-onboarding",
+        "new:ubsw-data-migration",
+        "new:ubsw-onboarding-admin",
+        "new:ubsw-transition-logistics"
       ],
-      "messages": 8,
-      "occurrences": 7,
-      "threads": 4,
+      "messages": 45,
+      "occurrences": 38,
+      "threads": 35,
+      "active_months": 6
+    },
+    {
+      "key": "power-project-contract-admin",
+      "name": "Power project contract administration",
+      "definition": "Handling a power plant project's agreement notices, change orders, equipment delivery schedules, subcontractor terms and status questions.",
+      "include": [],
+      "exclude": [],
+      "aliases": [
+        "new:engineering-subcontractor-payment-terms",
+        "new:longview-agreement-notice",
+        "new:longview-change-order-approval",
+        "new:longview-equipment-delivery-schedule",
+        "new:longview-project-inquiry"
+      ],
+      "messages": 11,
+      "occurrences": 8,
+      "threads": 8,
       "active_months": 4
     },
     {
       "key": "price-index-evaluation",
       "name": "Price index evaluation",
-      "definition": "Reviewing published or proposed power price indexes, their definitions, methodology and submission templates, and deciding whether and how to take part.",
-      "include": [
-        "Hourly or hour-ahead index templates",
-        "Comments on index definitions before launch"
-      ],
-      "exclude": [
-        "Distributing daily market prices: market-information-distribution",
-        "Curve files: curve-postid-mapping"
-      ],
+      "definition": "Evaluating third-party hourly and real-time power price indexes, their definitions and templates, and deciding on participation.",
+      "include": [],
+      "exclude": [],
       "aliases": [
         "new:hourly-index-evaluation",
         "new:index-methodology-review",
@@ -3850,75 +3695,44 @@
       "active_months": 2
     },
     {
-      "key": "process-documentation",
-      "name": "Process and controls documentation",
-      "definition": "Writing and reviewing documents that describe how a group works: controls and standards lists, activity definitions, transaction flow documents and process write-ups, circulated for comments.",
-      "include": [
-        "Controls and standards lists per group",
-        "Activity definitions for a team",
-        "Draft process or transaction flow documents with reviewer edits"
-      ],
-      "exclude": [
-        "Deal entry rules: deal-booking-standards",
-        "Real-time desk procedures: realtime-desk-procedures"
-      ],
-      "aliases": [
-        "new:controls-standards-assessment",
-        "new:hub-destruction-draft-review",
-        "new:opm-activity-review",
-        "new:process-write-up-review",
-        "new:transaction-flow-document-review"
-      ],
-      "messages": 5,
-      "occurrences": 5,
-      "threads": 5,
-      "active_months": 5
-    },
-    {
-      "key": "realtime-desk-procedures",
-      "name": "Real-time desk procedures and briefings",
-      "definition": "Real-time desk leads circulating procedures, transmission paths and prices, data sources, record-keeping rules and market guidance so the group runs the desk the same way.",
-      "include": [
-        "Transmission paths, OASIS sites and wheeling procedures",
-        "New transmission prices and losses treatment",
-        "Changes to where desk data is collected",
-        "Record keeping and outage reporting procedures",
-        "Briefings on market changes and counterparty handling"
-      ],
-      "exclude": [
-        "Hourly schedule fixes: realtime-schedule-checkout",
-        "Deal entry rules: deal-booking-standards"
-      ],
+      "key": "realtime-desk-briefing",
+      "name": "Real-time desk briefing",
+      "definition": "Briefing the real-time desk on transmission paths and prices, outage reporting, market changes and handling rules, and updating its information packet.",
+      "include": [],
+      "exclude": [],
       "aliases": [
         "new:bpa-transmission-pricing-update",
-        "new:desk-record-keeping",
-        "new:el-paso-data-scrape-update",
-        "new:el-paso-scrape-data",
         "new:realtime-desk-guidance",
         "new:rt-information-packet",
         "new:transmission-info-sharing",
         "new:unit-outage-iso-notification"
       ],
-      "messages": 15,
-      "occurrences": 15,
-      "threads": 13,
-      "active_months": 4
+      "messages": 11,
+      "occurrences": 11,
+      "threads": 9,
+      "active_months": 3
+    },
+    {
+      "key": "schedule-c-notice",
+      "name": "Schedule C notices",
+      "definition": "Telling risk contacts when amounts are put on, removed from or released from Schedule C.",
+      "include": [],
+      "exclude": [],
+      "aliases": [
+        "new:schedule-c-funding-notice",
+        "new:schedule-c-release-notice"
+      ],
+      "messages": 6,
+      "occurrences": 5,
+      "threads": 2,
+      "active_months": 3
     },
     {
       "key": "staff-recruiting",
-      "name": "Recruiting and analyst staffing",
-      "definition": "Filling open positions and placing rotating analysts and associates: needs assessments, requisitions and job postings, candidate resumes and referrals, interview scheduling and feedback to HR.",
-      "include": [
-        "Analyst and associate needs assessments and placement requests",
-        "Staff requisitions and headcount approval for vacancies",
-        "Job postings and internal openings with suggested candidates",
-        "Interview scheduling, interviewer availability and feedback on candidates",
-        "Recommendation letters or endorsements for analyst program candidates"
-      ],
-      "exclude": [
-        "Year-end and mid-year reviews: performance-review",
-        "Training classes for current staff: staff-training-coordination"
-      ],
+      "name": "Staff and analyst recruiting",
+      "definition": "Requesting and approving headcount, placing rotating analysts, posting openings, referring candidates and scheduling interviews and feedback with HR.",
+      "include": [],
+      "exclude": [],
       "aliases": [
         "new:analyst-associate-staffing-needs",
         "new:analyst-hiring-needs",
@@ -3951,20 +3765,11 @@
     {
       "key": "staff-training-coordination",
       "name": "Staff training coordination",
-      "definition": "Arranging training for staff: scheduling internal classes and system training sessions, choosing topics, enrolling people in courses and approving their attendance or registration.",
-      "include": [
-        "Internal classes on P&L, risk or systems procedures",
-        "System training sessions such as a new scheduling or accounting system",
-        "Course registration and approval requests",
-        "Cross-training and desk sit-ins"
-      ],
-      "exclude": [
-        "Interviewing job candidates: staff-recruiting",
-        "Written desk procedures and briefings: realtime-desk-procedures"
-      ],
+      "definition": "Arranging training classes, system sessions and presentations for desk staff, choosing topics, enrolling attendees and approving course registrations.",
+      "include": [],
+      "exclude": [],
       "aliases": [
         "new:cas-training-scheduling",
-        "new:desk-cross-training",
         "new:desk-training-presentation",
         "new:hpl-system-training",
         "new:ops-training-session-scheduling",
@@ -3979,23 +3784,35 @@
         "new:training-program-feedback",
         "new:training-program-signup"
       ],
-      "messages": 22,
-      "occurrences": 19,
-      "threads": 18,
+      "messages": 21,
+      "occurrences": 18,
+      "threads": 17,
       "active_months": 12
+    },
+    {
+      "key": "supply-change-notice",
+      "name": "Supply change notices",
+      "definition": "Telling logistics about changes to gas supply: new wells, continued deals, plant processing elections and where a producer's gas should flow.",
+      "include": [],
+      "exclude": [],
+      "aliases": [
+        "new:ethane-election-notice",
+        "new:new-supply-start-notice",
+        "new:plant-processing-election",
+        "new:producer-gas-rerouting",
+        "new:supply-deal-continuation-notice"
+      ],
+      "messages": 7,
+      "occurrences": 5,
+      "threads": 5,
+      "active_months": 2
     },
     {
       "key": "time-off-approval",
       "name": "Time off approval",
-      "definition": "Employees requesting vacation or days off, managers approving or negotiating the dates, and confirming the management vacation calendar.",
-      "include": [
-        "Vacation or day-off requests and approvals",
-        "Revisions to the management vacation calendar"
-      ],
-      "exclude": [
-        "Holiday entries on time reports: time-activity-reporting",
-        "Holiday desk coverage: desk-coverage-on-call"
-      ],
+      "definition": "Employees requesting vacation or days off and managers approving dates and updating the vacation calendar.",
+      "include": [],
+      "exclude": [],
       "aliases": [
         "new:time-off-approval",
         "new:vacation-calendar-confirmation"
@@ -4006,74 +3823,51 @@
       "active_months": 2
     },
     {
-      "key": "transport-rate-ticket-entry",
-      "name": "Transport rate and charge ticket entry",
-      "definition": "Entering and updating monthly transport usage tickets, service rates and demand charges on deals, and correcting missing or wrong rates that cause prior month adjustments.",
-      "include": [
-        "Monthly transport usage tickets with rates and volumes",
-        "Missing service or expense contract rates before close",
-        "Demand charges entered on the matching deal",
-        "Deals updated for finalized transport invoices",
-        "Questions whether a transport rate carries to a replacement contract"
+      "key": "trade-tape-retrieval",
+      "name": "Trade tape retrieval",
+      "definition": "Arranging for recorded trader calls to be pulled to verify a trade or resolve a dispute with a counterparty.",
+      "include": [],
+      "exclude": [],
+      "aliases": [
+        "new:power-trade-dispute-tape-pull",
+        "new:trade-tape-retrieval"
       ],
-      "exclude": [
-        "Contract amendments and extensions: contract-administration",
-        "Disputed invoice amounts: counterparty-settlement-review"
-      ],
+      "messages": 3,
+      "occurrences": 3,
+      "threads": 3,
+      "active_months": 2
+    },
+    {
+      "key": "transport-rate-ticket-maintenance",
+      "name": "Transport rate and usage ticket maintenance",
+      "definition": "Entering and updating monthly transport usage tickets, service rates, demand charges and finalized invoice amounts on deals, and correcting wrong rates.",
+      "include": [],
+      "exclude": [],
       "aliases": [
         "new:demand-charge-deal-entry",
         "new:missing-service-rates-entry",
+        "new:sitara-rate-change-request",
         "new:transport-contract-rate-check",
         "new:transport-invoice-sitara-update",
         "new:transport-rate-verification",
         "new:transport-usage-ticket-setup",
         "new:transport-usage-ticket-update"
       ],
-      "messages": 9,
-      "occurrences": 8,
-      "threads": 8,
-      "active_months": 6
-    },
-    {
-      "key": "work-responsibility-assignment",
-      "name": "Work responsibility assignment",
-      "definition": "Assigning and announcing who handles which pipelines, meters, counterparties, books or regions, and handing work over when people change roles.",
-      "include": [
-        "Announcements of who covers which pipelines or accounts",
-        "Risk book or P&L responsibility by region",
-        "Handover of a task to another person or group",
-        "Rotations onto a new scheduling area"
-      ],
-      "exclude": [
-        "Shift and on-call coverage: desk-coverage-on-call",
-        "Hiring for open roles: staff-recruiting"
-      ],
-      "aliases": [
-        "new:desk-pnl-responsibility-assignment",
-        "new:desk-responsibility-assignment",
-        "new:desk-staffing-role-change",
-        "new:global-data-management-routing",
-        "new:logistics-work-assignment",
-        "new:off-system-rate-transition",
-        "new:off-system-scheduling-rotation",
-        "new:risk-responsibility-assignment",
-        "new:work-distribution-assignment"
-      ],
-      "messages": 19,
-      "occurrences": 14,
-      "threads": 13,
-      "active_months": 9
+      "messages": 10,
+      "occurrences": 9,
+      "threads": 9,
+      "active_months": 7
     }
   ],
   "counts": {
     "slugs": 381,
-    "mapped": 41,
-    "promoted": 35,
-    "aliases": 270,
-    "unassigned": 70,
+    "mapped": 36,
+    "promoted": 40,
+    "aliases": 278,
+    "unassigned": 67,
     "demoted": 0,
-    "messages_mapped": 76,
-    "messages_promoted": 478,
-    "messages_unassigned": 94
+    "messages_mapped": 60,
+    "messages_promoted": 503,
+    "messages_unassigned": 85
   }
 }

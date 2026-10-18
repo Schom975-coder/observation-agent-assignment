@@ -1,198 +1,197 @@
 {
   "group_id": "synth-017",
-  "content_sha": "166996439fd6ad767be8e61ccba1d0b932c99b6882ce8feee1d8d447c96fedb3",
+  "content_sha": "98f40033df86a035da78cc26d3abc0e05f9d0a5aeb4980a3258c6babcfdb3fc4",
   "processes": [
     {
-      "key": "system-enhancement-request",
-      "description": "Staff on the gas and power desks report faults in trading, scheduling and position tools (Sitara, POPS, MIPS, Unify, Enpower, Position Manager, FSP, Tagg, the El Paso scrape) to application or IT contacts, and the reports are often forwarded around the desk. IT announces outages, server migrations and new releases and asks desks to name testers, enter test deals after databases come back, or try new features. Coordinators compile enhancement lists by business unit, and support replies with fixes such as mapping a drive or changing a bridge program.",
+      "key": "reference-data-update",
+      "description": "A round starts when someone announces or asks for changed reference details: a new phone, pager or extension, a name to use on email lists, or a counterparty's new scheduling coordinator ID, contract number, meter, pooling point or DUNS number. Schedulers and the risk group also ask desks for lists such as working customer lists, org region codes or book contacts, and forward them to whoever keeps the reference. Recipients update address books, contact sheets and counterparty records; follow-ups fix a wrong attachment or confirm what was asked.",
       "steps": [
-        "A user hits a fault (an error on launch, missing curve data, wrong flows or positions) or IT announces an outage, migration or release.",
-        "The user reports the symptom and the affected deals or positions to application support or a lead, and the note is forwarded to others on the desk.",
-        "Support diagnoses the cause and replies with a fix or workaround, such as mapping a drive or pointing a bridge program at another source.",
-        "For enhancements, a coordinator compiles the requested changes by business unit and circulates the list for comment.",
-        "Before a release or after maintenance, desks name designated testers, who enter test deals, import schedules or exercise the new feature.",
-        "Testers report results back, and outage notices are passed to the desk so work is planned around the downtime."
+        "A staff member or counterparty announces a changed contact detail or counterparty identifier, or a coordinator asks desks for their current contact or customer list.",
+        "The notice or compiled list is forwarded to the schedulers, risk and settlement staff who rely on it.",
+        "Recipients update their address books, contact sheets and distribution lists.",
+        "Where a counterparty ID, contract number, meter or pooling point changed, the record is corrected in the scheduling and contract systems.",
+        "A follow-up reply resends a correct file or confirms the detail when the first message was wrong or unclear."
       ],
       "stalls": [
         {
-          "summary": "Tools fail in day-to-day use: actualization problems in MIPS, errors launching a program or logging on to a server, and a new version missing curve data, each stopping the work until support responds.",
+          "summary": "A counterparty's contact update went out with an empty spreadsheet and had to be resent before anyone could use it.",
           "evidence_ids": [
-            "batch-004:s0",
-            "batch-050:s0",
-            "batch-090:s2",
-            "batch-095:s0"
+            "batch-040:e9",
+            "batch-040:e7"
           ]
         },
         {
-          "summary": "Position and volume data come out wrong and have to be reconciled by hand: excessive flow showing in POPS, a short position in Position Manager that is still not working properly weeks later, and TDS position problems.",
+          "summary": "A requester first said the answer missed the question, then wrote back that the original answer was right after all, adding a round of mail for no change.",
           "evidence_ids": [
-            "batch-039:s1",
-            "batch-059:e20",
-            "batch-059:s4",
-            "batch-029:s3"
+            "batch-005:e21",
+            "batch-005:e23"
           ]
         },
         {
-          "summary": "Planned outages and scrape failures leave systems unavailable for stretches, including weekend maintenance on Enpower, CAPS and the POPS server, Sitara downtime, and an El Paso scrape down through a night shift.",
+          "summary": "Distribution lists drift out of date: mail failed to reach a person because the list carried the wrong form of his name, and others asked to be taken off lists.",
           "evidence_ids": [
-            "batch-087:e12",
-            "batch-078:e12",
-            "batch-055:s3",
-            "batch-028:e16",
-            "batch-002:e0"
-          ]
-        },
-        {
-          "summary": "Some failures are local setup problems, such as an unmapped H drive or a missing browser when importing finals, that recur machine by machine until each is fixed.",
-          "evidence_ids": [
-            "batch-092:e4",
-            "batch-088:s0"
-          ]
-        },
-        {
-          "summary": "Follow-through on reported problems is weak: a manager complains of a lack of accountability and no sense of urgency, and a long-demonstrated replacement position manager is still being asked after.",
-          "evidence_ids": [
-            "batch-010:s0",
-            "batch-070:e17"
+            "batch-055:e12",
+            "batch-055:e17",
+            "batch-061:e20"
           ]
         }
       ],
-      "contradictions": [],
-      "automation": {
-        "approach": "A single issue form or log capturing the system, the exact error text, the affected deals or positions and the desk, with status visible to the requester; a standard post-maintenance and release test checklist (log on, enter and check test deals, import schedules, compare positions); a shared outage calendar fed from IT notices; and a short self-help list of known local fixes such as drive mapping.",
-        "artifact_type": "checklist",
-        "rationale": "Much of the hands-on work is testing after releases and maintenance and triaging repeat faults. A checklist gives designated testers the same steps each time and lets support clear known local problems quickly, while diagnosing new faults and deciding which enhancements to build stays with people."
-      },
-      "work_estimate": {
-        "minutes_per_occurrence": {
-          "low": 5,
-          "mid": 20,
-          "high": 60
-        },
-        "automatable_pct": 25,
-        "basis": "inferred",
-        "rationale": "Many rounds are notices needing little action; others require reproducing an error, checking positions or flows against schedules, entering and verifying test deals after maintenance, or compiling an enhancement list. About 20 minutes covers a typical mix, 60 when a position or flow discrepancy must be reconciled. A checklist and issue form could take over routine testing and triage steps, not diagnosis.",
-        "evidence_ids": [
-          "batch-063:e5",
-          "batch-086:e5",
-          "batch-082:e28",
-          "batch-011:e20",
-          "batch-059:e20",
-          "batch-039:e27",
-          "batch-073:e17",
-          "batch-092:e4"
-        ]
-      },
-      "estimate_check": {
-        "occurrences_cited": 8,
-        "senders_cited": 5
-      }
-    },
-    {
-      "key": "time-activity-reporting",
-      "description": "Finance coordinators send time-allocation and activity driver surveys for a given month, with a spreadsheet and instructions attached, asking managers to report how their people's time split across activities and commercial teams for the cost and pricing model. Returns are checked against ATEs staffing records, reminders go out on the deadline day, and late responders are chased. Separately, an administrator collects time reports for timekeeping, and staff reply noting vacation, sick or discretionary-holiday days taken.",
-      "steps": [
-        "A finance coordinator sends the survey for the month just ended, attaching the spreadsheet and instructions.",
-        "Each manager or employee fills in how their team's time split across activities or commercial teams, sometimes running a supplied file with their own data.",
-        "Responses go back to the coordinator, who checks them against ATEs staffing records and queries mismatches.",
-        "On the deadline day reminders go out, and late responders are chased afterwards.",
-        "The coordinator loads the collected data into the cost or pricing model.",
-        "For timekeeping, an administrator asks staff for their time reports and staff reply with any vacation, sick or holiday days taken."
-      ],
-      "stalls": [
+      "contradictions": [
         {
-          "summary": "Survey responses arrive late: a deadline passes with very few completed, deadline-day reminders go out, and surveys for consecutive months end up being requested together.",
+          "summary": "Instructions on the same person's list entry conflict: one notice says 'Bill Williams III' must appear in the address box or he does not get the mail, while a later one asks lists to read 'Bill Williams' and not 'Bill Williams III'.",
           "evidence_ids": [
-            "batch-013:s3",
-            "batch-026:s1",
-            "batch-042:e24",
-            "batch-019:e17"
-          ]
-        },
-        {
-          "summary": "The same month's data is gathered through parallel requests: separate time and activity surveys sent the same day, and separate requests for model data and pricing data, multiplying the forms each team fills in.",
-          "evidence_ids": [
-            "batch-016:e27",
-            "batch-016:e28",
-            "batch-005:e30",
-            "batch-005:e32"
-          ]
-        },
-        {
-          "summary": "Time reports are collected by asking for them on the due day, with absences reported after the fact in replies.",
-          "evidence_ids": [
-            "batch-084:e20",
-            "batch-097:e15",
-            "batch-091:e11"
+            "batch-055:e12",
+            "batch-055:e17",
+            "batch-069:e9"
           ]
         }
       ],
-      "contradictions": [],
       "automation": {
-        "approach": "Prefill each team's survey from ATEs headcount and timekeeping data so respondents only confirm or adjust the split, merge the time and activity surveys into one form per period, send automatic reminders to those who have not returned it before the deadline, and collect absences through a simple form that feeds the time report.",
+        "approach": "Keep one shared contact and counterparty register with a change log, fed by a standard change-notice form that records the counterparty, the field changed (scheduling coordinator ID, contract number, meter, pooling point, DUNS number, phone), old and new values, the effective date and the systems to update. A periodic check compares the register with the scheduling and contract systems and flags records still holding the old value; list requests go out from the register so desks confirm entries rather than retype them.",
         "artifact_type": "template",
-        "rationale": "The work is filling in and compiling the same spreadsheet layout each period and reconciling it with records the company already holds in ATEs. One prefilled combined template removes the duplicate forms and most of the re-keying, while managers still judge how their team's time was really spent."
+        "rationale": "Most rounds pass a single change along by forward, and the repetitive part is each recipient retyping it while lists drift out of date. A fixed change-notice layout and one register give everyone the same values and a record of when they changed; people still confirm changes with the counterparty and decide which systems are affected."
       },
       "work_estimate": {
         "minutes_per_occurrence": {
-          "low": 10,
-          "mid": 25,
-          "high": 90
+          "low": 3,
+          "mid": 8,
+          "high": 25
         },
-        "automatable_pct": 50,
+        "automatable_pct": 40,
         "basis": "inferred",
-        "rationale": "Survey rounds need respondents to work out how their team's time split across activities or commercial teams and fill in the spreadsheet, and the coordinator to compile the returns and check them against ATEs before loading the model: about 25 minutes for a typical round, up to 90 when many teams respond or figures are queried. Time-report rounds take a few minutes of noting absences. Prefilling and one combined form could take over much of the compiling.",
+        "rationale": "Many rounds show only a new phone number or name passing through, where the hands-on work is updating an address book or contact sheet in a few minutes. Rounds that change a scheduling coordinator ID, contract number, pooling points or DUNS number also need the counterparty record corrected in scheduling and contract systems, and list requests need a desk to compile its customers or region codes, which pushes some rounds toward 25 minutes. A typical round is about 8 minutes; the retyping and cross-checking is what a register and change form could take over.",
         "evidence_ids": [
-          "batch-016:e27",
-          "batch-013:e14",
-          "batch-014:e18",
-          "batch-007:e24",
-          "batch-061:e7",
-          "batch-026:e6",
-          "batch-084:e20",
-          "batch-098:e9"
+          "batch-068:e16",
+          "batch-079:e8",
+          "batch-076:e11",
+          "batch-000:e5",
+          "batch-005:e31",
+          "batch-040:e6",
+          "batch-075:e0",
+          "batch-003:e7",
+          "batch-088:e15"
         ]
       },
       "estimate_check": {
-        "occurrences_cited": 8,
+        "occurrences_cited": 9,
         "senders_cited": 6
       }
     },
     {
-      "key": "time-off-approval",
-      "description": "Employees ask their manager for days off or to be put down on the vacation calendar for particular dates. The manager replies granting the request, including short-notice days off, and reminds the person that a longer vacation should be planned in advance the same way as for everyone else in the group. Approved dates are recorded on the group's vacation calendar.",
+      "key": "schedule-c-notice",
+      "description": "Darron Giron tells the risk contacts, by a one-line email sent the same evening, that an amount is being taken to Schedule C, removed from it, or released. A later notice can reverse or add to an earlier one, as when an amount put on Schedule C on a Friday was removed after the weekend, or when more was released the night after a first release. Each notice states only the action and the amount; the readers send nothing back in the mail.",
       "steps": [
-        "An employee asks the manager for specific days off or to be added to the vacation calendar.",
-        "The manager checks the request against the group's coverage and other planned absences.",
-        "The manager replies approving the days, or sets the expectation that longer vacations are planned in advance.",
-        "The approved dates are entered on the vacation calendar."
+        "The risk group decides to put an amount on, remove it from, or release it from Schedule C for that night.",
+        "Darron Giron emails the risk contacts the action and the amount.",
+        "When a later decision reverses or adds to an earlier entry, a follow-up notice refers back to it."
       ],
       "stalls": [],
       "contradictions": [],
       "automation": {
-        "approach": "A shared vacation calendar with a short request form that shows who else in the group is out on the requested dates, so the manager approves from one view and the approved dates are recorded on the calendar as part of the approval.",
-        "artifact_type": "template",
-        "rationale": "The quotes show brief requests, approvals and entries on the vacation calendar; the work is checking coverage and recording dates, which a shared calendar layout supports. Approval stays a manager's call, as the guidance on planning longer vacations ahead shows."
+        "approach": "A fixed notice template with fields for the action (add, remove, release), the amount, the night it takes effect and a reference to any earlier entry it changes, ideally filled from the record where the Schedule C entry is made so the amount is not retyped.",
+        "artifact_type": "email_template",
+        "rationale": "The notices are short, alike and come from one person; a template keeps wording and amounts consistent and makes reversals traceable to the entry they change, while the decision to move amounts stays with risk management."
+      },
+      "work_estimate": null,
+      "estimate_check": null
+    },
+    {
+      "key": "staff-recruiting",
+      "description": "Managers in the logistics and risk groups ask for headcount or a rotating analyst, write or edit the job posting, and send it to HR or recruiting staff. Candidates come by referral, internal transfer or the analyst pool; resumes are forwarded to hiring managers, an interview panel is named and a schedule sent, and interviewers return feedback. Managers also justify replacements to their superiors, confirm buy-in before candidates are contacted, write recommendation letters, and tell candidates when plans change.",
+      "steps": [
+        "A manager requests headcount or an analyst for the group, with a justification where a superior asks for one.",
+        "The opening is described or posted, and HR or the analyst program is asked for candidates.",
+        "Resumes from referrals, internal candidates and the analyst pool are forwarded to the hiring managers.",
+        "Managers confirm which candidates to pursue and name the interview panel.",
+        "Interviews are scheduled and the schedule is sent to interviewers and candidates.",
+        "Interviewers give feedback and the group decides whom to bring in.",
+        "HR is told to start the hire, or candidates are told of a change in plans."
+      ],
+      "stalls": [
+        {
+          "summary": "Interviews are cancelled or moved when an interviewer is unexpectedly out of the office, so the slots have to be rearranged.",
+          "evidence_ids": [
+            "batch-042:e19",
+            "batch-042:e20",
+            "batch-042:e21"
+          ]
+        },
+        {
+          "summary": "Feedback on candidates waits until every panel interview is done.",
+          "evidence_ids": [
+            "batch-072:e4"
+          ]
+        },
+        {
+          "summary": "Staffing requests are routed to different HR contacts depending on the job, and managers wait for HR to call back.",
+          "evidence_ids": [
+            "batch-028:e17",
+            "batch-039:e19"
+          ]
+        },
+        {
+          "summary": "Approval gates add a round of back-and-forth: a superior asks for justification before replacements are hired, and buy-in is sought before candidates are contacted.",
+          "evidence_ids": [
+            "batch-071:e16",
+            "batch-073:e11"
+          ]
+        },
+        {
+          "summary": "Openings shift after they are announced: a posting is edited to say the role may be temporary, and later candidates have to be told of a change in plans.",
+          "evidence_ids": [
+            "batch-059:e5",
+            "batch-065:e21",
+            "batch-075:e2"
+          ]
+        },
+        {
+          "summary": "Placement of an analyst stalls in a tug-of-war between two managers who each want him in their group.",
+          "evidence_ids": [
+            "batch-038:s3",
+            "batch-038:e31"
+          ]
+        }
+      ],
+      "contradictions": [
+        {
+          "summary": "Two groups claim the same analyst: Darron Giron says he understands why the other manager wants him but will not give him up unless forced, answers the other side's push with a remark about playing hardball, and proposes meeting the candidates to see where each fits better.",
+          "evidence_ids": [
+            "batch-038:s3",
+            "batch-038:e31",
+            "batch-038:e32",
+            "batch-038:e30"
+          ]
+        }
+      ],
+      "automation": {
+        "approach": "A hiring checklist each round follows: justification and approval, posting text from a standard layout, the HR contact for the job type, candidate source, interview panel, a shared interview calendar, a feedback deadline and the candidate notice. A calendar tool could offer slots across the panel and rebook cancellations, and feedback could be gathered through one form per candidate.",
+        "artifact_type": "checklist",
+        "rationale": "Rounds repeat the same steps but stall on cancelled interviews, late feedback, approvals and unclear HR routing; a checklist makes each hand-off and its owner explicit. Interviewing and the hiring decision stay with managers, so only scheduling, posting text and notices lend themselves to tooling."
       },
       "work_estimate": {
         "minutes_per_occurrence": {
-          "low": 1,
-          "mid": 3,
-          "high": 10
+          "low": 20,
+          "mid": 60,
+          "high": 180
         },
-        "automatable_pct": 30,
+        "automatable_pct": 25,
         "basis": "inferred",
-        "rationale": "Beyond the emails, the hands-on work is checking who else is out on the requested dates and recording the approved days on the vacation calendar: about 3 minutes, up to 10 when dates have to be negotiated against the group's plans. A shared calendar could take over the lookup and recording, not the decision.",
+        "rationale": "Hands-on work per round is reviewing resumes, drafting or editing a posting, arranging an interview schedule, sitting in interviews and writing feedback or a justification. Many rounds are a single referral or posting handed to HR, a short task near 20 minutes; rounds with a named panel and an interview schedule take several interviewers' time, up to 180 minutes. A typical round is about 60 minutes. Scheduling, posting text and candidate notices could be templated or tooled; interviewing and judging candidates stay with people.",
         "evidence_ids": [
-          "batch-071:e18",
-          "batch-071:e19",
-          "batch-071:e20",
-          "batch-032:e6"
+          "batch-039:e7",
+          "batch-060:e18",
+          "batch-038:e34",
+          "batch-059:e5",
+          "batch-072:e4",
+          "batch-071:e16",
+          "batch-073:e11",
+          "batch-065:e21",
+          "batch-095:e3"
         ]
       },
       "estimate_check": {
-        "occurrences_cited": 4,
-        "senders_cited": 2
+        "occurrences_cited": 9,
+        "senders_cited": 5
       }
     }
   ]

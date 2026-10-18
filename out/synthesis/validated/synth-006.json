@@ -1,118 +1,27 @@
 {
   "group_id": "synth-006",
-  "content_sha": "6b7ee0148d53efb5b0be7737a580d0169d10196b709b63942444130380b6f0a0",
+  "content_sha": "c32868b9742bceab8f6d6acc79f53105e1236e0a69e61ab9763d6a5154cf6285",
   "processes": [
     {
-      "key": "deal-booking-standards",
-      "description": "Gas and power desk and back-office staff set and pass on rules for entering deals in Enpower, Sitara, Tagg and CAPS, and answer questions on how a particular deal should be booked. A round starts with a rule notice (which book to use, the swap function instead of annuities, linking Tagg deals to Sitara, leaving EOL deals unchanged) or with a question about one deal, such as a park and ride, a changed volume or a deal flipped between counterparties. Someone reviews the deal, sometimes checks with the trader, answers, and wrong bookings are corrected.",
+      "key": "deal-confirmation",
+      "description": "Gas sales and purchases are confirmed in writing with counterparties and internal groups. A round starts when the desk sends a copy of a confirmation or a notice of a sale, such as the pipeline selling operational gas to Western from April, or when a counterparty asks for a Transaction Confirmation sheet for a volume at a delivery point, or reports that confirmations for several months never arrived. The deal terms are pulled from the deal record and sent, and the recipient checks them against its own records.",
       "steps": [
-        "A booking question arrives about a specific deal, or a desk lead spots a booking practice that needs a rule.",
-        "The deal is looked up in Enpower, Sitara or Tagg and its legs, book and counterparties are reviewed.",
-        "Where the answer depends on the trader or another group, the reviewer asks them before replying.",
-        "The rule or answer is written up and sent or forwarded to schedulers, risk and the trading desk.",
-        "Deals booked the wrong way are rebooked or relinked under the stated rule.",
-        "Deals that do not match, such as outside deal lists that do not tie to Enpower, are handed to a named person to reconcile."
+        "A sale or purchase is agreed, or a counterparty asks for written confirmation of a deal.",
+        "The desk pulls the deal terms (volume, delivery point, period) from the deal record.",
+        "The confirmation sheet or notice is prepared and sent to the counterparty and the internal groups that need it.",
+        "The counterparty checks the confirmation against its own records.",
+        "When confirmations are missing, the counterparty raises it and the desk sends the outstanding ones."
       ],
       "stalls": [
         {
-          "summary": "A scheduler who had never scheduled a park and ride asked how to handle it and then had to chase for the status of the meter.",
-          "evidence_ids": [
-            "batch-003:e13",
-            "batch-003:s0"
-          ]
-        },
-        {
-          "summary": "Rules arrive after deals were already booked the wrong way, so earlier bookings need rework: NSS had been booked incorrectly and GD spread deals were booked inconsistently.",
-          "evidence_ids": [
-            "batch-016:e25",
-            "batch-026:e15"
-          ]
-        },
-        {
-          "summary": "Some answers depend on the trader: after looking over a deal the reviewer had to ask another person before the question could be closed.",
-          "evidence_ids": [
-            "batch-022:e1"
-          ]
-        },
-        {
-          "summary": "A spreadsheet of Bloomberg deals that could not be matched to Enpower deals was left with a named colleague to handle when she had an opportunity, with no date set.",
-          "evidence_ids": [
-            "batch-064:e17",
-            "batch-064:o0"
-          ]
-        },
-        {
-          "summary": "A reply apologised for implying a colleague lacked approval, showing confusion over whether a booking had been authorised.",
-          "evidence_ids": [
-            "batch-067:e3"
-          ]
-        }
-      ],
-      "contradictions": [
-        {
-          "summary": "The desk was told that all deals go under ST-Whourly, and the next day the rule was restated with exceptions for lending, parking and cuts.",
-          "evidence_ids": [
-            "batch-064:e15",
-            "batch-064:e22"
-          ]
-        },
-        {
-          "summary": "On the same day a request concerns an Aquila deal whose volume was changed while a reply states that a deal made on EOL cannot be changed in any way; the quotes do not settle whether the changed deal was an EOL deal.",
-          "evidence_ids": [
-            "batch-019:e1",
-            "batch-019:e4"
-          ]
-        }
-      ],
-      "automation": {
-        "approach": "Gather the scattered booking rules into one maintained booking reference organised by deal type (book, deal type, link field, system), and add entry checks in Enpower and Sitara that flag a deal in the wrong book, an annuity entered for a swap, or a physical Tagg deal without its Sitara link. A scheduled match of outside deal lists against Enpower would list unmatched deals for review.",
-        "artifact_type": "sop",
-        "rationale": "The rules arrive as one-off notices and forwards, are refined within days and turn out to have been applied inconsistently. A single written procedure people can look up before booking answers the repeat questions and cuts rework, while entry checks catch the mechanical errors. Judgement on unusual deal structures stays with the desk."
-      },
-      "work_estimate": {
-        "minutes_per_occurrence": {
-          "low": 5,
-          "mid": 15,
-          "high": 45
-        },
-        "automatable_pct": 30,
-        "basis": "inferred",
-        "rationale": "Rule-notice rounds involve little hands-on work beyond the email, near the 5 minute low. Question rounds need the deal looked up and its legs, book and counterparties checked, about 15 minutes. Rounds that need rebooking, a deal unwound by a later leg, or a spreadsheet of unmatched deals reconciled reach 45 minutes. Entry checks and a rule reference could take over part of the lookups and catch wrong books or missing links; reviewing unusual deals and setting rules stay with people.",
-        "evidence_ids": [
-          "batch-064:e17",
-          "batch-039:e8",
-          "batch-022:e1",
-          "batch-016:e25",
-          "batch-019:e1",
-          "batch-045:e4",
-          "batch-020:e4"
-        ]
-      },
-      "estimate_check": {
-        "occurrences_cited": 7,
-        "senders_cited": 3
-      }
-    },
-    {
-      "key": "deal-confirmation-handling",
-      "description": "Confirmations of gas purchases and sales pass between marketing staff, counterparties and the groups that record the deals. A round starts when someone sends a copy of a confirmation or a transaction confirmation sheet for a sale, such as operational gas sold to a customer, or when a counterparty asks for confirmations it never received. The confirmation carries the volume, delivery point and period, and the recording group needs those details to book the deal; at times the sender is unsure how the information reaches that group.",
-      "steps": [
-        "A gas sale or purchase is agreed with a counterparty.",
-        "The seller prepares or requests the confirmation sheet with volume, delivery point and period.",
-        "The confirmation is sent to the counterparty and a copy goes to the groups that record the deal.",
-        "The recording group books the deal from the copy.",
-        "A counterparty missing confirmations asks for them and the missing months are sent."
-      ],
-      "stalls": [
-        {
-          "summary": "A counterparty never received confirmations for several months of sales and had to raise it before they were sent.",
+          "summary": "A counterparty's fuel buyer reports never receiving confirmations for May, June and July, so a run of confirmations went missing before anyone noticed.",
           "evidence_ids": [
             "batch-080:s4",
             "batch-080:e15"
           ]
         },
         {
-          "summary": "The person sending details of a new operational gas sale was not sure how the information gets to the group that records it.",
+          "summary": "When the pipeline sells operational gas to Western, the sender is unsure how the information reaches the group that needs it, so the routing of confirmations is unclear.",
           "evidence_ids": [
             "batch-093:s2",
             "batch-093:e11"
@@ -121,24 +30,24 @@
       ],
       "contradictions": [],
       "automation": {
-        "approach": "Generate the confirmation from the deal record when a sale or purchase is entered, send it to the counterparty, copy the recording groups from a standing distribution list, and keep a log of confirmations sent so a missing one shows up before the counterparty asks.",
-        "artifact_type": "email_template",
-        "rationale": "The mail shows confirmations missed for whole months and a sender unsure where the details go. A standard confirmation message with the deal terms laid out and the recording groups already addressed fixes both for the people doing it now; automatic generation from the deal record follows once the system supports it. Checking terms and handling disputes stay with people."
+        "approach": "Generate the confirmation from the deal record when a deal is entered, send it to a standard distribution list per counterparty and internal group, and keep a log of confirmations sent and acknowledged so a report flags any deal or month without a confirmation before the counterparty has to ask.",
+        "artifact_type": "template",
+        "rationale": "The stalls are a run of confirmations that never arrived and uncertainty over who receives sale information. A standard confirmation form filled from the deal record, with a named distribution, addresses both, while people still review terms and handle disputes with the counterparty."
       },
       "work_estimate": {
         "minutes_per_occurrence": {
           "low": 5,
-          "mid": 10,
-          "high": 25
+          "mid": 15,
+          "high": 30
         },
         "automatable_pct": 50,
         "basis": "inferred",
-        "rationale": "Each round means pulling the deal terms, filling in or checking the confirmation sheet's volume, location and dates, and preparing copies for the counterparty and the booking group, about 10 minutes. It reaches 25 minutes when several missed months must be rebuilt for a counterparty, and 5 when only a copy is passed on. Generating confirmations from the deal record and routing them by a fixed list could take over the drafting and routing; checking terms stays with people.",
+        "rationale": "The hands-on work is pulling the deal terms from the deal record, filling the confirmation sheet and checking it against what was agreed: about 15 minutes. A copy sent for information takes about 5; tracing and reissuing several missing months runs toward 30. Filling the form from the deal record is the automatable part; reviewing terms stays with people.",
         "evidence_ids": [
           "batch-097:e4",
+          "batch-093:e11",
           "batch-080:e15",
-          "batch-010:e1",
-          "batch-093:e11"
+          "batch-010:e1"
         ]
       },
       "estimate_check": {
@@ -147,74 +56,184 @@
       }
     },
     {
-      "key": "deal-lookup-linking",
-      "description": "Back-office staff find deal and ticket numbers across Sitara, Tagg, EOL and Unify for colleagues, and make sure each system's deal carries the number of its counterpart. A round starts when someone asks for a ticket, a Meta ID or the Sitara number behind a deal; the deal is looked up and the number sent back, or an empty or wrong link field is found and corrected. Requests for deals outside one person's access are forwarded to someone who can see them.",
+      "key": "deal-entry-pathing",
+      "description": "Schedulers, traders and the storage desk ask logistics to enter purchase, sale, storage and buyback deals in Sitara and path them against transport and market deals. Requests name the counterparty, the deal number and the pipelines to path on, and pass along pathing rules such as attaching a supply deal to a market deal as a buy/sell, or how a storage customer is pathed on withdrawal days. Staff also review the month's setup in UNIFY and industrial allocations, links and buybacks, and circulate lists and spreadsheets for checking.",
       "steps": [
-        "A colleague asks for the ticket, Meta ID or Sitara number of a deal, or a link problem is spotted.",
-        "The deal is searched for in Sitara, Tagg, EOL or Unify by counterparty and terms.",
-        "The numbers are compared across systems and the link field is checked.",
-        "The number is sent back, or the link or reference field is corrected.",
-        "Requests for deals outside one's access are forwarded to a colleague who can see them.",
-        "Traders and schedulers are reminded to link all deals when they enter them."
+        "A trader, scheduler or storage desk asks for a deal to be entered in Sitara, naming counterparty, deal number and pipelines.",
+        "The deal is entered in Sitara with its purchase or sale terms.",
+        "The deal is pathed against transport and market deals on each named pipeline so volumes balance.",
+        "The requester checks the path and asks about any pipeline left unpathed.",
+        "Staff review the month's setup in UNIFY and industrial allocations, links and buybacks for errors.",
+        "Lists and spreadsheets are circulated so others can flag anything out of line."
       ],
       "stalls": [
         {
-          "summary": "Deals looked right in both Tagg and Sitara but the Tagg link field was wrong, and the fix had to be chased with a question about when it would be ready.",
+          "summary": "A deal requested for pathing on EPGT and TETC was found not pathed for HPL and CHAN, and the requester was still chasing its status in a later message.",
+          "evidence_ids": [
+            "batch-055:e7",
+            "batch-055:s1",
+            "batch-055:s2"
+          ]
+        },
+        {
+          "summary": "On a Texas purchase and sale request, the counterparty is unsure whether the person contacted is the one who can schedule the volume.",
+          "evidence_ids": [
+            "batch-011:s5",
+            "batch-011:e21"
+          ]
+        },
+        {
+          "summary": "The sale of the Centana storage to AEP was requested for entry and pathing, and a later message has to ask whether the deal has been entered yet.",
+          "evidence_ids": [
+            "batch-081:e5",
+            "batch-082:e8"
+          ]
+        },
+        {
+          "summary": "The Cilco storage pathing was laid out one way and then challenged as having originated from the wrong place, sending the setup back for rework.",
+          "evidence_ids": [
+            "batch-004:e26",
+            "batch-004:s4"
+          ]
+        }
+      ],
+      "contradictions": [
+        {
+          "summary": "One message sets out how Cilco is to be pathed on a withdrawal day or month, while a reply in the same thread says the deal should have originated out of somewhere else; the quotes do not show which setup was settled on.",
+          "evidence_ids": [
+            "batch-004:e26",
+            "batch-004:s4"
+          ]
+        }
+      ],
+      "automation": {
+        "approach": "A standard deal request form capturing counterparty, deal number, volumes, dates and every pipeline to path, used for Sitara entry; an exception report listing deals entered but not pathed on each named pipeline, or whose paths do not balance against transport and market deals; and written pathing rules for recurring setups such as storage withdrawals and buy/sell links.",
+        "artifact_type": "template",
+        "rationale": "The stalls come from incomplete pathing, unclear routing of requests and setups challenged after the fact. A complete request form and an unpathed-deal report catch these before the requester has to chase, while choosing paths and handling exceptions stay with schedulers."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": {
+          "low": 10,
+          "mid": 30,
+          "high": 120
+        },
+        "automatable_pct": 40,
+        "basis": "inferred",
+        "rationale": "A typical request means entering the deal in Sitara and pathing it on each named pipeline against transport and market deals: about 30 minutes; a simple single entry about 10. Rounds that review a month's setup in UNIFY or industrial allocations, links and buybacks run toward 120. Balance checks and spotting unpathed legs are automatable; choosing paths and fixing setups stay with schedulers.",
+        "evidence_ids": [
+          "batch-011:e21",
+          "batch-055:e7",
+          "batch-003:e46",
+          "batch-081:e5",
+          "batch-004:e26",
+          "batch-003:e29",
+          "batch-003:e28"
+        ]
+      },
+      "estimate_check": {
+        "occurrences_cited": 7,
+        "senders_cited": 6
+      }
+    },
+    {
+      "key": "deal-entry-standards",
+      "description": "Deal-control and desk leads set and repeat the rules for booking deals in Sitara, Tagg, Enpower and CAPS: which book or service type to use, linking physical deals through the link field with the Sitara or EOL number, entering swaps through the swap function rather than annuities, and how to book spread, parking and buy-resale deals; EOL deals cannot be changed. Staff ask how to book unusual deals; the leads look over the deal in both systems, ask the trader where needed, answer, and forward revised procedures.",
+      "steps": [
+        "A lead circulates a booking rule or procedure change, or a staff member asks how to book an unfamiliar deal.",
+        "The lead looks over the deal in Sitara, Tagg or Enpower and checks the links between systems.",
+        "Where the deal is unclear, the lead asks the trader or originator before answering.",
+        "The answer gives the book, service type, deal type or link reference to use.",
+        "Mismatched or unlinked deals are listed and handed to the person named to correct them.",
+        "Revised procedures or spreadsheets are forwarded to the desk."
+      ],
+      "stalls": [
+        {
+          "summary": "A scheduler who had never scheduled a park and ride asks for help and is later still asking for the status of the meter.",
+          "evidence_ids": [
+            "batch-003:e13",
+            "batch-003:s0"
+          ]
+        },
+        {
+          "summary": "Deals looked right in Tagg and Sitara but the Tagg link field was wrong, and the fix was still waiting with no ready date.",
           "evidence_ids": [
             "batch-036:e29",
             "batch-036:s5"
           ]
         },
         {
-          "summary": "A request about Denver deals could not be handled for lack of access and was forwarded to someone else to help.",
+          "summary": "A spreadsheet of Bloomberg deals that could not be matched to Enpower was handed to a colleague to take care of when she had an opportunity, leaving the reconciliation open.",
           "evidence_ids": [
-            "batch-035:o1",
-            "batch-035:e21"
+            "batch-064:e17",
+            "batch-064:o0"
           ]
         },
         {
-          "summary": "Links are not always entered when deals are made, so reminders go out and ticket numbers and IDs have to be asked for afterwards.",
+          "summary": "The same booking errors come back: reminders to link all deals and to book spread deals consistently show rules being restated rather than enforced.",
           "evidence_ids": [
+            "batch-020:e4",
             "batch-027:e9",
-            "batch-022:e9",
-            "batch-019:e5"
+            "batch-026:e15"
           ]
         },
         {
-          "summary": "Cross-references sit in different places: one reply says a deal should reference the EOL number, while the Sitara numbers for other deals were found in a comments section, so a lookup may need more than one field.",
+          "summary": "Answering a booking question can wait on the originator: after looking over a deal, the lead has to ask Steve Jackson questions before resolving it.",
           "evidence_ids": [
-            "batch-027:e8",
-            "batch-028:e13"
+            "batch-022:e1"
           ]
         }
       ],
-      "contradictions": [],
+      "contradictions": [
+        {
+          "summary": "The service-type rule changed within a day: first all deals are to be done under ST-Whourly, then all deals except a lending/parking deal or cut.",
+          "evidence_ids": [
+            "batch-064:e15",
+            "batch-064:e22"
+          ]
+        },
+        {
+          "summary": "One message warns staff about top-levelling any amount for anyone, while a later forwarded revision unprotects the Top Level cells; the mail does not show the control being formally relaxed.",
+          "evidence_ids": [
+            "batch-028:e23",
+            "batch-045:e7"
+          ]
+        },
+        {
+          "summary": "Within a day the same lead names two different people for desk questions: trading questions go to Ryan Slinger, while Kate Symes is to take care of the unmatched-deal spreadsheet, leaving unclear who owns booking questions.",
+          "evidence_ids": [
+            "batch-064:o1",
+            "batch-064:o0"
+          ]
+        }
+      ],
       "automation": {
-        "approach": "A scheduled match of Sitara, Tagg and EOL deals by counterparty, date, volume and price that fills empty link fields where the match is unambiguous and lists mismatches for review, plus a shared lookup view so requesters can find ticket numbers themselves.",
+        "approach": "One written booking procedure covering book and service type, link-field rules, swap entry, spread, parking and buy-resale setups, EOL deal changes and changes that affect other books, kept current in one place instead of serial reminders; paired with scheduled checks that flag unlinked physical deals, link fields that disagree between Tagg and Sitara, deals under the wrong book, and external trades that do not match Enpower.",
         "artifact_type": "sop",
-        "rationale": "The work is repeated searching and copying of numbers between systems; a match report removes many lookups and catches broken links early. A short procedure stating which number goes in which field of each system addresses the reminders and the inconsistent placement of cross-references now, before any tool exists. Ambiguous matches still need a person."
+        "rationale": "Most rounds restate or revise a booking rule, and the rules change and gain exceptions over time. A single maintained procedure gives staff one answer to check before asking, and the link and match checks catch the errors the reminders keep chasing, while unusual deals still need a lead's judgement."
       },
       "work_estimate": {
         "minutes_per_occurrence": {
-          "low": 3,
-          "mid": 8,
-          "high": 20
+          "low": 5,
+          "mid": 15,
+          "high": 60
         },
-        "automatable_pct": 60,
+        "automatable_pct": 35,
         "basis": "inferred",
-        "rationale": "Minutes go to searching Sitara, Tagg, EOL or Unify for the deal, comparing numbers across systems and correcting a link field. A single number lookup takes about 3 minutes, a typical request with a check of the link field about 8, and up to 20 when several deals or a wrong link must be traced. A cross-system match report that fills or flags link fields could take over most of the searching; ambiguous matches and access-restricted deals stay with people.",
+        "rationale": "Many rounds only restate a rule, with little work beyond the message: about 5 minutes. Rounds answering a question mean looking over the deal in Sitara, Tagg or Enpower, checking legs and link fields and sometimes rebooking: about 15. Reconciling a spreadsheet of external trades against Enpower or writing a new procedure runs toward 60. Link and match checks are automatable; deciding how unusual deals are booked stays with people.",
         "evidence_ids": [
-          "batch-039:e2",
-          "batch-020:e13",
-          "batch-028:e13",
+          "batch-022:e1",
           "batch-036:e29",
-          "batch-027:e8",
-          "batch-022:e9"
+          "batch-064:e17",
+          "batch-020:e4",
+          "batch-019:e1",
+          "batch-018:e22",
+          "batch-039:e8",
+          "batch-026:e15"
         ]
       },
       "estimate_check": {
-        "occurrences_cited": 6,
-        "senders_cited": 2
+        "occurrences_cited": 8,
+        "senders_cited": 4
       }
     }
   ]

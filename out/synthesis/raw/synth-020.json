@@ -1,0 +1,145 @@
+{
+  "group_id": "synth-020",
+  "processes": [
+    {
+      "key": "trading-book-setup",
+      "description": "A desk's risk staff request new trading books, portfolios and EnronOnline products when a region is split, an office opens or a product is launched. A round starts with a book request form or a list of book names, portfolio codes and traders sent to the systems group; the book must exist in Global Counterparty before it can be added to Tagg, then it is set up in TDS, RisktRAC and Sitara, EOL products are mapped to indexes and assigned to traders, and test deals are pushed through Tagg and Sitara to confirm the set-up.",
+      "steps": [
+        "A desk decides it needs a new book, a portfolio split or a new EnronOnline product and names the region, desk and start month.",
+        "The requester fills in the book request form with book names, portfolio codes and the responsible trader.",
+        "The book is added to Global Counterparty first, then set up in Tagg, TDS and RisktRAC following the written procedure.",
+        "For EnronOnline products, the index each product maps to is supplied and the products are assigned to traders.",
+        "Test deals are pushed through and reviewed in Tagg and Sitara to confirm the new books and products carry through.",
+        "The set-up is confirmed to the requester, and book lists are reviewed so books no longer valid can be retired."
+      ],
+      "stalls": [
+        {
+          "summary": "A request to add a book to Tagg was held up because the book first had to exist in Global Counterparty, an ordering rule the requester met only mid-round.",
+          "evidence_ids": ["batch-015:s1", "batch-015:e16"]
+        },
+        {
+          "summary": "Renamed books did not show up in Sitara after new names were set up in Tagg, so staff searched for the new names and had to follow up.",
+          "evidence_ids": ["batch-015:s3", "batch-036:e28"]
+        },
+        {
+          "summary": "EnronOnline trades created in Sitara without the EOL deal number error out and have to be entered by hand.",
+          "evidence_ids": ["batch-009:s1", "batch-009:e20"]
+        },
+        {
+          "summary": "Book lists circulated for review were incomplete or out of date: the sender expected missed entries, some books were missing from the regional listing, and recipients were asked which books were no longer valid.",
+          "evidence_ids": ["batch-043:e8", "batch-052:e14", "batch-041:e20"]
+        }
+      ],
+      "contradictions": [
+        {
+          "summary": "A request to rename books so they would not be confused met pushback from the desk's book contact, who questioned whether renaming was necessary at all, leaving the naming convention disputed.",
+          "evidence_ids": ["batch-049:e6"]
+        }
+      ],
+      "automation": {
+        "approach": "A single book set-up request form that captures book name, portfolio code, region, trader and EnronOnline index mapping once, then drives the set-up in order across Global Counterparty, Tagg, TDS, RisktRAC and Sitara, with a cross-system check that flags names present in one system but missing in another and a periodic report of books with no recent deals for retirement review.",
+        "artifact_type": "checklist",
+        "rationale": "The stalls come from ordering and propagation: Tagg set-up blocked until Global Counterparty is done, renamed books missing from Sitara, EOL deal numbers left off. A system-by-system checklist in the required order, with the confirm-in-Sitara and test-deal steps, would catch these on the next request, and it builds on the written RisktRAC procedure and the request form the desk already uses."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": { "low": 10, "mid": 25, "high": 60 },
+        "automatable_pct": 40,
+        "basis": "inferred",
+        "rationale": "Rounds involve putting book names, portfolio codes and traders on the request form, entering the book in Global Counterparty then Tagg, TDS or RisktRAC, mapping EnronOnline products to indexes and reviewing test deals in Tagg and Sitara. About 25 minutes mid, from 10 for a single book to 60 for a regional split or a batch of new products. Pre-filled forms and cross-system name checks could take over much of the entry and checking; naming, trader assignment and approval stay manual.",
+        "evidence_ids": ["batch-035:e2", "batch-023:e20", "batch-046:e9", "batch-096:e2", "batch-086:e6", "batch-091:e9", "batch-015:e16", "batch-016:e20"]
+      }
+    },
+    {
+      "key": "transport-rate-ticket-maintenance",
+      "description": "Gas logistics and risk staff keep the transport side of deals priced correctly in Sitara. Transport usage tickets are input and updated for each new month, partly through HPL, and expense contracts are listed for rates to be entered; when a demand charge, service rate or finalized invoice amount comes in, an update is requested on the deal by its Sitara number. Rates on the tickets are checked, prior-month adjustments for Oasis are cleared, and questions about whether a rate still applies go to whoever handles that deal.",
+      "steps": [
+        "Transport usage tickets are input or updated in Sitara for the coming month.",
+        "Expense contracts missing rates are listed and the rates are entered on each contract.",
+        "When an invoice or rate change arrives, a request is sent to update the rate or amount on the named Sitara deal.",
+        "The updater enters the change and confirms it back to the requester.",
+        "Rates on the usage tickets are checked and prior-month adjustments are cleared.",
+        "Questions about whether an existing rate still applies are passed to whoever now handles the deal."
+      ],
+      "stalls": [
+        {
+          "summary": "Rate update requests went to people who no longer handled them, so the requester had to redirect future requests and ask whether the recipient was still responsible.",
+          "evidence_ids": ["batch-027:s0", "batch-047:s0", "batch-047:e7"]
+        },
+        {
+          "summary": "A question on whether an existing rate still applied was answered on assumption by someone who said they had nothing to do with the deal, leaving the rate unconfirmed.",
+          "evidence_ids": ["batch-038:s0", "batch-038:e6"]
+        }
+      ],
+      "contradictions": [
+        {
+          "summary": "Different rounds name different people to receive transport rate updates: one says to send these to Scott in future, a later one says to send them to Kristen Clause, while asking whether the current recipient still handles them.",
+          "evidence_ids": ["batch-027:o0", "batch-047:o0", "batch-047:s0"]
+        }
+      ],
+      "automation": {
+        "approach": "A job that builds the transport usage tickets for each new month from nominations and a contract rate table, flags tickets and expense contracts with missing or changed rates, and compares entered rates with invoiced amounts. Rate change requests would go to a shared queue tied to the deal rather than to a named person, so routing survives staff changes.",
+        "artifact_type": "sop",
+        "rationale": "The work is routine entry and checking, but the stalls show requests landing with people who no longer handle them. A short procedure covering the ticket update, the rate check against invoices and the current owner or queue for deal-level rate changes would fix the routing straight away, and any later automated rate check would follow it."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": { "low": 10, "mid": 20, "high": 60 },
+        "automatable_pct": 50,
+        "basis": "inferred",
+        "rationale": "Rounds range from a single deal-level rate entry to updating all transport usage tickets for a month plus a list of expense contracts needing rates. Looking up the rate or invoice amount, entering it in Sitara and checking the tickets puts a typical round near 20 minutes, from 10 for one deal to 60 for a full ticket update. Loading rates from a contract table and comparing them to invoices could take over most of the entry and checking; disputed rates stay a judgement call.",
+        "evidence_ids": ["batch-001:e19", "batch-013:e7", "batch-017:e6", "batch-006:e7", "batch-027:e1", "batch-016:e3", "batch-006:e13"]
+      }
+    },
+    {
+      "key": "user-access-setup",
+      "description": "Desk staff and managers request, approve and remove access for traders and new hires across many systems: NT accounts and directories, Tagg and Sitara books, RiskTrac, EnronOnline, Global Trader IDs, ISO scheduling logins and outside sites. A round starts with a request listing names and systems, often entered in the security request system, which emails the listed data approver to act; IDs and passwords then come back to the user, and lists of who needs which access are gathered by region when a new organisation or platform is set up.",
+      "steps": [
+        "A manager or desk contact identifies a new hire, transfer or trader who needs access, or a user to remove.",
+        "The names, NT user IDs and systems needed are compiled into a request or list.",
+        "The request is entered in the security request system or sent to the system's administrator.",
+        "The listed data approver receives a notice and approves or rejects the request.",
+        "The administrator or outside party sets up the account and sends the user ID and password.",
+        "The user confirms access works and reports gaps, such as books they cannot run or print."
+      ],
+      "stalls": [
+        {
+          "summary": "New cards and passwords from an outside party sat unanswered and had to be chased.",
+          "evidence_ids": ["batch-055:s4", "batch-055:s5", "batch-055:e14"]
+        },
+        {
+          "summary": "Collecting the lists of who needs access dragged on, with reminders for regional lists still outstanding and urgent demands to know who needs an exception.",
+          "evidence_ids": ["batch-087:s1", "batch-093:s0", "batch-096:e3"]
+        },
+        {
+          "summary": "Security badge and access requests were repeatedly sent to the wrong Bill Williams, who works in Portland and had to turn them away.",
+          "evidence_ids": ["batch-065:s1", "batch-066:s0", "batch-066:s1"]
+        },
+        {
+          "summary": "Approval notices reached someone who was not the approver for those rights and did not know who the request was for.",
+          "evidence_ids": ["batch-080:s3", "batch-080:o0", "batch-080:e14"]
+        },
+        {
+          "summary": "Access requests were forgotten or slow to arrive, leaving staff unable to run, calculate or print their books or reach the systems they needed.",
+          "evidence_ids": ["batch-036:s4", "batch-030:e19", "batch-030:e20", "batch-028:e20", "batch-059:e25"]
+        }
+      ],
+      "contradictions": [
+        {
+          "summary": "The access request system lists a user as the data approver for a request, while that user replies that he is not the approver for those rights.",
+          "evidence_ids": ["batch-080:e14", "batch-080:o0"]
+        }
+      ],
+      "automation": {
+        "approach": "A standard access request form that captures user, NT ID, systems, books or roles and approver, validated against the staff directory so requests reach the right person and approver; a role-based bundle of systems for new traders by desk; and a standing report of pending requests and approvals so outstanding items surface without manual reminders.",
+        "artifact_type": "template",
+        "rationale": "Most rounds are assembling names, IDs and systems and getting them to the right approver; the stalls are misrouted requests, wrong approvers and lists that never arrive. A request form with the user ID, systems and named approver filled in once removes the guesswork and the repeated list-gathering, while approvals and exceptions stay with people."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": { "low": 5, "mid": 12, "high": 30 },
+        "automatable_pct": 45,
+        "basis": "inferred",
+        "rationale": "Hands-on work per round is compiling the names, NT user IDs and systems for the request, filling in the security request, the approver's review, and the administrator setting up the ID and password. Most rounds cover one user or a short list, so about 12 minutes mid, from 5 for a single password change or approval to 30 for a desk-wide list of traders across several systems. A directory-validated form and role bundles could take over much of the compiling and entry; approvals and exceptions stay manual.",
+        "evidence_ids": ["batch-079:e4", "batch-020:e12", "batch-050:e20", "batch-095:e12", "batch-082:e13", "batch-091:e15", "batch-049:e14", "batch-085:e6"]
+      }
+    }
+  ]
+}

@@ -1,237 +1,153 @@
 {
   "group_id": "synth-019",
-  "content_sha": "5fa32db465ccbb423938ffbe0ae1c77118a523b896217bc2c73a084f0f6554f1",
+  "content_sha": "6da24f1831c15174739b74231328ddb698d3404b9392a5e6191838950abbcd45",
   "processes": [
     {
-      "key": "volume-imbalance-reconciliation",
-      "description": "A round starts when someone notices that scheduled, confirmed, actualized or measured gas volumes disagree at a meter, on a deal or in a pipeline imbalance statement. Settlements, volume management, measurement or the counterparty asks logistics to verify the nomination, path or allocation; the scheduler checks deals and meter data, moves volumes or updates tickets, and imbalance statements or month-to-date flow numbers are resent. Older balances are cleared by payback, manual entries or a write-off to unaccounted-for gas, which needs approval.",
+      "key": "time-activity-reporting",
+      "description": "Each month a cost-allocation coordinator (Shari Mao, James Scribner, Suzanne Nicholie) sends the Hours Survey and Activity Survey with instructions, asking staff to enter hours and activities for the month just ended so the data can feed the cost and price model. A helper spreadsheet is offered; respondents fill in, resave and return the file by a stated deadline, and the coordinator checks returns against ATEs staffing and follows up. Separately, an assistant collects time reports and staff reply with the vacation, sick or holiday days they took.",
       "steps": [
-        "Someone spots a gap between scheduled, confirmed, actualized or measured volumes at a meter, on a deal or in an imbalance statement.",
-        "They email logistics or volume management asking for the nomination, path, allocation or deal to be verified.",
-        "The scheduler checks nominations, deal tickets and meter data and explains or finds the cause of the variance.",
-        "Volumes are moved or re-allocated, deals and storage or injection tickets are updated or created.",
-        "Updated imbalance figures or month-to-date flow numbers are sent to the customer, pipeline or internal group.",
-        "Old or prior-period balances are cleared by payback, manual book entries or an approved write-off to unaccounted-for gas."
+        "Coordinator sends the monthly Hours Survey and Activity Survey with instructions, or opens the survey for input.",
+        "Respondents gather their hours and the share of time spent per activity or commercial team, optionally in the helper spreadsheet.",
+        "Respondents fill in, resave and return the survey file by the stated deadline.",
+        "Coordinator sends deadline-day reminders and chases those who have not responded.",
+        "Coordinator checks returns against ATEs staffing records and queries discrepancies with the team.",
+        "Coordinator loads the collected data into the cost allocation model.",
+        "For timesheets, the assistant asks for time reports and staff reply with the vacation, sick or holiday days taken."
       ],
       "stalls": [
         {
-          "summary": "Requesters wait on answers: earlier voice mails and requests go unanswered, issues get no updates, internal customers ask when results will be ready, and prior-month data has to be retrieved before work can continue.",
+          "summary": "Many respondents miss the survey deadline, so coordinators send reminders on the due date and after it has passed.",
           "evidence_ids": [
-            "batch-011:s4",
-            "batch-012:s2",
-            "batch-014:s1",
-            "batch-044:s1"
+            "batch-013:s3",
+            "batch-026:s1",
+            "batch-042:e24"
           ]
         },
         {
-          "summary": "Handoffs are unclear: people do not know which group a request comes from, misunderstand what was wanted when work was handed over, and ask who needs to talk to whom to fix volumes that were never actualized.",
+          "summary": "Surveys fall behind and are requested for several months at once, with later follow-ups asking staff which commercial team they supported and in what share.",
           "evidence_ids": [
-            "batch-010:s1",
-            "batch-055:s6",
-            "batch-053:s1",
-            "batch-053:e9"
+            "batch-019:e17",
+            "batch-061:e7"
           ]
         },
         {
-          "summary": "A requester needing an urgent answer is told the fix is not a priority item, so the round stalls until someone escalates.",
+          "summary": "Staffing reported for a team does not line up with the ATEs records, so the coordinator has to query the team before the data can be used.",
           "evidence_ids": [
-            "batch-008:s0",
-            "batch-008:s1"
-          ]
-        },
-        {
-          "summary": "Issues go round and round between groups without being resolved.",
-          "evidence_ids": [
-            "batch-035:s0"
-          ]
-        },
-        {
-          "summary": "The scheduling system cannot process a payback for a past period, so the imbalance has to be cleared with manual entries outside it.",
-          "evidence_ids": [
-            "batch-075:e4"
-          ]
-        },
-        {
-          "summary": "Old balances are left alone: nobody wants to touch them so they sit with one person, old customer balances are cleared long after the fact, and write-offs wait for approval.",
-          "evidence_ids": [
-            "batch-076:o0",
-            "batch-035:e4",
-            "batch-035:e15"
-          ]
-        }
-      ],
-      "contradictions": [
-        {
-          "summary": "Ownership of the daily imbalance check is disputed: Mary Poorman says it has been Bill's since the reorg, Bill Williams says Darron has owned it since March, and Mary Poorman also says the unwanted work just sits with her.",
-          "evidence_ids": [
-            "batch-078:o0",
-            "batch-077:o0",
-            "batch-076:o0"
-          ]
-        },
-        {
-          "summary": "In the same round one party was told the measurement problem was not a priority item while another demanded an answer as soon as possible.",
-          "evidence_ids": [
-            "batch-008:s0",
-            "batch-008:s1"
-          ]
-        },
-        {
-          "summary": "Measurement replies to set the record straight that it was neither contacted nor informed, disputing the account of the issue given earlier in the thread.",
-          "evidence_ids": [
-            "batch-010:e27"
-          ]
-        }
-      ],
-      "automation": {
-        "approach": "A scheduled comparison of scheduled, nominated, actualized and metered volumes by meter, deal and counterparty could flag variances above a tolerance, list open imbalances with their named owner and age, and generate the imbalance statement or month-to-date flow summary for the counterparty. A written procedure would name the owner of the daily imbalance check, the contacts in measurement, volume management and settlements, and the route for manual entries and write-off approval.",
-        "artifact_type": "sop",
-        "rationale": "The stalls are mostly about who owns the check, who to ask and how to clear old balances the system cannot handle, and the mail disputes ownership outright. A procedure naming owners, contacts and the clearing and write-off route addresses those first; the variance report then removes the repetitive lookups and matching once the routing is settled."
-      },
-      "work_estimate": {
-        "minutes_per_occurrence": {
-          "low": 20,
-          "mid": 45,
-          "high": 150
-        },
-        "automatable_pct": 40,
-        "basis": "observed",
-        "rationale": "Each round means pulling scheduled, actualized and meter volumes for the points or deals in question, finding the cause of the variance and correcting tickets, allocations or imbalance records; some rounds also compile point lists, update month-to-date flow sheets or make manual entries to clear past balances. A single meter or deal check takes about 20 minutes, a typical round 45, a multi-party list or write-off up to 150. A variance report could take over lookups and matching; diagnosis, counterparty agreement and approvals stay manual.",
-        "evidence_ids": [
-          "batch-062:e1",
-          "batch-031:e8",
-          "batch-075:e4",
-          "batch-006:e16",
-          "batch-003:e12",
-          "batch-001:e32",
-          "batch-035:e15",
-          "batch-033:e12",
-          "batch-047:e13",
-          "batch-000:e23"
-        ]
-      },
-      "estimate_check": {
-        "occurrences_cited": 10,
-        "senders_cited": 9
-      }
-    },
-    {
-      "key": "weekly-commercial-reporting",
-      "description": "Each week Michelle Lokay sends the California Capacity Report for the week, stating Transwestern's average deliveries to California against capacity and the San Juan lateral throughput, and in some weeks the operational line pack sold and its average rate. She also sends the commercial team's weekly bullets, or notes that there are none and which deals are ongoing. Occasionally a report goes out with a wrong effective date and a correction follows; related outside reports such as the CEC's final draft are passed on when requested.",
-      "steps": [
-        "Pull the week's deliveries to California and San Juan lateral throughput from pipeline flow data.",
-        "Work out the weekly averages and the utilisation of California delivery capacity.",
-        "Add operational line pack sales and their average rate when there were any.",
-        "Collect the commercial team's bullets on deals in progress, or note that there are none.",
-        "Send the California Capacity Report and the bullets to the commercial distribution list.",
-        "Send a correction when a date or figure in the report was wrong."
-      ],
-      "stalls": [
-        {
-          "summary": "A report went out with the wrong effective date and had to be followed by a correction message.",
-          "evidence_ids": [
-            "batch-086:e12"
+            "batch-007:e24"
           ]
         }
       ],
       "contradictions": [],
       "automation": {
-        "approach": "A scheduled report could pull the week's California deliveries, San Juan lateral throughput and line pack sales from the pipeline's flow and sales records, compute the averages and capacity utilisation, and fill them into the fixed sentences of the weekly message with the week's dates set automatically. The author then adds or confirms the commercial bullets and sends it.",
-        "artifact_type": "email_template",
-        "rationale": "The report repeats the same sentences every week with only the dates and figures changing, and the one recorded slip is a wrong effective date. A message template with the figures and dates filled from the data removes the retyping and the date error, while the bullets still need the team's judgement."
+        "approach": "Pre-fill each person's survey from timekeeping (ATEs) and the staff roster, collect it through one standard form that checks hours and allocations add up, send automatic reminders ahead of the deadline, and flag returns that disagree with ATEs before they are loaded into the model. Timesheet absences could be entered by staff directly rather than relayed to the assistant.",
+        "artifact_type": "template",
+        "rationale": "The recurring effort is re-sending, filling in and reconciling the same survey layout every month. A single pre-filled survey template with built-in totals checks cuts the entry and reconciliation work and reduces late or inconsistent returns, while people still judge how their time splits across activities."
       },
       "work_estimate": {
         "minutes_per_occurrence": {
-          "low": 15,
-          "mid": 30,
+          "low": 10,
+          "mid": 25,
           "high": 60
         },
-        "automatable_pct": 55,
+        "automatable_pct": 50,
         "basis": "inferred",
-        "rationale": "Each round means pulling the week's California deliveries and San Juan lateral throughput, working out averages and capacity utilisation, adding line pack sales when there were any and gathering the commercial bullets. The figures follow a fixed layout, so a round takes about 30 minutes, from 15 in a quiet week with no bullets to 60 when line pack sales and deal updates are added. A scheduled report could fill the figures; the bullets and the final check stay with the author.",
+        "rationale": "A round involves preparing the survey attachment and instructions, respondents looking up their hours and splitting them across activities or teams, filling in and resaving the file, and the coordinator checking returns against ATEs and loading them into the model. About 25 minutes mid; 10 when a round is only a timesheet absence entry, up to 60 when it includes reconciling staffing against ATEs. Pre-filling from timekeeping and automatic totals checks could take over much of the lookup and entry; the allocation judgement stays manual.",
         "evidence_ids": [
-          "batch-098:e20",
-          "batch-083:e0",
-          "batch-098:e21",
-          "batch-098:e6",
-          "batch-086:e12",
-          "batch-097:e26",
-          "batch-068:e7"
+          "batch-016:e27",
+          "batch-013:e14",
+          "batch-007:e24",
+          "batch-014:e18",
+          "batch-026:e6",
+          "batch-084:e20",
+          "batch-061:e7",
+          "batch-005:e30"
         ]
       },
       "estimate_check": {
-        "occurrences_cited": 7,
+        "occurrences_cited": 8,
+        "senders_cited": 6
+      }
+    },
+    {
+      "key": "time-off-approval",
+      "description": "Employees ask their manager (Bill Williams) for particular days off or a longer vacation. The manager replies approving the dates, telling staff to take the days and to give notice of longer vacations in advance as everyone else in the group does. The approved days are put down on the group's vacation calendar, and staff ask to be put down for further dates as needed.",
+      "steps": [
+        "Employee emails the manager asking for particular days off or a vacation.",
+        "Manager checks the dates against the group's coverage and other planned absences.",
+        "Manager replies approving the days, asking for advance notice of longer vacations.",
+        "The approved dates are entered on the vacation calendar, and further dates are added on request."
+      ],
+      "stalls": [],
+      "contradictions": [],
+      "automation": {
+        "approach": "A shared leave calendar with a short request form: the employee enters the dates, the manager sees overlapping absences and approves in one step, and approved dates land on the calendar without being re-keyed.",
+        "artifact_type": "template",
+        "rationale": "The work is small and repetitive: checking overlap and recording dates. A standard request and calendar layout keeps approvals and the calendar in step, while the coverage decision stays with the manager."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": {
+          "low": 1,
+          "mid": 3,
+          "high": 10
+        },
+        "automatable_pct": 40,
+        "basis": "inferred",
+        "rationale": "Hands-on work is checking the requested dates against the group's coverage and recording them on the vacation calendar: about 3 minutes, as the approvals shown are brief; up to 10 when a longer vacation has to be fitted around others' plans. A shared request form feeding the calendar could take over the recording; the approval decision stays manual.",
+        "evidence_ids": [
+          "batch-071:e18",
+          "batch-071:e19",
+          "batch-071:e20",
+          "batch-032:e6"
+        ]
+      },
+      "estimate_check": {
+        "occurrences_cited": 4,
         "senders_cited": 2
       }
     },
     {
-      "key": "work-responsibility-assignment",
-      "description": "A round starts with a role change, a reorganisation or a new point or account. A manager such as the logistics lead announces who will handle which pooling points, industrial accounts, pipelines, counterparties or books; the people giving up and taking over the work confirm the transition, pass on how the accounts are run and point others to the new contact. Gaps surface when someone finds an operational account left unassigned or asks who covers it for the new month, and staff moving roles are asked to pick up rates or tasks from others.",
+      "key": "trade-tape-retrieval",
+      "description": "When a trade has to be verified or a question with a counterparty is being worked through, someone on the trading or risk side asks for the recorded phone lines to be pulled for a named trader on a given date and time window, such as Geir's conversations in a late-afternoon window or Ryan Slinger's calls at two specific times. The tapes are retrieved and reviewed so the terms of the trade can be confirmed.",
       "steps": [
-        "A role change, reorganisation or new point or account triggers a reassignment.",
-        "A manager decides who takes which pipelines, points, accounts or books.",
-        "The changes are announced to logistics and the affected groups.",
-        "The outgoing person transitions the accounts and explains the work to the new owner.",
-        "The new owner confirms the takeover and is named as the contact for others.",
-        "Items later found unassigned are raised and given an owner."
+        "A trade needing verification or in dispute is identified.",
+        "The requester pins down the trader, date and time window of the relevant calls.",
+        "The requester emails a request to have the tapes pulled for that trader and window.",
+        "The recordings are located and retrieved.",
+        "The calls are reviewed to confirm what was agreed and the finding is used to settle the trade."
       ],
       "stalls": [
         {
-          "summary": "Work is left without an owner after a reassignment: an operational account is noticed as unassigned and a later question about who covers it for the new month stays unresolved.",
+          "summary": "The same tape pull for Geir's conversations is first raised as probably needed and then restated in a separate message as still needed, so the request is carried across threads before it is acted on.",
           "evidence_ids": [
-            "batch-001:s1",
-            "batch-001:e16",
-            "batch-001:s3",
-            "batch-001:e43"
-          ]
-        },
-        {
-          "summary": "People handed new work do not know how to do it: a person asked to pick up off-system pipeline rates has no idea where to start, and an outgoing scheduler says the new owner would not have known how to handle one account.",
-          "evidence_ids": [
-            "batch-044:s3",
-            "batch-044:e15",
-            "batch-001:s2"
+            "batch-083:e3",
+            "batch-083:e4"
           ]
         }
       ],
-      "contradictions": [
-        {
-          "summary": "The industrial accounts handover is described inconsistently: Kenneth Seaman says they should be completely transitioned to Robert and Robert Lloyd announces he has taken over all of them, while Kenneth Seaman's reply disputes how the Valero work would have been handled before he leaves Robert to the accounts.",
-          "evidence_ids": [
-            "batch-001:o2",
-            "batch-001:o6",
-            "batch-001:s2",
-            "batch-001:e39"
-          ]
-        }
-      ],
+      "contradictions": [],
       "automation": {
-        "approach": "One shared responsibility roster listing each point, account, pipeline and book with its primary owner, backup and effective date, updated by every announcement, with a check before each month starts that lists anything without an owner. Each transfer would come with a short handover list of the accounts' quirks for the new owner.",
-        "artifact_type": "template",
-        "rationale": "The stalls are items left unassigned and new owners unsure of the work, and the announcements are free-text lists that are hard to check. A roster layout gives one place to see who owns what and spot gaps; the handover notes travel with it. Deciding assignments and training stay with people."
+        "approach": "A standard tape request capturing trader, phone line, date, time window, deal reference and reason, sent to the recording group, together with a recording index searchable by trader and timestamp so the right calls can be found quickly.",
+        "artifact_type": "email_template",
+        "rationale": "Requests are free-text and vary in how precisely they name the calls. A fixed request message makes every pull complete the first time and avoids restating the same request; listening to the calls and judging the trade remain manual."
       },
       "work_estimate": {
         "minutes_per_occurrence": {
           "low": 10,
           "mid": 30,
-          "high": 120
+          "high": 90
         },
         "automatable_pct": 25,
         "basis": "inferred",
-        "rationale": "The hands-on work is deciding the split of points and accounts, updating assignment lists and records, and walking the new owner through the accounts, as the announcements and handover replies show. Most rounds are an announcement with some list upkeep, about 30 minutes; a full handover with training on unfamiliar accounts can take up to 120. A roster and unassigned-item check could take over the list upkeep, not the decisions or the training.",
+        "rationale": "Minutes go to identifying the trader and call times from the deal record, having the recordings located and retrieved, and listening through them to confirm the terms. About 30 minutes mid; 10 for a call at a known time, up to 90 when a window covering much of a late afternoon has to be reviewed. A request template and a searchable recording index could take over locating the calls; listening and judging stay manual.",
         "evidence_ids": [
-          "batch-001:e3",
-          "batch-013:e5",
-          "batch-044:e15",
-          "batch-001:e37",
-          "batch-047:e26",
-          "batch-037:e4",
-          "batch-001:e22"
+          "batch-083:e3",
+          "batch-083:e4",
+          "batch-057:e7"
         ]
       },
       "estimate_check": {
-        "occurrences_cited": 7,
-        "senders_cited": 5
+        "occurrences_cited": 3,
+        "senders_cited": 2
       }
     }
   ]

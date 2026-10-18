@@ -1,140 +1,195 @@
 {
   "group_id": "synth-009",
-  "content_sha": "b0a252ddc509b540d197217a3cb8f9890fee388cc22901f2a67de3f049ccfe79",
+  "content_sha": "67593cb4c073f6df551ea38ba12ec5fea1a4aa3aad6a7f2ffbb04b74bdb46881",
   "processes": [
     {
-      "key": "gas-nomination-handling",
-      "description": "Customers, suppliers and plants such as the Enron Methanol plant and Calpine send daily or monthly gas nominations, usually as attached documents or spreadsheets. Schedulers forward them to whoever schedules the affected pipeline or meters, estimate volumes where none arrive (from the prior year's nomination or a recent average), enter volumes against deals and pipeline paths, confirm deal numbers, meters and transport numbers, and issue revised nominations when flows, meters or spot purchases change.",
+      "key": "expense-report-approval",
+      "description": "Employees file expense reports through Concur (one request names Enron's XMS system). Concur emails the approver that a report is ready for approval and later that its approval status has changed; the approver reviews the items and approves or rejects them. Assistants also ask colleagues for outstanding items to be expensed, and during the bankruptcy announcements push approvers to clear reports waiting in their inboxes and explain which bills fall under pre-petition.",
       "steps": [
-        "A customer, supplier or plant sends a daily or monthly nomination, usually as an attached document or spreadsheet.",
-        "The scheduler forwards it to the people who schedule the affected pipeline, trade zone or meters.",
-        "Where no nomination arrives, the scheduler estimates volumes from the prior year's nomination or a recent average.",
-        "Volumes are entered against deals and pipeline paths in the scheduling system.",
-        "Deal numbers, meters and transport numbers are confirmed with the counterparty or internal desks.",
-        "When flows, meters or purchases change, a revised nomination is issued and the path or volume corrected.",
-        "At month end, schedulers pull their own meters from the position and confirm them back to the lead scheduler."
+        "An employee or assistant gathers outstanding invoices and receipts to be expensed.",
+        "The expense report is filed in the Concur expense system.",
+        "Concur notifies the approver that the report is ready for approval.",
+        "The approver reviews the items and approves or rejects the report.",
+        "Concur notifies the submitter that the approval status has changed.",
+        "The expenses are reimbursed, with bills treated according to whether they were submitted before the pre-petition cutoff."
       ],
       "stalls": [
         {
-          "summary": "Rounds wait on replies: a check goes unanswered, a producer does not respond after repeated voice and email contacts, a transport number is still outstanding, and a meter addition waits on a return call.",
+          "summary": "A submitter cannot get into the expense system and asks for help with the Concur login and password, so the report waits until access is restored.",
           "evidence_ids": [
-            "batch-011:s3",
-            "batch-033:s1",
+            "batch-076:s0",
+            "batch-076:e13"
+          ]
+        },
+        {
+          "summary": "Reports sit unprocessed: an announcement asks approvers to either approve or reject the outstanding business expenses in their inboxes, and staff are asked to file the outstanding employee expenses they hold as soon as possible.",
+          "evidence_ids": [
+            "batch-081:e9",
+            "batch-094:e12"
+          ]
+        }
+      ],
+      "contradictions": [
+        {
+          "summary": "One announcement says expenses will be reimbursed promptly upon submission, while another sorts bills by whether they were submitted before a mid-December date and treats those as covered under pre-petition, so the treatment of an item depends on when it was submitted.",
+          "evidence_ids": [
+            "batch-083:e5",
+            "batch-084:e15"
+          ]
+        }
+      ],
+      "automation": {
+        "approach": "A daily report from the expense system listing reports awaiting approval by approver and age, with automatic reminders, plus rule checks that flag items missing receipts, outside policy, or on the wrong side of the pre-petition cutoff so approvers look closely only at flagged items. Self-service password reset would remove the login stall.",
+        "artifact_type": "checklist",
+        "rationale": "The system already routes reports, so the remaining hands-on work is the approver's review and the submitter's gathering of invoices. A short checklist covering what to attach, the bankruptcy cutoff rules and how to regain system access would reduce rejected and stuck reports soonest; the queue report addresses reports left sitting in inboxes."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": {
+          "low": 3,
+          "mid": 8,
+          "high": 20
+        },
+        "automatable_pct": 35,
+        "basis": "inferred",
+        "rationale": "Most rounds are one report: the approver opens it in Concur, checks the line items and receipts against policy and approves or rejects it, a few minutes for a routine report, so mid 8 minutes. Some rounds instead have a submitter collect outstanding invoices or bills and file them, which takes longer and sets the upper end near 20 minutes. Routing is already automated; rule checks could take over part of the item review.",
+        "evidence_ids": [
+          "batch-092:e0",
+          "batch-098:e26",
+          "batch-081:e9",
+          "batch-094:e12",
+          "batch-001:e31",
+          "batch-084:e15"
+        ]
+      },
+      "estimate_check": {
+        "occurrences_cited": 6,
+        "senders_cited": 5
+      }
+    },
+    {
+      "key": "gas-nomination-handling",
+      "description": "Customers and suppliers such as Calpine, Enron Methanol and TXU send daily or monthly gas nominations, often as attached forms or spreadsheets. Schedulers enter the volumes in Sitara, set them up on the right contract and pipeline, and confirm. Revised nominations follow whenever volumes change, including retroactive changes that are checked against the contracts and corrected; traders and plant contacts forward changes such as plant swings or buybacks to be renominated, and the gas is then tracked and balanced.",
+      "steps": [
+        "A customer or supplier sends a daily or monthly nomination, often as an attached form or spreadsheet.",
+        "The scheduler checks the request against the contract and the transport arrangements.",
+        "Estimated or nominated volumes are entered in Sitara on the right contract and meter.",
+        "The nomination is placed with the pipeline and confirmed back to the requester.",
+        "When volumes change, a revised nomination arrives and is forwarded to the scheduler responsible.",
+        "The scheduler updates the volumes, including retroactive corrections, and settles how any buyback is priced.",
+        "The gas is tracked and balanced against the nominated volumes."
+      ],
+      "stalls": [
+        {
+          "summary": "Schedulers wait on counterparties and colleagues: a supplier is still waiting on a transport number, a request goes unanswered until a follow-up asks whether it was checked, and an update waits on a returned phone call.",
+          "evidence_ids": [
             "batch-033:s2",
+            "batch-033:e16",
+            "batch-011:s3",
             "batch-006:s2"
           ]
         },
         {
-          "summary": "Nominations are reworked after the fact: a mistake in the start-of-month nominations, a pipeline path changed by another scheduler, and revised daily nominations reissued by the customer.",
+          "summary": "Volumes are changed repeatedly: a customer drops the volume again, another asks for a nomination to show zero, a supplier revises its nom for a span of days, and a scheduler corrects noms entered wrongly at the start of the month.",
           "evidence_ids": [
-            "batch-003:s2",
-            "batch-003:e9",
-            "batch-003:e42"
+            "batch-006:e6",
+            "batch-011:e15",
+            "batch-016:e23",
+            "batch-003:s2"
           ]
         },
         {
-          "summary": "The month position attachment keeps bouncing off the mail gateway, so it is pasted into the message body instead.",
+          "summary": "Customers request nomination changes retroactive to earlier dates, and management warns that retroactive deals affect daily operations and that contracts must be reviewed and understood.",
+          "evidence_ids": [
+            "batch-003:e8",
+            "batch-010:e21",
+            "batch-010:e4"
+          ]
+        },
+        {
+          "summary": "An attachment with the full month position keeps bouncing off the mail gateway, so the position is pasted into the message body instead.",
           "evidence_ids": [
             "batch-079:s0"
           ]
         },
         {
-          "summary": "Confirmation is held up until deal numbers are supplied, and some nominations are left pending while a colleague decides whether to wait on them.",
-          "evidence_ids": [
-            "batch-052:e9",
-            "batch-009:e28"
-          ]
-        },
-        {
-          "summary": "Who places which nominations shifts: a suggestion to centralize transport nominations, and a later assignment of off-system nominations to one scheduler.",
+          "summary": "Nomination work is spread across several people, prompting a suggestion to centralize transport nominations and a later assignment of off-system nominations to one scheduler.",
           "evidence_ids": [
             "batch-039:e5",
             "batch-042:o0"
           ]
         }
       ],
-      "contradictions": [],
+      "contradictions": [
+        {
+          "summary": "Volumes on the books disagree with what counterparties want: a customer is looking for a different February volume at a meter than nominated, another asks for a nomination to show zero instead, and a scheduler finds the noms entered at the start of the month were a mistake.",
+          "evidence_ids": [
+            "batch-041:e4",
+            "batch-011:e15",
+            "batch-003:s2"
+          ]
+        }
+      ],
       "automation": {
-        "approach": "A standard nomination form (day, meter, pipeline, deal and volume) that customers and suppliers fill in, loaded into the scheduling system by a script that compares each nomination with the prior one and with flowing volumes, flags missing deal or transport numbers and disconnected meters, and drafts the revised nomination for a scheduler to review when volumes change.",
+        "approach": "Standard nomination intake: counterparties submit a fixed spreadsheet layout that a tool reads into Sitara, compares with the previous nomination and the contract, and flags changed volumes, retroactive dates and missing transport numbers for the scheduler before the confirmation goes out. A shared list of nomination owners by pipeline routes each change to one person.",
         "artifact_type": "template",
-        "rationale": "Nominations arrive in varied formats (documents, spreadsheets, pasted text) and volumes are re-keyed, estimated and corrected by hand. One shared form removes the re-keying and makes errors such as a wrong start-of-month nomination or a changed path visible before they reach the pipeline, while schedulers keep the judgement on estimates and exceptions."
+        "rationale": "Nominations arrive as Word forms, spreadsheets and pasted text, and much of the hands-on work is re-keying and comparing volumes. One nomination template that every counterparty fills in makes entry and comparison mechanical, leaving schedulers the judgement on retroactive changes, pricing and contract fit."
       },
       "work_estimate": {
         "minutes_per_occurrence": {
-          "low": 5,
-          "mid": 15,
-          "high": 45
+          "low": 10,
+          "mid": 20,
+          "high": 60
         },
-        "automatable_pct": 50,
+        "automatable_pct": 45,
         "basis": "inferred",
-        "rationale": "Most rounds are routine nominations: reviewing the attached volumes, checking them against the deal and earlier nominations, and entering them against the path in the scheduling system, about 15 minutes. Straight entries take about 5; rounds that need an estimate, a path change, a deal-number confirmation or a month-end meter check run to about 45. Parsing a standard form and loading and comparing volumes could be handled by a tool; estimates and exceptions stay with schedulers.",
+        "rationale": "Minutes go to reading the nomination form, checking it against the contract and transport, entering or changing volumes in Sitara and confirming with the pipeline. A routine daily nom sits near the low end of 10 minutes; revised or retroactive changes that need contract review, correction of earlier entries and rebalancing push toward 60 minutes. Mid 20 minutes reflects the mix of routine noms and revisions.",
         "evidence_ids": [
-          "batch-025:e7",
-          "batch-006:e21",
-          "batch-013:e2",
-          "batch-011:e0",
-          "batch-003:e9",
-          "batch-052:e9",
-          "batch-079:e0",
+          "batch-002:e32",
+          "batch-031:e16",
+          "batch-048:e20",
+          "batch-006:e19",
+          "batch-016:e23",
           "batch-003:s2",
-          "batch-015:e8"
+          "batch-010:e21",
+          "batch-000:e29"
         ]
       },
       "estimate_check": {
-        "occurrences_cited": 9,
-        "senders_cited": 8
+        "occurrences_cited": 8,
+        "senders_cited": 7
       }
     },
     {
       "key": "internal-annuity-booking",
-      "description": "A desk member asks for an internal annuity to be booked or revised so that revenue or profit from a specific deal is shared between trading books. Bill Williams asks for annuities to be revised as appropriate, explains which of several annuities relate to a deal's profit sharing, states which book revenue moved from and to and how it was split, and supports the explanation with a spreadsheet he built months earlier.",
+      "description": "Staff on the trading side explain, enter and revise internal annuities that move revenue between books, such as profit sharing on a deal split between two desks. A round starts with a request to revise an annuity, a question about an unexplained beginning-of-month charge before month-end, or a note listing annuities entered to reconcile counterparty records with Enpower; the reply names the books involved and attaches a supporting spreadsheet.",
       "steps": [
-        "A desk member asks for an internal annuity on a specific deal to be booked or revised.",
-        "The deal's existing annuities and profit-sharing arrangement are identified.",
-        "The split of revenue between the trading books is worked out.",
-        "The annuity is entered or revised to move revenue between the books.",
-        "The booking is explained to the requester, with the supporting spreadsheet attached."
-      ],
-      "stalls": [],
-      "contradictions": [],
-      "automation": {
-        "approach": "A standard annuity booking sheet recording the deal, the books revenue moves from and to, the split, the period and the reason, kept as a shared record so later revisions and explanations draw on it instead of an old personal spreadsheet.",
-        "artifact_type": "template",
-        "rationale": "The explanations rely on a spreadsheet created months earlier and on recalling several annuities tied to one deal. A single shared template keeps that record in one place and makes revisions and questions quicker to answer."
-      },
-      "work_estimate": null,
-      "estimate_check": null
-    },
-    {
-      "key": "iso-adjustment-bidding",
-      "description": "Bill Williams sets up the desk's decremental and adjustment bidding in the California ISO market. He circulates a sheet outlining the basic dec bidding process, works with generators on buy-backs or supplemental dec bids when market conditions warrant, instructs the real-time group on tiering adjustment bids within the limit on how many bids the CAISO system reads, and asks colleagues which tools were used to settle such bids.",
-      "steps": [
-        "Market conditions or a generator's position prompt a decremental or adjustment bid.",
-        "The desk agrees buy-backs or supplemental dec bids with the generator.",
-        "The real-time group enters the bids in the ISO system following the outlined process.",
-        "Adjustment bids are tiered so the set stays within the number of bids the CAISO system reads.",
-        "Settlement is checked, which means finding out which tools were used to settle earlier bids."
+        "A request arrives to explain or revise an internal annuity, or a prior-month charge is queried.",
+        "The deal and the books the revenue moves between are looked up.",
+        "The split and its basis are explained, with a supporting spreadsheet attached.",
+        "The annuity is entered or revised.",
+        "Annuities are entered to reconcile counterparty records with Enpower before month-end."
       ],
       "stalls": [
         {
-          "summary": "The CAISO system reads only a limited number of tiered adjustment bids, so bids must be tiered to fit that limit, which led to a new tiering process.",
+          "summary": "Annuities already booked have to be revised, and unexplained beginning-of-month charges are queried before month-end, so the same deals come round again.",
           "evidence_ids": [
-            "batch-066:e19",
-            "batch-066:e5"
-          ]
-        },
-        {
-          "summary": "How earlier bids were settled is not written down; the desk has to ask colleagues what tools were used to settle.",
-          "evidence_ids": [
-            "batch-054:e4"
+            "batch-059:e2",
+            "batch-073:e6"
           ]
         }
       ],
-      "contradictions": [],
+      "contradictions": [
+        {
+          "summary": "Counterparty records and Enpower disagree for a past year, and annuities are entered specifically to bring the two into line.",
+          "evidence_ids": [
+            "batch-073:e8"
+          ]
+        }
+      ],
       "automation": {
-        "approach": "A written procedure with a bid-entry sheet that builds the tiered bid set, checks it against the CAISO bid limit before submission, and records generator buy-back agreements and the settlement tools used.",
-        "artifact_type": "sop",
-        "rationale": "The process lives in one person's emails and a simple attached sheet, and the real-time group needs clear instructions on entering and tiering bids. A procedure with a limit check captures the tiering rule and the settlement knowledge that the mail shows being asked for."
+        "approach": "A standard annuity record kept with each deal: the books moved from and to, the split, the reason and the period, plus a month-end check that compares Enpower with counterparty records and lists differences and unexplained charges before P&L closes.",
+        "artifact_type": "template",
+        "rationale": "Explanations are rebuilt from memory and an older spreadsheet, so one layout per annuity would let anyone answer revision questions and reconcile records without depending on the person who first booked it."
       },
       "work_estimate": null,
       "estimate_check": null

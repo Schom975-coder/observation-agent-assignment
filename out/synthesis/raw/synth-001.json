@@ -2,113 +2,101 @@
   "group_id": "synth-001",
   "processes": [
     {
-      "key": "budget-preparation",
-      "description": "In the autumn the logistics budget coordinator opens the next year's budget: she announces when the first draft is due, sends managers a budget questionnaire to fill in and return by a deadline, and asks them to list their staff by position. Managers reply with their headcount, sometimes a one-person region, and later send revised forecasts after working through staffing with HR. Through the year, final monthly budget numbers and regional budget-versus-actual comparison reports go out as attachments to the cost center managers.",
+      "key": "book-officialization",
+      "description": "A desk lead answers requests for the list of trading books his desk marks official, explaining that the desk officializes by postid as the whole West desk does. Lists are sometimes sent late or built on a misread request and have to be redone. Guidance on officialization is forwarded to the desk, stressing that Credit needs correct counterparty codes and names on the deals.",
       "steps": [
-        "The coordinator announces the next year's budget cycle and the due date for the first draft.",
-        "Managers receive a budget questionnaire to complete and return by the stated deadline.",
-        "Managers list their staff by position and offer salary detail if it is needed.",
-        "Managers revise their budget after reviewing staffing with HR and send a revised forecast.",
-        "Final monthly budget numbers are circulated once the month is closed.",
-        "Budget-versus-actual comparison reports are sent to the regional cost center managers."
+        "Someone outside the desk asks for the list of books the desk officializes.",
+        "The desk lead compiles the list, noting that the desk officializes by postid.",
+        "If the request was misread, the list is reworked and sent again.",
+        "Guidance on officialization is forwarded to the desk, stressing correct counterparty codes and names for Credit."
       ],
       "stalls": [
         {
-          "summary": "A manager's budget went round again: revisions followed a session with the HR department, and a revised forecast was sent the next day, so the submission was reworked after the first version.",
-          "evidence_ids": ["batch-066:e1", "batch-066:e2"]
+          "summary": "A list of officialized books was built on a misreading of the request and had to be redone.",
+          "evidence_ids": ["batch-031:s1", "batch-031:e25"]
         },
         {
-          "summary": "Regional budget-versus-actual comparison reports arrived bundled for several past months at once, well after those months had closed, which suggests the monthly reporting falls behind.",
-          "evidence_ids": ["batch-072:e16"]
+          "summary": "The list of officialized books went out late, with an apology for the delay.",
+          "evidence_ids": ["batch-031:e24"]
         }
       ],
       "contradictions": [],
       "automation": {
-        "approach": "A standard budget workbook sent at the start of the cycle, prefilled with each manager's current positions from HR records, so managers confirm and adjust staffing instead of listing staff and answering the questionnaire from scratch; budget-versus-actual reports generated from the ledger at month close and sent to each cost center manager on a fixed schedule.",
-        "artifact_type": "template",
-        "rationale": "The repeated hands-on work is filling in a questionnaire, listing positions and reworking forecasts after checking staffing with HR; a prefilled form removes the re-keying and much of the rework. The monthly reports are a mechanical extract that a scheduled report can produce, which would also stop them arriving in bundles."
+        "approach": "A standing report from the trading system listing the books and postids each desk officializes, so the list is pulled rather than compiled by hand, plus a check that flags deals whose counterparty code or name does not match the credit master before a book is marked official.",
+        "artifact_type": "checklist",
+        "rationale": "The mail shows lists compiled on request, misread and sent late, and guidance repeated about counterparty data Credit relies on. A short checklist of which books to officialize, how to list them and what counterparty fields to verify would cut the rework the desk sees now."
       },
-      "work_estimate": {
-        "minutes_per_occurrence": { "low": 15, "mid": 60, "high": 180 },
-        "automatable_pct": 40,
-        "basis": "inferred",
-        "rationale": "Minutes go to completing the budget questionnaire, listing staff positions, reworking the forecast after checking staffing with HR, and assembling monthly budget or budget-versus-actual reports. A one-person region needs about 15 minutes; a full revised forecast with HR input can take up to 180 minutes; 60 minutes is a typical round. Prefilled headcount and generated reports could take over the data entry and report assembly, while managers still judge staffing and spend.",
-        "evidence_ids": ["batch-023:e12", "batch-023:e18", "batch-023:e23", "batch-066:e1", "batch-066:e2", "batch-072:e16"]
-      }
+      "work_estimate": null
     },
     {
       "key": "commercial-strategy-planning",
-      "description": "The pipeline commercial team plans its strategy around expansions, interconnects and storage projects. A round starts with a customer or project question, such as an interconnect, a storage project or a fuel charge, or with a call for a strategy meeting. Facility Planning prepares cost estimates and spreadsheets for build, expansion and interconnect cases, revises them when Marketing asks for costs split out, and economics are run on them. Assistants and managers schedule and reschedule strategy meetings where scenarios, risks and customer proposals are discussed.",
+      "description": "The pipeline commercial team's planning work. Managers and assistants call strategy and group-direction meetings, poll for dates and keep moving them as diaries and rooms change. Facility Planning prices proposed mainline expansions, laterals and bi-directional interconnects in spreadsheets with pressure ranges. Marketing reviews the costs, asks for line items split out, takes the marketing contact role on interconnect requests, meets producers and neighbouring pipelines, and brings storage projects, tariff filings and negotiating parameters to the group to settle strategy.",
       "steps": [
-        "A manager or assistant calls a strategy meeting and confirms the date, time and room.",
-        "Marketing raises a customer or project request, such as an interconnect or storage project, and names a contact.",
-        "Facility Planning prepares cost estimates and spreadsheets for build, expansion or interconnect cases.",
-        "Estimates are revised on Marketing's request, for example splitting out interest, overheads and AFUDC.",
-        "Economics are run on the costs and negotiating parameters such as fuel charges are settled.",
-        "The team meets on scenarios, benefits, risks and strategy, and proposals go out to customers."
+        "A manager or assistant calls a strategy meeting, setting date, time and room and asking who cannot attend.",
+        "Facility Planning prices a proposed expansion, lateral or interconnect and circulates the cost spreadsheet.",
+        "Marketing reviews the estimate and asks for changes, such as interest, overheads and AFUDC split out by line item.",
+        "Planners revise and recirculate the spreadsheet, cost estimate and pressure ranges.",
+        "A marketer is named contact for an interconnect or storage project and arranges meetings with the other party.",
+        "The group meets to discuss project benefits, risks, regulatory filings and negotiating parameters."
       ],
       "stalls": [
         {
-          "summary": "Cost estimates wait on facility information from field staff: work on an interconnect estimate was held up pending data from the Roswell office.",
+          "summary": "An interconnect cost estimate waits on facility information from a field office before the work list can be finished.",
           "evidence_ids": ["batch-097:s1", "batch-097:e25"]
         },
         {
-          "summary": "Supporting material is slow to obtain: getting a map showing the power plant proved more difficult than expected.",
+          "summary": "Supporting material for a project, a map showing the power plant, proved harder to obtain than expected.",
           "evidence_ids": ["batch-070:e3"]
         },
         {
-          "summary": "Meetings are moved and re-polled: a strategy meeting was moved, attendees were asked which dates suit them and to reply all, people answered with alternative days, and room changes were sent out.",
-          "evidence_ids": ["batch-070:e5", "batch-072:e6", "batch-097:e29", "batch-097:e31", "batch-007:e17"]
+          "summary": "Cost spreadsheets go round again: Marketing asks for interest, overheads and AFUDC split out for every line item, and a revised spreadsheet replaces one sent the day before.",
+          "evidence_ids": ["batch-072:e2", "batch-082:e21"]
         },
         {
-          "summary": "Cost spreadsheets go round again: revised versions follow the previous day's spreadsheet, and estimates are reworked when Marketing asks for interest, overheads and AFUDC split out for all line items.",
-          "evidence_ids": ["batch-082:e21", "batch-072:e2", "batch-097:e14"]
+          "summary": "Strategy meetings are moved, change rooms or need several messages to settle a date among attendees.",
+          "evidence_ids": ["batch-070:e5", "batch-007:e17", "batch-072:e6", "batch-097:e29", "batch-097:e31"]
         },
         {
-          "summary": "A commercial lead was left without negotiating parameters for the fuel charge on a project and had to ask for them.",
+          "summary": "A negotiator cannot proceed on a project's fuel charge until he is told his negotiating parameters.",
           "evidence_ids": ["batch-074:e12"]
-        },
-        {
-          "summary": "Who handles an interconnect is settled ad hoc: a colleague is asked whether they have time to take it on and to tell the other party they are the marketing contact.",
-          "evidence_ids": ["batch-078:e0"]
         }
       ],
       "contradictions": [],
       "automation": {
-        "approach": "A standard cost-estimate workbook for interconnect, lateral and expansion cases, with interest, overheads and AFUDC split out by default and a version label on each issue, plus a shared project tracker listing each project's owner, marketing contact and outstanding field data, and a standing strategy meeting slot with an agenda.",
+        "approach": "A standard cost-estimate workbook for expansion and interconnect projects, with interest, overheads and AFUDC split out by line item from the start and a version stamp on each revision, kept with a simple project tracker naming the marketing contact and the inputs still awaited. Strategy meetings booked through a shared calendar poll instead of reply-all date checks.",
         "artifact_type": "template",
-        "rationale": "The rework in the mail centres on cost spreadsheets being revised and resent and on facility data awaited from the field; a fixed workbook layout and a tracker of open items address both. Engineering judgement, economics and negotiating positions stay with people."
+        "rationale": "The repeated hands-on work is pricing projects in spreadsheets, and much of the rework comes from format requests and revisions of those spreadsheets. A fixed layout that already carries the splits Marketing asks for, with clear versions, heads off a round of rework; the engineering pricing and the strategy calls stay with people."
       },
       "work_estimate": {
-        "minutes_per_occurrence": { "low": 15, "mid": 60, "high": 240 },
+        "minutes_per_occurrence": { "low": 15, "mid": 60, "high": 180 },
         "automatable_pct": 25,
         "basis": "inferred",
-        "rationale": "Minutes go mainly to Facility Planning's cost estimates and spreadsheets for expansion, pipeline build and bi-directional interconnect cases, their revisions, and the economics run on them, plus preparing for strategy meetings. A round that only sets up a meeting needs about 15 minutes of preparation; a full cost estimate with revisions can run to 240 minutes; 60 minutes is a typical round across the mix. A standard workbook could take over layout, cost splitting and version handling, not the engineering or negotiating judgement.",
-        "evidence_ids": ["batch-097:e13", "batch-098:e3", "batch-071:e15", "batch-072:e2", "batch-082:e21", "batch-097:e25", "batch-097:e17", "batch-074:e12", "batch-070:e5", "batch-098:e22"]
+        "rationale": "Rounds that only call or move a strategy meeting take about 10 to 15 minutes of calendar and room booking. Rounds that carry a cost estimate for an expansion, lateral or bi-directional interconnect need engineering work to price line items, set pressure ranges and revise the spreadsheet, up to about 180 minutes. Across that mix the mid is 60 minutes. A standard workbook and calendar polling could take over the formatting, line-item splits and booking; pricing and judgement stay manual.",
+        "evidence_ids": ["batch-097:e13", "batch-071:e15", "batch-072:e2", "batch-082:e21", "batch-098:e3", "batch-097:e25", "batch-097:e17", "batch-098:e22", "batch-070:e5"]
       }
     },
     {
-      "key": "contingency-planning",
-      "description": "The gas logistics desks prepare to work from a backup location. Managers are asked how many desks they need on the backup floor, backup seats are assigned and the list of team members given spots is circulated, and a memo asks schedulers to fill in survey data from their desk spreadsheets on how nominations would be made remotely, including which pipelines require or can use dial-up access to their electronic bulletin boards.",
+      "key": "continuity-seat-planning",
+      "description": "Gas logistics management plans backup seats for its desks. A manager asks desk leads how many desks they would need on the backup floor; a memo goes out asking desk leads to have their schedulers fill in requested data from their desk spreadsheets; the replies are compiled and the list of team members given backup spots is circulated.",
       "steps": [
-        "A manager asks each desk lead how many desks they need at the backup location.",
-        "Backup seats are allocated and the list of team members given spots is circulated.",
-        "A memo goes to desk managers asking their schedulers to fill in survey data from their desk spreadsheets.",
-        "Responses are compiled into a list of pipelines that require or can use dial-up EBB access."
+        "A manager asks each desk lead how many desks the team would need on the backup floor.",
+        "A memo goes to desk leads, who ask their schedulers to fill in the requested data from their desk spreadsheets.",
+        "The replies are compiled into seat counts per desk.",
+        "Backup spots are assigned and the list of people given spots is sent to the team."
       ],
       "stalls": [],
       "contradictions": [],
       "automation": {
-        "approach": "A continuity roster workbook per desk, kept current, holding backup seat assignments, desk counts and, for each pipeline, how nominations are submitted remotely, including dial-up EBB access, so each planning round or seat test starts from the existing roster and only changes are collected.",
+        "approach": "A shared seat-request form, one row per desk, where schedulers enter the requested data and desk counts once; it totals the seats needed and produces the assignment list for circulation, replacing the forwarded memo and separately kept desk spreadsheets.",
         "artifact_type": "template",
-        "rationale": "Each round re-collects the same facts, seat counts, names and pipeline access methods, by memo and desk spreadsheet; a maintained roster turns that into a review of changes. Seat testing and the decisions on who gets a backup spot remain with the managers."
+        "rationale": "The work in each round is collecting the same counts and desk data from several leads and schedulers and turning them into an assignment list. One fixed layout makes the collection and the totals repeatable, while deciding who gets a backup spot stays with the managers."
       },
       "work_estimate": {
-        "minutes_per_occurrence": { "low": 15, "mid": 45, "high": 120 },
+        "minutes_per_occurrence": { "low": 15, "mid": 30, "high": 75 },
         "automatable_pct": 40,
         "basis": "inferred",
-        "rationale": "Minutes go to counting desk needs, allocating backup seats and compiling the list of people given spots, and to schedulers filling in each pipeline's remote nomination method from desk spreadsheets and compiling the dial-up list. A seat count alone takes about 15 minutes; a desk-wide survey compiled across pipelines can take 120 minutes; 45 minutes is a typical round. A maintained roster could take over the re-collection and compiling, while seat decisions stay with managers.",
-        "evidence_ids": ["batch-059:e30", "batch-074:e5", "batch-072:e5", "batch-075:e11"]
+        "rationale": "Schedulers pull the requested figures from their desk spreadsheets, desk leads count the desks they need, and a manager compiles the replies into the list of people given spots. That collation is about 30 minutes a round, more when several desks report or the list changes. A shared form could total the counts and draft the list; choosing who gets a spot stays manual.",
+        "evidence_ids": ["batch-072:e5", "batch-059:e30", "batch-074:e5"]
       }
     }
   ]

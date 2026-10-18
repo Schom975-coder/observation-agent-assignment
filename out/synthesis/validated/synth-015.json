@@ -1,195 +1,143 @@
 {
   "group_id": "synth-015",
-  "content_sha": "ebeafd4024ddbc6677459d4cd80b65aac9b76b9734ff41510b822563e211f4b6",
+  "content_sha": "460a034621881e9e0c7ca45ba1a6b647804fdc1615180b8eb22d8d799f52cc90",
   "processes": [
     {
-      "key": "process-documentation",
-      "description": "Managers and analysts write or revise documents describing how their group works, such as a controls and standards list, redefined activity definitions, or a process write-up for a senior manager, and send them round for comment, often with related correspondence attached. Colleagues read and give feedback, a coordinator gathers the marked-up document and returns it to the author, and the author decides what goes into the final version, sometimes holding a sensitive item back until an audit has closed.",
+      "key": "pipeline-outage-supply-cuts",
+      "description": "Notices come in from gas control, plant operators, field staff and upstream suppliers when a pipeline section is pigged or under line work, a plant or compressor goes down, a meter is shut in, or a supplier cuts volumes or claims force majeure. The notice names the meters, plants or interconnects affected, the expected duration and the volumes cut or capacity lost. It is forwarded to schedulers and traders, who work out which deals and customers are hit, call the pipeline or counterparty, rearrange supply, and track restart updates until normal flow resumes.",
       "steps": [
-        "An author drafts or revises a controls list, activity definitions or a process write-up.",
-        "The author circulates the draft with any supporting correspondence and asks for feedback.",
-        "Colleagues read the document and mark up comments.",
-        "A coordinator collects the comments and returns the document to the author.",
-        "The author settles the final wording, including what to leave out for now."
+        "A notice arrives from gas control, a plant operator, field staff or a supplier about maintenance, pigging, a plant upset, a shut-in meter or a supply cut.",
+        "The notice names the affected meters, plants or interconnects, the expected duration and the volumes cut or capacity lost.",
+        "It is forwarded to the schedulers, traders and logistics staff who hold deals at those points.",
+        "Staff identify the affected deals and customers and call the pipeline or counterparty for details.",
+        "Supply is rearranged: nominations are cut or replaced from other sources, and buyback or force majeure treatment is decided.",
+        "Follow-up notices report revised restart times, postponements or the return to full production, and arrangements are adjusted again."
       ],
       "stalls": [
         {
-          "summary": "A known issue is deliberately kept out of a write-up: the author asks that the invoice approval piece be described in a set way and does not want to open the underlying question before the audit closes, so the matter is left unresolved.",
+          "summary": "Answers about an outage are slow to come: a call to the counterparty goes unreturned, a manager asks for the status of how December force majeure cuts should be treated against the buyback, and planners ask to be told as soon as possible about scheduled line work.",
           "evidence_ids": [
-            "batch-075:s1",
-            "batch-075:e13"
+            "batch-051:s0",
+            "batch-000:s0",
+            "batch-000:e21",
+            "batch-001:s0",
+            "batch-001:e7"
+          ]
+        },
+        {
+          "summary": "Plant outages run across a string of separate notices as the restart picture keeps moving: operation at lower rates, a later earliest restart, full production sooner than expected, then extensive repairs needed, so the supply arrangements stay open through repeated updates.",
+          "evidence_ids": [
+            "batch-008:e33",
+            "batch-008:e32",
+            "batch-009:e14",
+            "batch-017:e14",
+            "batch-012:e21"
+          ]
+        },
+        {
+          "summary": "Outage timing arrives second-hand and changes: an interconnect's downtime is passed on as what the sender is being told, and a scheduled outage turns out to be postponed, so plans built on the first notice have to be redone.",
+          "evidence_ids": [
+            "batch-007:e6",
+            "batch-052:e16"
           ]
         }
       ],
       "contradictions": [],
       "automation": {
-        "approach": "A standard document template for controls and process write-ups, with fixed sections for activities, controls, owners and open items, plus a comment log so reviewers add feedback in one place and the coordinator does not have to collate returned copies by hand. Open items held back for an audit get an explicit follow-up entry rather than being dropped.",
-        "artifact_type": "template",
-        "rationale": "Each round starts from a fresh attachment and ends with someone coordinating returned comments. A common layout and a single comment log make drafts quicker to write and review and keep deferred items visible; the content itself still needs the author's judgement."
+        "approach": "A shared outage log fed by a standard notice: each entry records the meter or point, pipeline, start and expected end, volume before and after, and cause. A lookup from meter to the deals and counterparties flowing there lists who is affected, drafts the customer notices and flags nominations to change; restart updates amend the same entry instead of starting a new thread.",
+        "artifact_type": "email_template",
+        "rationale": "Notices come from many senders in free text, and some leave out the meter, the volumes or the end date, which forces follow-up calls. A standard outage notice that always carries those fields lets schedulers find affected deals quickly and is the first step toward the log and lookup. Deciding how to replace supply and whether force majeure applies stays with people."
       },
       "work_estimate": {
         "minutes_per_occurrence": {
-          "low": 20,
-          "mid": 60,
-          "high": 150
-        },
-        "automatable_pct": 20,
-        "basis": "inferred",
-        "rationale": "Hands-on work is drafting or revising the document (a controls list, redefined activities, a write-up for a senior manager) and reading and marking up a colleague's draft. A quick review of an attached draft is about 20 minutes; a typical draft or redefinition with comments folded in about 60; a fuller write-up toward 150. A template and comment log could take over layout and collating comments; deciding the content stays with people.",
-        "evidence_ids": [
-          "batch-012:e6",
-          "batch-075:e13",
-          "batch-049:e19",
-          "batch-023:e11",
-          "batch-019:e10"
-        ]
-      },
-      "estimate_check": {
-        "occurrences_cited": 5,
-        "senders_cited": 4
-      }
-    },
-    {
-      "key": "realtime-desk-procedures",
-      "description": "The real-time desk lead sends the shift group updates so everyone runs the desk the same way: transmission maps and OASIS links to print, new transmission prices effective from a date, packet updates, a warning to log out of the IPC website to avoid a lockout, notes on a new workspace tool, new URLs for the El Paso data scrape, rules for filing the previous day's printed dispatch and EPE prescheduling sheet, counterparty restrictions, seasonal market guidance and how outage reports are routed. Staff update their packet and follow the rule on shift.",
-      "steps": [
-        "The desk lead or a colleague learns of a change in prices, links, data sources, tools or rules.",
-        "The details are gathered and written up as a briefing or packet update.",
-        "The briefing goes to the real-time shift group.",
-        "Desk staff update their procedures packet, print maps or save links.",
-        "Staff apply the rule on shift, such as filing prior-day sheets or sending outage reports."
-      ],
-      "stalls": [
-        {
-          "summary": "A new desk tool barely works when introduced: only the ticker functions and the rest does not, so staff are told how to reach the workspace by another route.",
-          "evidence_ids": [
-            "batch-056:s2",
-            "batch-056:e22",
-            "batch-056:e23"
-          ]
-        },
-        {
-          "summary": "The IPC website locks the desk out if a session times out instead of being logged out, so the desk depends on every user remembering to log out.",
-          "evidence_ids": [
-            "batch-056:e15"
-          ]
-        }
-      ],
-      "contradictions": [],
-      "automation": {
-        "approach": "Keep one maintained desk handbook with dated sections for transmission prices, links and data sources, tool access, record-keeping rules, counterparty restrictions and outage routing. Each briefing becomes an edit to the handbook with a change note sent to the shift, so staff no longer rebuild their own packet from scattered messages.",
-        "artifact_type": "sop",
-        "rationale": "The briefings are pieces of a procedure manual delivered one email at a time and kept by each person in their own packet. A single written procedure with dated changes gives the whole shift the same current version; the lead still decides the rules."
-      },
-      "work_estimate": {
-        "minutes_per_occurrence": {
-          "low": 5,
-          "mid": 15,
+          "low": 10,
+          "mid": 20,
           "high": 45
         },
-        "automatable_pct": 40,
+        "automatable_pct": 35,
         "basis": "inferred",
-        "rationale": "Hands-on work beyond the email is looking up the changed item (transmission prices, links, data source URLs, counterparty rules), assembling the packet update, and staff printing maps, filing sheets or saving links. Most rounds are a single short update, about 15 minutes; a seasonal briefing or a new procedure runs toward 45. A maintained handbook could take over collating and distributing; deciding the rule stays with the lead.",
+        "rationale": "The minutes go to working out which meters, deals and customers a cut or shut-in touches, adjusting nominations or finding replacement supply, and reconciling the cut volumes afterwards. Many rounds are short plant-status or shut-in notices needing only a check of affected deals, so the low end is 10 minutes and the typical round 20; supplier cuts across several deals or force majeure claims needing a summary of days push toward 45. A meter-to-deal lookup and a standard notice could take over identification and record keeping, not the supply decisions.",
         "evidence_ids": [
-          "batch-068:e18",
-          "batch-061:e1",
-          "batch-091:e4",
-          "batch-090:e8",
-          "batch-056:e14",
-          "batch-057:e13",
-          "batch-088:e7"
+          "batch-001:e7",
+          "batch-001:e9",
+          "batch-015:e7",
+          "batch-014:e11",
+          "batch-003:e32",
+          "batch-020:e6",
+          "batch-041:e8",
+          "batch-010:e34",
+          "batch-012:e24"
         ]
       },
       "estimate_check": {
-        "occurrences_cited": 7,
-        "senders_cited": 3
+        "occurrences_cited": 9,
+        "senders_cited": 6
       }
     },
     {
-      "key": "realtime-schedule-checkout",
-      "description": "The real-time desk confirms and corrects each day's power schedules. The desk lead tells traders where the desk is long or short by zone and hour and asks them to buy or sell to fill, booking deals to the right book in Enpower. Preschedulers pass EPE schedule sheets and lending arrangements, which real time checks against Enpower and CAISO or CAPS records; wrong import IDs, volumes, duplicates and prices are flagged and fixed. Cuts and derates mean calling counterparties at the top of the hour, entering cuts in Enpower path confirmation, re-tagging, and zeroing and valuing cut deals.",
+      "key": "pnl-position-reporting",
+      "description": "Daily P&L, mark-to-market and position reports (the DPR) are produced for each trading book, officialized and sent to traders, desk heads and managers, and saved to shared directories. Questions come back on specific books: open positions, MTM values as of a date, prior-month production hits, deals killed or wrongly included. The analyst checks figures against risk management numbers, prepares supporting files and summaries, and corrects deals or restates the P&L when an entry or calculation proves wrong, often before the morning flash.",
       "steps": [
-        "Preschedulers and traders pass the day's positions, lending and deal details to real time.",
-        "Real time checks the schedule sheet against Enpower deals and CAISO or CAPS records by hour.",
-        "Shorts and longs are filled by buying or selling at the stated points and booked to the right book.",
-        "Wrong import IDs, volumes, duplicates or deal prices are flagged and corrected with preschedulers.",
-        "Cuts and derates are handled: counterparties called, cuts entered in path confirmation, tags updated.",
-        "Cut deals are zeroed out and valued, and revenue is routed to volume management.",
-        "The desk lead circulates follow-up rules and corrections to the shift."
+        "The day's deals are officialized and the P&L, MTM and position reports for each book are produced.",
+        "The reports or summary files go to traders, desk heads and managers and are saved to a shared directory.",
+        "Traders and managers question specific figures: open positions, MTM values as of a date, revenue on particular deals.",
+        "The analyst checks the figures against risk management numbers and deal records and gathers supporting detail.",
+        "Errors are fixed by correcting deals, excluding deal types that do not belong, or restating the P&L file.",
+        "Corrected figures and explanations go back to the requester, and large hits are flagged ahead of the night's P&L."
       ],
       "stalls": [
         {
-          "summary": "CAISO systems fail the desk: its computers went down and hours had to be submitted ahead of the outage, and on another day it again had difficulties reading the desk's bids.",
+          "summary": "The reporting system goes down mid-round and the analyst cannot get the figures out.",
           "evidence_ids": [
-            "batch-057:s1",
-            "batch-057:e12",
-            "batch-071:s0"
+            "batch-020:s2"
           ]
         },
         {
-          "summary": "The EPE schedule sheet keeps arriving incomplete or wrong, day after day: duplicate schedules, wrong lending volumes and wrong hourly figures that real time has to square away with the preschedulers.",
+          "summary": "Wrong figures force rework: a trader's new deal summary shows revenue he should not receive and he asks for it to be recalculated or zeroed before the morning flash, a trader's reported P&L proves understated, and a month's P&L is restated after corrective transactions once part of the problem is found.",
           "evidence_ids": [
-            "batch-093:s1",
-            "batch-090:s1",
-            "batch-059:s3",
-            "batch-059:s2"
-          ]
-        },
-        {
-          "summary": "Deals need correcting after entry: a deal price is changed in Enpower and revenue then shows in the wrong place, CAPS shows a final import different from the desk's records, and email to Real Time is reminded to match what is entered in Enpower.",
-          "evidence_ids": [
-            "batch-059:e27",
             "batch-059:s5",
-            "batch-053:s2",
-            "batch-074:e2"
+            "batch-059:e28",
+            "batch-042:e22",
+            "batch-093:e7",
+            "batch-093:e10",
+            "batch-093:e15"
           ]
         },
         {
-          "summary": "Records for a period were lost, so those on shift had to work out which deals were done and reconstruct the sheet.",
+          "summary": "Confusion over what was sent or asked leads to a round being redone.",
           "evidence_ids": [
-            "batch-084:s1"
+            "batch-018:s1"
           ]
         },
         {
-          "summary": "A reference manual for handling cuts is asked for, but the reply is that there is no time today and it may wait till tomorrow; cut procedures are circulated separately later.",
+          "summary": "Requests wait on people: an assigned analysis has made little progress, and a question is held until a colleague returns the next day.",
           "evidence_ids": [
-            "batch-059:e6",
-            "batch-059:s0",
-            "batch-059:e24"
+            "batch-032:e5",
+            "batch-037:o1"
           ]
         }
       ],
       "contradictions": [
         {
-          "summary": "Who prepares the EPE schedules is unsettled within one exchange: the preschedule lead says she and the desk lead are considering having Real Time take over the EPE preschedules, while the same thread names Diane Cutsforth as the one working on the EPE schedule.",
+          "summary": "The deal summary and the trader disagree on revenue: the summary shows an amount as revenue that the trader says he should not receive.",
           "evidence_ids": [
-            "batch-090:e17",
-            "batch-090:o0"
-          ]
-        },
-        {
-          "summary": "Prices on El Paso Electric lending and purchase deals conflict: a lending schedule is announced at a low price, a related deal is later re-priced much higher in Enpower with the resulting revenue disputed, and another round has EPE purchases reduced back to the low price.",
-          "evidence_ids": [
-            "batch-059:e19",
-            "batch-059:e27",
             "batch-059:s5",
-            "batch-060:e14"
+            "batch-059:e28"
           ]
         },
         {
-          "summary": "Schedule records disagree with what was arranged: lending from PSCO in the EPE schedules shows a different volume from the agreed one, SPS is wrong for an hour, an import ID carries the wrong on-peak and off-peak volumes, and CAPS shows a firm import the desk did not expect.",
+          "summary": "Two versions of the same P&L exist: a trader's reported figure is called understated by the analyst, and a desk's month-end P&L is restated into a new final file after corrective transactions.",
           "evidence_ids": [
-            "batch-090:e9",
-            "batch-090:s1",
-            "batch-084:e12",
-            "batch-053:s2"
+            "batch-042:e22",
+            "batch-093:e15",
+            "batch-093:e10"
           ]
         }
       ],
       "automation": {
-        "approach": "A checkout report that lines up the prescheduling sheet, Enpower deals and CAISO or CAPS final schedules hour by hour and flags mismatched volumes, wrong import IDs, duplicates, missing interchange deals, untagged schedules and prices that differ from the agreed figure. Pair it with a shift checklist covering hourly counterparty calls, cut entry in path confirmation, tagging both load periods, and zeroing and valuing cut deals.",
+        "approach": "An automated daily reconciliation that pulls each book's positions and P&L from the trading system and the risk report, applies the known exclusion rules (transmission deals, pool deals, imbalance counterparties), flags variances and large prior-period hits, and saves each day's final file under a standard name in the shared directory. Analysts review only the flagged items and handle restatements.",
         "artifact_type": "checklist",
-        "rationale": "Most rounds are the same checks repeated by hand and the same errors found late. A shift checklist gives traders the cut and tagging rules that now arrive as scattered emails, and the cross-check can catch sheet errors before real time inherits them; buying, calling counterparties and judging cuts stay with traders."
+        "rationale": "The rework in the mail comes from deals entered or included wrongly and from figures that differ between the desk and risk management. A daily close checklist (officialize books, apply exclusions, compare to risk numbers, note prior-period adjustments, save the final file) catches most of these before the report goes out, and the reconciliation report would then take over the comparison steps."
       },
       "work_estimate": {
         "minutes_per_occurrence": {
@@ -197,26 +145,61 @@
           "mid": 30,
           "high": 90
         },
-        "automatable_pct": 40,
-        "basis": "observed",
-        "rationale": "Most of a round goes to checking the schedule sheet, Enpower deals and ISO records against each other and correcting what disagrees (import volumes, lending, duplicates, deal prices), plus buying to fill a short and entering the deal: about 30 minutes for a routine correction, 15 for a single fix. Cut handling with hourly calls, zeroing and valuing cut deals, or rebuilding a lost sheet runs toward 90. A cross-check report could take over the matching and flagging; trading decisions stay with people.",
+        "automatable_pct": 45,
+        "basis": "inferred",
+        "rationale": "The minutes go to checking a book's P&L and positions against risk management numbers, pulling MTM values, basis positions or deal detail for a requester, and correcting deals or restating a file when a figure is wrong. A routine check of one report takes about 15 minutes; a typical query with supporting detail about 30; a restatement or a large prior-month adjustment traced through several deals can take 90. Data pulls and variance checks can be automated; explaining and approving adjustments cannot.",
         "evidence_ids": [
-          "batch-084:e12",
-          "batch-090:e9",
-          "batch-059:e27",
-          "batch-081:e3",
-          "batch-058:e15",
-          "batch-060:e0",
-          "batch-053:s2",
-          "batch-059:s3",
-          "batch-084:s1",
-          "batch-076:e3"
+          "batch-043:e11",
+          "batch-042:e22",
+          "batch-093:e15",
+          "batch-054:e8",
+          "batch-079:e9",
+          "batch-032:e12",
+          "batch-025:e12",
+          "batch-043:e16",
+          "batch-059:e28"
         ]
       },
       "estimate_check": {
-        "occurrences_cited": 10,
-        "senders_cited": 2
+        "occurrences_cited": 9,
+        "senders_cited": 3
       }
+    },
+    {
+      "key": "power-project-contract-admin",
+      "description": "Agreement letters, change orders, equipment delivery schedule changes, subcontractor rate disputes and status requests for a power plant project are addressed to Bill Williams III in power trading when they are meant for the Bill Williams in Technical Assets who administers the project. Each round he forwards the message to the intended recipient or asks colleagues who can answer, so the content (finance sign-off on a change order, a later generator delivery date, letters mailed) reaches its owner only after a detour.",
+      "steps": [
+        "A project party sends an agreement letter, change order, delivery schedule change, subcontractor note or status question.",
+        "Because of the shared name, the message reaches Bill Williams III instead of the Bill Williams in Technical Assets.",
+        "He forwards it to the intended recipient, or to colleagues who may answer it, noting that it was misdirected.",
+        "The intended owner handles the notice, approval or question."
+      ],
+      "stalls": [
+        {
+          "summary": "Project mail repeatedly goes to the wrong Bill Williams and has to be redirected to the one in Technical Assets, delaying change orders, rate disputes and letters on their way to the owner.",
+          "evidence_ids": [
+            "batch-074:s2",
+            "batch-074:s1",
+            "batch-069:s0",
+            "batch-068:s0"
+          ]
+        },
+        {
+          "summary": "Status questions sent to the wrong person are passed on to a group with a request that anyone answer, leaving no clear owner for the reply.",
+          "evidence_ids": [
+            "batch-057:e6",
+            "batch-057:e0"
+          ]
+        }
+      ],
+      "contradictions": [],
+      "automation": {
+        "approach": "Give the two employees clearly different display names and directory entries, and set a mail rule or auto-reply on the trader's mailbox for project terms that points senders to the Technical Assets contact. The project's notices, change orders and delivery dates could then be kept in a contract register by their actual owner.",
+        "artifact_type": "email_template",
+        "rationale": "The repetitive part of these rounds is redirecting misaddressed project mail. A standard redirect reply that names the right Bill Williams and asks the sender to correct their address list fixes the source of the detours; the contract work itself happens elsewhere and is not shown in this mail."
+      },
+      "work_estimate": null,
+      "estimate_check": null
     }
   ]
 }

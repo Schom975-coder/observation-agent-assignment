@@ -2,146 +2,125 @@
   "group_id": "synth-018",
   "processes": [
     {
-      "key": "trading-book-setup",
-      "description": "A desk lead, trader or the risk book administrator asks for new books, portfolios or EnronOnline products so new business can be booked, often because a region is split, a new office or desk starts, or a new product rolls out. The administrator gathers trader names, book and portfolio codes and index mappings, completes a book request form and sends it on. The book goes into Global Counterparty before TAGG, then Sitara, TDS or RisktRAC; test deals are reviewed and book lists are checked for books no longer valid.",
+      "key": "staff-training-coordination",
+      "description": "Desk leads and managers arrange classes, system sessions and presentations for their staff. A round starts when a lead proposes a session or a course comes up: they pick topics, choose who attends, sometimes build balanced class rosters, and ask the training side to sign people up. Staff also ask whether they may enrol in a suggested course, and a supervisor approves the registration. Timing is fitted around shifts and other commitments, and session details, timelines and changes are circulated to the group.",
       "steps": [
-        "A desk, trader or risk lead asks for a new book, portfolio or EnronOnline product, often for a region split, new office or new desk.",
-        "The book administrator collects missing details such as trader names, book and portfolio codes and the index mapping.",
-        "A book request form is completed and sent to the system support team.",
-        "The counterparty or book is added to Global Counterparty first, then set up in TAGG, Sitara, TDS or RisktRAC.",
-        "Test deals are pushed through and reviewed in Tagg and Sitara.",
-        "The requester is told the book is set up and schedulers are told about new names.",
-        "Book lists are reviewed periodically to drop books that are no longer valid or are missing from a listing."
+        "A lead or manager proposes a class, presentation or system session and its topics.",
+        "The lead picks attendees, sometimes building class rosters of equal strength.",
+        "Attendees are signed up, or staff ask whether they may enrol in a suggested course.",
+        "A supervisor approves the course registration in the training system.",
+        "Timing is arranged around shifts, such as asking night shift staff to come in early.",
+        "Session details, timelines and any changes are circulated to the group."
       ],
       "stalls": [
         {
-          "summary": "A book cannot be added to TAGG until it exists in Global Counterparty, so requests sent straight to TAGG wait until the order is sorted out.",
-          "evidence_ids": ["batch-015:s1", "batch-015:e16"]
+          "summary": "Approving a course registration fails with an error in the system, so the approval cannot be completed as sent.",
+          "evidence_ids": ["batch-047:s1", "batch-047:e18"]
         },
         {
-          "summary": "New book names set up for the desk could not be found in Sitara, leaving users unable to book against them.",
-          "evidence_ids": ["batch-015:s3", "batch-036:e28"]
-        },
-        {
-          "summary": "EnronOnline trades created without the EOL deal number error out and have to be entered manually.",
-          "evidence_ids": ["batch-009:s1", "batch-009:e20"]
-        },
-        {
-          "summary": "Requests arrive without trader names, index mappings or book details, so the round goes back to the requester before setup can proceed.",
-          "evidence_ids": ["batch-026:e2", "batch-046:e9", "batch-091:e9"]
-        },
-        {
-          "summary": "Book lists drift out of date: some books are missing from the US listing, invalid books need weeding out, and lists sent are acknowledged as incomplete.",
-          "evidence_ids": ["batch-052:e14", "batch-041:e20", "batch-043:e8"]
-        }
-      ],
-      "contradictions": [
-        {
-          "summary": "Book naming is disputed: one round announces new TAGG book names for the intramonth portfolios, while another questions whether book names really need changing just to avoid confusion.",
-          "evidence_ids": ["batch-036:e28", "batch-049:e6"]
-        }
-      ],
-      "automation": {
-        "approach": "A standard book request form capturing book name, desk, region, trader, portfolio code, index mapping and the target systems, feeding a set-up checklist that enforces the order Global Counterparty, TAGG, Sitara, TDS and RisktRAC, plus a scheduled report comparing book lists across systems to flag books missing from one system or no longer traded.",
-        "artifact_type": "template",
-        "rationale": "The mail already relies on a book request form, yet rounds still stall on missing trader names, index mappings and the Global Counterparty prerequisite. A complete form that asks for every field and lists the system order up front removes most back-and-forth and lets the administrator set up books in one pass."
-      },
-      "work_estimate": {
-        "minutes_per_occurrence": { "low": 10, "mid": 25, "high": 60 },
-        "automatable_pct": 40,
-        "basis": "inferred",
-        "rationale": "Hands-on work goes to gathering trader names, book and portfolio codes and index mappings, completing the book request form, entering the counterparty or book in Global Counterparty, TAGG, Sitara or TDS, and reviewing test deals. A single book is about 10 minutes of lookup and form work; regional splits, Netco book sets and test-deal reviews run toward 60 minutes, so 25 is the mid. Form filling, system-order checks and cross-system list comparison could be largely templated; deciding book structure and reviewing test deals stay manual.",
-        "evidence_ids": ["batch-035:e2", "batch-023:e20", "batch-096:e2", "batch-046:e9", "batch-084:e22", "batch-015:s1", "batch-026:e2"]
-      }
-    },
-    {
-      "key": "transport-rate-ticket-entry",
-      "description": "Each month a logistics coordinator inputs and updates transport usage tickets in Sitara through HPL, and expense and transport contracts need their service rates and demand charges entered on the deals. When a rate is missing or wrong, prior month adjustments appear: someone asks for the deal to be updated, the rates on the usage tickets are checked, and the adjustment is cleared. Rate questions are often sent to people who then point the requester elsewhere.",
-      "steps": [
-        "At the start of the month the coordinator inputs and updates transport usage tickets for the coming month.",
-        "Expense and transport contracts missing rates are listed and sent for rate input in Sitara.",
-        "The responsible person enters the service rate or demand charge on the named deals and confirms.",
-        "Rates on transport usage tickets are checked when a prior month adjustment appears.",
-        "The adjustment is cleared once the corrected rate is on the deal."
-      ],
-      "stalls": [
-        {
-          "summary": "Rates missing from expense and transport contracts lead to prior month adjustments that later have to be investigated and cleared.",
-          "evidence_ids": ["batch-001:e19", "batch-006:e13", "batch-006:e7"]
-        },
-        {
-          "summary": "Rate requests land with people who do not handle them: one redirects future requests to a colleague named Scott, another says they have nothing to do with the deal and can only assume the rate stays the same.",
-          "evidence_ids": ["batch-027:s0", "batch-027:o0", "batch-038:s0", "batch-038:e6"]
+          "summary": "An organiser writes that news from the night before forces a change, reopening arrangements that had already been made.",
+          "evidence_ids": ["batch-020:e9"]
         }
       ],
       "contradictions": [],
       "automation": {
-        "approach": "A monthly report that compares each transport usage ticket and expense contract in Sitara against a maintained table of contract rates and demand charges, flagging deals with no rate or a differing rate before month close, with the flagged list routed to the named owner of rate entry.",
-        "artifact_type": "sop",
-        "rationale": "Rounds go wrong in two ways: rates are missed and surface later as prior month adjustments, and requests reach people who say the work is not theirs. A written procedure naming who enters rates, where the rate source lives and when tickets are checked addresses both, and is the basis for the comparison report."
+        "approach": "A shared training tracker listing each session with its topic, date, attendees, shift and approval status, filled from a simple sign-up form. Leads choose attendees in the tracker, the training side registers from it, and approvals are checked off there instead of being assembled from separate messages.",
+        "artifact_type": "template",
+        "rationale": "Most of a round is assembling lists of names, signing them up and tracking approvals and timing. A standard tracker layout keeps attendee lists, rosters and approval status in a single place, while choosing topics and people stays with the leads."
       },
       "work_estimate": {
-        "minutes_per_occurrence": { "low": 15, "mid": 35, "high": 90 },
-        "automatable_pct": 45,
+        "minutes_per_occurrence": { "low": 10, "mid": 20, "high": 45 },
+        "automatable_pct": 40,
         "basis": "inferred",
-        "rationale": "Each round means looking up contract rates and demand charges, entering or updating usage tickets and rates on deals in Sitara, and when a rate was missed, checking the tickets and clearing the prior month adjustment. A single deal update is about 15 minutes; a full month of usage tickets or a list of expense contracts runs toward 90 minutes, so 35 is the mid. A rate-table comparison could take over most lookup and checking; entry review and clearing adjustments stay manual.",
-        "evidence_ids": ["batch-013:e7", "batch-017:e6", "batch-001:e19", "batch-006:e13", "batch-016:e3", "batch-006:e7"]
+        "rationale": "Minutes go to choosing attendees and building rosters, registering named staff for a class or pilot, approving registrations and arranging shift timing. Most rounds name a few people and a class, so the work is modest; building balanced rosters for a class series sits at the high end. Registration lists and approval tracking suit a template; choosing people does not.",
+        "evidence_ids": ["batch-031:e13", "batch-061:e16", "batch-065:e20", "batch-017:e2", "batch-098:e15", "batch-067:e2", "batch-047:e18"]
       }
     },
     {
-      "key": "user-access-setup",
-      "description": "Staff request, approve, change and remove access for new hires, transfers and traders: NT and distribution lists, Sitara, TAGG and RisktRAC book rights, EnronOnline and UBSWenergy user IDs, Global Trader IDs, ISO scheduling logins and passwords. Requests go through security request forms that email listed data approvers, or by direct mail to support teams. Managers supply lists of traders and books, IDs and passwords come back by mail, and gaps show up when someone cannot run or print a book.",
+      "key": "supply-change-notice",
+      "description": "The commercial and supply side tells logistics about changes to gas supply. A round starts with a notice or a forward: a new well coming on with its expected volume, a producer deal that has been continued, a plant processing election for the month, or where a producer's gas should flow. Logistics schedulers read it and adjust deals, nominations and flow paths to match, and the sender sometimes has to chase the producer for confirmation.",
       "steps": [
-        "A manager or coordinator announces a new hire, transfer or role change, or a user finds they lack access.",
-        "The requester compiles the people, traders or books that need access and the systems involved.",
-        "A security request form is submitted or a request is mailed to the system support team.",
-        "The listed data approver receives a notice and approves or rejects the request.",
-        "Support sets up or changes the account and mails the user ID, password or login directions.",
-        "Access is removed or restricted when someone leaves a role or a directory must be locked down."
+        "Supply or commercial staff learn of a change: a new well, a continued deal, a processing election or a new flow path.",
+        "They send or forward a notice to logistics with the producer, volumes and timing.",
+        "Schedulers update the deal, nomination or delivery point to match.",
+        "Where the producer must confirm, the sender follows up by phone and email.",
+        "Logistics leads forward the notice to the schedulers who handle the affected points."
       ],
       "stalls": [
         {
-          "summary": "New ISO cards and passwords promised by CAISO did not arrive, and the desk had to chase for them.",
-          "evidence_ids": ["batch-055:s4", "batch-055:s5", "batch-055:e14"]
+          "summary": "A requested change of flow waits on the producer, who has not answered repeated voice and email contacts.",
+          "evidence_ids": ["batch-033:s1", "batch-033:e3"]
+        }
+      ],
+      "contradictions": [],
+      "automation": {
+        "approach": "A standard supply change notice with fixed fields: producer, well or meter, effective date and time, expected volume, processing election and delivery point. Logistics can then update deals and nominations straight from the notice, and an open item stays flagged until the producer confirms.",
+        "artifact_type": "email_template",
+        "rationale": "The notices are short free-text messages carrying the same handful of facts each time. A fixed template makes sure volume, timing and flow path arrive together, which cuts the lookup and follow-up schedulers do before entering the change."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": { "low": 5, "mid": 15, "high": 30 },
+        "automatable_pct": 30,
+        "basis": "inferred",
+        "rationale": "Minutes go to entering the change in the deal and nomination records: continuing a deal, setting up a new well's volumes, applying the processing election or moving gas to a different line, plus checking it with the producer. Each notice covers a single change, so the work is short; an unresponsive producer pushes it toward the high end. Entry from a structured notice can be partly automated; confirming with producers cannot.",
+        "evidence_ids": ["batch-021:e17", "batch-020:e14", "batch-021:e19", "batch-033:e8", "batch-033:e3"]
+      }
+    },
+    {
+      "key": "system-enhancement-request",
+      "description": "Desk staff report problems with trading, scheduling and position tools and ask for enhancements. A round starts with an error, a wrong position or flow figure, missing curve data or a feed that is down, or with a customer or desk need for a new feature. IT answers with a cause, a workaround or a fix; enhancement lists are compiled and reviewed in requirements and use-case sessions; desks name testers for rebuilt or new releases; and IT announces outages, migrations and maintenance windows that desks must confirm or plan around.",
+      "steps": [
+        "A user hits an error, a wrong figure or missing data in a tool, or sees a need for a new feature.",
+        "The user reports it to IT or the application team, often copying the desk lead.",
+        "IT replies with a cause or workaround, such as an unmapped drive, or schedules a fix.",
+        "Enhancement requests are compiled into lists and discussed in requirements or use-case sessions.",
+        "Desks name testers who test rebuilt or new releases before they go live.",
+        "IT announces outages, migrations and maintenance windows and asks desks to confirm timing.",
+        "Desk leads forward fixes, new features and notices to their groups."
+      ],
+      "stalls": [
+        {
+          "summary": "Tools fail during daily work: errors launching a program, approving or importing finals, server errors at login and a data scrape down through a night shift.",
+          "evidence_ids": ["batch-004:s0", "batch-050:s0", "batch-088:s0", "batch-090:s2", "batch-087:e12"]
         },
         {
-          "summary": "Access set-up waits on lists of who needs which access, with repeated reminders to people who have not responded.",
-          "evidence_ids": ["batch-087:s1", "batch-093:s0", "batch-096:e3"]
+          "summary": "Position and flow tools show wrong or incomplete figures, such as a short position, excessive flow or a missing curve, which staff must catch and chase.",
+          "evidence_ids": ["batch-059:e20", "batch-059:s4", "batch-039:s1", "batch-095:s0", "batch-029:s3"]
         },
         {
-          "summary": "Security badge and clearance requests are sent to the wrong Bill Williams, who replies that he works in Portland and is not involved with security.",
-          "evidence_ids": ["batch-065:s1", "batch-066:s0", "batch-066:s1"]
+          "summary": "Planned outages and maintenance take scheduling and trading systems offline, and IT has to ask desks when a shutdown can happen.",
+          "evidence_ids": ["batch-055:s3", "batch-078:e12", "batch-062:e6", "batch-002:e0"]
         },
         {
-          "summary": "Approval notices reach people who do not know who the request is for or say they are not the approver.",
-          "evidence_ids": ["batch-080:s3", "batch-080:o0"]
+          "summary": "Enhancements linger: a position manager rework demonstrated months earlier is raised again, and a manager complains of a lack of accountability and urgency.",
+          "evidence_ids": ["batch-070:e17", "batch-010:s0"]
         },
         {
-          "summary": "A needed access request was forgotten and only noticed later.",
-          "evidence_ids": ["batch-036:s4"]
+          "summary": "Local setup problems, such as installing a tool on a desktop or an unmapped drive, cause errors that need IT help.",
+          "evidence_ids": ["batch-073:e18", "batch-092:e4"]
         },
         {
-          "summary": "Missing rights block daily work: a user cannot run a book, can calculate positions but not print, needs rights to calculate all books, or waits for timekeeping access.",
-          "evidence_ids": ["batch-030:e19", "batch-030:e20", "batch-028:e20", "batch-059:e25"]
+          "summary": "Requirements and test sessions are rescheduled to fit around other meetings.",
+          "evidence_ids": ["batch-002:e23", "batch-091:e0"]
         }
       ],
       "contradictions": [
         {
-          "summary": "The request system tells Bill Williams he is listed as the data approver, while he replies that he is not the approver for these rights.",
-          "evidence_ids": ["batch-080:e14", "batch-080:o0"]
+          "summary": "The testing request asks each desk for a single designated tester, while a desk answers that two people will share the role.",
+          "evidence_ids": ["batch-070:e0", "batch-070:o0"]
         }
       ],
       "automation": {
-        "approach": "A role-based access checklist for each new hire, transfer or trader listing every system involved (NT, distribution lists, Sitara, TAGG, RisktRAC, EnronOnline, Global Trader ID, ISO logins) with the named approver for each, pre-filled from the desk roster, plus a maintained approver directory so request notices route to the right person and automatic reminders for outstanding lists and approvals.",
-        "artifact_type": "checklist",
-        "rationale": "Rounds stall on missing lists, misrouted requests and forgotten systems rather than on the set-up itself. A checklist of systems and approvers per role lets a requester ask once, to the right person, and keeps logins such as CQG or timekeeping from being overlooked."
+        "approach": "A single issue and enhancement intake form (system, symptom, steps to reproduce, desk, impact) feeding a tracked list with owner and status, a published outage and maintenance calendar that desks confirm against, and a known-fixes checklist for common local errors such as drive mapping and browser paths.",
+        "artifact_type": "template",
+        "rationale": "Problems arrive as free-text emails and forwards, and enhancement lists are compiled by hand. A standard intake form gives IT what it needs to reproduce an issue the first time and lets owners and status be tracked, which addresses the lingering items and accountability complaints; diagnosing and testing stay with people."
       },
       "work_estimate": {
-        "minutes_per_occurrence": { "low": 5, "mid": 15, "high": 45 },
-        "automatable_pct": 45,
+        "minutes_per_occurrence": { "low": 10, "mid": 30, "high": 90 },
+        "automatable_pct": 30,
         "basis": "inferred",
-        "rationale": "Hands-on work is compiling the people, traders or books that need access, filling in the security request form, approving or rejecting data access, and setting up or resetting a login. A single password change or list addition is about 5 minutes; setting up a new trader across several systems or a desk-wide Netco access list runs toward 45 minutes, so 15 is the mid. Roster-driven forms and approver routing could take over list building and routing; approvals and exceptions stay with people.",
-        "evidence_ids": ["batch-079:e4", "batch-020:e12", "batch-091:e15", "batch-050:e20", "batch-095:e12", "batch-082:e13", "batch-039:e4", "batch-087:s1"]
+        "rationale": "Minutes go to reproducing and documenting a failure, checking a wrong position or flow against other data, compiling enhancement lists and testing rebuilt releases. A simple outage notice needs little work, while a position discrepancy or a test phase takes much longer, hence the wide range. Intake, status tracking and outage notices suit a template; diagnosis and testing do not.",
+        "evidence_ids": ["batch-063:e5", "batch-011:e20", "batch-059:e20", "batch-039:e27", "batch-088:e26", "batch-082:e28", "batch-070:e0", "batch-012:e20", "batch-004:e0"]
       }
     }
   ]

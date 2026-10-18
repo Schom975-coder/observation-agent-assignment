@@ -1,157 +1,208 @@
 {
   "group_id": "synth-012",
-  "content_sha": "11a10dd6622fbb745297c3107539c61de69004e103d6e2ecad33a9cdc08eb141",
+  "content_sha": "58187f4f25bb845f018fdeae93d9397231b9570458b4072c5df1ffff74c3faae",
   "processes": [
     {
-      "key": "month-end-close-coordination",
-      "description": "Each month a close schedule for the coming month is circulated to the logistics and accounting groups, sometimes first as a tentative calendar and later reissued as a revised schedule after the leads discuss it. Groups are asked to send in their monthly items and to reply when their last-day files are complete, regions report when they have flashed, and the schedule sets a cut-off on a stated Friday evening after which no changes can be made.",
+      "key": "meter-facility-setup",
+      "description": "A round starts when logistics, volume management or a pipeline group asks for a meter or point record to be created or changed: new points and combinations, a zone re-mapped to a different offer point, a pipe code changed, meters dropped from the estimate file, confirmed noms zeroed, or state and county data corrected. The facilities or scheduling contact makes the change in Global Facilities or the scheduling system and confirms back what was set up and what stays the same, such as the meter number.",
       "steps": [
-        "Draft the close calendar for the coming month, marking it tentative where dates are not yet settled.",
-        "Circulate the schedule to the logistics and accounting groups.",
-        "Discuss conflicts with the leads and reissue a revised schedule where needed.",
-        "Ask each group for its monthly submission ahead of its deadline.",
-        "Collect replies as groups finish their last-day files and regions report their flash.",
-        "Hold to the stated cut-off after which no further changes are accepted."
+        "A requester sends the meter or point details and the change needed: new set-up, zone re-map, pipe code, estimate list or noms.",
+        "The facilities contact checks the existing record and any attached list of meters.",
+        "The record is created or changed in Global Facilities or the scheduling system.",
+        "Data discrepancies such as wrong state or county information are passed to the group that owns the record.",
+        "The person making the change confirms what was set up or changed and what stays the same."
       ],
       "stalls": [
         {
-          "summary": "The schedule is not always settled when first sent: one round goes out as tentative and another is reissued as a revised schedule after discussion among the leads, so groups work from a calendar that changes under them.",
+          "summary": "A forwarded notice of state and county discrepancies on a spreadsheet of meters left the recipient unsure what to do with it, so the correction had no clear owner.",
           "evidence_ids": [
-            "batch-009:e10",
-            "batch-068:e2"
-          ]
-        },
-        {
-          "summary": "Progress through the close depends on each group replying when its last-day file is complete and on regions reporting their flash, so the coordinator waits on confirmations before the close can move on.",
-          "evidence_ids": [
-            "batch-042:e11",
-            "batch-034:e8"
+            "batch-071:s1",
+            "batch-071:e12"
           ]
         }
       ],
       "contradictions": [],
       "automation": {
-        "approach": "Generate the close calendar from a standing layout keyed to business days, holidays and system run dates, publish it in one shared place, and track each group's monthly submission, last-day file and flash status in a status column so completion is visible without asking for replies; flag change requests that arrive after the stated cut-off.",
+        "approach": "A standard set-up and change request form with required fields for meter, point, pipe code, zone, state and county and effective date, checked against the facilities master before the change is keyed, so mismatches are flagged up front and a confirmation goes back to the requester from the same record.",
         "artifact_type": "template",
-        "rationale": "Each round repeats the same calendar layout with only the dates changing, and the follow-up is mostly finding out who has finished. A schedule template with a status column covers both, while agreeing revisions among the leads stays a human decision."
+        "rationale": "Requests arrive in free form from several groups, and the discrepancy notice shows bad location data reaching the records. A form with required fields and a lookup against existing records cuts re-keying and catches errors early, while the facilities team still makes and approves each change."
       },
       "work_estimate": {
         "minutes_per_occurrence": {
-          "low": 20,
-          "mid": 45,
-          "high": 90
+          "low": 10,
+          "mid": 20,
+          "high": 45
         },
-        "automatable_pct": 40,
-        "basis": "inferred",
-        "rationale": "Most of the roughly 45 minutes goes to building the coming month's calendar against system run dates and holidays and, in some rounds, reworking it after the leads agree changes; the rest goes to tallying which groups have delivered their monthly items and last-day files. The quotes show a schedule document each round but not its size, so the range runs from 20 to 90 minutes. A template can lay out dates and track status; negotiating revisions stays manual.",
+        "automatable_pct": 35,
+        "basis": "observed",
+        "rationale": "Each round is a record change in the facilities or scheduling system: looking up the meter, keying a new point, zone mapping or pipe code, or removing meters from the estimate file, then checking the result. A single change takes about 10 minutes; a list of points and combinations or a spreadsheet of location discrepancies takes up to 45. Validation and pre-filled fields could take over part of the lookup and checking; the change itself stays with the facilities team.",
         "evidence_ids": [
-          "batch-000:e10",
-          "batch-009:e10",
-          "batch-068:e2",
-          "batch-064:e16",
-          "batch-042:e11",
-          "batch-005:e8",
-          "batch-034:e8"
+          "batch-011:e28",
+          "batch-061:e21",
+          "batch-012:e11",
+          "batch-005:e27",
+          "batch-080:e0",
+          "batch-071:e12"
         ]
       },
       "estimate_check": {
-        "occurrences_cited": 7,
-        "senders_cited": 4
+        "occurrences_cited": 6,
+        "senders_cited": 6
       }
     },
     {
-      "key": "office-move-coordination",
-      "description": "Rounds are announcements and requests around a relocation to a new building or floor: staff are reminded how little time remains before the move and that it is scheduled for a weekend, packing and labelling instructions from facilities are forwarded on, and staff reply with timing preferences such as being moved in the morning because they have only a few boxes. After moves, someone is asked to clear out all unoccupied desks in a region.",
+      "key": "meter-flow-deal-coverage",
+      "description": "Volume management and logistics staff find gas recorded at a meter with no valid deal or transport contract: a ticket has expired, flow began before a deal did, or old volumes sit in strangers gas. They ask the trader or desk for a spot, desk-to-desk or extended deal, or for approval to write the volume off to unaccounted-for gas. The trader creates or extends the ticket in Sitara and replies with the deal number; volume management applies, re-paths or brokers the volumes and sends the ticket back when its dates, price or counterparty are wrong.",
       "steps": [
-        "Receive the move schedule and packing and labelling instructions from facilities.",
-        "Forward the schedule and instructions to the affected staff ahead of the move.",
-        "Staff pack and label their belongings and reply with any timing requests.",
-        "Adjust individual move slots where staff ask for a particular time.",
-        "After the move, clear out items left in unoccupied desks."
+        "Volume management spots flow at a meter with no deal, an expired ticket or no contract while allocating volumes.",
+        "They check Sitara for the last deal ticket at the meter, its term and the contract tied to it.",
+        "They email the trader or desk with the meter, dates and volume, asking for a new or extended deal or a write-off approval.",
+        "The trader decides how the economics are handled and creates or extends the ticket, replying with the deal number.",
+        "Volume management checks the ticket's dates, price and counterparty and asks for a correction when it is wrong.",
+        "The volumes are applied, re-pathed or written off to unaccounted-for gas and the meter is cleared."
       ],
       "stalls": [
         {
-          "summary": "Desks left unoccupied after moves still hold items, so a separate clear-out of a whole region's empty desks has to be arranged afterwards.",
+          "summary": "Requests for a deal sit unanswered and have to be chased, leaving the flow unallocated until the trader replies.",
           "evidence_ids": [
-            "batch-088:e28"
-          ]
-        }
-      ],
-      "contradictions": [],
-      "automation": {
-        "approach": "A standing move checklist covering the schedule, packing and labelling rules, collection of timing requests and a post-move sweep of vacated desks, sent with a reusable announcement, would let each move run from the same list instead of from forwarded notes.",
-        "artifact_type": "checklist",
-        "rationale": "Moves are physical work that no tool takes over; the repetitive part is telling staff the same instructions each time and remembering the clean-up afterwards, which a checklist handles directly."
-      },
-      "work_estimate": {
-        "minutes_per_occurrence": {
-          "low": 15,
-          "mid": 40,
-          "high": 120
-        },
-        "automatable_pct": 15,
-        "basis": "inferred",
-        "rationale": "The hands-on work per round is arranging move slots, passing on packing and labelling rules and clearing vacated desks. The quotes show small personal volumes, such as someone with only a couple of boxes, so about 40 minutes of coordination and clearing is the central figure, rising to 120 when a region's empty desks are cleared out. Being mostly physical, little beyond the checklist and announcement can be automated.",
-        "evidence_ids": [
-          "batch-088:e28",
-          "batch-073:e22",
-          "batch-076:e12",
-          "batch-098:e7"
-        ]
-      },
-      "estimate_check": {
-        "occurrences_cited": 4,
-        "senders_cited": 4
-      }
-    },
-    {
-      "key": "origination-credit-booking",
-      "description": "Rounds track and reconcile origination credit between books: one side reports how much origination was recognized overnight and from which desk, the other checks whether its own book shows the same amount, and originations an originator cannot find are traced. Rounds also cover the single cost centre all origination is coded to, corrections booked in a later month to fix a quarter's gas P&L, and arranging deal data and a daily origination report for a group head.",
-      "steps": [
-        "Record the origination recognized overnight and the desk it came from.",
-        "Tell the counterpart book how much was recognized.",
-        "Compare the counterpart's recognized amount with what appears in the own book.",
-        "Trace any origination an originator reports as missing.",
-        "Book corrections to the right cost centre and period to fix the quarter's P&L.",
-        "Send requested deal data and set up a regular origination report for the group head."
-      ],
-      "stalls": [
-        {
-          "summary": "Origination recognized on one side does not always show up on the other, so a round turns into a check of what was booked where.",
-          "evidence_ids": [
-            "batch-016:e2",
-            "batch-016:e0"
+            "batch-032:s0",
+            "batch-005:s1",
+            "batch-031:e23"
           ]
         },
         {
-          "summary": "Originations drop out of view and have to be tracked down on behalf of the originator.",
+          "summary": "Deals come back entered wrongly, with the wrong months or a price formula that has to be corrected, so the request goes round again.",
           "evidence_ids": [
-            "batch-051:e28"
+            "batch-023:s0",
+            "batch-014:s4",
+            "batch-002:s2"
           ]
         },
         {
-          "summary": "Earlier bookings are corrected in a later month to put the quarter's gas P&L right, which is rework after the fact.",
+          "summary": "Systems block the fix: a deal will not come across to Unify, a deal with an inactive or suspended counterparty cannot be extended, and flow does not carry over to mops.",
           "evidence_ids": [
-            "batch-043:e7",
-            "batch-043:e6"
+            "batch-054:s0",
+            "batch-044:s2",
+            "batch-010:s3"
+          ]
+        },
+        {
+          "summary": "Small volumes from flow recorded long before are left in strangers gas until logistics asks for a deal or for approval to write them off, so these problems stay open for a long time.",
+          "evidence_ids": [
+            "batch-036:e5",
+            "batch-036:e17",
+            "batch-038:e8",
+            "batch-037:e33"
+          ]
+        },
+        {
+          "summary": "Requests reach the wrong person or miss people: an enquiry is first sent to someone who used to handle the work and then redirected, and a requester apologises for leaving a colleague off an earlier message.",
+          "evidence_ids": [
+            "batch-028:o0",
+            "batch-028:o1",
+            "batch-021:s2"
           ]
         }
       ],
       "contradictions": [
         {
-          "summary": "The two books disagree on the origination recognized: one side states an amount it recognized that the other side does not see in its own records.",
+          "summary": "The mail names different people as the one who sets up these deals: a counterparty and a sender citing Fred Boas point to Daren Farmer, while the same sender later says Danny Conner handles it.",
           "evidence_ids": [
-            "batch-016:e2"
+            "batch-054:o0",
+            "batch-028:o0",
+            "batch-028:o1"
+          ]
+        },
+        {
+          "summary": "A trader's pricing instruction for a new spot ticket was replaced by a different price formula in a follow-up, so the ticket had two conflicting instructions.",
+          "evidence_ids": [
+            "batch-002:e24",
+            "batch-002:s2"
+          ]
+        },
+        {
+          "summary": "A deal cited to cover flow between ENA and HPL is contradicted by the reply that it is not a deal between those companies.",
+          "evidence_ids": [
+            "batch-036:s2"
           ]
         }
       ],
       "automation": {
-        "approach": "A daily reconciliation report matching origination recognized in each book by deal, desk and cost centre, flagging amounts present on one side only and originations with no booking, would replace the manual comparisons and the searches for missing credit; the same report can serve as the group head's daily origination view.",
-        "artifact_type": "template",
-        "rationale": "The recurring work is comparing recognized amounts across books and chasing items that do not match. A fixed reconciliation layout makes mismatches visible each day, while deciding which group earns the credit and booking corrections stays with people."
+        "approach": "A daily exception report matching measured flow by meter against active deal tickets and transport contracts would list meters with flow and no valid deal, tickets nearing their end date, and counterparties that are inactive. Each exception would feed a standard request carrying the meter, dates, volume, last deal and contract to the trader, and small old volumes could be routed by rule to a write-off approval list.",
+        "artifact_type": "email_template",
+        "rationale": "Most rounds start with a free-form note restating the same facts, and many come back wrong or unanswered. A standard request with the meter, dates, volume, counterparty, price basis and prior ticket gives traders what they need to enter the deal right the first time, and the report removes the manual search, while traders still decide the economics and enter the deals."
       },
-      "work_estimate": null,
-      "estimate_check": null
+      "work_estimate": {
+        "minutes_per_occurrence": {
+          "low": 10,
+          "mid": 25,
+          "high": 60
+        },
+        "automatable_pct": 45,
+        "basis": "observed",
+        "rationale": "Per round, staff look up the meter's flow, the last deal ticket and the contract in Sitara, the trader creates or extends the ticket, and volume management checks it and re-applies, re-paths or writes off the volume. A simple extension takes about 10 minutes; a typical gap with a new ticket and re-allocation about 25; old strangers-gas cleanups and re-pathing up to 60. The search and matching are the automatable part; the deal decision and entry stay with people.",
+        "evidence_ids": [
+          "batch-036:e5",
+          "batch-016:e9",
+          "batch-017:e13",
+          "batch-037:e33",
+          "batch-049:e20",
+          "batch-049:e31",
+          "batch-010:e5"
+        ]
+      },
+      "estimate_check": {
+        "occurrences_cited": 7,
+        "senders_cited": 6
+      }
+    },
+    {
+      "key": "month-end-close-coordination",
+      "description": "A coordinator in logistics or accounting circulates the close schedule for the coming month, sometimes marked tentative and, at year-end, with its own dates, then sends a revised schedule after agreeing changes with other leads. Cut-offs are announced, such as a Friday evening after which no changes are allowed. During close, volume management reports which regions have flashed and asks groups to reply when their last-day file is complete, and accounting asks groups for their monthly submissions.",
+      "steps": [
+        "The coordinator drafts the close calendar for the coming month from system and group deadlines.",
+        "The draft goes out as a tentative schedule to the logistics and accounting groups.",
+        "Leads discuss conflicts and a revised schedule is sent out.",
+        "The cut-off after which no changes are allowed is announced.",
+        "During close, groups report flash status and confirm when their last-day files are complete.",
+        "Accounting collects each group's monthly submissions."
+      ],
+      "stalls": [
+        {
+          "summary": "Schedules go out as tentative and are later reissued as revised after discussion among leads, so groups plan against dates that can move.",
+          "evidence_ids": [
+            "batch-009:e10",
+            "batch-068:e2"
+          ]
+        }
+      ],
+      "contradictions": [],
+      "automation": {
+        "approach": "A close calendar generated from a standing layout of business-day rules for each system, with group deadlines filled in and a shared status tracker where each group marks its flash and last-day file as done, replacing the reply-when-complete requests.",
+        "artifact_type": "template",
+        "rationale": "Each round rebuilds the same calendar and re-announces the same kinds of cut-offs. A template keeps the layout and rules fixed so only exceptions such as year-end or holidays need decisions, while leads still agree any revisions."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": {
+          "low": 15,
+          "mid": 30,
+          "high": 60
+        },
+        "automatable_pct": 40,
+        "basis": "inferred",
+        "rationale": "The hands-on work is drafting the calendar, checking it against system cut-offs and holidays, and reworking it after leads agree changes: about 30 minutes in a normal month, 15 when dates simply roll forward, and up to 60 at year-end or when the schedule is revised. A template could set most dates; agreeing the exceptions stays with people.",
+        "evidence_ids": [
+          "batch-000:e10",
+          "batch-068:e2",
+          "batch-009:e10",
+          "batch-064:e16",
+          "batch-042:e11"
+        ]
+      },
+      "estimate_check": {
+        "occurrences_cited": 5,
+        "senders_cited": 3
+      }
     }
   ]
 }

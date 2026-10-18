@@ -2,105 +2,90 @@
   "group_id": "synth-010",
   "processes": [
     {
-      "key": "liquidation-support",
-      "description": "Risk or accounting asks for the detail behind a month's liquidation values, such as the December liquidation values. Darron Giron forwards the request on to whoever holds the deals and asks when the support can be ready. Once the deal list and volumes are pulled, he sends back a file with the volumes for the liquidations, and it goes to the requester and the shared directory.",
+      "key": "iso-bid-strategy",
+      "description": "Bill Williams III explains to the desk how decremental and tiered adjustment bids are placed in the CAISO market and run on behalf of generators. Each round is one explanatory message: he asks what tools were used to settle earlier bids, attaches a simple sheet outlining the basic decremental bidding process, says the desk will work with generators on buy-backs or supplemental dec bids when market conditions warrant, sets the tiering process as the way forward, and warns of the CAISO cap on how many tiered bids its system reads.",
       "steps": [
-        "Risk or accounting asks for the support behind a month's liquidation values.",
-        "The request is forwarded to whoever can pull the deal list and volumes, asking when it will be available.",
-        "The deals and volumes behind the liquidated positions are pulled into a file.",
-        "The volume file is sent back to the requester and saved to the shared directory."
+        "Find out which tools were used to settle earlier decremental bids.",
+        "Write up the basic decremental bidding process on a simple sheet and send it to the desk.",
+        "Work with the generators on buy-backs or supplemental dec bids when market conditions warrant.",
+        "Tier the adjustment bids using the process the desk has developed.",
+        "Keep each tiered bid set within the number of bids the CAISO system will read."
       ],
       "stalls": [
         {
-          "summary": "The person asking for the support has to ask when it will be available, so the round waits on whoever produces the deal and volume file.",
-          "evidence_ids": ["batch-045:e14"]
+          "summary": "The CAISO system stops reading tiered adjustment bids past its cap, so bid sets have to be cut down to fit and the desk has to be warned about the limit.",
+          "evidence_ids": ["batch-066:e19"]
+        },
+        {
+          "summary": "How earlier decremental bids were settled is not written down; the author has to ask colleagues which settlement tools were used.",
+          "evidence_ids": ["batch-054:e4"]
         }
       ],
       "contradictions": [],
       "automation": {
-        "approach": "A saved query or report that lists the deals and volumes liquidated in a month and writes a standard support file to the shared directory when the month's liquidation values are posted, so people only check the exceptions instead of rebuilding the file on request.",
-        "artifact_type": "template",
-        "rationale": "Every request asks for the same thing, the deal list and volumes behind the liquidation values, so a fixed file layout fed by one query removes the forward and the wait for the file to be produced."
+        "approach": "A bid-building sheet that lays out decremental and tiered adjustment bids per generator, checks the tier count against the CAISO read limit before submission, and records which settlement tool applies, paired with a written procedure for dec bidding and generator buy-backs.",
+        "artifact_type": "sop",
+        "rationale": "The mail is one trader explaining the same bidding method to the desk in pieces: the process sheet, the tiering rule, the generator buy-backs and the system cap. A single written procedure captures that knowledge once and answers the settlement-tool question the mail had to ask."
       },
       "work_estimate": null
     },
     {
-      "key": "market-information-distribution",
-      "description": "Rounds start either on a schedule, when published price tables such as Western pre-scheduled firm electricity prices are passed on, or on request, when a plant fuel manager asks for historical data or a customer asks for a month's El Paso Topock point price. Staff look up the published index, waiting when Gas Daily is not yet loaded, build comparison spreadsheets such as hot days across two Mays, summarise analyst calls, and assign someone to build a Texas section of the gas fundamentals webpage.",
+      "key": "ledger-review-writeoffs",
+      "description": "Volume management and accounting staff pass preliminary ledgers and inventory schedules round for review and settle the volumes that must be written off. A round starts with a file or a request: a ledger re-sent because the first copy was distorted, a request to move volumes determined to be written off at a meter, storage inventory schedules put together for Spindletop and Bammel, or a request to help resolve differences between figures. Recipients research the volumes, reconcile the differences and process the write-off, with forwards and chasers when answers are slow.",
       "steps": [
-        "A scheduled report comes due or a trader, originator or customer asks for a price or data set.",
-        "Staff look up the published prices or index values in the source data.",
-        "If the source is not loaded yet, they wait and check back.",
-        "They compile the figures into a table or spreadsheet, or write up an analyst call.",
-        "They send or forward the result to the traders, originators or customer who asked."
+        "Send the preliminary ledger or inventory schedule to the reviewers.",
+        "Re-send the file if the first copy arrives unreadable.",
+        "Research the meter volumes flagged to be written off.",
+        "Put together the inventory schedules for the storage facilities such as Spindletop and Bammel.",
+        "Ask the logistics and accounting contacts to help resolve the differences found.",
+        "Book the agreed volume or general ledger write-off."
       ],
       "stalls": [
         {
-          "summary": "A request for index data waits because Gas Daily has not been loaded yet, and the person handling it has to keep checking back.",
-          "evidence_ids": ["batch-093:s3", "batch-093:e12"]
+          "summary": "The first copy of the ledger file arrived distorted and had to be sent again before anyone could review it.",
+          "evidence_ids": ["batch-010:s2", "batch-010:e11"]
+        },
+        {
+          "summary": "Differences between the figures stay open until several people are asked to help resolve them, and write-off volumes at a meter wait on someone to move them to the right place.",
+          "evidence_ids": ["batch-086:e3", "batch-028:e22"]
         }
       ],
       "contradictions": [],
       "automation": {
-        "approach": "Load the published price indexes into one stored price table and generate the recurring price reports from it on schedule. Point price requests can then be answered from the table, and the report notes when a source such as Gas Daily has not been loaded yet.",
+        "approach": "A standard reconciliation report that pulls scheduled, measured and booked volumes by meter and storage facility, flags differences above a tolerance, and pre-fills the write-off entry and the Spindletop and Bammel inventory schedules, leaving staff to research the flagged items and approve the write-off.",
         "artifact_type": "template",
-        "rationale": "Much of the work is looking up the same published prices and passing on the same tables. A standard report layout fed from a stored price table cuts the lookups and the checking back, while analysis such as call summaries and fundamentals work stays with people."
+        "rationale": "The repetitive work is assembling schedules and lining up volumes from different sources so differences show. A fixed schedule and reconciliation layout makes the differences visible in one place and cuts the rework of re-sent or distorted files, while the decision to write off stays with people."
       },
       "work_estimate": {
-        "minutes_per_occurrence": { "low": 5, "mid": 20, "high": 60 },
-        "automatable_pct": 45,
+        "minutes_per_occurrence": { "low": 30, "mid": 60, "high": 150 },
+        "automatable_pct": 35,
         "basis": "inferred",
-        "rationale": "The lightest rounds are a lookup, such as finding a month's published point price or passing on a published price table, around 5 minutes. Heavier rounds mean building a comparison spreadsheet, pulling historical plant data or writing up an analyst call, up to 60 minutes. The mid of 20 minutes reflects the mix. Lookups and recurring tables could come from a price feed; choosing data and summarising analysis stay manual.",
-        "evidence_ids": ["batch-053:e8", "batch-092:e2", "batch-098:e0", "batch-093:e12", "batch-073:e12", "batch-075:e10"]
+        "rationale": "Time goes to research rather than mail: tracing the meter volumes to be written off, building the Spindletop and Bammel inventory schedules, and working through the differences raised for resolution. A typical round of schedule building or volume research is put at 60 minutes; a simple re-sent ledger review near 30 minutes, a multi-facility schedule or a long reconciliation up to 150 minutes. Pulling volumes and laying out schedules can be generated by a report; researching causes and approving write-offs stays manual.",
+        "evidence_ids": ["batch-010:e11", "batch-028:e22", "batch-046:e23", "batch-086:e3"]
       }
     },
     {
-      "key": "market-rule-change-review",
-      "description": "Rounds start with an ISO market notice (operating procedure updates, market redesign documents, new XML schema releases, a scheduled market simulation), a FERC order or proposed rulemaking, or a CPUC decision. Bill Williams forwards most of them with his reading of what they mean for scheduling: ancillary service charges, underscheduling penalties, price caps, refunds and outage notification. He asks colleagues to meet on an order and sends questions to the ISO. Regulatory staff circulate draft comments for same-day review, and pipeline staff track FERC orders on their own reporting.",
+      "key": "liquidation-support",
+      "description": "Darron Giron supplies and chases the supporting detail behind monthly liquidation values. A round starts when support is needed for a month's liquidation values, such as the December liquidation values; he forwards the request to the person holding the detail, asks when the support may be available, and sends on a file with the volumes for the liquidations to the risk and accounting contacts.",
       "steps": [
-        "An ISO notice, FERC order, proposed rulemaking or CPUC decision arrives, often as an automated ISO notice or forwarded summary.",
-        "The desk lead reads it and forwards it with a note on how it affects trading or scheduling.",
-        "Colleagues discuss the pros and cons, sometimes in a same-day meeting.",
-        "Implementation questions go to the ISO and draft comments are reviewed by the stated deadline.",
-        "System changes such as new XML schemas, security upgrades or market simulations are prepared and tested.",
-        "Scheduling and settlement practice is adjusted, such as outage notification or charge calculations."
+        "Receive or raise a request for support behind the month's liquidation values.",
+        "Forward the request to the contact who holds the supporting detail.",
+        "Ask when the support may be available.",
+        "Send the file with the liquidation volumes to the risk and accounting contacts."
       ],
       "stalls": [
         {
-          "summary": "The PDF versions of the ISO's automation specifications have problems ahead of the market simulation, so they have to be reissued or worked around.",
-          "evidence_ids": ["batch-096:s0", "batch-096:e13"]
-        },
-        {
-          "summary": "New ISO mechanisms come with open questions the desk has to put to the ISO before go-live, such as target pricing, ADS phase II and a test server for the SI security upgrade.",
-          "evidence_ids": ["batch-072:e0", "batch-069:e2", "batch-071:e14"]
-        },
-        {
-          "summary": "Draft comments go out with a same-day deadline for review, which leaves little room to work out the effect.",
-          "evidence_ids": ["batch-070:e14"]
+          "summary": "The support is not ready when asked for; the request goes out with a plea to be told when it may be available, so the round waits on the other party.",
+          "evidence_ids": ["batch-045:e14", "batch-049:e0"]
         }
       ],
-      "contradictions": [
-        {
-          "summary": "A FERC order on refunds is reported as departing from the commission's earlier holdings in the same proceeding without explaining why, following an earlier judge's recommendation on retroactive refunds.",
-          "evidence_ids": ["batch-059:e38", "batch-058:e5"]
-        },
-        {
-          "summary": "The desk's review of the ISO's real-time market proposal finds that its first two stated goals work against each other.",
-          "evidence_ids": ["batch-085:e0"]
-        }
-      ],
+      "contradictions": [],
       "automation": {
-        "approach": "A tracker that collects ISO notices and FERC and CPUC orders as they arrive and records the effective date, any comment deadline and the systems or charges they touch. It flags the ones that need action, such as schema releases, simulations and test servers, and gives each a standard impact summary form for the desk lead to complete.",
+        "approach": "A standard liquidation support file produced each month from the deal and volume system, listing the volumes behind each liquidation value in a fixed layout, sent with the liquidation values so the risk and accounting contacts do not have to request it.",
         "artifact_type": "template",
-        "rationale": "Many rounds start from automated ISO notices that only need sorting, while the real work is judging the effect on scheduling and charges. A standard impact form keeps those judgements, deadlines and open questions to the ISO in one place instead of spread across forwards."
+        "rationale": "Each round asks for the same thing: the volume detail behind the liquidation values. A fixed file layout that is filled and sent routinely removes the request and the wait shown in the mail."
       },
-      "work_estimate": {
-        "minutes_per_occurrence": { "low": 10, "mid": 30, "high": 120 },
-        "automatable_pct": 25,
-        "basis": "inferred",
-        "rationale": "Automated ISO notices need only a check of whether they touch scheduling, charges or systems, around 10 minutes. A typical round means reading an order or proposal and working out its effect on schedules, ancillary service charges, caps or refunds, around 30 minutes. Reviewing draft comments or preparing for a new XML schema or market simulation runs up to 120 minutes. A tracker could sort notices and pull out the dates; the judgement on impact stays manual.",
-        "evidence_ids": ["batch-059:e38", "batch-057:e19", "batch-085:e0", "batch-089:e10", "batch-070:e14", "batch-096:e13", "batch-054:e20", "batch-071:e14"]
-      }
+      "work_estimate": null
     }
   ]
 }

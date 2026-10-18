@@ -1,0 +1,164 @@
+{
+  "group_id": "synth-021",
+  "content_sha": "6116622c2a5d27462b7be698d34f54e553e4ed345c478ae4a852ec7745b26adc",
+  "processes": [
+    {
+      "key": "volume-imbalance-reconciliation",
+      "description": "Schedulers, volume management and logistics staff compare what was scheduled or nominated with what was measured or actualized at meters and interconnects, often against a counterparty's or pipeline's own numbers (PG&E, HL&P, Transco, CIG, Mojave OBA). A round starts when someone spots a short day, a deal missing volume or a meter variance; the days or deals go to the other side, who verify pathing or send statements, and volumes are repathed, booked on tickets, absorbed by an OBA or written off to unaccounted-for gas with approval.",
+      "steps": [
+        "A discrepancy surfaces: a short delivery day, a deal missing volume, or a meter where actualized flow differs from what was scheduled.",
+        "The scheduler lists the affected days, deals or meters and sends them to the counterparty, pipeline or internal owner to verify.",
+        "The other side checks pathing, nominations and measurement and returns volumes, production data or statements supporting the difference.",
+        "Volumes are moved or repathed, deals corrected, or tickets created to book the physical and economic impact.",
+        "Residual differences are absorbed by an OBA or, with logistics approval, written off to unaccounted-for gas.",
+        "An updated month-to-date flow or imbalance spreadsheet is circulated to traders and managers."
+      ],
+      "stalls": [
+        {
+          "summary": "Rounds wait on answers from colleagues and counterparties: voice mails go unanswered, a requester keeps asking when something will be ready, data for earlier months has to be retrieved by someone else, and one thread ends in a demand for an answer as soon as possible.",
+          "evidence_ids": [
+            "batch-011:s4",
+            "batch-014:s1",
+            "batch-044:s1",
+            "batch-008:s1"
+          ]
+        },
+        {
+          "summary": "Requests bounce between people who are unsure who should answer: a request is passed on because it came from Settlements, a contact redirects the caller to someone else, and a person helps with a point that another person allocates.",
+          "evidence_ids": [
+            "batch-055:s6",
+            "batch-013:s0",
+            "batch-044:o0"
+          ]
+        },
+        {
+          "summary": "Small-volume differences go round in circles, with staff asking whether an existing OBA could absorb them instead of reworking them each time.",
+          "evidence_ids": [
+            "batch-035:s0",
+            "batch-035:e23"
+          ]
+        },
+        {
+          "summary": "A requested fix was told it was not a priority item, leaving the discrepancy open while the requester pressed for an urgent answer.",
+          "evidence_ids": [
+            "batch-008:s0",
+            "batch-008:s1"
+          ]
+        },
+        {
+          "summary": "An erroneous recorded flow was not passed on to the measurement group, so the correction had to be chased later.",
+          "evidence_ids": [
+            "batch-010:s5",
+            "batch-039:e6"
+          ]
+        },
+        {
+          "summary": "Some imbalances are left alone and grow: one item sits with a person because nobody wants to touch it, and staff note the cumulative imbalance is getting worse and ask for imbalances to be watched closely.",
+          "evidence_ids": [
+            "batch-076:o0",
+            "batch-051:e4",
+            "batch-029:e11"
+          ]
+        }
+      ],
+      "contradictions": [
+        {
+          "summary": "Mary Poorman writes that an imbalance item sits with her because nobody wants to touch it, then states that the daily imbalance check has been Bill's since the reorg, so the mail names two different holders of imbalance work.",
+          "evidence_ids": [
+            "batch-076:o0",
+            "batch-078:o0"
+          ]
+        },
+        {
+          "summary": "On a meter discrepancy, Charlotte Hawkins apologises that Daren had to look into what he considers her responsibility, while saying the meter is pathed by Kim and only confirmed by her; elsewhere a manager assigns resolution with Transco to Charlotte.",
+          "evidence_ids": [
+            "batch-004:s3",
+            "batch-004:o0",
+            "batch-004:e3",
+            "batch-014:o0"
+          ]
+        }
+      ],
+      "automation": {
+        "approach": "A daily exception report that pulls scheduled, nominated and actualized volumes by meter, deal and day, compares them with counterparty statements, flags variances and cumulative imbalances beyond a set tolerance, and routes each to the named owner of that point; a standing month-to-date flow sheet fed from the same data replaces the hand-built spreadsheet.",
+        "artifact_type": "sop",
+        "rationale": "The comparison itself is data work a report can do, but the mail shows rounds stalling on who owns a point, who answers Settlements requests and who approves write-offs. A written procedure naming the owner for allocation, pathing, confirmation and write-off approval, with the order of checks, would cut the handoffs and repeated go-rounds first."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": {
+          "low": 10,
+          "mid": 30,
+          "high": 90
+        },
+        "automatable_pct": 45,
+        "basis": "inferred",
+        "rationale": "Minutes go to pulling scheduled versus actualized volumes for the days or meters in question, comparing them with the counterparty's figures, repathing or moving volumes and booking tickets, and updating the month-to-date sheet. Most rounds cover a few days or one meter, so about 30 minutes is typical; a quick check is around 10, and a multi-month statement reconciliation or write-off review can reach 90. Pulling and comparing suit a report; investigation, calls and approvals stay with people.",
+        "evidence_ids": [
+          "batch-062:e1",
+          "batch-002:e4",
+          "batch-013:e4",
+          "batch-001:e32",
+          "batch-051:e23",
+          "batch-091:e14",
+          "batch-012:e8",
+          "batch-035:e15",
+          "batch-000:e23",
+          "batch-039:e6"
+        ]
+      },
+      "estimate_check": {
+        "occurrences_cited": 10,
+        "senders_cited": 10
+      }
+    },
+    {
+      "key": "weekly-commercial-reporting",
+      "description": "Each week the Transwestern commercial team sends a California Capacity Report giving the pipeline's average deliveries to California, their share of capacity and San Juan lateral throughput, sometimes with operational line pack sold and its average rate, alongside a short bullet summary of ongoing deals. One person compiles it and sends it to the team and managers; outside reports such as the CEC draft are passed along on request, and a misdated report is corrected by a follow-up.",
+      "steps": [
+        "Pull the week's daily delivery volumes to California and the San Juan lateral throughput.",
+        "Compute average daily deliveries and their share of capacity.",
+        "Add any operational line pack sold during the week and its average rate.",
+        "Collect the weekly bullets on ongoing deals, or note that there are none.",
+        "Send the California Capacity Report for the week's dates to the commercial team and managers.",
+        "Resend with a correction when the report's dates were wrong."
+      ],
+      "stalls": [
+        {
+          "summary": "A report went out with the wrong effective dates and had to be corrected by a follow-up message.",
+          "evidence_ids": [
+            "batch-086:e12"
+          ]
+        }
+      ],
+      "contradictions": [],
+      "automation": {
+        "approach": "A scheduled query that pulls the week's delivery, capacity, lateral throughput and line pack sales figures from the measurement and sales systems and fills a fixed report layout stamped with the week's dates, leaving only the deal bullets for the author to write and review before sending.",
+        "artifact_type": "template",
+        "rationale": "The report repeats the same sentences with new figures every week, so a fixed layout fed by the data removes the recalculation and the misdated-week errors; the bullet summary of deals still needs the commercial lead's judgement."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": {
+          "low": 10,
+          "mid": 20,
+          "high": 40
+        },
+        "automatable_pct": 60,
+        "basis": "inferred",
+        "rationale": "Minutes go to pulling the week's daily deliveries and lateral throughput, averaging them and computing the share of capacity, listing any line pack sales, and gathering the deal bullets. The report holds a handful of figures in a fixed form, so about 20 minutes is typical, 10 in a quiet week with no bullets, and up to 40 when line pack sales or an outside report are added. The figure work suits automation; the bullets remain manual.",
+        "evidence_ids": [
+          "batch-098:e20",
+          "batch-097:e26",
+          "batch-098:e21",
+          "batch-098:e6",
+          "batch-068:e7",
+          "batch-083:e0",
+          "batch-086:e12"
+        ]
+      },
+      "estimate_check": {
+        "occurrences_cited": 7,
+        "senders_cited": 2
+      }
+    }
+  ]
+}

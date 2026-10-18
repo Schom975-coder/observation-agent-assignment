@@ -1,39 +1,31 @@
 {
   "group_id": "synth-005",
-  "content_sha": "757ac6b08b1d7fd56b2b5f59dbe5533dc53532028d5c025235f4d4fdad607745",
+  "content_sha": "42a5c6d31b7f920c30507b5b1d324ca301e0031673f6eca0466fbc45b707b4cd",
   "processes": [
     {
-      "key": "customer-price-quotes",
-      "description": "Customers such as a utility's fuel and plant buyer and a gas company contact email the logistics contact asking for prices on a stated volume at a delivery point, or for hedges, swaps or fixed forward purchases. The recipient does not price these: the request is forwarded to the colleague who handles customer pricing, or a colleague is asked to call the customer that day. That person checks with the traders for a quote or bid and takes it back to the customer, who replies asking for a call to go over it.",
+      "key": "customer-quote-requests",
+      "description": "A customer such as Great River Energy asks for a trader price on a fixed forward, hedge or firm gas volume at a named delivery point, or asks to close out an existing forward contract. The request often reaches a desk contact first and is forwarded to the person who can get a quote, sometimes with a request to call the customer that day. That person checks with the traders for bids or quotes, works out the close-out terms where a contract is being unwound, and gets back to the customer with the price.",
       "steps": [
-        "A customer emails a request for a price on a stated gas volume and delivery point, or for a hedge, swap or fixed forward purchase.",
-        "The recipient forwards the request to the colleague who handles pricing, or asks a colleague to call the customer.",
-        "That person checks with the traders for a quote or bid.",
-        "The quote is given back to the customer by phone or email.",
-        "The customer replies and asks for a call to go over the quote."
+        "A customer asks for a price quote on a forward, hedge or firm gas volume, or asks to close out a forward contract.",
+        "The contact who receives the request forwards it to the person who handles customer pricing.",
+        "That person checks with the traders for current bids and quotes at the requested location and volume.",
+        "For a close-out, the remaining contract terms are valued against current prices.",
+        "The quote or close-out price goes back to the customer by phone or email."
       ],
       "stalls": [
         {
-          "summary": "Requests reach someone who does not price them and are passed along: one is forwarded on a colleague's suggestion, another comes with a plea to call the customer that day, and a customer asks the recipient to go and check with the traders, so each quote waits on a hand-off before anyone prices it.",
+          "summary": "Requests reach a contact who does not price them and are forwarded on, with the new handler asked to call the customer the same day, so each round depends on finding the right pricing contact before any quote work starts.",
           "evidence_ids": [
             "batch-046:e10",
-            "batch-071:e8",
-            "batch-078:e1"
-          ]
-        },
-        {
-          "summary": "The customer's reply thanks the desk for its patience and asks for a call to go over the quote, so the round closes only after a further conversation, and the same follow-up recurs.",
-          "evidence_ids": [
-            "batch-049:e7",
-            "batch-049:e8"
+            "batch-071:e8"
           ]
         }
       ],
       "contradictions": [],
       "automation": {
-        "approach": "A standard quote-request message or form that captures product, volume, delivery point, term and the date a reply is needed, routed straight to the trading desk contact, with an indicative price pulled from the current curve for the trader to confirm before calling the customer.",
+        "approach": "A reusable quote-request message that captures customer, product type, delivery point, volume, term and response deadline and goes straight to the pricing desk, with current forward prices for that point pulled alongside so the trader confirms rather than looks up the quote. Close-out requests carry the contract reference so its remaining terms can be valued from the deal record.",
         "artifact_type": "email_template",
-        "rationale": "Requests arrive with the logistics contact and get forwarded around before a trader sees them, and the recipient has to go back to the traders for the terms. A template that carries every term in one message gets the request to the right person complete; setting the price and talking to the customer stay with people."
+        "rationale": "The visible friction is routing and missing details: requests get forwarded and the handler is asked to phone the customer. A reusable request message that collects every detail the trader needs and names the pricing contact helps most; the trader's judgement on the price stays manual."
       },
       "work_estimate": {
         "minutes_per_occurrence": {
@@ -41,120 +33,117 @@
           "mid": 20,
           "high": 45
         },
-        "automatable_pct": 25,
+        "automatable_pct": 30,
         "basis": "inferred",
-        "rationale": "The hands-on part of a round is getting a price: reading the request's volume, point and term, checking with the traders for a quote or bid, and talking the customer through it on the phone. That is short for a simple delivered-gas quote and longer for a hedge or fixed forward structure, so 10 to 45 minutes with 20 as the middle. A request template and a curve lookup could take over gathering the terms and an indicative price; the trader's price and the customer call stay manual.",
+        "rationale": "Minutes go to checking with traders for bids at the requested point and volume, valuing a forward contract close-out where one is asked for, and phoning the customer with the result. The quotes show the request and its routing but not the pricing work itself, so the range is wide: a simple bid check is quick, a close-out valuation takes longer.",
         "evidence_ids": [
+          "batch-046:e10",
+          "batch-081:e6",
           "batch-078:e1",
-          "batch-071:e8",
-          "batch-049:e7",
-          "batch-046:e10"
+          "batch-071:e8"
         ]
       },
       "estimate_check": {
         "occurrences_cited": 4,
-        "senders_cited": 4
+        "senders_cited": 3
       }
     },
     {
-      "key": "daily-model-distribution",
-      "description": "Real-time desk staff send service customers their models for each flow date: the EPE model for El Paso Electric and the EES model spreadsheets, with EES hourly data available to add to the daily mail-out. Bill Williams III runs the distribution: he forwards the EES models, asks for names to be added to or removed from the EES list, corrects mail sent to the wrong Bill Williams, and requires the EPE Reconciliation sheet to be completed even when there are no variances, following up on where the new reconciliation model lives.",
+      "key": "daily-file-distribution",
+      "description": "Desk and settlement staff send out the EPE and EES models, the EPE reconciliation sheet, hourly data files and Western pre-scheduled firm price reports to settlements, external customer contacts and desk groups. A round is one send: the file for the prior trade date is prepared and mailed, and sometimes forwarded on by the desk. Around it, the desk keeps recipient lists correct, asking senders to add or remove names and distribution groups, correcting a mis-addressed recipient, and checking that the reconciliation sheet is completed and source data is loaded before the file goes out.",
       "steps": [
-        "Real-time staff complete the EPE model or the EES model spreadsheets for the flow date.",
-        "They complete the EPE Reconciliation sheet, even when there are no variances.",
-        "They add the EES hourly data to the mail-out where the recipient wants it.",
-        "They email the model and sheets to the customer's recipient list.",
-        "Copies of the EES model are forwarded to internal staff who follow it.",
-        "The recipient list is updated when names are added or removed or mail reaches the wrong person.",
-        "The desk lead follows up when a sheet is missing or a model's location changes."
+        "The source data for the trade date is checked as loaded, such as Gas Daily prices.",
+        "The model, reconciliation sheet or price report is prepared for that date.",
+        "The reconciliation sheet is completed even when there are no variances.",
+        "The file is mailed to the distribution list of settlement, external and desk contacts.",
+        "Desk staff forward the file on to further contacts where needed.",
+        "Recipient changes are requested and the sender updates the distribution list."
       ],
       "stalls": [
         {
-          "summary": "The EPE reconciliation sheet was not done, and the desk lead had to instruct that it be completed even when there are no variances.",
+          "summary": "The EPE reconciliation sheet was not completed, prompting a follow-up on the new reconciliation model's location and status and an instruction to complete it going forward.",
+          "evidence_ids": [
+            "batch-057:s2",
+            "batch-057:e17",
+            "batch-057:e16"
+          ]
+        },
+        {
+          "summary": "A report waits on source data: Gas Daily prices were not loaded yet, so the sender had to keep checking back before the send could go out.",
+          "evidence_ids": [
+            "batch-093:s3",
+            "batch-093:e12"
+          ]
+        },
+        {
+          "summary": "Distribution lists drift: files went to the wrong Bill Williams, names had to be added and removed, and a new sender needed a list of who is in the real-time group before the distribution could be set up correctly.",
+          "evidence_ids": [
+            "batch-054:e9",
+            "batch-053:e31",
+            "batch-054:e11",
+            "batch-091:e19",
+            "batch-091:e20"
+          ]
+        }
+      ],
+      "contradictions": [
+        {
+          "summary": "Practice and expectation differ on the reconciliation sheet: it was being left undone, apparently when there were no variances, while the desk asks that it be completed even when there are none.",
           "evidence_ids": [
             "batch-057:s2",
             "batch-057:e17"
           ]
-        },
-        {
-          "summary": "The recipient lists go wrong: mail goes to the wrong Bill Williams, he has to confirm he is listed as Bill Williams III, and names have to be added to and removed from the EES list.",
-          "evidence_ids": [
-            "batch-054:e9",
-            "batch-053:e31",
-            "batch-054:e11"
-          ]
-        },
-        {
-          "summary": "A new EPE Reconciliation Model needed a follow-up message so that everyone knew where it is kept and what state it is in.",
-          "evidence_ids": [
-            "batch-057:e16"
-          ]
         }
       ],
-      "contradictions": [],
       "automation": {
-        "approach": "Generate the EPE and EES models, the hourly data and the reconciliation sheet from the deal data on a schedule, send them to one distribution list keyed by email address and kept by one owner, and add a check that holds the mail-out when the reconciliation sheet is blank.",
+        "approach": "A scheduled job that builds the model or price report once its source data is loaded, attaches the reconciliation sheet and mails one maintained distribution group, with a check that holds the send and alerts the owner when data is missing or the reconciliation sheet is blank. Recipient changes go to the shared group instead of each sender's personal list.",
         "artifact_type": "checklist",
-        "rationale": "The problems the mail shows are a skipped reconciliation sheet, a moved model file and wrong recipients, not the building of the model itself. A short mail-out checklist covering the model, the reconciliation sheet even with no variances, the hourly data and the current recipient list addresses those first; scheduling the export and send then removes the repetitive attach-and-send."
+        "rationale": "The repetitive part is preparing and mailing the same files to the same people; the visible failures are a skipped reconciliation sheet, data not yet loaded and stale recipient lists. A short send checklist covering data loaded, reconciliation done even with no variances, and distribution group current addresses all three right away, ahead of any scheduling tool."
       },
       "work_estimate": {
         "minutes_per_occurrence": {
           "low": 5,
           "mid": 15,
-          "high": 40
+          "high": 30
         },
-        "automatable_pct": 50,
+        "automatable_pct": 60,
         "basis": "inferred",
-        "rationale": "A round is filling in and checking the day's EPE or EES model, completing the EPE reconciliation sheet against any variances, attaching hourly data and keeping the recipient list right. A round that is only a list change takes about 5 minutes, a normal model round about 15, and one with variances to reconcile up to 40. Building, attaching and sending the files to a maintained list can be scheduled, and a check can flag a blank reconciliation sheet; reviewing variances stays manual.",
+        "rationale": "Minutes go to checking the source data is loaded, preparing the model or price report for the date, completing the reconciliation sheet and, in some rounds, updating the recipient list. The quotes show these files are routine and repeated, so most rounds are short; the high end covers a round with variances to reconcile or a list to rebuild.",
         "evidence_ids": [
           "batch-088:e25",
           "batch-057:e17",
-          "batch-086:e10",
-          "batch-073:e9",
           "batch-054:e11",
-          "batch-057:e16"
+          "batch-093:e12",
+          "batch-092:e2",
+          "batch-091:e18"
         ]
       },
       "estimate_check": {
         "occurrences_cited": 6,
-        "senders_cited": 2
+        "senders_cited": 4
       }
     },
     {
       "key": "deal-book-transfer",
-      "description": "Deals are moved between risk books on request. Before the bankruptcy, the west region's controller sends book runners lists of deals to flip, such as index deals out of FT-WEST or deals from MGMT-WEST, G-DAILY-EST and INTRA-EMWMEH into FT-US/CAND-ERMS, often due that day, and asks them to sweep their books for leftovers. After the ENA filings, several staff send lists of terminated counterparties and auto-terminating deals to move into bankruptcy books in TAGG and zero out in Sitara, with book renames and some moves back to the live side.",
+      "description": "Risk, settlements and desk staff move deals from one risk book to another. Early rounds flip single deals or a whole book's contents into the right regional or desk book, such as FT-US/CAND-ERMS, often by a stated deadline. After the bankruptcy filing, rounds move auto-terminating deals and terminated counterparties' deals into bankruptcy books from attached lists, followed by lists of stragglers. The receiver moves the deals in TAGG, zeroes them in Sitara, recalculates and officializes the book, and cross-references the result with other groups' lists.",
       "steps": [
-        "A controller or the bankruptcy team identifies deals to move, from a book reorganisation or a counterparty termination list.",
-        "The deal list is sent or forwarded to the book's runner with the target book and often a deadline.",
-        "The runner moves or flips each listed deal to the target book.",
-        "For bankruptcy moves, the deals go to the bankruptcy book in TAGG and are zeroed out going forward in Sitara.",
-        "The book is calculated and officialized again after the move.",
-        "Moved deals are cross-referenced against the termination list and the book's calcs.",
-        "The runner confirms the flip; deals found later are sent on as follow-up lists of stragglers.",
-        "Deals moved in error are moved back from the bankruptcy book to the live side."
+        "A requester identifies deals to move: single deals in the wrong book, a whole book's contents, or terminated counterparties' deals.",
+        "The deal list is compiled or forwarded, often as an attachment, naming the source and target book and a deadline.",
+        "The book owner moves each deal to the target book in the risk system, zeroing bankruptcy deals forward in Sitara.",
+        "The book is recalculated and officialized after the move.",
+        "The moved deals are cross-referenced against the requester's final list and other groups' calcs.",
+        "Stragglers found later are sent and moved in a follow-up round, and wrongly moved deals are moved back."
       ],
       "stalls": [
         {
-          "summary": "Termination lists arrive piecemeal: one participant is still waiting on a final list to cross-reference with calcs while further lists of more deals and stragglers keep arriving, so the same books are reopened round after round.",
+          "summary": "Cross-checks wait on others: risk was still waiting on a final list to cross-reference with its calcs while settlements kept sending the deal lists behind terminated contracts.",
           "evidence_ids": [
             "batch-087:s2",
-            "batch-089:e7",
-            "batch-088:e23",
-            "batch-087:e21",
-            "batch-082:e36"
+            "batch-087:e23"
           ]
         },
         {
-          "summary": "Deals left in old books turn up after the main move: a last deal in the FT-Northwest book, one more deal found to flip, and requests to go into all books or make sure all Canadian deals have moved show sweeps after the fact.",
-          "evidence_ids": [
-            "batch-034:e17",
-            "batch-048:e18",
-            "batch-030:e12",
-            "batch-048:e7"
-          ]
-        },
-        {
-          "summary": "Reconciling a book against what another party holds needs outside help and the exact deal terms, and the approach is changed to a simpler fix.",
+          "summary": "Reconciling a book with another party's records needed help and the exact deal terms, and ended with the approach being redone a simpler way.",
           "evidence_ids": [
             "batch-022:e21",
             "batch-022:e22",
@@ -162,57 +151,77 @@
           ]
         },
         {
-          "summary": "Some transactions placed in the bankruptcy book are later asked to go back to the live side, undoing an earlier move.",
+          "summary": "Bulk moves are rarely complete in one pass: one more deal, more deals and repeated batches of stragglers follow the first list.",
+          "evidence_ids": [
+            "batch-048:e18",
+            "batch-082:e36",
+            "batch-089:e7",
+            "batch-088:e23",
+            "batch-087:e21"
+          ]
+        },
+        {
+          "summary": "Some moves are reversed: transactions already moved to the bankruptcy book had to be moved back to the live side.",
           "evidence_ids": [
             "batch-089:e5"
+          ]
+        },
+        {
+          "summary": "Moves carry tight deadlines and repeated reminders, such as by the end of today, as soon as possible and right away.",
+          "evidence_ids": [
+            "batch-048:e17",
+            "batch-048:e22",
+            "batch-037:e32",
+            "batch-033:e17"
           ]
         }
       ],
       "contradictions": [
         {
-          "summary": "Who owns the bankruptcy terminations is stated differently: one message says Darron and the writer will handle terminations from that day on while Scott heads another project, a later one names Greg Couch as leading the estate risk effort, and move lists keep coming from other senders as well.",
+          "summary": "Who leads the termination and bankruptcy-book work is named differently: one note says Darron and the writer will handle terminations from now on after Scott moved to another project, while a later note says Greg Couch will lead the estate risk effort.",
           "evidence_ids": [
             "batch-087:o0",
-            "batch-091:o0",
-            "batch-091:e1"
+            "batch-091:o0"
           ]
         },
         {
-          "summary": "Instructions on where terminated deals go change during the bankruptcy moves: one request moves named counterparties from NG-Price to Bankruptcy, a later one says to move deals with the FT-TERMIN-GD book instead of booking counterparty FT-CAND-TERMIN, and another renames NG-Price to ENA-FT-WC-SJ.",
+          "summary": "Instructions on target books change mid-stream: deals are first moved from NG-Price to the bankruptcy book, then a later note changes the book used for terminated deals and renames NG-Price, and some deals moved into the bankruptcy book are sent back to the live side.",
           "evidence_ids": [
             "batch-088:e10",
             "batch-091:e8",
-            "batch-091:e13"
+            "batch-091:e13",
+            "batch-089:e5",
+            "batch-087:e3"
           ]
         }
       ],
       "automation": {
-        "approach": "One standard deal-move list (deal number, counterparty, current book, target book, effective date, systems to update) feeding a bulk transfer; a query that pulls every deal of a terminated counterparty across all books so stragglers surface at once; and a post-move check that compares book totals and flags deals still sitting in old books.",
+        "approach": "A standard deal-transfer request layout listing deal number, counterparty, current book, target book, effective date and reason, plus a risk-system query that pulls every deal for a terminated counterparty and flags those not yet in a bankruptcy book, so stragglers surface in one pass. After the move, a check compares the book's deals and totals with the request list before the book is officialized.",
         "artifact_type": "template",
-        "rationale": "Requests arrive as ad hoc lists in different shapes from different senders, deals left behind surface later, and some moves are reversed. One list layout that every requester fills in, matched against a counterparty query, cuts the stragglers and misreads; the moves themselves and the cross-check against calcs are the repetitive parts a tool can take on, while deciding which deals belong where stays with people."
+        "rationale": "Rounds repeat the same move with lists that arrive in pieces and in varying formats, and keep producing stragglers and reversals. One request template with fixed columns lets the book owner move and check deals line by line, and is the input a query or bulk-move script would read; deciding which deals belong in which book stays with risk staff."
       },
       "work_estimate": {
         "minutes_per_occurrence": {
-          "low": 10,
-          "mid": 30,
+          "low": 15,
+          "mid": 35,
           "high": 90
         },
-        "automatable_pct": 40,
-        "basis": "inferred",
-        "rationale": "A round means finding the listed deals, moving each to the target book in TAGG, zeroing bankruptcy deals out in Sitara, recalculating and officializing the book, and cross-checking against the termination list or calcs. Lists run from a single deal to several counterparties' deals, so 10 to 90 minutes with about 30 in the middle. A counterparty query and bulk move could select and move most deals and compare book totals afterwards; deciding which deals belong where and handling stragglers and reversals stays with people.",
+        "automatable_pct": 45,
+        "basis": "observed",
+        "rationale": "Minutes go to compiling or checking the deal list against counterparties and contracts, moving each deal to the target book in TAGG and zeroing it in Sitara, recalculating and officializing the book, and cross-referencing against other groups' lists. Single-deal flips are short; bankruptcy rounds with attached lists of many deals and a reconciliation take far longer, hence the wide range.",
         "evidence_ids": [
           "batch-082:e35",
-          "batch-088:e10",
           "batch-039:e23",
+          "batch-087:e23",
           "batch-087:s2",
-          "batch-087:e3",
-          "batch-030:e12",
-          "batch-089:e5",
-          "batch-022:e21"
+          "batch-022:e21",
+          "batch-088:e10",
+          "batch-046:e13",
+          "batch-091:e1"
         ]
       },
       "estimate_check": {
-        "occurrences_cited": 8,
+        "occurrences_cited": 7,
         "senders_cited": 4
       }
     }

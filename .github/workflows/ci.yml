@@ -48,8 +48,10 @@ jobs:
       # against them and the corpus (ARCHITECTURE.md 6.17).
       - run: node obs.mjs prepare --force
       - run: node obs.mjs verify
-      # The build from the committed model outputs, then proof that every committed output is
-      # exactly what this code writes on this OS.
+      # The rollup and the build from the committed model outputs (the rollup rewrites the synthesis
+      # inputs a clone does not have), then proof that every committed output is exactly what this
+      # code writes on this OS.
+      - run: node obs.mjs rollup
       - run: node obs.mjs build
       - run: git diff --exit-code -- out
       # The project site from the submitted run: no placeholder, screenshot or tracked link missing.

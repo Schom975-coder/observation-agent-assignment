@@ -11,8 +11,9 @@
 // so a warm run that finds every draft done rewrites nothing.
 import { readdirSync } from 'node:fs';
 import { join } from 'node:path';
-import { ConfigError } from '../config.ts';
+import { ConfigError, loadEffortRates } from '../config.ts';
 import { ARTIFACT_FILES, ArtifactError, BOM, STAGE_FOLDERS, artifactPath, artifactSlug, buildBriefs, renderArtifact } from '../model/artifacts.ts';
+import { IdentityError, identityOf, type Identity } from '../normalize/identity.ts';
 import { sha256 } from '../util/hash.ts';
 import { normalizeNewlines } from '../util/text.ts';
 import {
@@ -33,6 +34,7 @@ import {
   writeFileAtomic,
   type BatchView,
 } from './ledger.ts';
+import { ratesFile } from './rollup.ts';
 import { scoreFreshness } from './score.ts';
 import type { ArtifactBrief, ArtifactIndex, Artifacts, Opportunities, ParsedMessage, Person, Rollup, Thread, ValidatedDraft, ValidatedExtraction } from '../types.ts';
 
@@ -85,9 +87,9 @@ export function artifactsFreshness(root: string): ArtifactsFreshness {
 
 // ---- prepare ----
 
-// The prepared messages, threads and people, and the validated extractions of the done batches:
-// what the briefs' quotes are placed with.
-function quoteInputs(root: string): { validated: ValidatedExtraction[]; messages: Map<string, ParsedMessage>; people: Person[]; threads: Thread[] } {
+// The prepared messages and threads, who each address is (out/people.json read with the published
+// rates), and the validated extractions of the done batches: what the briefs' quotes are placed with.
+function quoteInputs(root: string): { validated: ValidatedExtraction[]; messages: Map<string, ParsedMessage>; identity: Identity; threads: Thread[] } {
   const validated = batchViews(root, 'batch')
     .filter((v) => v.status === 'done')
     .map((v) => readJson(root, validatedFile(root, v.entry.id), 'the ledger says this batch is done; run node obs.mjs verify') as ValidatedExtraction);
@@ -99,12 +101,15 @@ function quoteInputs(root: string): { validated: ValidatedExtraction[]; messages
     const m = JSON.parse(line) as ParsedMessage;
     messages.set(m.id, m);
   }
-  return {
-    validated,
-    messages,
-    people: readJson(root, join(root, 'out', 'people.json'), 'run node obs.mjs prepare first.') as Person[],
-    threads: readJson(root, join(root, 'out', 'threads.json'), 'run node obs.mjs prepare first.') as Thread[],
-  };
+  const people = readJson(root, join(root, 'out', 'people.json'), 'run node obs.mjs prepare first.') as Person[];
+  let identity: Identity;
+  try {
+    identity = identityOf(people, loadEffortRates(ratesFile(root)));
+  } catch (err) {
+    if (err instanceof IdentityError) throw new ArtifactError(err.message);
+    throw err;
+  }
+  return { validated, messages, identity, threads: readJson(root, join(root, 'out', 'threads.json'), 'run node obs.mjs prepare first.') as Thread[] };
 }
 
 // Write `text` unless the file already holds exactly it.

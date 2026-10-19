@@ -3,13 +3,15 @@
 // occurrence shares x the checked estimate's mid minutes per occurrence), each per month over the
 // counted window, in hours and in cents at $85/hour; tiers from counts only; ranking, the headline
 // and the artifact threshold. Every quantity is a whole number of hundredths, rounded once, at the
-// end, from integers, so the same inputs give the same bytes on every OS. The model's estimate
-// enters through two numbers, `mid` and `automatable_pct` (modelEstimate): it multiplies counted
-// occurrences and nothing else, and sets no count, tier, rank or threshold.
+// end, from integers, so the same inputs give the same bytes on every OS; a row's dollars are its
+// two parts' cents added, so the parts shown add up to the total exactly. The model's estimate
+// enters the total through two numbers, `mid` and `automatable_pct` (modelEstimate): it multiplies
+// counted occurrences and nothing else, and sets no count, tier, rank or threshold. Its `low` and
+// `high` minutes give the range shown beside the total, with the automatable share fixed.
 import { ACTION_TYPES, type ActionType, type EffortRates, type Scoring } from '../config.ts';
 import { stallsByKind } from './rollup.ts';
 import { roundHalfUp } from '../util/round.ts';
-import type { EstimatesOverride, MinutesPair, Opportunities, Opportunity, ProcessRollup, Rollup, Tier, ValidatedSynthesis } from '../types.ts';
+import type { EstimatesOverride, HeadlineCents, MinutesPair, Opportunities, Opportunity, ProcessRollup, Rollup, Tier, ValidatedSynthesis } from '../types.ts';
 
 export const CENTS_PER_HOUR = 8500; // the brief's $85/hour
 export const HEADLINE_LABEL = 'observed in 4 mailboxes, 1999-2002';
@@ -88,8 +90,9 @@ function countedFormula(p: ProcessRollup, rates: EffortRates, email: MinutesPair
 }
 
 // "103.50 occ x 45 min/occ (estimate, mid of 30-60, basis observed, 6 quotes from 5 occurrences) =
-// 4,657.50 min = 588.07 min/mo; automatable 60% (estimate) = 352.84 min/mo"
-function estimatedFormula(p: ProcessRollup, e: UsedEstimate, work: number, file: string | null): string {
+// 4,657.50 min = 588.07 min/mo; automatable 60% (estimate) = 352.84 min/mo; at the low end 30
+// min/occ = $360.84/mo, at the high end 60 min/occ = $694.07/mo (the row's automatable total)"
+function estimatedFormula(p: ProcessRollup, e: UsedEstimate, work: number, file: string | null, range: { low: number; high: number }): string {
   const m = e.minutes_per_occurrence;
   const what =
     e.source === 'model'
@@ -98,7 +101,23 @@ function estimatedFormula(p: ProcessRollup, e: UsedEstimate, work: number, file:
   const label = e.source === 'model' ? 'estimate' : 'override';
   return (
     `${x100(p.occurrence_share_x100)} occ x ${m.mid} min/occ (${what}) = ${x100(work)} min = ${x100(e.work_per_month_x100.today)} min/mo; ` +
-    `automatable ${e.automatable_pct}% (${label}) = ${x100(e.work_per_month_x100.automatable)} min/mo`
+    `automatable ${e.automatable_pct}% (${label}) = ${x100(e.work_per_month_x100.automatable)} min/mo; ` +
+    `at the low end ${m.low} min/occ = ${dollars(range.low)}/mo, at the high end ${m.high} min/occ = ${dollars(range.high)}/mo (the row's automatable total)`
+  );
+}
+
+// "today 630.75 min/mo = 10.51 h/mo = $893.56/mo (email 42.68 min/mo = $60.46 + work 588.07 min/mo =
+// $833.10); automatable 372.32 min/mo = 6.21 h/mo = $527.46/mo (counted email 19.48 min/mo = $27.60
+// + estimated work 352.84 min/mo = $499.86)": the dollars part by part, so a hand check runs on the
+// parts, which add up to the total exactly.
+function totalFormula(perMonth: MinutesPair, hours: MinutesPair, money: MinutesPair, emailPm: MinutesPair, workPm: MinutesPair | null): string {
+  const parts = (email: number, work: number | null, emailLabel: string, workLabel: string) =>
+    `${emailLabel} ${x100(email)} min/mo = ${dollars(cents(email))}` +
+    (work === null ? '; no work estimate' : ` + ${workLabel} ${x100(work)} min/mo = ${dollars(cents(work))}`);
+  return (
+    `today ${x100(perMonth.today)} min/mo = ${x100(hours.today)} h/mo = ${dollars(money.today)}/mo (${parts(emailPm.today, workPm?.today ?? null, 'email', 'work')}); ` +
+    `automatable ${x100(perMonth.automatable)} min/mo = ${x100(hours.automatable)} h/mo = ${dollars(money.automatable)}/mo ` +
+    `(${parts(emailPm.automatable, workPm?.automatable ?? null, 'counted email', 'estimated work')})`
   );
 }
 
@@ -160,17 +179,24 @@ export function score(inputs: ScoreInputs): Opportunities {
     if (chosen === null) flags.push('estimate_missing');
     else if (chosen.source === 'override') flags.push('estimate_override');
 
-    const work = chosen === null ? 0 : p.occurrence_share_x100 * chosen.minutes_per_occurrence.mid;
-    const workAuto = chosen === null ? 0 : roundHalfUp(work * chosen.automatable_pct, 100);
-    const workPm: MinutesPair = { today: perMonthX100(work, p.window.months_x100), automatable: perMonthX100(workAuto, p.window.months_x100) };
+    // The work part at `minutes` per occurrence (none without an estimate): the whole window, and
+    // per month today and automatable.
+    const workAt = (minutes: keyof UsedEstimate['minutes_per_occurrence']): { work: number; pm: MinutesPair } => {
+      if (chosen === null) return { work: 0, pm: { today: 0, automatable: 0 } };
+      const work = p.occurrence_share_x100 * chosen.minutes_per_occurrence[minutes];
+      return { work, pm: { today: perMonthX100(work, p.window.months_x100), automatable: perMonthX100(roundHalfUp(work * chosen.automatable_pct, 100), p.window.months_x100) } };
+    };
+    const { work, pm: workPm } = workAt('mid');
     const estimated: Opportunity['estimated'] = chosen === null ? null : { ...chosen, work_per_month_x100: workPm };
     const perMonth: MinutesPair = { today: emailPm.today + workPm.today, automatable: emailPm.automatable + workPm.automatable };
     const hours: MinutesPair = { today: hoursX100(perMonth.today), automatable: hoursX100(perMonth.automatable) };
-    const money: MinutesPair = { today: cents(perMonth.today), automatable: cents(perMonth.automatable) };
-    const parts =
-      estimated === null
-        ? `counted email ${dollars(cents(emailPm.automatable))}; no work estimate`
-        : `counted email ${dollars(cents(emailPm.automatable))} + estimated work ${dollars(cents(workPm.automatable))}`;
+    // The dollars are the two parts' cents added, so the parts shown add up to the total exactly.
+    const money: MinutesPair = { today: cents(emailPm.today) + cents(workPm.today), automatable: cents(emailPm.automatable) + cents(workPm.automatable) };
+    // The range: the estimate at its low and at its high minutes, the automatable share fixed; with
+    // no estimate both ends are the email part.
+    const [low, high] = [workAt('low').pm.automatable, workAt('high').pm.automatable];
+    const range_per_month_x100 = { low: emailPm.automatable + low, high: emailPm.automatable + high };
+    const range_cents = { low: cents(emailPm.automatable) + cents(low), high: cents(emailPm.automatable) + cents(high) };
     const opportunity: Opportunity = {
       rank: 0,
       key: p.key,
@@ -187,17 +213,18 @@ export function score(inputs: ScoreInputs): Opportunities {
         actions: p.actions,
         email_x100: email,
         email_per_month_x100: emailPm,
+        reply_gap: { n: p.reply_gap_n, median_h: p.median_reply_gap_h },
       },
       estimated,
       per_month_x100: perMonth,
       hours_per_month_x100: hours,
       dollars_per_month_cents: money,
+      range_per_month_x100,
+      range_cents,
       formula: {
         counted: countedFormula(p, rates, email, emailPm),
-        estimated: estimated === null ? null : estimatedFormula(p, estimated, work, inputs.files.estimates),
-        total:
-          `today ${x100(perMonth.today)} min/mo = ${x100(hours.today)} h/mo = ${dollars(money.today)}/mo; ` +
-          `automatable ${x100(perMonth.automatable)} min/mo = ${x100(hours.automatable)} h/mo = ${dollars(money.automatable)}/mo (${parts})`,
+        estimated: estimated === null ? null : estimatedFormula(p, estimated, work, inputs.files.estimates, range_cents),
+        total: totalFormula(perMonth, hours, money, emailPm, estimated === null ? null : workPm),
       },
       rates_sha: inputs.shas.rates_sha,
       scoring_sha: inputs.shas.scoring_sha,
@@ -213,7 +240,7 @@ export function score(inputs: ScoreInputs): Opportunities {
               automation: { ...synth.automation },
             },
       stalls_counted: stallsByKind(p.stalls),
-      ownership_conflict: p.ownership_conflict,
+      ownership_conflicts: p.ownership_conflicts,
       evidence_ids: p.evidence_ids,
       artifact: null,
       artifact_eligible: false,
@@ -226,17 +253,23 @@ export function score(inputs: ScoreInputs): Opportunities {
   scored.sort((a, b) => b.opportunity.dollars_per_month_cents.automatable - a.opportunity.dollars_per_month_cents.automatable || byText(a.opportunity.key, b.opportunity.key));
   scored.forEach((s, i) => (s.opportunity.rank = i + 1));
 
-  // The artifact threshold: tier A or B, at or over the bar (none until it is set), at most `cap`;
+  // The artifact threshold: tier A or B, at or over the bar (none when it is null), at most `cap`;
   // at least `floor` of the top A/B processes whatever the bar.
   const { min_automatable_cents: bar, cap, floor } = scoring.artifacts;
   const candidates = scored.map((s) => s.opportunity).filter((o) => o.tier !== 'C');
   const over = candidates.filter((o) => bar === null || o.dollars_per_month_cents.automatable >= bar).slice(0, cap);
   for (const o of over.length >= floor ? over : candidates.slice(0, floor)) o.artifact_eligible = true;
 
-  const headline = (rows: typeof scored) => ({
-    total: rows.reduce((n, s) => n + s.opportunity.dollars_per_month_cents.automatable, 0),
-    counted_email: rows.reduce((n, s) => n + s.emailCents, 0),
-    estimated_work: rows.reduce((n, s) => n + s.workCents, 0),
+  // Sums over the rows: the total is the counted email plus the estimated work, exactly.
+  const sum = (rows: typeof scored, of: (s: (typeof scored)[number]) => number): number => rows.reduce((n, s) => n + of(s), 0);
+  const headline = (rows: typeof scored): HeadlineCents => ({
+    total: sum(rows, (s) => s.opportunity.dollars_per_month_cents.automatable),
+    counted_email: sum(rows, (s) => s.emailCents),
+    estimated_work: sum(rows, (s) => s.workCents),
+    low: sum(rows, (s) => s.opportunity.range_cents.low),
+    high: sum(rows, (s) => s.opportunity.range_cents.high),
+    today: sum(rows, (s) => s.opportunity.dollars_per_month_cents.today),
+    hours_x100: { today: sum(rows, (s) => s.opportunity.hours_per_month_x100.today), automatable: sum(rows, (s) => s.opportunity.hours_per_month_x100.automatable) },
   });
   return {
     version: 1,

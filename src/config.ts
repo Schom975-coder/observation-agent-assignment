@@ -22,6 +22,10 @@ export type EffortRates = {
   read_cap_per_message: number;
   own_chars_buckets: { short_max: number; medium_max: number };
   priced_domains: string[];
+  // Addresses that are systems, not people (ARCHITECTURE.md 4.2): "local@" is that local part at any
+  // domain, "local@domain" one address, "@domain" every address at that domain. Their actions are
+  // counted and never priced, and they are never staff.
+  system_senders: string[];
 };
 
 // config/scoring.json (ARCHITECTURE.md 4.2): the tier rules, the size a promoted process needs,
@@ -91,6 +95,9 @@ function checkActionMap(
   }
 }
 
+// One system_senders entry: "local@", "local@domain" or "@domain", lowercase, no wildcard.
+const SYSTEM_SENDER = /^(?:[a-z0-9._'-]+@(?:[a-z0-9.-]+\.[a-z]{2,})?|@[a-z0-9.-]+\.[a-z]{2,})$/;
+
 export function loadEffortRates(file: string): EffortRates {
   const raw = readJson(file);
   const problems: string[] = [];
@@ -114,6 +121,20 @@ export function loadEffortRates(file: string): EffortRates {
       if (typeof d !== 'string' || d !== d.trim().toLowerCase() || !/^[a-z0-9.-]+\.[a-z]{2,}$/.test(d)) {
         problems.push(`priced_domains entry ${JSON.stringify(d)} must be a lowercase domain like "enron.com"`);
       }
+    }
+  }
+  const systems = raw.system_senders;
+  if (!Array.isArray(systems)) {
+    problems.push('system_senders must be a list (it may be empty)');
+  } else {
+    const seen = new Set<unknown>();
+    for (const s of systems) {
+      if (typeof s !== 'string' || s !== s.trim().toLowerCase() || !SYSTEM_SENDER.test(s)) {
+        problems.push(`system_senders entry ${JSON.stringify(s)} must be lowercase "local@", "local@domain" or "@domain", with no wildcard`);
+      } else if (seen.has(s)) {
+        problems.push(`system_senders entry ${JSON.stringify(s)} is listed twice`);
+      }
+      seen.add(s);
     }
   }
   if (problems.length > 0) throw new ConfigError(file, problems);

@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { loadEffortRates } from '../src/config.ts';
 import { openCorpus } from '../src/corpus/reader.ts';
 import { classifyOccurrence, countActions, isPricedEmail } from '../src/metrics/actions.ts';
+import { foldPeople, identityOf } from '../src/normalize/identity.ts';
 import { parseMessage } from '../src/parse/message.ts';
 import type { Address, ParsedMessage, SegmentKind } from '../src/types.ts';
 
@@ -281,6 +282,32 @@ test('reads: a sender writing only to themselves, or to nobody, makes no reads',
 test('sender_priced follows the sender\'s domain', () => {
   const actions = classify([msg('a@enron.com'), msg('b@ect.enron.com'), msg('c@calpine.com'), msg(null)]);
   assert.deepEqual(actions.map((a) => a.sender_priced), [true, true, false, false]);
+});
+
+test('with the people directory: one person writing again from a second address is a chaser; a system sender is unpriced; a list reads as staff', () => {
+  // The directory as prepare folds it: j..farmer is Daren J Farmer's address (R3, the middle initial
+  // in his display name).
+  const directory = foldPeople(
+    [
+      { email: 'daren.farmer@enron.com', name: 'Daren J Farmer', sent: 2, received: 0, priced: true },
+      { email: 'j..farmer@enron.com', name: null, sent: 1, received: 0, priced: true },
+      { email: 'pat.ray@enron.com', name: null, sent: 0, received: 3, priced: true },
+      { email: 'no.address@enron.com', name: null, sent: 1, received: 0, priced: true },
+      { email: 'shift.dl-portland@enron.com', name: null, sent: 0, received: 1, priced: true },
+    ],
+    rates,
+  );
+  const identity = identityOf(directory, rates);
+  assert.equal(identity.canonical('j..farmer@enron.com'), 'daren.farmer@enron.com');
+  const ask = msg('daren.farmer@enron.com', { to: [addr('pat.ray@enron.com')] });
+  const again = reply('j..farmer@enron.com', { to: [addr('pat.ray@enron.com')] });
+  const tagged = new Set([ask.id, again.id]);
+  assert.deepEqual(classifyOccurrence([ask, again], tagged, rates, identity).map((a) => a.authored), ['authored_short', 'chaser'], 'one person, two addresses');
+  assert.deepEqual(classifyOccurrence([ask, again], tagged, rates).map((a) => a.authored), ['authored_short', 'authored_short'], 'every address its own person by default');
+  const notice = msg('no.address@enron.com', { to: [addr('shift.dl-portland@enron.com'), addr('pat.ray@enron.com')] });
+  const [a] = classifyOccurrence([notice], new Set([notice.id]), rates, identity);
+  assert.deepEqual([a?.sender_priced, a?.reads], [false, [{ email: 'shift.dl-portland@enron.com', priced: true }, { email: 'pat.ray@enron.com', priced: true }]]);
+  assert.equal(classify([notice])[0]?.sender_priced, true, 'by domain alone, before the directory says it is a system');
 });
 
 test('countActions on a hand-counted occurrence', () => {

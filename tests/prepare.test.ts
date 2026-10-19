@@ -16,7 +16,7 @@ import { codeSha, prepare, prepareCommand, prepareIsCurrent } from '../src/pipel
 import { sha256 } from '../src/util/hash.ts';
 import { normalizeNewlines } from '../src/util/text.ts';
 import { DAY_MS, utcMs } from '../src/util/time.ts';
-import type { BatchEntry, DuplicateGroup, ParsedMessage, Thread } from '../src/types.ts';
+import type { BatchEntry, DuplicateGroup, ParsedMessage, Person, Thread } from '../src/types.ts';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const tmp = mkdtempSync(join(tmpdir(), 'obs-prepare-'));
@@ -166,6 +166,40 @@ test('the stats name the corpus they were built from', () => {
   assert.match(stats.corpus_hash, /^[0-9a-f]+$/);
   assert.equal(stats.corpus_hash, read('manifest.json').corpus_hash);
   assert.equal(read('prepare-stats.json').corpus_hash, stats.corpus_hash);
+});
+
+// Pinned: who each address is lives in people.json's added fields, and nothing the batch files or the
+// taxonomy digest read changes, so the taxonomy and all 99 extractions keep their cache keys.
+test('pinned: the taxonomy digest and the batch index are the bytes the extractions were keyed on', () => {
+  assert.equal(stats.digest_sha, 'a3746b869f7761db1c8f3bf6b1f7b0b44735be04f1bf5265b2d5b62b80714172');
+  assert.equal(stats.outputs['batches/index.json'], 'ee58eb4c18e92b68cb3cf77be6f7b45bf073075fdce70686826a3d43c20b05fb');
+});
+
+// Pinned identity counts (src/normalize/identity.ts), taken from this code's own run and reviewed:
+// R3 folds only with the middle initial shown in a display name (6 of 33 candidates), and not when
+// the last name has another known first initial (kpresto beside darin.presto); R5 folds unless a
+// rival with the same first initial exists (none on the corpus; gustavo.giron is no rival to
+// dgiron); two addresses in one message's headers never fold together (edward.d.gottlob and
+// edward.gottlob). If a count moves, say why in the change.
+test('pinned identity: folds by rule, the m..last addresses left alone, lists and system senders', () => {
+  assert.deepEqual(stats.identity, { folds: { display_name: 4, middle_initial: 4, last_name: 6, first_last: 10, initial_last: 33 }, ambiguous: 30, lists: 26, system: 9 });
+  const people: Person[] = read('people.json');
+  assert.equal(people.length, stats.people);
+  const of = (email: string) => people.find((p) => p.email === email) as Person;
+  const canonical = (...locals: string[]) => locals.map((l) => of(l.includes('@') ? l : `${l}@enron.com`).canonical);
+  // Daren Farmer's four addresses are one person, and so are Darron Giron's five.
+  assert.deepEqual(canonical('daren.farmer', 'daren.j.farmer', 'dfarmer', 'j..farmer'), Array(4).fill('daren.farmer@enron.com'));
+  assert.deepEqual(canonical('darron.giron', 'darron.c.giron', 'c..giron', 'dgiron', 'dgiron@ect.enron.com'), Array(5).fill('darron.giron@enron.com'));
+  assert.deepEqual(canonical('gustavo.giron', 'whicks'), ['gustavo.giron@enron.com', 'w.hicks@enron.com']);
+  assert.deepEqual(canonical('edward.d.gottlob', 'e..estrada', 'm..presto'), ['edward.d.gottlob@enron.com', 'e..estrada@enron.com', 'm..presto@enron.com']);
+  const ambiguous = 'a..brown a..campos a..price a..roberts c..hall d..anderson d..baughman d..hogan d..smith d..thomas f..smith g..moore h..cook h..lewis k..allen l..davis l..day l..garcia l..kelly m..moore m..presto m..scott m..smith n..gilbert p..adams s..bryan s..lim w..bennett w..white w..young'.split(' ');
+  assert.equal(ambiguous.length, 30);
+  for (const local of ambiguous) assert.deepEqual([of(`${local}@enron.com`).fold, of(`${local}@enron.com`).canonical], [null, `${local}@enron.com`], local);
+  // Only persons fold or are folded into; every canonical is a priced person of the directory.
+  for (const p of people.filter((x) => x.canonical !== x.email)) {
+    assert.ok(p.kind === 'person' && p.priced && p.fold !== null, p.email);
+    assert.ok(of(p.canonical).kind === 'person' && of(p.canonical).priced && of(p.canonical).fold === null, p.canonical);
+  }
 });
 
 test('the taxonomy digest: written, one Read call, its hash in the stats, no message IDs', () => {

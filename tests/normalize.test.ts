@@ -1,10 +1,11 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { findDuplicates } from '../src/normalize/dedup.ts';
+import { IdentityError, STALE_PEOPLE, followFolds, foldPeople, identityOf, isSystemAddress, kindOf, middleInitial, shapeOf, togetherIn } from '../src/normalize/identity.ts';
 import { buildPeople } from '../src/normalize/people.ts';
 import { buildThreads } from '../src/normalize/threads.ts';
 import { isForwardSubject, isReplyOrForward, normalizeSubject, parseAddressList, splitHeaders } from '../src/parse/headers.ts';
-import type { Address, ParsedMessage } from '../src/types.ts';
+import type { Address, ParsedMessage, Person, PersonCounts } from '../src/types.ts';
 
 const addr = (email: string, name: string | null = null): Address => ({ email, name });
 
@@ -304,4 +305,184 @@ test('address parsing is linear on an unclosed comment', () => {
   // Comments still name the sender and are left out of the address.
   assert.deepEqual(parseAddressList('jdoe@enron.com (John Doe)'), [{ email: 'jdoe@enron.com', name: 'John Doe' }]);
   assert.deepEqual(parseAddressList('(first) a@b.com (second'), [{ email: 'a@b.com', name: 'first' }]);
+});
+
+// ---- Identity: who each address of the directory is (src/normalize/identity.ts) ----
+
+const IDENTITY_RATES = { priced_domains: ['enron.com'], system_senders: ['no.address@', 'enron_update@', '@caiso.com'] };
+// A directory record as buildPeople writes it; priced when the domain is enron.com or under it.
+const rec = (email: string, name: string | null = null): PersonCounts => ({ email, name, sent: 1, received: 1, priced: /@(?:.+\.)?enron\.com$/.test(email) });
+const fold = (records: PersonCounts[], together?: (a: string, b: string) => boolean) => {
+  const people = foldPeople(records, IDENTITY_RATES, together);
+  return { people, of: (email: string) => people.find((p) => p.email === email) as Person };
+};
+const at = (local: string) => `${local}@enron.com`;
+// [canonical, fold] of one address.
+const folded = (records: PersonCounts[], local: string, together?: (a: string, b: string) => boolean) => {
+  const p = fold(records, together).of(at(local));
+  return [p.canonical, p.fold];
+};
+
+test('identity R1: one display name is one person; the canonical is the lowest first.last address, else the lowest', () => {
+  assert.deepEqual(folded([rec(at('m.hall'), 'Bob Hall'), rec(at('bob.hall'), 'Hall, Bob')], 'm.hall'), [at('bob.hall'), 'display_name']);
+  const three = fold([rec(at('robert.hall'), 'Bob Hall'), rec(at('bob.hall'), 'Bob Hall'), rec(at('bhall'), 'Bob Hall')]);
+  assert.deepEqual(three.people.map((p) => [p.email, p.canonical, p.fold]), [
+    [at('robert.hall'), at('bob.hall'), 'display_name'],
+    [at('bob.hall'), at('bob.hall'), null],
+    [at('bhall'), at('bob.hall'), 'display_name'],
+  ]);
+  assert.deepEqual(folded([rec(at("o'neal.winfree"), "Winfree, O'Neal"), rec(at('d..winfree'), "O'Neal Winfree")], "o'neal.winfree"), [at('d..winfree'), 'display_name'], 'no first.last: the lowest');
+  assert.deepEqual(folded([rec(at('a.b'), 'Bob'), rec(at('c.d'), 'Bob')], 'a.b'), [at('a.b'), null], 'one word is no key');
+  // The key leaves initials out, so two middle initials in one group are two people; a name with
+  // no initial does not stop the fold.
+  const lees = (other: string) => fold([rec(at('alan.lee'), 'Alan A Lee'), rec('alan.lee@ect.enron.com', other)]).of(at('alan.lee'));
+  assert.deepEqual([lees('Alan B Lee').canonical, lees('Alan B Lee').fold], [at('alan.lee'), null], 'Alan A Lee and Alan B Lee');
+  assert.deepEqual([lees('Lee, Alan B.').canonical, lees('Lee, Alan B.').fold], [at('alan.lee'), null]);
+  assert.deepEqual([lees('Alan A Lee').canonical, lees('Alan A Lee').fold], ['alan.lee@ect.enron.com', 'display_name']);
+  assert.deepEqual([lees('Alan Lee').canonical, lees('Alan Lee').fold], ['alan.lee@ect.enron.com', 'display_name']);
+});
+
+test('identity R2 and R3: m..last onto the one first.m.last; onto the one first.last only when a display name shows the middle initial', () => {
+  const farmers = [rec(at('j..farmer')), rec(at('daren.j.farmer')), rec(at('daren.farmer'), 'Daren J Farmer')];
+  const f = fold(farmers);
+  assert.deepEqual([f.of(at('j..farmer')).canonical, f.of(at('j..farmer')).fold], [at('daren.farmer'), 'middle_initial'], 'R2 beats R3, and the chain is followed');
+  assert.deepEqual([f.of(at('daren.j.farmer')).canonical, f.of(at('daren.j.farmer')).fold], [at('daren.farmer'), 'first_last']);
+  assert.deepEqual(folded([rec(at('j..farmer')), rec(at('daren.j.farmer')), rec(at('dan.j.farmer')), rec(at('daren.farmer'), 'Daren J Farmer')], 'j..farmer'), [at('j..farmer'), null], 'two first.m.last: ambiguous, and no R3');
+  // R3: the middle initial must be shown, in the candidate's own name or a name folding into it.
+  const herod = (name: string | null, ...more: PersonCounts[]) => folded([rec(at('f..herod')), rec(at('brenda.herod'), name), ...more], 'f..herod');
+  assert.deepEqual(herod('Brenda F Herod'), [at('brenda.herod'), 'last_name']);
+  assert.deepEqual(herod('Herod, Brenda F.'), [at('brenda.herod'), 'last_name']);
+  for (const name of ['Brenda G Herod', 'Herod, Brenda G.', 'Brenda Herod', null]) assert.deepEqual(herod(name), [at('f..herod'), null], String(name));
+  assert.deepEqual(herod(null, rec(at('bherod'), 'Brenda F Herod')), [at('brenda.herod'), 'last_name'], 'the initial shown by an address folding into her');
+  assert.deepEqual(herod('Brenda F Herod', rec(at('anne.herod'))), [at('f..herod'), null], 'two first.last: ambiguous');
+  // Uniqueness counts every shape: another Herod with another first initial makes the last name ambiguous.
+  assert.deepEqual(herod('Brenda F Herod', rec(at('kherod'))), [at('f..herod'), null], 'kherod is a K. Herod');
+  assert.deepEqual(herod('Brenda F Herod', rec(at('karl.x.herod'))), [at('f..herod'), null]);
+  assert.deepEqual(herod('Brenda F Herod', rec(at('bherod')), rec(at('b..herod'))), [at('brenda.herod'), 'last_name'], 'the same initial, or none known, is no other person');
+  assert.deepEqual(middleInitial('Love, Phillip M.'), 'm');
+  assert.deepEqual([middleInitial('Phillip M Love'), middleInitial('Phillip Love'), middleInitial(null)], ['m', null, null]);
+});
+
+test('identity R4 and R5: first.m.last onto first.last; flast onto the one f*.last, at any priced domain', () => {
+  assert.deepEqual(folded([rec(at('carey.m.metz')), rec(at('carey.metz'))], 'carey.m.metz'), [at('carey.metz'), 'first_last']);
+  assert.deepEqual(folded([rec(at('dfarmer')), rec(at('daren.farmer'))], 'dfarmer'), [at('daren.farmer'), 'initial_last']);
+  const giron = fold([rec('dgiron@ect.enron.com'), rec(at('darron.giron'))]).of('dgiron@ect.enron.com');
+  assert.deepEqual([giron.canonical, giron.fold], [at('darron.giron'), 'initial_last'], 'across priced domains');
+  assert.deepEqual(folded([rec(at('mary')), rec(at('m.ary')), rec(at('mike.ary'))], 'mary'), [at('mary'), null], 'two candidates: no fold');
+  assert.deepEqual(folded([rec(at('mary')), rec(at('paul.ary'))], 'mary'), [at('mary'), null], 'mary is m + ary, and no m*.ary exists');
+  // Uniqueness for R5: the address gives its initial, so only a rival with the same initial counts.
+  // A G. Giron cannot be dgiron; Darron's own first.m.last and his other dgiron are no rival.
+  const girons = [rec(at('dgiron')), rec('dgiron@ect.enron.com'), rec(at('darron.giron')), rec(at('darron.c.giron')), rec(at('c..giron')), rec(at('gustavo.giron')), rec(at('g..giron'))];
+  assert.deepEqual(folded(girons, 'dgiron'), [at('darron.giron'), 'initial_last']);
+  // Any shape that names another D. first name is a rival: a second first.last is a second
+  // candidate, and a first.m.last names one too.
+  assert.deepEqual(folded([...girons, rec(at('david.giron'))], 'dgiron'), [at('dgiron'), null], 'david.giron');
+  assert.deepEqual(folded([...girons, rec(at('dale.r.giron'))], 'dgiron'), [at('dgiron'), null], 'dale.r.giron');
+  assert.deepEqual(folded([rec(at('jyoung')), rec(at('jackie.young')), rec(at('becky.young')), rec(at('w..young'))], 'jyoung'), [at('jackie.young'), 'initial_last'], 'other initials, or none, are no rival');
+  const outside = fold([rec('dgiron@calpine.com'), rec(at('darron.giron'))]).of('dgiron@calpine.com');
+  assert.deepEqual([outside.canonical, outside.fold], ['dgiron@calpine.com', null], 'an outside address never folds');
+  assert.deepEqual(folded([rec(at('dgiron')), rec('darron.giron@calpine.com')], 'dgiron'), [at('dgiron'), null], 'nor is it a candidate');
+});
+
+test('identity: two addresses in one message are two people, and never fold together, whatever the rule', () => {
+  const together = (a: string, b: string) => [a, b].sort().join(' ') === [at('edward.d.gottlob'), at('edward.gottlob')].sort().join(' ');
+  const records = [rec(at('edward.d.gottlob')), rec(at('edward.gottlob'), 'Edward D Gottlob')];
+  assert.deepEqual(folded(records, 'edward.d.gottlob'), [at('edward.gottlob'), 'first_last']);
+  assert.deepEqual(folded(records, 'edward.d.gottlob', together), [at('edward.d.gottlob'), null]);
+  // Built from the headers: From, To and Cc of any one message.
+  const m = (from: string, to: string[], cc: string[] = []): ParsedMessage => msg({ from: addr(from), to: to.map((e) => addr(e)), cc: cc.map((e) => addr(e)) });
+  const pairs = togetherIn([m(at('e..estrada'), [at('pat.ray')], [at('israel.estrada')]), m(at('pat.ray'), [at('kim.lee')])]);
+  assert.deepEqual([pairs(at('e..estrada'), at('israel.estrada')), pairs(at('israel.estrada'), at('pat.ray')), pairs(at('e..estrada'), at('kim.lee')), pairs(at('pat.ray'), at('pat.ray'))], [true, true, false, false]);
+  assert.deepEqual(folded([rec(at('e..estrada')), rec(at('israel.estrada'), 'Israel E Estrada')], 'e..estrada', pairs), [at('e..estrada'), null]);
+  assert.deepEqual(folded([rec(at('e..estrada')), rec(at('israel.estrada'), 'Israel E Estrada')], 'e..estrada'), [at('israel.estrada'), 'last_name']);
+});
+
+test('identity: the refusal covers the whole identity on both sides, not just the two addresses linked', () => {
+  const pair = (x: string, y: string) => (a: string, b: string) => [a, b].sort().join(' ') === [at(x), at(y)].sort().join(' ');
+  // j..farmer shares a message with dfarmer, already folded under daren.farmer: two people.
+  const farmers = [rec(at('daren.farmer'), 'Daren J Farmer'), rec(at('dfarmer')), rec(at('j..farmer'))];
+  const f = fold(farmers, pair('dfarmer', 'j..farmer'));
+  assert.deepEqual([f.of(at('dfarmer')).canonical, f.of(at('dfarmer')).fold], [at('daren.farmer'), 'initial_last']);
+  assert.deepEqual([f.of(at('j..farmer')).canonical, f.of(at('j..farmer')).fold], [at('j..farmer'), null]);
+  assert.deepEqual(folded(farmers, 'j..farmer'), [at('daren.farmer'), 'last_name'], 'without the shared message it folds');
+  // The other side: cmetz is one with carey.m.metz by display name and shares a message with
+  // carey.metz, so carey.m.metz (and cmetz with it) stays apart from carey.metz.
+  const metz = [rec(at('carey.m.metz'), 'Carey Metz'), rec(at('cmetz'), 'Carey Metz'), rec(at('carey.metz'))];
+  const g = fold(metz, pair('cmetz', 'carey.metz'));
+  assert.deepEqual(g.people.map((p) => [p.email, p.canonical, p.fold]), [
+    [at('carey.m.metz'), at('carey.m.metz'), null],
+    [at('cmetz'), at('carey.m.metz'), 'display_name'],
+    [at('carey.metz'), at('carey.metz'), null],
+  ]);
+  assert.deepEqual(folded(metz, 'carey.m.metz'), [at('carey.metz'), 'first_last']);
+});
+
+test('identity: a directory written before the folds is refused, never read as one person per address', () => {
+  const stale = [rec(at('daren.farmer'), 'Daren J Farmer'), rec(at('dfarmer'))] as unknown as Person[];
+  assert.throws(() => identityOf(stale, IDENTITY_RATES), (e: unknown) => e instanceof IdentityError && e.message === STALE_PEOPLE);
+  assert.equal(STALE_PEOPLE, 'out/people.json predates identity folding: run node obs.mjs prepare.');
+  assert.doesNotThrow(() => identityOf(foldPeople(stale, IDENTITY_RATES), IDENTITY_RATES));
+});
+
+test('identity: a digit, apostrophe, hyphen, underscore or quote in the local part matches no shape', () => {
+  for (const local of ['j2..farmer', "j'..farmer", 'daren-j.farmer', 'd_farmer', '"dfarmer"', "'dfarmer", 'daren.farmer2']) assert.equal(shapeOf(at(local)), null, local);
+  assert.deepEqual(['daren.farmer', 'daren.j.farmer', 'j..farmer', 'dfarmer', 'dfa'].map((l) => shapeOf(at(l))?.shape ?? null), ['FL', 'FML', 'ML', 'IL', null]);
+  assert.deepEqual(folded([rec(at("'dfarmer")), rec(at('daren.farmer'))], "'dfarmer"), [at("'dfarmer"), null]);
+});
+
+test('identity: lists and system senders by their addresses; neither ever folds nor receives a fold', () => {
+  for (const local of ['shift.dl-portland', 'dl-ga-all_enron_worldwide1', 'everyone_in_ect_houston', 'all.worldwide']) assert.equal(kindOf(at(local), IDENTITY_RATES), 'list', local);
+  for (const local of ['adler.smith', 'allen.jones', 'randl.smith', 'mandl.x', 'dlsmith']) assert.equal(kindOf(at(local), IDENTITY_RATES), 'person', local);
+  assert.equal(kindOf('no.address@enron.com', IDENTITY_RATES), 'system');
+  assert.equal(kindOf('enron_update@concureworkplace.com', IDENTITY_RATES), 'system', 'local@ at any domain');
+  assert.equal(kindOf('crcommunications@caiso.com', IDENTITY_RATES), 'system', '@domain: every address there');
+  assert.equal(kindOf('ops@ops.caiso.com', IDENTITY_RATES), 'person', 'the domain itself, not its subdomains');
+  assert.equal(isSystemAddress('NO.ADDRESS@ENRON.COM', IDENTITY_RATES.system_senders), true);
+  // A system sender would be the only candidate for n..address, and a list carries a person's
+  // display name: neither folds or takes a fold. As a person, the system address would.
+  const records = [rec(at('no.address'), 'Nina N Address'), rec(at('n..address')), rec(at('dl.smith'), 'Dee Smith'), rec(at('dee.smith'), 'Dee Smith')];
+  assert.deepEqual(fold(records).people.map((p) => [p.email, p.kind, p.canonical, p.fold]), [
+    [at('no.address'), 'system', at('no.address'), null],
+    [at('n..address'), 'person', at('n..address'), null],
+    [at('dl.smith'), 'list', at('dl.smith'), null],
+    [at('dee.smith'), 'person', at('dee.smith'), null],
+  ]);
+  assert.deepEqual(foldPeople(records, { ...IDENTITY_RATES, system_senders: [] }).map((p) => [p.canonical, p.fold]), [
+    [at('no.address'), null],
+    [at('no.address'), 'last_name'],
+    [at('dl.smith'), null],
+    [at('dee.smith'), null],
+  ]);
+});
+
+test('identity: chains are followed, the display name falls back through the addresses, a cycle throws', () => {
+  const f = fold([rec(at('a..allen')), rec(at('lauri.a.allen'), 'Allen, Lauri A.'), rec(at('lauri.allen'))]);
+  assert.deepEqual(f.people.map((p) => [p.email, p.canonical, p.fold]), [
+    [at('a..allen'), at('lauri.allen'), 'middle_initial'],
+    [at('lauri.a.allen'), at('lauri.allen'), 'first_last'],
+    [at('lauri.allen'), at('lauri.allen'), null],
+  ]);
+  const id = identityOf(f.people, IDENTITY_RATES);
+  assert.equal(id.displayName(at('lauri.allen')), 'Allen, Lauri A.', 'the first name an address of hers carries');
+  assert.deepEqual(id.addresses(at('lauri.allen')), [at('lauri.allen'), at('a..allen'), at('lauri.a.allen')]);
+  assert.deepEqual([id.canonical(at('a..allen')), id.canonical('stranger@calpine.com')], [at('lauri.allen'), 'stranger@calpine.com']);
+  assert.deepEqual([id.kind('stranger@calpine.com'), id.kind(at('no.address')), id.addresses('stranger@calpine.com')], ['person', 'system', ['stranger@calpine.com']]);
+  assert.deepEqual([id.pricedParty(at('lauri.allen')), id.pricedParty(at('no.address')), id.pricedParty('ops@pipeco.com'), id.pricedParty(at('shift.dl-portland'))], [true, false, false, true]);
+  assert.deepEqual([id.staff(at('lauri.allen')), id.staff(at('shift.dl-portland')), id.staff(at('no.address'))], [true, false, false]);
+  assert.throws(() => followFolds(at('x'), new Map([[at('x'), { to: at('y') }], [at('y'), { to: at('x') }]])), /form a cycle/);
+  // A display-name group with no first.last address, whose canonical would fold onto its own member:
+  // they are one already, and nothing loops.
+  const loop = fold([rec(at('a..allen'), 'Lauri Allen'), rec(at('lauri.a.allen'), 'Lauri Allen')]);
+  assert.deepEqual(loop.people.map((p) => [p.email, p.canonical, p.fold]), [
+    [at('a..allen'), at('a..allen'), null],
+    [at('lauri.a.allen'), at('a..allen'), 'display_name'],
+  ]);
+});
+
+test('identity: the records keep every counted field byte for byte; the stats count folds, ambiguous m..last addresses, lists and systems', () => {
+  const records = [rec(at('j..farmer')), rec(at('daren.farmer'), 'Daren J Farmer'), rec(at('dfarmer')), rec(at('d..smith')), rec(at('dan.smith')), rec(at('dave.smith')), rec(at('shift.dl-portland')), rec(at('no.address')), rec('x@calpine.com')];
+  const people = foldPeople(records, IDENTITY_RATES);
+  assert.deepEqual(people.map(({ kind: _k, canonical: _c, fold: _f, ...counts }) => counts), records);
+  assert.deepEqual(Object.keys(people[0] as Person), ['email', 'name', 'sent', 'received', 'priced', 'kind', 'canonical', 'fold']);
+  assert.deepEqual(identityOf(people, IDENTITY_RATES).stats, { folds: { display_name: 0, middle_initial: 0, last_name: 1, first_last: 0, initial_last: 1 }, ambiguous: 1, lists: 1, system: 1 });
 });

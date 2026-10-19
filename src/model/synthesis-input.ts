@@ -5,11 +5,14 @@
 // sender and date behind it, so the validator can count the occurrences and senders an estimate
 // rests on without re-deriving the sample. No message path appears in the Markdown: the ids point
 // into the validated extractions, and quotes are verbatim archive text, flattened to one line.
-// Messages flagged as suspected injections contribute no quote. Same inputs, same bytes.
+// Messages flagged as suspected injections contribute no quote. People are identities
+// (src/normalize/identity.ts): a sender is the person's canonical address, a participant one entry
+// per person, and each ownership claim says whom the rollup matched it to. Same inputs, same bytes.
 import { estTokens, lineCount } from '../batch/build.ts';
 import { cutChars, evenSteps, flatten, jsonText } from '../batch/digest.ts';
 import { sha256 } from '../util/hash.ts';
-import type { ParsedMessage, Person, ProcessRollup, Rollup, SynthCited, SynthEntry, SynthSidecar, Thread, ValidatedExtraction } from '../types.ts';
+import type { Identity } from '../normalize/identity.ts';
+import type { OwnershipClaim, ParsedMessage, ProcessRollup, Rollup, SynthCited, SynthEntry, SynthSidecar, Thread, ValidatedExtraction } from '../types.ts';
 
 export const SYNTH_GROUP_MAX = 4;
 export const SYNTH_INPUT_MAX_TOKENS = 24_000;
@@ -51,12 +54,13 @@ const idOrder = (a: string, b: string): number => {
 // stall kind or the claim.
 export type Quoted = SynthCited & { text: string; label: string };
 
-// What placing a quote needs: the prepared messages, display names by address, each message's
-// occurrence, and the validated quotes by id (accepted evidence, and each message's first stall and
-// ownership check). Built once (quoteSources) for every process.
+// What placing a quote needs: the prepared messages, who each address is (the sender of a quote is
+// the person, by canonical address), each message's occurrence, and the validated quotes by id
+// (accepted evidence, and each message's first stall and ownership check). Built once
+// (quoteSources) for every process.
 export type QuoteSources = {
   messages: ReadonlyMap<string, ParsedMessage>;
-  names: ReadonlyMap<string, string | null>;
+  identity: Pick<Identity, 'canonical' | 'displayName'>;
   occurrenceOf: ReadonlyMap<string, string>;
   byEvidence: ReadonlyMap<string, { message_id: string; raw: string; role: string }>;
   stallIds: ReadonlyMap<string, string>;
@@ -70,23 +74,43 @@ const senderEmail = (m: ParsedMessage | undefined): string => (m?.from?.email ??
 // a column or a line of its own.
 const quotedName = (s: string): string => jsonText(cutChars(flatten(s), NAME_SHOWN_CHARS));
 
-// How a line names the sender: the display name people.json has for the address, else its domain.
-function senderLabel(email: string, names: ReadonlyMap<string, string | null>): string {
-  const name = names.get(email);
-  if (name !== null && name !== undefined && name.trim() !== '') return quotedName(name);
+// How a line names the sender: the display name of the person the address belongs to, else the
+// address's domain.
+function senderLabel(email: string, identity: QuoteSources['identity']): string {
+  const name = identity.displayName(identity.canonical(email));
+  if (name !== null && name.trim() !== '') return quotedName(name);
   return quotedName(email === '' ? 'unknown sender' : email.slice(email.lastIndexOf('@') + 1));
 }
 
+// A quote and what the sidecar records about it; the sender is the person's canonical address, so
+// the senders an estimate cites count people, not addresses.
 function cited(id: string, kind: SynthCited['kind'], messageId: string, text: string, label: string, src: Sources): Quoted {
   const m = src.messages.get(messageId);
-  return { id, kind, message_id: messageId, occurrence_id: src.occurrenceOf.get(messageId) ?? '', sender: senderEmail(m), date_utc: usable(m), text, label };
+  return { id, kind, message_id: messageId, occurrence_id: src.occurrenceOf.get(messageId) ?? '', sender: src.identity.canonical(senderEmail(m)), date_utc: usable(m), text, label };
+}
+
+// How a claim line says whom the claim names, from the rollup's match (matchClaim): one person who
+// took part, several, nobody who took part, or a group or role.
+function claimLabel(c: OwnershipClaim, identity: QuoteSources['identity']): string {
+  const claims = `claims ${quotedName(c.person)}`;
+  const who = (email: string) => quotedName(identity.displayName(email) ?? email);
+  switch (c.match.status) {
+    case 'matched':
+      return `${claims} (matched: ${c.match.name === null ? who(c.match.people[0] ?? '') : quotedName(c.match.name)})`;
+    case 'several':
+      return `${claims} (could be any of ${c.match.people.map(who).join(', ')})`;
+    case 'unmatched':
+      return `${claims} (no match among this process's people)`;
+    default:
+      return `${claims} (a group or role, not one person)`;
+  }
 }
 
 // The id maps every process's quotes are looked up in, built once from the validated extractions.
 export function quoteSources(
   validated: readonly ValidatedExtraction[],
   messages: ReadonlyMap<string, ParsedMessage>,
-  people: readonly Person[],
+  identity: QuoteSources['identity'],
   threads: readonly Thread[],
 ): QuoteSources {
   const occurrenceOf = new Map<string, string>();
@@ -100,7 +124,7 @@ export function quoteSources(
     v.stall_checks.forEach((c, i) => void (stallIds.has(c.message_id) || stallIds.set(c.message_id, `${v.batch_id}:s${i}`)));
     v.ownership_checks.forEach((c, i) => void (ownershipIds.has(c.message_id) || ownershipIds.set(c.message_id, `${v.batch_id}:o${i}`)));
   }
-  return { messages, names: new Map(people.map((p) => [p.email, p.name])), occurrenceOf, byEvidence, stallIds, ownershipIds };
+  return { messages, identity, occurrenceOf, byEvidence, stallIds, ownershipIds };
 }
 
 // Every quote of a process the input may show: accepted evidence re-keyed to it, validated stall
@@ -118,7 +142,7 @@ export function quotesFrom(p: ProcessRollup, src: QuoteSources): { evidence: Quo
     .map((s) => cited(stallIds.get(s.message_id) as string, 'stall', s.message_id, s.quote, s.kind, src));
   const ownership = p.ownership_claims
     .filter((c) => ok(c.message_id) && ownershipIds.has(c.message_id))
-    .map((c) => cited(ownershipIds.get(c.message_id) as string, 'ownership', c.message_id, c.quote, `claims ${jsonText(cutChars(flatten(c.person), NAME_SHOWN_CHARS))}`, src));
+    .map((c) => cited(ownershipIds.get(c.message_id) as string, 'ownership', c.message_id, c.quote, claimLabel(c, src.identity), src));
   return { evidence, stalls, ownership };
 }
 
@@ -128,10 +152,10 @@ export function processQuotes(
   p: ProcessRollup,
   validated: readonly ValidatedExtraction[],
   messages: ReadonlyMap<string, ParsedMessage>,
-  people: readonly Person[],
+  identity: QuoteSources['identity'],
   threads: readonly Thread[],
 ): { evidence: Quoted[]; stalls: Quoted[]; ownership: Quoted[] } {
-  return quotesFrom(p, quoteSources(validated, messages, people, threads));
+  return quotesFrom(p, quoteSources(validated, messages, identity, threads));
 }
 
 // One per occurrence at even steps through the occurrences in ID order; within an occurrence the
@@ -160,7 +184,7 @@ export function evidenceSample(evidence: readonly Quoted[], k: number = EVIDENCE
 const steps = <T>(items: readonly T[], k: number): T[] => evenSteps(items.length, k).map((i) => items[i] as T);
 
 function line(q: Quoted, src: Sources): string {
-  return [q.id, day(q.date_utc), senderLabel(q.sender, src.names), q.label, q.occurrence_id, quote(q.text)].join(' | ');
+  return [q.id, day(q.date_utc), senderLabel(q.sender, src.identity), q.label, q.occurrence_id, quote(q.text)].join(' | ');
 }
 
 // The Markdown of one process, and the ids it shows.
@@ -176,9 +200,13 @@ function section(p: ProcessRollup, q: { evidence: Quoted[]; stalls: Quoted[]; ow
   }
   const w = p.window;
   const when = w.first_utc === null ? 'no usable dates' : `${day(w.first_utc)} .. ${day(w.last_utc)}`;
+  // One entry per identity, every address of the person folded into it; a list or a system sender
+  // by its address and kind.
+  const who = (x: ProcessRollup['participants'][number]): string =>
+    x.kind !== 'person' ? `${quotedName(x.email)} (${x.kind})` : x.name === null ? quotedName(x.email) : `${quotedName(x.name)} ${quotedName(`<${x.email}>`)}`;
   const participants = p.participants
     .slice(0, PARTICIPANTS_SHOWN)
-    .map((x) => `${x.name === null ? quotedName(x.email) : `${quotedName(x.name)} ${quotedName(`<${x.email}>`)}`} authored ${x.authored}, forwards ${x.forwards}, chasers ${x.chasers}, reads ${x.reads}`);
+    .map((x) => `${who(x)} authored ${x.authored}, forwards ${x.forwards}, chasers ${x.chasers}, reads ${x.reads}`);
   const stallKinds = new Map<string, number>();
   for (const s of p.stalls) stallKinds.set(s.kind, (stallKinds.get(s.kind) ?? 0) + 1);
   const { sample: evidence, extra } = evidenceSample(q.evidence);
@@ -256,10 +284,10 @@ export function buildSynthesisInputs(
   rollup: Rollup,
   validated: readonly ValidatedExtraction[],
   messages: ReadonlyMap<string, ParsedMessage>,
-  people: readonly Person[],
+  identity: QuoteSources['identity'],
   threads: readonly Thread[],
 ): Array<{ entry: SynthEntry; markdown: string; sidecar: SynthSidecar }> {
-  const src = quoteSources(validated, messages, people, threads);
+  const src = quoteSources(validated, messages, identity, threads);
   const sections = new Map(
     [...rollup.processes]
       .sort((a, b) => byText(a.key, b.key))

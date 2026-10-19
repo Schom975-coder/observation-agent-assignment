@@ -3,6 +3,7 @@
 // plain enough to check by hand: no I/O, no dates, no model output, same input -> same counts.
 import { ACTION_TYPES, type ActionType, type EffortRates } from '../config.ts';
 import { isForwardSubject } from '../parse/headers.ts';
+import type { Identity } from '../normalize/identity.ts';
 import type { AuthoredAction, MessageActions, ParsedMessage } from '../types.ts';
 
 export type ActionCounts = Record<ActionType, number>;
@@ -35,15 +36,26 @@ function sharesRecipient(earlier: ParsedMessage, later: ParsedMessage): boolean 
   return [...later.to, ...later.cc].some((r) => asked.has(r.email.toLowerCase()));
 }
 
-function authoredAction(m: ParsedMessage, previous: ParsedMessage | undefined, rates: ClassifyRates): AuthoredAction {
+// Who an address is, as far as classifying needs: its identity's canonical address (two addresses
+// of one person are one sender) and whether it is a priced party (src/normalize/identity.ts).
+export type ClassifyIdentity = Pick<Identity, 'canonical' | 'pricedParty'>;
+// Every address its own person, priced by its domain: classifying without a people directory.
+export const addressIdentity = (rates: Pick<EffortRates, 'priced_domains'>): ClassifyIdentity => ({
+  canonical: (email) => email,
+  pricedParty: (email) => isPricedEmail(email, rates.priced_domains),
+});
+
+function authoredAction(m: ParsedMessage, previous: ParsedMessage | undefined, rates: ClassifyRates, identity: ClassifyIdentity): AuthoredAction {
   const sender = senderOf(m);
-  // A fresh send is never a chaser, so a daily report with the same subject is not nagging.
+  const earlier = previous === undefined ? null : senderOf(previous);
+  // A fresh send is never a chaser, so a daily report with the same subject is not nagging. A
+  // person writing again from another of their addresses is the same sender.
   if (
     !m.fresh_send &&
     sender !== null &&
-    previous !== undefined &&
-    senderOf(previous) === sender &&
-    sharesRecipient(previous, m)
+    earlier !== null &&
+    identity.canonical(earlier) === identity.canonical(sender) &&
+    sharesRecipient(previous as ParsedMessage, m)
   ) {
     return 'chaser';
   }
@@ -59,7 +71,7 @@ function authoredAction(m: ParsedMessage, previous: ParsedMessage | undefined, r
 }
 
 // To then Cc in header order, each address once, never the sender, first `read_cap_per_message` kept.
-function readsOf(m: ParsedMessage, sender: string | null, rates: ClassifyRates): MessageActions['reads'] {
+function readsOf(m: ParsedMessage, sender: string | null, rates: ClassifyRates, identity: ClassifyIdentity): MessageActions['reads'] {
   const reads: MessageActions['reads'] = [];
   const seen = new Set<string>();
   for (const recipient of [...m.to, ...m.cc]) {
@@ -67,17 +79,20 @@ function readsOf(m: ParsedMessage, sender: string | null, rates: ClassifyRates):
     const email = recipient.email.toLowerCase();
     if (email === sender || seen.has(email)) continue;
     seen.add(email);
-    reads.push({ email, priced: isPricedEmail(email, rates.priced_domains) });
+    reads.push({ email, priced: identity.pricedParty(email) });
   }
   return reads;
 }
 
 // `messages`: the unique messages of one occurrence in chronological order (grouping and order are
 // the caller's job). Untagged messages yield nothing but still count as the chaser's predecessor.
+// `identity`: who each address is (the rollup passes the one built from out/people.json); by
+// default every address is its own person, priced by its domain.
 export function classifyOccurrence(
   messages: readonly ParsedMessage[],
   tagged: ReadonlySet<string>,
   rates: ClassifyRates,
+  identity: ClassifyIdentity = addressIdentity(rates),
 ): MessageActions[] {
   const actions: MessageActions[] = [];
   messages.forEach((m, i) => {
@@ -85,9 +100,9 @@ export function classifyOccurrence(
     const sender = senderOf(m);
     actions.push({
       id: m.id,
-      authored: authoredAction(m, messages[i - 1], rates),
-      sender_priced: sender !== null && isPricedEmail(sender, rates.priced_domains),
-      reads: readsOf(m, sender, rates),
+      authored: authoredAction(m, messages[i - 1], rates, identity),
+      sender_priced: sender !== null && identity.pricedParty(sender),
+      reads: readsOf(m, sender, rates, identity),
     });
   });
   return actions;
@@ -95,7 +110,8 @@ export function classifyOccurrence(
 
 const zeroCounts = (): ActionCounts => Object.fromEntries(ACTION_TYPES.map((t) => [t, 0])) as ActionCounts;
 
-// Authored actions are priced by the sender, reads by each recipient. Every type is present.
+// Authored actions are priced by the sender, reads by each recipient: priced when that address is a
+// priced party (a priced domain, not a system sender). Every type is present.
 export function countActions(actions: readonly MessageActions[]): { priced: ActionCounts; unpriced: ActionCounts } {
   const priced = zeroCounts();
   const unpriced = zeroCounts();

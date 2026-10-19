@@ -37,8 +37,8 @@ A JSON object about one process:
 - `name`, `definition`: the process.
 - `artifact_type`: the document to write: `sop`, `checklist`, `email_template` or `template`.
 - `synthesis`: a description of the work, its steps, where it stalls, where the mail contradicts itself, and in `approach` and `rationale` the improvement it suggests. Your main source for what the work is.
-- `participants`: the people who take part, by name, with whether they are staff.
-- `ownership`: the people the mail names as owning the work (`claims`, each with its date), and `conflict`, true when the mail names different owners.
+- `participants`: who takes part, by name, with their `kind` (`person`, a distribution `list`, or a `system` that sends automated mail) and whether they are staff.
+- `ownership`: the people the mail names as owning the work (`claims`, each with its date, whether the name matched someone who took part (`status`) and that person's `name`), and `conflicts`, the number of pairs of different people named within 60 days of each other.
 - `evidence`, `stall_quotes`, `ownership_quotes`: passages copied exactly from the emails, each with its sender and date. Use them to get the steps, systems, names, sheets, units and deadlines right, in the words the team uses.
 - `counted` (facts counted by the pipeline) and `estimate` (an estimate, not a count): background for you. The pipeline states them in the evidence section, so the body leaves them out.
 

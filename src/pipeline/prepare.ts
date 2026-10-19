@@ -18,6 +18,7 @@ import { ConfigError, loadEffortRates } from '../config.ts';
 import { buildManifest, ingest } from '../corpus/ingest.ts';
 import { CorpusError, openCorpus } from '../corpus/reader.ts';
 import { bodyKey, findDuplicates } from '../normalize/dedup.ts';
+import { foldPeople, identityOf, togetherIn, type Identity } from '../normalize/identity.ts';
 import { buildPeople } from '../normalize/people.ts';
 import { buildThreads } from '../normalize/threads.ts';
 import { parseMessage } from '../parse/message.ts';
@@ -37,6 +38,7 @@ export type PrepareStats = {
   occurrences: number;
   people: number;
   staff: number;
+  identity: Identity['stats']; // the folds by rule, the ambiguous m..last addresses left alone, lists and system senders
   batches: number;
   largest_batch_bytes: number;
   largest_batch_est_tokens: number;
@@ -97,7 +99,8 @@ export function prepare(root: string, outDir: string): { stats: PrepareStats; ba
   const dedup = findDuplicates(messages, bodies);
   const unique = messages.filter((m) => !dedup.duplicateOf.has(m.id));
   const threads = buildThreads(unique);
-  const people = buildPeople(unique, rates.priced_domains);
+  // Who each address is (src/normalize/identity.ts): two addresses in one message's headers never fold together.
+  const people = foldPeople(buildPeople(unique, rates.priced_domains), rates, togetherIn(messages));
   const batches = packBatches(threads, new Map(unique.map((m) => [m.id, m])), texts);
   const index = batches.map((b) => b.entry);
   const digest = buildDigest(unique, threads, people, texts);
@@ -134,6 +137,7 @@ export function prepare(root: string, outDir: string): { stats: PrepareStats; ba
     occurrences: threads.reduce((n, t) => n + t.occurrences.length, 0),
     people: people.length,
     staff: people.filter((p) => p.priced).length,
+    identity: identityOf(people, rates).stats,
     batches: batches.length,
     largest_batch_bytes: Math.max(0, ...index.map((b) => b.bytes)),
     largest_batch_est_tokens: Math.max(0, ...index.map((b) => b.est_tokens)),

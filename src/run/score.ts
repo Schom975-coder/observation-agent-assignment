@@ -99,13 +99,15 @@ function parseArgs(args: readonly string[]): { rates: string | null; estimates: 
 }
 
 // The alternative rates may change minutes and automatable shares only: what decides how a message
-// is counted (the length buckets, the read cap, who is staff) was fixed when the rollup counted.
+// is counted (the length buckets, the read cap, who is staff, which senders are systems) was fixed
+// when the rollup counted.
 function sameCounting(base: EffortRates, alt: EffortRates): boolean {
   return (
     base.read_cap_per_message === alt.read_cap_per_message &&
     base.own_chars_buckets.short_max === alt.own_chars_buckets.short_max &&
     base.own_chars_buckets.medium_max === alt.own_chars_buckets.medium_max &&
-    JSON.stringify(base.priced_domains) === JSON.stringify(alt.priced_domains)
+    JSON.stringify(base.priced_domains) === JSON.stringify(alt.priced_domains) &&
+    JSON.stringify(base.system_senders) === JSON.stringify(alt.system_senders)
   );
 }
 
@@ -161,7 +163,7 @@ function runScore(root: string, opts: { rates: string | null; estimates: string 
   const rates = opts.rates === null ? base : loadEffortRates(ratesPath);
   if (!sameCounting(base, rates)) {
     throw new ScoreError(
-      `${rel(ratesPath)} changes how actions are counted (length buckets, read cap or priced domains), which the rollup fixed: --rates may change minutes and automatable shares only. ` +
+      `${rel(ratesPath)} changes how actions are counted (length buckets, read cap, priced domains or system senders), which the rollup fixed: --rates may change minutes and automatable shares only. ` +
         'To count differently, change config/effort-rates.json and run node obs.mjs rollup.',
     );
   }

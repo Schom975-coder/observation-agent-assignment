@@ -28,7 +28,7 @@ function proc(key: string, opts: { occurrences?: number; share_x100?: number; sp
   const counts = { ...zero(), ...opts.counts };
   const sources: ActionSource[] = [];
   let n = 0;
-  for (const t of ACTION_TYPES) for (let i = 0; i < counts[t]; i++) sources.push({ message_id: `corpus/k/inbox/${key}-${n++}`, type: t, person: 'a@enron.com', priced: true, share_x100: opts.share ?? 100 });
+  for (const t of ACTION_TYPES) for (let i = 0; i < counts[t]; i++) sources.push({ message_id: `corpus/k/inbox/${key}-${n++}`, type: t, person: 'a@enron.com', address: 'a@enron.com', priced: true, share_x100: opts.share ?? 100 });
   const occurrences = opts.occurrences ?? 10;
   return {
     key,
@@ -48,11 +48,13 @@ function proc(key: string, opts: { occurrences?: number; share_x100?: number; sp
     email_x100: { today: 0, automatable: 0 },
     participants: [],
     staff_participants: opts.staff ?? 5,
+    reply_gaps: [],
+    reply_gap_n: 0,
     median_reply_gap_h: null,
     chasers: counts.chaser,
     stalls: [],
     ownership_claims: [],
-    ownership_conflict: null,
+    ownership_conflicts: [],
     evidence_ids: [],
     flags: [],
   };
@@ -95,13 +97,26 @@ test('the 5.4 example, to the character: the counted part, the estimated part an
   );
   assert.equal(
     o.formula.estimated,
-    '103.50 occ x 45 min/occ (estimate, mid of 30-60, basis observed, 6 quotes from 5 occurrences) = 4,657.50 min = 588.07 min/mo; automatable 60% (estimate) = 352.84 min/mo',
+    '103.50 occ x 45 min/occ (estimate, mid of 30-60, basis observed, 6 quotes from 5 occurrences) = 4,657.50 min = 588.07 min/mo; automatable 60% (estimate) = 352.84 min/mo; ' +
+      "at the low end 30 min/occ = $360.84/mo, at the high end 60 min/occ = $694.07/mo (the row's automatable total)",
   );
-  assert.equal(o.formula.total, 'today 630.75 min/mo = 10.51 h/mo = $893.56/mo; automatable 372.32 min/mo = 6.21 h/mo = $527.45/mo (counted email $27.60 + estimated work $499.86)');
+  assert.equal(
+    o.formula.total,
+    'today 630.75 min/mo = 10.51 h/mo = $893.56/mo (email 42.68 min/mo = $60.46 + work 588.07 min/mo = $833.10); ' +
+      'automatable 372.32 min/mo = 6.21 h/mo = $527.46/mo (counted email 19.48 min/mo = $27.60 + estimated work 352.84 min/mo = $499.86)',
+  );
   assert.deepEqual(o.counted.email_x100, { today: 33800, automatable: 15430 });
   assert.deepEqual(o.counted.email_per_month_x100, { today: 4268, automatable: 1948 });
   assert.deepEqual(o.estimated?.work_per_month_x100, { today: 58807, automatable: 35284 });
-  assert.deepEqual([o.per_month_x100, o.hours_per_month_x100, o.dollars_per_month_cents], [{ today: 63075, automatable: 37232 }, { today: 1051, automatable: 621 }, { today: 89356, automatable: 52745 }]);
+  // The dollars are the parts' cents added: 6,046 + 83,310 today, 2,760 + 49,986 automatable (one
+  // cent over the cents of the summed minutes, 52,745).
+  assert.deepEqual([o.per_month_x100, o.hours_per_month_x100, o.dollars_per_month_cents], [{ today: 63075, automatable: 37232 }, { today: 1051, automatable: 621 }, { today: 89356, automatable: 52746 }]);
+  // The range: the estimate at 30 and at 60 minutes, 60% automatable throughout. Low: 103.50 x 30 =
+  // 3,105.00 min, 1,863.00 automatable, 235.23 min/mo; high: 6,210.00 min, 3,726.00 automatable,
+  // 470.45 min/mo; each plus the counted email's 19.48 min/mo, in cents part by part.
+  assert.deepEqual(o.range_per_month_x100, { low: 1948 + 23523, high: 1948 + 47045 });
+  assert.deepEqual(o.range_cents, { low: cents(1948) + cents(23523), high: cents(1948) + cents(47045) });
+  assert.deepEqual(o.range_cents, { low: 36084, high: 69407 });
 });
 
 test('the counted formula shows the plain sum and the shared one when shares cut the minutes', () => {
@@ -128,10 +143,11 @@ test('one rounding per quantity, half up, from integers', () => {
   assert.deepEqual([perMonthX100(33800, 792), perMonthX100(15430, 792), perMonthX100(0, 100), perMonthX100(50, 100)], [4268, 1948, 0, 50]);
   assert.deepEqual([hoursX100(63075), hoursX100(30), hoursX100(29)], [1051, 1, 0], '0.5 rounds up');
   assert.deepEqual([cents(63075), cents(6000), cents(3)], [89356, 8500, 4]);
-  // The per-month sum is made from the two rounded parts, and the dollars from that sum: a cent
-  // apart from the parts' dollars at most.
+  // The per-month minutes are the two rounded parts added, and so are the dollars: each part's
+  // cents, so the parts shown add up to the total exactly.
   const o = run({ rollup: rollupOf([EXAMPLE]), synthesis: [groupOf(synthOf(EXAMPLE.key, { low: 30, mid: 45, high: 60, pct: 60 }))] }).opportunities[0];
-  assert.ok(Math.abs((o?.dollars_per_month_cents.automatable ?? 0) - cents(1948) - cents(35284)) <= 1);
+  assert.equal(o?.dollars_per_month_cents.automatable, cents(1948) + cents(35284));
+  assert.equal(o?.dollars_per_month_cents.today, cents(4268) + cents(58807));
 });
 
 test('no estimate: the work part is 0 and flagged; an exhausted group\'s processes carry synthesis_missing and their counted parts', () => {
@@ -139,7 +155,13 @@ test('no estimate: the work part is 0 and flagged; an exhausted group\'s process
   const none = run({ rollup: rollupOf([p]), synthesis: [groupOf(synthOf('a', null))] }).opportunities[0];
   assert.deepEqual([none?.estimated, none?.flags, none?.per_month_x100.today], [null, ['estimate_missing'], perMonthX100(2000, 792)]);
   assert.equal(none?.formula.estimated, null);
-  assert.match(none?.formula.total ?? '', /\(counted email \$[\d.,]+; no work estimate\)$/);
+  assert.match(none?.formula.total ?? '', /^today [\d.,]+ min\/mo = [\d.,]+ h\/mo = \$[\d.,]+\/mo \(email [\d.,]+ min\/mo = \$[\d.,]+; no work estimate\); /);
+  assert.match(none?.formula.total ?? '', /\(counted email [\d.,]+ min\/mo = \$[\d.,]+; no work estimate\)$/);
+  // With no estimate the range is the counted email alone, at both ends.
+  assert.deepEqual([none?.range_per_month_x100, none?.range_cents], [
+    { low: none?.per_month_x100.automatable, high: none?.per_month_x100.automatable },
+    { low: none?.dollars_per_month_cents.automatable, high: none?.dollars_per_month_cents.automatable },
+  ]);
   const missing = run({ rollup: rollupOf([p]), synthesis: [] }).opportunities[0];
   assert.deepEqual([missing?.synthesis, missing?.flags], [null, ['synthesis_missing', 'estimate_missing']]);
   assert.equal(missing?.counted.email_x100.today, 2000, 'still priced from the counts');
@@ -187,18 +209,61 @@ test('ranking by automatable cents, ties by key; the headline over A+B with both
   assert.equal(r.headline.all_tiers_cents.total, r.opportunities.reduce((n, o) => n + o.dollars_per_month_cents.automatable, 0));
   assert.equal(r.headline.label, 'observed in 4 mailboxes, 1999-2002');
   assert.deepEqual(r.unassigned, { messages: 645, slugs: 1 });
+  // Both blocks: the parts add up to the total exactly; the range brackets it; today and the hours
+  // are the rows' sums.
+  for (const [h, rows] of [[r.headline.tiers_ab_cents, ab], [r.headline.all_tiers_cents, r.opportunities]] as const) {
+    assert.equal(h.total, h.counted_email + h.estimated_work);
+    assert.ok(h.low <= h.total && h.total <= h.high, `${h.low} <= ${h.total} <= ${h.high}`);
+    assert.equal(h.low, rows.reduce((n, o) => n + o.range_cents.low, 0));
+    assert.equal(h.high, rows.reduce((n, o) => n + o.range_cents.high, 0));
+    assert.equal(h.today, rows.reduce((n, o) => n + o.dollars_per_month_cents.today, 0));
+    assert.deepEqual(h.hours_x100, {
+      today: rows.reduce((n, o) => n + o.hours_per_month_x100.today, 0),
+      automatable: rows.reduce((n, o) => n + o.hours_per_month_x100.automatable, 0),
+    });
+  }
+  // A row without an estimate adds its automatable cents to both ends; alpha's estimate widens them.
+  const zeta = r.opportunities.find((o) => o.key === 'zeta') as Opportunities['opportunities'][number];
+  assert.deepEqual(zeta.range_cents, { low: zeta.dollars_per_month_cents.automatable, high: zeta.dollars_per_month_cents.automatable });
+  const alpha = r.opportunities.find((o) => o.key === 'alpha') as Opportunities['opportunities'][number];
+  assert.ok(alpha.range_cents.low < alpha.dollars_per_month_cents.automatable && alpha.dollars_per_month_cents.automatable < alpha.range_cents.high);
 });
 
 test('the artifact threshold: tier A or B only, at most the cap, at least the floor; the bar applies once set', () => {
   const procs = Array.from({ length: 12 }, (_, i) => proc(`p${String(i).padStart(2, '0')}`, { occurrences: 50, counts: { chaser: 10 * (i + 1) } }));
   procs.push(proc('lead', { occurrences: 2, counts: { chaser: 1000 } }));
   const eligible = (s: Scoring) => run({ rollup: rollupOf(procs), scoring: s }).opportunities.filter((o) => o.artifact_eligible).map((o) => o.key);
-  assert.deepEqual(eligible(scoring), ['p11', 'p10', 'p09', 'p08', 'p07', 'p06', 'p05', 'p04'], 'no bar yet: the top 8 of A/B; the tier C lead never');
-  const with_ = (bar: number) => ({ ...scoring, artifacts: { ...scoring.artifacts, min_automatable_cents: bar } });
+  const with_ = (bar: number | null) => ({ ...scoring, artifacts: { ...scoring.artifacts, min_automatable_cents: bar } });
+  assert.deepEqual(eligible(with_(null)), ['p11', 'p10', 'p09', 'p08', 'p07', 'p06', 'p05', 'p04'], 'no bar: the top 8 of A/B; the tier C lead never');
   const all = run({ rollup: rollupOf(procs) }).opportunities;
   const cutoff = all.find((o) => o.key === 'p07')?.dollars_per_month_cents.automatable as number;
   assert.deepEqual(eligible(with_(cutoff)), ['p11', 'p10', 'p09', 'p08', 'p07'], 'the bar keeps five');
   assert.deepEqual(eligible(with_(10 ** 9)), ['p11', 'p10', 'p09'], 'nothing passes: the floor of three');
+});
+
+test('the artifact threshold with the committed config: 8,500 cents (one hour a month at $85) is eligible, 8,499 is not', () => {
+  assert.deepEqual(scoring.artifacts, { min_automatable_cents: 8500, cap: 8, floor: 3 });
+  // One month (months_x100 100), no email part: the work part alone sets the cents. 10 occurrences x
+  // 10 min at 60% = 60.00 min/mo = 8,500 cents; 119.98 occurrences x 1 min at 50% = 59.99 min/mo =
+  // 8,499 cents (59.99 x 8,500 / 6,000 = 8,498.58, rounded half up).
+  const month = { span: 30, months_x100: 100 };
+  const at = proc('at-bar', { occurrences: 10, ...month });
+  const under = proc('under-bar', { occurrences: 120, share_x100: 11998, ...month });
+  const over = ['over-a', 'over-b', 'over-c'].map((k) => proc(k, { occurrences: 50, ...month }));
+  const estimate = (key: string, mid: number, pct: number) => synthOf(key, { low: mid, mid, high: mid, pct });
+  const r = run({
+    rollup: rollupOf([at, under, ...over]),
+    synthesis: [groupOf(estimate('at-bar', 10, 60), estimate('under-bar', 1, 50), ...over.map((p) => estimate(p.key, 30, 60)))],
+  });
+  const cents_ = (key: string) => r.opportunities.find((o) => o.key === key)?.dollars_per_month_cents.automatable;
+  assert.deepEqual([cents_('at-bar'), cents_('under-bar')], [8500, 8499]);
+  assert.deepEqual(r.opportunities.filter((o) => o.artifact_eligible).map((o) => o.key), ['over-a', 'over-b', 'over-c', 'at-bar']);
+  // The cap and the floor stand as before: twelve over the bar make eight; none over it, three.
+  const many = Array.from({ length: 12 }, (_, i) => proc(`m${String(i).padStart(2, '0')}`, { occurrences: 50, ...month }));
+  const manyRun = run({ rollup: rollupOf(many), synthesis: [groupOf(...many.map((p) => estimate(p.key, 30, 60)))] });
+  assert.equal(manyRun.opportunities.filter((o) => o.artifact_eligible).length, 8);
+  const thin = Array.from({ length: 5 }, (_, i) => proc(`t${i}`, { occurrences: 50, ...month, counts: { read: i + 1 } }));
+  assert.deepEqual(run({ rollup: rollupOf(thin) }).opportunities.filter((o) => o.artifact_eligible).map((o) => o.key), ['t4', 't3', 't2']);
 });
 
 test('--rates changes only the email part, --estimates only the work part', () => {
@@ -214,7 +279,7 @@ test('--rates changes only the email part, --estimates only the work part', () =
   assert.notDeepEqual(reEstimated?.estimated, base?.estimated);
 });
 
-test('the score reads mid and automatable_pct of a synthesis estimate for its arithmetic, and only copies the other numbers for display', () => {
+test('the total reads mid and automatable_pct of a synthesis estimate; low and high set only the range; the other numbers are copied for display', () => {
   // Which numeric fields of the validated record are read at all.
   const read = new Set<string>();
   const watch = <T extends object>(o: T, path: string): T =>
@@ -236,14 +301,19 @@ test('the score reads mid and automatable_pct of a synthesis estimate for its ar
     'work_estimate.minutes_per_occurrence.low',
     'work_estimate.minutes_per_occurrence.mid',
   ]);
-  // Of those, only mid and automatable_pct change a number the score computes.
+  // Of those, only mid and automatable_pct change the total, the rank, the tier, the eligibility or
+  // the headline total; low and high set the range shown beside the total and nothing else.
   const numbers = (r: Opportunities) => {
     const o = r.opportunities[0] as Opportunities['opportunities'][number];
-    return [o.per_month_x100, o.hours_per_month_x100, o.dollars_per_month_cents, o.estimated?.work_per_month_x100, o.rank, o.tier, o.artifact_eligible, r.headline];
+    const { low: _low, high: _high, ...headline } = r.headline.tiers_ab_cents;
+    return [o.per_month_x100, o.hours_per_month_x100, o.dollars_per_month_cents, o.estimated?.work_per_month_x100, o.rank, o.tier, o.artifact_eligible, headline];
   };
-  const base = numbers(run({ rollup: rollupOf([EXAMPLE]), synthesis: [groupOf(rec)] }));
+  const baseRun = run({ rollup: rollupOf([EXAMPLE]), synthesis: [groupOf(rec)] });
   const display = { ...rec, work_estimate: { ...(rec.work_estimate as NonNullable<typeof rec.work_estimate>), minutes_per_occurrence: { low: 1, mid: 45, high: 480 } }, estimate_check: { occurrences_cited: 99, senders_cited: 99 } };
-  assert.deepEqual(numbers(run({ rollup: rollupOf([EXAMPLE]), synthesis: [groupOf(display)] })), base);
+  const displayRun = run({ rollup: rollupOf([EXAMPLE]), synthesis: [groupOf(display)] });
+  assert.deepEqual(numbers(displayRun), numbers(baseRun));
+  const range = (r: Opportunities) => (r.opportunities[0] as Opportunities['opportunities'][number]).range_cents;
+  assert.ok(range(displayRun).low < range(baseRun).low && range(displayRun).high > range(baseRun).high, 'the range follows low and high');
   assert.equal(modelEstimate(rec)?.minutes_per_occurrence.mid, 45);
 });
 

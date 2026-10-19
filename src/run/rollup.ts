@@ -13,6 +13,7 @@ import { join } from 'node:path';
 import { ConfigError, loadEffortRates } from '../config.ts';
 import { rollupWithNotes, type RollupNotes } from '../metrics/rollup.ts';
 import { SynthesisInputError, buildSynthesisInputs } from '../model/synthesis-input.ts';
+import { IdentityError, identityOf, type Identity } from '../normalize/identity.ts';
 import { sha256 } from '../util/hash.ts';
 import {
   LedgerError,
@@ -149,15 +150,23 @@ export function rollupStep(root: string): string {
   const table = JSON.parse(readText(mergeFile(root)) as string) as MergeTable;
   const peopleText = readText(join(root, 'out', 'people.json'));
   if (peopleText === null) throw new RollupError('out/people.json is missing: run node obs.mjs prepare first.');
-  const people = JSON.parse(peopleText) as Person[];
   const rates = loadEffortRates(ratesFile(root));
+  // Who each address is, as prepare folded the directory (src/normalize/identity.ts); a directory
+  // written before the folds stops the stage rather than count every address as its own person.
+  let identity: Identity;
+  try {
+    identity = identityOf(JSON.parse(peopleText) as Person[], rates);
+  } catch (err) {
+    if (err instanceof IdentityError) throw new RollupError(err.message);
+    throw err;
+  }
   const shas = currentRollupInputs(root, extractionsSha(root, inputs.views));
   const { rollup, notes } = rollupWithNotes({
     validated: inputs.validated,
     merge: table,
     threads: inputs.threads,
     messages: inputs.messages,
-    people,
+    identity,
     rates,
     taxonomy: inputs.taxonomy,
     flagged: inputs.flagged,
@@ -165,7 +174,7 @@ export function rollupStep(root: string): string {
   });
   let groups: ReturnType<typeof buildSynthesisInputs>;
   try {
-    groups = buildSynthesisInputs(rollup, inputs.validated, inputs.messages, people, inputs.threads);
+    groups = buildSynthesisInputs(rollup, inputs.validated, inputs.messages, identity, inputs.threads);
   } catch (err) {
     if (err instanceof SynthesisInputError) throw new RollupError(err.message);
     throw err;

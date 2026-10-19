@@ -3,26 +3,31 @@
 // email actions by type with the messages they were counted from and the minutes they cost at the
 // published rates, participants, reply gaps, chasers, validated stall quotes, ownership claims and
 // conflicts, and the accepted evidence. No model output sets any number here: the extractors and
-// the merger decided which messages belong where, and that is all that is read of them.
+// the merger decided which messages belong where, and that is all that is read of them. People are
+// counted by identity (src/normalize/identity.ts): an address's canonical address from
+// out/people.json, so one person's several addresses are one participant and one sender.
 //
 // Same inputs, same record, on every OS: integer arithmetic, ID order, UTC dates compared as
 // strings, every list sorted.
 import type { EffortRates } from '../config.ts';
-import { classifyOccurrence, countActions, isPricedEmail } from './actions.ts';
+import { classifyOccurrence, countActions } from './actions.ts';
 import { effectiveKeys, mergeTarget } from '../model/merge.ts';
 import type { Taxonomy } from '../model/taxonomy.ts';
+import type { Identity } from '../normalize/identity.ts';
 import { roundHalfUp } from '../util/round.ts';
 import { DAY_MS, utcMs } from '../util/time.ts';
 import {
   STALL_KINDS,
   type ActionSource,
+  type ClaimMatch,
+  type ConflictPair,
   type MergeTable,
   type MessageActions,
-  type OwnershipConflict,
+  type OwnershipClaim,
   type ParsedMessage,
   type Participant,
-  type Person,
   type ProcessRollup,
+  type ReplyGap,
   type Rollup,
   type StallKind,
   type Thread,
@@ -68,7 +73,7 @@ const evidenceOrder = (a: string, b: string): number => {
 };
 
 const usable = (m: ParsedMessage | undefined): string | null => (m !== undefined && m.date_status === 'usable' && m.date_utc !== null ? m.date_utc : null);
-const senderOf = (m: ParsedMessage): string => (m.from?.email ?? '').toLowerCase();
+const addressOf = (m: ParsedMessage): string => (m.from?.email ?? '').toLowerCase();
 const median = (xs: readonly number[]): number | null => {
   if (xs.length === 0) return null;
   const s = [...xs].sort((a, b) => a - b);
@@ -95,62 +100,64 @@ export const GROUP_WORDS: readonly string[] = [
   'they', 'them', 'we', 'us', 'team', 'teams', 'group', 'groups', 'desk', 'desks', 'department', 'departments',
   'management', 'staff', 'trader', 'traders', 'people',
 ];
-// A claim of more words than this is a phrase, not a person's name.
+// A claim of more words than this is a phrase, not a person's name (the artifacts' isPersonName).
 export const NAME_MAX_WORDS = 3;
 
-type Named = { email: string; name: string | null };
-// Whom an ownership claim names: people of the directory (addresses, sorted), or, for a name no
-// one in the directory carries (it appears only in a message body), the name's own words.
-export type Claimant = { known: string[] } | { named: string[] };
+const localOf = (email: string): string => email.slice(0, Math.max(0, email.lastIndexOf('@')));
 
-type NameEntry = { email: string; tokens: ReadonlySet<string> };
-const entries = (people: readonly Named[]): NameEntry[] =>
-  people.map((p) => ({ email: p.email, tokens: new Set([...nameTokens(p.name ?? ''), ...nameTokens(p.email.slice(0, Math.max(0, p.email.lastIndexOf('@'))))]) }));
-const directories = new WeakMap<readonly Named[], NameEntry[]>();
-const directoryOf = (people: readonly Named[]): NameEntry[] => {
-  let d = directories.get(people);
-  if (d === undefined) {
-    d = entries(people);
-    directories.set(people, d);
-  }
-  return d;
-};
-
-// The person an ownership claim's `person` names, or null when it names no one person. Its words
-// (nameTokens) are matched against everyone in `people` (the archive's people directory) and the
-// process's `participants`, by display-name and email local-part words: the people sharing the
-// most words with it, and of those, the participants if any (ties otherwise all kept). A claim
-// that matches nobody still names someone if it reads as a personal name: one to NAME_MAX_WORDS
-// words. A claim with any GROUP_WORDS word never names one person.
-export function claimant(person: string, participants: readonly Named[], people: readonly Named[] = []): Claimant | null {
-  const words = person.trim().split(/\s+/).filter((w) => /[\p{L}\p{N}]/u.test(w));
+// Whom an ownership claim's `person` names, among the process's participants only (ARCHITECTURE.md
+// 4.1, 6.25), never the whole directory. Its distinct words (nameTokens) are compared with each
+// participant person's words: the identity's display name, every name its addresses carry, and the
+// words of those addresses' local parts. The participants sharing the most words win, if they
+// share at least two (or all of a one-word claim): one is `matched`, more are `several`, none
+// `unmatched`. A claim with no word, or with a GROUP_WORDS word, names a `group`. So "Darren" on a
+// trail where only Daren Farmer took part is unmatched, and "Darren Farmer" shares one word of two.
+export function matchClaim(person: string, participants: ReadonlyArray<Pick<Participant, 'email' | 'kind'>>, identity: Pick<Identity, 'displayName' | 'addresses'>): ClaimMatch {
   const claim = [...new Set(nameTokens(person))];
-  if (claim.length === 0 || claim.some((t) => GROUP_WORDS.includes(t))) return null;
-  const inProcess = new Set(participants.map((p) => p.email));
+  if (claim.length === 0 || claim.some((t) => GROUP_WORDS.includes(t))) return { status: 'group', people: [], name: null };
+  const need = Math.min(2, claim.length);
   let best = 0;
-  let who = new Set<string>();
-  for (const e of [...directoryOf(participants), ...directoryOf(people)]) {
-    const shared = claim.filter((t) => e.tokens.has(t)).length;
-    if (shared === 0 || shared < best) continue;
+  let who: string[] = [];
+  for (const p of participants) {
+    if (p.kind !== 'person') continue;
+    const words = new Set(nameTokens(identity.displayName(p.email) ?? ''));
+    for (const a of identity.addresses(p.email)) {
+      // displayName of an address that folds elsewhere is its own name.
+      for (const w of [...nameTokens(identity.displayName(a) ?? ''), ...nameTokens(localOf(a))]) words.add(w);
+    }
+    const shared = claim.filter((t) => words.has(t)).length;
+    if (shared < need || shared < best) continue;
     if (shared > best) {
       best = shared;
-      who = new Set();
+      who = [];
     }
-    who.add(e.email);
+    who.push(p.email);
   }
-  if (who.size > 0) {
-    const ours = [...who].filter((e) => inProcess.has(e));
-    return { known: (ours.length > 0 ? ours : [...who]).sort(byText) };
-  }
-  return words.length <= NAME_MAX_WORDS ? { named: claim.sort(byText) } : null;
+  who.sort(byText);
+  if (who.length === 1) return { status: 'matched', people: who, name: identity.displayName(who[0] as string) };
+  if (who.length > 1) return { status: 'several', people: who, name: null };
+  return { status: 'unmatched', people: [], name: null };
 }
 
-// Two claimants are the same person when the people they name overlap, or when one unknown name's
-// words are all among the other's ("Souad" and "Souad M").
-function samePerson(a: Claimant, b: Claimant): boolean {
-  if ('known' in a && 'known' in b) return a.known.some((e) => b.known.includes(e));
-  if ('named' in a && 'named' in b) return a.named.every((t) => b.named.includes(t)) || b.named.every((t) => a.named.includes(t));
-  return false;
+// Pairs of claims that name different people at most OWNERSHIP_CONFLICT_DAYS apart (usable dates
+// only): every pair of matched or several claims whose people do not overlap, each shown as a pair,
+// never chained into one list. `a` is the earlier claim (by date, then message ID); sorted by `a`,
+// then `b`. A group or unmatched claim takes part in no pair. Content only, never the IDs.
+export function conflictPairs(claims: readonly OwnershipClaim[]): ConflictPair[] {
+  const dated = claims
+    .filter((c): c is OwnershipClaim & { date_utc: string } => c.date_utc !== null && c.match.people.length > 0)
+    .sort((x, y) => byText(x.date_utc, y.date_utc) || byText(x.message_id, y.message_id));
+  const pairs: ConflictPair[] = [];
+  for (let i = 0; i < dated.length; i++) {
+    for (let j = i + 1; j < dated.length; j++) {
+      const a = dated[i] as (typeof dated)[number];
+      const b = dated[j] as (typeof dated)[number];
+      if (a.match.people.some((p) => b.match.people.includes(p))) continue;
+      const apart = utcMs(b.date_utc) - utcMs(a.date_utc);
+      if (apart <= OWNERSHIP_CONFLICT_DAYS * DAY_MS) pairs.push({ a: a.message_id, b: b.message_id, days_apart: Math.floor(apart / DAY_MS) });
+    }
+  }
+  return pairs.sort((x, y) => byText(x.a, y.a) || byText(x.b, y.b));
 }
 
 export type RollupInputs = {
@@ -158,7 +165,7 @@ export type RollupInputs = {
   merge: MergeTable;
   threads: Thread[];
   messages: Map<string, ParsedMessage>; // every parsed message, duplicates included
-  people: Person[];
+  identity: Identity; // who each address is: identityOf(out/people.json, rates)
   rates: EffortRates;
   taxonomy: Taxonomy;
   flagged: ReadonlySet<string>; // suspected injections
@@ -176,8 +183,9 @@ export function buildRollup(inputs: RollupInputs): Rollup {
 }
 
 export function rollupWithNotes(inputs: RollupInputs): { rollup: Rollup; notes: RollupNotes } {
-  const { validated, merge, threads, messages, people, rates, taxonomy, flagged } = inputs;
-  const names = new Map(people.map((p) => [p.email, p.name]));
+  const { validated, merge, threads, messages, identity, rates, taxonomy, flagged } = inputs;
+  // A message's sender as the person it is: the canonical address of its From.
+  const senderOf = (m: ParsedMessage): string => identity.canonical(addressOf(m));
 
   // Where each message sits.
   const occurrenceOf = new Map<string, string>();
@@ -243,7 +251,7 @@ export function rollupWithNotes(inputs: RollupInputs): { rollup: Rollup; notes: 
   for (const [, ids] of occurrenceMessages) {
     if (!ids.some((id) => countedIds.has(id))) continue;
     const ms = ids.map((id) => messages.get(id)).filter((m): m is ParsedMessage => m !== undefined);
-    for (const a of classifyOccurrence(ms, countedIds, rates)) actionsOf.set(a.id, a);
+    for (const a of classifyOccurrence(ms, countedIds, rates, identity)) actionsOf.set(a.id, a);
   }
 
   const processes: ProcessRollup[] = [...members.keys()].sort(byText).map((key) => {
@@ -286,9 +294,9 @@ export function rollupWithNotes(inputs: RollupInputs): { rollup: Rollup; notes: 
     const action_sources: ActionSource[] = [];
     for (const a of own) {
       const share = shareOf(a.id, key);
-      const sender = senderOf(messages.get(a.id) as ParsedMessage);
-      action_sources.push({ message_id: a.id, type: a.authored, person: sender, priced: a.sender_priced, share_x100: share });
-      for (const r of a.reads) action_sources.push({ message_id: a.id, type: 'read', person: r.email, priced: r.priced, share_x100: share });
+      const sender = addressOf(messages.get(a.id) as ParsedMessage);
+      action_sources.push({ message_id: a.id, type: a.authored, person: identity.canonical(sender), address: sender, priced: a.sender_priced, share_x100: share });
+      for (const r of a.reads) action_sources.push({ message_id: a.id, type: 'read', person: identity.canonical(r.email), address: r.email, priced: r.priced, share_x100: share });
     }
     let today = 0;
     let automatable = 0; // in hundredths of a minute times 100 until the one rounding
@@ -298,21 +306,35 @@ export function rollupWithNotes(inputs: RollupInputs): { rollup: Rollup; notes: 
       automatable += rates.minutes[s.type] * rates.automatable_pct[s.type] * s.share_x100;
     }
 
-    // Participants, from the actions.
+    // Participants, from the actions: one per identity, with the addresses it used here. A list or a
+    // system sender is listed with its kind and is never staff.
     const people = new Map<string, Participant>();
     for (const s of action_sources) {
       if (s.person === '') continue;
-      const p = people.get(s.person) ?? { email: s.person, name: names.get(s.person) ?? null, staff: isPricedEmail(s.person, rates.priced_domains), authored: 0, forwards: 0, chasers: 0, reads: 0 };
+      const p = people.get(s.person) ?? {
+        email: s.person,
+        name: identity.displayName(s.person),
+        kind: identity.kind(s.person),
+        addresses: [],
+        staff: identity.staff(s.person),
+        authored: 0,
+        forwards: 0,
+        chasers: 0,
+        reads: 0,
+      };
+      if (!p.addresses.includes(s.address)) p.addresses.push(s.address);
       if (s.type === 'read') p.reads++;
       else if (s.type === 'forward') p.forwards++;
       else if (s.type === 'chaser') p.chasers++;
       else p.authored++;
       people.set(s.person, p);
     }
+    for (const p of people.values()) p.addresses.sort(byText);
     const total = (p: Participant) => p.authored + p.forwards + p.chasers + p.reads;
     const participants = [...people.values()].sort((a, b) => total(b) - total(a) || byText(a.email, b.email));
 
-    // Reply gaps: from a tagged message to the next later message in its thread by someone else.
+    // Reply gaps: from a tagged message to the next later message in its thread by another identity.
+    const reply_gaps: ReplyGap[] = [];
     const gaps: number[] = [];
     for (const m of ms) {
       const d = usable(m);
@@ -320,13 +342,17 @@ export function rollupWithNotes(inputs: RollupInputs): { rollup: Rollup; notes: 
       if (d === null || thread === undefined) continue;
       const after = thread.message_ids.slice(thread.message_ids.indexOf(m.id) + 1).map((id) => messages.get(id));
       const reply = after.find((r) => r !== undefined && usable(r) !== null && senderOf(r) !== senderOf(m));
-      if (reply !== undefined) gaps.push(utcMs(usable(reply) as string) - utcMs(d));
+      if (reply === undefined) continue;
+      const apart = utcMs(usable(reply) as string) - utcMs(d);
+      reply_gaps.push({ from: m.id, to: reply.id, hours_x10: roundHalfUp(apart, 360_000) });
+      gaps.push(apart);
     }
+    reply_gaps.sort((a, b) => byText(a.from, b.from) || byText(a.to, b.to));
     const gap = median(gaps);
 
     // Validated stall quotes and ownership claims.
     const stalls: ProcessRollup['stalls'] = [];
-    const ownership_claims: ProcessRollup['ownership_claims'] = [];
+    const ownership_claims: OwnershipClaim[] = [];
     for (const id of ids) {
       const e = entries.get(id) as Entry;
       const sc = stallCheck.get(id);
@@ -335,10 +361,10 @@ export function rollupWithNotes(inputs: RollupInputs): { rollup: Rollup; notes: 
       }
       const oc = ownershipCheck.get(id);
       if (e.ownership_claim !== null && oc !== undefined && oc.match !== 'rejected') {
-        ownership_claims.push({ message_id: id, person: e.ownership_claim.person, date_utc: usable(messages.get(id)), quote: oc.raw_text ?? e.ownership_claim.quote });
+        const person = e.ownership_claim.person;
+        ownership_claims.push({ message_id: id, person, date_utc: usable(messages.get(id)), quote: oc.raw_text ?? e.ownership_claim.quote, match: matchClaim(person, participants, identity) });
       }
     }
-    const conflict = ownershipConflict(ownership_claims, participants, inputs.people);
 
     const actions = countActions(own);
     const senders = new Set(ms.map(senderOf).filter((s) => s !== ''));
@@ -374,11 +400,13 @@ export function rollupWithNotes(inputs: RollupInputs): { rollup: Rollup; notes: 
       email_x100: { today, automatable: roundHalfUp(automatable, 100) },
       participants,
       staff_participants: participants.filter((p) => p.staff).length,
+      reply_gaps,
+      reply_gap_n: reply_gaps.length,
       median_reply_gap_h: gap === null ? null : Math.round(gap / 360_000) / 10,
       chasers: actions.priced.chaser + actions.unpriced.chaser,
       stalls,
       ownership_claims,
-      ownership_conflict: conflict,
+      ownership_conflicts: conflictPairs(ownership_claims),
       evidence_ids: [...(evidence.get(key) ?? [])].sort(evidenceOrder),
       flags,
     };
@@ -413,35 +441,6 @@ export function rollupWithNotes(inputs: RollupInputs): { rollup: Rollup; notes: 
     },
     notes,
   };
-}
-
-// Two or more different people claimed to own the work within OWNERSHIP_CONFLICT_DAYS of each
-// other (usable dates only): every claim that is part of such a pair, by date. A claim counts only
-// when it names one person (claimant: someone in the people directory, the process's participants
-// first, or a personal name found nowhere else); a claim naming a group or a role stays listed
-// under the process but never makes a conflict. Claims naming the same person count once, so
-// spelling variants ("Darron", "Darron C Giron") and a first name that could be either of two
-// people are one person. Content only: names against the archive's people, never the IDs.
-export function ownershipConflict(claims: ProcessRollup['ownership_claims'], participants: readonly Named[], people: readonly Named[] = []): OwnershipConflict | null {
-  const dated = claims
-    .filter((c) => c.date_utc !== null)
-    .map((c) => ({ c, who: claimant(c.person, participants, people) }))
-    .filter((x): x is { c: (typeof claims)[number]; who: Claimant } => x.who !== null);
-  const inConflict = new Set<number>();
-  for (let i = 0; i < dated.length; i++) {
-    for (let j = i + 1; j < dated.length; j++) {
-      const a = dated[i] as (typeof dated)[number];
-      const b = dated[j] as (typeof dated)[number];
-      if (samePerson(a.who, b.who)) continue;
-      if (Math.abs(utcMs(a.c.date_utc as string) - utcMs(b.c.date_utc as string)) <= OWNERSHIP_CONFLICT_DAYS * DAY_MS) {
-        inConflict.add(i);
-        inConflict.add(j);
-      }
-    }
-  }
-  if (inConflict.size === 0) return null;
-  const list = [...inConflict].map((i) => (dated[i] as (typeof dated)[number]).c).sort((a, b) => byText(a.date_utc as string, b.date_utc as string) || byText(a.message_id, b.message_id));
-  return { claims: list.map((c) => ({ person: c.person, message_id: c.message_id, date_utc: c.date_utc })) };
 }
 
 // Stall counts by kind, every kind present.

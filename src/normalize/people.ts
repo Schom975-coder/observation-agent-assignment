@@ -1,11 +1,12 @@
 // Everyone who sent or received a unique message, with the display name they appear under
-// most often and whether their time is priced (company staff).
+// most often and whether their domain is priced. Who each address is (a person, a list or a system,
+// and which addresses are one person) is added by src/normalize/identity.ts.
 import { isPricedEmail } from '../metrics/actions.ts';
-import type { ParsedMessage, Person } from '../types.ts';
+import type { ParsedMessage, PersonCounts } from '../types.ts';
 
 const byId = (a: string, b: string) => (a < b ? -1 : a > b ? 1 : 0);
 
-export function buildPeople(unique: readonly ParsedMessage[], pricedDomains: readonly string[]): Person[] {
+export function buildPeople(unique: readonly ParsedMessage[], pricedDomains: readonly string[]): PersonCounts[] {
   const people = new Map<string, { sent: number; received: number; names: Map<string, number> }>();
   const entry = (email: string) => {
     let p = people.get(email);

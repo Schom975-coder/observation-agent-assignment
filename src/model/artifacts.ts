@@ -31,6 +31,7 @@ import { PARTICIPANTS_SHOWN, evidenceSample, quoteSources, quotesFrom, type Quot
 import { withMargin } from './synthesis.ts';
 import { INJECTION_PATTERNS, injectionMarkers } from '../parse/flags.ts';
 import { GROUP_WORDS, NAME_MAX_WORDS, nameTokens } from '../metrics/rollup.ts';
+import type { Identity } from '../normalize/identity.ts';
 import { errorText, repoPath } from './validate-extraction.ts';
 import {
   ARTIFACT_TYPES,
@@ -41,7 +42,6 @@ import {
   type JobCheck,
   type Opportunities,
   type ParsedMessage,
-  type Person,
   type Rollup,
   type StallKind,
   type Thread,
@@ -211,9 +211,10 @@ const plainName = (name: string | null | undefined): string | null => {
   const s = flatten(name ?? '');
   return s === '' || s.includes('@') ? null : s;
 };
-// How a quote names its sender: the display name people.json has for the address, else its domain.
-function senderOf(email: string, names: ReadonlyMap<string, string | null>): string {
-  const name = plainName(names.get(email));
+// How a quote names its sender: the display name of the person the address belongs to, else the
+// address's domain.
+function senderOf(email: string, identity: Pick<Identity, 'canonical' | 'displayName'>): string {
+  const name = plainName(identity.displayName(identity.canonical(email)));
   if (name !== null) return name;
   return email === '' ? 'unknown sender' : email.slice(email.lastIndexOf('@') + 1);
 }
@@ -227,14 +228,14 @@ export type BriefInputs = {
   rollup: Rollup;
   validated: readonly ValidatedExtraction[];
   messages: ReadonlyMap<string, ParsedMessage>;
-  people: readonly Person[];
+  identity: Pick<Identity, 'canonical' | 'displayName'>; // who each address is (out/people.json)
   threads: readonly Thread[];
   shas: ArtifactIndex['inputs']; // recorded in the index: what makes it stale
 };
 
 export function buildBriefs(inputs: BriefInputs): { index: ArtifactIndex; briefs: Array<{ job_id: string; brief: ArtifactBrief; text: string }> } {
   const processes = new Map(inputs.rollup.processes.map((p) => [p.key, p]));
-  const src = quoteSources(inputs.validated, inputs.messages, inputs.people, inputs.threads);
+  const src = quoteSources(inputs.validated, inputs.messages, inputs.identity, inputs.threads);
   const eligible = inputs.opportunities.opportunities.filter((o) => o.artifact_eligible).sort((a, b) => a.rank - b.rank);
   const index: ArtifactIndex = { version: 1, inputs: { ...inputs.shas }, jobs: [], skipped: [] };
   const briefs: Array<{ job_id: string; brief: ArtifactBrief; text: string }> = [];
@@ -261,7 +262,7 @@ export function buildBriefs(inputs: BriefInputs): { index: ArtifactIndex; briefs
     const q = quotesFrom(p, src);
     const personOf = new Map<string, string>();
     for (const c of p.ownership_claims) if (!personOf.has(c.message_id)) personOf.set(c.message_id, c.person);
-    const where = (x: Quoted) => ({ id: x.id, message_id: x.message_id, date: day(x.date_utc), sender: senderOf(x.sender, src.names) });
+    const where = (x: Quoted) => ({ id: x.id, message_id: x.message_id, date: day(x.date_utc), sender: senderOf(x.sender, src.identity) });
     const raw = (x: Quoted) => normalizeNewlines(x.text);
     const a = { short: 0, medium: 0, long: 0, forwards: 0, chasers: 0, reads: 0 };
     for (const c of [o.counted.actions.priced, o.counted.actions.unpriced]) {
@@ -273,13 +274,14 @@ export function buildBriefs(inputs: BriefInputs): { index: ArtifactIndex; briefs
       a.reads += c.read;
     }
     const stalls = Object.fromEntries(STALL_KINDS.map((k) => [k, o.stalls_counted[k] ?? 0])) as Record<StallKind, number>;
-    // Who the mail names as owner: each person once (their first claim in the rollup's order), at
-    // most OWNERSHIP_CLAIMS_SHOWN of them.
-    const claimed = new Map<string, { person: string; date: string | null }>();
+    // Who the mail names as owner: each claimed person once (their first claim in the rollup's
+    // order), at most OWNERSHIP_CLAIMS_SHOWN of them, with whom the rollup matched the claim to among
+    // the process's participants.
+    const claimed = new Map<string, ArtifactBrief['ownership']['claims'][number]>();
     for (const c of p.ownership_claims) {
       const person = flatten(c.person);
       const k = person.toLowerCase();
-      if (person !== '' && !claimed.has(k)) claimed.set(k, { person, date: day(c.date_utc) });
+      if (person !== '' && !claimed.has(k)) claimed.set(k, { person, date: day(c.date_utc), status: c.match.status, name: plainName(c.match.name) });
     }
     const e = o.estimated;
     let brief: ArtifactBrief = {
@@ -311,8 +313,8 @@ export function buildBriefs(inputs: BriefInputs): { index: ArtifactIndex; briefs
       },
       participants: o.counted.participants
         .slice(0, PARTICIPANTS_SHOWN)
-        .map((x) => ({ name: plainName(x.name), staff: x.staff, authored: x.authored, forwards: x.forwards, chasers: x.chasers, reads: x.reads })),
-      ownership: { claims: [...claimed.values()].slice(0, OWNERSHIP_CLAIMS_SHOWN), conflict: o.ownership_conflict !== null },
+        .map((x) => ({ name: plainName(x.name), kind: x.kind, staff: x.staff, authored: x.authored, forwards: x.forwards, chasers: x.chasers, reads: x.reads })),
+      ownership: { claims: [...claimed.values()].slice(0, OWNERSHIP_CLAIMS_SHOWN), conflicts: o.ownership_conflicts.length },
       estimate:
         e === null
           ? null
@@ -763,8 +765,9 @@ export const EVIDENCE_INTRO = 'Passages about this process, each quoted exactly 
 // promoted whoever one email mentioned (a one-day cover as the owner, the person who wrote most of
 // the mail dropped). So code writes one line directly under the type's who-section heading, from
 // the brief alone: the named staff who write and forward the most, with their counts, and the
-// people the emails name as owner, with the month of the claim. The drafter writes the role and
-// its duties under it. The line is code's text, like the footer: the gate never checks it.
+// people the emails name as owner who matched one person on the trail, by that person's name, with
+// the month of the claim. The drafter writes the role and its duties under it. The line is code's
+// text, like the footer: the gate never checks it.
 export const PEOPLE_LINE = {
   doing: 'People doing this work (counted from the emails):',
   nobody: 'none named in the emails',
@@ -806,8 +809,19 @@ export function peopleLine(brief: Pick<ArtifactBrief, 'participants' | 'ownershi
       return `${asName(p.name as string)} (${counts.join(', ')})`;
     });
   const parts = [`${PEOPLE_LINE.doing} ${doing.length === 0 ? PEOPLE_LINE.nobody : doing.join(', ')}.`];
-  const claims = brief.ownership.claims.filter((c) => isPersonName(c.person)).map((c) => `${asName(c.person)} (${monthYear(c.date)})`);
-  if (claims.length > 0) parts.push(`${PEOPLE_LINE.named} ${claims.join(', ')}${brief.ownership.conflict ? `; ${PEOPLE_LINE.conflict}` : ''}.`);
+  // Only claims that matched one person who took part, by that person's name, each person once with
+  // the month of the latest date among their listed claims (each listed claim carries the date the
+  // brief gives it: its first mention; undated only when none is dated), in the order they first
+  // appear; a claim matching several people, nobody on the trail, or a group stays in the Evidence
+  // footer as a quote.
+  const latest = new Map<string, string | null>();
+  for (const c of brief.ownership.claims) {
+    if (c.status !== 'matched' || c.name === null || !isPersonName(c.name)) continue;
+    const was = latest.get(c.name) ?? null;
+    if (!latest.has(c.name) || (c.date !== null && (was === null || c.date > was))) latest.set(c.name, c.date);
+  }
+  const claims = [...latest].map(([name, date]) => `${asName(name)} (${monthYear(date)})`);
+  if (claims.length > 0) parts.push(`${PEOPLE_LINE.named} ${claims.join(', ')}${brief.ownership.conflicts > 0 ? `; ${PEOPLE_LINE.conflict}` : ''}.`);
   parts.push(PEOPLE_LINE.owner);
   return parts.join(' ');
 }

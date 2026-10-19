@@ -35,9 +35,9 @@ test('committed effort rates load and cover every action type', () => {
   assert.deepEqual(rates.priced_domains, ['enron.com']);
 });
 
-test('committed scoring config loads; the artifact bar is unset until the first full run', () => {
+test('committed scoring config loads; the artifact bar is 8,500 cents, one hour a month at $85', () => {
   const scoring = loadScoring(scoringFile);
-  assert.equal(scoring.artifacts.min_automatable_cents, null);
+  assert.equal(scoring.artifacts.min_automatable_cents, 8500);
   assert.ok(scoring.artifacts.floor <= scoring.artifacts.cap);
 });
 
@@ -59,6 +59,28 @@ test('effort rates reject an unknown action type', () => {
   assert.throws(() => loadEffortRates(file), configError(/minutes\.meeting is not an action type/));
 });
 
+test('committed system senders load: lowercase local@ entries, each once', () => {
+  const rates = loadEffortRates(ratesFile);
+  assert.deepEqual(rates.system_senders, ['no.address@', 'exchange.administrator@', 'sap_security@', 'arsystem@', 'information.management@', 'enron_update@', 'crcommunications@', 'marketopshourahead@']);
+  // The three entry forms, and an empty list.
+  assert.deepEqual(loadEffortRates(changed(ratesFile, (c) => (c.system_senders = ['no.address@', 'alerts@caiso.com', '@caiso.com']))).system_senders, ['no.address@', 'alerts@caiso.com', '@caiso.com']);
+  assert.deepEqual(loadEffortRates(changed(ratesFile, (c) => (c.system_senders = []))).system_senders, []);
+});
+
+test('system senders reject capitals, wildcards, an entry with no @, a duplicate, a non-string and a missing list', () => {
+  for (const [entries, pattern] of [
+    [['No.Address@'], /system_senders entry "No\.Address@" must be lowercase/],
+    [['*@caiso.com'], /system_senders entry "\*@caiso\.com" must be lowercase/],
+    [['arsystem'], /system_senders entry "arsystem" must be lowercase "local@", "local@domain" or "@domain"/],
+    [['arsystem@', 'arsystem@'], /system_senders entry "arsystem@" is listed twice/],
+    [[7], /system_senders entry 7 must be/],
+    [[' no.address@'], /system_senders entry " no\.address@" must be/],
+  ] as const) {
+    assert.throws(() => loadEffortRates(changed(ratesFile, (c) => (c.system_senders = entries))), configError(pattern), JSON.stringify(entries));
+  }
+  assert.throws(() => loadEffortRates(changed(ratesFile, (c) => delete c.system_senders)), configError(/system_senders must be a list/));
+});
+
 test('effort rates reject a domain that is not lowercase', () => {
   const file = changed(ratesFile, (c) => (c.priced_domains = ['Enron.com']));
   assert.throws(() => loadEffortRates(file), configError(/priced_domains entry "Enron\.com"/));
@@ -74,7 +96,7 @@ test('committed scoring config: the approved tiers, promotion minimum and estima
   assert.deepEqual(s.tiers, { A: { min_occurrences: 40, min_active_months: 6, min_staff: 3 }, B: { min_occurrences: 10, min_active_months: 3, min_staff: 2 } });
   assert.deepEqual(s.merge.promote_min, { messages: 3, occurrences: 3, threads: 2, active_months: 2 });
   assert.deepEqual(s.estimates, { max_minutes_per_occurrence: 480, max_automatable_pct: 80, min_occurrences: 3, min_evidence: 3, max_evidence: 12, min_senders: 2 });
-  assert.deepEqual(s.artifacts, { min_automatable_cents: null, cap: 8, floor: 3 });
+  assert.deepEqual(s.artifacts, { min_automatable_cents: 8500, cap: 8, floor: 3 });
 });
 
 test('scoring rejects the M4 shape, naming the keys that are missing and the ones that are not settings', () => {

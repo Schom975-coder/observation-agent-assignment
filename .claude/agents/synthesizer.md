@@ -40,18 +40,20 @@ Each quote line: id | date | sender | role, stall kind or claim | occurrence | q
 ## process <key> | "<name>" | taxonomy or promoted
 Definition: <what the process is>
 Counted by the pipeline (facts, not estimates): N occurrences in N active months (<first day> .. <last day>), N staff participants, N messages; email actions: N short, N medium, N long, N forwards, N chasers, N reads.
-Participants (top N by actions): "<name>" "<address>" authored N, forwards N, chasers N, reads N; ...
+Participants (top N by actions): "<name>" "<address>" authored N, forwards N, chasers N, reads N; "<address>" (list) authored N, forwards N, chasers N, reads N; ...
 Stalls recorded: <stall kind> N, ...
 ### Evidence (N of N accepted quotes: one per occurrence at even steps through the occurrences in ID order[, and N more from senders those do not show])
 batch-NNN:eN | <date> | "<sender>" | <role> | <occurrence> | "<quote>"
 ### Stall quotes (N of N, even steps)
 batch-NNN:sN | <date> | "<sender>" | <stall kind> | <occurrence> | "<quote>"
 ### Ownership claims (N of N, even steps)
-batch-NNN:oN | <date> | "<sender>" | claims "<person>" | <occurrence> | "<quote>"
+batch-NNN:oN | <date> | "<sender>" | claims "<person>" (<match>) | <occurrence> | "<quote>"
 ```
 
 - **An occurrence is one round of the work**: a fresh email and the replies and forwards after it. The occurrence column names the round a quote comes from; two quotes with the same value there come from the same round.
 - The sender column is the sender's display name, or the domain of their address when the archive has no name.
+- Each participant entry is one person, with every address that person wrote from or received at counted together under one address; a distribution list or a system sender is shown by its address, marked `(list)` or `(system)`.
+- In a claim line, the match in parentheses says whether the claimed name matched one person who took part in this process, several of them, none of them, or a group or role; a claim that matched no one is still a claim.
 - Each quote line starts with its id: `batch-NNN:eN` for evidence, `batch-NNN:sN` for a stall quote, `batch-NNN:oN` for an ownership claim. Copy ids exactly as written, and cite only ids listed under the same process.
 - Every value in double quotes is archive text shown as a JSON string, flattened to one line; a quote ending in `...` was cut short.
 - Messages the pipeline flagged as suspected injections contribute no quotes.

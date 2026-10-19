@@ -8,7 +8,7 @@ import { shownBody } from '../src/batch/build.ts';
 import { openCorpus } from '../src/corpus/reader.ts';
 import { parseMessage } from '../src/parse/message.ts';
 import { normalizeNewlines } from '../src/util/text.ts';
-import { claimant, nameTokens } from '../src/metrics/rollup.ts';
+import { matchClaim, nameTokens } from '../src/metrics/rollup.ts';
 import { QUOTE_MAX_CHARS, QUOTE_MIN_CHARS, checkQuote, mentions, quoteLength } from '../src/validate/quotes.ts';
 import type { ParsedMessage, QuoteCheck } from '../src/types.ts';
 
@@ -212,16 +212,16 @@ test('mentions: a claim naming "Darron Giron" is found in a header "Giron, Darro
   assert.deepEqual(nameTokens("Giron, Darron C. O'Neal"), ['giron', 'darron', 'oneal']);
 });
 
-test('mentions: words scattered over two people pass (the word-level rule of 15.2); the rollup then keeps both people as a tie', () => {
+test('mentions: words scattered over two people pass (the word-level rule of 15.2); the rollup then matches the claim to no one', () => {
   const { raw, m } = message(['Kate Fraser sends the schedule; Mark Symes checks it.'], '\r\n');
   assert.equal(mentions(raw, m, 'Kate Symes'), true, 'a name assembled from two people is accepted');
-  // The resolver matches it to both, one word each, so it counts as either of them: a conflict
-  // needs another claim that names neither.
-  const people = [
-    { email: 'kate.fraser@enron.com', name: 'Kate Fraser' },
-    { email: 'mark.symes@enron.com', name: 'Mark Symes' },
-  ];
-  assert.deepEqual(claimant('Kate Symes', people, people), { known: ['kate.fraser@enron.com', 'mark.symes@enron.com'] });
+  // The rollup's matchClaim needs two shared words for a two-word name, and each of the two shares
+  // one: the claim is unmatched, stays listed, and takes part in no conflict.
+  const names: Record<string, string> = { 'kate.fraser@enron.com': 'Kate Fraser', 'mark.symes@enron.com': 'Mark Symes' };
+  const participants = Object.keys(names).map((email) => ({ email, kind: 'person' as const }));
+  const identity = { displayName: (e: string) => names[e] ?? null, addresses: (e: string) => [e] };
+  assert.deepEqual(matchClaim('Kate Symes', participants, identity), { status: 'unmatched', people: [], name: null });
+  assert.deepEqual(matchClaim('Kate Fraser', participants, identity), { status: 'matched', people: ['kate.fraser@enron.com'], name: 'Kate Fraser' });
 });
 
 test('subject quotes: a short quote is allowed only when it is the whole subject', () => {

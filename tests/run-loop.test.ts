@@ -38,6 +38,7 @@ import {
 } from '../src/run/commands.ts';
 import { SYNTH_MAX_GROUPS } from '../src/model/synthesis-input.ts';
 import { canonicalTaxonomy } from '../src/model/taxonomy.ts';
+import { foldPeople } from '../src/normalize/identity.ts';
 import { buildPeople } from '../src/normalize/people.ts';
 import { buildThreads } from '../src/normalize/threads.ts';
 import { mergeCommand } from '../src/run/merge.ts';
@@ -411,7 +412,7 @@ function fixtureM5(name = 'm5'): string {
   const threads = buildThreads(parsed);
   writeFileSync(join(root, 'out', 'messages.jsonl'), parsed.map((m) => `${JSON.stringify(m)}\n`).join(''));
   writeFileSync(join(root, 'out', 'threads.json'), JSON.stringify(threads));
-  writeFileSync(join(root, 'out', 'people.json'), JSON.stringify(buildPeople(parsed, ['enron.com'])));
+  writeFileSync(join(root, 'out', 'people.json'), JSON.stringify(foldPeople(buildPeople(parsed, ['enron.com']), { priced_domains: ['enron.com'], system_senders: [] })));
   writeFileSync(join(root, 'out', 'prepare-stats.json'), JSON.stringify({ corpus_hash: 'c'.repeat(64), suspected_injection: [], oversize: [] }));
   const index: BatchEntry[] = [];
   for (let b = 0; b * 5 < parsed.length; b++) {
@@ -428,10 +429,12 @@ function fixtureM5(name = 'm5'): string {
   }
   const config = (f: string) => readFileSync(join(dirname(fileURLToPath(import.meta.url)), '..', 'config', f), 'utf8');
   writeFileSync(join(root, 'config', 'effort-rates.json'), config('effort-rates.json'));
-  // Tier B at 1 occurrence, 1 month, 1 staff member (ARCHITECTURE.md 15.4): every process of this
-  // small project is eligible for an artifact.
-  const scoring = JSON.parse(config('scoring.json')) as { tiers: Record<string, unknown> };
+  // Tier B at 1 occurrence, 1 month, 1 staff member (ARCHITECTURE.md 15.4), and no dollar bar (the
+  // committed 8,500 cents is far above this small project's minutes): every process is eligible for
+  // an artifact.
+  const scoring = JSON.parse(config('scoring.json')) as { tiers: Record<string, unknown>; artifacts: Record<string, unknown> };
   scoring.tiers.B = { min_occurrences: 1, min_active_months: 1, min_staff: 1 };
+  scoring.artifacts.min_automatable_cents = null;
   writeFileSync(join(root, 'config', 'scoring.json'), `${JSON.stringify(scoring, null, 2)}\n`);
   return root;
 }

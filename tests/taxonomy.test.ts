@@ -36,6 +36,7 @@ import {
   taxonomyBytes,
   type TaxonomyProcess,
 } from '../src/model/taxonomy.ts';
+import { foldPeople } from '../src/normalize/identity.ts';
 import { buildPeople } from '../src/normalize/people.ts';
 import { buildThreads } from '../src/normalize/threads.ts';
 import { parseMessage } from '../src/parse/message.ts';
@@ -101,7 +102,8 @@ const unique: ParsedMessage[] = mails.map((m, i) => {
 });
 const texts = new Map(mails.map((m, i) => [m.id, raws[i] as string]));
 const threads = buildThreads(unique);
-const people = buildPeople(unique, ['enron.com']);
+// The directory as prepare writes it (the digest reads only email and name).
+const people = foldPeople(buildPeople(unique, ['enron.com']), { priced_domains: ['enron.com'], system_senders: [] });
 const digest = buildDigest(unique, threads, people, texts);
 const digestLines = digest.split('\n');
 

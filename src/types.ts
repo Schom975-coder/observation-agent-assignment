@@ -78,12 +78,27 @@ export type Thread = {
   occurrences: Occurrence[];
 };
 
-export type Person = {
+// What an address is (src/normalize/identity.ts): a person, a distribution list (its readers are
+// staff, the list itself is not), or a system sender named in config/effort-rates.json
+// system_senders (unpriced).
+export type PersonKind = 'person' | 'list' | 'system';
+// The rule that folded an address into another (ARCHITECTURE.md 4.1, "Participant identity").
+export type FoldRule = 'display_name' | 'middle_initial' | 'last_name' | 'first_last' | 'initial_last';
+
+// One address as buildPeople counts it, before the identity fields are added.
+export type PersonCounts = {
   email: string;
-  name: string | null; // most frequent display name seen for this address
+  name: string | null; // most frequent display name seen for this address (the taxonomy digest reads it)
   sent: number; // unique messages sent
   received: number; // unique messages received (To/Cc)
-  priced: boolean; // company staff, per config priced_domains
+  priced: boolean; // domain in config priced_domains
+};
+
+// One record of out/people.json: the counts, and who the address is.
+export type Person = PersonCounts & {
+  kind: PersonKind;
+  canonical: string; // the address this one folds into, chains followed; itself when none
+  fold: FoldRule | null; // the rule of this address's own fold (its first link); null when none
 };
 
 export type BatchEntry = {
@@ -105,7 +120,7 @@ export type AuthoredAction = 'chaser' | 'forward' | 'authored_short' | 'authored
 export type MessageActions = {
   id: string;
   authored: AuthoredAction;
-  sender_priced: boolean; // sender's domain is a priced (company) domain
+  sender_priced: boolean; // the sender is a priced party: a priced domain and not a system sender
   reads: Array<{ email: string; priced: boolean }>; // distinct recipients, sender excluded, capped
 };
 
@@ -262,12 +277,26 @@ export type MergeTable = {
 export type ActionSource = {
   message_id: string;
   type: AuthoredAction | 'read';
-  person: string; // the sender for an authored action, the recipient for a read
-  priced: boolean; // company staff (priced_domains)
+  person: string; // the canonical address of the sender (authored) or the recipient (read)
+  address: string; // the address as the message has it
+  priced: boolean; // a priced party: a priced domain (priced_domains) and not a system sender
   share_x100: number; // the message's share for this process: 100 unless it carries several merged keys
 };
 
-export type Participant = { email: string; name: string | null; staff: boolean; authored: number; forwards: number; chasers: number; reads: number };
+// One identity on a process's trail. `email` is the canonical address; `addresses` the addresses of
+// this identity seen in this process, sorted; `name` the identity's display name; `staff` true for a
+// person at a priced domain (a list or a system sender never is).
+export type Participant = {
+  email: string;
+  name: string | null;
+  kind: PersonKind;
+  addresses: string[];
+  staff: boolean;
+  authored: number;
+  forwards: number;
+  chasers: number;
+  reads: number;
+};
 
 export type ProcessWindow = {
   first_utc: string | null; // earliest usable-date tagged message
@@ -278,7 +307,16 @@ export type ProcessWindow = {
   undated_occurrences: number; // occurrences with no usable-date tagged message
 };
 
-export type OwnershipConflict = { claims: Array<{ person: string; message_id: string; date_utc: string | null }> };
+// Whom an ownership claim names, resolved against the process's participants only (src/metrics/rollup.ts
+// matchClaim): one participant, several, none, or a group or role rather than one person.
+export type ClaimStatus = 'matched' | 'several' | 'unmatched' | 'group';
+export type ClaimMatch = { status: ClaimStatus; people: string[]; name: string | null }; // people: canonical addresses, sorted; name: the display name when matched
+export type OwnershipClaim = { message_id: string; person: string; date_utc: string | null; quote: string; match: ClaimMatch };
+// Two claims naming different people at most OWNERSHIP_CONFLICT_DAYS apart: their message IDs, `a`
+// the earlier claim (by date, then ID), and the whole days between them.
+export type ConflictPair = { a: string; b: string; days_apart: number };
+// From a tagged message to the next message in its thread by another identity, in tenths of an hour.
+export type ReplyGap = { from: string; to: string; hours_x10: number };
 
 export type ProcessRollup = {
   key: string;
@@ -297,12 +335,14 @@ export type ProcessRollup = {
   action_sources: ActionSource[];
   email_x100: { today: number; automatable: number }; // whole window, the rollup's rates
   participants: Participant[]; // by actions desc, then email
-  staff_participants: number;
-  median_reply_gap_h: number | null;
+  staff_participants: number; // participants with staff: true
+  reply_gaps: ReplyGap[]; // sorted by from, then to
+  reply_gap_n: number; // reply_gaps.length
+  median_reply_gap_h: number | null; // over reply_gaps
   chasers: number;
   stalls: Array<{ message_id: string; kind: StallKind; quote: string; start: number; end: number }>; // validated stall quotes only
-  ownership_claims: Array<{ message_id: string; person: string; date_utc: string | null; quote: string }>;
-  ownership_conflict: OwnershipConflict | null;
+  ownership_claims: OwnershipClaim[];
+  ownership_conflicts: ConflictPair[]; // sorted by a, then b
   evidence_ids: string[]; // accepted evidence under this merged key
   flags: string[];
 };
@@ -377,7 +417,7 @@ export type SynthCited = {
   kind: 'evidence' | 'stall' | 'ownership';
   message_id: string;
   occurrence_id: string;
-  sender: string;
+  sender: string; // the sender's canonical address: one person under several addresses is one sender
   date_utc: string | null;
 };
 export type SynthSidecar = { group_id: string; processes: Array<{ key: string; occurrences: number; cited: SynthCited[] }> };
@@ -409,6 +449,7 @@ export type Opportunity = {
     actions: { priced: ActionCounts; unpriced: ActionCounts };
     email_x100: MinutesPair; // whole window, at the rates scored with
     email_per_month_x100: MinutesPair;
+    reply_gap: { n: number; median_h: number | null }; // the median is shown only with n >= 5 (a build rule)
   };
   estimated: null | {
     source: 'model' | 'override';
@@ -423,7 +464,12 @@ export type Opportunity = {
   };
   per_month_x100: MinutesPair; // email + work
   hours_per_month_x100: MinutesPair;
-  dollars_per_month_cents: MinutesPair;
+  dollars_per_month_cents: MinutesPair; // cents of the email part + cents of the work part
+  // Automatable minutes per month and cents with the estimate at its low and at its high minutes
+  // per occurrence, the automatable share fixed (not a confidence interval); with no estimate both
+  // ends are the automatable value.
+  range_per_month_x100: { low: number; high: number };
+  range_cents: { low: number; high: number };
   formula: { counted: string; estimated: string | null; total: string };
   rates_sha: string;
   scoring_sha: string;
@@ -436,14 +482,24 @@ export type Opportunity = {
     automation: { approach: string; artifact_type: string; rationale: string };
   };
   stalls_counted: Record<StallKind, number>;
-  ownership_conflict: OwnershipConflict | null;
+  ownership_conflicts: ConflictPair[];
   evidence_ids: string[];
   artifact: null | { type: string; path: string };
   artifact_eligible: boolean;
   flags: string[];
 };
 
-export type HeadlineCents = { total: number; counted_email: number; estimated_work: number };
+// Sums over the rows of a headline block: total = counted_email + estimated_work exactly; low and
+// high the rows' range_cents; today the rows' dollars today; hours_x100 the rows' hours per month.
+export type HeadlineCents = {
+  total: number;
+  counted_email: number;
+  estimated_work: number;
+  low: number;
+  high: number;
+  today: number;
+  hours_x100: { today: number; automatable: number };
+};
 
 // out/opportunities.json (or out/opportunities.<name>.json for --rates / --estimates)
 export type Opportunities = {
@@ -507,8 +563,11 @@ export type ArtifactBrief = {
     actions: { short: number; medium: number; long: number; forwards: number; chasers: number; reads: number };
     stalls: Record<StallKind, number>;
   };
-  participants: Array<{ name: string | null; staff: boolean; authored: number; forwards: number; chasers: number; reads: number }>; // no addresses
-  ownership: { claims: Array<{ person: string; date: string | null }>; conflict: boolean };
+  // No addresses; a distribution list or a system sender by its kind (and its name, when it has one).
+  participants: Array<{ name: string | null; kind: PersonKind; staff: boolean; authored: number; forwards: number; chasers: number; reads: number }>;
+  // Each distinct claimed person once, with whether the name matched someone who took part in the
+  // process (status) and that person's display name; conflicts: the process's conflict pairs.
+  ownership: { claims: Array<{ person: string; date: string | null; status: ClaimStatus; name: string | null }>; conflicts: number };
   estimate: null | {
     label: 'estimate, not a count';
     minutes_per_occurrence: { low: number; mid: number; high: number };

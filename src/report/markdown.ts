@@ -15,13 +15,17 @@ const BRACKETED = /\[[^[\]\n]*\]/g;
 const isBlank = (s: string): boolean => /[A-Za-z]/.test(s);
 const EVIDENCE_HEADING = /^##[ \t]+Evidence[ \t]*$/;
 
-// The bracketed placeholders of a document, in order, before its Evidence footer: what the owner has
-// to confirm. Counted by code.
+// What the owner has to confirm in a document, in order, before its Evidence footer: the values the
+// drafter proposed ("[proposed: same day]"), the rules it took from one email ("[confirm still in
+// force]") and the owner itself ("[process owner to confirm]"). The other bracketed fields are
+// blanks, not counted: most ("[date]", "[meter]") are filled in each time the document is used, a few
+// ("[location]" of a shared list) once. Counted by code.
+const DECISION = /^\[(?:proposed\b|confirm\b)|\bto confirm\]$/i;
 export function blankItems(md: string): string[] {
   const out: string[] = [];
   for (const line of md.replace(/\r\n?/g, '\n').split('\n')) {
     if (EVIDENCE_HEADING.test(line)) break;
-    for (const m of line.matchAll(BRACKETED)) if (isBlank(m[0])) out.push(m[0]);
+    for (const m of line.matchAll(BRACKETED)) if (isBlank(m[0]) && DECISION.test(m[0])) out.push(m[0]);
   }
   return out;
 }

@@ -119,7 +119,8 @@ const SENT_FOLDER = /^_?sent(?:_items|_mail)?$/i;
 const RECENT_DAYS = 90;
 const ONE_MAILBOX_PCT = 90;
 const LABEL_MAX = 90;
-const FIX_MAX = 180;
+// The proposed fix shows as its whole first sentence; the cap only guards against a runaway one.
+const FIX_MAX = 400;
 const REPLY_GAP_MIN = 5;
 
 // ---- Nums ----
@@ -267,8 +268,11 @@ export function buildData(raw: BuildInputs, opts: BuildOptions = {}): Built {
   const flaggedIds = new Set(messages.filter((m) => m.flags.suspected_injection).map((m) => m.id));
 
   // ---- Ranks and membership ----
-  const opps = [...opportunities.opportunities].sort((a, b) => a.rank - b.rank);
-  const rankOf = new Map(opps.map((o) => [o.key, o.rank]));
+  // The shown rank: the processes in the total (tiers A and B) first, in the score's order, then those
+  // seen too rarely to count, so the numbers a reader sees run 1, 2, 3 within the total.
+  const opps = [...opportunities.opportunities].sort((a, b) => Number(a.tier === 'C') - Number(b.tier === 'C') || a.rank - b.rank);
+  const rankOf = new Map(opps.map((o, i) => [o.key, i + 1]));
+  const shownRank = (key: string): number => rankOf.get(key) as number;
   const rolled = new Map(rollup.processes.map((p) => [p.key, p]));
   const keysOfMessage = new Map<string, string[]>();
   for (const p of rollup.processes) for (const id of p.message_ids) keysOfMessage.set(id, [...(keysOfMessage.get(id) ?? []), p.key]);
@@ -658,7 +662,7 @@ export function buildData(raw: BuildInputs, opts: BuildOptions = {}): Built {
     const myLoops = loopsOf(key);
     const e = o.estimated;
     const row: Row = {
-      rank: o.rank,
+      rank: shownRank(o.key),
       key,
       name: o.name,
       tier: o.tier,
@@ -712,7 +716,7 @@ export function buildData(raw: BuildInputs, opts: BuildOptions = {}): Built {
       key,
       name: o.name,
       definition: p.definition,
-      rank: o.rank,
+      rank: shownRank(o.key),
       tier: o.tier,
       row,
       synthesis:
@@ -849,6 +853,8 @@ export function buildData(raw: BuildInputs, opts: BuildOptions = {}): Built {
     scope: first === '' ? 'Found in the email of no dated mailbox.' : F.scopeLine({ mailboxes: mailboxKeys.length, first_utc: first, last_utc: last }),
     split: F.splitSentence(h.counted_email, h.estimated_work),
     range: F.rangeSentence(h.low, h.high),
+    // What the work costs today beside the part that could be automated, and that both are floors.
+    today: `This work costs ${F.money(h.today, 'total')} a month today (${F.hours(h.hours_x100.today)} hours); the ${F.money(h.total, 'total')} is the part that could be automated. Both are floors: email shows only part of the work.`,
     concentration: F.concentrationSentence({ rows: oneRows.length, of: ab.length, worth: oneShown, total: F.money(h.total, 'total') }),
     caution: F.cautionSentence({ drafted_one: draftedAb.filter((r) => r.one_mailbox).length, drafted: draftedAb.length }),
     threshold: F.thresholdSentence(scoring),
@@ -947,7 +953,7 @@ export function buildData(raw: BuildInputs, opts: BuildOptions = {}): Built {
   // ---- Documents: every eligible row ----
   const documents: DocumentEntry[] = inputs.artifacts.artifacts
     .slice()
-    .sort((a, b) => a.rank - b.rank || byText(a.key, b.key))
+    .sort((a, b) => shownRank(a.key) - shownRank(b.key) || byText(a.key, b.key))
     .map((a) => {
       const r = rows.find((x) => x.key === a.key);
       return { key: a.key, type: a.artifact_type === 'none' ? null : a.artifact_type, status: a.status, path: a.path, blanks: r?.document?.blanks ?? null, reason: a.reason };
@@ -1079,7 +1085,7 @@ export function buildData(raw: BuildInputs, opts: BuildOptions = {}): Built {
       return {
         key: o.key,
         name: o.name,
-        rank: o.rank,
+        rank: shownRank(o.key),
         low: e.minutes_per_occurrence.low,
         mid: e.minutes_per_occurrence.mid,
         high: e.minutes_per_occurrence.high,
@@ -1165,7 +1171,7 @@ export function buildData(raw: BuildInputs, opts: BuildOptions = {}): Built {
       tiers: [
         `In the total: seen ${tierRuleWords('B', scoring.tiers).replace(/^in the total: /, '')}. ${F.plural(ab.length, 'process', 'processes')}.`,
         `Seen steadily: ${tierRuleWords('A', scoring.tiers).replace(/^seen steadily: /, '')}. ${F.plural(rows.filter((r) => r.tier === 'A').length, 'process', 'processes')}.`,
-        `Seen too rarely to count: ${F.plural(below.length, 'process', 'processes')}, ${F.money(belowCents, 'total')} a month, listed and ranked, not in the total.`,
+        `Seen too rarely to count: ${F.plural(below.length, 'process', 'processes')}, ${F.money(belowCents, 'total')} a month, listed after the total and not in it.`,
       ],
       threshold: [
         sentences.threshold,

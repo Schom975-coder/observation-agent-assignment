@@ -2,10 +2,10 @@
   "key": "counterparty-credit-controls",
   "name": "Counterparty credit controls",
   "definition": "Telling desks when a counterparty is restricted or approved to trade, and taking or allocating credit reserves on named transactions.",
-  "rank": 51,
+  "rank": 52,
   "tier": "C",
   "row": {
-    "rank": 51,
+    "rank": 52,
     "key": "counterparty-credit-controls",
     "name": "Counterparty credit controls",
     "tier": "C",
@@ -183,7 +183,7 @@
         "key": "counterparty-credit-controls"
       }
     },
-    "fix": "Keep a single counterparty credit status list that the deal-entry system checks before a trade is booked, and have a reserve request form that captures the deal numbers and the…",
+    "fix": "Keep a single counterparty credit status list that the deal-entry system checks before a trade is booked, and have a reserve request form that captures the deal numbers and the split between trader origination and credit reserve, so the booking and confirmation come from one record instead of free-text email.",
     "document": null,
     "status_line": "Not drafted: seen too rarely to count",
     "chasers": {

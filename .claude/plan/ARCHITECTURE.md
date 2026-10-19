@@ -548,7 +548,7 @@ type DashboardData = {
   scoring: { file; sha; tiers; threshold_cents; threshold: Num | null; cap; floor; estimates };
   chart: { y_max_cents; y_step_cents; y_max_range_cents; y_step_range_cents; drafted; axis_labels: string[]; axis_labels_range: string[] };
   findings: Array<{ key; stall_summary; stall_ids; quote: QuoteRef | null; fix }>;   // the top three rows in the total
-  rows: Row[];                                 // every process, rank order
+  rows: Row[];                                 // every process in shown-rank order: the total's rows first, then those seen too rarely
   cumulative: Array<{ key; cents: Num; share: Num; low_cents; high_cents }>;      // rows in the total; ends at headline.total
   next_steps: Array<{ title; text; nums: Num[] }>;   // each Num's t appears in text, in order
   documents: Array<{ key; type; status; path; blanks: Num | null; reason }>;     // every eligible row of artifacts.json

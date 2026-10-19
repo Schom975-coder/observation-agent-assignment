@@ -2,10 +2,10 @@
   "key": "curve-postid-maintenance",
   "name": "Price curve and post ID maintenance",
   "definition": "Maintaining price curve mappings and the lists of post IDs used to value positions, and circulating updated lists.",
-  "rank": 22,
+  "rank": 21,
   "tier": "B",
   "row": {
-    "rank": 22,
+    "rank": 21,
     "key": "curve-postid-maintenance",
     "name": "Price curve and post ID maintenance",
     "tier": "B",
@@ -183,7 +183,7 @@
         "key": "curve-postid-maintenance"
       }
     },
-    "fix": "Keep one curve and location mapping register that a routine check compares with the official books: it flags locations mapped to retired curves, records the official post ID, and…",
+    "fix": "Keep one curve and location mapping register that a routine check compares with the official books: it flags locations mapped to retired curves, records the official post ID, and generates the circulated curve list, so the analyst only decides new mappings with the desk.",
     "document": null,
     "status_line": "Not drafted: $30 a month is under the $85 drafting line",
     "chasers": {

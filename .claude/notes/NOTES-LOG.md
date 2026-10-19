@@ -120,6 +120,7 @@ Each line is a choice a reviewer could question. NOTES.md must answer the ones t
 - 2026-10-19, feat/m8: an intermittent failure ("guard: a drafter reads its brief" exiting 1 with no output, once locally, once in Windows CI) was traced to `tests/server.test.ts`: its cleanup force-killed every server pid it had started, including servers already gone, and Windows had reused one of those pids for a hook process spawned by `tests/hooks.test.ts` running alongside. Cleanup now signals a pid only while its server still answers on its port with that pid, the check `serve --stop` already made.
 
 ## 6. What we would build next with another week
+- 2026-10-19, feat/m8-polish: a client-value review agent (reading as the grader and as a client president) and a spot-check agent (12 random quotes, two dollar figures by hand, counts, logs, traps: all passed). The client lens found what the tests could not: ranks reading 1, 3, 4; fix proposals cut mid-sentence; 160 "items to confirm" that were mostly per-use blanks; no sense of what the work costs today. Fixed in the build. Left as next-week work: owners, fix costs and payback per finding.
 - Company-wide impact estimate from the 4 mailboxes, with stated assumptions. Deliberately not built.
 
 ## 7. Where the system is most likely wrong

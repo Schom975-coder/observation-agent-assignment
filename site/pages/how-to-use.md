@@ -56,7 +56,7 @@ A message's ID is its path in the repository, trailing dot included: `corpus/far
 
 The run drafts one working document for each opportunity above the threshold, of the type the synthesizer chose for the process: an SOP, a checklist, an email template or a template. Each is written for the team that does the work, to use the next morning. Code writes the title, the line under it and the people line; the drafter subagent writes the body under the headings of its type; code appends the Evidence section, message IDs with verbatim quotes checked against the raw bytes.
 
-Two markers say what the mail does not settle. `[proposed: ...]` is a value the drafter proposed because the emails give none, such as a deadline; `[confirm still in force]` follows a rule that rests on a single email. Any other bracketed blank is for the owner to fill in. [The run's documents](run.html#documents) are on this site, rendered and as Markdown.
+Two markers say what the mail does not settle. `[proposed: ...]` is a value the drafter proposed because the emails give none, such as a deadline; `[confirm still in force]` follows a rule that rests on a single email. Those two, with `[process owner to confirm]`, are the "items to confirm" the dashboard counts for each document: decisions for the owner. Any other bracketed field is a blank, not counted: most, such as `[date]` or `[meter]`, are filled in each time the document is used, and a few, such as `[location]` for a shared list, are set once. [The run's documents](run.html#documents) are on this site, rendered and as Markdown.
 
 ## Re-scoring without a model {#rescore}
 

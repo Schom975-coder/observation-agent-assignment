@@ -2,10 +2,10 @@
   "key": "deal-book-transfer",
   "name": "Deal transfer between books",
   "definition": "Identifying deals to move, kill or terminate and moving them to another book, such as the bankruptcy books, and reconciling the lists of deals moved.",
-  "rank": 6,
+  "rank": 5,
   "tier": "A",
   "row": {
-    "rank": 6,
+    "rank": 5,
     "key": "deal-book-transfer",
     "name": "Deal transfer between books",
     "tier": "A",
@@ -188,13 +188,13 @@
         "key": "deal-book-transfer"
       }
     },
-    "fix": "Use one standard deal-move request sheet (deal number, source book, target book, trader, reason) and a daily report that matches termination lists against current book…",
+    "fix": "Use one standard deal-move request sheet (deal number, source book, target book, trader, reason) and a daily report that matches termination lists against current book assignments, flagging deals not yet moved and any reversals.",
     "document": {
       "type": "template",
       "status": "done",
       "blanks": {
-        "v": 44,
-        "t": "44 items",
+        "v": 4,
+        "t": "4 items",
         "d": {
           "kind": "document",
           "key": "deal-book-transfer"
@@ -202,7 +202,7 @@
       },
       "reason": null
     },
-    "status_line": "Drafted: Template, 44 items to confirm",
+    "status_line": "Drafted: Template, 4 items to confirm",
     "chasers": {
       "v": 3,
       "t": "3 chasers",
@@ -6736,8 +6736,8 @@
     "path": "out/artifacts/deal-book-transfer/template.md",
     "markdown": "# Deal transfer between books: template\n\nDraft prepared from 84 emails about this process, for the process owner to review. Evidence about this process, quoted exactly from the emails, is listed at the end.\n\n## Purpose\n\nUse this sheet to ask the book owner to move, kill or terminate deals, for example into the bankruptcy books, or back to a live book. One sheet layout replaces ad hoc lists in different formats, so the book owner can flip the deals once and risk can reconcile the final list against its calculations and the book to book transfer numbers.\n\n## Who fills it in\n\nPeople doing this work (counted from the emails): Darron C Giron (10 written, 23 forwarded), Phillip M. Love (10 written, 1 forwarded), B. Scott Palmer (4 forwarded), Jeffrey C. Gossett (3 forwarded). Named as owner in the emails: Phillip M. Love (Jan 2002), Greg Couch (Jan 2002), Darron C Giron (Oct 2000); the process owner settles which. Owner: [process owner to confirm].\n\nThe requester is the risk or logistics analyst who spotted the deals in the wrong book or on a termination list. The book owner (or the risk group that owns the target book) fills in the last two columns once the deals are flipped in the trading system. The termination and estate risk lead keeps the master list and reconciles each sheet against it. Confirm who holds each role at the start of a termination round, because the mail names different people for terminations and for estate risk.\n\n## When\n\nFill in a sheet whenever deals are found in the wrong book or must be killed or terminated, and send it to the book owner right away or by the next day, as the request says.\n\n- During a bankruptcy round, send one sheet per batch of termination or contract lists, and send each batch of stragglers as its own new sheet that points to the earlier one.\n- Send a reversal (deals moved from a bankruptcy book back to the live side) as a separate sheet, with the reason filled in, so it is not mistaken for a new move.\n- Before sending, check the deals against the master termination list so deals already moved are not sent again. If no master list exists yet, set one up at [location] and keep it current, and note who maintains it.\n- Keep a daily match of the master termination list against current book assignments. Flag deals not yet moved and any reversals, and send the flags to the requester.\n- Before the final reconciliation, ask the book owner to confirm no more straggler sheets are coming. If risk is still waiting on the final list, send a reminder [proposed: one reminder, then escalate to the estate risk lead].\n\n## Template\n\nRequest header:\n\n```\nRequest ID: [request ID]\nDate sent: [date]\nRequester (role and name): [requester]\nBook owner or risk group: [recipient]\nRequest type: [move / kill / terminate / reversal]\nRound: [first list / straggler list / reversal]\nEarlier sheet this follows: [request ID or none]\nNeeded by: [right away / next day / date]\n```\n\nDeal rows:\n\n| Deal number | Source book | Target book | Trader | Reason | Counterparty (if the sale counterparty changes) | Effective date | Flipped by (book owner) | Date flipped | Confirmed in trading system (yes/no) |\n|---|---|---|---|---|---|---|---|---|---|\n| [deal number] | [source book, e.g. FT-West] | [target book, e.g. FT-US/CAND-ERMS or a bankruptcy book] | [trader name] | [reason: wrong book / kill / terminate / auto-terminating / reversal] | [counterparty] | [effective date] | [name] | [date] | [yes/no] |\n| [deal number] | [source book] | [target book] | [trader name] | [reason] | [counterparty] | [effective date] | [name] | [date] | [yes/no] |\n\nReconciliation, filled in by risk after the final list:\n\n```\nFinal list received: [date]\nDeals on the sheet: [count] \nDeals confirmed moved: [count]\nDeals not yet moved: [deal numbers]\nReversals: [deal numbers]\nMatched to risk calculations: [yes/no, notes]\nMatched to book to book transfer numbers: [yes/no, notes]\nOpen questions and who is answering: [notes]\n```\n\nRules for filling it in:\n\n- Fill in the trader and the target book on every row. A row without them goes back to the requester.\n- Give one deal number per row, with the source and target book exactly as the trading system names them.\n- If a book must be renamed or a new book is proposed (an index book, for example), do not mix it into a deal row. Raise it in the open questions line and get the book owner's reply before any deals are moved to it.\n\n## Where it goes\n\n- Send the sheet to the book owner or risk group that owns the target book, with the requester's own manager copied [proposed: manager copied on every sheet].\n- Save a copy in the shared termination folder at [location], named with the request ID, and add the deals to the master termination list at [location].\n- If a deal is unclear (for example, who changes the counterparty on a sale), call the book owner instead of resending the sheet, and note the answer in the open questions line.\n- If the sheet is waiting on a reply, send one reminder [proposed: one reminder, then escalate to the estate risk lead].\n- If the reporting system will not print the sheet or the report (TAGG has failed to print before), send the sheet as an attachment by email and tell the system support contact at [contact].\n- When the book owner confirms the flips, return the completed sheet to the requester and to risk for the reconciliation.\n\n## Evidence\n\nPassages about this process, each quoted exactly from the email named above it. They support the document as a whole, not any one line of it.\n\n### The work\n\n- `corpus/giron-d/inbox/117.` (2002-01-18, from Palmer, B. Scott):\n\n  > please find a listing of auto-terminating deals that need to be moved into the bankruptcy books.\n\n- `corpus/giron-d/sent/360.` (2000-12-27, from Darron C Giron):\n\n  > flip them to the FT-US/CAND-ERMS book right away.\n\n- `corpus/giron-d/inbox/31.` (2002-02-01, from Rodrigue, Robin):\n\n  > The tabs labeled NSS1 Deals Killed and NSS2 Deals Killed are the PGL deals that were killed.\n\n- `corpus/giron-d/sent/23.` (2001-05-02, from Darron C Giron):\n\n  > The WEST-PERM deals have been flipped.\n\n- `corpus/giron-d/inbox/91.` (2002-01-23, from Balfour-Flanagan, Cyndie):\n\n  > the following contracts are terminated effective 12/30/01.\n\n- `corpus/farmer-d/logistics/2.` (2001-12-14, from Palmer, B. Scott):\n\n  > more auto-terminate deals\n\n- `corpus/farmer-d/logistics/840.` (2000-02-24, from Mandy MacKinnon):\n\n  > moved to Duke Energy Field Services.\n\n- `corpus/giron-d/sent/786.` (2000-06-08, from Darron C Giron):\n\n  > The Sitara group is getting prepared to be converting all cash desk financial\n\n- `corpus/giron-d/inbox/57.` (2002-01-28, from Richardson, Stacey):\n\n  > Here are a few more stragglers to move into the bankruptcy books:\n\n- `corpus/giron-d/sent/459.` (2000-11-27, from Darron C Giron):\n\n  > There's a deal in the FT-West book that needs to be moved to the\n\n- `corpus/williams-w3/sent_items/269.` (2001-08-30, from Williams III, Bill):\n\n  > I have attached the spread sheet I created back in February.\n\n- `corpus/farmer-d/logistics/7.` (2001-12-13, from Jaquet, Tammy):\n\n  > We will be killing about 2000 deals in Sitara tonight.\n\n- `corpus/giron-d/inbox/127.` (2002-01-12, from Tomaski, Richard):\n\n  > Here is my recommendation for the liquidation of EMW.\n\n- `corpus/giron-d/sent/126.` (2001-03-27, from Darron C Giron):\n\n  > Could you please do me a favor, and make sure that all Canadian deals\n\n- `corpus/giron-d/inbox/44.` (2002-01-31, from Love, Phillip M.):\n\n  > move any deals with the FT-TERMIN-GD book to the bankruptcy book from NG-Price\n\n- `corpus/giron-d/inbox/39.` (2002-01-31, from Love, Phillip M.):\n\n  > Change the ENA book name from NG-Price to ENA-FT-WC-SJ\n\n- `corpus/giron-d/inbox/105.` (2002-01-22, from Richardson, Stacey):\n\n  > Here are more deals that need to be moved into the bankruptcy books.\n\n- `corpus/giron-d/inbox/72.` (2002-01-25, from Richardson, Stacey):\n\n  > Attached please find some \"stragglers\" that need to moved into the bankruptcy books.\n\n- `corpus/williams-w3/sent_items/293.` (2001-08-21, from Williams III, Bill):\n\n  > HERE ARE THE BOOK TO BOOK TRANSFER NUMBERS FOR BOM AND STSW\n\n- `corpus/giron-d/inbox/43.` (2002-01-31, from Palmer, B. Scott):\n\n  > Please fill out the book and trader name.\n\n### Where it stalls\n\n- `corpus/giron-d/inbox/95.` (2002-01-23, from Love, Phillip M.):\n\n  > I am still waiting on a final list to cross reference with our calcs.\n\n- `corpus/giron-d/sent/108.` (2001-03-29, from Darron C Giron):\n\n  > We are having problems printing TAGG\n\n- `corpus/giron-d/sent/419.` (2000-12-06, from Darron C Giron):\n\n  > There seems to be some confusion about this deal, so please call me\n\n- `corpus/giron-d/sent/568.` (2000-10-20, from Darron C Giron):\n\n  > Also, how my proposed index book\n\n### Who owns it\n\n- `corpus/giron-d/inbox/116.` (2002-01-18, from Richardson, Stacey):\n\n  > Scott is heading another project for Gossett and Darron and I will be handling terminations from today forward.\n\n- `corpus/giron-d/inbox/37.` (2002-01-31, from Love, Phillip M.):\n\n  > Greg Couch is going to be leading the estate risk effort\n\n- `corpus/giron-d/sent/404.` (2000-12-08, from Darron C Giron):\n\n  > He runs the G-Daily-Est book.\n\n- `corpus/giron-d/sent/550.` (2000-10-27, from Darron C Giron):\n\n  > Darron is controller for the west region,  and he should be able to take care\n\nCounted from the emails: this work came up 65 times over 15 active months (2000-02-24 to 2002-02-01), across 84 emails, with 61 staff taking part.\n\nEstimated, not counted: about 35 minutes of hands-on work each time (range 15 to 90), about 50% of it automatable. Basis: seen in the emails; proposed by a model and checked by code.\n",
     "blanks": {
-      "v": 44,
-      "t": "44 items",
+      "v": 4,
+      "t": "4 items",
       "d": {
         "kind": "document",
         "key": "deal-book-transfer"
@@ -6745,49 +6745,9 @@
     },
     "blank_items": [
       "[process owner to confirm]",
-      "[location]",
       "[proposed: one reminder, then escalate to the estate risk lead]",
-      "[request ID]",
-      "[date]",
-      "[requester]",
-      "[recipient]",
-      "[move / kill / terminate / reversal]",
-      "[first list / straggler list / reversal]",
-      "[request ID or none]",
-      "[right away / next day / date]",
-      "[deal number]",
-      "[source book, e.g. FT-West]",
-      "[target book, e.g. FT-US/CAND-ERMS or a bankruptcy book]",
-      "[trader name]",
-      "[reason: wrong book / kill / terminate / auto-terminating / reversal]",
-      "[counterparty]",
-      "[effective date]",
-      "[name]",
-      "[date]",
-      "[yes/no]",
-      "[deal number]",
-      "[source book]",
-      "[target book]",
-      "[trader name]",
-      "[reason]",
-      "[counterparty]",
-      "[effective date]",
-      "[name]",
-      "[date]",
-      "[yes/no]",
-      "[date]",
-      "[count]",
-      "[count]",
-      "[deal numbers]",
-      "[deal numbers]",
-      "[yes/no, notes]",
-      "[yes/no, notes]",
-      "[notes]",
       "[proposed: manager copied on every sheet]",
-      "[location]",
-      "[location]",
-      "[proposed: one reminder, then escalate to the estate risk lead]",
-      "[contact]"
+      "[proposed: one reminder, then escalate to the estate risk lead]"
     ],
     "reason": null
   }

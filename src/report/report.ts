@@ -113,6 +113,7 @@ export function buildReport(data: Omit<DashboardData, 'inputs' | 'outputs'>, pro
     pc('value-label', H.label),
     pc('value-what', n(H.hours), ' hours a month of recurring work could be automated.'),
     p(S.scope),
+    p(S.today),
     p(S.split, ' ', S.range),
     h(3, 'Where this comes from'),
     p(S.concentration),
@@ -200,9 +201,9 @@ export function buildReport(data: Omit<DashboardData, 'inputs' | 'outputs'>, pro
   const all: Block[] = [
     h(2, `All ${F.count(rows.length)} recurring processes, ranked`),
     p(
-      `By what could be automated, in dollars a month; ties by name. ${F.count(ab.length)} are in the `,
+      `By what could be automated, in dollars a month; ties by name. The ${F.count(ab.length)} in the `,
       n(H.total),
-      ` total. ${F.count(below.length)} ${below.length === 1 ? 'was' : 'were'} seen too rarely to count and ${below.length === 1 ? 'sits' : 'sit'} in rank order, marked, outside the total.`,
+      ` total come first. ${F.count(below.length)} ${below.length === 1 ? 'was' : 'were'} seen too rarely to count; ${below.length === 1 ? 'it follows' : 'they follow'}, marked, outside the total.`,
     ),
     {
       kind: 'table',
@@ -241,7 +242,7 @@ export function buildReport(data: Omit<DashboardData, 'inputs' | 'outputs'>, pro
     p(S.threshold),
     p(S.sensitivity, ' ', method.words.threshold[2] ?? ''),
     ...(undrafted.length === 0 ? [] : [ul(undrafted.map((r) => [`Rank ${r.rank}, `, r.name, ': ', r.status_line, '.']))]),
-    p(`The ${F.plural(below.length, 'process', 'processes')} seen too rarely to count ${below.length === 1 ? 'is' : 'are'} ranked in the full table and ${below.length === 1 ? 'gets' : 'get'} no document: ${below.length === 1 ? 'it is' : 'they are'} not in the total.`),
+    p(`The ${F.plural(below.length, 'process', 'processes')} seen too rarely to count ${below.length === 1 ? 'is' : 'are'} listed after the total in the full table and ${below.length === 1 ? 'gets' : 'get'} no document: ${below.length === 1 ? 'it is' : 'they are'} not in the total.`),
   ];
 
   // ---- 6. How the numbers are made ----
@@ -270,7 +271,7 @@ export function buildReport(data: Omit<DashboardData, 'inputs' | 'outputs'>, pro
       : [
           {
             kind: 'table' as const,
-            head: ['Rank', 'Process', 'Document', 'Blanks', 'Status'],
+            head: ['Rank', 'Process', 'Document', 'To confirm', 'Status'],
             align: ['r', 'l', 'l', 'r', 'l'] as Array<'l' | 'r'>,
             rows: docs.map((d) => {
               const r = rows.find((x) => x.key === d.key);

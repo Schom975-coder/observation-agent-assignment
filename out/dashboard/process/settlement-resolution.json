@@ -2,10 +2,10 @@
   "key": "settlement-resolution",
   "name": "Settlement and invoice resolution",
   "definition": "Resolving invoices, payments, penalty charges and price disputes with counterparties for gas and power deals.",
-  "rank": 4,
+  "rank": 3,
   "tier": "A",
   "row": {
-    "rank": 4,
+    "rank": 3,
     "key": "settlement-resolution",
     "name": "Settlement and invoice resolution",
     "tier": "A",
@@ -193,13 +193,13 @@
         "key": "settlement-resolution"
       }
     },
-    "fix": "Run a daily match of counterparty invoices against Sitara deal prices and volumes, listing each variance with deal number, both figures, the responsible desk and the payment due…",
+    "fix": "Run a daily match of counterparty invoices against Sitara deal prices and volumes, listing each variance with deal number, both figures, the responsible desk and the payment due date, and send it to the owning scheduler or trader with a standard query.",
     "document": {
       "type": "email_template",
       "status": "done",
       "blanks": {
-        "v": 30,
-        "t": "30 items",
+        "v": 7,
+        "t": "7 items",
         "d": {
           "kind": "document",
           "key": "settlement-resolution"
@@ -207,7 +207,7 @@
       },
       "reason": null
     },
-    "status_line": "Drafted: Email template, 30 items to confirm",
+    "status_line": "Drafted: Email template, 7 items to confirm",
     "chasers": {
       "v": 23,
       "t": "23 chasers",
@@ -12446,44 +12446,21 @@
     "path": "out/artifacts/settlement-resolution/email-template.md",
     "markdown": "# Settlement and invoice resolution: email template\n\nDraft prepared from 170 emails about this process, for the process owner to review. Evidence about this process, quoted exactly from the emails, is listed at the end.\n\n## When to send\n\nSend this query when Settlements or accounting finds that a counterparty invoice or payment does not match the deal as booked in Sitara. Typical triggers:\n\n- A different price on the invoice than in Sitara (for example, the counterparty billed a price that differs from the Sitara price by a fraction of a cent).\n- An unpriced or wrong index on the ticket.\n- Volumes not yet actualized, so there is nothing in volume management to settle against.\n- Deals that may need to be netted or washed out together.\n- An invoice for gas that was never paid.\n\nSend one query per deal, as soon as the mismatch is found, so the owner has the longest possible time before the payment date.\n\n### Setup (once)\n\n1. Set up a variance list at [location, such as a shared sheet] with one row per mismatch: deal number, counterparty, invoice figure, Sitara figure, responsible desk, payment due date, date sent, status.\n2. Set up a desk lookup at [location] that maps each counterparty or meter to the scheduler or trader who owns the deal, and keep it current when people move or leave. Use it to pick the recipient so the query does not go to the wrong desk.\n3. Run a daily match of counterparty invoices against Sitara deal prices and volumes [proposed: each morning], and add every variance to the list before sending.\n\n## Sender and recipients\n\nPeople doing this work (counted from the emails): Bill Williams III (29 written), Darron C Giron (15 written, 5 forwarded), Megan Parker (13 written, 1 forwarded), Katherine Herrera (10 written, 4 forwarded). Named as owner in the emails: Megan Parker (Sep 2000), Tom Acton (Nov 2000), Darron C Giron (Jan 2001), Melissa K Ratnala (Sep 2000); the process owner settles which. Owner: [process owner to confirm].\n\n### Sender\n\nThe Settlements or accounting analyst who found the mismatch. The sender owns the query until the deal is corrected and the invoice is paid or rebilled, and keeps the variance list current.\n\n### Recipients\n\n- To: the scheduler or trader who owns the deal, taken from the desk lookup.\n- Cc: the Settlements lead [confirm still in force] and, for power disputes, the person who can pull trader tape recordings or check published market prices.\n- Do not send dispute emails to the counterparty or customer unless the Settlements lead says to [confirm still in force]. Tell the counterparty the correct price only after the ticket is corrected or the owner confirms what to bill.\n- If the desk lookup does not show an owner, or the owner redirects you, send to the desk lead and ask who handles the deal. Record the answer in the lookup.\n\n## Email\n\nSubject: Deal [deal number]\\: [counterparty] invoice [invoice figure] vs Sitara [Sitara figure], payment due [payment due date]\n\n```\nHi [owner name],\n\nThe [counterparty] invoice for [delivery month] on deal [deal number] does not match Sitara.\n\nInvoice: [price or volume on invoice] [unit, such as $/MMBtu or MMBtu/d]\nSitara: [price or volume in Sitara] [unit]\nIndex on the ticket: [index or \"unpriced\"]\nPayment due: [payment due date]\n\nPlease verify the deal and reply with one of the following:\n1. The Sitara ticket is right, bill or pay [figure].\n2. The ticket needs correcting to [figure]. Please correct it in Sitara and tell me when it is done.\n3. This deal belongs to [other desk or person].\n\nFor a power dispute, please say whether you checked the tapes or the published market price.\n\nI need your answer by [proposed: two business days before the payment due date] so I can rerun the invoice and confirm before it is due.\n\nThanks,\n[sender name]\n[Settlements contact details]\n```\n\n## If there is no reply\n\n1. Wait [proposed: one business day], then send one follow-up to the same owner with the original query below it and the payment due date in the first line.\n2. If there is still no answer, call the owner, then escalate to the desk lead and copy the Settlements lead [proposed: one reminder, then escalate].\n3. If the owner redirects the query, update the desk lookup and resend to the new owner. Do not start a new thread with a different subject.\n4. If Sitara blocks the fix (a ticket cannot be opened to correct swing pricing, or two prices are held for one day), tell the owner and the Sitara support contact [Sitara support contact] and record the block on the variance list. Do not tell the counterparty a corrected price until the ticket matches.\n5. If volumes are not yet actualized, ask the volume management group to actualize them first, then resend the query.\n6. If the counterparty does not return calls about the payment or dispute, note each attempt on the variance list and escalate to the desk lead before the payment due date.\n7. If the owner is leaving, ask them to hand every open item on the variance list to a named person before their last day, and update the desk lookup.\n8. If a price believed final changes again, or the counterparty changes its price during the dispute, send a new query with the latest figures and mark the earlier one superseded on the list.\n9. Close the row on the variance list only when the invoice is paid or rebilled and confirmed.\n\n## Evidence\n\nPassages about this process, each quoted exactly from the email named above it. They support the document as a whole, not any one line of it.\n\n### The work\n\n- `corpus/farmer-d/logistics/1528.` (2000-11-17, from Katherine Herrera):\n\n  > Are these deals suppose to be a washout and netted together?\n\n- `corpus/farmer-d/logistics/147.` (2001-05-07, from Cynthia Hakemack):\n\n  > BP invoiced HPL at $4.955 for the deal below, and Sitara shows $4.95.\n\n- `corpus/williams-w3/sent_items/266.` (2001-09-05, from Williams III, Bill):\n\n  > Per your request I have double checked Risk's daily record on ISO revenue/expenses for WHOURLY book in August and everything checked out.\n\n- `corpus/williams-w3/sent_items/131.` (2001-10-31, from Williams III, Bill):\n\n  > Please do NOT send emails regarding our disputes to our customers--El Paso or others.\n\n- `corpus/giron-d/inbox/280.` (2001-11-30, from Carl Sulzer GRE/ER Fuel/Plant):\n\n  > I am open to a settlement based on the change in the market price\n\n- `corpus/farmer-d/logistics/124.` (2001-05-24, from Ray, Tess):\n\n  > Can you confirm if 04/01 sales price for SA-745578, IF - $.06 per entry in Sitara\n\n- `corpus/giron-d/sent/680.` (2000-08-28, from Darron C Giron):\n\n  > Enron Canada purchase deal # 121397  Was 4.18427 should be 4.10185\n\n- `corpus/farmer-d/logistics/2048.` (2001-01-22, from Parker, Megan):\n\n  > Never mind.  They are now changing their price to 6.23.\n\n- `corpus/farmer-d/logistics/74.` (2001-08-17, from Vela, Valerie):\n\n  > Deal 819594 - the commodity price needs to be WAHA.HUB.GDP.D.A+.02\n\n- `corpus/farmer-d/logistics/1998.` (2000-12-20, from Julie Meyers):\n\n  > Can you please validate if this is his gas or if this deal ticket should have\n\n- `corpus/farmer-d/logistics/604.` (1999-12-21, from Julie Meyers):\n\n  > I wanted to update you on those Phillips deals that the counterparty is\n\n- `corpus/farmer-d/logistics/1058.` (2000-04-19, from Katherine Herrera):\n\n  > Would you like for me to confirm the conference call that Duke has requested\n\n- `corpus/williams-w3/sent_items/278.` (2001-08-29, from Williams III, Bill):\n\n  > In an effort to curb El Paso settlements issues, I've requested several sets of tapes over the past few days.\n\n- `corpus/williams-w3/sent_items/322.` (2001-08-07, from Williams III, Bill):\n\n  > It looks like 28 mws at $198 and 75 mws at $223.00.\n\n- `corpus/farmer-d/logistics/1039.` (2000-04-13, from Sherlyn Schumack):\n\n  > Recap of PG&E Texas meeting 4/12/00.\n\n- `corpus/giron-d/sent/12.` (2001-05-09, from Darron C Giron):\n\n  > Can you please update the 04/01 price for deal # 27253 in Sitara?\n\n- `corpus/farmer-d/logistics/922.` (2000-03-20, from Julie Meyers):\n\n  > We have a price difference with Mitchell Gas Services for 2/00 production,\n\n- `corpus/farmer-d/logistics/29.` (2001-10-31, from Parker, Megan):\n\n  > I received an invoice from Four Square Gas Company today for May 2001 gas that was never paid.\n\n- `corpus/farmer-d/logistics/132.` (2001-05-22, from Charlene Richmond):\n\n  > Could you fix asap because payment is due on 25th.\n\n- `corpus/farmer-d/logistics/78.` (2001-08-14, from Vela, Valerie):\n\n  > On day 18, did you intentionally enter 50,000 days or was it a slip of the fingers?\n\n### Where it stalls\n\n- `corpus/farmer-d/logistics/106.` (2001-06-25, from aep.com):\n\n  > I tried to get into the Sitara ticket # 373590 to correct the swing pricing\n\n- `corpus/farmer-d/logistics/1200.` (2000-06-12, from Katherine Herrera):\n\n  > Have you had a chance to change the pricing in the system?\n\n- `corpus/farmer-d/logistics/174.` (2001-04-17, from Rebecca Griffin):\n\n  > Let me know if this should go to someone else.\n\n- `corpus/farmer-d/logistics/604.` (1999-12-21, from Julie Meyers):\n\n  > I have left Gary L. a voice mail, but I have a\n\n- `corpus/farmer-d/logistics/99.` (2001-07-09, from Elizabeth L Hernandez):\n\n  > I have not received a response from you regarding the pricing discrepancies on these deals.\n\n- `corpus/giron-d/sent/643.` (2000-09-19, from Darron C Giron):\n\n  > Any word?  I am going to send in the water fall today so please let me know.\n\n### Who owns it\n\n- `corpus/farmer-d/logistics/1241.` (2000-06-26, from Rita Wynne):\n\n  > This is the piece that we need Daren's help on.\n\n- `corpus/farmer-d/logistics/1420.` (2000-09-22, from Kristen J Hanson):\n\n  > Megan Parker is handling this\n\n- `corpus/farmer-d/logistics/2037.` (2001-01-09, from Fred Boas):\n\n  > Kim Vaughn has taken over all of Kathy's meters.\n\n- `corpus/giron-d/sent/643.` (2000-09-19, from Darron C Giron):\n\n  > Please field all monetized questions/requests through me.\n\nCounted from the emails: this work came up 127 times over 27 active months (1999-12-21 to 2002-03-05), across 170 emails, with 132 staff taking part.\n\nEstimated, not counted: about 45 minutes of hands-on work each time (range 20 to 120), about 40% of it automatable. Basis: seen in the emails; proposed by a model and checked by code.\n",
     "blanks": {
-      "v": 30,
-      "t": "30 items",
+      "v": 7,
+      "t": "7 items",
       "d": {
         "kind": "document",
         "key": "settlement-resolution"
       }
     },
     "blank_items": [
-      "[location, such as a shared sheet]",
-      "[location]",
       "[proposed: each morning]",
       "[process owner to confirm]",
       "[confirm still in force]",
       "[confirm still in force]",
-      "[deal number]",
-      "[counterparty]",
-      "[invoice figure]",
-      "[Sitara figure]",
-      "[payment due date]",
-      "[owner name]",
-      "[counterparty]",
-      "[delivery month]",
-      "[deal number]",
-      "[price or volume on invoice]",
-      "[unit, such as $/MMBtu or MMBtu/d]",
-      "[price or volume in Sitara]",
-      "[unit]",
-      "[index or \"unpriced\"]",
-      "[payment due date]",
-      "[figure]",
-      "[figure]",
-      "[other desk or person]",
       "[proposed: two business days before the payment due date]",
-      "[sender name]",
-      "[Settlements contact details]",
       "[proposed: one business day]",
-      "[proposed: one reminder, then escalate]",
-      "[Sitara support contact]"
+      "[proposed: one reminder, then escalate]"
     ],
     "reason": null
   }

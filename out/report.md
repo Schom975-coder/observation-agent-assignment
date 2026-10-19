@@ -12,6 +12,8 @@ observed in 4 mailboxes, 1999-2002
 
 Found in the email of 4 employees, December 1999 to March 2002.
 
+This work costs $5,277 a month today (62.1 hours); the $2,231 is the part that could be automated. Both are floors: email shows only part of the work.
+
 About a quarter is email time counted from the messages; most is hands-on work estimated from them. The estimates put it between $1,243 and $4,989.
 
 ### Where this comes from
@@ -34,15 +36,15 @@ Seen 149 times over 241 days (9 active months), 11 Jun 2001 to 7 Feb 2002, in 16
 
 **Where it stalls:** Schedule sheets repeatedly carry errors that have to be reworked: duplicate schedules, wrong lending positions and missing schedules in the EPE sheet. _(a summary)_
 
-**What would fix it:** Generate the preschedule and EPE schedule sheets from the deals booked in Enpower, with checks that flag duplicate schedules, lending volumes that differ from the deal, and… _(our proposal)_
+**What would fix it:** Generate the preschedule and EPE schedule sheets from the deals booked in Enpower, with checks that flag duplicate schedules, lending volumes that differ from the deal, and import IDs or tags that do not match the CISO submission. _(our proposal)_
 
 Bill Williams III, 23 Jul 2001 · `corpus/williams-w3/sent_items/374.`
 
 > Friday's sheet for Monday had a duplicate 10 mw schedule in it
 
-**Ready to use:** SOP, 10 items to confirm
+**Ready to use:** SOP, 8 items to confirm
 
-#### Rank 3: Meter flow discrepancy resolution
+#### Rank 2: Meter flow discrepancy resolution
 
 **$230 a month** (the estimates put it between $136 and $465) · 2.7 hours a month
 
@@ -50,15 +52,15 @@ Seen 157 times over 680 days (21 active months), 14 Dec 1999 to 23 Oct 2001, in 
 
 **Where it stalls:** Requesters wait on replies and chase repeatedly for status on a meter, sometimes after voicemails, and one escalates in capitals asking for anyone to help resolve the matter. _(a summary)_
 
-**What would fix it:** A daily exception report that matches measured meter flow against deals and nominations and lists each meter, day and volume with no deal, with the last deal at that meter and… _(our proposal)_
+**What would fix it:** A daily exception report that matches measured meter flow against deals and nominations and lists each meter, day and volume with no deal, with the last deal at that meter and its trader attached. _(our proposal)_
 
 Jackie Young, 3 Apr 2000 · inside forwarded text · `corpus/farmer-d/logistics/1009.`
 
 > Anita, have you found out any further information about this meter.
 
-**Ready to use:** Template, 42 items to confirm
+**Ready to use:** Template, 6 items to confirm
 
-#### Rank 4: Settlement and invoice resolution
+#### Rank 3: Settlement and invoice resolution
 
 **$146 a month** (the estimates put it between $79 and $348) · 1.7 hours a month
 
@@ -66,13 +68,13 @@ Seen 127 times over 806 days (27 active months), 21 Dec 1999 to 5 Mar 2002, in 1
 
 **Where it stalls:** Settlements waits on the scheduler or trader to verify deals, chasing with follow-ups while payment dates approach. _(a summary)_
 
-**What would fix it:** Run a daily match of counterparty invoices against Sitara deal prices and volumes, listing each variance with deal number, both figures, the responsible desk and the payment due… _(our proposal)_
+**What would fix it:** Run a daily match of counterparty invoices against Sitara deal prices and volumes, listing each variance with deal number, both figures, the responsible desk and the payment due date, and send it to the owning scheduler or trader with a standard query. _(our proposal)_
 
 Rita Wynne, 26 Jun 2000 · `corpus/farmer-d/logistics/1241.`
 
 > we are waiting on a response from Daren
 
-**Ready to use:** Email template, 30 items to confirm
+**Ready to use:** Email template, 7 items to confirm
 
 ### Every process, ranked
 
@@ -81,22 +83,22 @@ By what could be automated, in dollars a month; ties by name. The top 10:
 | Rank | Process | Could be automated | Hours | Running total | Where it stalls | Document |
 |---:|---|---:|---:|---:|---|---|
 | 1 | Real-time power scheduling · Mostly seen in: Williams (100%) | $416 | 4.9 | $416 · 19% | Schedule sheets repeatedly carry errors that have to be reworked: duplicate schedules… | SOP |
-| 3 | Meter flow discrepancy resolution · Mostly seen in: Farmer (100%) | $230 | 2.7 | $646 · 29% | Requesters wait on replies and chase repeatedly for status on a meter, sometimes after… | Template |
-| 4 | Settlement and invoice resolution · Seen in: 4 mailboxes | $146 | 1.7 | $792 · 35% | Settlements waits on the scheduler or trader to verify deals, chasing with follow-ups… | Email template |
-| 5 | Deal ticket and transport contract set-up · Mostly seen in: Farmer (96%) | $140 | 1.6 | $932 · 42% | Requesters wait on the desk to enter or release a deal and have to ask again; logistics… | Template |
-| 6 | Deal transfer between books · Seen in: 3 mailboxes | $85 | 1.0 | $1,017 · 46% | Risk waits on a final list of terminated deals to cross-reference while more straggler… | Template |
+| 2 | Meter flow discrepancy resolution · Mostly seen in: Farmer (100%) | $230 | 2.7 | $646 · 29% | Requesters wait on replies and chase repeatedly for status on a meter, sometimes after… | Template |
+| 3 | Settlement and invoice resolution · Seen in: 4 mailboxes | $146 | 1.7 | $792 · 35% | Settlements waits on the scheduler or trader to verify deals, chasing with follow-ups… | Email template |
+| 4 | Deal ticket and transport contract set-up · Mostly seen in: Farmer (96%) | $140 | 1.6 | $932 · 42% | Requesters wait on the desk to enter or release a deal and have to ask again; logistics… | Template |
+| 5 | Deal transfer between books · Seen in: 3 mailboxes | $85 | 1.0 | $1,017 · 46% | Risk waits on a final list of terminated deals to cross-reference while more straggler… | Template |
 |  | **Documents drafted for the 5 above this line.** We draft a working document for every process seen 10 or more times over 3 or more months by 2 or more staff whose automatable work is worth one hour a month ($85) or more. |  |  |  |  |  |
-| 7 | Pipeline capacity reporting and release · Mostly seen in: Lokay (97%) | $82 | 1.0 | $1,099 · 49% | A report went out with the wrong effective date and had to be corrected in a follow-up… | Not drafted |
-| 8 | Pipeline project evaluation · Mostly seen in: Lokay (100%) | $77 | 0.9 | $1,176 · 53% | Cost estimates wait on facility information from field staff before they can be finished. | Not drafted |
-| 9 | Gas nomination and nomination changes · Mostly seen in: Farmer (98%) | $69 | 0.8 | $1,245 · 56% | Entries are reworked after mistakes or wrong files: a nomination set up wrongly at the… | Not drafted |
-| 10 | P&L and mark-to-market reporting · Seen in: 3 mailboxes | $68 | 0.8 | $1,313 · 59% | Reported figures need rework: a controller caused confusion that had to be cleared up… | Not drafted |
-| 11 | External audit support requests · Mostly seen in: Giron (91%) | $57 | 0.7 | $1,370 · 61% | Requests forwarded to desks sit unanswered and have to be chased more than once for… | Not drafted |
+| 6 | Pipeline capacity reporting and release · Mostly seen in: Lokay (97%) | $82 | 1.0 | $1,099 · 49% | A report went out with the wrong effective date and had to be corrected in a follow-up… | Not drafted |
+| 7 | Pipeline project evaluation · Mostly seen in: Lokay (100%) | $77 | 0.9 | $1,176 · 53% | Cost estimates wait on facility information from field staff before they can be finished. | Not drafted |
+| 8 | Gas nomination and nomination changes · Mostly seen in: Farmer (98%) | $69 | 0.8 | $1,245 · 56% | Entries are reworked after mistakes or wrong files: a nomination set up wrongly at the… | Not drafted |
+| 9 | P&L and mark-to-market reporting · Seen in: 3 mailboxes | $68 | 0.8 | $1,313 · 59% | Reported figures need rework: a controller caused confusion that had to be cleared up… | Not drafted |
+| 10 | External audit support requests · Mostly seen in: Giron (91%) | $57 | 0.7 | $1,370 · 61% | Requests forwarded to desks sit unanswered and have to be chased more than once for… | Not drafted |
 
 32 more processes in the total, and 18 processes seen too rarely to count are in the full table below.
 
 ### Next steps
 
-1. **Give each document an owner**: Name an owner for each of the 5 drafted documents and have them confirm its open items: 160 items across the 5.
+1. **Give each document an owner**: Name an owner for each of the 5 drafted documents and have them confirm its open items: 28 items across the 5.
 2. **Ask for more mail**: 3 of the 5 drafted processes come almost only from one mailbox. Other people’s mail would show whether the same work happens elsewhere.
 3. **Check what was still open**: 24 threads were still waiting on someone when their mailbox’s record stops; 5 are in drafted processes.
 
@@ -129,63 +131,63 @@ Mail from more people would show whether the same work happens elsewhere, and wo
 
 ## All 60 recurring processes, ranked
 
-By what could be automated, in dollars a month; ties by name. 42 are in the $2,231 total. 18 were seen too rarely to count and sit in rank order, marked, outside the total.
+By what could be automated, in dollars a month; ties by name. The 42 in the $2,231 total come first. 18 were seen too rarely to count; they follow, marked, outside the total.
 
 | Rank | Process | Counted | Estimated | Total | Range | Hours | Seen | Where seen | Document | Running total |
 |---:|---|---:|---:|---:|---:|---:|---:|---|---|---:|
 | 1 | Real-time power scheduling | $98 | $318 | $416 | $204 to $1,051 | 4.9 | 149 times, 9 active months | Mostly seen in: Williams (100%) | SOP | $416 · 19% |
-| 2 | Staff transfer onboarding _(not in the total)_ | $82 | $212 | $294 | $167 to $592 | 3.5 | 15 times, 2 active months | Seen in: 2 mailboxes | Not drafted | not in the total |
-| 3 | Meter flow discrepancy resolution | $42 | $188 | $230 | $136 to $465 | 2.7 | 157 times, 21 active months | Mostly seen in: Farmer (100%) | Template | $646 · 29% |
-| 4 | Settlement and invoice resolution | $25 | $121 | $146 | $79 to $348 | 1.7 | 127 times, 27 active months | Seen in: 4 mailboxes | Email template | $792 · 35% |
-| 5 | Deal ticket and transport contract set-up | $44 | $96 | $140 | $92 to $259 | 1.6 | 190 times, 25 active months | Mostly seen in: Farmer (96%) | Template | $932 · 42% |
-| 6 | Deal transfer between books | $17 | $68 | $85 | $46 to $193 | 1.0 | 65 times, 15 active months | Seen in: 3 mailboxes | Template | $1,017 · 46% |
-| 7 | Pipeline capacity reporting and release | $19 | $63 | $82 | $51 to $146 | 1.0 | 31 times, 8 active months | Mostly seen in: Lokay (97%) | Not drafted | $1,099 · 49% |
-| 8 | Pipeline project evaluation | $10 | $67 | $77 | $32 to $188 | 0.9 | 10 times, 4 active months | Mostly seen in: Lokay (100%) | Not drafted | $1,176 · 53% |
-| 9 | Gas nomination and nomination changes | $19 | $50 | $69 | $36 to $152 | 0.8 | 109 times, 20 active months | Mostly seen in: Farmer (98%) | Not drafted | $1,245 · 56% |
-| 10 | P&L and mark-to-market reporting | $10 | $58 | $68 | $36 to $165 | 0.8 | 62 times, 17 active months | Seen in: 3 mailboxes | Not drafted | $1,313 · 59% |
-| 11 | External audit support requests | $11 | $46 | $57 | $31 to $134 | 0.7 | 14 times, 7 active months | Mostly seen in: Giron (91%) | Not drafted | $1,370 · 61% |
-| 12 | Customer volume confirmation | $9 | $48 | $57 | $33 to $105 | 0.7 | 37 times, 15 active months | Mostly seen in: Farmer (100%) | Not drafted | $1,427 · 64% |
-| 13 | System issue resolution | $13 | $38 | $51 | $32 to $127 | 0.6 | 66 times, 22 active months | Seen in: 4 mailboxes | Not drafted | $1,478 · 66% |
-| 14 | Credit report distribution | $19 | $31 | $50 | $31 to $111 | 0.6 | 75 times, 6 active months | Mostly seen in: Giron (100%) | Not drafted | $1,528 · 68% |
-| 15 | Deal pathing and buyback links | $10 | $34 | $44 | $24 to $82 | 0.5 | 11 times, 4 active months | Mostly seen in: Farmer (100%) | Not drafted | $1,572 · 70% |
-| 16 | Pipeline imbalance resolution | $7 | $36 | $43 | $23 to $102 | 0.5 | 33 times, 19 active months | Seen in: 4 mailboxes | Not drafted | $1,615 · 72% |
-| 17 | Divestiture transition | $11 | $29 | $40 | $21 to $90 | 0.5 | 21 times, 6 active months | Seen in: 3 mailboxes | Not drafted | $1,655 · 74% |
-| 18 | Performance review | $7 | $33 | $40 | $18 to $89 | 0.5 | 35 times, 14 active months | Seen in: 4 mailboxes | Not drafted | $1,695 · 76% |
-| 19 | Time reports and activity surveys | $8 | $31 | $39 | $20 to $102 | 0.5 | 27 times, 15 active months | Seen in: 4 mailboxes | Not drafted | $1,734 · 78% |
-| 20 | Trading book set-up requests | $9 | $23 | $32 | $21 to $61 | 0.4 | 36 times, 12 active months | Mostly seen in: Giron (100%) | Not drafted | $1,766 · 79% |
-| 21 | On-call and holiday coverage | $12 | $20 | $32 | $19 to $72 | 0.4 | 52 times, 24 active months | Seen in: 4 mailboxes | Not drafted | $1,798 · 81% |
-| 22 | Price curve and post ID maintenance | $6 | $24 | $30 | $16 to $64 | 0.4 | 32 times, 12 active months | Mostly seen in: Giron (97%) | Not drafted | $1,828 · 82% |
-| 23 | Regulatory and market notice review | $8 | $22 | $30 | $17 to $61 | 0.4 | 47 times, 11 active months | Seen in: 3 mailboxes | Not drafted | $1,858 · 83% |
-| 24 | Staff recruiting and hiring | $6 | $23 | $29 | $15 to $75 | 0.4 | 40 times, 13 active months | Seen in: 3 mailboxes | Not drafted | $1,887 · 85% |
-| 25 | System access requests | $10 | $19 | $29 | $18 to $73 | 0.3 | 59 times, 18 active months | Seen in: 4 mailboxes | Not drafted | $1,916 · 86% |
-| 26 | Cost center allocation and charge review | $5 | $24 | $29 | $15 to $53 | 0.3 | 17 times, 8 active months | Mostly seen in: Farmer (94%) | Not drafted | $1,945 · 87% |
-| 27 | Office and IT equipment requests | $9 | $18 | $27 | $18 to $63 | 0.3 | 20 times, 7 active months | Seen in: 3 mailboxes | Not drafted | $1,972 · 88% |
-| 28 | Deal booking checks and corrections | $6 | $18 | $24 | $15 to $61 | 0.3 | 31 times, 18 active months | Seen in: 3 mailboxes | Not drafted | $1,996 · 89% |
-| 29 | Transport contract and OBA negotiation | $6 | $18 | $24 | $15 to $50 | 0.3 | 29 times, 12 active months | Seen in: 3 mailboxes | Not drafted | $2,020 · 91% |
-| 30 | Plant outage notices _(not in the total)_ | $13 | $11 | $24 | $19 to $39 | 0.3 | 10 times, 2 active months | Mostly seen in: Farmer (100%) | Not drafted | not in the total |
-| 31 | Month-end close and schedules | $5 | $18 | $23 | $13 to $54 | 0.3 | 18 times, 11 active months | Seen in: 2 mailboxes | Not drafted | $2,043 · 92% |
-| 32 | Market report and news circulation | $14 | $9 | $23 | $17 to $42 | 0.3 | 14 times, 6 active months | Seen in: 3 mailboxes | Not drafted | $2,066 · 93% |
-| 33 | Deal entry rules and procedures | $6 | $15 | $21 | $13 to $42 | 0.2 | 19 times, 9 active months | Seen in: 3 mailboxes | Not drafted | $2,087 · 94% |
-| 34 | Real-time model and data file distribution | $4 | $17 | $21 | $10 to $53 | 0.2 | 10 times, 5 active months | Mostly seen in: Williams (100%) | Not drafted | $2,108 · 94% |
-| 35 | Annual budget preparation _(not in the total)_ | $3 | $17 | $20 | $12 to $37 | 0.3 | 6 times, 2 active months | Seen in: 3 mailboxes | Not drafted | not in the total |
-| 36 | Contract status reporting _(not in the total)_ | $2 | $18 | $20 | $11 to $38 | 0.2 | 3 times, 2 active months | Seen in: 2 mailboxes | Not drafted | not in the total |
-| 37 | Staff training arrangement | $5 | $15 | $20 | $11 to $40 | 0.2 | 26 times, 14 active months | Seen in: 4 mailboxes | Not drafted | $2,128 · 95% |
-| 38 | Nightly book officialization _(not in the total)_ | $17 | $0 | $17 | no estimate | 0.2 | 5 times, 3 active months | Mostly seen in: Giron (100%) | Not drafted | not in the total |
-| 39 | Commercial strategy planning | $4 | $11 | $15 | $9 to $34 | 0.2 | 23 times, 9 active months | Seen in: 4 mailboxes | Not drafted | $2,143 · 96% |
-| 40 | Pipeline maintenance coordination | $6 | $9 | $15 | $11 to $34 | 0.2 | 22 times, 12 active months | Mostly seen in: Farmer (94%) | Not drafted | $2,158 · 97% |
-| 41 | EnronOnline product set-up | $4 | $11 | $15 | $7 to $37 | 0.2 | 11 times, 8 active months | Seen in: 3 mailboxes | Not drafted | $2,173 · 97% |
-| 42 | Customer event planning _(not in the total)_ | $2 | $12 | $14 | $8 to $32 | 0.2 | 6 times, 5 active months | Mostly seen in: Farmer (100%) | Not drafted | not in the total |
-| 43 | Desk responsibility assignment | $5 | $7 | $12 | $9 to $22 | 0.1 | 17 times, 9 active months | Seen in: 3 mailboxes | Not drafted | $2,185 · 98% |
-| 44 | Customer price quotes and bids _(not in the total)_ | $2 | $10 | $12 | $7 to $22 | 0.1 | 5 times, 3 active months | Seen in: 2 mailboxes | Not drafted | not in the total |
-| 45 | Expense report approval | $4 | $7 | $11 | $8 to $25 | 0.1 | 11 times, 5 active months | Seen in: 4 mailboxes | Not drafted | $2,196 · 98% |
-| 46 | Counterparty reference data changes _(not in the total)_ | $2 | $9 | $11 | $6 to $20 | 0.1 | 4 times, 4 active months | Seen in: 2 mailboxes | Not drafted | not in the total |
-| 47 | Internal meeting scheduling | $5 | $6 | $11 | $8 to $20 | 0.1 | 20 times, 11 active months | Seen in: 3 mailboxes | Not drafted | $2,207 · 99% |
-| 48 | Prior month adjustment review _(not in the total)_ | $3 | $8 | $11 | $6 to $24 | 0.1 | 6 times, 4 active months | Seen in: 3 mailboxes | Not drafted | not in the total |
-| 49 | Gas supply cut handling | $2 | $8 | $10 | $6 to $21 | 0.1 | 12 times, 9 active months | Mostly seen in: Farmer (92%) | Not drafted | $2,217 · 99% |
-| 50 | Meter and point set-up | $4 | $6 | $10 | $7 to $17 | 0.1 | 11 times, 7 active months | Seen in: 2 mailboxes | Not drafted | $2,227 · 100% |
-| 51 | Counterparty credit controls _(not in the total)_ | $2 | $3 | $5 | $4 to $10 | 0.1 | 4 times, 4 active months | Seen in: 2 mailboxes | Not drafted | not in the total |
-| 52 | Price data requests _(not in the total)_ | $1 | $4 | $5 | $3 to $11 | 0.1 | 4 times, 4 active months | Seen in: 3 mailboxes | Not drafted | not in the total |
-| 53 | HR record and pay administration | $1 | $3 | $4 | $2 to $7 | 0.0 | 10 times, 7 active months | Seen in: 4 mailboxes | Not drafted | $2,231 · 100% |
+| 2 | Meter flow discrepancy resolution | $42 | $188 | $230 | $136 to $465 | 2.7 | 157 times, 21 active months | Mostly seen in: Farmer (100%) | Template | $646 · 29% |
+| 3 | Settlement and invoice resolution | $25 | $121 | $146 | $79 to $348 | 1.7 | 127 times, 27 active months | Seen in: 4 mailboxes | Email template | $792 · 35% |
+| 4 | Deal ticket and transport contract set-up | $44 | $96 | $140 | $92 to $259 | 1.6 | 190 times, 25 active months | Mostly seen in: Farmer (96%) | Template | $932 · 42% |
+| 5 | Deal transfer between books | $17 | $68 | $85 | $46 to $193 | 1.0 | 65 times, 15 active months | Seen in: 3 mailboxes | Template | $1,017 · 46% |
+| 6 | Pipeline capacity reporting and release | $19 | $63 | $82 | $51 to $146 | 1.0 | 31 times, 8 active months | Mostly seen in: Lokay (97%) | Not drafted | $1,099 · 49% |
+| 7 | Pipeline project evaluation | $10 | $67 | $77 | $32 to $188 | 0.9 | 10 times, 4 active months | Mostly seen in: Lokay (100%) | Not drafted | $1,176 · 53% |
+| 8 | Gas nomination and nomination changes | $19 | $50 | $69 | $36 to $152 | 0.8 | 109 times, 20 active months | Mostly seen in: Farmer (98%) | Not drafted | $1,245 · 56% |
+| 9 | P&L and mark-to-market reporting | $10 | $58 | $68 | $36 to $165 | 0.8 | 62 times, 17 active months | Seen in: 3 mailboxes | Not drafted | $1,313 · 59% |
+| 10 | External audit support requests | $11 | $46 | $57 | $31 to $134 | 0.7 | 14 times, 7 active months | Mostly seen in: Giron (91%) | Not drafted | $1,370 · 61% |
+| 11 | Customer volume confirmation | $9 | $48 | $57 | $33 to $105 | 0.7 | 37 times, 15 active months | Mostly seen in: Farmer (100%) | Not drafted | $1,427 · 64% |
+| 12 | System issue resolution | $13 | $38 | $51 | $32 to $127 | 0.6 | 66 times, 22 active months | Seen in: 4 mailboxes | Not drafted | $1,478 · 66% |
+| 13 | Credit report distribution | $19 | $31 | $50 | $31 to $111 | 0.6 | 75 times, 6 active months | Mostly seen in: Giron (100%) | Not drafted | $1,528 · 68% |
+| 14 | Deal pathing and buyback links | $10 | $34 | $44 | $24 to $82 | 0.5 | 11 times, 4 active months | Mostly seen in: Farmer (100%) | Not drafted | $1,572 · 70% |
+| 15 | Pipeline imbalance resolution | $7 | $36 | $43 | $23 to $102 | 0.5 | 33 times, 19 active months | Seen in: 4 mailboxes | Not drafted | $1,615 · 72% |
+| 16 | Divestiture transition | $11 | $29 | $40 | $21 to $90 | 0.5 | 21 times, 6 active months | Seen in: 3 mailboxes | Not drafted | $1,655 · 74% |
+| 17 | Performance review | $7 | $33 | $40 | $18 to $89 | 0.5 | 35 times, 14 active months | Seen in: 4 mailboxes | Not drafted | $1,695 · 76% |
+| 18 | Time reports and activity surveys | $8 | $31 | $39 | $20 to $102 | 0.5 | 27 times, 15 active months | Seen in: 4 mailboxes | Not drafted | $1,734 · 78% |
+| 19 | Trading book set-up requests | $9 | $23 | $32 | $21 to $61 | 0.4 | 36 times, 12 active months | Mostly seen in: Giron (100%) | Not drafted | $1,766 · 79% |
+| 20 | On-call and holiday coverage | $12 | $20 | $32 | $19 to $72 | 0.4 | 52 times, 24 active months | Seen in: 4 mailboxes | Not drafted | $1,798 · 81% |
+| 21 | Price curve and post ID maintenance | $6 | $24 | $30 | $16 to $64 | 0.4 | 32 times, 12 active months | Mostly seen in: Giron (97%) | Not drafted | $1,828 · 82% |
+| 22 | Regulatory and market notice review | $8 | $22 | $30 | $17 to $61 | 0.4 | 47 times, 11 active months | Seen in: 3 mailboxes | Not drafted | $1,858 · 83% |
+| 23 | Staff recruiting and hiring | $6 | $23 | $29 | $15 to $75 | 0.4 | 40 times, 13 active months | Seen in: 3 mailboxes | Not drafted | $1,887 · 85% |
+| 24 | System access requests | $10 | $19 | $29 | $18 to $73 | 0.3 | 59 times, 18 active months | Seen in: 4 mailboxes | Not drafted | $1,916 · 86% |
+| 25 | Cost center allocation and charge review | $5 | $24 | $29 | $15 to $53 | 0.3 | 17 times, 8 active months | Mostly seen in: Farmer (94%) | Not drafted | $1,945 · 87% |
+| 26 | Office and IT equipment requests | $9 | $18 | $27 | $18 to $63 | 0.3 | 20 times, 7 active months | Seen in: 3 mailboxes | Not drafted | $1,972 · 88% |
+| 27 | Deal booking checks and corrections | $6 | $18 | $24 | $15 to $61 | 0.3 | 31 times, 18 active months | Seen in: 3 mailboxes | Not drafted | $1,996 · 89% |
+| 28 | Transport contract and OBA negotiation | $6 | $18 | $24 | $15 to $50 | 0.3 | 29 times, 12 active months | Seen in: 3 mailboxes | Not drafted | $2,020 · 91% |
+| 29 | Month-end close and schedules | $5 | $18 | $23 | $13 to $54 | 0.3 | 18 times, 11 active months | Seen in: 2 mailboxes | Not drafted | $2,043 · 92% |
+| 30 | Market report and news circulation | $14 | $9 | $23 | $17 to $42 | 0.3 | 14 times, 6 active months | Seen in: 3 mailboxes | Not drafted | $2,066 · 93% |
+| 31 | Deal entry rules and procedures | $6 | $15 | $21 | $13 to $42 | 0.2 | 19 times, 9 active months | Seen in: 3 mailboxes | Not drafted | $2,087 · 94% |
+| 32 | Real-time model and data file distribution | $4 | $17 | $21 | $10 to $53 | 0.2 | 10 times, 5 active months | Mostly seen in: Williams (100%) | Not drafted | $2,108 · 94% |
+| 33 | Staff training arrangement | $5 | $15 | $20 | $11 to $40 | 0.2 | 26 times, 14 active months | Seen in: 4 mailboxes | Not drafted | $2,128 · 95% |
+| 34 | Commercial strategy planning | $4 | $11 | $15 | $9 to $34 | 0.2 | 23 times, 9 active months | Seen in: 4 mailboxes | Not drafted | $2,143 · 96% |
+| 35 | Pipeline maintenance coordination | $6 | $9 | $15 | $11 to $34 | 0.2 | 22 times, 12 active months | Mostly seen in: Farmer (94%) | Not drafted | $2,158 · 97% |
+| 36 | EnronOnline product set-up | $4 | $11 | $15 | $7 to $37 | 0.2 | 11 times, 8 active months | Seen in: 3 mailboxes | Not drafted | $2,173 · 97% |
+| 37 | Desk responsibility assignment | $5 | $7 | $12 | $9 to $22 | 0.1 | 17 times, 9 active months | Seen in: 3 mailboxes | Not drafted | $2,185 · 98% |
+| 38 | Expense report approval | $4 | $7 | $11 | $8 to $25 | 0.1 | 11 times, 5 active months | Seen in: 4 mailboxes | Not drafted | $2,196 · 98% |
+| 39 | Internal meeting scheduling | $5 | $6 | $11 | $8 to $20 | 0.1 | 20 times, 11 active months | Seen in: 3 mailboxes | Not drafted | $2,207 · 99% |
+| 40 | Gas supply cut handling | $2 | $8 | $10 | $6 to $21 | 0.1 | 12 times, 9 active months | Mostly seen in: Farmer (92%) | Not drafted | $2,217 · 99% |
+| 41 | Meter and point set-up | $4 | $6 | $10 | $7 to $17 | 0.1 | 11 times, 7 active months | Seen in: 2 mailboxes | Not drafted | $2,227 · 100% |
+| 42 | HR record and pay administration | $1 | $3 | $4 | $2 to $7 | 0.0 | 10 times, 7 active months | Seen in: 4 mailboxes | Not drafted | $2,231 · 100% |
+| 43 | Staff transfer onboarding _(not in the total)_ | $82 | $212 | $294 | $167 to $592 | 3.5 | 15 times, 2 active months | Seen in: 2 mailboxes | Not drafted | not in the total |
+| 44 | Plant outage notices _(not in the total)_ | $13 | $11 | $24 | $19 to $39 | 0.3 | 10 times, 2 active months | Mostly seen in: Farmer (100%) | Not drafted | not in the total |
+| 45 | Annual budget preparation _(not in the total)_ | $3 | $17 | $20 | $12 to $37 | 0.3 | 6 times, 2 active months | Seen in: 3 mailboxes | Not drafted | not in the total |
+| 46 | Contract status reporting _(not in the total)_ | $2 | $18 | $20 | $11 to $38 | 0.2 | 3 times, 2 active months | Seen in: 2 mailboxes | Not drafted | not in the total |
+| 47 | Nightly book officialization _(not in the total)_ | $17 | $0 | $17 | no estimate | 0.2 | 5 times, 3 active months | Mostly seen in: Giron (100%) | Not drafted | not in the total |
+| 48 | Customer event planning _(not in the total)_ | $2 | $12 | $14 | $8 to $32 | 0.2 | 6 times, 5 active months | Mostly seen in: Farmer (100%) | Not drafted | not in the total |
+| 49 | Customer price quotes and bids _(not in the total)_ | $2 | $10 | $12 | $7 to $22 | 0.1 | 5 times, 3 active months | Seen in: 2 mailboxes | Not drafted | not in the total |
+| 50 | Counterparty reference data changes _(not in the total)_ | $2 | $9 | $11 | $6 to $20 | 0.1 | 4 times, 4 active months | Seen in: 2 mailboxes | Not drafted | not in the total |
+| 51 | Prior month adjustment review _(not in the total)_ | $3 | $8 | $11 | $6 to $24 | 0.1 | 6 times, 4 active months | Seen in: 3 mailboxes | Not drafted | not in the total |
+| 52 | Counterparty credit controls _(not in the total)_ | $2 | $3 | $5 | $4 to $10 | 0.1 | 4 times, 4 active months | Seen in: 2 mailboxes | Not drafted | not in the total |
+| 53 | Price data requests _(not in the total)_ | $1 | $4 | $5 | $3 to $11 | 0.1 | 4 times, 4 active months | Seen in: 3 mailboxes | Not drafted | not in the total |
 | 54 | Contract termination handling _(not in the total)_ | $2 | $2 | $4 | $3 to $7 | 0.1 | 3 times, 3 active months | Seen in: 2 mailboxes | Not drafted | not in the total |
 | 55 | Vacation and time-off scheduling _(not in the total)_ | $2 | $2 | $4 | $3 to $7 | 0.0 | 9 times, 4 active months | Seen in: 2 mailboxes | Not drafted | not in the total |
 | 56 | Distribution and contact list upkeep _(not in the total)_ | $1 | $2 | $3 | $2 to $5 | 0.0 | 8 times, 4 active months | Seen in: 2 mailboxes | Not drafted | not in the total |
@@ -371,17 +373,15 @@ today 706.70 min/mo = 11.78 h/mo = $1,001.16/mo (email 146.09 min/mo = $206.96 +
 
 ### The document: SOP
 
-10 items for the owner to confirm:
+8 items for the owner to confirm:
 
 - \[process owner to confirm\]
 - \[confirm still in force\]
-- \[location\]
 - \[confirm still in force\]
 - \[confirm still in force\]
 - \[confirm still in force\]
 - \[confirm still in force\]
 - \[confirm still in force\]
-- \[backup procedure\]
 - \[confirm still in force\]
 
 Draft prepared from 160 emails about this process, for the process owner to review. Evidence about this process, quoted exactly from the emails, is listed at the end.
@@ -569,7 +569,7 @@ Estimated, not counted: about 30 minutes of hands-on work each time (range 10 to
 
 Drafted from the cited emails for the process owner to review; shown as drafted.
 
-## Rank 3: Meter flow discrepancy resolution
+## Rank 2: Meter flow discrepancy resolution
 
 **$230 a month** \= $42 of email time counted + $188 of hands-on work estimated.
 
@@ -916,50 +916,14 @@ today 324.89 min/mo = 5.41 h/mo = $460.26/mo (email 59.89 min/mo = $84.84 + work
 
 ### The document: Template
 
-42 items for the owner to confirm:
+6 items for the owner to confirm:
 
 - \[process owner to confirm\]
 - \[proposed: same day\]
 - \[proposed: every business day\]
 - \[proposed: 2 business days\]
 - \[proposed: one reminder, then escalate\]
-- \[placeholder\]
-- \[date\]
-- \[volume management or allocation analyst\]
-- \[trader or scheduler\]
-- \[meter\]
-- \[pipeline and point\]
-- \[day or date range\]
-- \[volume\]
-- \[unit: MMBtu or dth, as the pipeline statement shows\]
-- \[no deal / no nomination / volume differs from deal\]
-- \[deal number\]
-- \[month\]
-- \[name\]
-- \[deal system and scheduling system results, for example nothing coming through in Unify or CPR\]
-- \[strangers gas contract / unaccounted-for balance / other\]
-- \[actual volume\]
-- \[unit\]
-- \[counterparty or pipeline contact\]
-- \[date and recipient, or none\]
-- \[number\]
-- \[number\]
-- \[pipeline\]
-- \[number\]
-- \[Does a deal exist, should one be created, or should it be revised?\]
-- \[deadline\]
-- \[for example, effect on the UA4 number or on economics\]
-- \[days\]
-- \[days\]
-- \[open / waiting on counterparty / waiting on legal / booked / closed\]
-- \[deal number the volume was placed on, adjustment, or write-off; date reallocated\]
-- \[logistics contact\]
-- \[volume management contact\]
-- \[location\]
-- \[location\]
-- \[location\]
 - \[proposed: run each morning\]
-- \[contact\]
 
 Draft prepared from 206 emails about this process, for the process owner to review. Evidence about this process, quoted exactly from the emails, is listed at the end.
 
@@ -1166,7 +1130,7 @@ Estimated, not counted: about 40 minutes of hands-on work each time (range 20 to
 
 Drafted from the cited emails for the process owner to review; shown as drafted.
 
-## Rank 4: Settlement and invoice resolution
+## Rank 3: Settlement and invoice resolution
 
 **$146 a month** \= $25 of email time counted + $121 of hands-on work estimated.
 
@@ -1484,38 +1448,15 @@ today 246.99 min/mo = 4.12 h/mo = $349.90/mo (email 33.72 min/mo = $47.77 + work
 
 ### The document: Email template
 
-30 items for the owner to confirm:
+7 items for the owner to confirm:
 
-- \[location, such as a shared sheet\]
-- \[location\]
 - \[proposed: each morning\]
 - \[process owner to confirm\]
 - \[confirm still in force\]
 - \[confirm still in force\]
-- \[deal number\]
-- \[counterparty\]
-- \[invoice figure\]
-- \[Sitara figure\]
-- \[payment due date\]
-- \[owner name\]
-- \[counterparty\]
-- \[delivery month\]
-- \[deal number\]
-- \[price or volume on invoice\]
-- \[unit, such as $/MMBtu or MMBtu/d\]
-- \[price or volume in Sitara\]
-- \[unit\]
-- \[index or "unpriced"\]
-- \[payment due date\]
-- \[figure\]
-- \[figure\]
-- \[other desk or person\]
 - \[proposed: two business days before the payment due date\]
-- \[sender name\]
-- \[Settlements contact details\]
 - \[proposed: one business day\]
 - \[proposed: one reminder, then escalate\]
-- \[Sitara support contact\]
 
 Draft prepared from 170 emails about this process, for the process owner to review. Evidence about this process, quoted exactly from the emails, is listed at the end.
 
@@ -1728,7 +1669,7 @@ Estimated, not counted: about 45 minutes of hands-on work each time (range 20 to
 
 Drafted from the cited emails for the process owner to review; shown as drafted.
 
-## Rank 5: Deal ticket and transport contract set-up
+## Rank 4: Deal ticket and transport contract set-up
 
 **$140 a month** \= $44 of email time counted + $96 of hands-on work estimated.
 
@@ -2029,41 +1970,10 @@ today 208.55 min/mo = 3.48 h/mo = $295.44/mo (email 58.42 min/mo = $82.76 + work
 
 ### The document: Template
 
-34 items for the owner to confirm:
+3 items for the owner to confirm:
 
 - \[process owner to confirm\]
-- \[location of routing table\]
 - \[proposed: by the end of the same day\]
-- \[name or role\]
-- \[date\]
-- \[requester\]
-- \[create / extend / zero out all activity / correct / release\]
-- \[pipeline\]
-- \[meter number\]
-- \[counterparty\]
-- \[deal number, or "none"\]
-- \[date\]
-- \[date, or end of month\]
-- \[price and unit\]
-- \[volume\]
-- \[unit, for example MMBtu/d\]
-- \[purchase / sale\]
-- \[no deal / expired ticket / ended mid-month / allocation exception / not released / wrong terms\]
-- \[yes or no, and which\]
-- \[owner from the routing table\]
-- \[deadline\]
-- \[yes / no, deal number found\]
-- \[extended existing deal / created new deal / zeroed / corrected\]
-- \[number\]
-- \[date\]
-- \[notes\]
-- \[yes / no\]
-- \[yes / no\]
-- \[yes / no\]
-- \[date\]
-- \[action\]
-- \[meter number\]
-- \[pipeline\]
 - \[confirm still in force\]
 
 Draft prepared from 255 emails about this process, for the process owner to review. Evidence about this process, quoted exactly from the emails, is listed at the end.
@@ -2279,7 +2189,7 @@ Estimated, not counted: about 20 minutes of hands-on work each time (range 10 to
 
 Drafted from the cited emails for the process owner to review; shown as drafted.
 
-## Rank 6: Deal transfer between books
+## Rank 5: Deal transfer between books
 
 **$85 a month** \= $17 of email time counted + $68 of hands-on work estimated.
 
@@ -2472,52 +2382,12 @@ today 119.71 min/mo = 2.00 h/mo = $169.59/mo (email 22.78 min/mo = $32.27 + work
 
 ### The document: Template
 
-44 items for the owner to confirm:
+4 items for the owner to confirm:
 
 - \[process owner to confirm\]
-- \[location\]
 - \[proposed: one reminder, then escalate to the estate risk lead\]
-- \[request ID\]
-- \[date\]
-- \[requester\]
-- \[recipient\]
-- \[move / kill / terminate / reversal\]
-- \[first list / straggler list / reversal\]
-- \[request ID or none\]
-- \[right away / next day / date\]
-- \[deal number\]
-- \[source book, e.g. FT-West\]
-- \[target book, e.g. FT-US/CAND-ERMS or a bankruptcy book\]
-- \[trader name\]
-- \[reason: wrong book / kill / terminate / auto-terminating / reversal\]
-- \[counterparty\]
-- \[effective date\]
-- \[name\]
-- \[date\]
-- \[yes/no\]
-- \[deal number\]
-- \[source book\]
-- \[target book\]
-- \[trader name\]
-- \[reason\]
-- \[counterparty\]
-- \[effective date\]
-- \[name\]
-- \[date\]
-- \[yes/no\]
-- \[date\]
-- \[count\]
-- \[count\]
-- \[deal numbers\]
-- \[deal numbers\]
-- \[yes/no, notes\]
-- \[yes/no, notes\]
-- \[notes\]
 - \[proposed: manager copied on every sheet\]
-- \[location\]
-- \[location\]
 - \[proposed: one reminder, then escalate to the estate risk lead\]
-- \[contact\]
 
 Draft prepared from 84 emails about this process, for the process owner to review. Evidence about this process, quoted exactly from the emails, is listed at the end.
 
@@ -2725,45 +2595,45 @@ We draft a working document for every process seen 10 or more times over 3 or mo
 
 3 processes clear it with every estimate at its low end, 5 at the middle, 17 at the high end. The cap of 8 documents and the minimum of 3 are run-time guards; neither bound this run.
 
-- Rank 7, Pipeline capacity reporting and release: Not drafted: $82 a month is under the $85 drafting line.
-- Rank 8, Pipeline project evaluation: Not drafted: $77 a month is under the $85 drafting line.
-- Rank 9, Gas nomination and nomination changes: Not drafted: $69 a month is under the $85 drafting line.
-- Rank 10, P&L and mark-to-market reporting: Not drafted: $68 a month is under the $85 drafting line.
-- Rank 11, External audit support requests: Not drafted: $57 a month is under the $85 drafting line.
-- Rank 12, Customer volume confirmation: Not drafted: $57 a month is under the $85 drafting line.
-- Rank 13, System issue resolution: Not drafted: $51 a month is under the $85 drafting line.
-- Rank 14, Credit report distribution: Not drafted: $50 a month is under the $85 drafting line.
-- Rank 15, Deal pathing and buyback links: Not drafted: $44 a month is under the $85 drafting line.
-- Rank 16, Pipeline imbalance resolution: Not drafted: $43 a month is under the $85 drafting line.
-- Rank 17, Divestiture transition: Not drafted: $40 a month is under the $85 drafting line.
-- Rank 18, Performance review: Not drafted: $40 a month is under the $85 drafting line.
-- Rank 19, Time reports and activity surveys: Not drafted: $39 a month is under the $85 drafting line.
-- Rank 20, Trading book set-up requests: Not drafted: $32 a month is under the $85 drafting line.
-- Rank 21, On-call and holiday coverage: Not drafted: $32 a month is under the $85 drafting line.
-- Rank 22, Price curve and post ID maintenance: Not drafted: $30 a month is under the $85 drafting line.
-- Rank 23, Regulatory and market notice review: Not drafted: $30 a month is under the $85 drafting line.
-- Rank 24, Staff recruiting and hiring: Not drafted: $29 a month is under the $85 drafting line.
-- Rank 25, System access requests: Not drafted: $29 a month is under the $85 drafting line.
-- Rank 26, Cost center allocation and charge review: Not drafted: $29 a month is under the $85 drafting line.
-- Rank 27, Office and IT equipment requests: Not drafted: $27 a month is under the $85 drafting line.
-- Rank 28, Deal booking checks and corrections: Not drafted: $24 a month is under the $85 drafting line.
-- Rank 29, Transport contract and OBA negotiation: Not drafted: $24 a month is under the $85 drafting line.
-- Rank 31, Month-end close and schedules: Not drafted: $23 a month is under the $85 drafting line.
-- Rank 32, Market report and news circulation: Not drafted: $23 a month is under the $85 drafting line.
-- Rank 33, Deal entry rules and procedures: Not drafted: $21 a month is under the $85 drafting line.
-- Rank 34, Real-time model and data file distribution: Not drafted: $21 a month is under the $85 drafting line.
-- Rank 37, Staff training arrangement: Not drafted: $20 a month is under the $85 drafting line.
-- Rank 39, Commercial strategy planning: Not drafted: $15 a month is under the $85 drafting line.
-- Rank 40, Pipeline maintenance coordination: Not drafted: $15 a month is under the $85 drafting line.
-- Rank 41, EnronOnline product set-up: Not drafted: $15 a month is under the $85 drafting line.
-- Rank 43, Desk responsibility assignment: Not drafted: $12 a month is under the $85 drafting line.
-- Rank 45, Expense report approval: Not drafted: $11 a month is under the $85 drafting line.
-- Rank 47, Internal meeting scheduling: Not drafted: $11 a month is under the $85 drafting line.
-- Rank 49, Gas supply cut handling: Not drafted: $10 a month is under the $85 drafting line.
-- Rank 50, Meter and point set-up: Not drafted: $10 a month is under the $85 drafting line.
-- Rank 53, HR record and pay administration: Not drafted: $4 a month is under the $85 drafting line.
+- Rank 6, Pipeline capacity reporting and release: Not drafted: $82 a month is under the $85 drafting line.
+- Rank 7, Pipeline project evaluation: Not drafted: $77 a month is under the $85 drafting line.
+- Rank 8, Gas nomination and nomination changes: Not drafted: $69 a month is under the $85 drafting line.
+- Rank 9, P&L and mark-to-market reporting: Not drafted: $68 a month is under the $85 drafting line.
+- Rank 10, External audit support requests: Not drafted: $57 a month is under the $85 drafting line.
+- Rank 11, Customer volume confirmation: Not drafted: $57 a month is under the $85 drafting line.
+- Rank 12, System issue resolution: Not drafted: $51 a month is under the $85 drafting line.
+- Rank 13, Credit report distribution: Not drafted: $50 a month is under the $85 drafting line.
+- Rank 14, Deal pathing and buyback links: Not drafted: $44 a month is under the $85 drafting line.
+- Rank 15, Pipeline imbalance resolution: Not drafted: $43 a month is under the $85 drafting line.
+- Rank 16, Divestiture transition: Not drafted: $40 a month is under the $85 drafting line.
+- Rank 17, Performance review: Not drafted: $40 a month is under the $85 drafting line.
+- Rank 18, Time reports and activity surveys: Not drafted: $39 a month is under the $85 drafting line.
+- Rank 19, Trading book set-up requests: Not drafted: $32 a month is under the $85 drafting line.
+- Rank 20, On-call and holiday coverage: Not drafted: $32 a month is under the $85 drafting line.
+- Rank 21, Price curve and post ID maintenance: Not drafted: $30 a month is under the $85 drafting line.
+- Rank 22, Regulatory and market notice review: Not drafted: $30 a month is under the $85 drafting line.
+- Rank 23, Staff recruiting and hiring: Not drafted: $29 a month is under the $85 drafting line.
+- Rank 24, System access requests: Not drafted: $29 a month is under the $85 drafting line.
+- Rank 25, Cost center allocation and charge review: Not drafted: $29 a month is under the $85 drafting line.
+- Rank 26, Office and IT equipment requests: Not drafted: $27 a month is under the $85 drafting line.
+- Rank 27, Deal booking checks and corrections: Not drafted: $24 a month is under the $85 drafting line.
+- Rank 28, Transport contract and OBA negotiation: Not drafted: $24 a month is under the $85 drafting line.
+- Rank 29, Month-end close and schedules: Not drafted: $23 a month is under the $85 drafting line.
+- Rank 30, Market report and news circulation: Not drafted: $23 a month is under the $85 drafting line.
+- Rank 31, Deal entry rules and procedures: Not drafted: $21 a month is under the $85 drafting line.
+- Rank 32, Real-time model and data file distribution: Not drafted: $21 a month is under the $85 drafting line.
+- Rank 33, Staff training arrangement: Not drafted: $20 a month is under the $85 drafting line.
+- Rank 34, Commercial strategy planning: Not drafted: $15 a month is under the $85 drafting line.
+- Rank 35, Pipeline maintenance coordination: Not drafted: $15 a month is under the $85 drafting line.
+- Rank 36, EnronOnline product set-up: Not drafted: $15 a month is under the $85 drafting line.
+- Rank 37, Desk responsibility assignment: Not drafted: $12 a month is under the $85 drafting line.
+- Rank 38, Expense report approval: Not drafted: $11 a month is under the $85 drafting line.
+- Rank 39, Internal meeting scheduling: Not drafted: $11 a month is under the $85 drafting line.
+- Rank 40, Gas supply cut handling: Not drafted: $10 a month is under the $85 drafting line.
+- Rank 41, Meter and point set-up: Not drafted: $10 a month is under the $85 drafting line.
+- Rank 42, HR record and pay administration: Not drafted: $4 a month is under the $85 drafting line.
 
-The 18 processes seen too rarely to count are ranked in the full table and get no document: they are not in the total.
+The 18 processes seen too rarely to count are listed after the total in the full table and get no document: they are not in the total.
 
 ## How the numbers are made
 
@@ -2780,7 +2650,7 @@ The 18 processes seen too rarely to count are ranked in the full table and get n
 
 - In the total: seen 10 or more times over 3 or more months by 2 or more staff. 42 processes.
 - Seen steadily: 40 or more times over 6 or more months by 3 or more staff. 13 processes.
-- Seen too rarely to count: 18 processes, $452 a month, listed and ranked, not in the total.
+- Seen too rarely to count: 18 processes, $452 a month, listed after the total and not in it.
 
 ### The drafting rule
 
@@ -2788,13 +2658,13 @@ The 18 processes seen too rarely to count are ranked in the full table and get n
 - 3 processes clear it with every estimate at its low end, 5 at the middle, 17 at the high end.
 - The cap of 8 documents and the minimum of 3 are run-time guards; neither bound this run.
 
-| Rank | Process | Document | Blanks | Status |
+| Rank | Process | Document | To confirm | Status |
 |---:|---|---|---:|---|
-| 1 | Real-time power scheduling | SOP | 10 items | Drafted: SOP, 10 items to confirm |
-| 3 | Meter flow discrepancy resolution | Template | 42 items | Drafted: Template, 42 items to confirm |
-| 4 | Settlement and invoice resolution | Email template | 30 items | Drafted: Email template, 30 items to confirm |
-| 5 | Deal ticket and transport contract set-up | Template | 34 items | Drafted: Template, 34 items to confirm |
-| 6 | Deal transfer between books | Template | 44 items | Drafted: Template, 44 items to confirm |
+| 1 | Real-time power scheduling | SOP | 8 items | Drafted: SOP, 8 items to confirm |
+| 2 | Meter flow discrepancy resolution | Template | 6 items | Drafted: Template, 6 items to confirm |
+| 3 | Settlement and invoice resolution | Email template | 7 items | Drafted: Email template, 7 items to confirm |
+| 4 | Deal ticket and transport contract set-up | Template | 3 items | Drafted: Template, 3 items to confirm |
+| 5 | Deal transfer between books | Template | 4 items | Drafted: Template, 4 items to confirm |
 
 ### Estimates
 
@@ -2806,57 +2676,57 @@ The 18 processes seen too rarely to count are ranked in the full table and get n
 | Rank | Process | Minutes a round (low, middle, high) | Automatable | Basis | Rounds cited | Senders cited |
 |---:|---|---:|---:|---|---:|---:|
 | 1 | Real-time power scheduling | 10, 30, 90 | 40% | seen in the emails | 8 | 2 |
-| 2 | Staff transfer onboarding | 10, 25, 60 | 40% | worked out from the steps the emails show | 6 | 5 |
-| 3 | Meter flow discrepancy resolution | 20, 40, 90 | 50% | seen in the emails | 10 | 8 |
-| 4 | Settlement and invoice resolution | 20, 45, 120 | 40% | seen in the emails | 8 | 6 |
-| 5 | Deal ticket and transport contract set-up | 10, 20, 45 | 45% | seen in the emails | 8 | 8 |
-| 6 | Deal transfer between books | 15, 35, 90 | 50% | seen in the emails | 8 | 6 |
-| 7 | Pipeline capacity reporting and release | 10, 20, 40 | 65% | seen in the emails | 7 | 3 |
-| 8 | Pipeline project evaluation | 30, 90, 240 | 25% | seen in the emails | 6 | 4 |
-| 9 | Gas nomination and nomination changes | 5, 15, 40 | 50% | seen in the emails | 8 | 7 |
-| 10 | P&L and mark-to-market reporting | 20, 45, 120 | 35% | seen in the emails | 8 | 3 |
-| 11 | External audit support requests | 20, 45, 120 | 40% | seen in the emails | 6 | 2 |
-| 12 | Customer volume confirmation | 15, 30, 60 | 60% | seen in the emails | 7 | 5 |
-| 13 | System issue resolution | 15, 30, 90 | 35% | worked out from the steps the emails show | 8 | 6 |
-| 14 | Credit report distribution | 2, 5, 15 | 70% | worked out from the steps the emails show | 6 | 3 |
-| 15 | Deal pathing and buyback links | 15, 35, 75 | 45% | seen in the emails | 6 | 4 |
-| 16 | Pipeline imbalance resolution | 20, 45, 120 | 45% | worked out from the steps the emails show | 7 | 5 |
-| 17 | Divestiture transition | 15, 45, 120 | 25% | worked out from the steps the emails show | 8 | 6 |
-| 18 | Performance review | 20, 60, 150 | 25% | seen in the emails | 7 | 5 |
-| 19 | Time reports and activity surveys | 15, 40, 120 | 50% | worked out from the steps the emails show | 7 | 6 |
-| 20 | Trading book set-up requests | 10, 20, 45 | 45% | worked out from the steps the emails show | 6 | 3 |
-| 21 | On-call and holiday coverage | 10, 30, 90 | 25% | worked out from the steps the emails show | 7 | 5 |
-| 22 | Price curve and post ID maintenance | 10, 25, 60 | 50% | worked out from the steps the emails show | 7 | 4 |
-| 23 | Regulatory and market notice review | 10, 25, 60 | 30% | worked out from the steps the emails show | 7 | 3 |
-| 24 | Staff recruiting and hiring | 15, 40, 120 | 25% | worked out from the steps the emails show | 7 | 3 |
-| 25 | System access requests | 5, 12, 40 | 45% | seen in the emails | 8 | 5 |
-| 26 | Cost center allocation and charge review | 20, 45, 90 | 50% | seen in the emails | 7 | 3 |
-| 27 | Office and IT equipment requests | 10, 20, 60 | 30% | worked out from the steps the emails show | 6 | 3 |
-| 28 | Deal booking checks and corrections | 10, 20, 60 | 40% | seen in the emails | 8 | 5 |
-| 29 | Transport contract and OBA negotiation | 15, 30, 75 | 35% | seen in the emails | 8 | 5 |
-| 30 | Plant outage notices | 5, 10, 25 | 30% | worked out from the steps the emails show | 5 | 2 |
-| 31 | Month-end close and schedules | 20, 45, 120 | 40% | worked out from the steps the emails show | 6 | 6 |
-| 32 | Market report and news circulation | 3, 8, 25 | 50% | worked out from the steps the emails show | 6 | 5 |
-| 33 | Deal entry rules and procedures | 10, 25, 60 | 40% | worked out from the steps the emails show | 7 | 3 |
-| 34 | Real-time model and data file distribution | 5, 15, 45 | 60% | seen in the emails | 6 | 3 |
-| 35 | Annual budget preparation | 30, 60, 120 | 40% | worked out from the steps the emails show | 6 | 3 |
-| 36 | Contract status reporting | 30, 60, 120 | 60% | worked out from the steps the emails show | 3 | 2 |
-| 37 | Staff training arrangement | 10, 25, 60 | 40% | worked out from the steps the emails show | 7 | 5 |
-| 39 | Commercial strategy planning | 20, 45, 120 | 20% | worked out from the steps the emails show | 6 | 6 |
-| 40 | Pipeline maintenance coordination | 10, 20, 60 | 40% | worked out from the steps the emails show | 6 | 5 |
-| 41 | EnronOnline product set-up | 20, 60, 180 | 30% | worked out from the steps the emails show | 7 | 6 |
-| 42 | Customer event planning | 30, 60, 150 | 40% | worked out from the steps the emails show | 5 | 2 |
-| 43 | Desk responsibility assignment | 10, 20, 45 | 40% | worked out from the steps the emails show | 6 | 4 |
-| 44 | Customer price quotes and bids | 15, 30, 60 | 40% | worked out from the steps the emails show | 5 | 5 |
-| 45 | Expense report approval | 3, 5, 15 | 40% | worked out from the steps the emails show | 5 | 3 |
-| 46 | Counterparty reference data changes | 20, 45, 90 | 50% | worked out from the steps the emails show | 4 | 3 |
-| 47 | Internal meeting scheduling | 5, 10, 25 | 50% | seen in the emails | 6 | 5 |
-| 48 | Prior month adjustment review | 20, 45, 120 | 35% | worked out from the steps the emails show | 5 | 4 |
-| 49 | Gas supply cut handling | 15, 30, 75 | 35% | worked out from the steps the emails show | 6 | 4 |
-| 50 | Meter and point set-up | 10, 20, 45 | 40% | worked out from the steps the emails show | 7 | 7 |
-| 51 | Counterparty credit controls | 5, 10, 25 | 40% | worked out from the steps the emails show | 4 | 2 |
-| 52 | Price data requests | 5, 15, 40 | 60% | worked out from the steps the emails show | 4 | 4 |
-| 53 | HR record and pay administration | 5, 15, 30 | 30% | seen in the emails | 6 | 5 |
+| 2 | Meter flow discrepancy resolution | 20, 40, 90 | 50% | seen in the emails | 10 | 8 |
+| 3 | Settlement and invoice resolution | 20, 45, 120 | 40% | seen in the emails | 8 | 6 |
+| 4 | Deal ticket and transport contract set-up | 10, 20, 45 | 45% | seen in the emails | 8 | 8 |
+| 5 | Deal transfer between books | 15, 35, 90 | 50% | seen in the emails | 8 | 6 |
+| 6 | Pipeline capacity reporting and release | 10, 20, 40 | 65% | seen in the emails | 7 | 3 |
+| 7 | Pipeline project evaluation | 30, 90, 240 | 25% | seen in the emails | 6 | 4 |
+| 8 | Gas nomination and nomination changes | 5, 15, 40 | 50% | seen in the emails | 8 | 7 |
+| 9 | P&L and mark-to-market reporting | 20, 45, 120 | 35% | seen in the emails | 8 | 3 |
+| 10 | External audit support requests | 20, 45, 120 | 40% | seen in the emails | 6 | 2 |
+| 11 | Customer volume confirmation | 15, 30, 60 | 60% | seen in the emails | 7 | 5 |
+| 12 | System issue resolution | 15, 30, 90 | 35% | worked out from the steps the emails show | 8 | 6 |
+| 13 | Credit report distribution | 2, 5, 15 | 70% | worked out from the steps the emails show | 6 | 3 |
+| 14 | Deal pathing and buyback links | 15, 35, 75 | 45% | seen in the emails | 6 | 4 |
+| 15 | Pipeline imbalance resolution | 20, 45, 120 | 45% | worked out from the steps the emails show | 7 | 5 |
+| 16 | Divestiture transition | 15, 45, 120 | 25% | worked out from the steps the emails show | 8 | 6 |
+| 17 | Performance review | 20, 60, 150 | 25% | seen in the emails | 7 | 5 |
+| 18 | Time reports and activity surveys | 15, 40, 120 | 50% | worked out from the steps the emails show | 7 | 6 |
+| 19 | Trading book set-up requests | 10, 20, 45 | 45% | worked out from the steps the emails show | 6 | 3 |
+| 20 | On-call and holiday coverage | 10, 30, 90 | 25% | worked out from the steps the emails show | 7 | 5 |
+| 21 | Price curve and post ID maintenance | 10, 25, 60 | 50% | worked out from the steps the emails show | 7 | 4 |
+| 22 | Regulatory and market notice review | 10, 25, 60 | 30% | worked out from the steps the emails show | 7 | 3 |
+| 23 | Staff recruiting and hiring | 15, 40, 120 | 25% | worked out from the steps the emails show | 7 | 3 |
+| 24 | System access requests | 5, 12, 40 | 45% | seen in the emails | 8 | 5 |
+| 25 | Cost center allocation and charge review | 20, 45, 90 | 50% | seen in the emails | 7 | 3 |
+| 26 | Office and IT equipment requests | 10, 20, 60 | 30% | worked out from the steps the emails show | 6 | 3 |
+| 27 | Deal booking checks and corrections | 10, 20, 60 | 40% | seen in the emails | 8 | 5 |
+| 28 | Transport contract and OBA negotiation | 15, 30, 75 | 35% | seen in the emails | 8 | 5 |
+| 29 | Month-end close and schedules | 20, 45, 120 | 40% | worked out from the steps the emails show | 6 | 6 |
+| 30 | Market report and news circulation | 3, 8, 25 | 50% | worked out from the steps the emails show | 6 | 5 |
+| 31 | Deal entry rules and procedures | 10, 25, 60 | 40% | worked out from the steps the emails show | 7 | 3 |
+| 32 | Real-time model and data file distribution | 5, 15, 45 | 60% | seen in the emails | 6 | 3 |
+| 33 | Staff training arrangement | 10, 25, 60 | 40% | worked out from the steps the emails show | 7 | 5 |
+| 34 | Commercial strategy planning | 20, 45, 120 | 20% | worked out from the steps the emails show | 6 | 6 |
+| 35 | Pipeline maintenance coordination | 10, 20, 60 | 40% | worked out from the steps the emails show | 6 | 5 |
+| 36 | EnronOnline product set-up | 20, 60, 180 | 30% | worked out from the steps the emails show | 7 | 6 |
+| 37 | Desk responsibility assignment | 10, 20, 45 | 40% | worked out from the steps the emails show | 6 | 4 |
+| 38 | Expense report approval | 3, 5, 15 | 40% | worked out from the steps the emails show | 5 | 3 |
+| 39 | Internal meeting scheduling | 5, 10, 25 | 50% | seen in the emails | 6 | 5 |
+| 40 | Gas supply cut handling | 15, 30, 75 | 35% | worked out from the steps the emails show | 6 | 4 |
+| 41 | Meter and point set-up | 10, 20, 45 | 40% | worked out from the steps the emails show | 7 | 7 |
+| 42 | HR record and pay administration | 5, 15, 30 | 30% | seen in the emails | 6 | 5 |
+| 43 | Staff transfer onboarding | 10, 25, 60 | 40% | worked out from the steps the emails show | 6 | 5 |
+| 44 | Plant outage notices | 5, 10, 25 | 30% | worked out from the steps the emails show | 5 | 2 |
+| 45 | Annual budget preparation | 30, 60, 120 | 40% | worked out from the steps the emails show | 6 | 3 |
+| 46 | Contract status reporting | 30, 60, 120 | 60% | worked out from the steps the emails show | 3 | 2 |
+| 48 | Customer event planning | 30, 60, 150 | 40% | worked out from the steps the emails show | 5 | 2 |
+| 49 | Customer price quotes and bids | 15, 30, 60 | 40% | worked out from the steps the emails show | 5 | 5 |
+| 50 | Counterparty reference data changes | 20, 45, 90 | 50% | worked out from the steps the emails show | 4 | 3 |
+| 51 | Prior month adjustment review | 20, 45, 120 | 35% | worked out from the steps the emails show | 5 | 4 |
+| 52 | Counterparty credit controls | 5, 10, 25 | 40% | worked out from the steps the emails show | 4 | 2 |
+| 53 | Price data requests | 5, 15, 40 | 60% | worked out from the steps the emails show | 4 | 4 |
 | 54 | Contract termination handling | 15, 30, 60 | 40% | worked out from the steps the emails show | 3 | 3 |
 | 55 | Vacation and time-off scheduling | 2, 5, 15 | 50% | seen in the emails | 6 | 5 |
 | 56 | Distribution and contact list upkeep | 2, 5, 10 | 50% | seen in the emails | 5 | 3 |

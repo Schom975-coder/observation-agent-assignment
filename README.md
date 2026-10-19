@@ -1,6 +1,6 @@
 # Observation agent
 
-A system that reads a company's 3,240-message email archive inside Claude Code, finds its recurring work, and prices the automation opportunities at $85 an hour, with every claim cited to a message. It drafts working documents for the biggest opportunities and serves a dashboard on localhost.
+A system that reads a company's 3,240-message email archive inside Claude Code (here the public Enron archive, so the dashboard is "prepared for Enron" as a demonstration), finds its recurring work, and prices the automation opportunities at $85 an hour, with every claim cited to a message. It drafts working documents for the biggest opportunities and serves a dashboard on localhost.
 
 [Project site](https://schom975-coder.github.io/observation-agent-assignment/) · [NOTES.md](NOTES.md) (the two-page notes the brief asks for) · [BRIEF.md](BRIEF.md) (the assignment) · [llms.txt](https://schom975-coder.github.io/observation-agent-assignment/llms.txt). The site is the one-stop reading copy; this repo is the thing itself.
 
@@ -13,7 +13,7 @@ One command, `/observe`, runs the whole pipeline inside Claude Code. In order: p
 The outputs of the submitted run are committed in [`out/`](out/):
 
 - [`out/report.html`](out/report.html) and [`out/report.md`](out/report.md): the report. `report.html` is self-contained and opens with a double-click.
-- [`out/artifacts/`](out/artifacts/): the drafted documents.
+- [`out/artifacts/`](out/artifacts/): the five drafted documents, one folder per process (for example `real-time-power-scheduling/sop.md`). Beside them, `input/`, `raw/` and `validated/` hold each draft's brief, its text as the drafter wrote it, and the record of its check.
 - [`out/runs/`](out/runs/): the run logs.
 - [`out/dashboard/`](out/dashboard/): the dashboard data.
 
@@ -85,7 +85,7 @@ To run cold, with every subagent again:
 /observe --force
 ```
 
-`--force` clears the model outputs first. Every cold rehearsal since the drafting stage was added completed in under 30 minutes on our Windows machine, and so did the submitted run: 28 min 59 s, with 130 subagents started. A cold run asks the model again, so its process list, its merge and its work estimates can differ from the committed ones, and the dollar figures move with them. Counting and arithmetic are code and do not vary: the same model outputs give the same numbers on every rerun and every OS. If a cold run replaces the committed outputs, Git still holds the submitted run.
+`--force` clears the model outputs first. Every cold rehearsal since the drafting stage was added completed in under 30 minutes on our Windows machine, and so did the submitted run: 28 min 59 s from its first step to its last, with 130 subagents started (its log in `out/runs/`, which also records the final build, spans 29 min 1 s). A cold run asks the model again, so its process list, its merge and its work estimates can differ from the committed ones, and the dollar figures move with them. Counting and arithmetic are code and do not vary: the same model outputs give the same numbers on every rerun and every OS. If a cold run replaces the committed outputs, Git still holds the submitted run.
 
 ### Folder trust and permissions
 

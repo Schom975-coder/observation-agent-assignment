@@ -156,6 +156,8 @@ function loadRun(outDir: string): RunData {
     missing: [],
   };
   const at = (rel: string) => join(outDir, ...rel.split('/'));
+  // The rank the dashboard shows each process at, so the documents list agrees with it.
+  const shownRanks = new Map<string, number>();
   const need = (rel: string): boolean => {
     if (existsSync(at(rel))) return true;
     run.missing.push(rel);
@@ -174,6 +176,7 @@ function loadRun(outDir: string): RunData {
     const d = readJson(at('dashboard/data.json'));
     if (isRecord(d) && Array.isArray(d.rows) && isRecord(d.headline)) {
       run.processes = d.rows.length;
+      for (const r of d.rows) if (isRecord(r) && typeof r.key === 'string' && typeof r.rank === 'number') shownRanks.set(r.key, r.rank);
       const h = d.headline;
       run.inTotal = isRecord(h.rows_in_total) && typeof h.rows_in_total.t === 'string' ? h.rows_in_total.t : null;
       run.scope = typeof h.label === 'string' ? h.label : null;
@@ -188,7 +191,7 @@ function loadRun(outDir: string): RunData {
         .filter(isRecord)
         .map((x) => ({
           key: String(x.key),
-          rank: Number(x.rank),
+          rank: shownRanks.get(String(x.key)) ?? Number(x.rank),
           slug: String(x.slug),
           artifact_type: String(x.artifact_type),
           status: String(x.status),

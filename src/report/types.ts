@@ -182,6 +182,7 @@ export type Sentences = {
   scope: string;
   split: string;
   range: string;
+  today: string;
   concentration: string;
   caution: string;
   threshold: string;

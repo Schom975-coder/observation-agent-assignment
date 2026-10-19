@@ -2,10 +2,10 @@
   "key": "supply-cut-handling",
   "name": "Gas supply cut handling",
   "definition": "Responding when a pipeline or supplier cuts scheduled gas: finding the affected deals, rescheduling supply and informing customers.",
-  "rank": 49,
+  "rank": 40,
   "tier": "B",
   "row": {
-    "rank": 49,
+    "rank": 40,
     "key": "supply-cut-handling",
     "name": "Gas supply cut handling",
     "tier": "B",
@@ -183,7 +183,7 @@
         "key": "supply-cut-handling"
       }
     },
-    "fix": "Feed pipeline cut notices into a standard cut report that looks up the affected deals by point and gas day from the scheduling system, lists the lost volumes, and sends the…",
+    "fix": "Feed pipeline cut notices into a standard cut report that looks up the affected deals by point and gas day from the scheduling system, lists the lost volumes, and sends the result to the desk using one message layout.",
     "document": null,
     "status_line": "Not drafted: $10 a month is under the $85 drafting line",
     "chasers": {

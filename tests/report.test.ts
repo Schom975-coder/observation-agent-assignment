@@ -155,9 +155,13 @@ test('renderMarkdownHtml: an <img onerror> and a javascript: link stay text', ()
   assert.doesNotMatch(out, /<img|<script|href=/);
 });
 
-test('blankItems: the bracketed placeholders before the Evidence footer, in order', () => {
-  const doc = '# T\n\n## Owner\n\nOwner: [process owner to confirm].\n\n- [ ] Send it to [name or list]\n\n```\nDear [name],\n```\n\n## Evidence\n\n- [not counted]\n';
-  assert.deepEqual(blankItems(doc), ['[process owner to confirm]', '[name or list]', '[name]']);
+test('blankItems: the decisions before the Evidence footer, in order; per-use blanks are not counted', () => {
+  const doc =
+    '# T\n\n## Owner\n\nOwner: [process owner to confirm].\n\n- [ ] Send it to [name or list] [proposed: same day]\n\n' +
+    'Call on the hour [Confirm still in force].\n\n```\nDear [name],\n```\n\n## Evidence\n\n- [proposed: not counted]\n';
+  assert.deepEqual(blankItems(doc), ['[process owner to confirm]', '[proposed: same day]', '[Confirm still in force]']);
+  // A field that only mentions the word is a blank, not a decision.
+  assert.deepEqual(blankItems('Sent to [confirmation recipient] on [proposal date].\n'), []);
 });
 
 test('markdownForReport: the title dropped, headings moved down outside fences, tags written as text, an open fence made text', () => {

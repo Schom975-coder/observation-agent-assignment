@@ -15,6 +15,7 @@ import { fileURLToPath } from 'node:url';
 import { openCorpus } from '../src/corpus/reader.ts';
 import { buildCommand, buildCurrent, buildStep, loadInputs, renderOutputs, runSpanOf, runSpanSha, type Rendered } from '../src/report/build.ts';
 import { buildData, capGuard, cutAt, firstSentence, runFacts, type BuildInputs } from '../src/report/data.ts';
+import { cents as scoreCents } from '../src/metrics/score.ts';
 import { checkTargets } from '../src/report/targets.ts';
 import { escapeHtml, escapeMdText } from '../src/report/text.ts';
 import { renderArtifact } from '../src/model/artifacts.ts';
@@ -35,9 +36,9 @@ after(() => rmSync(tmp, { recursive: true, force: true }));
 // fixture changes them: print the new values with OBS_PRINT_PINS=1 and check the diff of the files
 // before pinning them.
 const PINS = {
-  'dashboard/data.json': '65672528c75fc3283f8ab16f5065adad18d6a6d538ee33fefe0d517e32004b99',
-  'report.md': 'a4bdf650353e90fe8db1e1d71391d66c03f9e15810646184a8d52338f7d332d3',
-  'report.html': '76a741b4ca6f6a7c01395d9fbe94c6500efe33e0dc3159ff267b56a024320299',
+  'dashboard/data.json': '358eeab50e38d95d77926699996d20d5a12b6e9f6ac495f77f10948f393c5aac',
+  'report.md': 'a3966398b4312467dd38e1bc707a85d5cc3a4410bc48410c4fb90f590bb0b2a1',
+  'report.html': 'b550035efc3393c924fbf4ac7ddc8c5f45ee28b71ce5134396c6b97d70653fe8',
 };
 
 let root = '';
@@ -240,6 +241,38 @@ test('A14: one threshold sentence in data.json, report.md and report.html; every
   assert.equal(echo?.status_line, 'Not drafted: no document type was chosen for this process');
   const drafted = data.rows.filter((r) => r.document?.status === 'done');
   for (const r of drafted) assert.match(r.status_line, /^Drafted: (?:SOP|Checklist|Email template|Template), \d+ items? to confirm$/);
+});
+
+test('the shown rank: the rows in the total come first, 1 to n, then those seen too rarely, even when one of those earns more', () => {
+  const { inputs } = loadInputs(root);
+  const x = structuredClone(inputs);
+  // The score's rank 1 becomes a process seen too rarely to count; the headline loses its share.
+  const top = x.opportunities.opportunities.find((o) => o.rank === 1) as BuildInputs['opportunities']['opportunities'][number];
+  top.tier = 'C';
+  // The headline in the total, summed again over the rest the way the score sums it.
+  const rest = x.opportunities.opportunities.filter((o) => o.tier !== 'C');
+  const sum = (f: (o: (typeof rest)[number]) => number) => rest.reduce((t, o) => t + f(o), 0);
+  const h = x.opportunities.headline.tiers_ab_cents;
+  h.counted_email = sum((o) => scoreCents(o.counted.email_per_month_x100.automatable));
+  h.estimated_work = sum((o) => (o.estimated === null ? 0 : scoreCents(o.estimated.work_per_month_x100.automatable)));
+  h.total = h.counted_email + h.estimated_work;
+  h.low = sum((o) => o.range_cents.low);
+  h.high = sum((o) => o.range_cents.high);
+  h.today = sum((o) => o.dollars_per_month_cents.today);
+  h.hours_x100 = { today: sum((o) => o.hours_per_month_x100.today), automatable: sum((o) => o.hours_per_month_x100.automatable) };
+  const { data, method, processes } = buildData(x);
+  const inTotal = data.rows.filter((r) => r.in_total);
+  assert.deepEqual(data.rows.map((r) => r.rank), data.rows.map((_, i) => i + 1), 'contiguous from 1');
+  assert.deepEqual(data.rows.slice(0, inTotal.length).map((r) => r.in_total), inTotal.map(() => true), 'the total first');
+  assert.equal(data.rows.find((r) => r.key === top.key)?.rank, inTotal.length + 1, 'the score’s rank 1 follows the total');
+  // Every list that shows a rank shows the same one.
+  for (const d of data.documents) {
+    const r = data.rows.find((row) => row.key === d.key);
+    assert.ok(r !== undefined, d.key);
+  }
+  assert.deepEqual(data.documents.map((d) => d.key), [...data.documents].sort((a, b) => (data.rows.find((r) => r.key === a.key)?.rank ?? 0) - (data.rows.find((r) => r.key === b.key)?.rank ?? 0)).map((d) => d.key), 'documents in shown-rank order');
+  for (const e of method.estimates) assert.equal(e.rank, data.rows.find((r) => r.key === e.key)?.rank, e.key);
+  for (const p of processes) assert.equal(p.rank, data.rows.find((r) => r.key === p.key)?.rank, p.key);
 });
 
 test('A14 with a dollar bar: a row under it says so, in exact cents where its whole dollars would read as at the line', () => {
@@ -483,7 +516,7 @@ test('the real data’s cases on edited inputs: owners, claims, contradictions, 
   ];
   // Long text, cut by code.
   alphaSynth.stalls = [{ summary: `${'The nomination requests wait '.repeat(5)}for days. Then more.`, evidence_ids: alphaSynth.stalls[0]?.evidence_ids ?? [] }];
-  alphaSynth.automation.approach = `${'Track every request in one shared list and confirm it back '.repeat(4)}today. Then more.`;
+  alphaSynth.automation.approach = `${'Track every request in one shared list and confirm it back '.repeat(8)}today. Then more.`;
 
   // Reply gaps: 4 measured on bravo (not shown), 5 on charlie (shown).
   for (const [key, n] of [['bravo-work', 4], ['charlie-work', 5]] as const) {
@@ -565,7 +598,7 @@ test('the real data’s cases on edited inputs: owners, claims, contradictions, 
   assert.equal(row('delta-work').stall_label, '1 quote: rework');
   assert.equal(row('echo-work').stall_label, 'none quoted');
   assert.match(row('alpha-work').fix ?? '', /…$/);
-  assert.ok([...(row('alpha-work').fix ?? '')].length <= 180);
+  assert.ok([...(row('alpha-work').fix ?? '')].length <= 400);
 
   // The last three months of the top mailbox's record: m5 ends on 15 Sep 2001; of bravo's rounds
   // (Jan, Mar, May, Jul) only July falls within 90 days of it.

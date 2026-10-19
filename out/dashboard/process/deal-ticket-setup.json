@@ -2,10 +2,10 @@
   "key": "deal-ticket-setup",
   "name": "Deal ticket and transport contract set-up",
   "definition": "Creating, extending or replacing deal tickets and transport contracts in Sitara so that gas at a meter or on a pipeline has a valid deal for the month.",
-  "rank": 5,
+  "rank": 4,
   "tier": "A",
   "row": {
-    "rank": 5,
+    "rank": 4,
     "key": "deal-ticket-setup",
     "name": "Deal ticket and transport contract set-up",
     "tier": "A",
@@ -183,13 +183,13 @@
         "key": "deal-ticket-setup"
       }
     },
-    "fix": "A daily exception report comparing measured flow and allocation exceptions by meter against active Sitara tickets would flag meters with flow but no deal, and tickets expiring…",
+    "fix": "A daily exception report comparing measured flow and allocation exceptions by meter against active Sitara tickets would flag meters with flow but no deal, and tickets expiring before month end, before anyone has to email.",
     "document": {
       "type": "template",
       "status": "done",
       "blanks": {
-        "v": 34,
-        "t": "34 items",
+        "v": 3,
+        "t": "3 items",
         "d": {
           "kind": "document",
           "key": "deal-ticket-setup"
@@ -197,7 +197,7 @@
       },
       "reason": null
     },
-    "status_line": "Drafted: Template, 34 items to confirm",
+    "status_line": "Drafted: Template, 3 items to confirm",
     "chasers": {
       "v": 32,
       "t": "32 chasers",
@@ -17099,8 +17099,8 @@
     "path": "out/artifacts/deal-ticket-setup/template.md",
     "markdown": "# Deal ticket and transport contract set-up: template\n\nDraft prepared from 255 emails about this process, for the process owner to review. Evidence about this process, quoted exactly from the emails, is listed at the end.\n\n## Purpose\n\nUse this request form when gas is flowing at a meter or on a pipeline and there is no valid Sitara deal for the month: a ticket expired, ended mid-month, was never created, or is not released. One complete request gives the desk everything it needs to create, extend, zero out or correct the ticket and to send back the deal or track number, so allocations and the Unify volume drafts can clear.\n\n## Who fills it in\n\nPeople doing this work (counted from the emails): Aimee Lannou (21 written, 5 forwarded), Jackie Young (24 written, 2 forwarded), Michael Olsen (10 written, 3 forwarded), Julie Meyers (8 written, 1 forwarded). Named as owner in the emails: Daren J Farmer (Jun 2001), Danny Conner (Oct 2000), Robert E Lloyd (Jan 2000); the process owner settles which. Owner: [process owner to confirm].\n\nThe requester fills it in: the scheduler, volume analyst or accountant who found the meter or pipeline with no valid deal, an expired ticket or an allocation exception. The requester owns the request until the ticket is confirmed released and flowing into Unify.\n\nThe desk (the trader or logistics coordinator) fills in the last block, \"Desk response\", and decides whether to extend or create. The owner for the pipeline, listed in the routing table at [location of routing table], is the person who receives the request. Set up that routing table first and keep it current, with one row per pipeline or meter group and one named owner each, so requests are not passed between people.\n\n## When\n\n- Send a form as soon as flow is found with no deal, an expired ticket, an allocation exception that needs a deal extended, or a deal that is still not released.\n- Send one form per meter or pipeline. List several deal numbers on one form only when they are the same change for the same counterparty.\n- If there is no reply [proposed: by the end of the same day], send one reminder to the same owner, then escalate to the desk lead [name or role].\n- Check the effective date and price against the source before sending. Wrong terms in the first request mean a second request.\n\n## Template\n\n### Request\n\n| Field | Value |\n|---|---|\n| Request date | [date] |\n| Requester (name and role) | [requester] |\n| Action needed | [create / extend / zero out all activity / correct / release] |\n| Pipeline | [pipeline] |\n| Meter number | [meter number] |\n| Counterparty | [counterparty] |\n| Existing Sitara deal number(s) | [deal number, or \"none\"] |\n| Effective date from | [date] |\n| Effective date to | [date, or end of month] |\n| Price | [price and unit] |\n| Flow volume | [volume] [unit, for example MMBtu/d] |\n| Purchase or sale | [purchase / sale] |\n| Reason | [no deal / expired ticket / ended mid-month / allocation exception / not released / wrong terms] |\n| Allocation exception or Unify draft blocked | [yes or no, and which] |\n| Routed to (owner for this pipeline) | [owner from the routing table] |\n| Needed by | [deadline] |\n\n### Desk response\n\n| Field | Value |\n|---|---|\n| Existing deal checked in Sitara | [yes / no, deal number found] |\n| Decision | [extended existing deal / created new deal / zeroed / corrected] |\n| Deal or track number | [number] |\n| Date entered | [date] |\n| Notes for the requester | [notes] |\n\n### Requester confirmation\n\n| Field | Value |\n|---|---|\n| Ticket shows as released in Sitara | [yes / no] |\n| Ticket reflects the flow | [yes / no] |\n| Deal reached Unify, volume draft and allocations clear | [yes / no] |\n| Date confirmed | [date] |\n\n## Where it goes\n\n- Send the request by email to the owner named for the pipeline in the routing table, with the desk copied. Put the meter number and action in the subject line, for example \"[action]\\: meter [meter number], [pipeline]\".\n- The desk enters or changes the ticket in Sitara and replies on the same thread with the deal or track number.\n- The requester checks Sitara and Unify, fills in the confirmation block and replies on the same thread. Keep the thread as the record of the change.\n- If the ticket is still not released after the desk reply, say so on the same thread and name the deal number. If the owner is unclear or the request is redirected, copy the desk lead and ask for the owner to be added to the routing table.\n- If terms in the form turn out to be wrong (effective date or price), send a corrected form on the same thread and mark it \"corrected\".\n- If the person named for a pipeline is disputed (different people have been given as the one who enters these deals) [confirm still in force], the desk lead decides and updates the routing table.\n- Where the accounting arrangements for a new deal must be set up, name the group or person responsible on the form's notes line; volume management as a group and individual colleagues have both been named for this, so confirm which one before sending.\n\n## Evidence\n\nPassages about this process, each quoted exactly from the email named above it. They support the document as a whole, not any one line of it.\n\n### The work\n\n- `corpus/farmer-d/logistics/1082.` (2000-05-01, from Kenny J Soignet):\n\n  > Daren- Please enter Texas purchase from Cannon Interest and a Texas sale to\n\n- `corpus/farmer-d/logistics/881.` (2000-03-06, from Aimee Lannou):\n\n  > Could one of you please extend deal # 151203 for meter 1595?\n\n- `corpus/farmer-d/logistics/1341.` (2000-08-16, from Gary A Hanks):\n\n  > The Samson well will be coming on this afternoon at 1.5 to 2.5 million/d and\n\n- `corpus/farmer-d/logistics/741.` (2000-02-01, from Jackie Young):\n\n  > Can you please \"0\" all activity on Sitara Deal Tickets 113858, 93779, 138094,\n\n- `corpus/farmer-d/logistics/809.` (2000-02-17, from Thu Nguyen):\n\n  > Please let me know when you have it set up.\n\n- `corpus/farmer-d/logistics/872.` (2000-03-03, from Jackie Young):\n\n  > Can you please extend sitara deal #156657 for 3/1/00, if the deal will\n\n- `corpus/farmer-d/logistics/1304.` (2000-07-25, from Lee L Papayoti):\n\n  > It's been created - sitara # 343421\n\n- `corpus/farmer-d/logistics/1231.` (2000-06-22, from Brenda F Herod):\n\n  > Can the systems and processes handle this?\n\n- `corpus/farmer-d/logistics/148.` (2001-05-07, from Tom Acton):\n\n  > deal ticket 745546 extended on both ends.\n\n- `corpus/farmer-d/logistics/647.` (2000-01-04, from Donald P Reinhardt):\n\n  > Please create a Sitara record for this production at your\n\n- `corpus/farmer-d/logistics/766.` (2000-02-08, from Winfree, O'Neal D.):\n\n  > I have created the new deals reflecting the Mid-Texas meters for the\n\n- `corpus/farmer-d/logistics/1146.` (2000-05-25, from Sherlyn Schumack):\n\n  > Loraine sent an allocation for fuel that is not scheduled.\n\n- `corpus/farmer-d/logistics/1559.` (2000-12-12, from Aimee Lannou):\n\n  > Please let me know if you create a deal for meter 1351 and if you extend the\n\n- `corpus/farmer-d/logistics/948.` (2000-03-23, from Bryan Hull):\n\n  > I combined the tickets for the Southern Union plants at Port Arthur and\n\n- `corpus/farmer-d/logistics/2081.` (2001-02-07, from David Baumbach):\n\n  > Check these deals:\n  > 70422\n  > 92754\n\n- `corpus/farmer-d/logistics/190.` (2001-04-09, from Mary Poorman):\n\n  > Please update the ticket to reflect that HPL is receiving these volumes from ENA - IM Central.\n\n- `corpus/farmer-d/logistics/2038.` (2001-01-09, from Aimee Lannou):\n\n  > extend this deal for these 3 days or create a new one?\n\n- `corpus/farmer-d/logistics/1478.` (2000-10-30, from Susan Hadix):\n\n  > I have 2 allocation exceptions that require a deal to be extended.\n\n- `corpus/farmer-d/logistics/12.` (2001-12-11, from Rita Wynne):\n\n  > Have the two of you been able to get the deal in for the sale of the Centana storage to AEP?\n\n- `corpus/farmer-d/logistics/1257.` (2000-06-30, from Heidi Withers):\n\n  > I have input and updated transport usage tickets for July.\n\n### Where it stalls\n\n- `corpus/farmer-d/logistics/100.` (2001-07-09, from Michael Olsen):\n\n  > I looked in Sitara and deal 70550 is still not released.\n\n- `corpus/farmer-d/logistics/1055.` (2000-04-19, from Lauri A Allen):\n\n  > could you guys coordinate who should be rolling\n\n- `corpus/farmer-d/logistics/1246.` (2000-06-27, from Joanie H Ngo):\n\n  > I left you a message regarding this matter 2 days ago.\n\n- `corpus/farmer-d/logistics/195.` (2001-04-04, from Katherine Herrera):\n\n  > Unable to draft volume in Unify due to the expired deal ticket;\n\n- `corpus/farmer-d/logistics/679.` (2000-01-12, from Kimberly Vaughn):\n\n  > Please let me know if you have a chance to revisit this issue for meter 4045\n\n- `corpus/farmer-d/logistics/875.` (2000-03-03, from Stella L Morris):\n\n  > I never saw where you opened your e-mail.\n\n### Who owns it\n\n- `corpus/farmer-d/logistics/117.` (2001-06-14, from aep.com):\n\n  > Call\n  > Daren Farmer at 713-853-6905, and he could probably put the deal in for\n  > you.\n\n- `corpus/farmer-d/logistics/1458.` (2000-10-18, from Mark McCoy):\n\n  > Unfortunately, Danny Conner handles this\n\n- `corpus/farmer-d/logistics/662.` (2000-01-10, from Kenneth Seaman):\n\n  > Volume Management will need to set up accounting arrangements to cover\n\n- `corpus/giron-d/sent/141.` (2001-03-20, from Darron C Giron):\n\n  > Please send these to Kristen Clause in the future.\n\nCounted from the emails: this work came up 190 times over 25 active months (1999-12-14 to 2001-12-12), across 255 emails, with 113 staff taking part.\n\nEstimated, not counted: about 20 minutes of hands-on work each time (range 10 to 45), about 45% of it automatable. Basis: seen in the emails; proposed by a model and checked by code.\n",
     "blanks": {
-      "v": 34,
-      "t": "34 items",
+      "v": 3,
+      "t": "3 items",
       "d": {
         "kind": "document",
         "key": "deal-ticket-setup"
@@ -17108,38 +17108,7 @@
     },
     "blank_items": [
       "[process owner to confirm]",
-      "[location of routing table]",
       "[proposed: by the end of the same day]",
-      "[name or role]",
-      "[date]",
-      "[requester]",
-      "[create / extend / zero out all activity / correct / release]",
-      "[pipeline]",
-      "[meter number]",
-      "[counterparty]",
-      "[deal number, or \"none\"]",
-      "[date]",
-      "[date, or end of month]",
-      "[price and unit]",
-      "[volume]",
-      "[unit, for example MMBtu/d]",
-      "[purchase / sale]",
-      "[no deal / expired ticket / ended mid-month / allocation exception / not released / wrong terms]",
-      "[yes or no, and which]",
-      "[owner from the routing table]",
-      "[deadline]",
-      "[yes / no, deal number found]",
-      "[extended existing deal / created new deal / zeroed / corrected]",
-      "[number]",
-      "[date]",
-      "[notes]",
-      "[yes / no]",
-      "[yes / no]",
-      "[yes / no]",
-      "[date]",
-      "[action]",
-      "[meter number]",
-      "[pipeline]",
       "[confirm still in force]"
     ],
     "reason": null

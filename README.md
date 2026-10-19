@@ -1,47 +1,171 @@
-# Build assignment: an observation agent
+# Observation agent
 
-You are given a company's email archive. Build a system that reads all of it, works out where that company is losing time, proves every claim it makes, and puts the result on a dashboard. It should also act on what it finds rather than only describing it.
+A system that reads a company's 3,240-message email archive inside Claude Code, finds its recurring work, and prices the automation opportunities at $85 an hour, with every claim cited to a message. It drafts working documents for the biggest opportunities and serves a dashboard on localhost.
 
-Claude Code is the runtime here. The thing you deliver runs inside it and is driven by it. That is the exercise.
+[Project site](https://schom975-coder.github.io/observation-agent-assignment/) · [NOTES.md](NOTES.md) (the two-page notes the brief asks for) · [BRIEF.md](BRIEF.md) (the assignment) · [llms.txt](https://schom975-coder.github.io/observation-agent-assignment/llms.txt). The site is the one-stop reading copy; this repo is the thing itself.
 
-## The corpus
+## What this is
 
-A subset of the Enron email archive, 3,240 messages, at `corpus/` in this repo. It is raw. Some messages have no usable date. Some are duplicated. One is enormous. The formatting is inconsistent because it came off a real mail server in 2002.
+One command, `/observe`, runs the whole pipeline inside Claude Code. In order: prepare (read, parse, de-duplicate, thread and batch every message), taxonomy (one subagent proposes the recurring processes), extraction (many subagents in parallel tag every message with a process and a verbatim quote), merge, rollup (count rounds, people, email actions and stalls), synthesis (subagents describe each process and estimate its work), scoring, drafting (subagents write the documents), build (the dashboard data and the report) and serve. The model decides which messages belong to which process, and estimates the hands-on work per round from cited evidence, within bounds that code sets. Everything else is TypeScript: parsing, de-duplication, counting, the hours and dollars arithmetic, citation validation and the server.
 
-It is about thirty times larger than a single context window. Everything about this assignment follows from that.
+## See the results without running anything
 
-## What it has to do
+The outputs of the submitted run are committed in [`out/`](out/):
 
-One command, and the system:
+- [`out/report.html`](out/report.html) and [`out/report.md`](out/report.md): the report. `report.html` is self-contained and opens with a double-click.
+- [`out/artifacts/`](out/artifacts/): the drafted documents.
+- [`out/runs/`](out/runs/): the run logs.
+- [`out/dashboard/`](out/dashboard/): the dashboard data.
 
-1. Reads every message in the corpus. Not a sample.
+`node obs.mjs serve` opens the dashboard on these files with no model call; `/serve` inside Claude Code does the same. The report has the same numbers as the dashboard. A copy of the report is on the site: [report.html](https://schom975-coder.github.io/observation-agent-assignment/report.html).
 
-2. Identifies the recurring processes at that company: the work that happens over and over, who touches it, how often, and where it stalls.
+## Prerequisites
 
-3. Ranks the automation opportunities. Each one carries an estimate of hours per month and dollars per month at a blended $85/hour.
+- Node.js 22.18 or newer. It runs the TypeScript sources directly, so there is no build step. Claude Code's installer does not install Node; get it from [nodejs.org](https://nodejs.org).
+- Git.
+- Claude Code, signed in on a subscription whose plan includes Opus and Sonnet: the agent definitions pin Opus for the taxonomist, merger and synthesizer and Sonnet for the extractors and drafters (each file in [`.claude/agents/`](.claude/agents/) names its model and effort). No API key and no API spend. The pipeline fetches nothing from the network; every model call goes through your Claude Code session.
 
-4. Cites everything. Every process and every opportunity traces back to specific messages, each carrying a verbatim quote. A claim that cannot name its evidence does not ship. I will pull claims at random and check them against the raw files.
+`npm install` installs only the TypeScript compiler and Node's type definitions, for `npm run typecheck`. The pipeline, the server and the tests use nothing from `node_modules`.
 
-5. Acts. For the opportunities above a threshold you choose, produce a drafted artifact someone could use the next morning: a written SOP, a draft email, a checklist, a template. You decide what is worth producing, and you defend that decision in your notes.
+## Get the code
 
-6. Serves a dashboard on localhost. Ranked opportunities, the running dollar total, and drill-through on every claim. If I cannot click a number and land on the message it came from, the dashboard is not finished. It should look like something I would put in front of a client president.
+### macOS and Linux
 
-## Constraints
+A plain `git clone` works. The corpus files' names end in a dot (`corpus/farmer-d/logistics/1.`) and check out as they are.
 
-- No paid API keys and no API spend, yours or mine. It runs on your Claude Code subscription. Wanting to buy tokens means the design went wrong somewhere.
-- A full run completes unattended in under 30 minutes.
-- Re-running against an unchanged corpus does not repeat finished work.
-- Anything that has to be exactly right is deterministic code rather than a model call. Parsing, deduplication, the hours and dollars arithmetic, citation validation, the server. I will check whether a model was left holding any of it.
-- Tests pass without invoking a model at all.
-- Python or TypeScript for the deterministic parts.
-- Everything runs locally.
+```sh
+git clone https://github.com/Schom975-coder/observation-agent-assignment.git obs
+cd obs
+npm install
+```
 
-## What to send back
+### Windows
 
-- The repo.
-- Your `.claude/` directory exactly as you used it. CLAUDE.md, subagents, skills, hooks, slash commands, settings, whatever you built.
-- `NOTES.md`, two pages at most. How you drove Claude Code. What you handed to subagents and why. How you budgeted their context. What you ran in parallel. Where Claude Code got it wrong and how you caught it before it reached the output. What you would build next with another week.
-- In those notes, tell me where your system is most likely to be wrong, and what it took on faith because you had no way to check it.
-- The output of one real run: the report, the dashboard, the run logs, and the drafted artifacts.
+A plain `git clone` checks out nothing on Windows, not even the code, because Windows cannot create file names that end in a dot. Use this instead (PowerShell):
 
-Push all of it to your own repo and send me the link.
+```powershell
+git clone --no-checkout https://github.com/Schom975-coder/observation-agent-assignment.git obs
+cd obs
+git config core.protectNTFS false
+git sparse-checkout set --no-cone '/*' '!/corpus/'
+git checkout main
+```
+
+In Git Bash, prefix the sparse-checkout line with `MSYS_NO_PATHCONV=1`; otherwise Git Bash rewrites `/corpus/` into `C:/Program Files/Git/corpus/` and the exclusion silently fails:
+
+```sh
+MSYS_NO_PATHCONV=1 git sparse-checkout set --no-cone '/*' '!/corpus/'
+```
+
+The corpus then stays in Git's objects, off disk. The code reads every message from there (`git cat-file --batch`) and gets the same bytes macOS and Linux read from disk; a test checks that the two agree. Nothing is lost. Then run `npm install`, as on macOS and Linux.
+
+## Run it
+
+Start Claude Code in the folder:
+
+```sh
+claude
+```
+
+At the Claude Code prompt, type the one command:
+
+```text
+/observe
+```
+
+When the run is done, it prints the stages it ran, starts the dashboard in the background and prints its address (`Dashboard: http://127.0.0.1:<port>/`), tries to open that address in your browser, and prints the run's status. The dashboard keeps running after you leave Claude Code; `node obs.mjs serve --stop` stops it. If a run stops part way (a crash, a closed window, a usage-limit pause), running `/observe` again resumes it from the run ledger.
+
+### Warm and cold runs
+
+The model outputs and the run ledger are committed, so the first run on a fresh clone is warm. It repeats no finished work and starts no subagent: it rebuilds the deterministic stages and ends with the dashboard.
+
+To run cold, with every subagent again:
+
+```text
+/observe --force
+```
+
+`--force` clears the model outputs first. Every cold rehearsal since the drafting stage was added completed in under 30 minutes on our Windows machine, and so did the submitted run: {{run.wall}}, with {{run.agents_total}} subagents started. A cold run asks the model again, so its process list, its merge and its work estimates can differ from the committed ones, and the dollar figures move with them. Counting and arithmetic are code and do not vary: the same model outputs give the same numbers on every rerun and every OS. If a cold run replaces the committed outputs, Git still holds the submitted run.
+
+### Folder trust and permissions
+
+The first time Claude Code opens a folder, it asks whether you trust it. Until the folder is trusted, Claude Code ignores the `permissions.allow` entry in the project's [`.claude/settings.json`](.claude/settings.json). The run does not depend on it: the `/observe` skill's `allowed-tools` pre-approve its commands and its subagents while the skill runs, and the hooks apply either way. We checked this in a fresh, untrusted clone: the hooks all worked, and only that entry was ignored.
+
+The hooks are in [`.claude/hooks/`](.claude/hooks/), wired up in `settings.json`:
+
+- The corpus guard (`guard-corpus.ts`, before every tool call) keeps each pipeline subagent to its own job's files and, during a run, refuses any tool call that names `corpus/` and any subagent that is not one of the five pipeline agents.
+- The gate (`gate-subagent.ts`, when an extractor, synthesizer or drafter finishes) checks the output it wrote (schema, coverage, quotes against the raw messages, estimate rules, draft rules) and records the job as done, or as failed with a list of problems that goes back to a subagent as a fix round.
+- The Stop hook (`gate-run.ts`) keeps the orchestrator going: when it would end its turn with a step ready to run, the hook hands it the next command.
+- `log-event.ts` writes each subagent's start and stop to the run log in `out/runs/`.
+
+### Unattended
+
+The rehearsals ran headless, with stdin closed and the permission prompts off. From a macOS or Linux shell:
+
+```sh
+claude -p "/observe" --permission-mode auto --permission-prompts none < /dev/null
+```
+
+For a cold run, pass `"/observe --force"` instead. On Windows, run it from Git Bash, the shell we tested there, with the prefix `MSYS_NO_PATHCONV=1`; without it, Git Bash rewrites `/observe` into a path under Program Files and the skill never runs:
+
+```sh
+MSYS_NO_PATHCONV=1 claude -p "/observe" --permission-mode auto --permission-prompts none < /dev/null
+```
+
+For a log of the orchestrator's turns, add `--output-format stream-json --verbose > ../observe-stream.jsonl`. Keep that file outside the repo: it carries the folder's absolute path. After a crash or a usage-limit pause, run the same command again; the run resumes from the ledger.
+
+## Open the dashboard
+
+```sh
+node obs.mjs serve                        # foreground; Ctrl+C stops it
+node obs.mjs serve --background --open    # returns at once, leaves it running, opens the browser
+node obs.mjs serve --status               # prints the address of the running server
+node obs.mjs serve --stop                 # stops the background server
+```
+
+`--port N` picks the port. `--background` reuses a server already running for this folder. The server binds 127.0.0.1 only. Inside Claude Code, `/serve` does the same as `--background --open`.
+
+What you can do there:
+
+- Click any number to see its formula and the messages behind it. Every figure shows which parts are counted and which are estimated.
+- The message viewer shows the raw message with the cited quote marked, and a copy button with the ready `git show HEAD:"<id>"` command, so you can check the quote against the raw file yourself.
+- The lookup box opens any message by its ID, which is its Git path with the trailing dot included (`corpus/farmer-d/logistics/1.`).
+
+## Tests
+
+```sh
+npm test
+npm run typecheck
+```
+
+No model is ever invoked: the tests stand in for the model stages with scripted fixtures. CI ([`.github/workflows/ci.yml`](.github/workflows/ci.yml)) runs both on Ubuntu, macOS and Windows (Windows with the clone recipe above), then rebuilds the deterministic stages and re-checks every committed model output against the corpus. You can run those two steps yourself:
+
+```sh
+node obs.mjs prepare --force
+node obs.mjs verify
+```
+
+We developed on Windows. macOS and Linux behaviour is proven by CI, not by a Mac at hand.
+
+## Where things are
+
+| Path | What it holds |
+|---|---|
+| [`src/`](src/) | The pipeline, by stage: `corpus/` (the one corpus reader), `parse/`, `normalize/`, `batch/`, `model/` (the model stages' inputs and checks), `validate/` (quotes), `metrics/` (rollup and score), `report/` (build), `serve/`, and `run/` (the ledger and the commands behind [`obs.mjs`](obs.mjs)) |
+| [`config/`](config/) | Rates, scoring rules, gold labels |
+| [`dashboard/`](dashboard/) | The dashboard's page sources |
+| [`.claude/`](.claude/) | The Claude Code layer, submitted exactly as used: the skills, the five agent definitions, the hooks, `settings.json` |
+| [`out/`](out/) | The submitted run |
+| [`tests/`](tests/) | The model-free tests and their fixtures |
+| [`site/`](site/) | The generator of the Pages site |
+| [`NOTES.md`](NOTES.md) | The notes the brief asks for |
+| [`BRIEF.md`](BRIEF.md) | The assignment, verbatim |
+| [`.claude/plan/ARCHITECTURE.md`](.claude/plan/ARCHITECTURE.md), [`.claude/notes/DECISIONS.md`](.claude/notes/DECISIONS.md) | The design and the decision log |
+
+## Reading this with an AI assistant
+
+Reading this with an AI assistant? The project site is set up for Claude to read in full. Give it the site's address and ask it anything about the project.
+
+- Site: https://schom975-coder.github.io/observation-agent-assignment/
+- `llms.txt`: https://schom975-coder.github.io/observation-agent-assignment/llms.txt
+- [`out/report.md`](out/report.md) is the report in Markdown, for readers without a browser.

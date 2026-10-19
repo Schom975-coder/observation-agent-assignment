@@ -163,5 +163,9 @@ One line per non-obvious choice: what we chose, what we rejected, why. Newest la
 - **The drawer keeps each layer's nodes while a layer sits on top of it; Back and Escape put them back with their scroll and the focus on the element that opened the layer just left.** Rejected: re-rendering on Back (the reader lands at the top of a long process page, and the files are fetched again). The page behind the drawer is `inert` while it is open; browser Back closes it.
 - **The footer links the printable report (`report.html`) and the header carries a theme toggle (system, light, dark) kept in `localStorage`.** Rejected: leaving the report findable only from the terminal; a theme without a manual override.
 
+## Submission (M8)
+- **The assignment brief moves verbatim to `BRIEF.md` (a `git mv`, byte-identical) and `README.md` becomes our own run guide for the reviewer.** Rejected: our guide above the brief in the same README (it mixes their text with ours and changes the bytes they would check), and a separate `RUNNING.md` (GitHub shows the README first, and the reviewer, most likely on a Mac, needs the clone, run and dashboard steps there). The source guard's local-path scan now covers `README.md`, `NOTES.md`, `BRIEF.md` and `site/`.
+- **NOTES.md holds every final-run figure as a `{{placeholder}}` filled from `node obs.mjs summary` after the submitted run, and stays under about 980 words so it prints on two pages.** Rejected: writing figures from the rehearsal runs (they would not match the committed outputs).
+
 ## Working method
 - **Minimal `.claude/`:** the plan, this file, the notes log, and the pipeline's own skills/agents/hooks/settings. No per-branch session folders or merge-request files (Scott's global workflow, overridden for this repo). Everything in `.claude/` is reviewed, so clutter costs us.

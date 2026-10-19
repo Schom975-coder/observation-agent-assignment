@@ -105,7 +105,7 @@ test('the server starts no child process but itself and the browser, never throu
 const LOCAL_PATH = /[A-Za-z]:[\\/]Users[\\/]|\/Users\/[A-Za-z]|\/home\/[A-Za-z]|AppData[\\/]/;
 
 test('public repo: no local file paths in anything we commit', () => {
-  const ours = filesIn(TEXT, 'src', 'tests', 'config', '.claude', '.github', 'dashboard', 'CLAUDE.md', 'package.json', 'obs.mjs');
+  const ours = filesIn(TEXT, 'src', 'tests', 'config', '.claude', '.github', 'dashboard', 'CLAUDE.md', 'package.json', 'obs.mjs', 'README.md', 'NOTES.md', 'BRIEF.md', 'site');
   assert.deepEqual(violations(ours, LOCAL_PATH), []);
 });
 

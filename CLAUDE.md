@@ -1,6 +1,6 @@
 # Observation agent: project rules
 
-The assignment brief is `README.md`. The reviewer may run this on Windows, macOS or Linux, so everything below exists to make the system behave identically on all three.
+The assignment brief is `BRIEF.md`, kept verbatim; `README.md` is ours. The reviewer may run this on Windows, macOS or Linux, so everything below exists to make the system behave identically on all three.
 
 ## Development
 - Node >= 22.18 runs the TypeScript sources directly; there is no build step. `npm install` once.
@@ -74,4 +74,4 @@ git sparse-checkout set --no-cone '/*' '!/corpus/'
 git checkout main
 ```
 
-In Git Bash, prefix the sparse-checkout line with `MSYS_NO_PATHCONV=1`; otherwise Git Bash rewrites `/corpus/` into `C:/Program Files/Git/corpus/` and the exclusion silently fails. The final README must include this recipe.
+In Git Bash, prefix the sparse-checkout line with `MSYS_NO_PATHCONV=1`; otherwise Git Bash rewrites `/corpus/` into `C:/Program Files/Git/corpus/` and the exclusion silently fails. `README.md` includes this recipe.

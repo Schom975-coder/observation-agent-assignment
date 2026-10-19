@@ -1,4 +1,4 @@
-# Observation agent
+# Observation agent: the project at a glance
 
 A system that runs inside Claude Code, reads all {{fig:messages_read}} messages of an email archive from Enron, finds the work that recurs, prices what could be automated at the brief's $85 an hour, and ties every claim to a message and a verbatim quote. One command, `/observe`, runs it; the outputs of one real run are committed beside the code, and this site is a reading copy of both.
 

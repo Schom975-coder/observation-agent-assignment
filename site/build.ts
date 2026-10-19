@@ -44,7 +44,7 @@ export type PageDef = {
   prefix?: string;
   ids?: string[];
 };
-export type SiteConfig = { title: string; author: string; base_url: string; repo_url: string; ref: string; note: string; summary: string; pages: PageDef[] };
+export type SiteConfig = { title: string; author: string; base_url: string; repo_url: string; ref: string; note: string; masthead: string; summary: string; pages: PageDef[] };
 
 export type SiteOptions = {
   root?: string; // the repository: README, NOTES, BRIEF, .claude/, and the paths pages link to
@@ -97,7 +97,7 @@ export function loadConfig(siteDir: string): SiteConfig {
   const raw = readJson(join(siteDir, 'site.json'));
   if (!isRecord(raw) || !Array.isArray(raw.pages)) throw new Error('site.json: expected an object with a pages list');
   const cfg = raw as unknown as SiteConfig;
-  for (const k of ['title', 'author', 'base_url', 'repo_url', 'ref', 'note', 'summary'] as const) {
+  for (const k of ['title', 'author', 'base_url', 'repo_url', 'ref', 'note', 'masthead', 'summary'] as const) {
     if (typeof cfg[k] !== 'string' || cfg[k] === '') throw new Error(`site.json: ${k} must be a non-empty string`);
   }
   if (!cfg.base_url.endsWith('/')) throw new Error('site.json: base_url must end with /');
@@ -958,13 +958,15 @@ function shell(x: ShellInput): string {
   const runId = ctx.figs.get('run_id');
   const runDate = ctx.figs.get('run_date');
   const url = canonical(cfg, x.path);
-  const nav = cfg.pages
-    .map((p) => {
-      const href = `${up}${pageHref(p)}`;
-      const current = p.file === x.navFile ? ' aria-current="page"' : '';
-      return `<li><a href="${href}"${current}>${escapeHtml(p.nav)}</a></li>`;
-    })
-    .join('');
+  // Two groups: the pages about the project, and the system's own output (the dashboard and the
+  // report keep the product's look, so the sidebar marks them as the deliverable).
+  const item = (p: (typeof cfg.pages)[number]) => {
+    const href = `${up}${pageHref(p)}`;
+    const current = p.file === x.navFile ? ' aria-current="page"' : '';
+    return `<li><a href="${href}"${current}>${escapeHtml(p.nav)}</a></li>`;
+  };
+  const about = cfg.pages.filter((p) => p.kind === undefined).map(item).join('');
+  const output = cfg.pages.filter((p) => p.kind !== undefined).map(item).join('');
   const runline = runDate !== undefined && runId !== undefined ? `Submitted run of ${escapeHtml(runDate)}` : 'Submitted run: not committed yet';
   return `<!doctype html>
 <html lang="en">
@@ -984,18 +986,29 @@ ${runId === undefined ? '' : `<meta name="obs-run" content="${escapeHtml(runId)}
 <p class="ai-text">${escapeText(cfg.note)}</p>
 <p class="ai-url"><code id="page-url">${escapeHtml(url)}</code> <button type="button" id="copy-url" class="copy" hidden>Copy address</button></p>
 </aside>
-<div class="brandrule" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-<div class="shell">
-<header class="top">
-<p class="site"><a href="${up}index.html">${escapeHtml(cfg.title)}</a> <span class="runline">${runline}</span></p>
-<nav aria-label="Pages"><ul class="nav">${nav}</ul></nav>
+<header class="mast">
+<div class="mast-in">
+<p class="mast-k">Take-home assignment · Project write-up</p>
+<p class="mast-t"><a href="${up}index.html">${escapeHtml(cfg.title)}</a></p>
+<p class="mast-d">${escapeText(cfg.masthead)}</p>
+<p class="mast-m">${escapeHtml(cfg.author)} · ${runline} · <a href="${escapeHtml(cfg.repo_url)}">Repository</a></p>
+</div>
 </header>
+<div class="layout">
+<nav class="side" aria-label="Pages">
+<p class="side-h" id="nav-about">About the project</p>
+<ul class="nav" aria-labelledby="nav-about">${about}</ul>
+<p class="side-h" id="nav-output">The system's output</p>
+<ul class="nav out" aria-labelledby="nav-output">${output}</ul>
+</nav>
+<div class="col">
 <main id="main">
 ${x.kicker === undefined ? '' : `<p class="kicker">${escapeHtml(x.kicker)}</p>\n`}${x.banner ? `<p class="banner">${escapeHtml(NOT_COMMITTED)}</p>\n` : ''}${x.body}
 </main>
 <footer class="foot">
 <p><a href="${escapeHtml(cfg.repo_url)}">The repository on GitHub</a> · ${escapeHtml(cfg.author)} · <a href="${escapeHtml(x.twin)}">This page in Markdown</a> · <a href="${up}llms.txt">llms.txt</a> · <a href="${up}llms-full.txt">llms-full.txt</a></p>
 </footer>
+</div>
 </div>
 ${COPY_SCRIPT}
 </body>

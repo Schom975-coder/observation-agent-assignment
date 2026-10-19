@@ -43,9 +43,14 @@ import {
 const repo = fileURLToPath(new URL('..', import.meta.url));
 const tmp = mkdtempSync(join(tmpdir(), 'obs serve '));
 const POSIX = process.platform !== 'win32'; // where trailing-dot file names can exist on disk
-const started = new Set<number>();
-after(() => {
-  for (const pid of started) {
+// Every server a test started, by pid, with its port. Cleanup signals a pid only while that server
+// still answers on its port with that pid, as `serve --stop` does: Windows reuses pids quickly, and
+// an exited server's pid may by then belong to another process (in CI, a hook spawned by another
+// test file running alongside this one).
+const started = new Map<number, number>();
+after(async () => {
+  for (const [pid, port] of started) {
+    if ((await health(port, 500))?.pid !== pid) continue;
     try {
       process.kill(pid, 'SIGKILL');
     } catch {
@@ -479,7 +484,7 @@ test('A1: serve --background returns at once and leaves the server up; it is reu
   const port = Number(m[1]);
   const state = readState(cli);
   assert.ok(state !== null);
-  started.add(state.pid);
+  started.set(state.pid, state.port);
   assert.equal(state.port, port);
   assert.equal(state.run_id, '20261019T000000Z');
   assert.notEqual(state.pid, process.pid);
@@ -510,7 +515,7 @@ test('A1: a server killed outright leaves a stale file, and the next start treat
   assert.equal(first.status, 0, first.err);
   const s1 = readState(cli);
   assert.ok(s1 !== null);
-  started.add(s1.pid);
+  started.set(s1.pid, s1.port);
   process.kill(s1.pid, 'SIGKILL'); // no handler runs: TerminateProcess on Windows, SIGKILL elsewhere
   assert.ok(await until(() => !alive(s1.pid), 3000));
   assert.equal(readState(cli)?.pid, s1.pid, 'the file is left behind');
@@ -522,7 +527,7 @@ test('A1: a server killed outright leaves a stale file, and the next start treat
   assert.doesNotMatch(second.out, /already running/);
   const s2 = readState(cli);
   assert.ok(s2 !== null && s2.pid !== s1.pid);
-  started.add(s2.pid);
+  started.set(s2.pid, s2.port);
   assert.equal((await health(s2.port))?.pid, s2.pid);
   assert.equal(obs('--stop').out, 'serve: stopped');
   assert.ok(await until(() => !alive(s2.pid), 3000));
@@ -543,7 +548,7 @@ test('A1: two starts at once leave one server, and both print its address', asyn
   assert.equal(b.status, 0, b.err);
   const state = readState(cli);
   assert.ok(state !== null);
-  started.add(state.pid);
+  started.set(state.pid, state.port);
   assert.deepEqual([a.out, b.out].sort(), [`Dashboard: ${state.url}`, `Dashboard: ${state.url} (already running)`], `${a.out} | ${b.out}`);
   assert.equal(await taken(base, 3), 1, 'one server listens');
   assert.equal((await health(state.port))?.pid, state.pid);
@@ -562,7 +567,7 @@ test('with no --port the server scans its range, past a port that is taken', asy
     assert.equal(r.out, `Dashboard: http://127.0.0.1:${base + 1}/`);
     const s = readState(cli);
     assert.ok(s !== null);
-    started.add(s.pid);
+    started.set(s.pid, s.port);
     assert.equal(obs('--stop').out, 'serve: stopped');
     assert.ok(await until(() => !alive(s.pid), 3000));
   } finally {
@@ -593,7 +598,7 @@ test('a copied out/ names another folder’s server: this folder neither reports
   assert.equal(first.status, 0, first.err);
   const s1 = readState(cli);
   assert.ok(s1 !== null);
-  started.add(s1.pid);
+  started.set(s1.pid, s1.port);
   assert.equal(s1.project, projectId(cli));
   assert.notEqual(projectId(copy), projectId(cli));
   copyFileSync(stateFile(cli), stateFile(copy));
@@ -608,7 +613,7 @@ test('a copied out/ names another folder’s server: this folder neither reports
   assert.doesNotMatch(second.out, /already running/);
   const s2 = readState(copy);
   assert.ok(s2 !== null && s2.pid !== s1.pid);
-  started.add(s2.pid);
+  started.set(s2.pid, s2.port);
   assert.equal(s2.project, projectId(copy));
   assert.equal(obsIn(copy, '--stop').out, 'serve: stopped');
   assert.equal((await health(s1.port))?.pid, s1.pid, 'still untouched');

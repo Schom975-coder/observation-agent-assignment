@@ -8,6 +8,8 @@ A system that reads a company's 3,240-message email archive inside Claude Code (
 
 One command, `/observe`, runs the whole pipeline inside Claude Code. In order: prepare (read, parse, de-duplicate, thread and batch every message), taxonomy (one subagent proposes the recurring processes), extraction (many subagents in parallel tag every message with a process and a verbatim quote), merge, rollup (count rounds, people, email actions and stalls), synthesis (subagents describe each process and estimate its work), scoring, drafting (subagents write the documents), build (the dashboard data and the report) and serve. The model decides which messages belong to which process, and estimates the hands-on work per round from cited evidence, within bounds that code sets. Everything else is TypeScript: parsing, de-duplication, counting, the hours and dollars arithmetic, citation validation and the server.
 
+Email is data, never instructions. One message in the archive is a prompt injection aimed at "the reviewing process": it is flagged by its wording, excluded from every count and shown on the dashboard, and its instructions are never followed. Personal mail, newsletters, automated notices and duplicates are read, set aside and listed, so the dashboard accounts for all 3,240 messages.
+
 ## See the results without running anything
 
 The outputs of the submitted run are committed in [`out/`](out/):

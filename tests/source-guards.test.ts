@@ -24,7 +24,8 @@ function filesIn(kind: RegExp, ...dirs: string[]): string[] {
     }
     for (const entry of readdirSync(abs, { recursive: true, encoding: 'utf8' })) {
       const rel = `${dir}/${entry.replaceAll('\\', '/')}`;
-      if (kind.test(rel) && rel !== self) files.push(rel);
+      // site/dist is the site's git-ignored build output: nothing there is committed.
+      if (kind.test(rel) && rel !== self && !/^site\/dist(\.building)?\//.test(rel)) files.push(rel);
     }
   }
   return files;

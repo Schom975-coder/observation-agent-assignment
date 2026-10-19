@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 774" width="360" height="774" role="img" aria-labelledby="pipeline-title pipeline-desc" class="dg" font-family="Archivo, system-ui, sans-serif">
+<title id="pipeline-title">From the archive to the dashboard</title>
+<desc id="pipeline-desc">The pipeline from top to bottom. The /observe skill runs one command per turn and drives every step. The corpus, in Git objects or on disk, is read by the corpus reader; prepare parses, de-duplicates, threads and batches it; one taxonomist call proposes the processes, accepted by code; 99 extractor jobs, 20 at a time, tag every message with quotes, checked by the quote gate; one merger call places the proposed keys, checked by code; the rollup counts; synthesizers in one wave describe each process and estimate its work, checked against bounds; score prices counted and estimated parts at $85 an hour; up to 8 drafters write documents, checked by the draft gate; build writes the dashboard data and the report; serve shows the dashboard on 127.0.0.1.</desc>
+<rect x="8" y="6" width="344" height="50" rx="4" class="orch" fill="none" stroke="#0B3C86" stroke-width="1.4" stroke-dasharray="6 4"/>
+<text x="20" y="27" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">The /observe skill: the orchestrator</text>
+<text x="20" y="45" class="s" font-size="12" fill="#3D4B5D">one command per turn runs every step below</text>
+<g class="row">
+<rect x="8" y="72" width="246" height="42" rx="12" class="data" fill="none" stroke="#5F6D82" stroke-width="1.2" stroke-dasharray="4 3"/>
+<text x="20" y="90" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">The corpus</text>
+<text x="20" y="106" class="s" font-size="12" fill="#3D4B5D">in Git objects or on disk</text>
+</g>
+<path class="arrow" d="M131 114 V122" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M127 121 L135 121 L131 128 Z" fill="#5F6D82"/>
+<g class="row">
+<rect x="8" y="128" width="246" height="42" rx="3" class="code" fill="#FFFFFF" stroke="#A9B5C3" stroke-width="1.2"/>
+<text x="20" y="146" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">Corpus reader</text>
+<text x="20" y="162" class="s" font-size="12" fill="#3D4B5D">the same bytes from either source</text>
+</g>
+<path class="arrow" d="M131 170 V178" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M127 177 L135 177 L131 184 Z" fill="#5F6D82"/>
+<g class="row">
+<rect x="8" y="184" width="246" height="42" rx="3" class="code" fill="#FFFFFF" stroke="#A9B5C3" stroke-width="1.2"/>
+<text x="20" y="202" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">prepare</text>
+<text x="20" y="218" class="s" font-size="12" fill="#3D4B5D">parse, de-duplicate, thread, batch</text>
+</g>
+<path class="arrow" d="M131 226 V234" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M127 233 L135 233 L131 240 Z" fill="#5F6D82"/>
+<g class="row">
+<rect x="8" y="240" width="246" height="42" rx="3" class="model" fill="#EDF2F9" stroke="#0B3C86" stroke-width="1.6"/>
+<text x="20" y="258" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">taxonomist (1)</text>
+<text x="20" y="274" class="s" font-size="12" fill="#3D4B5D">the list of recurring processes</text>
+<rect x="266" y="246" width="86" height="30" rx="15" class="gate" fill="#FBF1D6" stroke="#A57700" stroke-width="1.4"/>
+<text x="309" y="265" class="k" font-size="11.5" font-weight="600" fill="#0F1B2D" text-anchor="middle">accept</text>
+<path class="arrow" d="M254 261 H260" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M259 257 L259 265 L266 261 Z" fill="#5F6D82"/>
+</g>
+<path class="arrow" d="M309 276 V289 H131 V290" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M127 289 L135 289 L131 296 Z" fill="#5F6D82"/>
+<g class="row">
+<rect x="8" y="296" width="246" height="42" rx="3" class="model" fill="#EDF2F9" stroke="#0B3C86" stroke-width="1.6"/>
+<text x="20" y="314" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">extractors (99)</text>
+<text x="20" y="330" class="s" font-size="12" fill="#3D4B5D">20 in flight: tags and quotes</text>
+<rect x="266" y="302" width="86" height="30" rx="15" class="gate" fill="#FBF1D6" stroke="#A57700" stroke-width="1.4"/>
+<text x="309" y="321" class="k" font-size="11.5" font-weight="600" fill="#0F1B2D" text-anchor="middle">quote check</text>
+<path class="arrow" d="M254 317 H260" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M259 313 L259 321 L266 317 Z" fill="#5F6D82"/>
+</g>
+<path class="arrow" d="M309 332 V345 H131 V346" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M127 345 L135 345 L131 352 Z" fill="#5F6D82"/>
+<g class="row">
+<rect x="8" y="352" width="246" height="42" rx="3" class="model" fill="#EDF2F9" stroke="#0B3C86" stroke-width="1.6"/>
+<text x="20" y="370" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">merger (1)</text>
+<text x="20" y="386" class="s" font-size="12" fill="#3D4B5D">places every proposed key</text>
+<rect x="266" y="358" width="86" height="30" rx="15" class="gate" fill="#FBF1D6" stroke="#A57700" stroke-width="1.4"/>
+<text x="309" y="377" class="k" font-size="11.5" font-weight="600" fill="#0F1B2D" text-anchor="middle">key check</text>
+<path class="arrow" d="M254 373 H260" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M259 369 L259 377 L266 373 Z" fill="#5F6D82"/>
+</g>
+<path class="arrow" d="M309 388 V401 H131 V402" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M127 401 L135 401 L131 408 Z" fill="#5F6D82"/>
+<g class="row">
+<rect x="8" y="408" width="246" height="42" rx="3" class="code" fill="#FFFFFF" stroke="#A9B5C3" stroke-width="1.2"/>
+<text x="20" y="426" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">rollup</text>
+<text x="20" y="442" class="s" font-size="12" fill="#3D4B5D">rounds, people, actions, stalls</text>
+</g>
+<path class="arrow" d="M131 450 V458" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M127 457 L135 457 L131 464 Z" fill="#5F6D82"/>
+<g class="row">
+<rect x="8" y="464" width="246" height="42" rx="3" class="model" fill="#EDF2F9" stroke="#0B3C86" stroke-width="1.6"/>
+<text x="20" y="482" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">synthesizers</text>
+<text x="20" y="498" class="s" font-size="12" fill="#3D4B5D">groups of up to 4, one wave</text>
+<rect x="266" y="470" width="86" height="30" rx="15" class="gate" fill="#FBF1D6" stroke="#A57700" stroke-width="1.4"/>
+<text x="309" y="489" class="k" font-size="11.5" font-weight="600" fill="#0F1B2D" text-anchor="middle">bounds check</text>
+<path class="arrow" d="M254 485 H260" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M259 481 L259 489 L266 485 Z" fill="#5F6D82"/>
+</g>
+<path class="arrow" d="M309 500 V513 H131 V514" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M127 513 L135 513 L131 520 Z" fill="#5F6D82"/>
+<g class="row">
+<rect x="8" y="520" width="246" height="42" rx="3" class="code" fill="#FFFFFF" stroke="#A9B5C3" stroke-width="1.2"/>
+<text x="20" y="538" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">score</text>
+<text x="20" y="554" class="s" font-size="12" fill="#3D4B5D">counted + estimated, at $85 an hour</text>
+</g>
+<path class="arrow" d="M131 562 V570" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M127 569 L135 569 L131 576 Z" fill="#5F6D82"/>
+<g class="row">
+<rect x="8" y="576" width="246" height="42" rx="3" class="model" fill="#EDF2F9" stroke="#0B3C86" stroke-width="1.6"/>
+<text x="20" y="594" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">drafters (up to 8)</text>
+<text x="20" y="610" class="s" font-size="12" fill="#3D4B5D">one working document each</text>
+<rect x="266" y="582" width="86" height="30" rx="15" class="gate" fill="#FBF1D6" stroke="#A57700" stroke-width="1.4"/>
+<text x="309" y="601" class="k" font-size="11.5" font-weight="600" fill="#0F1B2D" text-anchor="middle">draft gate</text>
+<path class="arrow" d="M254 597 H260" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M259 593 L259 601 L266 597 Z" fill="#5F6D82"/>
+</g>
+<path class="arrow" d="M309 612 V625 H131 V626" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M127 625 L135 625 L131 632 Z" fill="#5F6D82"/>
+<g class="row">
+<rect x="8" y="632" width="246" height="42" rx="3" class="code" fill="#FFFFFF" stroke="#A9B5C3" stroke-width="1.2"/>
+<text x="20" y="650" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">build</text>
+<text x="20" y="666" class="s" font-size="12" fill="#3D4B5D">the dashboard data and the report</text>
+</g>
+<path class="arrow" d="M131 674 V682" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M127 681 L135 681 L131 688 Z" fill="#5F6D82"/>
+<g class="row">
+<rect x="8" y="688" width="246" height="42" rx="3" class="code" fill="#FFFFFF" stroke="#A9B5C3" stroke-width="1.2"/>
+<text x="20" y="706" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">serve on 127.0.0.1</text>
+<text x="20" y="722" class="s" font-size="12" fill="#3D4B5D">the dashboard and each message</text>
+</g>
+<g class="legend">
+<rect x="8" y="750" width="16" height="14" rx="2" class="code" fill="#FFFFFF" stroke="#A9B5C3" stroke-width="1.2"/>
+<text x="30" y="762" class="l" font-size="12.5" fill="#3D4B5D">code</text>
+<rect x="84" y="750" width="16" height="14" rx="2" class="model" fill="#EDF2F9" stroke="#0B3C86" stroke-width="1.6"/>
+<text x="106" y="762" class="l" font-size="12.5" fill="#3D4B5D">model</text>
+<rect x="166" y="750" width="24" height="14" rx="7" class="gate" fill="#FBF1D6" stroke="#A57700" stroke-width="1.4"/>
+<text x="196" y="762" class="l" font-size="12.5" fill="#3D4B5D">gate</text>
+<rect x="244" y="750" width="16" height="14" rx="2" class="data" fill="none" stroke="#5F6D82" stroke-width="1.2" stroke-dasharray="4 3"/>
+<text x="266" y="762" class="l" font-size="12.5" fill="#3D4B5D">data</text>
+</g>
+</svg>

@@ -1,0 +1,107 @@
+{
+  "title": "Observation agent",
+  "author": "Scott Hom",
+  "base_url": "https://schom975-coder.github.io/observation-agent-assignment/",
+  "repo_url": "https://github.com/Schom975-coder/observation-agent-assignment",
+  "ref": "main",
+  "note": "Reading this with an AI assistant? This site is set up for Claude to read in full. Give it this page's address and ask it anything about the project.",
+  "summary": "A system that runs inside Claude Code, reads all {{fig:messages_read}} messages of an email archive from Enron, finds the work that recurs, prices what could be automated at $85 an hour, and ties every claim to a message and a verbatim quote. One command runs it; the outputs of one real run are committed with the code. Start with the index page: it maps every requirement of the brief to where it is met and how it is checked.",
+  "pages": [
+    {
+      "file": "index",
+      "nav": "Home",
+      "title": "Observation agent",
+      "source": "site/pages/index.md",
+      "description": "What the brief asked for and where each part is, the ways in, and the submitted run in figures.",
+      "ids": ["asks", "ask-1", "start", "figures", "read-on"]
+    },
+    {
+      "file": "dashboard/index",
+      "nav": "Dashboard",
+      "title": "Dashboard",
+      "kind": "dashboard",
+      "description": "A copy of the localhost dashboard with the same pages and data and every message pre-written, so every number still opens down to its message; a JavaScript page, and report.md carries the same figures in Markdown."
+    },
+    {
+      "file": "how-to-use",
+      "nav": "How to use",
+      "title": "How to use what it produced",
+      "source": "site/pages/how-to-use.md",
+      "description": "How to read the dashboard, check any claim against the raw files yourself, and use the report, the drafted documents and the re-scoring commands.",
+      "ids": ["the-dashboard", "drill", "check-a-claim", "report", "documents", "rescore", "code"]
+    },
+    {
+      "file": "how-to-run",
+      "nav": "How to run",
+      "title": "How to run it",
+      "source": "README.md",
+      "prefix": "This is the repository's README, rendered.",
+      "description": "The repository's README: prerequisites, getting the code on macOS, Linux and Windows, the one command, warm and cold runs, the dashboard and the tests.",
+      "ids": ["observation-agent", "what-this-is", "see-the-results-without-running-anything", "prerequisites", "get-the-code", "macos-and-linux", "windows", "run-it", "warm-and-cold-runs", "folder-trust-and-permissions", "unattended", "open-the-dashboard", "tests", "where-things-are", "reading-this-with-an-ai-assistant"]
+    },
+    {
+      "file": "run",
+      "nav": "The run",
+      "title": "The submitted run",
+      "source": "site/pages/run.md",
+      "description": "The facts of the submitted run read from its outputs: timings by stage, subagents, quote checks, coverage, the run logs and the drafted documents.",
+      "ids": ["facts", "timeline", "logs", "documents", "out", "dashboard-copy"]
+    },
+    {
+      "file": "architecture",
+      "nav": "Architecture",
+      "title": "Architecture",
+      "source": "site/pages/architecture.md",
+      "description": "The pipeline, the Claude Code layer and the path from a figure to its message, in three diagrams with the prose that reads them.",
+      "ids": ["diagram-pipeline", "diagram-claude-code", "diagram-drill", "stages", "model-edges", "cross-os"]
+    },
+    {
+      "file": "design",
+      "nav": "Design",
+      "title": "Design choices, and why",
+      "source": "site/pages/design.md",
+      "description": "The choices that shape the numbers, each with what it rejected and why, linked to the decision log and the code.",
+      "ids": ["pricing", "counted-vs-estimated", "taxonomy-and-merge", "email-is-data", "identity", "drafting", "dashboard", "budget"]
+    },
+    {
+      "file": "process",
+      "nav": "How it was built",
+      "title": "How it was built, M-1 to M8",
+      "source": "site/pages/process.md",
+      "description": "How it was built from M-1 to M8: what each milestone delivered, its commits, what went wrong and how it was caught, and the working method.",
+      "ids": ["m-1", "m0", "m1", "m2", "m3", "m4", "m5", "m6", "m7", "m8", "method"]
+    },
+    {
+      "file": "claude-dir",
+      "nav": "Claude Code layer",
+      "title": "The Claude Code layer, exactly as used",
+      "source": "site/pages/claude-dir.md",
+      "description": "Every file under .claude/ with its role: the agents' configuration read from their frontmatter, the skills, the hooks and settings.json.",
+      "ids": ["files", "agents", "skills", "hooks", "settings", "plan"]
+    },
+    {
+      "file": "notes",
+      "nav": "Notes",
+      "title": "Notes",
+      "source": "NOTES.md",
+      "prefix": "This is `NOTES.md` from the repository, rendered.",
+      "description": "NOTES.md: how Claude Code was driven, what went to subagents and in parallel, where it went wrong, where the system is most likely wrong and what it took on faith.",
+      "ids": ["how-we-drove-claude-code", "what-we-handed-to-subagents-and-why", "how-we-budgeted-their-context", "what-ran-in-parallel", "where-claude-code-got-it-wrong-and-how-we-caught-it", "what-we-would-build-next-with-another-week", "where-the-system-is-most-likely-wrong", "what-it-took-on-faith", "what-we-drafted-and-why"]
+    },
+    {
+      "file": "report",
+      "nav": "Report",
+      "title": "Report",
+      "kind": "report",
+      "description": "The report of the submitted run, printable, with the same figures as the dashboard; report.md is the same report in Markdown."
+    },
+    {
+      "file": "brief",
+      "nav": "Brief",
+      "title": "The assignment",
+      "source": "BRIEF.md",
+      "prefix": "The brief, as received.",
+      "description": "The assignment as received, so its own words are one click away."
+    }
+  ]
+}

@@ -48,3 +48,5 @@ jobs:
       # against them and the corpus (ARCHITECTURE.md 6.17).
       - run: node obs.mjs prepare --force
       - run: node obs.mjs verify
+      # The project site's generator, proven on every OS (lenient until the submitted run is committed).
+      - run: node site/build.ts

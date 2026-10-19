@@ -38,3 +38,8 @@ out/dashboard/.server.json
 
 # Raw stream from headless runs: carries absolute paths from prompts.
 out/runs/stream.jsonl
+
+# The built project site (node site/build.ts) and the folder it is built in before it moves into
+# place; published to the gh-pages branch by node site/publish.ts.
+site/dist/
+site/dist.building/

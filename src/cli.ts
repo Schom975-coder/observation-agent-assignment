@@ -11,6 +11,7 @@ import { mergeCommand } from './run/merge.ts';
 import { rollupCommand } from './run/rollup.ts';
 import { scoreCommand } from './run/score.ts';
 import { taxonomyCommand } from './run/taxonomy.ts';
+import { serveCommand } from './serve/server.ts';
 
 // The repo root, wherever the command is run from.
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
@@ -103,7 +104,12 @@ export const COMMANDS: Record<string, Command> = {
     run: (args) => buildCommand(ROOT, args),
   },
   summary: { summary: 'Print the run summary', milestone: 'M8' },
-  serve: { summary: 'Serve the dashboard on 127.0.0.1', milestone: 'M7' },
+  serve: {
+    summary:
+      'Serve the dashboard on 127.0.0.1 and print its address (--background returns at once and leaves it running, reusing one already up; --open also opens the browser; --stop; --status; --port N)',
+    milestone: 'M7',
+    run: (args) => serveCommand(ROOT, args),
+  },
 };
 
 function usage(): string {

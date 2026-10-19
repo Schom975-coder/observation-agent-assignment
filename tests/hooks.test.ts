@@ -1957,6 +1957,7 @@ test('seam: the observe skill is user-only, pre-approves only obs commands and t
     'node obs.mjs advance <id> ... --json',
     'node obs.mjs advance --failed <id> ... --json',
     'node obs.mjs advance <id> ... --failed <id> ... --json',
+    'node obs.mjs serve --background --open',
     'node obs.mjs status',
   ]) {
     assert.ok(skill.includes(`\`${command}\``), command);
@@ -1976,7 +1977,9 @@ test('seam: the observe skill is user-only, pre-approves only obs commands and t
     "each with exactly that entry's four fields: `subagent_type`, `description`, `prompt` and `run_in_background`",
     'if an entry ran in the foreground (`run_in_background` false: the taxonomist and the merger), run step 2 again as soon as it returns',
     'If `halt` is true, print its `halt_reason` and stop',
-    'If `done` is true, print its `steps`, then run `node obs.mjs status`, print its output, and stop.',
+    // The one command ends with the dashboard up and open (A1): the server starts detached, so the
+    // turn (and a `claude -p` run) ends while the dashboard stays up.
+    'If `done` is true, print its `steps`, then run `node obs.mjs serve --background --open` and print its output line (the dashboard\'s address), then run `node obs.mjs status`, print its output, and stop.',
     'if `wait` is true, end your turn and wait',
     'Otherwise print the `refused` list and stop.',
     'An Agent call that fails or is refused counts as a completion',
@@ -1991,6 +1994,23 @@ test('seam: the observe skill is user-only, pre-approves only obs commands and t
   for (const f of fields) assert.ok(skill.includes(`\`${f}\``), f);
   const call: Array<keyof AgentCall> = ['subagent_type', 'description', 'prompt', 'run_in_background'];
   for (const f of call) assert.ok(skill.includes(`\`${f}\``), f);
+});
+
+test('seam: the serve skill is user-only, pre-approves only obs commands, and starts the dashboard detached and open', () => {
+  assert.deepEqual(frontmatter('.claude/skills/serve/SKILL.md'), {
+    name: 'serve',
+    description: 'Open the dashboard of the last complete run on 127.0.0.1 without running the pipeline; reuses a server that is already up.',
+    'argument-hint': '"[--stop | --status]"',
+    'disable-model-invocation': 'true',
+    'allowed-tools': 'Bash(node obs.mjs *)',
+  });
+  const body = readFileSync(join(repo, '.claude', 'skills', 'serve', 'SKILL.md'), 'utf8');
+  // Only --stop and --status run without --background: anything else (--open, --port N) must never
+  // start a foreground server inside the Bash tool.
+  assert.ok(body.includes('If `$ARGUMENTS` is `--stop` or `--status`, run `node obs.mjs serve $ARGUMENTS`'));
+  assert.ok(body.includes('Otherwise run `node obs.mjs serve --background --open $ARGUMENTS`.'));
+  const commands = [...body.matchAll(/`(node obs\.mjs [^`]*)`/g)].map((m) => m[1]);
+  assert.deepEqual(commands, ['node obs.mjs serve $ARGUMENTS', 'node obs.mjs serve --background --open $ARGUMENTS'], 'no other command');
 });
 
 test('seam: the extract-batch skill is user-only and pre-approves only obs commands and the job subagents', () => {

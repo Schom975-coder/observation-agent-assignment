@@ -28,7 +28,7 @@ Run `node obs.mjs run start $ARGUMENTS`, exactly so, as its own Bash call. Then 
 
 Run `node obs.mjs advance --json`. It prints one JSON object. Act on it in this order:
 - If `halt` is true, print its `halt_reason` and stop. Do not run anything else: the run stays active, and running /observe again resumes it.
-- If `done` is true, print its `steps`, then run `node obs.mjs status`, print its output, and stop.
+- If `done` is true, print its `steps`, then run `node obs.mjs serve --background --open` and print its output line (the dashboard's address), then run `node obs.mjs status`, print its output, and stop.
 - If `agents` is not empty, then in one message make one Agent call per entry of `agents`, all together, each with exactly that entry's four fields: `subagent_type`, `description`, `prompt` and `run_in_background`. If any of those Agent calls fails or is refused, report its job at once as in step 3. Then:
   - if an entry ran in the foreground (`run_in_background` false: the taxonomist and the merger), run step 2 again as soon as it returns;
   - otherwise end your turn and wait.

@@ -81,6 +81,27 @@ test('the report code reads no clock, no randomness, no child process and no pla
   assert.deepEqual(violations(files, /Date\.now|Math\.random|new Date\(|node:child_process|process\.platform/), []);
 });
 
+// Same on every OS: nothing in the code or the page tests the platform except the server's choice of
+// the command that opens a browser (`serve --open`).
+test('process.platform is read in src/serve/server.ts only', () => {
+  const files = codeFiles('src', 'dashboard', 'obs.mjs').filter((f) => f !== 'src/serve/server.ts');
+  assert.deepEqual(violations(files, /process\.platform/), []);
+});
+
+// A16 for the server: the one child process it starts is itself (`serve --background`), by spawn of
+// this Node with an argv array; the browser command goes through an injected spawn. No shell, no
+// other way to run a program.
+test('the server starts no child process but itself and the browser, never through a shell', () => {
+  const files = codeFiles('src/serve');
+  assert.ok(files.includes('src/serve/server.ts'));
+  assert.deepEqual(
+    violations(files, /node:child_process/, (line) => line.trim() === "import { spawn, type SpawnOptions } from 'node:child_process';"),
+    [],
+  );
+  assert.deepEqual(violations(files, /(?<![.\w])(?:spawnSync|execSync|execFileSync|execFile|exec|fork)\s*\(|\bshell\s*:/), []);
+  assert.deepEqual(violations(files, /\bspawn\(/, (line) => line.includes('spawn(process.execPath, [')), []);
+});
+
 const LOCAL_PATH = /[A-Za-z]:[\\/]Users[\\/]|\/Users\/[A-Za-z]|\/home\/[A-Za-z]|AppData[\\/]/;
 
 test('public repo: no local file paths in anything we commit', () => {

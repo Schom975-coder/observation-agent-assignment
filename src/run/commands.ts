@@ -61,6 +61,7 @@ import {
   type TaxonomyFreshness,
 } from './ledger.ts';
 import { MergeError, extractionsSha, mergeFreshness, mergeStep, type MergeFreshness } from './merge.ts';
+import { BuildError, buildCurrent, buildStep } from '../report/build.ts';
 import { RollupError, rollupFreshness, rollupStep, type RollupFreshness } from './rollup.ts';
 import { ScoreError, scoreFreshness, scoreStep, synthesisSha, type ScoreFreshness } from './score.ts';
 import { TaxonomyError, taxonomyStep } from './taxonomy.ts';
@@ -136,8 +137,9 @@ export function timingFrom(states: readonly BatchState[], run: RunState): Timing
 
 // Where the run is: the first stage whose output is not yet current (ARCHITECTURE.md 7.2, 15.2).
 // artifacts: the briefs are missing or stale; drafting: drafts to finish, or done drafts not yet
-// collected into their artifacts.
-export type Stage = 'taxonomy' | 'extraction' | 'merge' | 'rollup' | 'synthesis' | 'score' | 'artifacts' | 'drafting' | 'done';
+// collected into their artifacts; build: the dashboard data and the report are missing or do not
+// match their inputs (src/report/build.ts buildCurrent).
+export type Stage = 'taxonomy' | 'extraction' | 'merge' | 'rollup' | 'synthesis' | 'score' | 'artifacts' | 'drafting' | 'build' | 'done';
 
 // The jobs of the synthesis groups or of the drafts.
 export type SynthesisStatus = {
@@ -283,7 +285,9 @@ export function statusReport(
                   ? 'artifacts'
                   : !drafting.complete || !artifactsCollected(root, drafts ?? [])
                     ? 'drafting'
-                    : 'done';
+                    : !buildCurrent(root)
+                      ? 'build'
+                      : 'done';
   return {
     batches: views.length,
     counts,
@@ -633,6 +637,7 @@ const isStageError = (err: unknown): err is Error =>
   err instanceof RollupError ||
   err instanceof ScoreError ||
   err instanceof ArtifactError ||
+  err instanceof BuildError ||
   err instanceof ConfigError;
 
 // `node obs.mjs advance [<id> ...] [--failed <id> ...] --json`: record the named jobs exactly as
@@ -648,6 +653,7 @@ const isStageError = (err: unknown): err is Error =>
 //   artifacts  write the briefs (artifacts prepare) and go on;
 //   drafting   hand out the drafts' `next`; once every draft is done or exhausted, render the
 //              artifacts and record them (artifacts collect) and go on;
+//   build      write the dashboard data and the report (build) and go on;
 //   done       end the run if it is active.
 // It prints one JSON object (AdvanceReport): every Agent call to make now, with its parameters as
 // the Agent tool names them. A cycle is one Bash call and one message of Agent calls, and no stage
@@ -725,6 +731,9 @@ export function advanceCommand(root: string, args: readonly string[]): number {
             }
             handOut(report.drafting.next);
             return false;
+          case 'build':
+            steps.push(buildStep(root));
+            return true;
           case 'done':
             if (readRun(root).active) steps.push(endRun(root));
             done = true;

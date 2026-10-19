@@ -246,6 +246,37 @@ export function foldPeople(people: readonly PersonCounts[], rates: IdentityRates
   }));
 }
 
+// ---- What was left apart, for the Methodology page ----
+
+// The priced person m..last addresses that folded nowhere (fold null), each under the reason the
+// rules gave: `ambiguous`, several candidates (decide); `shared_message`, a unique candidate refused
+// because the two identities share a message (shareMessage); `no_initial`, one first.last candidate
+// but no display name of that person carries the middle initial (R3's check); `no_candidate`, no
+// address the shapes point to. Read from out/people.json as prepare folded it; the identities are
+// taken as they stand there. Sorted by address. foldPeople is unchanged by this.
+export type FoldReport = { ambiguous: string[]; no_initial: string[]; shared_message: string[]; no_candidate: string[] };
+export function foldReport(people: readonly Person[], rates: IdentityRates, together: (a: string, b: string) => boolean = () => false): FoldReport {
+  const kinds = new Map(people.map((p) => [p.email, KINDS.includes(p.kind) ? p.kind : kindOf(p.email, rates)]));
+  const index = indexOf(people, kinds);
+  const byEmail = new Map(people.map((p) => [p.email, p]));
+  const canonicalOf = (email: string): string => byEmail.get(email)?.canonical ?? email;
+  const membersOf = (root: string): string[] => index.members.filter((m) => canonicalOf(m.email) === root).map((m) => m.email);
+  const shareMessage = (from: string, to: string): boolean => {
+    const theirs = membersOf(canonicalOf(to));
+    return membersOf(canonicalOf(from)).some((a) => theirs.some((b) => together(a, b)));
+  };
+  const out: FoldReport = { ambiguous: [], no_initial: [], shared_message: [], no_candidate: [] };
+  for (const m of index.members) {
+    if (m.shape?.shape !== 'ML' || (byEmail.get(m.email)?.fold ?? null) !== null) continue;
+    const d = decide(m, index);
+    if (d === 'ambiguous') out.ambiguous.push(m.email);
+    else if (d === null) out.no_candidate.push(m.email);
+    else if (d.rule !== 'last_name' || shareMessage(m.email, d.to)) out.shared_message.push(m.email);
+    else out.no_initial.push(m.email);
+  }
+  return out;
+}
+
 // ---- Reading the folds back (every consumer after prepare) ----
 
 export type Identity = {

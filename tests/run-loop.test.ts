@@ -13,14 +13,14 @@
 // next resuming without repeating anything) and score, with `status --json` walking every stage
 // and `verify` covering batches and synthesis groups. Last, `advance` alone drives a third copy
 // from the taxonomy to the run's end, the M6 drafting included: briefs, a wave of drafters (one
-// fixed on round 2, one exhausted after 2), the rendered artifacts and artifacts.json.
+// fixed on round 2, one exhausted after 2), the rendered artifacts and artifacts.json, and the build
+// of the dashboard data and the report.
 import { after, test } from 'node:test';
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
 import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { renderMessage } from '../src/batch/build.ts';
 import { checkExtraction } from '../src/model/validate-extraction.ts';
 import { parseMessage } from '../src/parse/message.ts';
@@ -37,15 +37,12 @@ import {
   type StatusReport,
 } from '../src/run/commands.ts';
 import { SYNTH_MAX_GROUPS } from '../src/model/synthesis-input.ts';
-import { canonicalTaxonomy } from '../src/model/taxonomy.ts';
-import { foldPeople } from '../src/normalize/identity.ts';
-import { buildPeople } from '../src/normalize/people.ts';
-import { buildThreads } from '../src/normalize/threads.ts';
 import { mergeCommand } from '../src/run/merge.ts';
 import { rollupCommand } from '../src/run/rollup.ts';
 import { scoreCommand } from '../src/run/score.ts';
 import { peopleLine } from '../src/model/artifacts.ts';
 import { BODIES } from './fixtures/drafts.ts';
+import { acceptTaxonomy, batchName, capture, fixtureM5, plannedExtractor, scriptedDrafter, scriptedSynthesizer, task, type DraftBehaviour, type SynthBehaviour } from './fixtures/pipeline.ts';
 import {
   MAX_DISPATCHES,
   bindAgent,
@@ -61,13 +58,12 @@ import {
 } from '../src/run/ledger.ts';
 import { gitBlobSha, sha256 } from '../src/util/hash.ts';
 import { normalizeNewlines } from '../src/util/text.ts';
-import type { ArtifactBrief, ArtifactIndex, Artifacts, BatchEntry, Extraction, Opportunities, SynthesisGroup, SynthSidecar } from '../src/types.ts';
+import type { ArtifactBrief, ArtifactIndex, Artifacts, BatchEntry, Extraction, Opportunities } from '../src/types.ts';
 
 const tmp = mkdtempSync(join(tmpdir(), 'obs-loop-'));
 after(() => rmSync(tmp, { recursive: true, force: true }));
 
 const BATCHES = 6;
-const batchName = (n: number) => `batch-${String(n).padStart(3, '0')}`;
 const idOf = (n: number) => `corpus/alpha/inbox/${n + 1}.`;
 // The corpus's main shape: CRLF header lines, the blank line, then an LF-only body.
 const message = (n: number) =>
@@ -129,41 +125,12 @@ function fixture(): string {
   return root;
 }
 
-// Runs `fn` with console.log and console.error captured.
-function capture(fn: () => number): { code: number; out: string[]; err: string[] } {
-  const out: string[] = [];
-  const err: string[] = [];
-  const { log, error } = console;
-  console.log = (...args: unknown[]) => void out.push(args.join(' '));
-  console.error = (...args: unknown[]) => void err.push(args.join(' '));
-  try {
-    return { code: fn(), out, err };
-  } finally {
-    console.log = log;
-    console.error = error;
-  }
-}
-
 // ---- The scripted extractor ----
 
 // good: a correct extraction; bad: the quote is not in the message (on a fix round it changes
 // nothing); fix: on a fix round, corrects the previous output; crash: writes a good output, but
 // its session dies before anything checks it.
 type Behaviour = 'good' | 'bad' | 'fix' | 'crash';
-
-// A job prompt read the way the agent definitions say (ARCHITECTURE.md 6.22): the job and whether
-// it is a fix round from the first line, the project folder from the second, and every file as a
-// path under the folder joined with "/".
-type Task = { id: string; fix: boolean; at: (rel: string) => string };
-function task(prompt: string, verb: 'Extract' | 'Synthesize' | 'Draft'): Task {
-  const lines = prompt.split('\n');
-  assert.equal(lines.length, 2, prompt);
-  const m = new RegExp(`^${verb} ((?:batch|synth|draft)-\\d{3})(\\.| \\(fix round \\d+ of \\d+\\): \\d+ problems? in the problems file\\.)$`).exec(lines[0] as string);
-  assert.ok(m !== null, lines[0]);
-  const folder = /^Project folder: (.+)$/.exec(lines[1] as string)?.[1] as string;
-  assert.ok(folder !== undefined && !folder.includes('\\'), lines[1]);
-  return { id: m[1] as string, fix: m[2] !== '.', at: (rel) => `${folder}/${rel}` };
-}
 
 // Reads its prompt and files the way the agent definition tells it to, and writes the output file.
 function extractor(agentId: string, prompt: string, behaviour: Behaviour, root: string, session: Session): void {
@@ -365,177 +332,7 @@ test('verify with nothing done says so, and refuses arguments', () => {
   assert.deepEqual(capture(() => verifyCommand(root, ['--all'])), { code: 1, out: [], err: ['verify: unexpected argument "--all". Usage: node obs.mjs verify'] });
 });
 
-// ---- M5: merge, rollup, synthesis and score ----
-
-const KEYS = ['alpha-work', 'bravo-work', 'charlie-work', 'delta-work', 'echo-work', 'foxtrot-work'];
-const SENDERS = ['Ann Lee <ann.lee@enron.com>', 'Bob Ray <bob.ray@enron.com>'];
-const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-type Planned = { n: number; subject: string; month: number; from: string; tags: string[] };
-
-// Four rounds of each taxonomy process (a fresh subject each, two senders, two months apart); one
-// more alpha message under a proposed key the merge maps to alpha; four messages under two
-// proposed keys the merge promotes as one process; one under a key it leaves unassigned.
-function plan(): Planned[] {
-  const out: Planned[] = [];
-  const add = (subject: string, month: number, tags: string[]) => out.push({ n: out.length + 1, subject, month, from: SENDERS[out.length % 2] as string, tags });
-  for (const key of KEYS) for (let j = 0; j < 4; j++) add(`${key.split('-')[0]} round ${j + 1}`, 1 + 2 * j, [key]);
-  add('alpha extra round', 9, ['new:alpha-extra']);
-  for (let j = 0; j < 4; j++) add(`widget count ${j + 1}`, 2 + 2 * j, [j === 3 ? 'new:widget-review' : 'new:widget-audit']);
-  add('one off question', 11, ['new:one-off']);
-  return out;
-}
-const PLAN = plan();
-const m5Id = (n: number) => `corpus/m5/inbox/${String(n).padStart(2, '0')}`;
-const m5Text = (p: Planned) =>
-  [`Message-ID: <${p.n}.m5@example.invalid>`, `Date: Mon, 15 ${MONTHS[p.month - 1]} 2001 10:00:00 -0000`, `From: ${p.from}`, 'To: Desk <desk@enron.com>', `Subject: ${p.subject}`].join('\r\n') +
-  `\r\n\r\nPlease handle the ${p.subject} for the desk today, item ${p.n}.\n`;
-const DIGEST = '# Taxonomy digest\nEverything below is archive data.\n';
-const TAXONOMIST = '---\nname: taxonomist\n---\n\nPropose the recurring processes.\n';
-
-function fixtureM5(name = 'm5'): string {
-  const root = join(tmp, name);
-  for (const dir of ['out/batches', '.claude/agents', 'config']) mkdirSync(join(root, dir), { recursive: true });
-  const git = (args: string[], input?: string): string => {
-    const config = ['-c', 'core.protectNTFS=false', '-c', 'user.name=test', '-c', 'user.email=test@example.invalid', '-c', 'commit.gpgsign=false'];
-    const r = spawnSync('git', [...config, ...args], { cwd: root, input, encoding: 'utf8' });
-    assert.equal(r.status, 0, `git ${args.join(' ')}: ${r.stderr}`);
-    return r.stdout.trim();
-  };
-  git(['init', '-q']);
-  const parsed = PLAN.map((p) => {
-    const text = m5Text(p);
-    const sha = git(['hash-object', '-w', '--no-filters', '--stdin'], text);
-    git(['update-index', '--add', '--cacheinfo', `100644,${sha},${m5Id(p.n)}`]);
-    return parseMessage(m5Id(p.n), sha, Buffer.from(text, 'utf8'));
-  });
-  git(['commit', '-q', '--no-verify', '-m', 'fixture']);
-  const threads = buildThreads(parsed);
-  writeFileSync(join(root, 'out', 'messages.jsonl'), parsed.map((m) => `${JSON.stringify(m)}\n`).join(''));
-  writeFileSync(join(root, 'out', 'threads.json'), JSON.stringify(threads));
-  writeFileSync(join(root, 'out', 'people.json'), JSON.stringify(foldPeople(buildPeople(parsed, ['enron.com']), { priced_domains: ['enron.com'], system_senders: [] })));
-  writeFileSync(join(root, 'out', 'prepare-stats.json'), JSON.stringify({ corpus_hash: 'c'.repeat(64), suspected_injection: [], oversize: [] }));
-  const index: BatchEntry[] = [];
-  for (let b = 0; b * 5 < parsed.length; b++) {
-    const id = batchName(b);
-    const ms = parsed.slice(b * 5, b * 5 + 5);
-    const content = `# ${id} | ${ms.length} messages | ${ms.length} threads\n${ms.map((m) => `=== THREAD t | ${m.subject_norm} | 1 messages ===\n${renderMessage(m, m5Text(PLAN[Number(m.id.slice(-2)) - 1] as Planned))}`).join('')}`;
-    writeFileSync(join(root, 'out', 'batches', `${id}.md`), content);
-    index.push({ batch_id: id, file: `out/batches/${id}.md`, message_ids: ms.map((m) => m.id), thread_ids: [], bytes: Buffer.byteLength(content), lines: content.split('\n').length - 1, est_tokens: 100, content_sha: sha256(content) });
-  }
-  writeFileSync(join(root, 'out', 'batches', 'index.json'), JSON.stringify(index));
-  writeFileSync(join(root, 'out', 'taxonomy-digest.md'), DIGEST);
-  for (const [name, text] of [['extractor', 'Classify every message.'], ['taxonomist', null], ['merger', 'Merge the proposed keys.'], ['synthesizer', 'Describe and estimate.'], ['drafter', 'Write the body.']] as const) {
-    writeFileSync(join(root, '.claude', 'agents', `${name}.md`), text === null ? TAXONOMIST : `---\nname: ${name}\n---\n\n${text}\n`);
-  }
-  const config = (f: string) => readFileSync(join(dirname(fileURLToPath(import.meta.url)), '..', 'config', f), 'utf8');
-  writeFileSync(join(root, 'config', 'effort-rates.json'), config('effort-rates.json'));
-  // Tier B at 1 occurrence, 1 month, 1 staff member (ARCHITECTURE.md 15.4), and no dollar bar (the
-  // committed 8,500 cents is far above this small project's minutes): every process is eligible for
-  // an artifact.
-  const scoring = JSON.parse(config('scoring.json')) as { tiers: Record<string, unknown>; artifacts: Record<string, unknown> };
-  scoring.tiers.B = { min_occurrences: 1, min_active_months: 1, min_staff: 1 };
-  scoring.artifacts.min_automatable_cents = null;
-  writeFileSync(join(root, 'config', 'scoring.json'), `${JSON.stringify(scoring, null, 2)}\n`);
-  return root;
-}
-
-function acceptTaxonomy(root: string): void {
-  const processes = KEYS.map((key) => ({ key, name: `${key.split('-')[0]} work`, definition: `The recurring ${key.split('-')[0]} work of the desk.`, include: [], exclude: [], example_subjects: [`${key.split('-')[0]} round 1`] }));
-  const taxonomy = canonicalTaxonomy(processes, sha256(normalizeNewlines(DIGEST)), sha256(normalizeNewlines(TAXONOMIST)));
-  writeFileSync(join(root, 'out', 'taxonomy.json'), `${JSON.stringify(taxonomy, null, 2)}\n`);
-}
-
-// Extracts a batch as planned: each message's tags, its "Please handle" line as the quote, and a
-// declaration for every proposed key the batch uses.
-function plannedExtractor(prompt: string): void {
-  const { id: batchId, at } = task(prompt, 'Extract');
-  const batch = readFileSync(at(`out/batches/${batchId}.md`), 'utf8');
-  const ids = [...batch.matchAll(/^--- MESSAGE (.+) ---$/gm)].map((m) => m[1] as string);
-  const planned = ids.map((id) => PLAN[Number(id.slice(-2)) - 1] as Planned);
-  const used = [...new Set(planned.flatMap((p) => p.tags.filter((t) => t.startsWith('new:'))))];
-  const x: Extraction = {
-    batch_id: batchId,
-    messages: planned.map((p) => ({ id: m5Id(p.n), processes: p.tags, role: 'request', stall: null, ownership_claim: null })),
-    evidence: planned.flatMap((p) => p.tags.map((t) => ({ process: t, message_id: m5Id(p.n), field: 'body' as const, quote: `Please handle the ${p.subject} for the desk today, item ${p.n}.`, note: 'The request.' }))),
-    new_processes: used.map((key) => ({ key, name: key.slice(4).replace(/-/g, ' '), definition: `Proposed: ${key.slice(4)} handled by the desk.`, example_ids: [] })),
-    batch_notes: '',
-  };
-  const output = at(`out/extract/${batchId}.json`);
-  mkdirSync(dirname(output), { recursive: true }); // as the Write tool does
-  writeFileSync(output, JSON.stringify(x, null, 2));
-}
-
-// The synthesizer as a script: good, bad (a mid of 900: E1), long (a 650-character description:
-// over the stated 600, inside the margin), unknown (a stall citing an id the input does not show),
-// or fix (the previous output with the minutes put back and the unknown id dropped). It reads the
-// sidecar to choose ids from three occurrences and two senders; the real agent reads the same facts
-// from the group input's lines.
-type SynthBehaviour = 'good' | 'bad' | 'long' | 'unknown' | 'fix';
-const UNKNOWN_ID = 'batch-099:e99';
-// The artifact each process's synthesis chooses: every type, and one process with none.
-const ARTIFACT_OF: Record<string, 'sop' | 'checklist' | 'email_template' | 'template' | 'none'> = {
-  alpha: 'sop',
-  bravo: 'checklist',
-  charlie: 'email_template',
-  delta: 'template',
-  echo: 'none',
-  foxtrot: 'sop',
-  widget: 'checklist',
-};
-function scriptedSynthesizer(root: string, prompt: string, behaviour: SynthBehaviour): void {
-  const { id: groupId, fix, at } = task(prompt, 'Synthesize');
-  const output = at(`out/synthesis/raw/${groupId}.json`);
-  mkdirSync(dirname(output), { recursive: true });
-  if (fix && behaviour === 'fix') {
-    const g = JSON.parse(readFileSync(output, 'utf8')) as SynthesisGroup;
-    for (const p of g.processes) {
-      if (p.work_estimate !== null) p.work_estimate.minutes_per_occurrence = { low: 20, mid: 30, high: 45 };
-      p.stalls = p.stalls.filter((s) => !s.evidence_ids.includes(UNKNOWN_ID));
-    }
-    writeFileSync(output, JSON.stringify(g));
-    return;
-  }
-  const sidecar = JSON.parse(readFileSync(join(root, 'out', 'synthesis', 'input', `${groupId}.json`), 'utf8')) as SynthSidecar;
-  const g: SynthesisGroup = {
-    group_id: groupId,
-    processes: sidecar.processes.map((p) => {
-      const seen = new Set<string>();
-      const ids = p.cited.filter((c) => c.kind === 'evidence' && !seen.has(c.occurrence_id) && seen.add(c.occurrence_id)).slice(0, 3).map((c) => c.id);
-      const description = `The desk handles the ${p.key.split('-')[0]} requests that come round every other month and confirms each one.`;
-      return {
-        key: p.key,
-        description: behaviour === 'long' ? `${description} ${'And it checks the figures again. '.repeat(30)}`.slice(0, 650) : description,
-        steps: ['Read the request', 'Handle it', 'Confirm back'],
-        stalls: behaviour === 'unknown' ? [{ summary: 'A request waits on the desk', evidence_ids: [UNKNOWN_ID] }] : [],
-        contradictions: [],
-        automation: { approach: 'A request tracker with a confirmation template', artifact_type: ARTIFACT_OF[p.key.split('-')[0] as string] ?? 'checklist', rationale: 'Each round repeats the same steps.' },
-        work_estimate:
-          p.occurrences < 3
-            ? null
-            : { minutes_per_occurrence: behaviour === 'bad' ? { low: 20, mid: 900, high: 900 } : { low: 20, mid: 30, high: 45 }, automatable_pct: 50, basis: 'observed' as const, rationale: 'Read, handle and confirm: about half an hour a round.', evidence_ids: ids },
-      };
-    }),
-  };
-  writeFileSync(output, JSON.stringify(g));
-}
-
-// The drafter as a script: it reads its prompt and its brief the way drafter.md says, and writes a
-// body of the brief's type: good; bad (a message path in the body, which the gate refuses); or, on
-// its fix round, fix (the good body) or bad again (its previous body unchanged).
-type DraftBehaviour = 'good' | 'bad' | 'fix';
-function scriptedDrafter(prompt: string, behaviour: DraftBehaviour): void {
-  const { id, fix, at } = task(prompt, 'Draft');
-  const brief = JSON.parse(readFileSync(at(`out/artifacts/input/${id}.json`), 'utf8')) as ArtifactBrief;
-  const output = at(`out/artifacts/raw/${id}.md`);
-  mkdirSync(dirname(output), { recursive: true });
-  if (fix) {
-    assert.match(readFileSync(at(`out/fix/${id}.txt`), 'utf8'), /names a message or an evidence id/);
-    if (behaviour === 'fix') writeFileSync(output, BODIES[brief.artifact_type as keyof typeof BODIES]);
-    return;
-  }
-  const body = BODIES[brief.artifact_type as keyof typeof BODIES];
-  writeFileSync(output, behaviour === 'good' ? body : `${body}\n\nSee corpus/x/1. for the source.\n`);
-}
+// ---- M5: merge, rollup, synthesis and score (the project and the scripted agents: tests/fixtures/pipeline.ts) ----
 
 const refill = (root: string, ids: string[]): RefillReport => {
   const r = capture(() => refillCommand(root, [...ids, '--json']));
@@ -545,7 +342,7 @@ const refill = (root: string, ids: string[]): RefillReport => {
 const stageOf = (root: string): string => status(root).stage;
 
 test('the loop continues through merge, rollup, synthesis and score: a merge fix round, a group fixed on round 2, one exhausted, a resumed session; verify covers both kinds', () => {
-  const root = fixtureM5();
+  const root = fixtureM5(tmp);
   const saved = process.env.OBS_IN_FLIGHT;
   delete process.env.OBS_IN_FLIGHT;
   try {
@@ -670,8 +467,8 @@ test('the loop continues through merge, rollup, synthesis and score: a merge fix
 
 // ---- advance: the whole run, one command per turn (ARCHITECTURE.md 6.7, 15.3) ----
 
-test('advance alone drives the run: one wave of batches, the merger in the foreground, accept, rollup and one wave of groups, score, the briefs and one wave of drafters, collect and run end; a second session repeats nothing; the log times every step', () => {
-  const root = fixtureM5('m5-advance');
+test('advance alone drives the run: one wave of batches, the merger in the foreground, accept, rollup and one wave of groups, score, the briefs and one wave of drafters, collect, build and run end; a second session repeats nothing; the log times every step', () => {
+  const root = fixtureM5(tmp, 'm5-advance');
   const saved = process.env.OBS_IN_FLIGHT;
   delete process.env.OBS_IN_FLIGHT;
   const advance = (args: string[]): AdvanceReport => {
@@ -772,10 +569,15 @@ test('advance alone drives the run: one wave of batches, the merger in the foreg
     );
     for (const a of fixes.agents) scriptedDrafter(a.prompt, draftBehaviour(a.description.split(' ')[1] as string, true));
 
-    // The advance after the last fix round collects the artifacts, ends the run and says so.
+    // The advance after the last fix round collects the artifacts, builds the dashboard data and the
+    // report, ends the run and says so.
     const end = advance([alpha, bravo]);
     assert.deepEqual(end.recorded.map((r) => [r.id, r.status]), [alpha, bravo].map((id) => [id, id === alpha ? 'done' : 'failed']));
-    assert.deepEqual(end.steps, ['artifacts: 5 drafted, 1 exhausted, 1 skipped; wrote out/artifacts/artifacts.json.', `run: ended ${runId}.`]);
+    assert.equal(end.steps.length, 3, end.steps.join('\n'));
+    assert.equal(end.steps[0], 'artifacts: 5 drafted, 1 exhausted, 1 skipped; wrote out/artifacts/artifacts.json.');
+    assert.match(end.steps[1] ?? '', /^build: 7 processes \(7 in the total\), 5 documents, .*; wrote out\/dashboard\/ \(\d+ files\), out\/report\.html, out\/report\.md and out\/run-summary\.json; \d+ files changed\.$/);
+    assert.equal(end.steps[2], `run: ended ${runId}.`);
+    assert.ok(existsSync(join(root, 'out', 'dashboard', 'data.json')) && existsSync(join(root, 'out', 'report.html')), 'the build wrote its files');
     assert.deepEqual([end.stage, end.done, end.halt, end.wait, end.agents, end.running, end.exhausted], ['done', true, false, false, [], [], [bravo]]);
     assert.equal(readRun(root).active, false);
     assert.equal(readBatchState(root, bravo).dispatches, 2);
@@ -871,6 +673,7 @@ test('advance alone drives the run: one wave of batches, the merger in the foreg
       ['score', null],
       ['artifacts prepare', null],
       ['artifacts collect', null],
+      ['build', null],
       ['run end', null],
     ]);
     for (const e of stages) assert.ok(Number.isInteger(e.ms) && typeof e.summary === 'string' && e.summary !== '', JSON.stringify(e));

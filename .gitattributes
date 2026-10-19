@@ -1,5 +1,9 @@
 # Text files use LF on every OS, so golden outputs and hashes match across machines.
 * text=auto eol=lf
 
+# The vendored fonts are binary: no OS converts them, and the build hashes their raw bytes.
+dashboard/fonts/*.woff2 binary
+out/dashboard/fonts/*.woff2 binary
+
 # The corpus is raw evidence: never convert its line endings on any OS.
 corpus/** -text -eol

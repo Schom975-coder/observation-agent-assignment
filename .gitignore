@@ -30,6 +30,9 @@ out/runs/adhoc.jsonl
 *.lock.takeover
 *.tmp
 
+# The dashboard server's state while it runs (pid, port, URL): meaningless after it stops.
+out/dashboard/.server.json
+
 # Git Bash crash dumps on Windows.
 *.stackdump
 

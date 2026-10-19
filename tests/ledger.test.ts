@@ -78,6 +78,7 @@ import {
 import { sha256 } from '../src/util/hash.ts';
 import { normalizeNewlines } from '../src/util/text.ts';
 import { BODIES, standInBriefText } from './fixtures/drafts.ts';
+import { markBuilt } from './fixtures/pipeline.ts';
 import type { BatchEntry, JobCheck, ValidatedDraft, ValidatedExtraction, ValidatedSynthesis } from '../src/types.ts';
 
 const tmp = mkdtempSync(join(tmpdir(), 'obs-ledger-'));
@@ -1377,7 +1378,7 @@ test('several agents binding one dispatched job from several processes at once: 
   assert.equal(boundBatch(root, winner)?.batch_id, 'batch-000');
 });
 
-test('the stage walks taxonomy, extraction, merge, rollup, synthesis, score, artifacts, drafting, done; groups and drafts are dispatched only once their inputs are current, within the shared cap', () => {
+test('the stage walks taxonomy, extraction, merge, rollup, synthesis, score, artifacts, drafting, build, done; groups and drafts are dispatched only once their inputs are current, within the shared cap', () => {
   const root = project(2);
   addGroups(root, 3);
   const stage = () => statusReport(root).stage;
@@ -1429,6 +1430,9 @@ test('the stage walks taxonomy, extraction, merge, rollup, synthesis, score, art
   const collecting = statusReport(root);
   assert.deepEqual([collecting.stage, collecting.drafting.complete, collecting.drafting.exhausted, collecting.drafting.next], ['drafting', true, ['draft-002'], []], 'an exhausted draft is reported, not waited for');
   assert.match(artifactsCollectStep(root), /^artifacts: 2 drafted, 1 exhausted; wrote out\/artifacts\/artifacts\.json\.$/);
+  // Collected: the dashboard data and the report come next; once they match their inputs, done.
+  assert.equal(stage(), 'build');
+  markBuilt(root);
   assert.equal(stage(), 'done');
   // A new extraction makes everything after it stale, in order.
   writeFileSync(validatedFile(root, 'batch-001'), JSON.stringify({ ...validated('batch-001'), batch_notes: 'changed' }));

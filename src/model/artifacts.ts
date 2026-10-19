@@ -26,6 +26,7 @@ import { evenSteps, flatten } from '../batch/digest.ts';
 import { sha256 } from '../util/hash.ts';
 import { slugify } from '../util/slug.ts';
 import { normalizeNewlines } from '../util/text.ts';
+import { inertMarkdown } from '../report/text.ts';
 import { modelText } from './schema.ts';
 import { PARTICIPANTS_SHOWN, evidenceSample, quoteSources, quotesFrom, type Quoted } from './synthesis-input.ts';
 import { withMargin } from './synthesis.ts';
@@ -878,7 +879,9 @@ function factsLines(brief: ArtifactBrief): string[] {
 
 // The artifact file: title, provenance line, the body as written with the people line under its
 // who-section heading, the Evidence footer. LF endings, one newline at the end. Everything but the
-// body is code's.
+// body is code's. The file is written inert (src/report/text.ts inertMarkdown): the structure of the
+// body and of the quotes stays, but no link, image, reference definition, HTML or open fence can
+// come from the model or the mail. The gate checks the body as the drafter wrote it, before this.
 export function renderArtifact(brief: ArtifactBrief, body: string): string {
   const text = withPeopleLine(normalizeNewlines(body.startsWith(BOM) ? body.slice(1) : body).trim(), brief);
   const groups: Array<[string, ReadonlyArray<{ message_id: string; date: string | null; sender: string; quote: string }>]> = [
@@ -894,7 +897,7 @@ export function renderArtifact(brief: ArtifactBrief, body: string): string {
     ...groups.filter(([, qs]) => qs.length > 0).flatMap(([title, qs]) => [`### ${title}`, '', ...qs.flatMap(quoteItem)]),
     ...factsLines(brief),
   ];
-  return [`# ${plainDashes(brief.name)}: ${ARTIFACT_LABELS[brief.artifact_type]}`, '', provenanceLine(brief), '', text, '', ...footer, ''].join('\n');
+  return inertMarkdown([`# ${plainDashes(brief.name)}: ${ARTIFACT_LABELS[brief.artifact_type]}`, '', provenanceLine(brief), '', text, '', ...footer, ''].join('\n'));
 }
 
 // ---- What the drafter's definition says, from the constants (the seam) ----

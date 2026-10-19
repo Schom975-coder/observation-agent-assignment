@@ -3,6 +3,7 @@
 import { fileURLToPath } from 'node:url';
 import { ingestCommand } from './corpus/ingest.ts';
 import { prepareCommand } from './pipeline/prepare.ts';
+import { buildCommand } from './report/build.ts';
 import { artifactsCommand } from './run/artifacts.ts';
 import { advanceCommand, dispatchCommand, refillCommand, runCommand, statusCommand, validateCommand, verifyCommand } from './run/commands.ts';
 import { goldCommand } from './run/gold.ts';
@@ -52,7 +53,7 @@ export const COMMANDS: Record<string, Command> = {
     run: (args) => refillCommand(ROOT, args),
   },
   advance: {
-    summary: "The run's one command per turn: record the named jobs as refill does, run every ready stage step (taxonomy and merge accept, rollup, score, artifacts prepare and collect, run end), print the next Agent calls as JSON",
+    summary: "The run's one command per turn: record the named jobs as refill does, run every ready stage step (taxonomy and merge accept, rollup, score, artifacts prepare and collect, build, run end), print the next Agent calls as JSON",
     milestone: 'M5',
     run: (args) => advanceCommand(ROOT, args),
   },
@@ -96,7 +97,11 @@ export const COMMANDS: Record<string, Command> = {
     milestone: 'M6',
     run: (args) => artifactsCommand(ROOT, args),
   },
-  build: { summary: 'Build the report and the dashboard data', milestone: 'M7' },
+  build: {
+    summary: 'Write the dashboard data (out/dashboard/) and the report (out/report.html, out/report.md) from a complete run, with no model call',
+    milestone: 'M7',
+    run: (args) => buildCommand(ROOT, args),
+  },
   summary: { summary: 'Print the run summary', milestone: 'M8' },
   serve: { summary: 'Serve the dashboard on 127.0.0.1', milestone: 'M7' },
 };

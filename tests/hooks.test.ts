@@ -80,6 +80,7 @@ import { TAXONOMY_MAX_DISPATCHES, currentShas, taxonomistPrompt } from '../src/r
 import { sha256 } from '../src/util/hash.ts';
 import { QUOTE_MAX_CHARS, QUOTE_MIN_CHARS } from '../src/validate/quotes.ts';
 import { BODIES, standInBriefText } from './fixtures/drafts.ts';
+import { markBuilt } from './fixtures/pipeline.ts';
 import { ARTIFACT_TYPES, ESTIMATE_BASES, type BatchEntry, type SynthEntry, type SynthSidecar, type ValidatedExtraction, type ValidatedSynthesis } from '../src/types.ts';
 
 const repo = fileURLToPath(new URL('..', import.meta.url));
@@ -1613,6 +1614,10 @@ test('stop gate: after extraction it names advance for the merge, the rollup, ea
   assert.equal(stop(dir, []), `Pipeline run: every artifact draft is done or exhausted and the artifacts are not collected yet. ${ADVANCE_NEXT}`);
   assert.deepEqual([stageOf(dir), lastKey(dir)], ['drafting', 'advance:drafting:']);
   artifactsCollectStep(dir);
+  // Collected: the build is the next stage step; once its files match their inputs, the run end.
+  assert.equal(stop(dir, []), `Pipeline run: the build stage has a step to run. ${ADVANCE_NEXT}`);
+  assert.deepEqual([stageOf(dir), lastKey(dir)], ['build', 'advance:build:']);
+  markBuilt(dir);
   const end = stop(dir, []);
   assert.equal(end, `Pipeline run: every stage is done and the run is still active. ${ADVANCE_NEXT}`);
   assert.deepEqual([stageOf(dir), lastKey(dir)], ['done', 'advance:done:']);
@@ -1629,6 +1634,7 @@ test('stop gate: drafters are live pipeline agents, by type or by the descriptio
   currentRollup(dir, []);
   currentScore(dir);
   currentArtifacts(dir);
+  markBuilt(dir);
   assert.match(stop(dir, []) ?? '', /^Pipeline run: every stage is done/);
   forget(dir);
   assert.equal(stop(dir, [task('Draft draft-003', 'running', 'drafter')]), null, 'typed');
@@ -1667,6 +1673,9 @@ test('stop gate: an exhausted batch is reported, not waited for: the run moves o
   currentRollup(dir, []);
   currentScore(dir);
   currentArtifacts(dir);
+  assert.match(stop(dir, []) ?? '', /^Pipeline run: the build stage has a step to run\./);
+  forget(dir);
+  markBuilt(dir);
   assert.match(stop(dir, []) ?? '', /^Pipeline run: every stage is done and the run is still active\. Run `node obs\.mjs advance --json`/);
 });
 

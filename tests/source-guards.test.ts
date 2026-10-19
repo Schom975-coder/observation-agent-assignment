@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url';
 const root = fileURLToPath(new URL('..', import.meta.url));
 const self = relative(root, fileURLToPath(import.meta.url)).replaceAll('\\', '/');
 const CODE = /\.(ts|mts|js|mjs|cjs|json)$/;
-const TEXT = /\.(ts|mts|js|mjs|cjs|json|md|yml|yaml)$/;
+const TEXT = /\.(ts|mts|js|mjs|cjs|json|md|yml|yaml|html|css|txt)$/;
 
 const codeFiles = (...dirs: string[]) => filesIn(CODE, ...dirs);
 
@@ -67,22 +67,37 @@ test('pipeline code never reads the browsing copy corpus-view/', () => {
   assert.deepEqual(violations(pipeline, /corpus-view/), []);
 });
 
+// A9: one formatter writes every money figure, with its kind. Outside src/report/format.ts, nothing
+// in the report code or the dashboard builds a dollar string by hand or with the locale.
+test('money strings come from the one formatter (src/report/format.ts) only', () => {
+  const files = codeFiles('src/report', 'dashboard').filter((f) => f !== 'src/report/format.ts');
+  assert.deepEqual(violations(files, /'\$' \+|"\$" \+|`\$\$\{|toLocaleString\('en-US'/), []);
+});
+
+// A16: the build is deterministic and model-free: no clock, no randomness, no child process, no
+// platform test in the report code.
+test('the report code reads no clock, no randomness, no child process and no platform', () => {
+  const files = codeFiles('src/report');
+  assert.deepEqual(violations(files, /Date\.now|Math\.random|new Date\(|node:child_process|process\.platform/), []);
+});
+
 const LOCAL_PATH = /[A-Za-z]:[\\/]Users[\\/]|\/Users\/[A-Za-z]|\/home\/[A-Za-z]|AppData[\\/]/;
 
 test('public repo: no local file paths in anything we commit', () => {
-  const ours = filesIn(TEXT, 'src', 'tests', 'config', '.claude', '.github', 'CLAUDE.md', 'package.json', 'obs.mjs');
+  const ours = filesIn(TEXT, 'src', 'tests', 'config', '.claude', '.github', 'dashboard', 'CLAUDE.md', 'package.json', 'obs.mjs');
   assert.deepEqual(violations(ours, LOCAL_PATH), []);
 });
 
 // The run's outputs are committed too (run logs, ledger files, extractions): every text file Git
-// tracks under out/. Skipped outside a Git checkout, where there is no list of committed files.
+// tracks under out/, the built dashboard and report included. Skipped outside a Git checkout, where
+// there is no list of committed files.
 test('public repo: no local file paths in the committed out/ files', (t) => {
   const r = spawnSync('git', ['ls-files', '-z', '--', 'out'], { cwd: root, encoding: 'utf8' });
   if (r.status !== 0) {
     t.skip('not a Git checkout');
     return;
   }
-  const committed = r.stdout.split('\0').filter((f) => f !== '' && /\.(json|jsonl|md|txt)$/.test(f) && existsSync(join(root, f)));
+  const committed = r.stdout.split('\0').filter((f) => f !== '' && /\.(json|jsonl|md|txt|html|css|js)$/.test(f) && existsSync(join(root, f)));
   assert.ok(committed.length > 0 || !existsSync(join(root, 'out')), 'the committed out/ files were listed');
   assert.deepEqual(violations(committed, LOCAL_PATH), []);
 });

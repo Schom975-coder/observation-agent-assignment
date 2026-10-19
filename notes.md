@@ -77,7 +77,7 @@ By dollar impact:
 - The domain. I don't know energy trading. I approved the process list and the labeller's 8 least certain calls; code checked citations, not whether a gas scheduler would agree.
 - That four mailboxes are representative.
 
-Checked, not trusted: the brief's "thirty context windows" measured six to eight; the planted emails are caught by content, not by their IDs, so a reviewer's own traps get the same test.
+Checked, not trusted: the brief's "thirty context windows" measured six to eight. One email is a prompt injection aimed at "the reviewing process": code flagged it by its wording, never by its ID, so a reviewer's own trap gets the same test; the extractor labelled it an injection attempt instead of obeying it; and it counts toward nothing but is listed on the dashboard with its citation. The other planted emails (an impossible date, an unsupported "eats half my week", two people claiming the same work) are caught the same way, by content. Every message is accounted for: of 3,240, 576 personal, 224 newsletters and notices, 30 automated and 39 duplicates are read and set aside.
 
 ## What we drafted, and why
 

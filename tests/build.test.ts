@@ -704,7 +704,7 @@ test('run facts: a manual build in the middle of a run cuts nothing; a warm run 
   writeFileSync(join(midBuild, 'out', 'runs', '20261019T010000Z.jsonl'), logLines([ev('19T01:00:00.000', 'run_start'), ev('19T01:00:02.000', 'prepare', { skipped: true }), ev('19T01:00:03.000', 'advance'), ev('19T01:00:04.000', 'stage', { name: 'build', ms: 900 }), ev('19T01:00:05.000', 'stage', { name: 'run end', ms: 1 })]));
   assert.deepEqual(factsOf(midBuild), expected, 'the warm run');
   assert.equal(runSpanSha(runSpanOf(midBuild)), before, 'nor its hash');
-  writeFileSync(join(midBuild, 'out', 'runs', '20261019T020000Z.jsonl'), logLines([ev('19T02:00:00.000', 'run_start'), ev('19T02:00:02.000', 'prepare', { skipped: false }), ev('19T02:00:30.000', 'SubagentStart', { agent_type: 'drafter' })]));
+  writeFileSync(join(midBuild, 'out', 'runs', '20261019T020000Z.jsonl'), logLines([ev('19T02:00:00.000', 'run_start', { force: true }), ev('19T02:00:02.000', 'prepare', { skipped: false }), ev('19T02:00:30.000', 'SubagentStart', { agent_type: 'drafter' })]));
   assert.deepEqual(factsOf(midBuild), { id: '20261019T020000Z', later: [], agents: 1, fix: 0, seconds: 30, stages: [] }, 'a later cold run');
   assert.notEqual(runSpanSha(runSpanOf(midBuild)), before);
   const noCold = runsProject('no cold run', {
@@ -717,6 +717,44 @@ test('run facts: a manual build in the middle of a run cuts nothing; a warm run 
   assert.deepEqual(factsOf(idle), { id: '20261019T000000Z', later: [], agents: 0, fix: 0, seconds: 0, stages: [] });
   assert.equal(runSpanOf(join(tmp, 'no such project')), null);
   assert.equal(runSpanSha(null), runSpanSha(runSpanOf(join(tmp, 'no such project'))));
+});
+
+test('run facts: a warm run on a fresh clone (prepare and rollup run again, no agent) keeps the forced run, its facts and its hash', () => {
+  const forced = [
+    ev('19T13:46:34.000', 'run_start', { force: true }),
+    ev('19T13:46:40.000', 'prepare', { skipped: false }),
+    ev('19T13:47:00.000', 'SubagentStart', { agent_type: 'taxonomist' }),
+    ev('19T14:09:57.000', 'stage', { name: 'rollup', ms: 1416 }),
+    ev('19T14:14:05.000', 'stage', { name: 'score', ms: 268 }),
+    ev('19T14:15:33.000', 'stage', { name: 'artifacts collect', ms: 27 }),
+    ev('19T14:15:35.000', 'stage', { name: 'build', ms: 900 }),
+    ev('19T14:15:35.500', 'stage', { name: 'run end', ms: 1 }),
+  ];
+  const dir = runsProject('fresh clone', { '20261019T134634Z': forced });
+  const before = { facts: factsOf(dir), sha: runSpanSha(runSpanOf(dir)) };
+  assert.equal(before.facts.id, '20261019T134634Z');
+  // The reviewer's first /observe on a clone: prepare runs (the batches are git-ignored), the rollup
+  // rewrites its synthesis inputs, the build runs; no agent, no gate, no score.
+  writeFileSync(
+    join(dir, 'out', 'runs', '20261019T211332Z.jsonl'),
+    logLines([
+      ev('19T21:13:32.000', 'run_start', { force: false }),
+      ev('19T21:13:38.000', 'prepare', { skipped: false }),
+      ev('19T21:13:45.000', 'stage', { name: 'rollup', ms: 1938 }),
+      ev('19T21:13:49.000', 'stage', { name: 'build', ms: 2467 }),
+      ev('19T21:13:50.000', 'stage', { name: 'run end', ms: 1 }),
+    ]),
+  );
+  assert.deepEqual(factsOf(dir), before.facts, 'the forced run’s facts stand');
+  assert.equal(runSpanSha(runSpanOf(dir)), before.sha, 'and the build stays current');
+  // A run that only rebuilds the document briefs adds nothing either.
+  writeFileSync(join(dir, 'out', 'runs', '20261019T213000Z.jsonl'), logLines([ev('19T21:30:00.000', 'run_start', { force: false }), ev('19T21:30:02.000', 'prepare', { skipped: true }), ev('19T21:30:05.000', 'stage', { name: 'artifacts prepare', ms: 30 })]));
+  assert.deepEqual(factsOf(dir), before.facts, 'a briefs rebuild');
+  // A clone-style run that also starts an agent (new mail extracted) continues the run, and so does a re-score.
+  writeFileSync(join(dir, 'out', 'runs', '20261019T214000Z.jsonl'), logLines([ev('19T21:40:00.000', 'run_start', { force: false }), ev('19T21:40:02.000', 'prepare', { skipped: false }), ev('19T21:40:30.000', 'SubagentStart', { agent_type: 'extractor' })]));
+  writeFileSync(join(dir, 'out', 'runs', '20261019T220000Z.jsonl'), logLines([ev('19T22:00:00.000', 'run_start', { force: false }), ev('19T22:00:05.000', 'stage', { name: 'score', ms: 40 })]));
+  assert.deepEqual(factsOf(dir).later, ['20261019T214000Z', '20261019T220000Z']);
+  assert.equal(factsOf(dir).id, '20261019T134634Z', 'the forced run still heads the span');
 });
 
 test('run facts on the built project: a build during the run and one after it write the same bytes; a warm run with no work leaves the build current and a run with work makes it stale', () => {

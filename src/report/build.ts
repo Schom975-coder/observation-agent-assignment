@@ -185,13 +185,22 @@ export function isWork(e: Readonly<Record<string, unknown>>): boolean {
   return e.event === 'SubagentStart' || e.event === 'gate' || (e.event === 'stage' && e.name !== 'build' && e.name !== 'run end');
 }
 
-// A cold run: its prepare ran rather than skipping itself.
-const isCold = (events: ReadonlyArray<Record<string, unknown>>): boolean => events.some((e) => e.event === 'prepare' && e.skipped !== true);
+// A cold run: started with --force, so every model output was made again. Not "its prepare ran":
+// a fresh clone runs prepare too (the batch files are git-ignored), reusing every committed output.
+const isCold = (events: ReadonlyArray<Record<string, unknown>>): boolean => events.some((e) => e.event === 'run_start' && e.force === true);
+
+// A later run continues the cold run's facts only when it changed what the figures rest on: a
+// subagent, a gate, or a stage other than the rebuilds a warm run on a fresh clone repeats with
+// the same result (the rollup rewrites its git-ignored synthesis inputs; a changed rollup is followed
+// by a score stage, which counts).
+const REBUILDS = new Set(['rollup', 'artifacts prepare']);
+const changesFigures = (e: Readonly<Record<string, unknown>>): boolean => isWork(e) && !(e.event === 'stage' && REBUILDS.has(String(e.name)));
 
 // The runs the facts describe (ARCHITECTURE.md stage 15): the latest cold run (with none, the first
-// run) and each later run that did work, in order, every log cut after its own last step of work
-// and without the build's events. A usage-limit resume or a re-score continues the cold run's
-// facts; a build, a run end or a warm run with no work changes nothing. Null when there is no log.
+// run) and each later run that changed what the figures rest on, in order, every log cut after its own
+// last step of work and without the build's events. A usage-limit resume or a re-score continues the
+// cold run's facts; a build, a run end, or a warm run that only rebuilt (a fresh clone's prepare and
+// rollup) changes nothing. Null when there is no log.
 export function runSpanOf(root: string): RunSpan | null {
   const dir = join(root, 'out', 'runs');
   let ids: string[] = [];
@@ -218,7 +227,7 @@ export function runSpanOf(root: string): RunSpan | null {
       while (last >= 0 && !isWork(events[last] as Record<string, unknown>)) last--;
       return { id, path: `out/runs/${id}.jsonl`, events: events.slice(0, last + 1).filter((e) => !(e.event === 'stage' && e.name === 'build')) };
     })
-    .filter((r, i) => i === 0 || r.events.length > 0);
+    .filter((r, i) => i === 0 || r.events.some(changesFigures));
   return { runs };
 }
 

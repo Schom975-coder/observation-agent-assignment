@@ -66,8 +66,8 @@ import type {
 
 // ---- Inputs ----
 
-// The run facts' span (src/report/build.ts runSpanOf): the latest cold run first, then each later run
-// that did work, each log cut after its last step of work and without the build's events.
+// The run facts' span (src/report/build.ts runSpanOf): the latest cold run (started with --force)
+// first, then each later run that changed what the figures rest on, each log cut after its last step of work and without the build's events.
 export type RunSpan = { runs: Array<{ id: string; path: string; events: Array<Record<string, unknown>> }> };
 
 export type BuildInputs = {

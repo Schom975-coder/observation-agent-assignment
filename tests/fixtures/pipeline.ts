@@ -292,7 +292,7 @@ export function markBuilt(root: string): void {
 }
 
 // A fixed run log in place of the one the run wrote, so the run facts (and the pinned hashes of
-// tests/build.test.ts) do not depend on the clock. A18: a cold run (its prepare ran) that started four
+// tests/build.test.ts) do not depend on the clock. A18: the only run (so the span starts there) that started four
 // agents, had two gate failures (one job, two fix rounds) and two stage steps; a build in the middle,
 // which the facts leave out while the agent started after it counts; then a run end and a rebuild
 // after the last step of work, both left out.

@@ -26,7 +26,7 @@ import { evenSteps, flatten } from '../batch/digest.ts';
 import { sha256 } from '../util/hash.ts';
 import { slugify } from '../util/slug.ts';
 import { normalizeNewlines } from '../util/text.ts';
-import { inertMarkdown } from '../report/text.ts';
+import { closesFence, fenceAt, inertMarkdown } from '../report/text.ts';
 import { modelText } from './schema.ts';
 import { PARTICIPANTS_SHOWN, evidenceSample, quoteSources, quotesFrom, type Quoted } from './synthesis-input.ts';
 import { withMargin } from './synthesis.ts';
@@ -397,9 +397,8 @@ function sentenceAt(text: string, at: number, length: number): string {
   return quoted(text.slice(start, end), 100);
 }
 
-// A fence opens or closes a fenced block: three or more backticks or tildes, indented at most three.
-const FENCE = /^ {0,3}(`{3,}|~{3,})/;
-const HEADING_2 = /^ {0,3}##(?!#)([ \t].*)?$/;
+// A line is read with [\s\S], never ".": U+2028 and U+2029 are ordinary characters in Markdown.
+const HEADING_2 = /^ {0,3}##(?!#)([ \t][\s\S]*)?$/;
 const HEADING_1 = /^ {0,3}#(?!#)(?:[ \t]|$)/;
 const BLOCKQUOTE = /^[ \t]*>/;
 const NUMBERED = /^ {0,3}\d{1,3}[.)][ \t]+\S/;
@@ -513,23 +512,27 @@ function steeringHits(text: string): Array<{ name: string; sentence: string | nu
   return hits;
 }
 
-type Line = { text: string; fenced: boolean };
+type Line = { text: string; fenced: boolean; fence: boolean };
 
-// The body's lines, each marked when it is inside a fenced block (fence lines included), and the
-// line index of a fence left open, if any.
+// The body's lines, each marked when it is inside a fenced block (`fenced`, its fence lines
+// included) and when it is one of those fence lines (`fence`), and the line index of a fence left
+// open, if any. A block opens and closes by the rule the written file is made inert by
+// (src/report/text.ts fenceAt and closesFence): a fence at the margin opens one, so a fence in a
+// list item or a quote is text here as it is there.
 function scan(text: string): { lines: Line[]; unclosed: number | null } {
   const lines: Line[] = [];
-  let open: { char: string; at: number } | null = null;
+  let open: { mark: string; at: number } | null = null;
   for (const t of text.split('\n')) {
-    const m = FENCE.exec(t);
-    if (open === null && m !== null) {
-      open = { char: (m[1] as string)[0] as string, at: lines.length };
-      lines.push({ text: t, fenced: true });
+    const mark: string | null = open === null ? fenceAt(t) : null;
+    if (mark !== null) {
+      open = { mark, at: lines.length };
+      lines.push({ text: t, fenced: true, fence: true });
     } else if (open !== null) {
-      if (m !== null && (m[1] as string)[0] === open.char) open = null;
-      lines.push({ text: t, fenced: true });
+      const closes = closesFence(t, open.mark);
+      if (closes) open = null;
+      lines.push({ text: t, fenced: true, fence: closes });
     } else {
-      lines.push({ text: t, fenced: false });
+      lines.push({ text: t, fenced: false, fence: false });
     }
   }
   return { lines, unclosed: open === null ? null : open.at };
@@ -603,7 +606,7 @@ export function checkDraftBody(body: string, brief: Pick<ArtifactBrief, 'artifac
       sections.get(current)?.push(l);
     }
   }
-  const empty = expected.filter((h) => sections.has(h) && (sections.get(h) as Line[]).every((l) => l.text.trim() === '' || (l.fenced && FENCE.test(l.text))));
+  const empty = expected.filter((h) => sections.has(h) && (sections.get(h) as Line[]).every((l) => l.text.trim() === '' || l.fence));
   if (empty.length > 0) add(`${empty.map((h) => `## ${h}`).join(', ')} ${empty.length === 1 ? 'is' : 'are'} empty: write each section`);
 
   // The type's shape, in its section.
@@ -611,7 +614,7 @@ export function checkDraftBody(body: string, brief: Pick<ArtifactBrief, 'artifac
   const section = sections.get(shape.section);
   if (section !== undefined && !empty.includes(shape.section)) {
     const outside = section.filter((l) => !l.fenced).map((l) => l.text);
-    const fencedText = section.filter((l) => l.fenced && !FENCE.test(l.text)).map((l) => l.text);
+    const fencedText = section.filter((l) => l.fenced && !l.fence).map((l) => l.text);
     const hasFence = section.some((l) => l.fenced);
     const want = (found: string) => add(`## ${shape.section} must hold ${shape.shape}; ${found}`);
     if (type === 'sop') {
@@ -880,7 +883,7 @@ function factsLines(brief: ArtifactBrief): string[] {
 // The artifact file: title, provenance line, the body as written with the people line under its
 // who-section heading, the Evidence footer. LF endings, one newline at the end. Everything but the
 // body is code's. The file is written inert (src/report/text.ts inertMarkdown): the structure of the
-// body and of the quotes stays, but no link, image, reference definition, HTML or open fence can
+// body and of the quotes stays, but no link, image, reference definition, HTML or stray fence can
 // come from the model or the mail. The gate checks the body as the drafter wrote it, before this.
 export function renderArtifact(brief: ArtifactBrief, body: string): string {
   const text = withPeopleLine(normalizeNewlines(body.startsWith(BOM) ? body.slice(1) : body).trim(), brief);

@@ -13,7 +13,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { openCorpus } from '../src/corpus/reader.ts';
-import { buildCommand, buildCurrent, buildStep, didWork, loadInputs, renderOutputs, runLogOf, type Rendered } from '../src/report/build.ts';
+import { buildCommand, buildCurrent, buildStep, loadInputs, renderOutputs, runSpanOf, runSpanSha, type Rendered } from '../src/report/build.ts';
 import { buildData, capGuard, cutAt, firstSentence, runFacts, type BuildInputs } from '../src/report/data.ts';
 import { checkTargets } from '../src/report/targets.ts';
 import { escapeHtml, escapeMdText } from '../src/report/text.ts';
@@ -35,9 +35,9 @@ after(() => rmSync(tmp, { recursive: true, force: true }));
 // fixture changes them: print the new values with OBS_PRINT_PINS=1 and check the diff of the files
 // before pinning them.
 const PINS = {
-  'dashboard/data.json': '62141553648d59e265227e4379da3beaf62b50bbabc5b7c379113bab224269e8',
-  'report.md': '17009ae8755ba5663d2038e88a957a36c80664c94ec3e2336e727ee4de255885',
-  'report.html': 'df588b2bfb0e126fc2da014b7e8ee4badd6fb88871a469fbc33a723bd805b1fd',
+  'dashboard/data.json': '65672528c75fc3283f8ab16f5065adad18d6a6d538ee33fefe0d517e32004b99',
+  'report.md': 'a4bdf650353e90fe8db1e1d71391d66c03f9e15810646184a8d52338f7d332d3',
+  'report.html': '76a741b4ca6f6a7c01395d9fbe94c6500efe33e0dc3159ff267b56a024320299',
 };
 
 let root = '';
@@ -140,7 +140,7 @@ test('buildCurrent: an edited output or a changed input makes the build stale; a
   rmSync(outFile('dashboard/.server.json'));
 });
 
-test('refusals: an empty project, an argument, a missing asset', () => {
+test('refusals: an empty project, an argument, a missing asset, a file it cannot write', () => {
   const empty = join(tmp, 'empty project');
   mkdirSync(empty, { recursive: true });
   assert.deepEqual(capture(() => buildCommand(empty, [])), { code: 1, out: [], err: ['build: out/opportunities.json is missing or not current: run node obs.mjs score first.'] });
@@ -153,6 +153,22 @@ test('refusals: an empty project, an argument, a missing asset', () => {
     assert.equal(buildCurrent(root), false);
   } finally {
     writeFileSync(css, text);
+  }
+  assert.equal(buildCurrent(root), true);
+  // A file the build cannot write: one line naming it, with the system's reason in plain words.
+  const report = outFile('report.md');
+  const reportBytes = readFileSync(report);
+  rmSync(report);
+  mkdirSync(join(report, 'in the way'), { recursive: true });
+  try {
+    assert.deepEqual(capture(() => buildCommand(root, [])), {
+      code: 1,
+      out: [],
+      err: ['build: cannot write out/report.md: a folder stands at that path (EISDIR). Fix that and run the build again.'],
+    });
+  } finally {
+    rmSync(report, { recursive: true, force: true });
+    writeFileSync(report, reportBytes);
   }
   assert.equal(buildCurrent(root), true);
 });
@@ -240,18 +256,23 @@ test('A14 with a dollar bar: a row under it says so, in exact cents where its wh
   assert.equal(row2.status_line, `Not drafted: ${row2.total.t} a month is under the ${far.data.scoring.threshold?.t} drafting line`);
 });
 
-test('A18: the run facts come from the run log, up to the build’s own stage event', () => {
+test('A18: the run facts come from the run log, to its last step of work, the builds left out', () => {
   const data = json<DashboardData>('dashboard/data.json');
-  assert.deepEqual([data.run.id, data.run.date, data.run.log], [FIXED_RUN_ID, '2026-10-19', `out/runs/${FIXED_RUN_ID}.jsonl`]);
-  assert.deepEqual([data.run.agents?.v, data.run.fix_rounds?.v, data.run.minutes?.v, data.run.minutes?.t], [3, 2, 720, '12.0']);
+  assert.deepEqual([data.run.id, data.run.date, data.run.log, data.run.later_runs?.v], [FIXED_RUN_ID, '2026-10-19', `out/runs/${FIXED_RUN_ID}.jsonl`, 0]);
+  // From the run's first event to the agent started at 00:20, past the build at 00:12:30.
+  assert.deepEqual([data.run.agents?.v, data.run.fix_rounds?.v, data.run.minutes?.v, data.run.minutes?.t], [4, 2, 1200, '20.0']);
   const method = json<MethodData>('dashboard/method.json');
-  assert.deepEqual(method.run.agents, [{ type: 'extractor', count: 2 }, { type: 'synthesizer', count: 1 }]);
+  assert.deepEqual(method.run.agents, [{ type: 'extractor', count: 3 }, { type: 'synthesizer', count: 1 }]);
   assert.deepEqual(method.run.fix_rounds, [{ job: 'batch-001', rounds: 2 }]);
   assert.deepEqual(method.run.stages.map((s) => [s.name, s.ms]), [['rollup', 702], ['score', 252]]);
+  assert.deepEqual(method.run.later_runs, []);
   assert.deepEqual(method.run.synthesizer, { model: 'opus', effort: 'medium' });
   assert.equal(runFacts(null).minutes, null);
   const summary = json<{ run: { agents: Record<string, number>; fix_rounds: number } }>('run-summary.json');
-  assert.deepEqual(summary.run, { id: FIXED_RUN_ID, wall_seconds: 720, agents: { extractor: 2, synthesizer: 1 }, fix_rounds: 2 });
+  assert.deepEqual(summary.run, { id: FIXED_RUN_ID, later_runs: [], wall_seconds: 1200, agents: { extractor: 3, synthesizer: 1 }, fix_rounds: 2 });
+  const md = readOut('report.md').toString('utf8');
+  assert.ok(md.includes(`- Run \`${FIXED_RUN_ID}\` of 19 Oct 2026.\n- 20.0 minutes from the run’s first event to its last step of work`));
+  assert.ok(md.includes(`- The run’s log: \`out/runs/${FIXED_RUN_ID}.jsonl\`.`));
 });
 
 test('reviewer 17 and 18: the label beside the value; the Methodology data', () => {
@@ -388,6 +409,25 @@ test('foldReport: why each m..last address was left apart', () => {
     shared_message: ['c..brown@enron.com'],
     no_candidate: ['d..green@enron.com'],
   });
+});
+
+test('a mailbox owner comes from its sent folder only when one staff person sent at least half of it; else from its staff addressee', () => {
+  const { inputs, assets, shas } = loadInputs(root);
+  // The fixture's mailbox m5, every message from Ann Lee (odd) or Bob Ray (even) to desk@enron.com,
+  // with the folders and senders edited.
+  const ownerWith = (sent: readonly number[], outsiders: readonly number[] = []): string | undefined => {
+    const x = structuredClone(inputs);
+    for (const m of x.messages) {
+      const n = Number(m.id.slice(-2));
+      m.folder = sent.includes(n) ? 'sent' : 'inbox';
+      if (outsiders.includes(n)) m.from = { email: 'someone@outside.example', name: 'Some One' };
+    }
+    return renderOutputs(x, assets, shas).built.data.scope.mailboxes.find((b) => b.key === 'm5')?.owner;
+  };
+  assert.equal(ownerWith([1, 3, 5]), 'Ann Lee', 'all of it');
+  assert.equal(ownerWith([1, 2, 3, 4]), 'Ann Lee', 'half of it (a tie goes by address)');
+  assert.equal(ownerWith([1, 2, 3], [3]), 'desk@enron.com', 'a third each: nobody sent half, so the staff addressee');
+  assert.equal(ownerWith([1, 3], [1, 3]), 'desk@enron.com', 'sent by someone outside the company: not the owner');
 });
 
 // ---- The real data's logic, from hand-edited fixture inputs (item 4 of the Task 1 review) ----
@@ -554,25 +594,138 @@ test('capGuard: whether the cap or the minimum bound the run', () => {
   assert.match(capGuard(rowsOf([100, 100]), scoring), /the minimum bound this run: 0 cleared the bar, so the top 1 in the total were drafted\.$/);
 });
 
-// ---- Run facts: the run that made the outputs (item 10) ----
+// ---- Run facts: the span from the latest cold run to the last step of work (second review, item 4) ----
 
-test('run facts describe the newest run that did any work; a later run that only rebuilt keeps them', () => {
-  const dir = join(tmp, 'runs project');
+const logLines = (events: ReadonlyArray<Record<string, unknown>>): string => events.map((e) => `${JSON.stringify(e)}\n`).join('');
+// A project holding only run logs, by run id.
+function runsProject(name: string, logs: Record<string, Array<Record<string, unknown>>>): string {
+  const dir = join(tmp, name);
+  rmSync(dir, { recursive: true, force: true });
   mkdirSync(join(dir, 'out', 'runs'), { recursive: true });
-  const log = (name: string, events: Array<Record<string, unknown>>) => writeFileSync(join(dir, 'out', 'runs', `${name}.jsonl`), events.map((e) => `${JSON.stringify(e)}\n`).join(''));
-  const ts = '2026-10-19T00:00:00.000Z';
-  log('20261019T000000Z', [{ ts, event: 'run_start' }, { ts, event: 'SubagentStart', agent_type: 'synthesizer' }, { ts, event: 'stage', name: 'score', ms: 1 }]);
-  log('20261019T010000Z', [{ ts, event: 'run_start' }, { ts, event: 'prepare', skipped: true }, { ts, event: 'advance' }, { ts, event: 'stage', name: 'build', ms: 1 }, { ts, event: 'stage', name: 'run end', ms: 1 }]);
-  assert.equal(runLogOf(dir)?.id, '20261019T000000Z', 'the warm rebuild does not replace the facts');
-  log('20261019T020000Z', [{ ts, event: 'run_start' }, { ts, event: 'stage', name: 'rollup', ms: 1 }]);
-  assert.equal(runLogOf(dir)?.id, '20261019T020000Z', 'a run that reran a stage does');
-  assert.equal(didWork([{ event: 'prepare', skipped: false }]), true);
-  assert.equal(didWork([{ event: 'stage', name: 'build' }, { event: 'SubagentStart' }]), false, 'nothing after the build counts');
-  const only = join(tmp, 'only rebuilt');
-  mkdirSync(join(only, 'out', 'runs'), { recursive: true });
-  writeFileSync(join(only, 'out', 'runs', '20261019T030000Z.jsonl'), `${JSON.stringify({ ts, event: 'run_start' })}\n`);
-  assert.equal(runLogOf(only)?.id, '20261019T030000Z', 'with no run that did work, the newest');
-  assert.equal(runLogOf(join(tmp, 'no such project')), null);
+  for (const [id, events] of Object.entries(logs)) writeFileSync(join(dir, 'out', 'runs', `${id}.jsonl`), logLines(events));
+  return dir;
+}
+const ev = (ts: string, event: string, more: Record<string, unknown> = {}): Record<string, unknown> => ({ ts: `2026-10-${ts}Z`, event, ...more });
+function factsOf(dir: string) {
+  const f = runFacts(runSpanOf(dir));
+  return { id: f.id, later: f.later.map((r) => r.id), agents: f.agentsNum?.v, fix: f.fixNum?.v, seconds: f.minutes?.v, stages: f.stages.map((s) => s.name) };
+}
+
+test('run facts: a usage-limit resume continues the cold run, and the wait before it is not counted', () => {
+  const dir = runsProject('resumed', {
+    '20261019T000000Z': [
+      ev('19T00:00:00.000', 'run_start'),
+      ev('19T00:00:02.000', 'prepare', { skipped: false }),
+      ev('19T00:01:00.000', 'SubagentStart', { agent_type: 'extractor' }),
+      ev('19T00:10:00.000', 'gate', { batch_id: 'batch-000', status: 'failed' }),
+      ev('19T00:10:30.000', 'SubagentStop'),
+    ],
+    '20261019T030000Z': [
+      ev('19T03:00:00.000', 'run_start'),
+      ev('19T03:00:02.000', 'prepare', { skipped: true }),
+      ev('19T03:01:00.000', 'SubagentStart', { agent_type: 'extractor' }),
+      ev('19T03:05:00.000', 'gate', { batch_id: 'batch-000', status: 'done' }),
+      ev('19T03:05:00.000', 'stage', { name: 'rollup', ms: 5 }),
+      ev('19T03:06:00.000', 'stage', { name: 'build', ms: 5 }),
+      ev('19T03:06:01.000', 'stage', { name: 'run end', ms: 1 }),
+    ],
+  });
+  // Ten minutes to the first run's last step of work, five to the resume's; not the three hours between.
+  assert.deepEqual(factsOf(dir), { id: '20261019T000000Z', later: ['20261019T030000Z'], agents: 2, fix: 1, seconds: 900, stages: ['rollup'] });
+});
+
+test('run facts: a re-score after a full run keeps the full run and adds the score step', () => {
+  const dir = runsProject('rescored', {
+    '20261019T000000Z': [
+      ev('19T00:00:00.000', 'run_start'),
+      ev('19T00:00:02.000', 'prepare', { skipped: false }),
+      ev('19T00:01:00.000', 'SubagentStart', { agent_type: 'extractor' }),
+      ev('19T00:02:00.000', 'SubagentStart', { agent_type: 'extractor' }),
+      ev('19T00:05:00.000', 'gate', { batch_id: 'batch-001', status: 'failed' }),
+      ev('19T00:20:00.000', 'SubagentStart', { agent_type: 'synthesizer' }),
+      ev('19T00:30:00.000', 'stage', { name: 'score', ms: 40 }),
+      ev('19T00:40:00.000', 'stage', { name: 'artifacts collect', ms: 30 }),
+      ev('19T00:41:00.000', 'stage', { name: 'build', ms: 900 }),
+      ev('19T00:41:30.000', 'stage', { name: 'run end', ms: 2 }),
+    ],
+    // The next day an override changed and the score ran again.
+    '20261020T090000Z': [ev('20T09:00:00.000', 'run_start'), ev('20T09:00:02.000', 'prepare', { skipped: true }), ev('20T09:00:05.000', 'advance'), ev('20T09:00:10.000', 'stage', { name: 'score', ms: 40 }), ev('20T09:00:11.000', 'stage', { name: 'build', ms: 900 }), ev('20T09:00:12.000', 'stage', { name: 'run end', ms: 2 })],
+  });
+  assert.deepEqual(factsOf(dir), { id: '20261019T000000Z', later: ['20261020T090000Z'], agents: 3, fix: 1, seconds: 2410, stages: ['score', 'artifacts collect', 'score'] });
+});
+
+test('run facts: a manual build in the middle of a run cuts nothing; a warm run with no work adds nothing; a later cold run starts the span again; with no cold run, the first run', () => {
+  const midBuild = runsProject('mid build', {
+    '20261019T000000Z': [
+      ev('19T00:00:00.000', 'run_start'),
+      ev('19T00:00:02.000', 'prepare', { skipped: false }),
+      ev('19T00:01:00.000', 'SubagentStart', { agent_type: 'extractor' }),
+      ev('19T00:05:00.000', 'stage', { name: 'build', ms: 900, summary: 'a build typed by hand' }),
+      ev('19T00:08:00.000', 'SubagentStart', { agent_type: 'extractor' }),
+      ev('19T00:09:00.000', 'stage', { name: 'rollup', ms: 5 }),
+    ],
+  });
+  const expected = { id: '20261019T000000Z', later: [], agents: 2, fix: 0, seconds: 540, stages: ['rollup'] };
+  assert.deepEqual(factsOf(midBuild), expected);
+  const before = runSpanSha(runSpanOf(midBuild));
+  writeFileSync(join(midBuild, 'out', 'runs', '20261019T010000Z.jsonl'), logLines([ev('19T01:00:00.000', 'run_start'), ev('19T01:00:02.000', 'prepare', { skipped: true }), ev('19T01:00:03.000', 'advance'), ev('19T01:00:04.000', 'stage', { name: 'build', ms: 900 }), ev('19T01:00:05.000', 'stage', { name: 'run end', ms: 1 })]));
+  assert.deepEqual(factsOf(midBuild), expected, 'the warm run');
+  assert.equal(runSpanSha(runSpanOf(midBuild)), before, 'nor its hash');
+  writeFileSync(join(midBuild, 'out', 'runs', '20261019T020000Z.jsonl'), logLines([ev('19T02:00:00.000', 'run_start'), ev('19T02:00:02.000', 'prepare', { skipped: false }), ev('19T02:00:30.000', 'SubagentStart', { agent_type: 'drafter' })]));
+  assert.deepEqual(factsOf(midBuild), { id: '20261019T020000Z', later: [], agents: 1, fix: 0, seconds: 30, stages: [] }, 'a later cold run');
+  assert.notEqual(runSpanSha(runSpanOf(midBuild)), before);
+  const noCold = runsProject('no cold run', {
+    '20261019T000000Z': [ev('19T00:00:00.000', 'run_start'), ev('19T00:00:20.000', 'SubagentStart', { agent_type: 'extractor' })],
+    '20261019T010000Z': [ev('19T01:00:00.000', 'run_start'), ev('19T01:00:02.000', 'prepare', { skipped: true }), ev('19T01:00:10.000', 'stage', { name: 'score', ms: 3 })],
+  });
+  assert.deepEqual(factsOf(noCold), { id: '20261019T000000Z', later: ['20261019T010000Z'], agents: 1, fix: 0, seconds: 30, stages: ['score'] });
+  // A cold run that stopped before any work: its id, nothing counted.
+  const idle = runsProject('cold and idle', { '20261019T000000Z': [ev('19T00:00:00.000', 'run_start'), ev('19T00:00:02.000', 'prepare', { skipped: false })] });
+  assert.deepEqual(factsOf(idle), { id: '20261019T000000Z', later: [], agents: 0, fix: 0, seconds: 0, stages: [] });
+  assert.equal(runSpanOf(join(tmp, 'no such project')), null);
+  assert.equal(runSpanSha(null), runSpanSha(runSpanOf(join(tmp, 'no such project'))));
+});
+
+test('run facts on the built project: a build during the run and one after it write the same bytes; a warm run with no work leaves the build current and a run with work makes it stale', () => {
+  const runs = join(root, 'out', 'runs');
+  const fixed = join(runs, `${FIXED_RUN_ID}.jsonl`);
+  const full = readFileSync(fixed, 'utf8');
+  const warm = join(runs, '20261019T010000Z.jsonl');
+  const render = () => {
+    const { inputs, assets, shas } = loadInputs(root);
+    return renderOutputs(inputs, assets, shas).files;
+  };
+  try {
+    // During the run: the log as it stood when the run's own build began, after its last step of work.
+    const lines = full.split('\n').filter((l) => l !== '');
+    const lastWork = lines.findLastIndex((l) => l.includes('"SubagentStart"'));
+    assert.ok(lastWork > 0 && lastWork < lines.length - 1);
+    writeFileSync(fixed, lines.slice(0, lastWork + 1).map((l) => `${l}\n`).join(''));
+    const during = render();
+    writeFileSync(fixed, full);
+    const afterRun = render();
+    assert.deepEqual([...during.keys()], [...afterRun.keys()]);
+    for (const [path, content] of afterRun) assert.deepEqual(during.get(path), content, path);
+    assert.equal(buildCurrent(root), true);
+    // A warm run that found everything done.
+    writeFileSync(warm, logLines([ev('19T01:00:00.000', 'run_start'), ev('19T01:00:02.000', 'prepare', { skipped: true }), ev('19T01:00:03.000', 'advance'), ev('19T01:00:04.000', 'stage', { name: 'run end', ms: 1 })]));
+    assert.equal(buildCurrent(root), true, 'a warm run with no work leaves the build current');
+    writeFileSync(warm, logLines([ev('19T01:00:00.000', 'run_start'), ev('19T01:00:02.000', 'prepare', { skipped: true }), ev('19T01:00:10.000', 'stage', { name: 'score', ms: 40, summary: 'score: again.' })]));
+    assert.equal(buildCurrent(root), false, 'a run with work makes it stale');
+    buildStep(root);
+    const data = json<DashboardData>('dashboard/data.json');
+    assert.deepEqual([data.run.id, data.run.later_runs?.v, data.run.agents?.v, data.run.minutes?.v], [FIXED_RUN_ID, 1, 4, 1210]);
+    assert.ok(readOut('report.md').toString('utf8').includes(`- Run \`${FIXED_RUN_ID}\` of 19 Oct 2026, continued in 1 later run.`));
+    const { inputs, assets, shas } = loadInputs(root);
+    const { built } = renderOutputs(inputs, assets, shas);
+    assert.deepEqual(checkTargets({ data: built.data, method: built.method, loops: built.loops, processes: built.processes, index: built.index }), [], 'the later-runs count ties to its list');
+  } finally {
+    rmSync(warm, { force: true });
+    writeFileSync(fixed, full);
+    buildStep(root);
+  }
+  const again = written(root);
+  for (const [path, content] of first) assert.ok(again.get(path)?.equals(content), `${path} is as the first build wrote it`);
 });
 
 // ---- A drafted file with hostile text in its body and quotes (item 1) ----

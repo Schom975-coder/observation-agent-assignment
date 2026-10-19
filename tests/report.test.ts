@@ -175,37 +175,58 @@ test('the escapers', () => {
 });
 
 
-// ---- Data that could act in report.md (items 1 and 2 of the Task 1 review) ----
+// ---- Data that could act in report.md (items 1 and 2 of both Task 1 reviews) ----
 
-// The lines of report.md outside its fenced blocks, and whether every fence it opens closes.
-function outsideFences(md: string): { lines: string[]; balanced: boolean } {
-  const lines: string[] = [];
-  let open: string | null = null;
-  for (const line of md.split('\n')) {
-    const fence = /^ {0,3}(`{3,}|~{3,})/.exec(line);
-    if (fence !== null) {
-      const mark = fence[1] as string;
-      if (open === null) open = mark;
-      else if (mark[0] === open[0] && mark.length >= open.length && line.trim() === mark) open = null;
-      continue;
-    }
-    if (open === null) lines.push(line);
-  }
-  return { lines, balanced: open === null };
+// Whether the character at `at` is escaped: an odd run of backslashes right before it.
+function escapedAt(line: string, at: number): boolean {
+  let n = 0;
+  for (let k = at - 1; k >= 0 && line[k] === '\\'; k--) n++;
+  return n % 2 === 1;
 }
 
-// Nothing in these lines can act: no HTML tag or autolink, no link or image, no reference
-// definition, no setext underline under a line of text.
+// Whether a line holds `pair` live: its first character unescaped and the second right after it.
+function live(line: string, pair: string): boolean {
+  for (let at = line.indexOf(pair); at !== -1; at = line.indexOf(pair, at + 1)) if (!escapedAt(line, at)) return true;
+  return false;
+}
+
+// What can stand in front of a line's text in Markdown: blanks, quote markers and list markers.
+const CONTAINER_LEAD = /^(?:[ \t]|>|[-+*](?=[ \t]|$)|\d{1,9}[.)](?=[ \t]|$))*/;
+
+// Nothing in a Markdown text can act, read block by block the way a CommonMark reader would: a
+// fence at the margin opens a code block, which must close (at the same character, at least as
+// many, indented at most three, nothing after); outside a block no fence stands after blanks, a list
+// marker or a quote marker (it would open a block inside a list item or a quote, which the next
+// line at the margin ends, leaving a fence open below it); and no line holds a live "](" (a link),
+// "![" (an image) or "]:" (a reference definition, whatever its label looks like, wherever the line
+// starts), an HTML tag or autolink, or a run of = or - under a line of text (a setext heading),
+// containers stripped.
 function assertInert(md: string, where: string): void {
-  const { lines, balanced } = outsideFences(md);
-  assert.ok(balanced, `${where}: a fence is left open`);
-  lines.forEach((line, i) => {
+  let open: string | null = null;
+  let previous = '';
+  for (const line of md.split('\n')) {
+    if (open !== null) {
+      const t = line.replace(/^ {0,3}/, '').replace(/[ \t]+$/, '');
+      if (t.length >= open.length && [...t].every((c) => c === open?.[0])) open = null;
+      previous = '';
+      continue;
+    }
+    const lead = (CONTAINER_LEAD.exec(line) as RegExpExecArray)[0];
+    const fence = /^(`{3,}|~{3,})([\s\S]*)$/.exec(line.slice(lead.length));
+    if (fence !== null && !((fence[1] as string)[0] === '`' && (fence[2] as string).includes('`'))) {
+      assert.equal(lead, '', `${where}: a fence opens inside a list item or a quote, or after blanks: "${line}"`);
+      open = fence[1] as string;
+      continue;
+    }
     assert.doesNotMatch(line, /<[A-Za-z!/?]/, `${where}: HTML in "${line}"`);
-    assert.doesNotMatch(line, /(?<!\\)\]\(/, `${where}: a link in "${line}"`);
-    assert.doesNotMatch(line, /(?<!\\)!\[/, `${where}: an image in "${line}"`);
-    assert.doesNotMatch(line, /^ {0,3}(?:>\s*)*\[[^\]]*\]:/, `${where}: a reference definition in "${line}"`);
-    if (/^ {0,3}(?:=+|-+)\s*$/.test(line)) assert.equal((lines[i - 1] ?? '').trim(), '', `${where}: "${line}" underlines "${lines[i - 1]}" as a heading`);
-  });
+    assert.ok(!live(line, ']('), `${where}: a link in "${line}"`);
+    assert.ok(!live(line, '!['), `${where}: an image in "${line}"`);
+    assert.ok(!live(line, ']:'), `${where}: a reference definition in "${line}"`);
+    const rest = line.replace(/^(?:[ \t]*>)*[ \t]*/, '');
+    if (/^(?:=+|-+)[ \t]*$/.test(rest)) assert.equal(previous.trim(), '', `${where}: "${line}" underlines "${previous}" as a heading`);
+    previous = rest;
+  }
+  assert.equal(open, null, `${where}: a fence is left open`);
 }
 
 test('inertMarkdown: structure kept, links, images, references, HTML and open fences made text; idempotent', () => {
@@ -231,13 +252,34 @@ test('inertMarkdown: structure kept, links, images, references, HTML and open fe
     'never closed',
   ].join('\n');
   const out = inertMarkdown(md);
+  // The whole text, line by line: the heading, the numbered step, the quote and the list item read
+  // as before; every link, image, reference definition, tag and autolink is text; the closed block
+  // is kept whole; the fence and the underline in the quote and the fence that never closes are text.
+  assert.equal(
+    out,
+    [
+      '## Steps',
+      '',
+      '1. Open [the sheet]\\(javascript:alert(1)) and !\\[x]\\(http://example.invalid/i.png) for [owner to confirm].',
+      '[r]\\: http://example.invalid',
+      '&lt;script>alert(1)&lt;/script> and &lt;http://example.invalid>',
+      '',
+      '```',
+      'Dear [name], <b>kept as code</b>',
+      '```',
+      '',
+      '- `corpus/a/b/1.` (from Ann):',
+      '',
+      '  > A quote with !\\[img]\\(http://example.invalid/q.png)',
+      '  > [q]\\: http://example.invalid',
+      '  > \\~~~',
+      '  > \\---',
+      '',
+      '\\~~~',
+      'never closed',
+    ].join('\n'),
+  );
   assert.equal(inertMarkdown(out), out, 'a second pass changes nothing');
-  assert.ok(out.includes('## Steps') && out.includes('1. Open [the sheet]\\(javascript:alert(1)) and !\\[x]\\(http://example.invalid/i.png) for [owner to confirm].'));
-  assert.ok(out.includes('\n\\[r]: http://example.invalid\n'));
-  assert.ok(out.includes('&lt;script>alert(1)&lt;/script> and &lt;http://example.invalid>'));
-  assert.ok(out.includes('```\nDear [name], <b>kept as code</b>\n```'), 'a closed fence is kept whole');
-  assert.ok(out.includes('  > A quote with !\\[img]\\(http://example.invalid/q.png)\n  > \\[q]: http://example.invalid\n  > \\~~~\n  > \\---'));
-  assert.ok(out.includes('\n\\~~~\nnever closed'));
   assertInert(out, 'inertMarkdown');
   // The report's HTML reads the escapes as text: no doubled backslash, no entity shown.
   const html = renderMarkdownHtml(out);
@@ -268,4 +310,95 @@ test('item 2: every data-text field as a hostile multi-line token: report.md ope
   assertInert(md, 'report.md');
   const html = out.files.get('report.html') as string;
   assert.doesNotMatch(html.replace(/<style>[\s\S]*?<\/style>/, ''), /<b>bold|<http|href=|<img/);
+});
+
+// ---- The second review: reference definitions in any container, fences in list items, U+2028 ----
+
+// Each input and the whole text inertMarkdown makes of it. Read by CommonMark, every output is the
+// same blocks as its input with the link machinery as text: a list item, a quote or a paragraph
+// holding "[label]: url" as words, and no fenced block opening where the next line at the margin
+// would leave it open over the rest of the document.
+const SECOND_REVIEW: ReadonlyArray<[string, string, string]> = [
+  ['a definition behind a bullet', '- [Owner]: http://evil.example', '- [Owner]\\: http://evil.example'],
+  ['behind a number', '1. [x]: u', '1. [x]\\: u'],
+  ['behind a quote and a bullet', '> - [x]: u', '> - [x]\\: u'],
+  [
+    'in an Evidence footer quote, also behind a bullet or a number',
+    '- `corpus/m5/inbox/01` (2001-01-15, from Ann Lee):\n\n  > [Owner]: http://evil.example\n  > - [x]: u\n  > 1. [y]: u',
+    '- `corpus/m5/inbox/01` (2001-01-15, from Ann Lee):\n\n  > [Owner]\\: http://evil.example\n  > - [x]\\: u\n  > 1. [y]\\: u',
+  ],
+  ['with an escaped bracket in its label', '[a\\]b]: http://evil.example', '[a\\]b]\\: http://evil.example'],
+  ['with its label over two lines', '[foo\nbar]: http://evil.example', '[foo\nbar]\\: http://evil.example'],
+  ['a footnote definition', '[^1]: http://evil.example', '[^1]\\: http://evil.example'],
+  ['a fence in a list item, then one at the margin', '- item\n  ```\n```\n\n## After', '- item\n  \\```\n\\```\n\n## After'],
+  ['a fenced block in a numbered step', '1. step\n   ~~~\n   code\n   ~~~', '1. step\n   \\~~~\n   code\n   \\~~~'],
+  ['fences in quoted mail', '> ```js\n> code\n> ```', '> \\```js\n> code\n> \\```'],
+  ['fences as list items', '- ```\n- code\n- ```', '- \\```\n- code\n- \\```'],
+  ['a fenced block indented at the margin', '  ```\n  code\n  ```', '  \\```\n  code\n  \\```'],
+  ['a tab before a fence', '\t```\ncode', '\t\\```\ncode'],
+  ['a block at the margin with a fence-like line inside and an indented closer, kept whole', '```\n```js\n<b>code</b>\n   ```', '```\n```js\n<b>code</b>\n   ```'],
+  ['a block whose only closer is indented four, never closed', '```\ncode\n    ```', '\\```\ncode\n    \\```'],
+  ["a backtick in a backtick fence's info: no fence, left as it is", '```a`b', '```a`b'],
+];
+
+test('inertMarkdown (second review): a reference definition in a list item or a quote, with an escaped or a broken label; a fence in a list item, a quote or after blanks', () => {
+  for (const [name, input, expected] of SECOND_REVIEW) {
+    const out = inertMarkdown(input);
+    assert.equal(out, expected, name);
+    assert.equal(inertMarkdown(out), out, `${name}: a second pass changes nothing`);
+    assertInert(out, name);
+  }
+});
+
+test('second review: the same cases in a drafted document and in email quotes stay text in report.md, and no fence is left open', () => {
+  const { inputs, assets, shas } = loadInputs(root);
+  const x = structuredClone(inputs);
+  for (const v of x.validated) for (const e of v.evidence) e.raw_text = SECOND_REVIEW.map(([, input]) => input).join('\n');
+  const art = x.artifacts.artifacts.find((a) => a.status === 'done');
+  assert.ok(art !== undefined && art.path !== null);
+  const texts = new Map(x.artifactText);
+  const body = SECOND_REVIEW.map(([, input]) => input).join('\n\n');
+  texts.set(art.path, `# T: SOP\n\n## Purpose\n\n${body}\n\n## Evidence\n\n- \`corpus/m5/inbox/01\` (2001-01-15, from Ann Lee):\n\n  > ${body.split('\n').join('\n  > ')}\n`);
+  const md = renderOutputs({ ...x, artifactText: texts }, assets, shas).files.get('report.md') as string;
+  assert.ok(md.includes('- [Owner]\\: http://evil.example') && md.includes('[foo\nbar]\\: http://evil.example'), 'the document is there, as text');
+  assertInert(md, 'report.md');
+});
+
+const LINE_SEPARATOR = String.fromCharCode(0x2028);
+const PARAGRAPH_SEPARATOR = String.fromCharCode(0x2029);
+
+test('U+2028 and U+2029 are ordinary characters to inertMarkdown, markdownForReport and renderMarkdownHtml', () => {
+  for (const sep of [LINE_SEPARATOR, PARAGRAPH_SEPARATOR]) {
+    const md = [`# Title${sep}x`, '', `## Head${sep}ing`, '', `Text${sep}more [x](u)`, '', `> quote${sep}line ![i](u)`, '', `- item${sep}[y]: u`, '', `\`\`\`${sep}`, 'code', '```'].join('\n');
+    const inert = [`## Head${sep}ing`, '', `Text${sep}more [x]\\(u)`, '', `> quote${sep}line !\\[i]\\(u)`, '', `- item${sep}[y]\\: u`, '', `\`\`\`${sep}`, 'code', '```'];
+    const out = inertMarkdown(md);
+    assert.equal(out, [`# Title${sep}x`, '', ...inert].join('\n'));
+    assert.equal(inertMarkdown(out), out);
+    assert.equal(markdownForReport(md), [`#### Head${sep}ing`, ...inert.slice(1)].join('\n'));
+    const html = renderMarkdownHtml(md, { base: 3 });
+    assert.ok(html.includes(`<h3>Head${sep}ing</h3>`), html);
+    assert.ok(html.includes(`<blockquote>quote${sep}line !<mark class="blank">[i]</mark>(u)</blockquote>`), html);
+    assert.ok(html.includes(`<li>item${sep}<mark class="blank">[y]</mark>: u</li>`), html);
+    assert.ok(html.includes('<pre>code</pre>'), html);
+  }
+});
+
+test('U+2028 and U+2029 in a drafted document and in an email quote: report.md and report.html build with them as text', () => {
+  const { inputs, assets, shas } = loadInputs(root);
+  for (const sep of [LINE_SEPARATOR, PARAGRAPH_SEPARATOR]) {
+    const x = structuredClone(inputs);
+    const quote = `First line${sep}second [r]: http://example.invalid`;
+    for (const v of x.validated) for (const e of v.evidence) e.raw_text = quote;
+    const art = x.artifacts.artifacts.find((a) => a.status === 'done');
+    assert.ok(art !== undefined && art.path !== null);
+    const texts = new Map(x.artifactText);
+    texts.set(art.path, `# T: SOP\n\n## Purpose${sep}now\n\nA body${sep}line.\n\n## Evidence\n\n- \`corpus/m5/inbox/01\` (2001-01-15, from Ann Lee):\n\n  > ${quote}\n`);
+    const out = renderOutputs({ ...x, artifactText: texts }, assets, shas);
+    const md = out.files.get('report.md') as string;
+    const html = out.files.get('report.html') as string;
+    assert.ok(md.includes(`#### Purpose${sep}now\n\nA body${sep}line.`) && md.includes(`  > First line${sep}second [r]\\: http://example.invalid`), 'the document');
+    assert.ok(md.includes(`> First line${sep}second \\[r\\]: http://example.invalid`), 'the email quote');
+    assertInert(md, 'report.md');
+    assert.ok(html.includes(`A body${sep}line.`) && html.includes(`First line${sep}second [r]: http://example.invalid`));
+  }
 });

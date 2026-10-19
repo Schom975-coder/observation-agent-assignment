@@ -207,10 +207,13 @@ export type DashboardData = {
     config_sha: string;
     gold_sha: string; // out/gold-score.json, or the hash of "none"
     synthesizer_sha: string; // the synthesizer's model and effort, as its agent definition sets them
+    run_sha: string; // the run facts' span of the run logs, up to its last step of work (the hash of "none" with no log)
   };
   outputs: Record<string, string>;
-  // minutes: v the wall seconds from the log's first event to its last before the build, t minutes to one decimal
-  run: { id: string | null; date: string | null; minutes: Num | null; agents: Num | null; fix_rounds: Num | null; log: string | null };
+  // The run facts' span: from the latest cold run (id, date, log) through each later run that did work
+  // (later_runs, a count of method.run.later_runs). minutes: v the seconds of each run from its first
+  // event to its last step of work, summed; t minutes to one decimal.
+  run: { id: string | null; date: string | null; minutes: Num | null; agents: Num | null; fix_rounds: Num | null; later_runs: Num | null; log: string | null };
   scope: { files: Num; unique: Num; first_utc: string; last_utc: string; mailboxes: MailboxScope[] };
   headline: {
     total: Num;
@@ -395,6 +398,8 @@ export type MethodData = {
   run: {
     id: string | null;
     log: string | null;
+    // The later runs of the span, in order, each with its log.
+    later_runs: Array<{ id: string; log: string }>;
     minutes: Num | null;
     agents: Array<{ type: string; count: number }>;
     fix_rounds: Array<{ job: string; rounds: number }>;
@@ -410,7 +415,7 @@ export type MethodData = {
 // out/run-summary.json: the numbers NOTES.md is written from (plain JSON, no display strings).
 export type RunSummary = {
   version: 1;
-  run: { id: string | null; wall_seconds: number | null; agents: Record<string, number>; fix_rounds: number };
+  run: { id: string | null; later_runs: string[]; wall_seconds: number | null; agents: Record<string, number>; fix_rounds: number };
   quotes: { exact: number; repaired: number; rejected: number };
   merge: Record<string, number>;
   estimates: { accepted: number; missing: number; overridden: number };

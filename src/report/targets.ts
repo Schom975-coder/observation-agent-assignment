@@ -5,6 +5,7 @@
 // fixture build and on the real one; it returns one line per problem.
 import { ACTION_TYPES } from '../config.ts';
 import { STALL_KINDS } from '../types.ts';
+import { roundHalfUp } from '../util/round.ts';
 import { DAY_MS, utcMs } from '../util/time.ts';
 import { TARGET_KINDS, type DashboardData, type LoopItem, type MessageIndexRow, type MethodData, type Num, type ProcessData, type Target } from './types.ts';
 
@@ -55,12 +56,18 @@ const PARTICIPANT_FILTERS = ['staff', 'writers', 'copied', 'all'];
 const ROW_FILTERS = ['all', 'in_total', 'below', 'one_mailbox', 'drafted', 'drafted_one_mailbox'];
 const METHOD_SECTIONS = ['rates', 'tiers', 'threshold', 'estimates', 'rounding', 'identity', 'flagged', 'merge', 'quotes', 'gold', 'run', 'dates', 'coverage', 'explainer'];
 
-// The figures without a kind that are not counts of a list, by the field they sit in, and why. Every
-// other figure without a kind is a count, and its target must open a list of that many items.
+// The figures without a kind that are not counts of a list, by their path in the built files (an
+// array's index written "[]"), and why. Every other figure without a kind is a count, and its target
+// must open a list of that many items; a new field that happens to share one of these names is
+// still checked.
 export const NOT_A_LIST: Readonly<Record<string, string>> = {
-  minutes: 'the run’s wall time from its log (seconds, shown in minutes): a duration, not a count; it opens the run facts',
-  share: 'the running total’s share of the headline: a percentage, not a count; it opens the total',
+  'data.run.minutes': 'the run’s time from its logs (seconds, shown in minutes): a duration, not a count; it opens the run facts',
+  'method.run.minutes': 'the same duration, in the Methodology’s run facts',
+  'data.cumulative[].share': 'the running total’s share of the headline: a percentage, not a count; it opens the total',
 };
+
+// A figure's path as NOT_A_LIST writes it: every array index as "[]".
+export const listPath = (path: string): string => path.replace(/\[\d+\]/g, '[]');
 
 // What a count's target opens: the length of its list, or why it opens none (a problem unless the
 // field is in NOT_A_LIST).
@@ -153,6 +160,7 @@ export function checkTargets(b: Bundle, extra: Array<{ name: string; value: unkn
         if (d.section === 'coverage' && field === 'unique') return { n: allIds - (buckets.get('duplicates')?.length ?? 0) };
         if (d.section === 'run' && field === 'agents') return { n: sumOf(b.method.run.agents, (a) => a.count) };
         if (d.section === 'run' && field === 'fix_rounds') return { n: sumOf(b.method.run.fix_rounds, (x) => x.rounds) };
+        if (d.section === 'run' && field === 'later_runs') return { n: b.method.run.later_runs.length };
         if (d.section === 'identity' && typeof parent === 'object' && parent !== null && Array.isArray((parent as { items?: unknown }).items)) return { n: ((parent as { items: unknown[] }).items).length };
         return { none: `the ${d.section} section is not a list for ${field}` };
       default:
@@ -186,7 +194,7 @@ export function checkTargets(b: Bundle, extra: Array<{ name: string; value: unkn
       if (key !== undefined && keys.has(key) && !files.has(key)) problems.push(`${at}: there is no process file for ${key}`);
       // A count (a figure without a kind) equals the list its target opens; the few that are not
       // counts are named in NOT_A_LIST.
-      if (counts && num.k === undefined && !Object.hasOwn(NOT_A_LIST, field)) {
+      if (counts && num.k === undefined && !Object.hasOwn(NOT_A_LIST, listPath(path))) {
         const o = opened(d, field, key === undefined ? undefined : files.get(key), parent);
         if ('none' in o) problems.push(`${at}: "${num.t}" is a count, but its ${d.kind} target opens no list to check it against (${o.none})`);
         else if (o.n !== num.v) problems.push(`${at}: "${num.t}" counts ${num.v} but its ${d.kind} list holds ${o.n}`);
@@ -227,6 +235,8 @@ export function checkTargets(b: Bundle, extra: Array<{ name: string; value: unkn
   };
   if (shownSum(inTotal) !== dollarsOf(h.total.t)) problems.push(`shown: the rows in the total show ${shownSum(inTotal)}, the headline ${h.total.t}`);
   if (below.length > 0 && shownSum(below) !== dollarsOf(h.below_cents.t)) problems.push(`shown: the rows below the bar show ${shownSum(below)}, their total ${h.below_cents.t}`);
+  const allShown = (dollarsOf(h.total.t) ?? 0) + (below.length > 0 ? (dollarsOf(h.below_cents.t) ?? 0) : 0);
+  if (dollarsOf(h.all_tiers.total.t) !== allShown) problems.push(`shown: every row's total ${h.all_tiers.total.t} is not the headline ${h.total.t} plus the rows below the bar`);
   let prefix = 0;
   b.data.cumulative.forEach((c, i) => {
     prefix += dollarsOf(inTotal[i]?.total.t ?? '') ?? 0;
@@ -234,6 +244,14 @@ export function checkTargets(b: Bundle, extra: Array<{ name: string; value: unkn
   });
   const hours = inTotal.map((r) => tenthsOf(r.hours.t));
   if (hours.some((x) => x === null) || sumOf(hours as number[], (x) => x) !== tenthsOf(h.hours.t)) problems.push(`shown: the rows' hours do not add up to the headline's ${h.hours.t}`);
+  // The rows below the bar share out their own hours: their exact hundredths, in tenths, rounded half up.
+  if (below.length > 0) {
+    const shownBelow = below.map((r) => tenthsOf(r.hours.t));
+    const want = roundHalfUp(sumOf(below, (r) => r.hours.v), 10);
+    if (shownBelow.some((x) => x === null) || sumOf(shownBelow as number[], (x) => x) !== want) {
+      problems.push(`shown: the rows below the bar show ${below.map((r) => r.hours.t).join(' + ')} hours, not their total of ${want / 10}`);
+    }
+  }
 
   // Every message in exactly one coverage bucket (A13).
   const seen = new Set<string>();

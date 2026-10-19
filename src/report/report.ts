@@ -351,8 +351,19 @@ export function buildReport(data: Omit<DashboardData, 'inputs' | 'outputs'>, pro
   const facts: Block[] = [
     h(2, 'Run facts'),
     ul([
-      run.id === null ? ['No run log was found.'] : ['Run ', code(run.id), ` of ${runDate}.`],
-      ...(run.minutes === null ? [] : [[n(run.minutes), ' minutes from the first event to the last in the run’s log, before this build.']]),
+      run.id === null
+        ? ['No run log was found.']
+        : ['Run ', code(run.id), ` of ${runDate}`, ...(data.run.later_runs === null || run.later_runs.length === 0 ? ['.'] : [', continued in ', n(data.run.later_runs), ` later ${run.later_runs.length === 1 ? 'run' : 'runs'}.`])],
+      ...(run.minutes === null
+        ? []
+        : [
+            [
+              n(run.minutes),
+              run.later_runs.length === 0
+                ? ' minutes from the run’s first event to its last step of work (an agent started, a gate, a stage step); builds are not counted.'
+                : ' minutes: each run from its first event to its last step of work (an agent started, a gate, a stage step), added up, so the wait between runs and the builds are not counted.',
+            ],
+          ]),
       [
         `Agents launched: ${data.run.agents?.t ?? '0'}`,
         run.agents.length === 0 ? '.' : ` (${run.agents.map((a) => `${F.plural(a.count, a.type)}`).join(', ')}).`,
@@ -360,7 +371,11 @@ export function buildReport(data: Omit<DashboardData, 'inputs' | 'outputs'>, pro
       [`Fix rounds: ${data.run.fix_rounds?.t ?? '0'}`, run.fix_rounds.length === 0 ? '.' : ` (${run.fix_rounds.map((x) => `${x.job} ${x.rounds}`).join(', ')}).`],
       [method.quotes.sentence],
       [method.gold === null ? 'Tagging accuracy: not scored.' : `Tagging accuracy against the hand labels: ${method.gold.sentence}`],
-      ...(run.log === null ? [] : [['The run’s log: ', code(run.log), '.']]),
+      ...(run.log === null
+        ? []
+        : run.later_runs.length === 0
+          ? [['The run’s log: ', code(run.log), '.']]
+          : [['The runs’ logs: ', ...[run.log, ...run.later_runs.map((r) => r.log)].flatMap((l, i) => [i === 0 ? '' : ', ', code(l)]), '.']]),
     ]),
     ...(run.stages.length === 0
       ? []

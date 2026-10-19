@@ -82,6 +82,53 @@ test('the walk catches each kind of problem', () => {
   assert.match(broken((b) => void (row(b).hours.t = '99.9')).join('\n'), /shown: the rows' hours/);
 });
 
+test('the walk checks every target parameter and every list a count opens (second review)', () => {
+  const broken = (edit: (b: Bundle) => void): string => {
+    const b = structuredClone(fixture) as Bundle;
+    edit(b);
+    return checkTargets(b).join('\n');
+  };
+  const row = (b: Bundle) => b.data.rows[0] as DashboardData['rows'][number];
+  const file = (b: Bundle) => b.processes.find((p) => p.key === row(b).key) as ProcessData;
+  // A count given another target, and a count one more than that target's list.
+  const retarget = (b: Bundle, d: Num['d'], v: number) => void Object.assign(row(b).occurrences, { d, v });
+  // Parameters that must resolve.
+  assert.match(broken((b) => void (row(b).total.d = { kind: 'thread', id: 'no-such-thread' })), /data\.rows\[0\]\.total: thread no-such-thread is not in the index/);
+  assert.match(broken((b) => void (row(b).total.d = { kind: 'coverage', bucket: 'bogus' } as unknown as Num['d'])), /coverage bucket bogus is not in method\.json/);
+  assert.match(broken((b) => void (row(b).total.d = { kind: 'mailbox', key: 'no-such-mailbox' })), /mailbox no-such-mailbox is not in the scope/);
+  assert.match(broken((b) => void (row(b).staff.d = { kind: 'participants', key: row(b).key, filter: 'bogus' } as unknown as Num['d'])), /participant filter bogus is not one/);
+  assert.match(broken((b) => void (b.data.headline.rows_in_total.d = { kind: 'rows', filter: 'bogus' } as unknown as Num['d'])), /row filter bogus is not one/);
+  assert.match(broken((b) => void (row(b).total.d = { kind: 'method', section: 'bogus' } as unknown as Num['d'])), /method section bogus is not one/);
+  assert.match(broken((b) => void (row(b).stall_quotes.d = { kind: 'stalls', key: row(b).key, stall_kind: 'bogus' } as unknown as Num['d'])), /stall kind bogus is not one/);
+  assert.match(broken((b) => void (row(b).occurrences.d = { kind: 'occurrences', key: row(b).key, month: '1999-01' })), /month 1999-01 is not a month of/);
+  // Lists that must hold as many as the count says.
+  assert.match(broken((b) => void (row(b).claims.v += 1)), /data\.rows\[0\]\.claims: "[^"]*" counts \d+ but its claims list holds \d+/);
+  assert.match(broken((b) => void (row(b).active_months.v += 1)), /but its months list holds/);
+  assert.match(broken((b) => retarget(b, { kind: 'gaps', key: row(b).key }, file(b).reply_gaps.length + 1)), /but its gaps list holds/);
+  assert.match(broken((b) => retarget(b, { kind: 'evidence', key: row(b).key, set: 'all' }, file(b).evidence.length + 1)), /but its evidence list holds/);
+  assert.match(broken((b) => retarget(b, { kind: 'evidence', key: row(b).key, set: 'estimate' }, file(b).estimate_quotes.length + 1)), /but its evidence list holds/);
+  // NOT_A_LIST names paths: the run's duration may change, but a count in a field that happens to be
+  // called "share" or "minutes" elsewhere is still checked.
+  assert.doesNotMatch(broken((b) => void (b.data.run.minutes !== null && (b.data.run.minutes.v += 1))), /counts|opens no list/);
+  const stray = (field: string) => (b: Bundle) => void Object.assign(row(b), { [field]: { v: 99, t: '99', d: { kind: 'rows', filter: 'all' } } });
+  assert.match(broken(stray('share')), /data\.rows\[0\]\.share: "99" counts 99 but its rows list holds \d+/);
+  assert.match(broken(stray('minutes')), /data\.rows\[0\]\.minutes: "99" counts 99 but its rows list holds \d+/);
+  // The rows below the bar share out their own hours: one moved below with its hours as its own
+  // rounding passes that check; a wrong figure there fails it.
+  const moveLast = (b: Bundle) => {
+    const r = b.data.rows.at(-1) as DashboardData['rows'][number];
+    const tenths = Math.floor((r.hours.v + 5) / 10);
+    Object.assign(r, { in_total: false, hours: { ...r.hours, t: `${Math.floor(tenths / 10)}.${tenths % 10}` } });
+    return r;
+  };
+  const belowHours = /shown: the rows below the bar show .* hours, not their total of/;
+  assert.doesNotMatch(broken((b) => void moveLast(b)), belowHours);
+  assert.match(broken((b) => void (moveLast(b).hours.t = '99.9')), belowHours);
+  // Every row's total shows the headline's dollars plus those below the bar.
+  assert.equal(fixture.data.headline.all_tiers.total.t, fixture.data.headline.total.t, 'no row below the bar in the fixture');
+  assert.match(broken((b) => void (b.data.headline.all_tiers.total.t = '$1')), /shown: every row's total \$1 is not the headline/);
+});
+
 test('dollarsOf reads whole-dollar figures only', () => {
   assert.equal(dollarsOf('$1,511'), 1511);
   assert.equal(dollarsOf('$0'), 0);

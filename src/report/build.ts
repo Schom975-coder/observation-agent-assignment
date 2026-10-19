@@ -8,7 +8,7 @@
 // Every file is rewritten only when its bytes would change; the same inputs give the same bytes on
 // every OS (no clock, no randomness, no platform-dependent formatting), and data.json records the
 // hashes of its inputs and of every other file written, so buildCurrent and a reviewer can check them.
-import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, renameSync, statSync } from 'node:fs';
+import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, renameSync, rmSync, statSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { ConfigError, loadEffortRates, loadScoring } from '../config.ts';
 import { artifactSlug } from '../model/artifacts.ts';
@@ -33,7 +33,7 @@ import { scoreFreshness, scoringFile } from '../run/score.ts';
 import { sha256 } from '../util/hash.ts';
 import { normalizeNewlines } from '../util/text.ts';
 import { FormatError, plural } from './format.ts';
-import { BuildError, buildData, type BuildInputs, type BuildOptions, type Built, type RunLog } from './data.ts';
+import { BuildError, buildData, type BuildInputs, type BuildOptions, type Built, type RunSpan } from './data.ts';
 import { buildReport, renderHtml, renderMd, type ReportModel } from './report.ts';
 import type { GoldScore } from '../gold/score.ts';
 import type { Taxonomy } from '../model/taxonomy.ts';
@@ -104,7 +104,7 @@ export const assetsSha = (assets: readonly Asset[]): string => sha256(assets.map
 
 // The input hashes a build made now would record (data.json `inputs`). Never throws: a missing file
 // hashes as "none".
-export function currentBuildInputs(root: string, assets: readonly Asset[] = readAssets(root)): DashboardData['inputs'] {
+export function currentBuildInputs(root: string, assets: readonly Asset[] = readAssets(root), span: RunSpan | null = runSpanOf(root)): DashboardData['inputs'] {
   const none = sha256('none');
   const out = (f: string) => fileSha(join(root, 'out', f)) ?? none;
   return {
@@ -118,6 +118,7 @@ export function currentBuildInputs(root: string, assets: readonly Asset[] = read
     config_sha: sha256(`${fileSha(ratesFile(root)) ?? none}\n${fileSha(scoringFile(root)) ?? none}\n`),
     gold_sha: out('gold-score.json'),
     synthesizer_sha: synthesizerSha(synthesizerConfig(root)),
+    run_sha: runSpanSha(span),
   };
 }
 
@@ -178,37 +179,54 @@ function readLog(dir: string, id: string): Array<Record<string, unknown>> {
   return events;
 }
 
-// Whether a run did any work before the build's own first stage event: started a subagent, ran a
-// stage step other than the build and the run end, or ran a prepare that did not skip itself.
-export function didWork(events: ReadonlyArray<Record<string, unknown>>): boolean {
-  for (const e of events) {
-    if (e.event === 'stage' && e.name === 'build') return false;
-    if (e.event === 'SubagentStart') return true;
-    if (e.event === 'stage' && e.name !== 'run end') return true;
-    if (e.event === 'prepare' && e.skipped !== true) return true;
-  }
-  return false;
+// A step of work in a run's log: a subagent started, a gate's verdict, or a stage step other than
+// the build and the run end. A build, a run end, and a warm run that found everything done are not.
+export function isWork(e: Readonly<Record<string, unknown>>): boolean {
+  return e.event === 'SubagentStart' || e.event === 'gate' || (e.event === 'stage' && e.name !== 'build' && e.name !== 'run end');
 }
 
-// The run the facts describe: the newest run (by its id, which is its start time) that did any work
-// (didWork), so a later run that found everything done, or only rebuilt, never replaces the facts of
-// the run that made the outputs; with no such run, the newest. Null when there is no run log.
-export function runLogOf(root: string): RunLog | null {
+// A cold run: its prepare ran rather than skipping itself.
+const isCold = (events: ReadonlyArray<Record<string, unknown>>): boolean => events.some((e) => e.event === 'prepare' && e.skipped !== true);
+
+// The runs the facts describe (ARCHITECTURE.md stage 15): the latest cold run (with none, the first
+// run) and each later run that did work, in order, every log cut after its own last step of work
+// and without the build's events. A usage-limit resume or a re-score continues the cold run's
+// facts; a build, a run end or a warm run with no work changes nothing. Null when there is no log.
+export function runSpanOf(root: string): RunSpan | null {
   const dir = join(root, 'out', 'runs');
-  let names: string[] = [];
+  let ids: string[] = [];
   try {
-    names = readdirSync(dir).filter((n) => RUN_FILE.test(n)).sort(byText).reverse();
+    ids = readdirSync(dir)
+      .filter((n) => RUN_FILE.test(n))
+      .sort(byText)
+      .map((n) => n.slice(0, -'.jsonl'.length));
   } catch {
-    names = [];
+    ids = [];
   }
-  if (names.length === 0) return null;
-  const ids = names.map((n) => n.slice(0, -'.jsonl'.length));
-  for (const id of ids) {
+  if (ids.length === 0) return null;
+  // From the newest back to the latest cold run, or to the first run.
+  const logs: Array<{ id: string; events: Array<Record<string, unknown>> }> = [];
+  for (let i = ids.length - 1; i >= 0; i--) {
+    const id = ids[i] as string;
     const events = readLog(dir, id);
-    if (didWork(events)) return { id, path: `out/runs/${id}.jsonl`, events };
+    logs.unshift({ id, events });
+    if (isCold(events)) break;
   }
-  const id = ids[0] as string;
-  return { id, path: `out/runs/${id}.jsonl`, events: readLog(dir, id) };
+  const runs = logs
+    .map(({ id, events }) => {
+      let last = events.length - 1;
+      while (last >= 0 && !isWork(events[last] as Record<string, unknown>)) last--;
+      return { id, path: `out/runs/${id}.jsonl`, events: events.slice(0, last + 1).filter((e) => !(e.event === 'stage' && e.name === 'build')) };
+    })
+    .filter((r, i) => i === 0 || r.events.length > 0);
+  return { runs };
+}
+
+// The span, hashed: each run's id and its events up to its last step of work. A build input, so a
+// run that did work makes the build stale and one that did none leaves it current.
+export function runSpanSha(span: RunSpan | null): string {
+  if (span === null) return sha256('none');
+  return sha256(span.runs.map((r) => `${r.id}\n${r.events.map((e) => `${JSON.stringify(e)}\n`).join('')}`).join('\n'));
 }
 
 // The synthesizer's model and effort, from its agent definition's frontmatter.
@@ -293,7 +311,8 @@ function readInputs(root: string): { inputs: BuildInputs; shas: DashboardData['i
   const assets = readAssets(root);
   const have = new Set(assets.map((a) => a.path));
   for (const req of REQUIRED_ASSETS) if (!have.has(req)) throw new BuildError(`dashboard/${req} is missing from the repo.`);
-  const shas = currentBuildInputs(root, assets);
+  const span = runSpanOf(root);
+  const shas = currentBuildInputs(root, assets, span);
   const inputs: BuildInputs = {
     opportunities,
     rollup,
@@ -311,7 +330,7 @@ function readInputs(root: string): { inputs: BuildInputs; shas: DashboardData['i
     taxonomy,
     validated,
     gold,
-    run: runLogOf(root),
+    run: span,
     synthesizer: synthesizerConfig(root),
     files: {
       rates: opportunities.rates_file,
@@ -375,9 +394,43 @@ function writeIfChanged(file: string, content: string | Buffer, source: string |
   }
   mkdirSync(dirname(file), { recursive: true });
   const tmp = `${file}.${process.pid}.tmp`;
-  copyFileSync(source, tmp);
-  renameSync(tmp, file);
+  try {
+    copyFileSync(source, tmp);
+    renameSync(tmp, file);
+  } catch (err) {
+    rmSync(tmp, { force: true });
+    throw err;
+  }
   return true;
+}
+
+// An operating-system error in plain words, by its code.
+const OS_WORDS: Record<string, string> = {
+  EISDIR: 'a folder stands at that path',
+  ENOTDIR: 'a file stands where one of its folders should be',
+  EEXIST: 'something else stands at that path',
+  EACCES: 'permission was denied',
+  EPERM: 'the system did not permit it (the file may be read-only, or open in another program)',
+  EBUSY: 'the file is in use by another program',
+  ENOSPC: 'the disk is full',
+  EDQUOT: 'the disk quota is used up',
+  EROFS: 'the disk is read-only',
+  EMFILE: 'too many files are open',
+  ENFILE: 'too many files are open',
+  ENAMETOOLONG: 'the path is too long',
+  EIO: 'the disk reported an input or output error',
+};
+
+// A file under out/ the build could not read, write or remove, as one BuildError line naming it: the
+// error's plain words and code when the system gave one, else its message without the project's
+// folder.
+function fileError(root: string, verb: 'read' | 'write' | 'remove', path: string, err: unknown): BuildError {
+  const code = (err as NodeJS.ErrnoException | null)?.code;
+  const why =
+    typeof code === 'string' && OS_WORDS[code] !== undefined
+      ? `${OS_WORDS[code]} (${code})`
+      : withoutRoot(err instanceof Error ? err.message : String(err), root).replace(/\s*\n\s*/g, ' ');
+  return new BuildError(`cannot ${verb} out/${path}: ${why}. Fix that and run the build again.`);
 }
 
 // Files under out/dashboard/ that the build no longer writes (a process gone from the run, a file
@@ -401,10 +454,25 @@ export function buildStep(root: string): string {
   let changed = 0;
   for (const [path, content] of files) {
     const source = typeof content === 'string' ? null : join(dashboardDir(root), ...path.slice('dashboard/'.length).split('/'));
-    if (writeIfChanged(join(root, 'out', ...path.split('/')), content, source)) changed++;
+    try {
+      if (writeIfChanged(join(root, 'out', ...path.split('/')), content, source)) changed++;
+    } catch (err) {
+      throw fileError(root, 'write', path, err);
+    }
   }
-  const gone = leftOver(root, new Set(files.keys()));
-  for (const path of gone) removeFile(join(root, 'out', ...path.split('/')));
+  let gone: string[];
+  try {
+    gone = leftOver(root, new Set(files.keys()));
+  } catch (err) {
+    throw fileError(root, 'read', 'dashboard/', err);
+  }
+  for (const path of gone) {
+    try {
+      removeFile(join(root, 'out', ...path.split('/')));
+    } catch (err) {
+      throw fileError(root, 'remove', path, err);
+    }
+  }
   const rows = built.data.rows;
   const inTotal = rows.filter((r) => r.in_total).length;
   const drafted = rows.filter((r) => r.document?.status === 'done').length;

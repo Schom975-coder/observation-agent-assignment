@@ -7,13 +7,12 @@
 // entities the escapers write) read as the characters they stand for. markdownForReport makes the
 // document inert for report.md (src/report/text.ts inertMarkdown) and moves its headings under the
 // report's own.
-import { escapeHtml, inertMarkdown } from './text.ts';
+import { closesFence, escapeHtml, fenceAt, inertMarkdown } from './text.ts';
 
 // A [placeholder]: square brackets around text with a letter in it, not a "[ ]" checkbox (the rule
 // of src/model/artifacts.ts).
 const BRACKETED = /\[[^[\]\n]*\]/g;
 const isBlank = (s: string): boolean => /[A-Za-z]/.test(s);
-const FENCE = /^ {0,3}(`{3,}|~{3,})/;
 const EVIDENCE_HEADING = /^##[ \t]+Evidence[ \t]*$/;
 
 // The bracketed placeholders of a document, in order, before its Evidence footer: what the owner has
@@ -120,12 +119,11 @@ export function renderMarkdownHtml(md: string, opts: { base?: number; ids?: Read
   for (let i = 0; i < lines.length; i++) {
     const raw = lines[i] as string;
     const line = raw.replace(/\s+$/, '');
-    const fence = FENCE.exec(line);
-    if (fence !== null) {
+    const mark = fenceAt(raw);
+    if (mark !== null) {
       flushAll();
-      const mark = fence[1] as string;
       const body: string[] = [];
-      for (i++; i < lines.length && !(lines[i] as string).trim().startsWith(mark.slice(0, 3)); i++) body.push(lines[i] as string);
+      for (i++; i < lines.length && !closesFence(lines[i] as string, mark); i++) body.push(lines[i] as string);
       out.push(`<pre>${preText(body.join('\n'))}</pre>`);
       continue;
     }
@@ -134,7 +132,7 @@ export function renderMarkdownHtml(md: string, opts: { base?: number; ids?: Read
       flushQuote();
       continue;
     }
-    const heading = /^ {0,3}(#{1,6})[ \t]+(.*)$/.exec(line);
+    const heading = /^ {0,3}(#{1,6})[ \t]+([\s\S]*)$/.exec(line);
     if (heading !== null) {
       flushAll();
       const level = (heading[1] as string).length;
@@ -143,7 +141,7 @@ export function renderMarkdownHtml(md: string, opts: { base?: number; ids?: Read
       out.push(`<h${h}>${inline((heading[2] as string).replace(/[ \t]+#+$/, ''), ids)}</h${h}>`);
       continue;
     }
-    const bq = /^[ \t]*>[ \t]?(.*)$/.exec(line);
+    const bq = /^[ \t]*>[ \t]?([\s\S]*)$/.exec(line);
     if (bq !== null) {
       flushPara();
       // An indented quote belongs to the list item above it (the Evidence footer's quotes); one at
@@ -165,8 +163,8 @@ export function renderMarkdownHtml(md: string, opts: { base?: number; ids?: Read
       );
       continue;
     }
-    const bullet = /^[ \t]*[-*+][ \t]+(.*)$/.exec(line);
-    const numbered = /^[ \t]*\d{1,3}[.)][ \t]+(.*)$/.exec(line);
+    const bullet = /^[ \t]*[-*+][ \t]+([\s\S]*)$/.exec(line);
+    const numbered = /^[ \t]*\d{1,3}[.)][ \t]+([\s\S]*)$/.exec(line);
     if (bullet !== null || numbered !== null) {
       flushPara();
       const tag = bullet !== null ? 'ul' : 'ol';
@@ -196,18 +194,18 @@ export function markdownForReport(md: string, shift = 2): string {
   const out: string[] = [];
   let fenced: string | null = null;
   for (const line of lines) {
-    const fence = FENCE.exec(line);
-    if (fence !== null) {
-      const mark = fence[1] as string;
-      fenced = fenced === null ? mark.slice(0, 3) : line.trim().startsWith(fenced) ? null : fenced;
-      out.push(line);
-      continue;
-    }
     if (fenced !== null) {
+      if (closesFence(line, fenced)) fenced = null;
       out.push(line);
       continue;
     }
-    const h = /^ {0,3}(#{1,6})([ \t]+.*)$/.exec(line);
+    const mark = fenceAt(line);
+    if (mark !== null) {
+      fenced = mark;
+      out.push(line);
+      continue;
+    }
+    const h = /^ {0,3}(#{1,6})([ \t][\s\S]*)$/.exec(line);
     if (h !== null) {
       if ((h[1] as string).length === 1) continue;
       out.push(`${'#'.repeat(Math.min(6, (h[1] as string).length + shift))}${h[2] as string}`);

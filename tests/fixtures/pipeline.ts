@@ -292,12 +292,14 @@ export function markBuilt(root: string): void {
 }
 
 // A fixed run log in place of the one the run wrote, so the run facts (and the pinned hashes of
-// tests/build.test.ts) do not depend on the clock. A18: three agents started, two gate failures (one
-// job, two fix rounds), two stage lines before the build's own event; the events from the build on
-// are left out of the run facts.
+// tests/build.test.ts) do not depend on the clock. A18: a cold run (its prepare ran) that started four
+// agents, had two gate failures (one job, two fix rounds) and two stage steps; a build in the middle,
+// which the facts leave out while the agent started after it counts; then a run end and a rebuild
+// after the last step of work, both left out.
 export const FIXED_RUN_ID = '20261019T000000Z';
 export const FIXED_RUN_LOG = [
   { ts: '2026-10-19T00:00:00.000Z', event: 'run_start', orchestrator: 'claimed', force: false, stamped: 0 },
+  { ts: '2026-10-19T00:00:02.000Z', event: 'prepare', ms: 1800, skipped: false },
   { ts: '2026-10-19T00:00:05.120Z', event: 'SubagentStart', agent_type: 'extractor', agent_id: 'a1' },
   { ts: '2026-10-19T00:00:05.500Z', event: 'SubagentStart', agent_type: 'extractor', agent_id: 'a2' },
   { ts: '2026-10-19T00:03:00.000Z', event: 'gate', agent_type: 'extractor', agent_id: 'a2', batch_id: 'batch-001', dispatches: 1, status: 'failed', problems: 1 },
@@ -307,6 +309,8 @@ export const FIXED_RUN_LOG = [
   { ts: '2026-10-19T00:12:00.000Z', event: 'stage', name: 'score', ms: 252, summary: 'score: tiers A+B.' },
   { ts: '2026-10-19T00:12:30.000Z', event: 'stage', name: 'build', ms: 900, summary: 'build: done.' },
   { ts: '2026-10-19T00:20:00.000Z', event: 'SubagentStart', agent_type: 'extractor', agent_id: 'late' },
+  { ts: '2026-10-19T00:21:00.000Z', event: 'stage', name: 'run end', ms: 3, summary: 'run end: done.' },
+  { ts: '2026-10-19T00:30:00.000Z', event: 'stage', name: 'build', ms: 800, summary: 'build: done.' },
 ];
 
 export function fixRunLog(root: string): void {

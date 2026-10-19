@@ -66,7 +66,9 @@ import type {
 
 // ---- Inputs ----
 
-export type RunLog = { id: string; path: string; events: Array<Record<string, unknown>> };
+// The run facts' span (src/report/build.ts runSpanOf): the latest cold run first, then each later run
+// that did work, each log cut after its last step of work and without the build's events.
+export type RunSpan = { runs: Array<{ id: string; path: string; events: Array<Record<string, unknown>> }> };
 
 export type BuildInputs = {
   opportunities: Opportunities;
@@ -85,7 +87,7 @@ export type BuildInputs = {
   taxonomy: Pick<Taxonomy, 'processes'>;
   validated: ValidatedExtraction[]; // the done batches', in ledger order
   gold: GoldScore | null;
-  run: RunLog | null;
+  run: RunSpan | null;
   synthesizer: { model: string | null; effort: string | null };
   files: { rates: string; scoring: string; rates_sha: string; scoring_sha: string };
 };
@@ -350,19 +352,21 @@ export function buildData(raw: BuildInputs, opts: BuildOptions = {}): Built {
   for (const key of mailboxKeys) {
     const ms = messages.filter((m) => m.mailbox === key);
     const dates = ms.map((m) => usable(m.id)).filter((d): d is string => d !== null).sort(byText);
-    // The owner: the sender of the sent folder's mail (a folder named sent, sent_items, sent_mail or
-    // _sent_mail); with no sent folder, the staff person most of the mailbox's messages are
-    // addressed to (more than half of them), else nobody: the key stands for the owner and nothing
-    // is said about the owner's own mail.
+    // The owner: the staff person who sent at least half of the sent folder's mail (a folder named
+    // sent, sent_items, sent_mail or _sent_mail); failing that, the staff person most of the
+    // mailbox's messages are addressed to (more than half of them), else nobody: the key stands for
+    // the owner and nothing is said about the owner's own mail.
     const tally = (list: string[]): string | null => {
       const n = new Map<string, number>();
       for (const e of list) if (e !== '') n.set(e, (n.get(e) ?? 0) + 1);
       return [...n].sort(([a, x], [b, y]) => y - x || byText(a, b))[0]?.[0] ?? null;
     };
+    const staffPerson = (c: string): boolean => identity.kind(c) === 'person' && identity.staff(c);
     const sent = ms.filter((m) => SENT_FOLDER.test(m.folder));
-    let ownerId = tally(sent.map((m) => senderOf(m.id)));
+    const sender = tally(sent.map((m) => senderOf(m.id)).filter(staffPerson));
+    let ownerId = sender !== null && sent.filter((m) => senderOf(m.id) === sender).length * 2 >= sent.length ? sender : null;
     if (ownerId === null) {
-      const staffTo = (m: ParsedMessage): string[] => [...new Set([...m.to, ...m.cc].map((a) => identity.canonical(a.email.toLowerCase())))].filter((c) => identity.kind(c) === 'person' && identity.staff(c));
+      const staffTo = (m: ParsedMessage): string[] => [...new Set([...m.to, ...m.cc].map((a) => identity.canonical(a.email.toLowerCase())))].filter(staffPerson);
       const top = tally(ms.flatMap(staffTo));
       const reach = top === null ? 0 : ms.filter((m) => staffTo(m).includes(top)).length;
       ownerId = top !== null && reach * 2 > ms.length ? top : null;
@@ -955,12 +959,13 @@ export function buildData(raw: BuildInputs, opts: BuildOptions = {}): Built {
   const data: Built['data'] = {
     version: 1,
     run: {
-      id: inputs.run?.id ?? null,
-      date: inputs.run === null ? null : `${inputs.run.id.slice(0, 4)}-${inputs.run.id.slice(4, 6)}-${inputs.run.id.slice(6, 8)}`,
+      id: run.id,
+      date: run.id === null ? null : `${run.id.slice(0, 4)}-${run.id.slice(4, 6)}-${run.id.slice(6, 8)}`,
       minutes: run.minutes,
       agents: run.agentsNum,
       fix_rounds: run.fixNum,
-      log: inputs.run?.path ?? null,
+      later_runs: run.laterNum,
+      log: run.log,
     },
     scope: {
       files: countNum(messages.length, { kind: 'method', section: 'coverage' }),
@@ -986,7 +991,8 @@ export function buildData(raw: BuildInputs, opts: BuildOptions = {}): Built {
       one_mailbox_rows: countNum(oneRows.length, { kind: 'rows', filter: 'one_mailbox' }),
       one_mailbox_cents: moneyNum(oneCents, 'total', { kind: 'rows', filter: 'one_mailbox' }, oneShown),
       all_tiers: {
-        total: moneyNum(all.total, 'total', { kind: 'rows', filter: 'all' }),
+        // Shown as the headline's dollars plus the rows below the bar's, so the three figures add up.
+        total: moneyNum(all.total, 'total', { kind: 'rows', filter: 'all' }, F.dollars(shownSum(ab) + shownSum(below), 'total')),
         low: moneyNum(all.low, 'total', { kind: 'method', section: 'explainer' }),
         high: moneyNum(all.high, 'total', { kind: 'method', section: 'explainer' }),
       },
@@ -1139,8 +1145,9 @@ export function buildData(raw: BuildInputs, opts: BuildOptions = {}): Built {
           },
     estimates,
     run: {
-      id: inputs.run?.id ?? null,
-      log: inputs.run?.path ?? null,
+      id: run.id,
+      log: run.log,
+      later_runs: run.later,
       minutes: run.minutes,
       agents: run.agents,
       fix_rounds: run.fixRounds,
@@ -1193,7 +1200,7 @@ export function buildData(raw: BuildInputs, opts: BuildOptions = {}): Built {
   }
   const summary: RunSummary = {
     version: 1,
-    run: { id: inputs.run?.id ?? null, wall_seconds: run.minutes?.v ?? null, agents: Object.fromEntries(run.agents.map((a) => [a.type, a.count])), fix_rounds: run.fixNum?.v ?? 0 },
+    run: { id: run.id, later_runs: run.later.map((r) => r.id), wall_seconds: run.minutes?.v ?? null, agents: Object.fromEntries(run.agents.map((a) => [a.type, a.count])), fix_rounds: run.fixNum?.v ?? 0 },
     quotes: { exact: q.exact, repaired: q.repaired, rejected: q.rejected },
     merge: { ...mergeCounts },
     estimates: { accepted: estimates.filter((x) => x.source === 'model').length, missing: opps.length - estimates.length, overridden: estimates.filter((x) => x.source === 'override').length },
@@ -1230,12 +1237,16 @@ export function capGuard(rows: readonly Row[], scoring: Scoring): string {
   return `${rule}; the minimum bound this run: ${F.count(over)} cleared the bar, so the top ${F.count(floor)} in the total were drafted.`;
 }
 
-// ---- Run facts (section 3.6): from the run's log, up to the build's own stage event ----
+// ---- Run facts (section 3.6): from the run logs of the span (src/report/build.ts runSpanOf) ----
 
 type RunFacts = {
+  id: string | null; // the cold run's
+  log: string | null;
+  later: Array<{ id: string; log: string }>;
   minutes: Num | null;
   agentsNum: Num | null;
   fixNum: Num | null;
+  laterNum: Num | null;
   agents: Array<{ type: string; count: number }>;
   fixRounds: Array<{ job: string; rounds: number }>;
   stages: Array<{ name: string; ms: number; summary: string }>;
@@ -1248,14 +1259,21 @@ function tsMs(ts: unknown): number | null {
   return utcMs(ts) + Number(frac.padEnd(3, '0'));
 }
 
-// The events of the log before the build's own first stage event: what any build of this run sees,
-// so a build during the run and one after it write the same facts.
-export function runFacts(run: RunLog | null): RunFacts {
-  if (run === null) return { minutes: null, agentsNum: null, fixNum: null, agents: [], fixRounds: [], stages: [] };
-  const cut = run.events.findIndex((e) => e.event === 'stage' && e.name === 'build');
-  const events = cut === -1 ? run.events : run.events.slice(0, cut);
-  const times = events.map((e) => tsMs(e.ts)).filter((t): t is number => t !== null);
-  const seconds = times.length < 2 ? 0 : Math.round((Math.max(...times) - Math.min(...times)) / 1000);
+// The facts of the span: the agents and the fix rounds summed over its runs, the minutes as the sum
+// over its runs of each run's first event to its last step of work (so the wait between a stopped
+// run and its resume is not counted), the stage steps in order. Each log is cut after its last step
+// of work and holds no build event, so a build during the run and one after it write the same facts.
+export function runFacts(span: RunSpan | null): RunFacts {
+  const [cold, ...later] = span?.runs ?? [];
+  if (cold === undefined) return { id: null, log: null, later: [], minutes: null, agentsNum: null, fixNum: null, laterNum: null, agents: [], fixRounds: [], stages: [] };
+  const runs = [cold, ...later];
+  let ms = 0;
+  for (const r of runs) {
+    const times = r.events.map((e) => tsMs(e.ts)).filter((t): t is number => t !== null);
+    if (times.length >= 2) ms += Math.max(...times) - Math.min(...times);
+  }
+  const seconds = Math.round(ms / 1000);
+  const events = runs.flatMap((r) => r.events);
   const agents = new Map<string, number>();
   for (const e of events) if (e.event === 'SubagentStart') agents.set(String(e.agent_type ?? 'unknown'), (agents.get(String(e.agent_type ?? 'unknown')) ?? 0) + 1);
   const fixes = new Map<string, number>();
@@ -1266,9 +1284,13 @@ export function runFacts(run: RunLog | null): RunFacts {
   const nFix = fixList.reduce((n, a) => n + a.rounds, 0);
   const d: Target = { kind: 'method', section: 'run' };
   return {
+    id: cold.id,
+    log: cold.path,
+    later: later.map((r) => ({ id: r.id, log: r.path })),
     minutes: num(seconds, F.minutesOfSeconds(seconds), d, { x: F.plural(seconds, 'second') }),
     agentsNum: countNum(nAgents, d),
     fixNum: countNum(nFix, d),
+    laterNum: countNum(later.length, d),
     agents: agentList,
     fixRounds: fixList,
     stages: events.filter((e) => e.event === 'stage').map((e) => ({ name: String(e.name ?? ''), ms: typeof e.ms === 'number' ? e.ms : 0, summary: String(e.summary ?? '') })),

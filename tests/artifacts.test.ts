@@ -45,6 +45,7 @@ import { modelText } from '../src/model/schema.ts';
 import { withMargin } from '../src/model/synthesis.ts';
 import { sha256 } from '../src/util/hash.ts';
 import { BODIES, FENCE, OWNER } from './fixtures/drafts.ts';
+import { inertMarkdown } from '../src/report/text.ts';
 import type { ArtifactBrief, DraftType, Opportunities, Opportunity, ParsedMessage, Person, PersonKind, ProcessRollup, Rollup, Thread, ValidatedExtraction, ValidatedSynthesis } from '../src/types.ts';
 
 const repo = fileURLToPath(new URL('..', import.meta.url));
@@ -943,4 +944,32 @@ test('renderArtifact: title, provenance line, the body as written, and the Evide
   // No estimate: the line says so.
   assert.match(renderArtifact({ ...brief, estimate: null }, BODIES.checklist), /with 3 staff taking part\.\n\nNo estimate of the hands-on work was accepted for this process\.\n$/);
   assert.ok(Object.values(ARTIFACT_FILES).every((f) => /^[a-z-]+\.md$/.test(f)));
+});
+
+test('U+2028 and U+2029 in a drafted body and in an email quote: the gate passes the body, checkDraft records it and the artifact is written with them as text', () => {
+  for (const sep of [String.fromCharCode(0x2028), String.fromCharCode(0x2029)]) {
+    const body = BODIES.checklist.replace('## When to use\n\nEach morning', `## When to use${sep}\n\nEach${sep}morning`);
+    assert.notEqual(body, BODIES.checklist);
+    const { root, brief } = draftProject(`separator-${sep.charCodeAt(0)}`, body);
+    assert.equal(brief.artifact_type, 'checklist');
+    const r = checkDraft(root, 'draft-000');
+    assert.deepEqual([r.ok, r.setup, r.problems], [true, null, []]);
+    const quoted: ArtifactBrief = { ...brief, evidence: brief.evidence.map((e, i) => (i === 0 ? { ...e, quote: `First line${sep}second [r]: http://example.invalid` } : e)) };
+    const text = renderArtifact(quoted, body);
+    assert.ok(text.includes(`## When to use${sep}\n\nEach${sep}morning`), 'the body as written');
+    assert.ok(text.includes(`  > First line${sep}second [r]\\: http://example.invalid\n`), 'the quote, its reference definition as text');
+    assert.equal(inertMarkdown(text), text);
+  }
+});
+
+test('gate: a fenced block opens only at the margin, as in the written file; a closer is the same fence alone on its line', () => {
+  // A fence in a list item is text in the written file (inertMarkdown), so the gate reads it as
+  // text: the "##" line after it is a heading, and an email in a list item is no fenced block.
+  assert.match(problemsOf(sopWith('## What you need\n', `## What you need\n\n- Notes:\n  ${FENCE}\n## Inside\n  ${FENCE}\n`)).join('\n'), /not a heading of an SOP: "Inside"/);
+  const listed = BODIES.email_template.replace(`${FENCE}\nHello`, `- The message:\n\n  ${FENCE}\n  Hello`).replace(`[your name]\n${FENCE}`, `[your name]\n  ${FENCE}`);
+  assert.notEqual(listed, BODIES.email_template);
+  assert.match(checkDraftBody(listed, briefFor('email_template')).problems.join('\n'), /it has no fenced block$/);
+  // A closer indented up to three spaces closes; a fence with text after it does not.
+  assert.deepEqual(problemsOf(sopWith('## What you need\n', `## What you need\n\n${FENCE}\n## not a heading\n   ${FENCE}\n`)), []);
+  assert.match(problemsOf(sopWith('## What you need\n', `## What you need\n\n${FENCE}\nnot closed by\n${FENCE}js\n`)).join('\n'), /the fenced block opened on line \d+ \("```"\) is not closed/);
 });

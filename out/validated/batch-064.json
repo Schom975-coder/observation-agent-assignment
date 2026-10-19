@@ -5,7 +5,7 @@
     {
       "id": "corpus/farmer-d/logistics/70.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "request",
       "stall": {
@@ -17,16 +17,16 @@
     {
       "id": "corpus/farmer-d/logistics/69.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
-      "role": "forward",
+      "role": "fyi",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/inbox/211.",
       "processes": [
-        "gas-nomination-handling"
+        "gas-nomination"
       ],
       "role": "forward",
       "stall": null,
@@ -35,7 +35,7 @@
     {
       "id": "corpus/williams-w3/sent_items/289.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "fyi",
       "stall": null,
@@ -44,7 +44,7 @@
     {
       "id": "corpus/williams-w3/sent_items/288.",
       "processes": [
-        "desk-coverage-on-call"
+        "real-time-power-scheduling"
       ],
       "role": "fyi",
       "stall": null,
@@ -53,7 +53,7 @@
     {
       "id": "corpus/williams-w3/sent_items/286.",
       "processes": [
-        "market-rule-change-review"
+        "regulatory-notice-review"
       ],
       "role": "forward",
       "stall": null,
@@ -69,7 +69,7 @@
     {
       "id": "corpus/williams-w3/sent_items/284.",
       "processes": [
-        "new:desk-equipment-request"
+        "new:trading-floor-equipment-request"
       ],
       "role": "request",
       "stall": null,
@@ -78,7 +78,7 @@
     {
       "id": "corpus/williams-w3/sent_items/283.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "fyi",
       "stall": null,
@@ -87,7 +87,7 @@
     {
       "id": "corpus/williams-w3/sent_items/282.",
       "processes": [
-        "desk-coverage-on-call"
+        "real-time-power-scheduling"
       ],
       "role": "fyi",
       "stall": null,
@@ -96,7 +96,7 @@
     {
       "id": "corpus/williams-w3/sent_items/281.",
       "processes": [
-        "user-access-setup"
+        "system-access-request"
       ],
       "role": "request",
       "stall": null,
@@ -114,7 +114,7 @@
     {
       "id": "corpus/williams-w3/sent_items/280.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "response",
       "stall": null,
@@ -137,7 +137,7 @@
     {
       "id": "corpus/williams-w3/sent_items/278.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "forward",
       "stall": null,
@@ -146,7 +146,7 @@
     {
       "id": "corpus/williams-w3/sent_items/277.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "response",
       "stall": null,
@@ -155,7 +155,7 @@
     {
       "id": "corpus/williams-w3/sent_items/276.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "response",
       "stall": null,
@@ -164,9 +164,9 @@
     {
       "id": "corpus/williams-w3/sent_items/275.",
       "processes": [
-        "new:deal-entry-reconciliation"
+        "new:enpower-deal-entry-reconciliation"
       ],
-      "role": "request",
+      "role": "fyi",
       "stall": null,
       "ownership_claim": null
     },
@@ -180,28 +180,28 @@
     {
       "id": "corpus/farmer-d/logistics/68.",
       "processes": [
-        "month-end-close-coordination"
+        "month-end-close"
       ],
       "role": "fyi",
-      "stall": null,
+      "stall": {
+        "kind": "handoff_confusion",
+        "quote": "Last month there was some confusion from several schedulers I spoke to about when changes could be made"
+      },
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/sent_items/273.",
       "processes": [
-        "new:deal-entry-reconciliation"
+        "new:enpower-deal-entry-reconciliation"
       ],
       "role": "response",
       "stall": null,
-      "ownership_claim": {
-        "person": "Kate Symes",
-        "quote": "Kate Symes will be taking care of your spreadsheet when she has an opportunity."
-      }
+      "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/sent_items/272.",
       "processes": [
-        "new:internal-profit-share-annuities"
+        "deal-book-transfer"
       ],
       "role": "response",
       "stall": null,
@@ -210,7 +210,7 @@
     {
       "id": "corpus/williams-w3/sent_items/271.",
       "processes": [
-        "new:internal-profit-share-annuities"
+        "deal-book-transfer"
       ],
       "role": "response",
       "stall": null,
@@ -219,7 +219,7 @@
     {
       "id": "corpus/williams-w3/sent_items/270.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -228,7 +228,7 @@
     {
       "id": "corpus/williams-w3/sent_items/269.",
       "processes": [
-        "new:internal-profit-share-annuities"
+        "deal-book-transfer"
       ],
       "role": "response",
       "stall": null,
@@ -237,7 +237,7 @@
     {
       "id": "corpus/williams-w3/sent_items/268.",
       "processes": [
-        "new:deal-entry-reconciliation"
+        "new:enpower-deal-entry-reconciliation"
       ],
       "role": "fyi",
       "stall": null,
@@ -256,7 +256,7 @@
     {
       "id": "corpus/farmer-d/logistics/67.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -265,7 +265,7 @@
     {
       "id": "corpus/williams-w3/sent_items/267.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "request",
       "stall": null,
@@ -275,11 +275,11 @@
   "evidence": [
     {
       "evidence_id": "batch-064:e0",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/farmer-d/logistics/70.",
       "field": "body",
       "quote": "Conoco is saying that we did not buy that gas from them.",
-      "note": "Counterparty disputes an invoiced amount for gas at a meter.",
+      "note": "Counterparty disputes a payment for gas, a settlement question.",
       "match": "exact",
       "start": 720,
       "end": 776,
@@ -289,11 +289,11 @@
     },
     {
       "evidence_id": "batch-064:e1",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/farmer-d/logistics/69.",
       "field": "body",
       "quote": "I think I will try to have Conoco send our money back until we can determine who we bought the gas from.",
-      "note": "Seeks to recover an overpayment to a counterparty.",
+      "note": "Recovering payment while the dispute is investigated.",
       "match": "exact",
       "start": 602,
       "end": 706,
@@ -303,11 +303,11 @@
     },
     {
       "evidence_id": "batch-064:e2",
-      "process": "gas-nomination-handling",
+      "process": "gas-nomination",
       "message_id": "corpus/giron-d/inbox/211.",
       "field": "body",
       "quote": "Please find attached the estimated nomination for gas flow beginning",
-      "note": "Forwarded nomination change from a supplier analyst.",
+      "note": "Counterparty sends a nomination change that is passed on to contacts.",
       "match": "exact",
       "start": 1072,
       "end": 1140,
@@ -317,25 +317,25 @@
     },
     {
       "evidence_id": "batch-064:e3",
-      "process": "realtime-schedule-checkout",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/289.",
-      "field": "body",
-      "quote": "A quick important reminder. Recently our disputes with EPE and other SW cou=",
-      "note": "Reminder on counterparty disputes and schedule reconciliation for the real-time desk.",
+      "field": "subject",
+      "quote": "El Paso Electric Expectations",
+      "note": "Expectations for real-time marketing and scheduling of the EPE system.",
       "match": "exact",
-      "start": 1672,
-      "end": 1748,
-      "segment": "own",
-      "raw_text": "A quick important reminder. Recently our disputes with EPE and other SW cou=",
+      "start": 515,
+      "end": 544,
+      "segment": "subject",
+      "raw_text": "El Paso Electric Expectations",
       "reason": null
     },
     {
       "evidence_id": "batch-064:e4",
-      "process": "desk-coverage-on-call",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/288.",
       "field": "body",
       "quote": "Beginning tomorrow, August 25th, we will be scheduling for California on Saturday and Sunday.",
-      "note": "Announces new weekend shift coverage and on-call support.",
+      "note": "Weekend California scheduling added to the real-time shifts.",
       "match": "exact",
       "start": 1649,
       "end": 1742,
@@ -345,11 +345,11 @@
     },
     {
       "evidence_id": "batch-064:e5",
-      "process": "market-rule-change-review",
+      "process": "regulatory-notice-review",
       "message_id": "corpus/williams-w3/sent_items/286.",
       "field": "body",
       "quote": "This is hot news showing that the CAISO/CDWR relationship is even more cozy than we thought.",
-      "note": "Forwarded analysis of ISO market practice versus tariff.",
+      "note": "Forwarded analysis of CAISO market practice for regulatory attention.",
       "match": "exact",
       "start": 1972,
       "end": 2064,
@@ -359,11 +359,11 @@
     },
     {
       "evidence_id": "batch-064:e6",
-      "process": "new:desk-equipment-request",
+      "process": "new:trading-floor-equipment-request",
       "message_id": "corpus/williams-w3/sent_items/284.",
       "field": "body",
       "quote": "We need to get a third turret in the mix at RT.",
-      "note": "Asks facilities contact to install another trading turret.",
+      "note": "Requests installing a turret for the real-time desk.",
       "match": "exact",
       "start": 574,
       "end": 621,
@@ -373,39 +373,39 @@
     },
     {
       "evidence_id": "batch-064:e7",
-      "process": "realtime-schedule-checkout",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/283.",
       "field": "body",
-      "quote": "As you can see they are placing a VERY high importance on economic dispatch of the units.",
-      "note": "Instructions on dispatching and marketing a customer's units in real time.",
+      "quote": "Please call me before you call our customer.",
+      "note": "Instruction on handling customer dispatch communication for the EPE system.",
       "match": "exact",
-      "start": 1692,
-      "end": 1781,
+      "start": 1893,
+      "end": 1937,
       "segment": "own",
-      "raw_text": "As you can see they are placing a VERY high importance on economic dispatch of the units.",
+      "raw_text": "Please call me before you call our customer.",
       "reason": null
     },
     {
       "evidence_id": "batch-064:e8",
-      "process": "desk-coverage-on-call",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/282.",
       "field": "body",
-      "quote": "Good looking discussion note last night. I appreciate the good work.",
-      "note": "Acknowledges a shift discussion note passed on by the night shift.",
+      "quote": "Good looking discussion note last night.",
+      "note": "Feedback on the real-time shift discussion note.",
       "match": "exact",
       "start": 614,
-      "end": 682,
+      "end": 654,
       "segment": "own",
-      "raw_text": "Good looking discussion note last night. I appreciate the good work.",
+      "raw_text": "Good looking discussion note last night.",
       "reason": null
     },
     {
       "evidence_id": "batch-064:e9",
-      "process": "user-access-setup",
+      "process": "system-access-request",
       "message_id": "corpus/williams-w3/sent_items/281.",
       "field": "body",
       "quote": "How do I get David removed from schedule crawler?",
-      "note": "Asks how to remove a user from a scheduling tool.",
+      "note": "Asks for a user to be removed from a system.",
       "match": "exact",
       "start": 562,
       "end": 611,
@@ -418,36 +418,36 @@
       "process": "performance-review",
       "message_id": "corpus/giron-d/inbox/213.",
       "field": "body",
-      "quote": "Pls ensure you communicate Elizabeth's ranking.",
-      "note": "Manager asks that a review ranking be communicated to an employee.",
+      "quote": "I communicated her review but not the ranking.",
+      "note": "Communicating review rankings to an employee.",
       "match": "exact",
-      "start": 1045,
-      "end": 1092,
+      "start": 694,
+      "end": 740,
       "segment": "quoted",
-      "raw_text": "Pls ensure you communicate Elizabeth's ranking.",
+      "raw_text": "I communicated her review but not the ranking.",
       "reason": null
     },
     {
       "evidence_id": "batch-064:e11",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/williams-w3/sent_items/280.",
       "field": "body",
-      "quote": "I requested tapes for 8/17 to verify the amount we purchased from SRP",
-      "note": "Checking a disputed purchase amount with a counterparty before replying.",
+      "quote": "This looks good and is well written.",
+      "note": "Approves a reply to El Paso on a purchase dispute.",
       "match": "exact",
-      "start": 919,
-      "end": 988,
-      "segment": "quoted",
-      "raw_text": "I requested tapes for 8/17 to verify the amount we purchased from SRP",
+      "start": 563,
+      "end": 599,
+      "segment": "own",
+      "raw_text": "This looks good and is well written.",
       "reason": null
     },
     {
       "evidence_id": "batch-064:e12",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/williams-w3/sent_items/278.",
       "field": "body",
       "quote": "In an effort to curb El Paso settlements issues, I've requested several sets of tapes over the past few days.",
-      "note": "Reminder drafted to reduce settlement disputes with a counterparty.",
+      "note": "Reminder aimed at preventing settlement disputes.",
       "match": "exact",
       "start": 746,
       "end": 855,
@@ -457,25 +457,25 @@
     },
     {
       "evidence_id": "batch-064:e13",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/williams-w3/sent_items/277.",
       "field": "body",
-      "quote": "In an effort to curb El Paso settlements issues, I've requested several sets of tapes over the past few days.",
-      "note": "Edited reminder aimed at settlement disputes with a counterparty.",
+      "quote": "This looks good --though no one will know what you mean by abstruse--you might want to clear up the language",
+      "note": "Review feedback on the settlement-dispute reminder.",
       "match": "exact",
-      "start": 730,
-      "end": 839,
+      "start": 1476,
+      "end": 1584,
       "segment": "quoted",
-      "raw_text": "In an effort to curb El Paso settlements issues, I've requested several sets of tapes over the past few days.",
+      "raw_text": "This looks good --though no one will know what you mean by abstruse--you might want to clear up the language",
       "reason": null
     },
     {
       "evidence_id": "batch-064:e14",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/williams-w3/sent_items/276.",
       "field": "body",
       "quote": "What do you mean adjust our system according to MPC's numbers until you do?",
-      "note": "Decision on a disputed monthly imbalance amount with a counterparty.",
+      "note": "Decision on a disputed imbalance settlement with MPC.",
       "match": "exact",
       "start": 540,
       "end": 615,
@@ -485,11 +485,11 @@
     },
     {
       "evidence_id": "batch-064:e15",
-      "process": "new:deal-entry-reconciliation",
+      "process": "new:enpower-deal-entry-reconciliation",
       "message_id": "corpus/williams-w3/sent_items/275.",
       "field": "body",
       "quote": "All deals will be done under ST-Whourly.",
-      "note": "Sets the standard for entering and reconciling deals.",
+      "note": "Sets standard deal entry practice in Enpower.",
       "match": "exact",
       "start": 2337,
       "end": 2377,
@@ -499,11 +499,11 @@
     },
     {
       "evidence_id": "batch-064:e16",
-      "process": "month-end-close-coordination",
+      "process": "month-end-close",
       "message_id": "corpus/farmer-d/logistics/68.",
       "field": "body",
       "quote": "after Friday, August 31st at 6PM there can be no changes",
-      "note": "States the month-end close cutoff for schedulers.",
+      "note": "Revised month-end close cut-off.",
       "match": "exact",
       "start": 2242,
       "end": 2298,
@@ -513,11 +513,11 @@
     },
     {
       "evidence_id": "batch-064:e17",
-      "process": "new:deal-entry-reconciliation",
+      "process": "new:enpower-deal-entry-reconciliation",
       "message_id": "corpus/williams-w3/sent_items/273.",
       "field": "body",
       "quote": "Please find attached an excel spreadsheet of Bloomberg deals I can't seem to match up with our deals in Enpower.",
-      "note": "Unmatched broker deals versus deals entered in the system.",
+      "note": "Unmatched broker deals versus Enpower entries.",
       "match": "exact",
       "start": 1571,
       "end": 1683,
@@ -527,11 +527,11 @@
     },
     {
       "evidence_id": "batch-064:e18",
-      "process": "new:internal-profit-share-annuities",
+      "process": "deal-book-transfer",
       "message_id": "corpus/williams-w3/sent_items/272.",
       "field": "body",
       "quote": "There are several annuities related to the profit sharing of this deal.",
-      "note": "Explains internal annuities that split deal profit between books.",
+      "note": "Explains revenue moved between books by annuity deals.",
       "match": "exact",
       "start": 545,
       "end": 616,
@@ -541,25 +541,25 @@
     },
     {
       "evidence_id": "batch-064:e19",
-      "process": "new:internal-profit-share-annuities",
+      "process": "deal-book-transfer",
       "message_id": "corpus/williams-w3/sent_items/271.",
       "field": "body",
-      "quote": "Revenue was moved from ST-NW to ST-Whourly for 70/30 split between LP and ST-Whourly.",
-      "note": "Describes the revenue move and annuities between books.",
+      "quote": "Annuity from ST-Whourly to LP #531549--$12597.73",
+      "note": "Lists annuity deals moving revenue between books.",
       "match": "exact",
-      "start": 581,
-      "end": 666,
+      "start": 721,
+      "end": 769,
       "segment": "own",
-      "raw_text": "Revenue was moved from ST-NW to ST-Whourly for 70/30 split between LP and ST-Whourly.",
+      "raw_text": "Annuity from ST-Whourly to LP #531549--$12597.73",
       "reason": null
     },
     {
       "evidence_id": "batch-064:e20",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/williams-w3/sent_items/270.",
       "field": "body",
       "quote": "please allocate all Hour-Ahead Congestion charges or revenues to the ECTRT group.",
-      "note": "Instructs allocation of ISO congestion charges and revenues.",
+      "note": "Allocation of congestion charges and revenue.",
       "match": "exact",
       "start": 693,
       "end": 774,
@@ -569,11 +569,11 @@
     },
     {
       "evidence_id": "batch-064:e21",
-      "process": "new:internal-profit-share-annuities",
+      "process": "deal-book-transfer",
       "message_id": "corpus/williams-w3/sent_items/269.",
       "field": "body",
       "quote": "I have attached the spread sheet I created back in February.",
-      "note": "Sends the profit share spreadsheet used for the annuity calculation.",
+      "note": "Supplies the profit-share spreadsheet behind the book annuities.",
       "match": "exact",
       "start": 663,
       "end": 723,
@@ -583,11 +583,11 @@
     },
     {
       "evidence_id": "batch-064:e22",
-      "process": "new:deal-entry-reconciliation",
+      "process": "new:enpower-deal-entry-reconciliation",
       "message_id": "corpus/williams-w3/sent_items/268.",
       "field": "body",
       "quote": "ALL DEALS UNDER ST-WHOURLY--except a lending/parking deal or cut.",
-      "note": "Further rules on how deals are entered and booked.",
+      "note": "Restates the deal entry rules for EOL trades.",
       "match": "exact",
       "start": 1823,
       "end": 1888,
@@ -597,11 +597,11 @@
     },
     {
       "evidence_id": "batch-064:e23",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/farmer-d/logistics/67.",
       "field": "body",
       "quote": "ENA was invoiced by Coral Energy for two deals on Tejas for June 2001 that I do not see in the system.",
-      "note": "Invoice received for deals not found in the system.",
+      "note": "Invoice for deals not found in the system.",
       "match": "exact",
       "start": 553,
       "end": 655,
@@ -611,11 +611,11 @@
     },
     {
       "evidence_id": "batch-064:e24",
-      "process": "realtime-schedule-checkout",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/267.",
       "field": "body",
       "quote": "We are short for HE 21 through HE 23 at Malin.",
-      "note": "Reports a short position for specific hours at a delivery point.",
+      "note": "Short position communicated for scheduling.",
       "match": "exact",
       "start": 624,
       "end": 670,
@@ -633,19 +633,18 @@
       "segment": "own",
       "raw_text": "I'm not sure if you can help me with this, but I don't know who else to ask.",
       "reason": null
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/68.",
+      "match": "exact",
+      "start": 2083,
+      "end": 2186,
+      "segment": "own",
+      "raw_text": "Last month there was some confusion from several schedulers I spoke to about when changes could be made",
+      "reason": null
     }
   ],
   "ownership_checks": [
-    {
-      "message_id": "corpus/williams-w3/sent_items/273.",
-      "person": "Kate Symes",
-      "match": "exact",
-      "start": 753,
-      "end": 832,
-      "segment": "own",
-      "raw_text": "Kate Symes will be taking care of your spreadsheet when she has an opportunity.",
-      "reason": null
-    },
     {
       "message_id": "corpus/williams-w3/sent_items/268.",
       "person": "Ryan Slinger",
@@ -659,35 +658,25 @@
   ],
   "new_processes": [
     {
-      "key": "new:desk-equipment-request",
-      "name": "Trading desk equipment request",
-      "definition": "Asking facilities or IT contacts to install or move physical trading equipment such as turrets for the real-time desk.",
+      "key": "new:trading-floor-equipment-request",
+      "name": "Trading floor equipment request",
+      "definition": "Asking facilities or IT staff to install or provide equipment such as turrets for the trading desk.",
       "example_ids": [
         "corpus/williams-w3/sent_items/284."
       ]
     },
     {
-      "key": "new:deal-entry-reconciliation",
-      "name": "Deal entry standards and reconciliation",
-      "definition": "Setting rules for entering power deals in the deal system and book structure, and reconciling entered deals against broker or counterparty records.",
+      "key": "new:enpower-deal-entry-reconciliation",
+      "name": "Enpower deal entry and reconciliation",
+      "definition": "Setting rules for entering and routing real-time and EOL deals in Enpower, and reconciling broker deals against Enpower entries.",
       "example_ids": [
         "corpus/williams-w3/sent_items/275.",
         "corpus/williams-w3/sent_items/273.",
         "corpus/williams-w3/sent_items/268."
       ]
-    },
-    {
-      "key": "new:internal-profit-share-annuities",
-      "name": "Internal profit share annuities",
-      "definition": "Explaining and documenting internal annuity deals that move revenue and profit shares between trading books for a specific deal.",
-      "example_ids": [
-        "corpus/williams-w3/sent_items/272.",
-        "corpus/williams-w3/sent_items/271.",
-        "corpus/williams-w3/sent_items/269."
-      ]
     }
   ],
-  "batch_notes": "No injection attempts found. Personal mail: 285, 279, 274 (williams-w3), 214 and 217 (giron-d). Proposed new keys: desk-equipment-request, deal-entry-reconciliation, internal-profit-share-annuities. Several williams-w3 classifications were judgement calls.",
+  "batch_notes": "No injection attempts found. Personal messages: 285, 279, 274 (williams-w3), giron-d 214 and 217. Two new keys proposed. Process fit was loose for 282, 269 and 272.",
   "quote_stats": {
     "exact": 28,
     "repaired": 0,

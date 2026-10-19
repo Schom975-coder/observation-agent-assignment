@@ -5,7 +5,7 @@
     {
       "id": "corpus/giron-d/sent/765.",
       "processes": [
-        "new:book-recognition-reconciliation"
+        "new:orig-revenue-recognition-reconciliation"
       ],
       "role": "request",
       "stall": null,
@@ -14,7 +14,7 @@
     {
       "id": "corpus/farmer-d/logistics/1215.",
       "processes": [
-        "pnl-position-reporting"
+        "new:accrual-reporting"
       ],
       "role": "fyi",
       "stall": null,
@@ -23,14 +23,14 @@
     {
       "id": "corpus/giron-d/sent/764.",
       "processes": [],
-      "role": "noise",
+      "role": "personal",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/sent/763.",
       "processes": [
-        "new:book-recognition-reconciliation"
+        "new:orig-revenue-recognition-reconciliation"
       ],
       "role": "forward",
       "stall": null,
@@ -39,7 +39,7 @@
     {
       "id": "corpus/giron-d/sent/762.",
       "processes": [
-        "new:transport-invoice-sitara-update"
+        "new:transport-invoice-update"
       ],
       "role": "response",
       "stall": null,
@@ -48,16 +48,19 @@
     {
       "id": "corpus/farmer-d/logistics/1217.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "customer-volume-confirmation"
       ],
-      "role": "forward",
-      "stall": null,
+      "role": "fyi",
+      "stall": {
+        "kind": "rework",
+        "quote": "Disregard the prior e-mail.  This is the correct spreadsheet for HL&P."
+      },
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/1218.",
       "processes": [
-        "pipeline-outage-supply-cuts"
+        "supply-cut-handling"
       ],
       "role": "fyi",
       "stall": null,
@@ -66,7 +69,7 @@
     {
       "id": "corpus/farmer-d/logistics/1219.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "customer-volume-confirmation"
       ],
       "role": "request",
       "stall": null,
@@ -75,7 +78,7 @@
     {
       "id": "corpus/farmer-d/logistics/1221.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -84,7 +87,7 @@
     {
       "id": "corpus/farmer-d/logistics/1222.",
       "processes": [
-        "gas-nomination-handling"
+        "gas-nomination"
       ],
       "role": "forward",
       "stall": null,
@@ -93,7 +96,7 @@
     {
       "id": "corpus/farmer-d/logistics/1224.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -102,7 +105,7 @@
     {
       "id": "corpus/farmer-d/logistics/1225.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -111,7 +114,7 @@
     {
       "id": "corpus/farmer-d/logistics/1227.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -120,7 +123,7 @@
     {
       "id": "corpus/farmer-d/logistics/1226.",
       "processes": [
-        "pnl-position-reporting"
+        "pnl-reporting"
       ],
       "role": "request",
       "stall": null,
@@ -129,14 +132,14 @@
     {
       "id": "corpus/giron-d/sent/761.",
       "processes": [],
-      "role": "noise",
+      "role": "personal",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/sent/760.",
       "processes": [],
-      "role": "noise",
+      "role": "personal",
       "stall": null,
       "ownership_claim": null
     },
@@ -152,7 +155,7 @@
     {
       "id": "corpus/farmer-d/logistics/1231.",
       "processes": [
-        "new:fuel-retention-handling"
+        "new:fuel-handling"
       ],
       "role": "request",
       "stall": null,
@@ -161,7 +164,7 @@
     {
       "id": "corpus/farmer-d/logistics/1232.",
       "processes": [
-        "new:fuel-retention-handling"
+        "new:fuel-handling"
       ],
       "role": "response",
       "stall": null,
@@ -170,7 +173,7 @@
     {
       "id": "corpus/farmer-d/logistics/1233.",
       "processes": [
-        "new:fuel-retention-handling"
+        "new:fuel-handling"
       ],
       "role": "response",
       "stall": null,
@@ -179,7 +182,7 @@
     {
       "id": "corpus/farmer-d/logistics/1234.",
       "processes": [
-        "new:fuel-retention-handling"
+        "new:fuel-handling"
       ],
       "role": "request",
       "stall": null,
@@ -188,7 +191,7 @@
     {
       "id": "corpus/farmer-d/logistics/1313.",
       "processes": [
-        "new:fuel-retention-handling"
+        "new:fuel-handling"
       ],
       "role": "request",
       "stall": null,
@@ -197,7 +200,7 @@
     {
       "id": "corpus/farmer-d/logistics/1626.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -215,16 +218,16 @@
     {
       "id": "corpus/farmer-d/logistics/1236.",
       "processes": [
-        "trading-book-setup"
+        "new:eol-product-launch"
       ],
-      "role": "fyi",
+      "role": "response",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/1237.",
       "processes": [
-        "trading-book-setup"
+        "new:eol-product-launch"
       ],
       "role": "response",
       "stall": null,
@@ -233,7 +236,7 @@
     {
       "id": "corpus/farmer-d/logistics/1239.",
       "processes": [
-        "gas-nomination-handling"
+        "gas-nomination"
       ],
       "role": "request",
       "stall": null,
@@ -242,7 +245,7 @@
     {
       "id": "corpus/farmer-d/logistics/1242.",
       "processes": [
-        "gas-nomination-handling"
+        "gas-nomination"
       ],
       "role": "request",
       "stall": null,
@@ -251,7 +254,7 @@
     {
       "id": "corpus/giron-d/sent/758.",
       "processes": [
-        "new:nss-deal-valuation-review"
+        "new:nss-booking-correction"
       ],
       "role": "forward",
       "stall": null,
@@ -260,7 +263,7 @@
     {
       "id": "corpus/farmer-d/logistics/1245.",
       "processes": [
-        "gas-nomination-handling"
+        "gas-nomination"
       ],
       "role": "request",
       "stall": null,
@@ -287,7 +290,7 @@
     {
       "id": "corpus/farmer-d/logistics/1246.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": {
@@ -299,7 +302,7 @@
     {
       "id": "corpus/farmer-d/logistics/1247.",
       "processes": [
-        "counterparty-settlement-review"
+        "new:unfinaled-invoice-review"
       ],
       "role": "request",
       "stall": null,
@@ -309,21 +312,35 @@
   "evidence": [
     {
       "evidence_id": "batch-016:e0",
-      "process": "new:book-recognition-reconciliation",
+      "process": "new:orig-revenue-recognition-reconciliation",
       "message_id": "corpus/giron-d/sent/765.",
       "field": "body",
-      "quote": "We recognized a total of $9,488 of Orig last night.  All from FT-Central.",
-      "note": "Asks whether a recognized amount difference comes from another book.",
+      "quote": "We recognized a total of $9,488 of Orig last night.",
+      "note": "Queries the originated amount recognized in a book against another desk's figure.",
       "match": "exact",
       "start": 454,
-      "end": 527,
+      "end": 505,
       "segment": "own",
-      "raw_text": "We recognized a total of $9,488 of Orig last night.  All from FT-Central.",
+      "raw_text": "We recognized a total of $9,488 of Orig last night.",
       "reason": null
     },
     {
       "evidence_id": "batch-016:e1",
-      "process": "pnl-position-reporting",
+      "process": "new:orig-revenue-recognition-reconciliation",
+      "message_id": "corpus/giron-d/sent/763.",
+      "field": "body",
+      "quote": "Darron, you recognized 3.975 (thousand) of orig, and I did not see that",
+      "note": "Forwarded query asking who granted recognized origination amounts.",
+      "match": "exact",
+      "start": 656,
+      "end": 727,
+      "segment": "forwarded",
+      "raw_text": "Darron, you recognized 3.975 (thousand) of orig, and I did not see that",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-016:e2",
+      "process": "new:accrual-reporting",
       "message_id": "corpus/farmer-d/logistics/1215.",
       "field": "body",
       "quote": "Here is a breakdown by day of all of the counterparties.",
@@ -336,26 +353,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-016:e2",
-      "process": "new:book-recognition-reconciliation",
-      "message_id": "corpus/giron-d/sent/763.",
-      "field": "body",
-      "quote": "you recognized 3.975 (thousand) of orig, and I did not see that",
-      "note": "Asks who granted recognized amounts not traced to any book.",
-      "match": "exact",
-      "start": 664,
-      "end": 727,
-      "segment": "forwarded",
-      "raw_text": "you recognized 3.975 (thousand) of orig, and I did not see that",
-      "reason": null
-    },
-    {
       "evidence_id": "batch-016:e3",
-      "process": "new:transport-invoice-sitara-update",
+      "process": "new:transport-invoice-update",
       "message_id": "corpus/giron-d/sent/762.",
       "field": "body",
       "quote": "Can you update for transport?  Sitara #131389 (North Shore) and #131405",
-      "note": "Request to update Sitara for finalized transport invoices; reply says done.",
+      "note": "Request to update Sitara for finalized transport invoices, answered Done.",
       "match": "exact",
       "start": 606,
       "end": 677,
@@ -365,11 +368,11 @@
     },
     {
       "evidence_id": "batch-016:e4",
-      "process": "volume-imbalance-reconciliation",
+      "process": "customer-volume-confirmation",
       "message_id": "corpus/farmer-d/logistics/1217.",
       "field": "body",
       "quote": "Disregard the prior e-mail.  This is the correct spreadsheet for HL&P.",
-      "note": "Corrected HL&P monthly volumes spreadsheet.",
+      "note": "Sends corrected HL&P volumes spreadsheet.",
       "match": "exact",
       "start": 488,
       "end": 558,
@@ -379,11 +382,11 @@
     },
     {
       "evidence_id": "batch-016:e5",
-      "process": "pipeline-outage-supply-cuts",
+      "process": "supply-cut-handling",
       "message_id": "corpus/farmer-d/logistics/1218.",
       "field": "body",
       "quote": "FYI----------Here are the latest cuts:",
-      "note": "Lists supply cuts on Oasis for specific days.",
+      "note": "Reports pipeline cuts for specific days.",
       "match": "exact",
       "start": 550,
       "end": 588,
@@ -393,11 +396,11 @@
     },
     {
       "evidence_id": "batch-016:e6",
-      "process": "volume-imbalance-reconciliation",
+      "process": "customer-volume-confirmation",
       "message_id": "corpus/farmer-d/logistics/1219.",
       "field": "body",
       "quote": "Are you confirming these volumes with HL&P?",
-      "note": "Asks whether HL&P volumes are agreed with the customer.",
+      "note": "Asks whether volumes are being agreed with HL&P for billing.",
       "match": "exact",
       "start": 672,
       "end": 715,
@@ -407,11 +410,11 @@
     },
     {
       "evidence_id": "batch-016:e7",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1221.",
       "field": "body",
       "quote": "Could you please create a deal for this?",
-      "note": "Asks for a deal for meter flow with none.",
+      "note": "Requests a deal for a meter with flow.",
       "match": "exact",
       "start": 543,
       "end": 583,
@@ -421,11 +424,11 @@
     },
     {
       "evidence_id": "batch-016:e8",
-      "process": "gas-nomination-handling",
+      "process": "gas-nomination",
       "message_id": "corpus/farmer-d/logistics/1222.",
       "field": "body",
       "quote": "This is to nominate 33,450 mmbtu/d into Eastrans for GD 6/22/2000 forward.",
-      "note": "Forwarded customer nomination.",
+      "note": "Counterparty nomination forwarded for handling.",
       "match": "exact",
       "start": 1148,
       "end": 1222,
@@ -435,11 +438,11 @@
     },
     {
       "evidence_id": "batch-016:e9",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1224.",
       "field": "body",
       "quote": "I checked the deal ticket (286824) and it ends on 6/17.",
-      "note": "Deal ticket expired; asks to extend or create one.",
+      "note": "Deal ticket expired; asks to extend or create a new one.",
       "match": "exact",
       "start": 527,
       "end": 582,
@@ -449,39 +452,39 @@
     },
     {
       "evidence_id": "batch-016:e10",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1225.",
       "field": "body",
-      "quote": "the deal might include San Jac(meter 1554)  so the ENA can be",
-      "note": "Follow-up on deal scope for the meter.",
+      "quote": "the deal might include San Jac(meter 1554)",
+      "note": "Adds a meter to the deal extension request.",
       "match": "exact",
       "start": 452,
-      "end": 513,
+      "end": 494,
       "segment": "own",
-      "raw_text": "the deal might include San Jac(meter 1554)  so the ENA can be",
+      "raw_text": "the deal might include San Jac(meter 1554)",
       "reason": null
     },
     {
       "evidence_id": "batch-016:e11",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1227.",
       "field": "body",
-      "quote": "D - When you get a chance, I would like to go over what has been allocated",
+      "quote": "I would like to go over what has been allocated",
       "note": "Follow-up on allocations after the deal was extended.",
       "match": "exact",
-      "start": 443,
+      "start": 470,
       "end": 517,
       "segment": "own",
-      "raw_text": "D - When you get a chance, I would like to go over what has been allocated",
+      "raw_text": "I would like to go over what has been allocated",
       "reason": null
     },
     {
       "evidence_id": "batch-016:e12",
-      "process": "pnl-position-reporting",
+      "process": "pnl-reporting",
       "message_id": "corpus/farmer-d/logistics/1226.",
       "field": "body",
       "quote": "The CPR Report named Desk Summary is currently being reviewed for an",
-      "note": "Desk summary report review and upgrade.",
+      "note": "Desk summary report upgrade and user feedback.",
       "match": "exact",
       "start": 786,
       "end": 854,
@@ -495,7 +498,7 @@
       "message_id": "corpus/farmer-d/logistics/1228.",
       "field": "body",
       "quote": "The July customer trip is right around the corner.",
-      "note": "Coordinating customer trip logistics with staff.",
+      "note": "Coordinating customer attendance for a company trip.",
       "match": "exact",
       "start": 1183,
       "end": 1233,
@@ -505,11 +508,11 @@
     },
     {
       "evidence_id": "batch-016:e14",
-      "process": "new:fuel-retention-handling",
+      "process": "new:fuel-handling",
       "message_id": "corpus/farmer-d/logistics/1231.",
       "field": "body",
       "quote": "Can the systems and processes handle this?",
-      "note": "Asks whether systems can handle shipper-paid fuel.",
+      "note": "Asks whether systems can handle fuel as part of price.",
       "match": "exact",
       "start": 774,
       "end": 816,
@@ -519,39 +522,39 @@
     },
     {
       "evidence_id": "batch-016:e15",
-      "process": "new:fuel-retention-handling",
+      "process": "new:fuel-handling",
       "message_id": "corpus/farmer-d/logistics/1232.",
       "field": "body",
-      "quote": "Also, could allocated fuel cause a contract imbalance?",
-      "note": "Raises fuel retainage handling concerns.",
+      "quote": "Currently, this process is not in place.",
+      "note": "Explains the gap in fuel retainage nomination.",
       "match": "exact",
-      "start": 1067,
-      "end": 1121,
+      "start": 1359,
+      "end": 1399,
       "segment": "own",
-      "raw_text": "Also, could allocated fuel cause a contract imbalance?",
+      "raw_text": "Currently, this process is not in place.",
       "reason": null
     },
     {
       "evidence_id": "batch-016:e16",
-      "process": "new:fuel-retention-handling",
+      "process": "new:fuel-handling",
       "message_id": "corpus/farmer-d/logistics/1233.",
       "field": "body",
-      "quote": "get the system to track compressor fuel used to service specific contracts",
-      "note": "Discusses how fuel retained should be tracked.",
+      "quote": "Application of the fuel retained from transportation and treating contracts",
+      "note": "Explains how retained fuel should be applied.",
       "match": "exact",
-      "start": 1281,
-      "end": 1355,
+      "start": 898,
+      "end": 973,
       "segment": "own",
-      "raw_text": "get the system to track compressor fuel used to service specific contracts",
+      "raw_text": "Application of the fuel retained from transportation and treating contracts",
       "reason": null
     },
     {
       "evidence_id": "batch-016:e17",
-      "process": "new:fuel-retention-handling",
+      "process": "new:fuel-handling",
       "message_id": "corpus/farmer-d/logistics/1234.",
       "field": "body",
       "quote": "Per Mary, Sitara can not handle it either.",
-      "note": "Reports system limits on fuel handling and assigns follow-up.",
+      "note": "Reports system limits on fuel and assigns follow-up.",
       "match": "exact",
       "start": 977,
       "end": 1019,
@@ -561,11 +564,11 @@
     },
     {
       "evidence_id": "batch-016:e18",
-      "process": "new:fuel-retention-handling",
+      "process": "new:fuel-handling",
       "message_id": "corpus/farmer-d/logistics/1313.",
       "field": "body",
       "quote": "Pat, could you shed a little light on how we get the CPR Fuels number?",
-      "note": "Question on fuel figures and flash versus actuals.",
+      "note": "Asks about the source of the fuel figure.",
       "match": "exact",
       "start": 510,
       "end": 580,
@@ -575,11 +578,11 @@
     },
     {
       "evidence_id": "batch-016:e19",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1626.",
       "field": "body",
       "quote": "I need to have the purchase from (Teco) and sale to",
-      "note": "Needs deals created to allocate meter volumes.",
+      "note": "Needs deal numbers for purchase and sale deals to allocate.",
       "match": "exact",
       "start": 640,
       "end": 691,
@@ -593,7 +596,7 @@
       "message_id": "corpus/giron-d/sent/759.",
       "field": "body",
       "quote": "We are breaking up our Central Midcon region into two books beginning July",
-      "note": "Request for new books to be used for EOL deals.",
+      "note": "Sets up new internal Sitara books for EOL deals.",
       "match": "exact",
       "start": 661,
       "end": 735,
@@ -603,11 +606,11 @@
     },
     {
       "evidence_id": "batch-016:e21",
-      "process": "trading-book-setup",
+      "process": "new:eol-product-launch",
       "message_id": "corpus/farmer-d/logistics/1236.",
       "field": "body",
       "quote": "The Texas Gas Group will definitely be rolling out a \"Super Peak\" 5x8 product",
-      "note": "Set-up of a new online trading product.",
+      "note": "Announces a new EOL gas product.",
       "match": "exact",
       "start": 959,
       "end": 1036,
@@ -617,11 +620,11 @@
     },
     {
       "evidence_id": "batch-016:e22",
-      "process": "trading-book-setup",
+      "process": "new:eol-product-launch",
       "message_id": "corpus/farmer-d/logistics/1237.",
       "field": "body",
       "quote": "How about 1:30 today on 32 in the Texas Gas Trading Area.",
-      "note": "Schedules discussion on creating the new EOL product.",
+      "note": "Schedules a meeting on creating the new EOL product.",
       "match": "exact",
       "start": 733,
       "end": 790,
@@ -631,25 +634,25 @@
     },
     {
       "evidence_id": "batch-016:e23",
-      "process": "gas-nomination-handling",
+      "process": "gas-nomination",
       "message_id": "corpus/farmer-d/logistics/1239.",
       "field": "body",
-      "quote": "Prize Energy revised their nom eff. 6/26 through 6/29",
-      "note": "Revised nomination for meters.",
+      "quote": "Prize Energy revised their nom eff. 6/26 through 6/29 for the following",
+      "note": "Revised nomination with effective dates.",
       "match": "exact",
       "start": 455,
-      "end": 508,
+      "end": 526,
       "segment": "own",
-      "raw_text": "Prize Energy revised their nom eff. 6/26 through 6/29",
+      "raw_text": "Prize Energy revised their nom eff. 6/26 through 6/29 for the following",
       "reason": null
     },
     {
       "evidence_id": "batch-016:e24",
-      "process": "gas-nomination-handling",
+      "process": "gas-nomination",
       "message_id": "corpus/farmer-d/logistics/1242.",
       "field": "body",
       "quote": "Enron Methanol nominates the following natural gas requirements for the",
-      "note": "Monthly nomination from a customer.",
+      "note": "Monthly nomination of gas requirements.",
       "match": "exact",
       "start": 1059,
       "end": 1130,
@@ -659,11 +662,11 @@
     },
     {
       "evidence_id": "batch-016:e25",
-      "process": "new:nss-deal-valuation-review",
+      "process": "new:nss-booking-correction",
       "message_id": "corpus/giron-d/sent/758.",
       "field": "body",
       "quote": "that the way we were booking NSS was not correct.",
-      "note": "Forwarded discussion of correcting how NSS deals are booked.",
+      "note": "Forwarded narrative about correcting how NSS deals are booked.",
       "match": "exact",
       "start": 1183,
       "end": 1232,
@@ -673,11 +676,11 @@
     },
     {
       "evidence_id": "batch-016:e26",
-      "process": "gas-nomination-handling",
+      "process": "gas-nomination",
       "message_id": "corpus/farmer-d/logistics/1245.",
       "field": "body",
       "quote": "<<CALPINE DAILY GAS NOMINATION 1.doc>>",
-      "note": "Daily and monthly nomination sheets from customer.",
+      "note": "Calpine daily and monthly nomination forms sent.",
       "match": "exact",
       "start": 695,
       "end": 733,
@@ -691,7 +694,7 @@
       "message_id": "corpus/farmer-d/logistics/1243.",
       "field": "body",
       "quote": "Attached please find the Hours Survey and Instructions for the month of June,",
-      "note": "Monthly hours survey.",
+      "note": "Monthly hours survey request.",
       "match": "exact",
       "start": 2674,
       "end": 2751,
@@ -705,7 +708,7 @@
       "message_id": "corpus/farmer-d/logistics/1244.",
       "field": "body",
       "quote": "Attached please find the Activity Survey for the month of June, 2000.",
-      "note": "Monthly activity survey.",
+      "note": "Monthly activity survey request.",
       "match": "exact",
       "start": 1717,
       "end": 1786,
@@ -715,25 +718,25 @@
     },
     {
       "evidence_id": "batch-016:e29",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1246.",
       "field": "body",
-      "quote": "Conoco is saying that we are missing one day of sale to them:  5/5  10,000",
-      "note": "Missing deal in Sitara for a sale day.",
+      "quote": "I am not seeing this in Sitara.",
+      "note": "A deal missing in Sitara needs confirmation and set-up.",
       "match": "exact",
-      "start": 670,
-      "end": 744,
+      "start": 776,
+      "end": 807,
       "segment": "own",
-      "raw_text": "Conoco is saying that we are missing one day of sale to them:  5/5  10,000",
+      "raw_text": "I am not seeing this in Sitara.",
       "reason": null
     },
     {
       "evidence_id": "batch-016:e30",
-      "process": "counterparty-settlement-review",
+      "process": "new:unfinaled-invoice-review",
       "message_id": "corpus/farmer-d/logistics/1247.",
       "field": "body",
       "quote": "Here are the spreadsheets for the unfinaled invoices prior to May 2000.",
-      "note": "Unfinaled invoices sent for discrepancy review.",
+      "note": "Circulates unfinaled invoice spreadsheets for discrepancy checks.",
       "match": "exact",
       "start": 594,
       "end": 665,
@@ -743,6 +746,15 @@
     }
   ],
   "stall_checks": [
+    {
+      "message_id": "corpus/farmer-d/logistics/1217.",
+      "match": "exact",
+      "start": 488,
+      "end": 558,
+      "segment": "own",
+      "raw_text": "Disregard the prior e-mail.  This is the correct spreadsheet for HL&P.",
+      "reason": null
+    },
     {
       "message_id": "corpus/farmer-d/logistics/1246.",
       "match": "exact",
@@ -756,18 +768,26 @@
   "ownership_checks": [],
   "new_processes": [
     {
-      "key": "new:book-recognition-reconciliation",
-      "name": "Book recognition reconciliation",
-      "definition": "Reconciling amounts recognized or granted between internal books and finding which book a difference came from.",
+      "key": "new:orig-revenue-recognition-reconciliation",
+      "name": "Origination revenue recognition reconciliation",
+      "definition": "Reconciling origination amounts recognized by books against what other desks recorded, and tracing which book granted them.",
       "example_ids": [
         "corpus/giron-d/sent/765.",
         "corpus/giron-d/sent/763."
       ]
     },
     {
-      "key": "new:transport-invoice-sitara-update",
-      "name": "Transport invoice Sitara update",
-      "definition": "Updating Sitara deals for finalized transport invoices on request and confirming completion.",
+      "key": "new:accrual-reporting",
+      "name": "Accrual breakdown reporting",
+      "definition": "Sending daily breakdowns of accrued amounts by counterparty to logistics and accounting staff.",
+      "example_ids": [
+        "corpus/farmer-d/logistics/1215."
+      ]
+    },
+    {
+      "key": "new:transport-invoice-update",
+      "name": "Finalized transport invoice update",
+      "definition": "Updating Sitara deals after transport invoices are finalized for the month.",
       "example_ids": [
         "corpus/giron-d/sent/762."
       ]
@@ -775,15 +795,15 @@
     {
       "key": "new:customer-trip-coordination",
       "name": "Customer trip coordination",
-      "definition": "Organizing a company customer trip: RSVPs, packing lists, agenda and travel questions.",
+      "definition": "Organizing the annual customer trip: RSVPs, packing lists, agenda and travel guidance for account owners.",
       "example_ids": [
         "corpus/farmer-d/logistics/1228."
       ]
     },
     {
-      "key": "new:fuel-retention-handling",
-      "name": "Fuel retention handling",
-      "definition": "Working out how fuel retained on transport and treating is handled in systems and scheduling, and reconciling fuel estimates with actuals.",
+      "key": "new:fuel-handling",
+      "name": "Fuel retainage and fuel accounting",
+      "definition": "Deciding how fuel is retained, priced, nominated and booked in systems, and explaining differences between estimated and actual fuel.",
       "example_ids": [
         "corpus/farmer-d/logistics/1231.",
         "corpus/farmer-d/logistics/1232.",
@@ -793,17 +813,34 @@
       ]
     },
     {
-      "key": "new:nss-deal-valuation-review",
-      "name": "NSS deal valuation review",
-      "definition": "Reviewing how NSS transactions are booked and valued with risk staff.",
+      "key": "new:eol-product-launch",
+      "name": "EOL product launch",
+      "definition": "Planning and setting up a new product type on the online trading platform, including legal terms and meetings between groups.",
+      "example_ids": [
+        "corpus/farmer-d/logistics/1236.",
+        "corpus/farmer-d/logistics/1237."
+      ]
+    },
+    {
+      "key": "new:nss-booking-correction",
+      "name": "NSS deal booking correction",
+      "definition": "Correcting how NSS transactions are booked and valued, with risk review of the proposed fix.",
       "example_ids": [
         "corpus/giron-d/sent/758."
       ]
+    },
+    {
+      "key": "new:unfinaled-invoice-review",
+      "name": "Unfinaled invoice review",
+      "definition": "Circulating spreadsheets of unfinaled sales and purchase invoices so staff can flag discrepancies.",
+      "example_ids": [
+        "corpus/farmer-d/logistics/1247."
+      ]
     }
   ],
-  "batch_notes": "Three giron-d forwards are chain jokes (noise). Giron 758 NSS forward is borderline; given its own key. No injection attempts found.",
+  "batch_notes": "New keys proposed: orig-revenue-recognition-reconciliation, accrual-reporting, transport-invoice-update, customer-trip-coordination, fuel-handling, eol-product-launch, nss-booking-correction, unfinaled-invoice-review. Four personal chain-mail forwards. No injection attempts found.",
   "quote_stats": {
-    "exact": 32,
+    "exact": 33,
     "repaired": 0,
     "rejected": 0
   }

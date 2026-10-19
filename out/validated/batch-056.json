@@ -5,9 +5,9 @@
     {
       "id": "corpus/williams-w3/sent_items/462.",
       "processes": [
-        "new:external-audit-support"
+        "new:audit-support-request"
       ],
-      "role": "response",
+      "role": "fyi",
       "stall": null,
       "ownership_claim": {
         "person": "Kate Symes",
@@ -17,7 +17,7 @@
     {
       "id": "corpus/williams-w3/sent_items/461.",
       "processes": [
-        "new:external-audit-support"
+        "new:audit-support-request"
       ],
       "role": "fyi",
       "stall": null,
@@ -26,26 +26,25 @@
     {
       "id": "corpus/williams-w3/sent_items/460.",
       "processes": [
-        "new:ees-daily-sheet-distribution"
+        "new:ees-daily-file-distribution"
       ],
-      "role": "response",
+      "role": "forward",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/sent_items/456.",
       "processes": [
-        "new:ees-daily-sheet-distribution",
-        "counterparty-settlement-review"
+        "new:ees-daily-file-distribution"
       ],
-      "role": "request",
+      "role": "response",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/sent_items/459.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -54,7 +53,7 @@
     {
       "id": "corpus/williams-w3/sent_items/458.",
       "processes": [
-        "new:ees-daily-sheet-distribution"
+        "new:ees-daily-file-distribution"
       ],
       "role": "forward",
       "stall": null,
@@ -88,10 +87,13 @@
     {
       "id": "corpus/williams-w3/sent_items/453.",
       "processes": [
-        "deal-record-correction"
+        "new:deal-entry-correction"
       ],
       "role": "fyi",
-      "stall": null,
+      "stall": {
+        "kind": "rework",
+        "quote": "Consequently I zeroed the following deals out this morning after receiving the DPR and running a BOM SAR."
+      },
       "ownership_claim": null
     },
     {
@@ -125,16 +127,19 @@
     {
       "id": "corpus/williams-w3/sent_items/450.",
       "processes": [
-        "system-enhancement-request"
+        "new:fsp-rollout-updates"
       ],
-      "role": "fyi",
-      "stall": null,
+      "role": "forward",
+      "stall": {
+        "kind": "handoff_confusion",
+        "quote": "Try to make sure you get these to me rather than to my Dad."
+      },
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/sent_items/449.",
       "processes": [
-        "market-rule-change-review"
+        "regulatory-notice-review"
       ],
       "role": "fyi",
       "stall": null,
@@ -142,8 +147,10 @@
     },
     {
       "id": "corpus/williams-w3/sent_items/448.",
-      "processes": [],
-      "role": "noise",
+      "processes": [
+        "new:project-status-report"
+      ],
+      "role": "request",
       "stall": {
         "kind": "handoff_confusion",
         "quote": "This needs to go to Bill Williams, not Bill Williams III."
@@ -153,7 +160,7 @@
     {
       "id": "corpus/williams-w3/sent_items/447.",
       "processes": [
-        "new:desk-training-presentation"
+        "new:trader-training-sessions"
       ],
       "role": "fyi",
       "stall": null,
@@ -162,7 +169,7 @@
     {
       "id": "corpus/williams-w3/sent_items/446.",
       "processes": [
-        "new:transmission-info-sharing"
+        "new:transmission-oasis-guidance"
       ],
       "role": "fyi",
       "stall": null,
@@ -171,7 +178,7 @@
     {
       "id": "corpus/williams-w3/sent_items/445.",
       "processes": [
-        "new:transmission-info-sharing"
+        "new:transmission-oasis-guidance"
       ],
       "role": "request",
       "stall": null,
@@ -180,7 +187,7 @@
     {
       "id": "corpus/williams-w3/sent_items/444.",
       "processes": [
-        "new:transmission-info-sharing"
+        "new:transmission-oasis-guidance"
       ],
       "role": "fyi",
       "stall": null,
@@ -189,16 +196,16 @@
     {
       "id": "corpus/williams-w3/sent_items/443.",
       "processes": [
-        "market-rule-change-review"
+        "regulatory-notice-review"
       ],
-      "role": "forward",
+      "role": "fyi",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/sent_items/442.",
       "processes": [
-        "counterparty-settlement-review"
+        "new:prior-month-adjustment-review"
       ],
       "role": "request",
       "stall": null,
@@ -207,7 +214,7 @@
     {
       "id": "corpus/williams-w3/sent_items/435.",
       "processes": [
-        "counterparty-settlement-review"
+        "new:prior-month-adjustment-review"
       ],
       "role": "request",
       "stall": null,
@@ -216,9 +223,9 @@
     {
       "id": "corpus/williams-w3/sent_items/424.",
       "processes": [
-        "counterparty-settlement-review"
+        "new:prior-month-adjustment-review"
       ],
-      "role": "fyi",
+      "role": "response",
       "stall": {
         "kind": "other",
         "quote": "I am still having a problem with the WBOM $108,000 as you are aware."
@@ -228,7 +235,7 @@
     {
       "id": "corpus/williams-w3/sent_items/419.",
       "processes": [
-        "counterparty-settlement-review"
+        "new:prior-month-adjustment-review"
       ],
       "role": "request",
       "stall": null,
@@ -237,7 +244,7 @@
     {
       "id": "corpus/williams-w3/sent_items/441.",
       "processes": [
-        "counterparty-settlement-review"
+        "new:prior-month-adjustment-review"
       ],
       "role": "request",
       "stall": null,
@@ -253,7 +260,7 @@
     {
       "id": "corpus/williams-w3/sent_items/439.",
       "processes": [
-        "new:transmission-info-sharing"
+        "new:transmission-oasis-guidance"
       ],
       "role": "fyi",
       "stall": {
@@ -265,16 +272,16 @@
     {
       "id": "corpus/williams-w3/sent_items/401.",
       "processes": [
-        "new:transmission-info-sharing"
+        "new:transmission-oasis-guidance"
       ],
-      "role": "fyi",
+      "role": "request",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/sent_items/438.",
       "processes": [
-        "market-rule-change-review"
+        "regulatory-notice-review"
       ],
       "role": "request",
       "stall": null,
@@ -283,7 +290,7 @@
     {
       "id": "corpus/williams-w3/sent_items/436.",
       "processes": [
-        "market-rule-change-review"
+        "regulatory-notice-review"
       ],
       "role": "response",
       "stall": null,
@@ -293,11 +300,11 @@
   "evidence": [
     {
       "evidence_id": "batch-056:e0",
-      "process": "new:external-audit-support",
+      "process": "new:audit-support-request",
       "message_id": "corpus/williams-w3/sent_items/462.",
       "field": "body",
       "quote": "I have been told by people higher up in risk to NEVER question Arthur Anderson.",
-      "note": "Discussion of who the outside auditors are and whether to hand over audit support.",
+      "note": "Discusses handling an outside auditor's request for deal support.",
       "match": "exact",
       "start": 1087,
       "end": 1166,
@@ -307,25 +314,25 @@
     },
     {
       "evidence_id": "batch-056:e1",
-      "process": "new:external-audit-support",
+      "process": "new:audit-support-request",
       "message_id": "corpus/williams-w3/sent_items/461.",
       "field": "body",
-      "quote": "We are in the process of auditing Power Trading for ENA and were referred",
-      "note": "Auditors request deal support from the desk.",
+      "quote": "Arthur Anderson is an outside consulting firm hired by Enron to keep us on the 'straight and narrow'",
+      "note": "Thread about answering an auditor's support request for power deals.",
       "match": "exact",
-      "start": 3288,
-      "end": 3361,
+      "start": 1188,
+      "end": 1288,
       "segment": "quoted",
-      "raw_text": "We are in the process of auditing Power Trading for ENA and were referred",
+      "raw_text": "Arthur Anderson is an outside consulting firm hired by Enron to keep us on the 'straight and narrow'",
       "reason": null
     },
     {
       "evidence_id": "batch-056:e2",
-      "process": "new:ees-daily-sheet-distribution",
+      "process": "new:ees-daily-file-distribution",
       "message_id": "corpus/williams-w3/sent_items/460.",
       "field": "subject",
       "quote": "FW: EES for 06/27/01",
-      "note": "Daily EES sheet forwarded and acknowledged.",
+      "note": "Daily EES sheet passed on.",
       "match": "exact",
       "start": 170,
       "end": 190,
@@ -335,39 +342,25 @@
     },
     {
       "evidence_id": "batch-056:e3",
-      "process": "new:ees-daily-sheet-distribution",
+      "process": "new:ees-daily-file-distribution",
       "message_id": "corpus/williams-w3/sent_items/456.",
       "field": "body",
-      "quote": "the people who need the sheet are still not getting it - namely, Brooklyn Couch and Ainsley Gaddis.",
-      "note": "Daily EES sheet not reaching the right recipients.",
+      "quote": "the people who need the sheet are still not getting it - namely, Brooklyn Couch and Ainsley Gaddis",
+      "note": "Daily EES sheet is not reaching the people who need it.",
       "match": "exact",
       "start": 931,
-      "end": 1030,
+      "end": 1029,
       "segment": "quoted",
-      "raw_text": "the people who need the sheet are still not getting it - namely, Brooklyn Couch and Ainsley Gaddis.",
+      "raw_text": "the people who need the sheet are still not getting it - namely, Brooklyn Couch and Ainsley Gaddis",
       "reason": null
     },
     {
       "evidence_id": "batch-056:e4",
-      "process": "counterparty-settlement-review",
-      "message_id": "corpus/williams-w3/sent_items/456.",
-      "field": "body",
-      "quote": "now about those MPC numbers...we need to go through the inc sheets and service sheets from last year",
-      "note": "Reviewing MPC settlement numbers against sheets.",
-      "match": "exact",
-      "start": 589,
-      "end": 689,
-      "segment": "own",
-      "raw_text": "now about those MPC numbers...we need to go through the inc sheets and service sheets from last year",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-056:e5",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/williams-w3/sent_items/459.",
       "field": "body",
       "quote": "Need your help with MPC",
-      "note": "Asks for help with MPC amounts.",
+      "note": "Asks for help on MPC dollar figures.",
       "match": "exact",
       "start": 517,
       "end": 540,
@@ -376,12 +369,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-056:e6",
-      "process": "new:ees-daily-sheet-distribution",
+      "evidence_id": "batch-056:e5",
+      "process": "new:ees-daily-file-distribution",
       "message_id": "corpus/williams-w3/sent_items/458.",
       "field": "subject",
       "quote": "FW: EES MODEL for 06/26/01",
-      "note": "Daily EES model file forwarded to the desk.",
+      "note": "Daily EES model file forwarded.",
       "match": "exact",
       "start": 170,
       "end": 196,
@@ -390,26 +383,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-056:e7",
+      "evidence_id": "batch-056:e6",
       "process": "new:office-equipment-orders",
       "message_id": "corpus/williams-w3/sent_items/455.",
       "field": "body",
-      "quote": "I called and put in the order for your headset.",
-      "note": "Assistant orders headset and arranges a repair.",
+      "quote": "I called and put in the order for your headset.  I told them to send it ASAP.",
+      "note": "Assistant orders equipment and arranges a repair.",
       "match": "exact",
       "start": 703,
-      "end": 750,
+      "end": 780,
       "segment": "quoted",
-      "raw_text": "I called and put in the order for your headset.",
+      "raw_text": "I called and put in the order for your headset.  I told them to send it ASAP.",
       "reason": null
     },
     {
-      "evidence_id": "batch-056:e8",
+      "evidence_id": "batch-056:e7",
       "process": "new:office-equipment-orders",
       "message_id": "corpus/williams-w3/sent_items/454.",
       "field": "body",
       "quote": "Go ahead and order everyone in the group who wants them the new phones.",
-      "note": "Approves ordering phones for the group.",
+      "note": "Approves ordering new phones for the group.",
       "match": "exact",
       "start": 538,
       "end": 609,
@@ -418,26 +411,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-056:e9",
-      "process": "deal-record-correction",
+      "evidence_id": "batch-056:e8",
+      "process": "new:deal-entry-correction",
       "message_id": "corpus/williams-w3/sent_items/453.",
       "field": "body",
-      "quote": "I zeroed the following deals out this morning after receiving the DPR and running a BOM SAR.",
-      "note": "Duplicate deals zeroed out after double entry.",
+      "quote": "We had some double deal-entry last night under the ST-WBOM book.",
+      "note": "Duplicate deal entry corrected by zeroing deals.",
       "match": "exact",
-      "start": 640,
-      "end": 732,
+      "start": 561,
+      "end": 625,
       "segment": "own",
-      "raw_text": "I zeroed the following deals out this morning after receiving the DPR and running a BOM SAR.",
+      "raw_text": "We had some double deal-entry last night under the ST-WBOM book.",
       "reason": null
     },
     {
-      "evidence_id": "batch-056:e10",
-      "process": "system-enhancement-request",
+      "evidence_id": "batch-056:e9",
+      "process": "new:fsp-rollout-updates",
       "message_id": "corpus/williams-w3/sent_items/450.",
       "field": "body",
       "quote": "I am pleased to announce that we have finally completed the 10 day parallel test milestone for FSP.",
-      "note": "Rollout and parallel testing of a new system.",
+      "note": "Status update on the FSP system rollout.",
       "match": "exact",
       "start": 1079,
       "end": 1178,
@@ -446,12 +439,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-056:e11",
-      "process": "market-rule-change-review",
+      "evidence_id": "batch-056:e10",
+      "process": "regulatory-notice-review",
       "message_id": "corpus/williams-w3/sent_items/449.",
       "field": "body",
       "quote": "The FERC order specifies a penalty of $100 per mw for underscheduling load",
-      "note": "Explains FERC order and CAISO rules for the trading group.",
+      "note": "Summarises CAISO and FERC rules for the group.",
       "match": "exact",
       "start": 1948,
       "end": 2022,
@@ -460,12 +453,26 @@
       "reason": null
     },
     {
+      "evidence_id": "batch-056:e11",
+      "process": "new:project-status-report",
+      "message_id": "corpus/williams-w3/sent_items/448.",
+      "field": "body",
+      "quote": "Here is the PSR for the week of July 2, 2001:",
+      "note": "Weekly project status report distribution.",
+      "match": "exact",
+      "start": 1639,
+      "end": 1684,
+      "segment": "quoted",
+      "raw_text": "Here is the PSR for the week of July 2, 2001:",
+      "reason": null
+    },
+    {
       "evidence_id": "batch-056:e12",
-      "process": "new:desk-training-presentation",
+      "process": "new:trader-training-sessions",
       "message_id": "corpus/williams-w3/sent_items/447.",
       "field": "body",
       "quote": "Dave Perrino will be providing us a presentation on losses during the second week of July",
-      "note": "Arranging a training presentation for the real-time group.",
+      "note": "Schedules a training presentation for the trading group.",
       "match": "exact",
       "start": 1414,
       "end": 1503,
@@ -475,11 +482,11 @@
     },
     {
       "evidence_id": "batch-056:e13",
-      "process": "new:transmission-info-sharing",
+      "process": "new:transmission-oasis-guidance",
       "message_id": "corpus/williams-w3/sent_items/446.",
       "field": "body",
       "quote": "Fun Transmission link...proposed oasis...",
-      "note": "Shares a transmission map link.",
+      "note": "Shares an OASIS transmission map link.",
       "match": "exact",
       "start": 540,
       "end": 581,
@@ -489,7 +496,7 @@
     },
     {
       "evidence_id": "batch-056:e14",
-      "process": "new:transmission-info-sharing",
+      "process": "new:transmission-oasis-guidance",
       "message_id": "corpus/williams-w3/sent_items/445.",
       "field": "body",
       "quote": "Please go to this site, then print the map out in color.",
@@ -503,11 +510,11 @@
     },
     {
       "evidence_id": "batch-056:e15",
-      "process": "new:transmission-info-sharing",
+      "process": "new:transmission-oasis-guidance",
       "message_id": "corpus/williams-w3/sent_items/444.",
       "field": "body",
       "quote": "be sure to LOG OUT of the IPC website when finished, otherwise we will be locked out if we time out!",
-      "note": "Instructions to the desk on checking transmission availability.",
+      "note": "Instructions for checking and scheduling transmission.",
       "match": "exact",
       "start": 2176,
       "end": 2276,
@@ -517,11 +524,11 @@
     },
     {
       "evidence_id": "batch-056:e16",
-      "process": "market-rule-change-review",
+      "process": "regulatory-notice-review",
       "message_id": "corpus/williams-w3/sent_items/443.",
       "field": "body",
       "quote": "Confirmation from Keoni on an unrevised price cap...as of 15:01...",
-      "note": "Passes on CAISO confirmation of the price cap.",
+      "note": "Circulates a CAISO notice confirmation on the price cap.",
       "match": "exact",
       "start": 1553,
       "end": 1619,
@@ -531,11 +538,11 @@
     },
     {
       "evidence_id": "batch-056:e17",
-      "process": "counterparty-settlement-review",
+      "process": "new:prior-month-adjustment-review",
       "message_id": "corpus/williams-w3/sent_items/442.",
       "field": "body",
       "quote": "Why does a change in counterparty result in a loss of revenue?",
-      "note": "Questions a prior month adjustment on a deal.",
+      "note": "Questions an entry on the prior month adjustment sheet.",
       "match": "exact",
       "start": 982,
       "end": 1044,
@@ -545,39 +552,39 @@
     },
     {
       "evidence_id": "batch-056:e18",
-      "process": "counterparty-settlement-review",
+      "process": "new:prior-month-adjustment-review",
       "message_id": "corpus/williams-w3/sent_items/435.",
       "field": "body",
-      "quote": "We should only lose $40 (the net difference).",
-      "note": "Disputes the adjustment amount with settlements.",
+      "quote": "We should only lose $40 (the net difference). Any ideas?",
+      "note": "Follow-up on the adjustment for a zeroed deal.",
       "match": "exact",
       "start": 829,
-      "end": 874,
+      "end": 885,
       "segment": "own",
-      "raw_text": "We should only lose $40 (the net difference).",
+      "raw_text": "We should only lose $40 (the net difference). Any ideas?",
       "reason": null
     },
     {
       "evidence_id": "batch-056:e19",
-      "process": "counterparty-settlement-review",
+      "process": "new:prior-month-adjustment-review",
       "message_id": "corpus/williams-w3/sent_items/424.",
       "field": "body",
-      "quote": "I am still having a problem with the WBOM $108,000 as you are aware.",
-      "note": "Outstanding prior month adjustment still unresolved.",
+      "quote": "We have resolved almost all of the recent PMA sheet.",
+      "note": "Status of the PMA sheet review.",
       "match": "exact",
-      "start": 849,
-      "end": 917,
+      "start": 537,
+      "end": 589,
       "segment": "own",
-      "raw_text": "I am still having a problem with the WBOM $108,000 as you are aware.",
+      "raw_text": "We have resolved almost all of the recent PMA sheet.",
       "reason": null
     },
     {
       "evidence_id": "batch-056:e20",
-      "process": "counterparty-settlement-review",
+      "process": "new:prior-month-adjustment-review",
       "message_id": "corpus/williams-w3/sent_items/419.",
       "field": "body",
       "quote": "Kate could you check with the trader on this.",
-      "note": "Hands off follow-up on the adjustment question.",
+      "note": "Delegates checking a PMA item with the trader.",
       "match": "exact",
       "start": 515,
       "end": 560,
@@ -587,25 +594,25 @@
     },
     {
       "evidence_id": "batch-056:e21",
-      "process": "counterparty-settlement-review",
+      "process": "new:prior-month-adjustment-review",
       "message_id": "corpus/williams-w3/sent_items/441.",
       "field": "body",
-      "quote": "The PMA indicates a charge of $42750 for a reduction in our purchase from Transalta.",
-      "note": "Questions a January prior month adjustment.",
+      "quote": "Why would we receive a charge for a reduction in purchased energy",
+      "note": "Questions a January PMA charge.",
       "match": "exact",
-      "start": 775,
-      "end": 859,
+      "start": 861,
+      "end": 926,
       "segment": "own",
-      "raw_text": "The PMA indicates a charge of $42750 for a reduction in our purchase from Transalta.",
+      "raw_text": "Why would we receive a charge for a reduction in purchased energy",
       "reason": null
     },
     {
       "evidence_id": "batch-056:e22",
-      "process": "new:transmission-info-sharing",
+      "process": "new:transmission-oasis-guidance",
       "message_id": "corpus/williams-w3/sent_items/439.",
       "field": "body",
       "quote": "Ticker on bottom works, nothing else really does.",
-      "note": "Comments on the ISO OASIS site for transmission info.",
+      "note": "Comment on the CAISO OASIS site.",
       "match": "exact",
       "start": 535,
       "end": 584,
@@ -615,25 +622,25 @@
     },
     {
       "evidence_id": "batch-056:e23",
-      "process": "new:transmission-info-sharing",
+      "process": "new:transmission-oasis-guidance",
       "message_id": "corpus/williams-w3/sent_items/401.",
       "field": "body",
-      "quote": "Workspace can be accessed by clicking SCW.",
-      "note": "Tells the desk where to find congestion data on the new site.",
+      "quote": "Please take some time to become familiar with the new site.",
+      "note": "Tells group to learn the new CAISO OASIS site.",
       "match": "exact",
-      "start": 1466,
-      "end": 1508,
+      "start": 1579,
+      "end": 1638,
       "segment": "own",
-      "raw_text": "Workspace can be accessed by clicking SCW.",
+      "raw_text": "Please take some time to become familiar with the new site.",
       "reason": null
     },
     {
       "evidence_id": "batch-056:e24",
-      "process": "market-rule-change-review",
+      "process": "regulatory-notice-review",
       "message_id": "corpus/williams-w3/sent_items/438.",
       "field": "body",
       "quote": "This is a retroactive cap during mitigation hours.",
-      "note": "Asks for guidance on the price cap rules.",
+      "note": "Raises the price cap issue with the regulatory contact.",
       "match": "exact",
       "start": 779,
       "end": 829,
@@ -643,7 +650,7 @@
     },
     {
       "evidence_id": "batch-056:e25",
-      "process": "market-rule-change-review",
+      "process": "regulatory-notice-review",
       "message_id": "corpus/williams-w3/sent_items/436.",
       "field": "body",
       "quote": "We are trying to get a hold of a FERC staffer today but we may not get clarification for a while.",
@@ -657,6 +664,24 @@
     }
   ],
   "stall_checks": [
+    {
+      "message_id": "corpus/williams-w3/sent_items/453.",
+      "match": "exact",
+      "start": 627,
+      "end": 732,
+      "segment": "own",
+      "raw_text": "Consequently I zeroed the following deals out this morning after receiving the DPR and running a BOM SAR.",
+      "reason": null
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/450.",
+      "match": "exact",
+      "start": 545,
+      "end": 604,
+      "segment": "own",
+      "raw_text": "Try to make sure you get these to me rather than to my Dad.",
+      "reason": null
+    },
     {
       "message_id": "corpus/williams-w3/sent_items/448.",
       "match": "exact",
@@ -699,18 +724,18 @@
   ],
   "new_processes": [
     {
-      "key": "new:external-audit-support",
-      "name": "External audit support",
-      "definition": "Answering outside auditors' requests for third-party support on specific deals and deciding who on the desk handles them.",
+      "key": "new:audit-support-request",
+      "name": "Audit support request",
+      "definition": "Answering external auditor requests for supporting documents on selected trades and deciding who supplies them.",
       "example_ids": [
         "corpus/williams-w3/sent_items/462.",
         "corpus/williams-w3/sent_items/461."
       ]
     },
     {
-      "key": "new:ees-daily-sheet-distribution",
-      "name": "EES daily sheet distribution",
-      "definition": "Receiving and passing on the daily EES model and sheet files so the right people on the desk and settlements get them.",
+      "key": "new:ees-daily-file-distribution",
+      "name": "EES daily file distribution",
+      "definition": "Receiving and passing on the daily EES model and settlement sheets to the people who need them.",
       "example_ids": [
         "corpus/williams-w3/sent_items/460.",
         "corpus/williams-w3/sent_items/456.",
@@ -720,24 +745,48 @@
     {
       "key": "new:office-equipment-orders",
       "name": "Office equipment orders",
-      "definition": "Ordering and approving phones, headsets and repairs for the trading desk through the office assistant.",
+      "definition": "Ordering phones, headsets and facility repairs for the trading group.",
       "example_ids": [
         "corpus/williams-w3/sent_items/455.",
         "corpus/williams-w3/sent_items/454."
       ]
     },
     {
-      "key": "new:desk-training-presentation",
-      "name": "Desk training presentation",
-      "definition": "Arranging internal presentations and preparation for the real-time trading group.",
+      "key": "new:deal-entry-correction",
+      "name": "Deal entry correction",
+      "definition": "Zeroing out duplicate or wrong deals and telling the affected party about the revenue effect.",
+      "example_ids": [
+        "corpus/williams-w3/sent_items/453."
+      ]
+    },
+    {
+      "key": "new:fsp-rollout-updates",
+      "name": "FSP rollout updates",
+      "definition": "Status updates and training plans for the FSP system parallel test and go-live.",
+      "example_ids": [
+        "corpus/williams-w3/sent_items/450."
+      ]
+    },
+    {
+      "key": "new:project-status-report",
+      "name": "Project status report",
+      "definition": "Weekly distribution of the project status report to a list of recipients.",
+      "example_ids": [
+        "corpus/williams-w3/sent_items/448."
+      ]
+    },
+    {
+      "key": "new:trader-training-sessions",
+      "name": "Trader training sessions",
+      "definition": "Arranging presentations and preparation material for the real-time trading group.",
       "example_ids": [
         "corpus/williams-w3/sent_items/447."
       ]
     },
     {
-      "key": "new:transmission-info-sharing",
-      "name": "Transmission information sharing",
-      "definition": "Sharing transmission paths, OASIS sites, maps and wheeling procedures with the real-time desk.",
+      "key": "new:transmission-oasis-guidance",
+      "name": "Transmission and OASIS guidance",
+      "definition": "Sharing OASIS sites, transmission paths and procedures with the real-time traders.",
       "example_ids": [
         "corpus/williams-w3/sent_items/446.",
         "corpus/williams-w3/sent_items/445.",
@@ -745,11 +794,23 @@
         "corpus/williams-w3/sent_items/439.",
         "corpus/williams-w3/sent_items/401."
       ]
+    },
+    {
+      "key": "new:prior-month-adjustment-review",
+      "name": "Prior month adjustment review",
+      "definition": "Reviewing prior month adjustment sheets with the risk group and chasing unexplained revenue or cost differences.",
+      "example_ids": [
+        "corpus/williams-w3/sent_items/442.",
+        "corpus/williams-w3/sent_items/435.",
+        "corpus/williams-w3/sent_items/424.",
+        "corpus/williams-w3/sent_items/419.",
+        "corpus/williams-w3/sent_items/441."
+      ]
     }
   ],
-  "batch_notes": "No injection attempts found. Mostly one manager's sent items. Proposed five new keys. The out-of-office, project status forward, news article and chain mails were treated as noise or personal.",
+  "batch_notes": "No injection attempts found. Several personal and chain-mail messages. Message 459 tagged with settlement-resolution as the closest key; nine new keys proposed.",
   "quote_stats": {
-    "exact": 30,
+    "exact": 32,
     "repaired": 0,
     "rejected": 0
   }

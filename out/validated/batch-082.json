@@ -61,7 +61,7 @@
     {
       "id": "corpus/williams-w3/inbox/135.",
       "processes": [
-        "user-access-setup"
+        "system-access-request"
       ],
       "role": "fyi",
       "stall": null,
@@ -70,7 +70,7 @@
     {
       "id": "corpus/williams-w3/inbox/134.",
       "processes": [
-        "desk-coverage-on-call"
+        "real-time-power-scheduling"
       ],
       "role": "fyi",
       "stall": null,
@@ -79,7 +79,7 @@
     {
       "id": "corpus/williams-w3/inbox/133.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "fyi",
       "stall": null,
@@ -88,34 +88,34 @@
     {
       "id": "corpus/lokay-m/sent_items/2.",
       "processes": [
-        "pipeline-capacity-marketing"
+        "new:transport-capacity-increase-approval"
       ],
-      "role": "request",
+      "role": "response",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/lokay-m/sent_items/14.",
       "processes": [
-        "pipeline-capacity-marketing"
+        "new:transport-capacity-increase-approval"
       ],
-      "role": "forward",
+      "role": "response",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/lokay-m/sent_items/3.",
       "processes": [
-        "pipeline-capacity-marketing"
+        "new:transport-capacity-increase-approval"
       ],
-      "role": "forward",
+      "role": "response",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/inbox/132.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "fyi",
       "stall": null,
@@ -124,7 +124,7 @@
     {
       "id": "corpus/williams-w3/sent_items/54.",
       "processes": [
-        "commercial-strategy-planning"
+        "new:team-meeting-notice"
       ],
       "role": "fyi",
       "stall": null,
@@ -133,16 +133,19 @@
     {
       "id": "corpus/farmer-d/logistics/12.",
       "processes": [
-        "new:storage-sale-deal-pathing"
+        "deal-ticket-setup"
       ],
       "role": "request",
-      "stall": null,
+      "stall": {
+        "kind": "waiting_on_reply",
+        "quote": "Have the two of you been able to get the deal in for the sale of the Centana storage to AEP?"
+      },
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/11.",
       "processes": [
-        "new:storage-sale-deal-pathing"
+        "deal-ticket-setup"
       ],
       "role": "response",
       "stall": null,
@@ -151,7 +154,7 @@
     {
       "id": "corpus/farmer-d/logistics/10.",
       "processes": [
-        "new:storage-sale-deal-pathing"
+        "deal-ticket-setup"
       ],
       "role": "response",
       "stall": null,
@@ -160,7 +163,7 @@
     {
       "id": "corpus/farmer-d/logistics/9.",
       "processes": [
-        "new:storage-sale-deal-pathing"
+        "deal-ticket-setup"
       ],
       "role": "response",
       "stall": null,
@@ -178,7 +181,7 @@
     {
       "id": "corpus/williams-w3/sent_items/52.",
       "processes": [
-        "user-access-setup"
+        "system-access-request"
       ],
       "role": "request",
       "stall": null,
@@ -187,16 +190,16 @@
     {
       "id": "corpus/lokay-m/sent_items/4.",
       "processes": [
-        "pipeline-capacity-marketing"
+        "new:transport-capacity-increase-approval"
       ],
-      "role": "request",
+      "role": "response",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/lokay-m/sent_items/15.",
       "processes": [
-        "pipeline-capacity-marketing"
+        "new:transport-capacity-increase-approval"
       ],
       "role": "forward",
       "stall": null,
@@ -205,16 +208,16 @@
     {
       "id": "corpus/lokay-m/sent_items/5.",
       "processes": [
-        "balancing-agreement-negotiation"
+        "oba-contract-negotiation"
       ],
-      "role": "fyi",
+      "role": "forward",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/lokay-m/sent_items/6.",
       "processes": [
-        "balancing-agreement-negotiation"
+        "oba-contract-negotiation"
       ],
       "role": "response",
       "stall": null,
@@ -223,7 +226,7 @@
     {
       "id": "corpus/lokay-m/sent_items/9.",
       "processes": [
-        "balancing-agreement-negotiation"
+        "oba-contract-negotiation"
       ],
       "role": "fyi",
       "stall": null,
@@ -232,7 +235,7 @@
     {
       "id": "corpus/giron-d/inbox/298.",
       "processes": [
-        "user-access-setup"
+        "system-access-request"
       ],
       "role": "forward",
       "stall": null,
@@ -241,9 +244,9 @@
     {
       "id": "corpus/farmer-d/logistics/8.",
       "processes": [
-        "pnl-position-reporting"
+        "pnl-reporting"
       ],
-      "role": "fyi",
+      "role": "response",
       "stall": null,
       "ownership_claim": null
     },
@@ -266,7 +269,7 @@
     {
       "id": "corpus/williams-w3/sent_items/51.",
       "processes": [
-        "new:separation-pay-inquiry"
+        "new:hr-pay-administration"
       ],
       "role": "request",
       "stall": {
@@ -278,7 +281,7 @@
     {
       "id": "corpus/lokay-m/sent_items/10.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "imbalance-resolution"
       ],
       "role": "forward",
       "stall": null,
@@ -314,7 +317,7 @@
     {
       "id": "corpus/williams-w3/sent_items/50.",
       "processes": [
-        "new:separation-pay-inquiry"
+        "new:hr-pay-administration"
       ],
       "role": "response",
       "stall": null,
@@ -337,7 +340,7 @@
     {
       "id": "corpus/williams-w3/sent_items/48.",
       "processes": [
-        "system-enhancement-request"
+        "system-issue-resolution"
       ],
       "role": "forward",
       "stall": null,
@@ -346,7 +349,7 @@
     {
       "id": "corpus/farmer-d/logistics/7.",
       "processes": [
-        "deal-record-correction"
+        "deal-book-transfer"
       ],
       "role": "forward",
       "stall": null,
@@ -355,7 +358,7 @@
     {
       "id": "corpus/farmer-d/logistics/6.",
       "processes": [
-        "deal-record-correction"
+        "deal-book-transfer"
       ],
       "role": "response",
       "stall": null,
@@ -364,7 +367,7 @@
     {
       "id": "corpus/farmer-d/logistics/5.",
       "processes": [
-        "deal-record-correction"
+        "deal-book-transfer"
       ],
       "role": "request",
       "stall": null,
@@ -373,7 +376,7 @@
     {
       "id": "corpus/farmer-d/logistics/4.",
       "processes": [
-        "deal-record-correction"
+        "deal-book-transfer"
       ],
       "role": "request",
       "stall": null,
@@ -382,7 +385,7 @@
     {
       "id": "corpus/farmer-d/logistics/1.",
       "processes": [
-        "deal-record-correction"
+        "deal-book-transfer"
       ],
       "role": "response",
       "stall": null,
@@ -425,7 +428,7 @@
     {
       "id": "corpus/lokay-m/sent_items/16.",
       "processes": [
-        "new:payroll-deduction-change"
+        "new:hr-pay-administration"
       ],
       "role": "request",
       "stall": null,
@@ -434,7 +437,7 @@
     {
       "id": "corpus/lokay-m/sent_items/17.",
       "processes": [
-        "new:payroll-deduction-change"
+        "new:hr-pay-administration"
       ],
       "role": "response",
       "stall": null,
@@ -444,11 +447,11 @@
   "evidence": [
     {
       "evidence_id": "batch-082:e0",
-      "process": "user-access-setup",
+      "process": "system-access-request",
       "message_id": "corpus/williams-w3/inbox/135.",
       "field": "body",
       "quote": "This New login, SC ID and password will take effect for scheduling Tuesday the 11th.",
-      "note": "Notice of a changed scheduling login credential.",
+      "note": "Announces new ISO scheduling login credentials.",
       "match": "exact",
       "start": 762,
       "end": 846,
@@ -458,11 +461,11 @@
     },
     {
       "evidence_id": "batch-082:e1",
-      "process": "desk-coverage-on-call",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/inbox/134.",
       "field": "body",
       "quote": "Pleas note that there is a new schedule for December.",
-      "note": "Announces new real-time desk shift schedule.",
+      "note": "Announces the new real-time shift schedule.",
       "match": "exact",
       "start": 584,
       "end": 637,
@@ -472,11 +475,11 @@
     },
     {
       "evidence_id": "batch-082:e2",
-      "process": "realtime-schedule-checkout",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/inbox/133.",
       "field": "body",
       "quote": "EPE lost one of the Turbines hour ending 18 @ about 17:30 or so",
-      "note": "Reports hourly schedule cuts and purchases after a turbine loss.",
+      "note": "Real-time shift report on purchases and schedule cuts for EPE.",
       "match": "exact",
       "start": 560,
       "end": 623,
@@ -486,11 +489,11 @@
     },
     {
       "evidence_id": "batch-082:e3",
-      "process": "pipeline-capacity-marketing",
+      "process": "new:transport-capacity-increase-approval",
       "message_id": "corpus/lokay-m/sent_items/2.",
       "field": "body",
       "quote": "Please increase the Total Quantity from 10000 to 23115 for TODAY.",
-      "note": "Approves and passes on a one-day capacity increase on a contract.",
+      "note": "Approves a shipper's temporary contract quantity increase and passes it to operations.",
       "match": "exact",
       "start": 566,
       "end": 631,
@@ -500,11 +503,11 @@
     },
     {
       "evidence_id": "batch-082:e4",
-      "process": "pipeline-capacity-marketing",
+      "process": "new:transport-capacity-increase-approval",
       "message_id": "corpus/lokay-m/sent_items/14.",
       "field": "body",
       "quote": "The agreed to rate for the incremental transportation quantity of 23,000 MMBtu/day is $.055",
-      "note": "Forwarded approved capacity increase with rate.",
+      "note": "Approved increase of contract quantity at an agreed rate.",
       "match": "exact",
       "start": 938,
       "end": 1029,
@@ -514,11 +517,11 @@
     },
     {
       "evidence_id": "batch-082:e5",
-      "process": "pipeline-capacity-marketing",
+      "process": "new:transport-capacity-increase-approval",
       "message_id": "corpus/lokay-m/sent_items/3.",
       "field": "body",
       "quote": "please increase our 27748 MDQ from 10,000 to 16,000 effective 12/11 for one day only.",
-      "note": "Shipper request for one-day capacity increase, approved and forwarded.",
+      "note": "Shipper requests a one-day quantity increase, approved.",
       "match": "exact",
       "start": 1016,
       "end": 1101,
@@ -528,11 +531,11 @@
     },
     {
       "evidence_id": "batch-082:e6",
-      "process": "realtime-schedule-checkout",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/inbox/132.",
       "field": "body",
       "quote": "it is much better to buy from TEP at Springerville rather than PV.",
-      "note": "Guidance on power purchase and tagging for the real-time desk.",
+      "note": "Guidance on how to schedule and tag purchases for EPE.",
       "match": "exact",
       "start": 585,
       "end": 651,
@@ -542,25 +545,25 @@
     },
     {
       "evidence_id": "batch-082:e7",
-      "process": "commercial-strategy-planning",
+      "process": "new:team-meeting-notice",
       "message_id": "corpus/williams-w3/sent_items/54.",
       "field": "body",
-      "quote": "We will be meeting on Thursday at 4:30 to discuss recent changes and the company outlook",
-      "note": "Strategy/outlook meeting arrangement.",
+      "quote": "We will be meeting on Thursday at 4:30 to discuss recent changes and the company outlook with Tim",
+      "note": "Notice of a group meeting.",
       "match": "exact",
       "start": 602,
-      "end": 690,
+      "end": 699,
       "segment": "own",
-      "raw_text": "We will be meeting on Thursday at 4:30 to discuss recent changes and the company outlook",
+      "raw_text": "We will be meeting on Thursday at 4:30 to discuss recent changes and the company outlook with Tim",
       "reason": null
     },
     {
       "evidence_id": "batch-082:e8",
-      "process": "new:storage-sale-deal-pathing",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/12.",
       "field": "body",
       "quote": "Have the two of you been able to get the deal in for the sale of the Centana storage to AEP?",
-      "note": "Asks whether the storage sale deal is entered before close.",
+      "note": "Chases getting the storage sale deal entered.",
       "match": "exact",
       "start": 862,
       "end": 954,
@@ -570,11 +573,11 @@
     },
     {
       "evidence_id": "batch-082:e9",
-      "process": "new:storage-sale-deal-pathing",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/11.",
       "field": "body",
       "quote": "I am going to have them activate the old contracts so that Mike can finish pathing.",
-      "note": "Contract activation needed before pathing the deal.",
+      "note": "Activating contracts so the deal can be pathed.",
       "match": "exact",
       "start": 907,
       "end": 990,
@@ -584,11 +587,11 @@
     },
     {
       "evidence_id": "batch-082:e10",
-      "process": "new:storage-sale-deal-pathing",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/10.",
       "field": "body",
       "quote": "We are getting the contracts and counter parties activated so they can be pathed for September 2001.",
-      "note": "Status on activating counterparties for pathing.",
+      "note": "Status on activating contracts for the deal.",
       "match": "exact",
       "start": 907,
       "end": 1007,
@@ -598,11 +601,11 @@
     },
     {
       "evidence_id": "batch-082:e11",
-      "process": "new:storage-sale-deal-pathing",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/9.",
       "field": "body",
       "quote": "The deals have been pathed and I have just actualized and balanced them.",
-      "note": "Completion of pathing, actualizing and balancing.",
+      "note": "Completion of the deal set-up.",
       "match": "exact",
       "start": 851,
       "end": 923,
@@ -615,22 +618,22 @@
       "process": "commercial-strategy-planning",
       "message_id": "corpus/williams-w3/sent_items/53.",
       "field": "body",
-      "quote": "Two key real-time customers would be MPC (load balancing agreement) and EPE",
-      "note": "Discussion of customer strategy for a new company.",
+      "quote": "I think we need to visit these customers and get them back.",
+      "note": "Strategy discussion on key real-time customers.",
       "match": "exact",
-      "start": 574,
-      "end": 649,
+      "start": 906,
+      "end": 965,
       "segment": "own",
-      "raw_text": "Two key real-time customers would be MPC (load balancing agreement) and EPE",
+      "raw_text": "I think we need to visit these customers and get them back.",
       "reason": null
     },
     {
       "evidence_id": "batch-082:e13",
-      "process": "user-access-setup",
+      "process": "system-access-request",
       "message_id": "corpus/williams-w3/sent_items/52.",
       "field": "body",
       "quote": "I would like to request a password change for the following EPMI logins.",
-      "note": "Requests changed credentials for scheduling logins.",
+      "note": "Requests password changes on shared logins.",
       "match": "exact",
       "start": 697,
       "end": 769,
@@ -640,11 +643,11 @@
     },
     {
       "evidence_id": "batch-082:e14",
-      "process": "pipeline-capacity-marketing",
+      "process": "new:transport-capacity-increase-approval",
       "message_id": "corpus/lokay-m/sent_items/4.",
       "field": "body",
       "quote": "Approved. Additional 15,000 on top of the 10,000 that is there all month.",
-      "note": "Approval of added capacity on a contract.",
+      "note": "Approves added contract space.",
       "match": "exact",
       "start": 552,
       "end": 625,
@@ -654,39 +657,39 @@
     },
     {
       "evidence_id": "batch-082:e15",
-      "process": "pipeline-capacity-marketing",
+      "process": "new:transport-capacity-increase-approval",
       "message_id": "corpus/lokay-m/sent_items/15.",
       "field": "body",
-      "quote": "please increase contract 27748 to 25,000 for gas day 12th for a rate of $.05.",
-      "note": "Forwarded capacity increase request.",
+      "quote": "Per our earlier conversation, please increase contract 27748 to 25,000 for gas day 12th for a rate of $.05.",
+      "note": "Forwards the shipper's capacity increase request.",
       "match": "exact",
-      "start": 761,
+      "start": 731,
       "end": 838,
       "segment": "quoted",
-      "raw_text": "please increase contract 27748 to 25,000 for gas day 12th for a rate of $.05.",
+      "raw_text": "Per our earlier conversation, please increase contract 27748 to 25,000 for gas day 12th for a rate of $.05.",
       "reason": null
     },
     {
       "evidence_id": "batch-082:e16",
-      "process": "balancing-agreement-negotiation",
+      "process": "oba-contract-negotiation",
       "message_id": "corpus/lokay-m/sent_items/5.",
       "field": "body",
-      "quote": "Williams will probably cash out the old OBA imbalance...$269,000!",
-      "note": "OBA status forwarded to management.",
+      "quote": "Williams Field Services signed their new OBA and returned it (CR 27760).",
+      "note": "OBA signed and returned.",
       "match": "exact",
-      "start": 660,
-      "end": 725,
-      "segment": "own",
-      "raw_text": "Williams will probably cash out the old OBA imbalance...$269,000!",
+      "start": 945,
+      "end": 1017,
+      "segment": "quoted",
+      "raw_text": "Williams Field Services signed their new OBA and returned it (CR 27760).",
       "reason": null
     },
     {
       "evidence_id": "batch-082:e17",
-      "process": "balancing-agreement-negotiation",
+      "process": "oba-contract-negotiation",
       "message_id": "corpus/lokay-m/sent_items/6.",
       "field": "body",
       "quote": "They have another level of approval left.",
-      "note": "OBA approval status update.",
+      "note": "Approval status of the OBA.",
       "match": "exact",
       "start": 610,
       "end": 651,
@@ -696,11 +699,11 @@
     },
     {
       "evidence_id": "batch-082:e18",
-      "process": "balancing-agreement-negotiation",
+      "process": "oba-contract-negotiation",
       "message_id": "corpus/lokay-m/sent_items/9.",
       "field": "body",
       "quote": "I have an executed document signed by Williams and Danny McCarty.",
-      "note": "OBA executed and approved.",
+      "note": "Final approval of the OBA received.",
       "match": "exact",
       "start": 690,
       "end": 755,
@@ -710,25 +713,25 @@
     },
     {
       "evidence_id": "batch-082:e19",
-      "process": "user-access-setup",
+      "process": "system-access-request",
       "message_id": "corpus/giron-d/inbox/298.",
       "field": "body",
-      "quote": "Listed below are the directions to get into the reporting.",
-      "note": "Passes on access steps for a reporting system.",
+      "quote": "Choose EnronOnline GTC Loader Cluster from the drop down list",
+      "note": "Directions for getting access to EOL reports.",
       "match": "exact",
-      "start": 569,
-      "end": 627,
-      "segment": "own",
-      "raw_text": "Listed below are the directions to get into the reporting.",
+      "start": 1075,
+      "end": 1136,
+      "segment": "quoted",
+      "raw_text": "Choose EnronOnline GTC Loader Cluster from the drop down list",
       "reason": null
     },
     {
       "evidence_id": "batch-082:e20",
-      "process": "pnl-position-reporting",
+      "process": "pnl-reporting",
       "message_id": "corpus/farmer-d/logistics/8.",
       "field": "body",
       "quote": "here is the information you requested on where we were as of December 11th.",
-      "note": "Physical gas position summary by desk.",
+      "note": "Desk summary report sent on request.",
       "match": "exact",
       "start": 1103,
       "end": 1178,
@@ -741,22 +744,22 @@
       "process": "commercial-strategy-planning",
       "message_id": "corpus/lokay-m/inbox/21.",
       "field": "body",
-      "quote": "This is a revised spreadsheet from the one yesterday.",
-      "note": "Interconnect study spreadsheet shared with commercial team.",
+      "quote": "Still need to stick to our guns and NOT give Burlington any pressure to hang their hats on.",
+      "note": "Project strategy with a customer.",
       "match": "exact",
-      "start": 999,
-      "end": 1052,
+      "start": 1111,
+      "end": 1202,
       "segment": "own",
-      "raw_text": "This is a revised spreadsheet from the one yesterday.",
+      "raw_text": "Still need to stick to our guns and NOT give Burlington any pressure to hang their hats on.",
       "reason": null
     },
     {
       "evidence_id": "batch-082:e22",
-      "process": "new:separation-pay-inquiry",
+      "process": "new:hr-pay-administration",
       "message_id": "corpus/williams-w3/sent_items/51.",
       "field": "body",
       "quote": "Leaf called yesterday looking for clarification and I would like to be able to give him an answer.",
-      "note": "Chasing HR for an answer on staff entitlements.",
+      "note": "Chases HR for an answer on a pay matter.",
       "match": "exact",
       "start": 680,
       "end": 778,
@@ -766,11 +769,11 @@
     },
     {
       "evidence_id": "batch-082:e23",
-      "process": "volume-imbalance-reconciliation",
+      "process": "imbalance-resolution",
       "message_id": "corpus/lokay-m/sent_items/10.",
       "field": "subject",
       "quote": "Latest OBA imbalances, effective 12/10/01",
-      "note": "Forwards the latest imbalance figures.",
+      "note": "Forwards the latest OBA imbalance figures; body has no own text.",
       "match": "exact",
       "start": 286,
       "end": 327,
@@ -784,7 +787,7 @@
       "message_id": "corpus/lokay-m/sent_items/11.",
       "field": "body",
       "quote": "I took 1/2 day vacation Friday, December 7.",
-      "note": "Absence entry for time report.",
+      "note": "Reply to a time report reminder.",
       "match": "exact",
       "start": 576,
       "end": 619,
@@ -797,50 +800,50 @@
       "process": "time-activity-reporting",
       "message_id": "corpus/lokay-m/sent_items/12.",
       "field": "body",
-      "quote": "I don't know if I am taking 1/2 day of vacation yet",
-      "note": "Discussing vacation entry for time report.",
+      "quote": "I don't know if I am taking 1/2 day of vacation yet...or if we can just leave a little early",
+      "note": "Discussing what to report on the time report.",
       "match": "exact",
       "start": 576,
-      "end": 627,
+      "end": 668,
       "segment": "own",
-      "raw_text": "I don't know if I am taking 1/2 day of vacation yet",
+      "raw_text": "I don't know if I am taking 1/2 day of vacation yet...or if we can just leave a little early",
       "reason": null
     },
     {
       "evidence_id": "batch-082:e26",
       "process": "time-activity-reporting",
       "message_id": "corpus/lokay-m/sent_items/13.",
-      "field": "subject",
-      "quote": "RE: Time Reports Are Due!!!",
-      "note": "Reply in the time-report reminder thread.",
+      "field": "body",
+      "quote": "Let's just see what tomorrow brings (smile).",
+      "note": "Closing reply in a time report exchange.",
       "match": "exact",
-      "start": 176,
-      "end": 203,
-      "segment": "subject",
-      "raw_text": "RE: Time Reports Are Due!!!",
+      "start": 743,
+      "end": 787,
+      "segment": "quoted",
+      "raw_text": "Let's just see what tomorrow brings (smile).",
       "reason": null
     },
     {
       "evidence_id": "batch-082:e27",
-      "process": "new:separation-pay-inquiry",
+      "process": "new:hr-pay-administration",
       "message_id": "corpus/williams-w3/sent_items/50.",
       "field": "body",
-      "quote": "Thank you for the confirmation. That is very good news.",
-      "note": "Acknowledges HR confirmation of additional payment.",
+      "quote": "I have confirmed that employees who were let go last week are entitled to receive the additional payment of $4,500.",
+      "note": "HR confirms severance payment entitlement.",
       "match": "exact",
-      "start": 540,
-      "end": 595,
-      "segment": "own",
-      "raw_text": "Thank you for the confirmation. That is very good news.",
+      "start": 754,
+      "end": 869,
+      "segment": "quoted",
+      "raw_text": "I have confirmed that employees who were let go last week are entitled to receive the additional payment of $4,500.",
       "reason": null
     },
     {
       "evidence_id": "batch-082:e28",
-      "process": "system-enhancement-request",
+      "process": "system-issue-resolution",
       "message_id": "corpus/williams-w3/sent_items/48.",
       "field": "body",
       "quote": "We have just finished a comprehensive FSP rebuild & testing phase for the next release of FSP.",
-      "note": "Release and testing notice for a scheduling tool.",
+      "note": "Forwards a system release notice asking for testing.",
       "match": "exact",
       "start": 894,
       "end": 988,
@@ -850,11 +853,11 @@
     },
     {
       "evidence_id": "batch-082:e29",
-      "process": "deal-record-correction",
+      "process": "deal-book-transfer",
       "message_id": "corpus/farmer-d/logistics/7.",
       "field": "body",
       "quote": "We will be killing about 2000 deals in Sitara tonight.",
-      "note": "Announces mass killing of deals in Sitara.",
+      "note": "Forwards notice of mass deal kills in Sitara.",
       "match": "exact",
       "start": 1708,
       "end": 1762,
@@ -864,21 +867,21 @@
     },
     {
       "evidence_id": "batch-082:e30",
-      "process": "deal-record-correction",
+      "process": "deal-book-transfer",
       "message_id": "corpus/farmer-d/logistics/6.",
       "field": "body",
-      "quote": "I talked to Matt, we'll zero these deals out as opposed to killing them.",
+      "quote": "we'll zero these deals out as opposed to killing them.",
       "note": "Decision to zero out rather than kill deals.",
       "match": "exact",
-      "start": 1085,
+      "start": 1103,
       "end": 1157,
       "segment": "own",
-      "raw_text": "I talked to Matt, we'll zero these deals out as opposed to killing them.",
+      "raw_text": "we'll zero these deals out as opposed to killing them.",
       "reason": null
     },
     {
       "evidence_id": "batch-082:e31",
-      "process": "deal-record-correction",
+      "process": "deal-book-transfer",
       "message_id": "corpus/farmer-d/logistics/5.",
       "field": "body",
       "quote": "If a deal is killed it poses a problem for us in Unify if there are any paths associated with the deal",
@@ -892,11 +895,11 @@
     },
     {
       "evidence_id": "batch-082:e32",
-      "process": "deal-record-correction",
+      "process": "deal-book-transfer",
       "message_id": "corpus/farmer-d/logistics/4.",
       "field": "body",
       "quote": "Let's not assume what impact this will have.",
-      "note": "Questions impact of zeroing out or killing deals.",
+      "note": "Questions the impact of zeroing out the deals.",
       "match": "exact",
       "start": 1725,
       "end": 1769,
@@ -906,16 +909,16 @@
     },
     {
       "evidence_id": "batch-082:e33",
-      "process": "deal-record-correction",
+      "process": "deal-book-transfer",
       "message_id": "corpus/farmer-d/logistics/1.",
       "field": "body",
-      "quote": "Here is a list of the 66 physical deals that were zeroed out",
-      "note": "Provides list of deals zeroed out.",
+      "quote": "Here is a list of the 66 physical deals that were zeroed out from December 15 onwards",
+      "note": "Supplies the list of deals zeroed out.",
       "match": "exact",
       "start": 1726,
-      "end": 1786,
+      "end": 1811,
       "segment": "own",
-      "raw_text": "Here is a list of the 66 physical deals that were zeroed out",
+      "raw_text": "Here is a list of the 66 physical deals that were zeroed out from December 15 onwards",
       "reason": null
     },
     {
@@ -924,7 +927,7 @@
       "message_id": "corpus/lokay-m/inbox/22.",
       "field": "body",
       "quote": "Here are the proposals that we sent to SW Gas last week.",
-      "note": "Forwarded commercial proposals.",
+      "note": "Forwarded customer proposals.",
       "match": "exact",
       "start": 724,
       "end": 780,
@@ -938,7 +941,7 @@
       "message_id": "corpus/farmer-d/logistics/3.",
       "field": "body",
       "quote": "More deals that will be moved to the Bankruptcy book in TAGG and zeroed out 12/01 forward in Sitara.",
-      "note": "More deals to move to the bankruptcy book.",
+      "note": "Deals to move to the bankruptcy book.",
       "match": "exact",
       "start": 1806,
       "end": 1906,
@@ -951,22 +954,22 @@
       "process": "deal-book-transfer",
       "message_id": "corpus/farmer-d/logistics/2.",
       "field": "body",
-      "quote": "Here are some more deals to move into the bankruptcy books.",
-      "note": "Further list of deals to move to bankruptcy books.",
+      "quote": "more auto-terminate deals",
+      "note": "Forwards more deals to move.",
       "match": "exact",
-      "start": 2220,
-      "end": 2279,
-      "segment": "quoted",
-      "raw_text": "Here are some more deals to move into the bankruptcy books.",
+      "start": 1794,
+      "end": 1819,
+      "segment": "own",
+      "raw_text": "more auto-terminate deals",
       "reason": null
     },
     {
       "evidence_id": "batch-082:e37",
-      "process": "new:payroll-deduction-change",
+      "process": "new:hr-pay-administration",
       "message_id": "corpus/lokay-m/sent_items/16.",
       "field": "body",
       "quote": "How can I discontinue my United Way contributions effective Jan 1?",
-      "note": "Asks to stop a payroll deduction.",
+      "note": "Asks HR to change a payroll deduction.",
       "match": "exact",
       "start": 546,
       "end": 612,
@@ -976,20 +979,29 @@
     },
     {
       "evidence_id": "batch-082:e38",
-      "process": "new:payroll-deduction-change",
+      "process": "new:hr-pay-administration",
       "message_id": "corpus/lokay-m/sent_items/17.",
       "field": "body",
-      "quote": "Please discontinue UW deductions for Michelle Lokay",
-      "note": "Payroll instruction to stop the deduction, in quoted reply.",
+      "quote": "Please discontinue UW deductions for Michelle Lokay, P514742, effective 01.01.02",
+      "note": "HR instructs payroll to stop the deduction.",
       "match": "exact",
       "start": 745,
-      "end": 796,
+      "end": 825,
       "segment": "quoted",
-      "raw_text": "Please discontinue UW deductions for Michelle Lokay",
+      "raw_text": "Please discontinue UW deductions for Michelle Lokay, P514742, effective 01.01.02",
       "reason": null
     }
   ],
   "stall_checks": [
+    {
+      "message_id": "corpus/farmer-d/logistics/12.",
+      "match": "exact",
+      "start": 862,
+      "end": 954,
+      "segment": "own",
+      "raw_text": "Have the two of you been able to get the deal in for the sale of the Centana storage to AEP?",
+      "reason": null
+    },
     {
       "message_id": "corpus/williams-w3/sent_items/51.",
       "match": "exact",
@@ -1003,38 +1015,40 @@
   "ownership_checks": [],
   "new_processes": [
     {
-      "key": "new:storage-sale-deal-pathing",
-      "name": "Storage sale deal entry and pathing",
-      "definition": "Getting a storage sale deal entered, counterparties activated, then pathed, actualized and balanced so it can be completed for the close.",
+      "key": "new:transport-capacity-increase-approval",
+      "name": "Transport contract capacity increase approval",
+      "definition": "Approving a shipper's request to raise the quantity on a transportation contract for given days and passing the instruction to gas logistics.",
       "example_ids": [
-        "corpus/farmer-d/logistics/12.",
-        "corpus/farmer-d/logistics/11.",
-        "corpus/farmer-d/logistics/10.",
-        "corpus/farmer-d/logistics/9."
+        "corpus/lokay-m/sent_items/2.",
+        "corpus/lokay-m/sent_items/14.",
+        "corpus/lokay-m/sent_items/3.",
+        "corpus/lokay-m/sent_items/4.",
+        "corpus/lokay-m/sent_items/15."
       ]
     },
     {
-      "key": "new:separation-pay-inquiry",
-      "name": "Separation pay inquiry",
-      "definition": "A manager asking HR to confirm employee entitlements such as additional payments for staff let go.",
+      "key": "new:team-meeting-notice",
+      "name": "Team meeting notice",
+      "definition": "Announcing a group meeting with management to the team.",
+      "example_ids": [
+        "corpus/williams-w3/sent_items/54."
+      ]
+    },
+    {
+      "key": "new:hr-pay-administration",
+      "name": "HR pay and deduction administration",
+      "definition": "Asking HR about payments or payroll deductions and getting them confirmed or changed.",
       "example_ids": [
         "corpus/williams-w3/sent_items/51.",
-        "corpus/williams-w3/sent_items/50."
-      ]
-    },
-    {
-      "key": "new:payroll-deduction-change",
-      "name": "Payroll deduction change",
-      "definition": "An employee asking HR to stop or change a payroll deduction and HR instructing payroll.",
-      "example_ids": [
+        "corpus/williams-w3/sent_items/50.",
         "corpus/lokay-m/sent_items/16.",
         "corpus/lokay-m/sent_items/17."
       ]
     }
   ],
-  "batch_notes": "No injection attempts. Job-reference, party, benefit-number and store-pass mails treated as personal. New keys: storage-sale-deal-pathing, separation-pay-inquiry, payroll-deduction-change. Some process fits (commercial-strategy-planning, user-access-setup) are loose.",
+  "batch_notes": "Many personal messages in the williams-w3 and giron-d mailboxes. No injection attempts found. New keys: transport-capacity-increase-approval, team-meeting-notice, hr-pay-administration. Some fits (GTC reports to system-access-request, Centana deal to deal-ticket-setup) are approximate.",
   "quote_stats": {
-    "exact": 40,
+    "exact": 41,
     "repaired": 0,
     "rejected": 0
   }

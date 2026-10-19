@@ -5,7 +5,7 @@
     {
       "id": "corpus/farmer-d/logistics/1268.",
       "processes": [
-        "pipeline-outage-supply-cuts"
+        "pipeline-maintenance-notice"
       ],
       "role": "fyi",
       "stall": null,
@@ -14,7 +14,7 @@
     {
       "id": "corpus/farmer-d/logistics/1272.",
       "processes": [
-        "pipeline-outage-supply-cuts"
+        "pipeline-maintenance-notice"
       ],
       "role": "fyi",
       "stall": null,
@@ -23,16 +23,16 @@
     {
       "id": "corpus/giron-d/sent/745.",
       "processes": [
-        "new:monthly-price-file-update"
+        "new:monthly-agave-pricing"
       ],
-      "role": "fyi",
+      "role": "response",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/1269.",
       "processes": [
-        "desk-coverage-on-call"
+        "on-call-coverage"
       ],
       "role": "fyi",
       "stall": null,
@@ -41,7 +41,7 @@
     {
       "id": "corpus/farmer-d/logistics/1301.",
       "processes": [
-        "desk-coverage-on-call"
+        "on-call-coverage"
       ],
       "role": "fyi",
       "stall": null,
@@ -50,7 +50,7 @@
     {
       "id": "corpus/farmer-d/logistics/1382.",
       "processes": [
-        "desk-coverage-on-call"
+        "on-call-coverage"
       ],
       "role": "fyi",
       "stall": null,
@@ -59,7 +59,7 @@
     {
       "id": "corpus/farmer-d/logistics/1270.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -98,7 +98,7 @@
     {
       "id": "corpus/farmer-d/logistics/1274.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -107,19 +107,16 @@
     {
       "id": "corpus/farmer-d/logistics/1279.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
-      "ownership_claim": {
-        "person": "Carlos",
-        "quote": "I'll be out tomorrow, if you get this done then, let Carlos know and he can"
-      }
+      "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/1275.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -128,7 +125,7 @@
     {
       "id": "corpus/farmer-d/logistics/1277.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": {
@@ -149,7 +146,7 @@
     {
       "id": "corpus/farmer-d/logistics/1281.",
       "processes": [
-        "desk-coverage-on-call"
+        "on-call-coverage"
       ],
       "role": "fyi",
       "stall": null,
@@ -158,7 +155,7 @@
     {
       "id": "corpus/farmer-d/logistics/1282.",
       "processes": [
-        "desk-coverage-on-call"
+        "on-call-coverage"
       ],
       "role": "fyi",
       "stall": null,
@@ -167,7 +164,7 @@
     {
       "id": "corpus/farmer-d/logistics/1284.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -176,7 +173,7 @@
     {
       "id": "corpus/farmer-d/logistics/1285.",
       "processes": [
-        "deal-record-correction"
+        "settlement-resolution"
       ],
       "role": "forward",
       "stall": null,
@@ -192,7 +189,7 @@
     {
       "id": "corpus/farmer-d/logistics/1286.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -201,7 +198,7 @@
     {
       "id": "corpus/farmer-d/logistics/1308.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -210,7 +207,7 @@
     {
       "id": "corpus/farmer-d/logistics/1287.",
       "processes": [
-        "new:hourly-gas-deal-capture-review"
+        "new:hourly-gas-deal-basis-review"
       ],
       "role": "forward",
       "stall": null,
@@ -219,9 +216,9 @@
     {
       "id": "corpus/giron-d/sent/739.",
       "processes": [
-        "pnl-position-reporting"
+        "pnl-reporting"
       ],
-      "role": "fyi",
+      "role": "response",
       "stall": {
         "kind": "rework",
         "quote": "It seems as if I have caused some confusion."
@@ -231,7 +228,7 @@
     {
       "id": "corpus/giron-d/sent/738.",
       "processes": [
-        "deal-record-correction"
+        "new:sitara-demand-charge-adjustment"
       ],
       "role": "response",
       "stall": null,
@@ -240,7 +237,7 @@
     {
       "id": "corpus/farmer-d/logistics/1289.",
       "processes": [
-        "new:parking-deal-procedure"
+        "new:parking-deal-procedures"
       ],
       "role": "fyi",
       "stall": null,
@@ -262,15 +259,17 @@
     },
     {
       "id": "corpus/farmer-d/logistics/1293.",
-      "processes": [],
-      "role": "noise",
+      "processes": [
+        "commercial-strategy-planning"
+      ],
+      "role": "forward",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/1294.",
       "processes": [
-        "system-enhancement-request"
+        "system-issue-resolution"
       ],
       "role": "fyi",
       "stall": null,
@@ -301,39 +300,39 @@
   "evidence": [
     {
       "evidence_id": "batch-018:e0",
-      "process": "pipeline-outage-supply-cuts",
+      "process": "pipeline-maintenance-notice",
       "message_id": "corpus/farmer-d/logistics/1268.",
       "field": "body",
-      "quote": "Meter #0984284 was shut in at approximately 6:30 PM until",
-      "note": "Notice of a leak that shut in a meter on a lateral until repairs.",
+      "quote": "the field detected a leak on the Wilson Creek Lateral",
+      "note": "Notice of a meter shut in for lateral repairs, sent to affected parties.",
       "match": "exact",
-      "start": 926,
-      "end": 983,
+      "start": 855,
+      "end": 908,
       "segment": "own",
-      "raw_text": "Meter #0984284 was shut in at approximately 6:30 PM until",
+      "raw_text": "the field detected a leak on the Wilson Creek Lateral",
       "reason": null
     },
     {
       "evidence_id": "batch-018:e1",
-      "process": "pipeline-outage-supply-cuts",
+      "process": "pipeline-maintenance-notice",
       "message_id": "corpus/farmer-d/logistics/1272.",
       "field": "body",
-      "quote": "meter run and notified pumper that they would remain shut-in until the",
-      "note": "Update that the lateral stays shut in after repairs.",
+      "quote": "Repairs to the Wilson Creek lateral were completed on Monday afternoon",
+      "note": "Update on repair status of a lateral and its shut-in meter.",
       "match": "exact",
-      "start": 1053,
-      "end": 1123,
+      "start": 906,
+      "end": 976,
       "segment": "own",
-      "raw_text": "meter run and notified pumper that they would remain shut-in until the",
+      "raw_text": "Repairs to the Wilson Creek lateral were completed on Monday afternoon",
       "reason": null
     },
     {
       "evidence_id": "batch-018:e2",
-      "process": "new:monthly-price-file-update",
+      "process": "new:monthly-agave-pricing",
       "message_id": "corpus/giron-d/sent/745.",
       "field": "body",
       "quote": "Here is Agave for June.  I also made a change to May.",
-      "note": "Sends monthly Agave figures and a correction to the prior month.",
+      "note": "Monthly Agave figures delivered, with a correction to the prior month.",
       "match": "exact",
       "start": 439,
       "end": 492,
@@ -343,11 +342,11 @@
     },
     {
       "evidence_id": "batch-018:e3",
-      "process": "desk-coverage-on-call",
+      "process": "on-call-coverage",
       "message_id": "corpus/farmer-d/logistics/1269.",
       "field": "body",
       "quote": "980067 Lonestar Katy----daily confirmations",
-      "note": "Lists who covers which desk duties during an absence.",
+      "note": "Desk coverage assignments during an absence.",
       "match": "exact",
       "start": 1235,
       "end": 1278,
@@ -357,11 +356,11 @@
     },
     {
       "evidence_id": "batch-018:e4",
-      "process": "desk-coverage-on-call",
+      "process": "on-call-coverage",
       "message_id": "corpus/farmer-d/logistics/1301.",
       "field": "body",
       "quote": "I will be out of the office this afternoon, beginning at 1 p.m.",
-      "note": "Absence notice naming a coverage contact for the hub.",
+      "note": "Absence notice naming who to call for the hub.",
       "match": "exact",
       "start": 1054,
       "end": 1117,
@@ -371,30 +370,30 @@
     },
     {
       "evidence_id": "batch-018:e5",
-      "process": "desk-coverage-on-call",
+      "process": "on-call-coverage",
       "message_id": "corpus/farmer-d/logistics/1382.",
       "field": "body",
-      "quote": "In my absence please contact",
-      "note": "Absence notice naming who covers.",
+      "quote": "I will be out of the office Tuesday, 9/5th . In my absence please contact",
+      "note": "Absence notice naming the covering contact.",
       "match": "exact",
-      "start": 1331,
+      "start": 1286,
       "end": 1359,
       "segment": "own",
-      "raw_text": "In my absence please contact",
+      "raw_text": "I will be out of the office Tuesday, 9/5th . In my absence please contact",
       "reason": null
     },
     {
       "evidence_id": "batch-018:e6",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1270.",
       "field": "body",
-      "quote": "The above deal is a DD deal effective 7/1/2000-7/5/2000.  Can the deal be",
-      "note": "Asks to extend a deal to cover flow.",
+      "quote": "The above deal is a DD deal effective 7/1/2000-7/5/2000.",
+      "note": "Asks to extend a Sitara deal to cover flow.",
       "match": "exact",
       "start": 463,
-      "end": 536,
+      "end": 519,
       "segment": "own",
-      "raw_text": "The above deal is a DD deal effective 7/1/2000-7/5/2000.  Can the deal be",
+      "raw_text": "The above deal is a DD deal effective 7/1/2000-7/5/2000.",
       "reason": null
     },
     {
@@ -402,36 +401,36 @@
       "process": "trading-book-setup",
       "message_id": "corpus/giron-d/sent/741.",
       "field": "body",
-      "quote": "CENTMIDSTH  826984  Midcon1",
-      "note": "Lists officialized physical and price books.",
+      "quote": "Gas Daily & Price/Basis/Index Books",
+      "note": "Lists the officialized trading books.",
       "match": "exact",
-      "start": 490,
-      "end": 517,
+      "start": 631,
+      "end": 666,
       "segment": "own",
-      "raw_text": "CENTMIDSTH  826984  Midcon1",
+      "raw_text": "Gas Daily & Price/Basis/Index Books",
       "reason": null
     },
     {
       "evidence_id": "batch-018:e8",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1274.",
       "field": "body",
-      "quote": "Daren - I need a deal set up for meter 1459 for June '00.",
-      "note": "Requests a deal for meter flow in a month.",
+      "quote": "I need a deal set up for meter 1459 for June '00.",
+      "note": "Request for a deal at a meter for a month.",
       "match": "exact",
-      "start": 451,
+      "start": 459,
       "end": 508,
       "segment": "own",
-      "raw_text": "Daren - I need a deal set up for meter 1459 for June '00.",
+      "raw_text": "I need a deal set up for meter 1459 for June '00.",
       "reason": null
     },
     {
       "evidence_id": "batch-018:e9",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1279.",
       "field": "body",
       "quote": "Yep, you're right, except it's out there for June 1999.",
-      "note": "Follow-up on the missing deal for the meter.",
+      "note": "Follow-up on the deal set-up for the meter.",
       "match": "exact",
       "start": 455,
       "end": 510,
@@ -441,11 +440,11 @@
     },
     {
       "evidence_id": "batch-018:e10",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1275.",
       "field": "body",
       "quote": "Please put the HPLC 012-41500-02-013 transport contract in POPS at meter",
-      "note": "Requests a transport contract at a meter.",
+      "note": "Request to set up a transport contract at a meter for the month.",
       "match": "exact",
       "start": 742,
       "end": 814,
@@ -455,11 +454,11 @@
     },
     {
       "evidence_id": "batch-018:e11",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1277.",
       "field": "body",
       "quote": "Deal #276494 ended June 15, but there is additional flow on meter #9602 from",
-      "note": "Flow after deal end; asks to extend the deal.",
+      "note": "Asks to extend an expired deal to cover flow.",
       "match": "exact",
       "start": 445,
       "end": 521,
@@ -472,22 +471,22 @@
       "process": "new:path-count-data-validation",
       "message_id": "corpus/farmer-d/logistics/1278.",
       "field": "body",
-      "quote": "We met this afternoon concerning path counts.  Howard will be validating the",
-      "note": "Coordinates validation of path data gathered from Unify.",
+      "quote": "We met this afternoon concerning path counts.",
+      "note": "Validation of path data gathered from Unify.",
       "match": "exact",
       "start": 729,
-      "end": 805,
+      "end": 774,
       "segment": "own",
-      "raw_text": "We met this afternoon concerning path counts.  Howard will be validating the",
+      "raw_text": "We met this afternoon concerning path counts.",
       "reason": null
     },
     {
       "evidence_id": "batch-018:e13",
-      "process": "desk-coverage-on-call",
+      "process": "on-call-coverage",
       "message_id": "corpus/farmer-d/logistics/1281.",
       "field": "body",
       "quote": "During my absence, please contact",
-      "note": "Absence notice naming a cover contact.",
+      "note": "Absence notice naming cover contact.",
       "match": "exact",
       "start": 886,
       "end": 919,
@@ -497,11 +496,11 @@
     },
     {
       "evidence_id": "batch-018:e14",
-      "process": "desk-coverage-on-call",
+      "process": "on-call-coverage",
       "message_id": "corpus/farmer-d/logistics/1282.",
       "field": "body",
       "quote": "I will be on vacation the week of July 17th through July 21st.",
-      "note": "Vacation notice with a referral for risk questions.",
+      "note": "Absence notice referring risk questions to a colleague.",
       "match": "exact",
       "start": 1193,
       "end": 1255,
@@ -511,11 +510,11 @@
     },
     {
       "evidence_id": "batch-018:e15",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/farmer-d/logistics/1284.",
       "field": "body",
       "quote": "I received an invoice from PG&E Texas Industrial Energy for 6/00 production",
-      "note": "Questions an invoice with no matching deal.",
+      "note": "Questions whether an invoiced deal is valid.",
       "match": "exact",
       "start": 495,
       "end": 570,
@@ -525,11 +524,11 @@
     },
     {
       "evidence_id": "batch-018:e16",
-      "process": "deal-record-correction",
+      "process": "settlement-resolution",
       "message_id": "corpus/farmer-d/logistics/1285.",
       "field": "body",
       "quote": "Since we cannot fix the deal, go ahead and put a fixed price of $2.81359 on",
-      "note": "Instruction to correct a deal record price.",
+      "note": "Corrected deal price so payment is correct.",
       "match": "exact",
       "start": 721,
       "end": 796,
@@ -539,11 +538,11 @@
     },
     {
       "evidence_id": "batch-018:e17",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1286.",
       "field": "body",
       "quote": "During the month of June there is flow at meter 6347, but there is no deal.",
-      "note": "Flow at a meter with no deal; asks to extend.",
+      "note": "Asks to extend a deal to cover flow.",
       "match": "exact",
       "start": 443,
       "end": 518,
@@ -553,11 +552,11 @@
     },
     {
       "evidence_id": "batch-018:e18",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1308.",
       "field": "body",
       "quote": "I have flow at meter 989602 for July without a deal to allocate to.",
-      "note": "Flow without a deal; asks to extend or ticket.",
+      "note": "Asks to extend a deal or create a ticket.",
       "match": "exact",
       "start": 484,
       "end": 551,
@@ -567,11 +566,11 @@
     },
     {
       "evidence_id": "batch-018:e19",
-      "process": "new:hourly-gas-deal-capture-review",
+      "process": "new:hourly-gas-deal-basis-review",
       "message_id": "corpus/farmer-d/logistics/1287.",
       "field": "body",
       "quote": "Here is a high level summary of our discussions last week.",
-      "note": "Forwarded proposal on how to capture hourly gas deals.",
+      "note": "Forwarded options for capturing deals on 24 hour versus hourly basis.",
       "match": "exact",
       "start": 1185,
       "end": 1243,
@@ -581,25 +580,25 @@
     },
     {
       "evidence_id": "batch-018:e20",
-      "process": "pnl-position-reporting",
+      "process": "pnl-reporting",
       "message_id": "corpus/giron-d/sent/739.",
       "field": "body",
-      "quote": "was the P&L that did not include People's or Origination's share of the",
+      "quote": "Currently attached is the P&L that was signed off on last night.",
       "note": "Resends the corrected daily P&L.",
       "match": "exact",
-      "start": 640,
-      "end": 711,
+      "start": 721,
+      "end": 785,
       "segment": "own",
-      "raw_text": "was the P&L that did not include People's or Origination's share of the",
+      "raw_text": "Currently attached is the P&L that was signed off on last night.",
       "reason": null
     },
     {
       "evidence_id": "batch-018:e21",
-      "process": "deal-record-correction",
+      "process": "new:sitara-demand-charge-adjustment",
       "message_id": "corpus/giron-d/sent/738.",
       "field": "body",
       "quote": "Please update the Sitara demand charges on the following deals to match the",
-      "note": "Request to update Sitara deal charges; replied Done.",
+      "note": "Request to update demand charges, answered Done.",
       "match": "exact",
       "start": 758,
       "end": 833,
@@ -609,11 +608,11 @@
     },
     {
       "evidence_id": "batch-018:e22",
-      "process": "new:parking-deal-procedure",
+      "process": "new:parking-deal-procedures",
       "message_id": "corpus/farmer-d/logistics/1289.",
       "field": "body",
       "quote": "Create a Storage deal in SITARA - Service Type: Parking",
-      "note": "Gives steps for booking parking deals.",
+      "note": "Steps for recording parking deals in Sitara and Unify.",
       "match": "exact",
       "start": 1160,
       "end": 1215,
@@ -623,11 +622,25 @@
     },
     {
       "evidence_id": "batch-018:e23",
-      "process": "system-enhancement-request",
+      "process": "commercial-strategy-planning",
+      "message_id": "corpus/farmer-d/logistics/1293.",
+      "field": "body",
+      "quote": "As I mentioned in our HPL staff meeting we are investigating the merits of",
+      "note": "Management message on HPL strategy options passed on to staff.",
+      "match": "exact",
+      "start": 7863,
+      "end": 7937,
+      "segment": "forwarded",
+      "raw_text": "As I mentioned in our HPL staff meeting we are investigating the merits of",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-018:e24",
+      "process": "system-issue-resolution",
       "message_id": "corpus/farmer-d/logistics/1294.",
       "field": "body",
       "quote": "This new release will be automatically installed within the next few days.",
-      "note": "Release notice of new tool features.",
+      "note": "System release notice and its effect on users.",
       "match": "exact",
       "start": 9218,
       "end": 9292,
@@ -656,23 +669,12 @@
       "reason": null
     }
   ],
-  "ownership_checks": [
-    {
-      "message_id": "corpus/farmer-d/logistics/1279.",
-      "person": "Carlos",
-      "match": "exact",
-      "start": 534,
-      "end": 609,
-      "segment": "own",
-      "raw_text": "I'll be out tomorrow, if you get this done then, let Carlos know and he can",
-      "reason": null
-    }
-  ],
+  "ownership_checks": [],
   "new_processes": [
     {
-      "key": "new:monthly-price-file-update",
-      "name": "Monthly price file update",
-      "definition": "Preparing monthly index or differential figures for a pipeline or location and correcting earlier months when the calculation basis was wrong.",
+      "key": "new:monthly-agave-pricing",
+      "name": "Monthly Agave pricing file",
+      "definition": "Preparing the monthly Agave figures, including differentials off a location index, and correcting earlier months.",
       "example_ids": [
         "corpus/giron-d/sent/745."
       ]
@@ -680,29 +682,37 @@
     {
       "key": "new:path-count-data-validation",
       "name": "Path count data validation",
-      "definition": "Validating path data pulled from the scheduling system for path-count reporting and agreeing the deadline.",
+      "definition": "Gathering and validating path data from Unify to support path counts.",
       "example_ids": [
         "corpus/farmer-d/logistics/1278."
       ]
     },
     {
-      "key": "new:hourly-gas-deal-capture-review",
-      "name": "Hourly gas deal capture review",
-      "definition": "Reviewing proposals on how hourly gas deals are captured and positions shown, and collecting comments from desks.",
+      "key": "new:hourly-gas-deal-basis-review",
+      "name": "Hourly gas deal basis review",
+      "definition": "Reviewing how deals and positions are captured, on a 24 hour flow rate or hourly flow basis.",
       "example_ids": [
         "corpus/farmer-d/logistics/1287."
       ]
     },
     {
-      "key": "new:parking-deal-procedure",
-      "name": "Parking deal procedure",
-      "definition": "Guidance on booking parking and loan transactions as storage and exchange deals in the deal and scheduling systems.",
+      "key": "new:sitara-demand-charge-adjustment",
+      "name": "Sitara demand charge adjustment",
+      "definition": "Updating Sitara demand charges on deals to match actualized pipeline statements, then notifying so Unify can be redrafted.",
+      "example_ids": [
+        "corpus/giron-d/sent/738."
+      ]
+    },
+    {
+      "key": "new:parking-deal-procedures",
+      "name": "Parking deal procedures",
+      "definition": "Recording gas parking and loans in Sitara and Unify with storage and exchange deals.",
       "example_ids": [
         "corpus/farmer-d/logistics/1289."
       ]
     }
   ],
-  "batch_notes": "No injection attempts found. Out-of-office notices tagged desk-coverage-on-call where they name cover contacts. 1291 and 1293 treated as noise (lead referral, confidential HPL announcement). Four new keys proposed.",
+  "batch_notes": "No injection attempts found. Out-of-office notices that name coverage were tagged on-call-coverage despite its personal out-of-office exclusion. 1291 treated as noise. Five new keys proposed.",
   "quote_stats": {
     "exact": 27,
     "repaired": 0,

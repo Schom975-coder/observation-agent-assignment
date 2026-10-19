@@ -5,7 +5,7 @@
     {
       "id": "corpus/farmer-d/logistics/1968.",
       "processes": [
-        "new:contract-mdq-increase-request"
+        "new:contract-mdq-change"
       ],
       "role": "request",
       "stall": null,
@@ -14,19 +14,16 @@
     {
       "id": "corpus/farmer-d/logistics/1969.",
       "processes": [
-        "deal-record-correction"
+        "deal-book-transfer"
       ],
       "role": "request",
-      "stall": {
-        "kind": "handoff_confusion",
-        "quote": "Should I change the counterparty on this sale, or is that handled by"
-      },
+      "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/sent/391.",
       "processes": [
-        "curve-postid-mapping"
+        "new:matrix-check"
       ],
       "role": "fyi",
       "stall": null,
@@ -35,19 +32,16 @@
     {
       "id": "corpus/farmer-d/logistics/1973.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution"
       ],
       "role": "request",
-      "stall": {
-        "kind": "other",
-        "quote": "Volume Mgmt had previously requested a deal to cover these volumes from"
-      },
+      "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/1974.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -56,7 +50,7 @@
     {
       "id": "corpus/farmer-d/logistics/1975.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -65,7 +59,7 @@
     {
       "id": "corpus/farmer-d/logistics/1976.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "imbalance-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -74,7 +68,8 @@
     {
       "id": "corpus/farmer-d/logistics/1977.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution",
+        "deal-ticket-setup"
       ],
       "role": "response",
       "stall": null,
@@ -86,7 +81,8 @@
     {
       "id": "corpus/farmer-d/logistics/1981.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup",
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -95,7 +91,8 @@
     {
       "id": "corpus/farmer-d/logistics/2003.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution",
+        "deal-ticket-setup"
       ],
       "role": "response",
       "stall": null,
@@ -139,7 +136,7 @@
     {
       "id": "corpus/farmer-d/logistics/1978.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -148,7 +145,7 @@
     {
       "id": "corpus/farmer-d/logistics/1979.",
       "processes": [
-        "gas-nomination-handling"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -157,7 +154,7 @@
     {
       "id": "corpus/farmer-d/logistics/1980.",
       "processes": [
-        "gas-nomination-handling"
+        "deal-ticket-setup"
       ],
       "role": "response",
       "stall": null,
@@ -166,7 +163,7 @@
     {
       "id": "corpus/farmer-d/logistics/1982.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -175,19 +172,16 @@
     {
       "id": "corpus/farmer-d/logistics/1983.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "response",
-      "stall": {
-        "kind": "rework",
-        "quote": "Jackie, 465490 is not a deal between ENA and HPL.."
-      },
+      "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/1987.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "response",
       "stall": null,
@@ -196,12 +190,12 @@
     {
       "id": "corpus/farmer-d/logistics/1999.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": {
         "kind": "waiting_on_reply",
-        "quote": "I know that this is a busy part of the day for you."
+        "quote": "can you please extend deal #465322 for cover a flow volume of 140"
       },
       "ownership_claim": null
     },
@@ -215,7 +209,7 @@
     {
       "id": "corpus/farmer-d/logistics/1985.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -224,7 +218,7 @@
     {
       "id": "corpus/farmer-d/logistics/1986.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -233,7 +227,7 @@
     {
       "id": "corpus/farmer-d/logistics/1988.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -242,7 +236,7 @@
     {
       "id": "corpus/farmer-d/logistics/1990.",
       "processes": [
-        "desk-coverage-on-call"
+        "on-call-coverage"
       ],
       "role": "request",
       "stall": null,
@@ -251,7 +245,7 @@
     {
       "id": "corpus/farmer-d/logistics/1991.",
       "processes": [
-        "desk-coverage-on-call"
+        "on-call-coverage"
       ],
       "role": "response",
       "stall": null,
@@ -260,7 +254,7 @@
     {
       "id": "corpus/farmer-d/logistics/1993.",
       "processes": [
-        "desk-coverage-on-call"
+        "on-call-coverage"
       ],
       "role": "response",
       "stall": null,
@@ -269,7 +263,7 @@
     {
       "id": "corpus/farmer-d/logistics/1994.",
       "processes": [
-        "desk-coverage-on-call"
+        "on-call-coverage"
       ],
       "role": "response",
       "stall": null,
@@ -278,7 +272,7 @@
     {
       "id": "corpus/farmer-d/logistics/1995.",
       "processes": [
-        "desk-coverage-on-call"
+        "on-call-coverage"
       ],
       "role": "response",
       "stall": null,
@@ -287,7 +281,7 @@
     {
       "id": "corpus/farmer-d/logistics/1996.",
       "processes": [
-        "desk-coverage-on-call"
+        "on-call-coverage"
       ],
       "role": "response",
       "stall": null,
@@ -296,7 +290,7 @@
     {
       "id": "corpus/farmer-d/logistics/1997.",
       "processes": [
-        "desk-coverage-on-call"
+        "on-call-coverage"
       ],
       "role": "fyi",
       "stall": null,
@@ -305,13 +299,10 @@
     {
       "id": "corpus/farmer-d/logistics/1992.",
       "processes": [
-        "user-access-setup"
+        "system-access-request"
       ],
       "role": "request",
-      "stall": {
-        "kind": "handoff_confusion",
-        "quote": "Daren, I completely forgot about Stacey's CQG ... was I supposed to send in"
-      },
+      "stall": null,
       "ownership_claim": null
     },
     {
@@ -326,24 +317,21 @@
     {
       "id": "corpus/giron-d/sent/383.",
       "processes": [
-        "new:deal-confirmation-tagg-sitara"
+        "new:tagg-sitara-deal-check"
       ],
       "role": "response",
-      "stall": {
-        "kind": "waiting_on_reply",
-        "quote": "When will this be ready?"
-      },
+      "stall": null,
       "ownership_claim": null
     }
   ],
   "evidence": [
     {
       "evidence_id": "batch-036:e0",
-      "process": "new:contract-mdq-increase-request",
+      "process": "new:contract-mdq-change",
       "message_id": "corpus/farmer-d/logistics/1968.",
       "field": "body",
       "quote": "Can you please increase HPLC's MDQ for contract 5910 from 50,000 MMBTU's to",
-      "note": "Asks for a contract MDQ increase.",
+      "note": "Requests a change to the maximum daily quantity on a contract.",
       "match": "exact",
       "start": 685,
       "end": 760,
@@ -353,11 +341,11 @@
     },
     {
       "evidence_id": "batch-036:e1",
-      "process": "deal-record-correction",
+      "process": "deal-book-transfer",
       "message_id": "corpus/farmer-d/logistics/1969.",
       "field": "body",
       "quote": "Should I change the counterparty on this sale, or is that handled by",
-      "note": "Asks about changing counterparty on a deal after trades were reassigned.",
+      "note": "Asks about changing the counterparty when trades are moved from Cannon to another party.",
       "match": "exact",
       "start": 464,
       "end": 532,
@@ -367,11 +355,11 @@
     },
     {
       "evidence_id": "batch-036:e2",
-      "process": "curve-postid-mapping",
+      "process": "new:matrix-check",
       "message_id": "corpus/giron-d/sent/391.",
       "field": "body",
       "quote": "Kam is out so I checked for Central also.",
-      "note": "Matrix check for the Central region; weak fit, subject Matrix.",
+      "note": "Reports a routine matrix check covering another region.",
       "match": "exact",
       "start": 438,
       "end": 479,
@@ -381,25 +369,25 @@
     },
     {
       "evidence_id": "batch-036:e3",
-      "process": "meter-flow-deal-coverage",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1973.",
       "field": "body",
-      "quote": "Here are the months and volumes that need resolution:",
-      "note": "Meter volumes without a covering deal need a deal or write-off.",
+      "quote": "Volume Mgmt had previously requested a deal to cover these volumes from",
+      "note": "Volumes flowed at a meter with no deal; resolution or write-off needed.",
       "match": "exact",
-      "start": 1174,
-      "end": 1227,
+      "start": 1067,
+      "end": 1138,
       "segment": "own",
-      "raw_text": "Here are the months and volumes that need resolution:",
+      "raw_text": "Volume Mgmt had previously requested a deal to cover these volumes from",
       "reason": null
     },
     {
       "evidence_id": "batch-036:e4",
-      "process": "meter-flow-deal-coverage",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1974.",
       "field": "body",
       "quote": "On 11/30/99, the above meter has recorded flow of 26 Mmbtus.",
-      "note": "Meter flow with no deal; approval to write off requested.",
+      "note": "Flow at a meter without a deal; write-off approval requested.",
       "match": "exact",
       "start": 553,
       "end": 613,
@@ -409,11 +397,11 @@
     },
     {
       "evidence_id": "batch-036:e5",
-      "process": "meter-flow-deal-coverage",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1975.",
       "field": "body",
       "quote": "On 4/18/99, the above meter recorded flow of 101 Mmbtus.",
-      "note": "Meter flow with no deal; write-off approval requested.",
+      "note": "Flow at a meter without a deal; write-off approval requested.",
       "match": "exact",
       "start": 556,
       "end": 612,
@@ -423,11 +411,11 @@
     },
     {
       "evidence_id": "batch-036:e6",
-      "process": "volume-imbalance-reconciliation",
+      "process": "imbalance-resolution",
       "message_id": "corpus/farmer-d/logistics/1976.",
       "field": "body",
       "quote": "I received a call from the plant, apparently, they shorted us 60 Dth on the",
-      "note": "Plant short and over-delivered volumes need allocation decision.",
+      "note": "Volume shortfall and unnominated flow to be settled with the pipeline.",
       "match": "exact",
       "start": 611,
       "end": 686,
@@ -437,25 +425,39 @@
     },
     {
       "evidence_id": "batch-036:e7",
-      "process": "meter-flow-deal-coverage",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1977.",
       "field": "body",
-      "quote": "Jackie, Talk to Darren about this.",
-      "note": "Deal extension needed at the meter to allocate volumes.",
+      "quote": "Unify - TETCO  to cover the small overflow volume between HPL and ENA.",
+      "note": "Overflow volume at a meter being allocated and covered.",
       "match": "exact",
-      "start": 674,
-      "end": 708,
+      "start": 905,
+      "end": 975,
       "segment": "own",
-      "raw_text": "Jackie, Talk to Darren about this.",
+      "raw_text": "Unify - TETCO  to cover the small overflow volume between HPL and ENA.",
       "reason": null
     },
     {
       "evidence_id": "batch-036:e8",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
+      "message_id": "corpus/farmer-d/logistics/1977.",
+      "field": "body",
+      "quote": "Jackie, Talk to Darren about this. The deal you reference is an HPL deal with",
+      "note": "Deal extension needed for allocation; points to deal owner.",
+      "match": "exact",
+      "start": 674,
+      "end": 751,
+      "segment": "own",
+      "raw_text": "Jackie, Talk to Darren about this. The deal you reference is an HPL deal with",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-036:e9",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1981.",
       "field": "body",
       "quote": "Daren can you please extend Deal #422516 to cover flow  of 9 dec. for",
-      "note": "Request to extend a deal to cover meter flow.",
+      "note": "Requests extending a deal to cover flow on a date.",
       "match": "exact",
       "start": 611,
       "end": 680,
@@ -464,12 +466,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-036:e9",
-      "process": "meter-flow-deal-coverage",
+      "evidence_id": "batch-036:e10",
+      "process": "meter-flow-resolution",
+      "message_id": "corpus/farmer-d/logistics/1981.",
+      "field": "body",
+      "quote": "Volume Mgmt is trying to clear up these issues.",
+      "note": "Clearing unallocated meter flow.",
+      "match": "exact",
+      "start": 757,
+      "end": 804,
+      "segment": "own",
+      "raw_text": "Volume Mgmt is trying to clear up these issues.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-036:e11",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/2003.",
       "field": "body",
       "quote": "It did but TETCO prorated the flow between the two parties (Dynegy and ENA)",
-      "note": "Discussion of whether a deal covers the meter flow.",
+      "note": "Explains how meter flow was split between parties.",
       "match": "exact",
       "start": 469,
       "end": 544,
@@ -478,12 +494,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-036:e10",
-      "process": "meter-flow-deal-coverage",
+      "evidence_id": "batch-036:e12",
+      "process": "deal-ticket-setup",
+      "message_id": "corpus/farmer-d/logistics/2003.",
+      "field": "body",
+      "quote": "Didn't the deal that Victor extended cover these days?",
+      "note": "Question on whether the extended deal already covers the days (quoted history).",
+      "match": "exact",
+      "start": 674,
+      "end": 728,
+      "segment": "quoted",
+      "raw_text": "Didn't the deal that Victor extended cover these days?",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-036:e13",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1978.",
       "field": "body",
       "quote": "On 9/15/99, the above meter recorded flow of 2,476 Mmbtus.",
-      "note": "Meter flow with expired deal; extension or write-off needed.",
+      "note": "Flow at a meter after deal expiry; extend, new deal or write-off.",
       "match": "exact",
       "start": 556,
       "end": 614,
@@ -492,12 +522,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-036:e11",
-      "process": "gas-nomination-handling",
+      "evidence_id": "batch-036:e14",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1979.",
       "field": "body",
       "quote": "Duke is calling regarding the volumes we are delivering into Channel at the",
-      "note": "Delivery volumes at a plant meter need to be moved.",
+      "note": "Delivery volumes at a plant meter problem.",
       "match": "exact",
       "start": 594,
       "end": 669,
@@ -506,12 +536,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-036:e12",
-      "process": "gas-nomination-handling",
+      "evidence_id": "batch-036:e15",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1980.",
       "field": "body",
       "quote": "I am updating deal ticket 503046, the HPL sale to El Paso Merchant to move",
-      "note": "Moves sale volumes to another meter.",
+      "note": "Updates a deal ticket to move sale to another meter.",
       "match": "exact",
       "start": 742,
       "end": 816,
@@ -520,12 +550,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-036:e13",
-      "process": "meter-flow-deal-coverage",
+      "evidence_id": "batch-036:e16",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1982.",
       "field": "body",
       "quote": "Can you extend deal #465490 to cover a flow volume of 141 dec. for 11/21/2000?",
-      "note": "Request to extend a deal for meter flow.",
+      "note": "Requests a deal extension to cover flow.",
       "match": "exact",
       "start": 785,
       "end": 863,
@@ -534,26 +564,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-036:e14",
-      "process": "meter-flow-deal-coverage",
+      "evidence_id": "batch-036:e17",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1983.",
       "field": "body",
-      "quote": "Jackie, 465490 is not a deal between ENA and HPL..",
-      "note": "Reply that the named deal is the wrong one to extend.",
+      "quote": "Jackie, 465490 is not a deal between ENA and HPL.. It is a Zone 5 Tennessee",
+      "note": "Answers the extension request, identifying the wrong deal.",
       "match": "exact",
       "start": 917,
-      "end": 967,
+      "end": 992,
       "segment": "own",
-      "raw_text": "Jackie, 465490 is not a deal between ENA and HPL..",
+      "raw_text": "Jackie, 465490 is not a deal between ENA and HPL.. It is a Zone 5 Tennessee",
       "reason": null
     },
     {
-      "evidence_id": "batch-036:e15",
-      "process": "meter-flow-deal-coverage",
+      "evidence_id": "batch-036:e18",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1987.",
       "field": "body",
       "quote": "I extended the deal 462490 for 11/21 to cover the extra volume.",
-      "note": "Deal extended to cover meter flow.",
+      "note": "Confirms a deal was extended.",
       "match": "exact",
       "start": 917,
       "end": 980,
@@ -562,12 +592,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-036:e16",
-      "process": "meter-flow-deal-coverage",
+      "evidence_id": "batch-036:e19",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1999.",
       "field": "body",
       "quote": "can you please extend deal #465322 for cover a flow volume of 140",
-      "note": "Follow-up request to extend a deal.",
+      "note": "Repeat request to extend a deal.",
       "match": "exact",
       "start": 714,
       "end": 779,
@@ -576,26 +606,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-036:e17",
-      "process": "meter-flow-deal-coverage",
+      "evidence_id": "batch-036:e20",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1985.",
       "field": "body",
-      "quote": "Currently, these volumes are being booked under the HPL Strangers Gas",
-      "note": "Meter flow with no deal; deal or write-off needed.",
+      "quote": "During the period of 9/1/99 to 9/30/99, the above meter has recorded flow on",
+      "note": "Meter flow without deals; deal or write-off needed.",
       "match": "exact",
-      "start": 1569,
-      "end": 1638,
+      "start": 561,
+      "end": 637,
       "segment": "own",
-      "raw_text": "Currently, these volumes are being booked under the HPL Strangers Gas",
+      "raw_text": "During the period of 9/1/99 to 9/30/99, the above meter has recorded flow on",
       "reason": null
     },
     {
-      "evidence_id": "batch-036:e18",
-      "process": "meter-flow-deal-coverage",
+      "evidence_id": "batch-036:e21",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1986.",
       "field": "body",
       "quote": "On 9/24/99, the above meter recorded flow of 437 Mmbtus.",
-      "note": "Meter flow with no deal; deal or write-off needed.",
+      "note": "Meter flow without deal; deal or write-off needed.",
       "match": "exact",
       "start": 561,
       "end": 617,
@@ -604,26 +634,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-036:e19",
-      "process": "meter-flow-deal-coverage",
+      "evidence_id": "batch-036:e22",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1988.",
       "field": "body",
-      "quote": "Currently, Logistics has these volumes recorded to HPL Strangers Gas",
-      "note": "Meter flow with no deal; deal or write-off needed.",
+      "quote": "During the period of 9/5/99 thru 9/6/99, the above meter recorded flow of",
+      "note": "Meter flow without deal; deal or write-off needed.",
       "match": "exact",
-      "start": 712,
-      "end": 780,
+      "start": 562,
+      "end": 635,
       "segment": "own",
-      "raw_text": "Currently, Logistics has these volumes recorded to HPL Strangers Gas",
+      "raw_text": "During the period of 9/5/99 thru 9/6/99, the above meter recorded flow of",
       "reason": null
     },
     {
-      "evidence_id": "batch-036:e20",
-      "process": "desk-coverage-on-call",
+      "evidence_id": "batch-036:e23",
+      "process": "on-call-coverage",
       "message_id": "corpus/farmer-d/logistics/1990.",
       "field": "body",
       "quote": "We will need a small staff to handle potential trades for Wed. the 27th.",
-      "note": "Holiday staffing request.",
+      "note": "Holiday staffing plan request.",
       "match": "exact",
       "start": 985,
       "end": 1057,
@@ -632,8 +662,8 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-036:e21",
-      "process": "desk-coverage-on-call",
+      "evidence_id": "batch-036:e24",
+      "process": "on-call-coverage",
       "message_id": "corpus/farmer-d/logistics/1991.",
       "field": "body",
       "quote": "Mary since I will be on call I'll be in here.",
@@ -646,8 +676,8 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-036:e22",
-      "process": "desk-coverage-on-call",
+      "evidence_id": "batch-036:e25",
+      "process": "on-call-coverage",
       "message_id": "corpus/farmer-d/logistics/1993.",
       "field": "body",
       "quote": "I'll be here on Tuesday.",
@@ -660,8 +690,8 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-036:e23",
-      "process": "desk-coverage-on-call",
+      "evidence_id": "batch-036:e26",
+      "process": "on-call-coverage",
       "message_id": "corpus/farmer-d/logistics/1994.",
       "field": "body",
       "quote": "Mary - I can come in on Tuesday.",
@@ -674,8 +704,8 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-036:e24",
-      "process": "desk-coverage-on-call",
+      "evidence_id": "batch-036:e27",
+      "process": "on-call-coverage",
       "message_id": "corpus/farmer-d/logistics/1995.",
       "field": "body",
       "quote": "I will be here Tuesday, also.",
@@ -688,12 +718,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-036:e25",
-      "process": "desk-coverage-on-call",
+      "evidence_id": "batch-036:e28",
+      "process": "on-call-coverage",
       "message_id": "corpus/farmer-d/logistics/1996.",
       "field": "body",
       "quote": "We will need a small staff to handle potential trades for Wed. the 27th.",
-      "note": "Short volunteer reply; quoted request shows holiday staffing.",
+      "note": "Short volunteer reply; quoted request shows the holiday staffing process.",
       "match": "exact",
       "start": 1647,
       "end": 1719,
@@ -702,12 +732,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-036:e26",
-      "process": "desk-coverage-on-call",
+      "evidence_id": "batch-036:e29",
+      "process": "on-call-coverage",
       "message_id": "corpus/farmer-d/logistics/1997.",
       "field": "body",
       "quote": "The following Logistics personnel will be in the office on Tuesday:",
-      "note": "Lists staff covering the holiday.",
+      "note": "Lists who will staff the holiday.",
       "match": "exact",
       "start": 1184,
       "end": 1251,
@@ -716,12 +746,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-036:e27",
-      "process": "user-access-setup",
+      "evidence_id": "batch-036:e30",
+      "process": "system-access-request",
       "message_id": "corpus/farmer-d/logistics/1992.",
       "field": "body",
       "quote": "Daren, I completely forgot about Stacey's CQG ... was I supposed to send in",
-      "note": "Access request for a trading tool for an employee.",
+      "note": "Asks whether an access request for a user's CQG was submitted.",
       "match": "exact",
       "start": 453,
       "end": 528,
@@ -730,12 +760,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-036:e28",
+      "evidence_id": "batch-036:e31",
       "process": "trading-book-setup",
       "message_id": "corpus/giron-d/sent/384.",
       "field": "body",
       "quote": "We have new book names in TAGG for our intramonth portfolios and it is",
-      "note": "Announces new book names.",
+      "note": "Announces new trading book names in the risk system.",
       "match": "exact",
       "start": 1125,
       "end": 1195,
@@ -744,12 +774,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-036:e29",
-      "process": "new:deal-confirmation-tagg-sitara",
+      "evidence_id": "batch-036:e32",
+      "process": "new:tagg-sitara-deal-check",
       "message_id": "corpus/giron-d/sent/383.",
       "field": "body",
       "quote": "The deals look good in both Tagg and Sitara, but the link field in Tagg has",
-      "note": "Confirms deals in Tagg and Sitara before roll-out.",
+      "note": "Verifies deals in Tagg and Sitara before roll-out.",
       "match": "exact",
       "start": 457,
       "end": 532,
@@ -760,57 +790,12 @@
   ],
   "stall_checks": [
     {
-      "message_id": "corpus/farmer-d/logistics/1969.",
-      "match": "exact",
-      "start": 464,
-      "end": 532,
-      "segment": "own",
-      "raw_text": "Should I change the counterparty on this sale, or is that handled by",
-      "reason": null
-    },
-    {
-      "message_id": "corpus/farmer-d/logistics/1973.",
-      "match": "exact",
-      "start": 1067,
-      "end": 1138,
-      "segment": "own",
-      "raw_text": "Volume Mgmt had previously requested a deal to cover these volumes from",
-      "reason": null
-    },
-    {
-      "message_id": "corpus/farmer-d/logistics/1983.",
-      "match": "exact",
-      "start": 917,
-      "end": 967,
-      "segment": "own",
-      "raw_text": "Jackie, 465490 is not a deal between ENA and HPL..",
-      "reason": null
-    },
-    {
       "message_id": "corpus/farmer-d/logistics/1999.",
       "match": "exact",
-      "start": 632,
-      "end": 683,
+      "start": 714,
+      "end": 779,
       "segment": "own",
-      "raw_text": "I know that this is a busy part of the day for you.",
-      "reason": null
-    },
-    {
-      "message_id": "corpus/farmer-d/logistics/1992.",
-      "match": "exact",
-      "start": 453,
-      "end": 528,
-      "segment": "own",
-      "raw_text": "Daren, I completely forgot about Stacey's CQG ... was I supposed to send in",
-      "reason": null
-    },
-    {
-      "message_id": "corpus/giron-d/sent/383.",
-      "match": "exact",
-      "start": 578,
-      "end": 602,
-      "segment": "own",
-      "raw_text": "When will this be ready?",
+      "raw_text": "can you please extend deal #465322 for cover a flow volume of 140",
       "reason": null
     }
   ],
@@ -828,25 +813,33 @@
   ],
   "new_processes": [
     {
-      "key": "new:contract-mdq-increase-request",
-      "name": "Contract MDQ increase request",
-      "definition": "Asking a contract administrator to raise the maximum daily quantity on a transport or sales contract effective a given date.",
+      "key": "new:contract-mdq-change",
+      "name": "Contract MDQ change request",
+      "definition": "Asking a pipeline or contract administrator to change the maximum daily quantity on a transport contract from an effective date.",
       "example_ids": [
         "corpus/farmer-d/logistics/1968."
       ]
     },
     {
-      "key": "new:deal-confirmation-tagg-sitara",
-      "name": "Deal confirmation across Tagg and Sitara",
-      "definition": "Checking new deals in the Tagg and Sitara systems for pricing, risk book and hedges, and confirming links between the systems before roll-out.",
+      "key": "new:matrix-check",
+      "name": "Matrix check",
+      "definition": "Checking the regional matrix and reporting the result to the requester, including covering for absent colleagues.",
+      "example_ids": [
+        "corpus/giron-d/sent/391."
+      ]
+    },
+    {
+      "key": "new:tagg-sitara-deal-check",
+      "name": "Tagg and Sitara deal verification",
+      "definition": "Reviewing new deals in Tagg stage and Sitara parallel for pricing, book assignment and link fields before roll-out.",
       "example_ids": [
         "corpus/giron-d/sent/383."
       ]
     }
   ],
-  "batch_notes": "No injection attempts found. Giron personal messages (stock, jokes, forwards) tagged personal. Message giron/sent/391 (Matrix) is a weak fit for curve-postid-mapping. New keys proposed: contract-mdq-increase-request, deal-confirmation-tagg-sitara.",
+  "batch_notes": "Mostly Logistics mail: meter write-off requests, deal extensions, holiday staffing. Giron personal mail with a stockbroker friend tagged personal. New keys proposed: contract-mdq-change, matrix-check (thin evidence), tagg-sitara-deal-check. No injection attempts found.",
   "quote_stats": {
-    "exact": 37,
+    "exact": 35,
     "repaired": 0,
     "rejected": 0
   }

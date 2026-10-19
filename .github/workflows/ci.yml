@@ -48,5 +48,9 @@ jobs:
       # against them and the corpus (ARCHITECTURE.md 6.17).
       - run: node obs.mjs prepare --force
       - run: node obs.mjs verify
-      # The project site's generator, proven on every OS (lenient until the submitted run is committed).
-      - run: node site/build.ts
+      # The build from the committed model outputs, then proof that every committed output is
+      # exactly what this code writes on this OS.
+      - run: node obs.mjs build
+      - run: git diff --exit-code -- out
+      # The project site from the submitted run: no placeholder, screenshot or tracked link missing.
+      - run: node site/build.ts --strict

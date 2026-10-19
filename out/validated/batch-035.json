@@ -19,7 +19,7 @@
     {
       "id": "corpus/giron-d/sent/414.",
       "processes": [
-        "user-access-setup"
+        "system-access-request"
       ],
       "role": "response",
       "stall": null,
@@ -28,7 +28,7 @@
     {
       "id": "corpus/giron-d/sent/412.",
       "processes": [
-        "user-access-setup"
+        "system-access-request"
       ],
       "role": "forward",
       "stall": null,
@@ -37,14 +37,15 @@
     {
       "id": "corpus/giron-d/sent/413.",
       "processes": [],
-      "role": "personal",
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/sent/410.",
       "processes": [
-        "trading-book-setup"
+        "trading-book-setup",
+        "curve-postid-maintenance"
       ],
       "role": "forward",
       "stall": null,
@@ -53,7 +54,7 @@
     {
       "id": "corpus/giron-d/sent/411.",
       "processes": [
-        "curve-postid-mapping"
+        "curve-postid-maintenance"
       ],
       "role": "request",
       "stall": null,
@@ -61,15 +62,17 @@
     },
     {
       "id": "corpus/farmer-d/logistics/1553.",
-      "processes": [],
-      "role": "personal",
+      "processes": [
+        "new:job-shadowing-request"
+      ],
+      "role": "request",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/1554.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "settlement-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -126,14 +129,14 @@
     {
       "id": "corpus/giron-d/sent/403.",
       "processes": [],
-      "role": "noise",
+      "role": "personal",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/sent/402.",
       "processes": [
-        "pnl-position-reporting"
+        "new:grms-spreadsheet-sharing"
       ],
       "role": "forward",
       "stall": null,
@@ -142,7 +145,7 @@
     {
       "id": "corpus/giron-d/sent/401.",
       "processes": [
-        "new:risk-book-officialization-guidance"
+        "new:book-officialization-for-credit"
       ],
       "role": "forward",
       "stall": null,
@@ -151,14 +154,14 @@
     {
       "id": "corpus/farmer-d/logistics/1956.",
       "processes": [],
-      "role": "noise",
+      "role": "personal",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/1557.",
       "processes": [
-        "gas-nomination-handling"
+        "customer-volume-confirmation"
       ],
       "role": "fyi",
       "stall": null,
@@ -167,7 +170,7 @@
     {
       "id": "corpus/farmer-d/logistics/1558.",
       "processes": [
-        "gas-nomination-handling"
+        "customer-volume-confirmation"
       ],
       "role": "response",
       "stall": null,
@@ -183,7 +186,7 @@
     {
       "id": "corpus/farmer-d/logistics/1960.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -192,7 +195,7 @@
     {
       "id": "corpus/farmer-d/logistics/1961.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -201,7 +204,7 @@
     {
       "id": "corpus/farmer-d/logistics/1963.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "meter-flow-resolution"
       ],
       "role": "response",
       "stall": null,
@@ -210,7 +213,7 @@
     {
       "id": "corpus/farmer-d/logistics/1559.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -226,7 +229,7 @@
     {
       "id": "corpus/farmer-d/logistics/1560.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -235,7 +238,7 @@
     {
       "id": "corpus/giron-d/sent/399.",
       "processes": [
-        "new:schedule-c-release-notice"
+        "month-end-close"
       ],
       "role": "fyi",
       "stall": null,
@@ -244,7 +247,7 @@
     {
       "id": "corpus/giron-d/sent/392.",
       "processes": [
-        "new:schedule-c-release-notice"
+        "month-end-close"
       ],
       "role": "fyi",
       "stall": null,
@@ -253,26 +256,23 @@
     {
       "id": "corpus/giron-d/sent/398.",
       "processes": [],
-      "role": "noise",
+      "role": "personal",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/sent/396.",
       "processes": [
-        "new:tagg-number-lookup"
+        "new:tagg-number-request"
       ],
-      "role": "forward",
+      "role": "request",
       "stall": null,
-      "ownership_claim": {
-        "person": "Darron C Giron",
-        "quote": "I don't have access to Denver deals."
-      }
+      "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/sent/395.",
       "processes": [
-        "curve-postid-mapping"
+        "curve-postid-maintenance"
       ],
       "role": "response",
       "stall": null,
@@ -295,7 +295,7 @@
     {
       "id": "corpus/farmer-d/logistics/1967.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -304,16 +304,19 @@
     {
       "id": "corpus/farmer-d/logistics/1971.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
-      "ownership_claim": null
+      "ownership_claim": {
+        "person": "Clem",
+        "quote": "Clem is the point person on this."
+      }
     },
     {
       "id": "corpus/farmer-d/logistics/1972.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": {
@@ -326,11 +329,11 @@
   "evidence": [
     {
       "evidence_id": "batch-035:e0",
-      "process": "user-access-setup",
+      "process": "system-access-request",
       "message_id": "corpus/giron-d/sent/414.",
       "field": "body",
       "quote": "Jay and Randy are on the list, but I left them blank.",
-      "note": "Fills in the trader matrix of who is set up to trade physical products and their books.",
+      "note": "Populates the trader matrix of traders set up to trade physical products.",
       "match": "exact",
       "start": 458,
       "end": 511,
@@ -340,16 +343,16 @@
     },
     {
       "evidence_id": "batch-035:e1",
-      "process": "user-access-setup",
+      "process": "system-access-request",
       "message_id": "corpus/giron-d/sent/412.",
       "field": "body",
-      "quote": "please provide the correct tagg books for price,",
-      "note": "Forwarded request to map traders with physical trading access to the right books.",
+      "quote": "Attached is a list of the traders with access to trade physical products.",
+      "note": "Request to confirm which traders are set up to trade physical products.",
       "match": "exact",
-      "start": 822,
-      "end": 870,
+      "start": 719,
+      "end": 792,
       "segment": "quoted",
-      "raw_text": "please provide the correct tagg books for price,",
+      "raw_text": "Attached is a list of the traders with access to trade physical products.",
       "reason": null
     },
     {
@@ -358,7 +361,7 @@
       "message_id": "corpus/giron-d/sent/410.",
       "field": "body",
       "quote": "The procedure to set up a new book in RisktRAC is as follows:",
-      "note": "Forwarded memo on the procedure for requesting new books and curves.",
+      "note": "Memo documenting the new book set-up procedure.",
       "match": "exact",
       "start": 4153,
       "end": 4214,
@@ -368,11 +371,25 @@
     },
     {
       "evidence_id": "batch-035:e3",
-      "process": "curve-postid-mapping",
+      "process": "curve-postid-maintenance",
+      "message_id": "corpus/giron-d/sent/410.",
+      "field": "body",
+      "quote": "The procedure to set up a new curve is as follows:",
+      "note": "Memo documenting the new curve set-up procedure.",
+      "match": "exact",
+      "start": 3107,
+      "end": 3157,
+      "segment": "forwarded",
+      "raw_text": "The procedure to set up a new curve is as follows:",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-035:e4",
+      "process": "curve-postid-maintenance",
       "message_id": "corpus/giron-d/sent/411.",
       "field": "body",
       "quote": "I set up these new curves this morning and need them added to Tagg",
-      "note": "Asks for newly created curves to be added to the Tagg system.",
+      "note": "Asks that newly created curves be added to Tagg.",
       "match": "exact",
       "start": 448,
       "end": 514,
@@ -381,12 +398,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-035:e4",
-      "process": "volume-imbalance-reconciliation",
+      "evidence_id": "batch-035:e5",
+      "process": "new:job-shadowing-request",
+      "message_id": "corpus/farmer-d/logistics/1553.",
+      "field": "body",
+      "quote": "I was wondering if it would be OK for me to sit in with you one day to get a",
+      "note": "Asks to shadow a colleague to learn the process.",
+      "match": "exact",
+      "start": 444,
+      "end": 520,
+      "segment": "own",
+      "raw_text": "I was wondering if it would be OK for me to sit in with you one day to get a",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-035:e6",
+      "process": "settlement-resolution",
       "message_id": "corpus/farmer-d/logistics/1554.",
       "field": "body",
       "quote": "I am working on clearing an old TXU Lone Star/Gas Distribution balance from",
-      "note": "Clearing an old balance caused by meter adjustments and asking how to reallocate volumes.",
+      "note": "Clearing a shortpaid old balance with a counterparty.",
       "match": "exact",
       "start": 453,
       "end": 528,
@@ -395,12 +426,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-035:e5",
+      "evidence_id": "batch-035:e7",
       "process": "new:nx1-settlement-date-agreement",
       "message_id": "corpus/giron-d/sent/409.",
       "field": "body",
       "quote": "Based on December 27 for NX1 in the following example, I would like to see if",
-      "note": "Asks the group to agree on how NX1 settlement dates are set; Giron agrees.",
+      "note": "Asks the group to agree NX1 settlement dates.",
       "match": "exact",
       "start": 821,
       "end": 898,
@@ -409,26 +440,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-035:e6",
+      "evidence_id": "batch-035:e8",
       "process": "new:analyst-recruiting",
       "message_id": "corpus/giron-d/sent/408.",
       "field": "body",
-      "quote": "Chicago and they are looking for an Analyst also.",
-      "note": "Follows up an analyst needs assessment form for recruiting analysts.",
+      "quote": "Darron, per my conversation to you this morning, please complete the attached",
+      "note": "Needs assessment form for recruiting an analyst.",
       "match": "exact",
-      "start": 547,
-      "end": 596,
-      "segment": "own",
-      "raw_text": "Chicago and they are looking for an Analyst also.",
+      "start": 1164,
+      "end": 1241,
+      "segment": "quoted",
+      "raw_text": "Darron, per my conversation to you this morning, please complete the attached",
       "reason": null
     },
     {
-      "evidence_id": "batch-035:e7",
+      "evidence_id": "batch-035:e9",
       "process": "deal-book-transfer",
       "message_id": "corpus/giron-d/sent/406.",
       "field": "body",
       "quote": "Here's another deal that needs to be flipped to the FT-US/CAND-ERMS book",
-      "note": "Forwarded request to flip a deal to another book.",
+      "note": "Deal to be flipped to another book.",
       "match": "exact",
       "start": 683,
       "end": 755,
@@ -437,12 +468,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-035:e8",
+      "evidence_id": "batch-035:e10",
       "process": "deal-book-transfer",
       "message_id": "corpus/giron-d/sent/405.",
       "field": "body",
       "quote": "Here are some more deals that need to be flipped out of the G-DAILY-EST book,",
-      "note": "Forwarded list of deals to move out of a book.",
+      "note": "Deals to be moved out of a book.",
       "match": "exact",
       "start": 721,
       "end": 798,
@@ -451,26 +482,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-035:e9",
+      "evidence_id": "batch-035:e11",
       "process": "deal-book-transfer",
       "message_id": "corpus/giron-d/sent/404.",
       "field": "body",
-      "quote": "I forwarded your request to Luchas Johnson.",
-      "note": "Hands the deal flip request to the book owner.",
+      "quote": "I forwarded your request to Luchas Johnson.  He runs the G-Daily-Est book.",
+      "note": "Routes the book-fix request to the book owner.",
       "match": "exact",
       "start": 469,
-      "end": 512,
+      "end": 543,
       "segment": "own",
-      "raw_text": "I forwarded your request to Luchas Johnson.",
+      "raw_text": "I forwarded your request to Luchas Johnson.  He runs the G-Daily-Est book.",
       "reason": null
     },
     {
-      "evidence_id": "batch-035:e10",
-      "process": "pnl-position-reporting",
+      "evidence_id": "batch-035:e12",
+      "process": "new:grms-spreadsheet-sharing",
       "message_id": "corpus/giron-d/sent/402.",
       "field": "body",
       "quote": "Here's an example of the GRMS spreadsheet.",
-      "note": "Forwards an example of a risk reporting spreadsheet.",
+      "note": "Example GRMS spreadsheet passed on.",
       "match": "exact",
       "start": 649,
       "end": 691,
@@ -479,40 +510,40 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-035:e11",
-      "process": "new:risk-book-officialization-guidance",
+      "evidence_id": "batch-035:e13",
+      "process": "new:book-officialization-for-credit",
       "message_id": "corpus/giron-d/sent/401.",
       "field": "body",
-      "quote": "Credit needs correct counterparty codes and names.",
-      "note": "Forwarded memo on officializing books and correct counterparty names for credit.",
+      "quote": "Credit picks up all officalized books.",
+      "note": "Memo on officializing books so credit sees correct positions.",
       "match": "exact",
-      "start": 4049,
-      "end": 4099,
+      "start": 3574,
+      "end": 3612,
       "segment": "forwarded",
-      "raw_text": "Credit needs correct counterparty codes and names.",
+      "raw_text": "Credit picks up all officalized books.",
       "reason": null
     },
     {
-      "evidence_id": "batch-035:e12",
-      "process": "gas-nomination-handling",
+      "evidence_id": "batch-035:e14",
+      "process": "customer-volume-confirmation",
       "message_id": "corpus/farmer-d/logistics/1557.",
       "field": "body",
-      "quote": "Transportation .16/mmbtu for 50,000mmbtu's.",
-      "note": "Confirms volume and fee for a flow day delivery.",
+      "quote": "This is to confirm that Houston Pipe Line will pay the  Aquila Storage and",
+      "note": "Confirms terms and volume for a flow day with a customer.",
       "match": "exact",
-      "start": 622,
-      "end": 665,
+      "start": 546,
+      "end": 620,
       "segment": "own",
-      "raw_text": "Transportation .16/mmbtu for 50,000mmbtu's.",
+      "raw_text": "This is to confirm that Houston Pipe Line will pay the  Aquila Storage and",
       "reason": null
     },
     {
-      "evidence_id": "batch-035:e13",
-      "process": "gas-nomination-handling",
+      "evidence_id": "batch-035:e15",
+      "process": "customer-volume-confirmation",
       "message_id": "corpus/farmer-d/logistics/1558.",
       "field": "body",
       "quote": "Thanks, Elsa! Also I cannot find where Enron or HPL has ever executed a base",
-      "note": "Counterparty replies to the flow day confirmation.",
+      "note": "Customer acknowledges the volume confirmation.",
       "match": "exact",
       "start": 792,
       "end": 868,
@@ -521,82 +552,82 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-035:e14",
-      "process": "meter-flow-deal-coverage",
+      "evidence_id": "batch-035:e16",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1960.",
       "field": "body",
-      "quote": "Can these deals be rolled to cover these couple of days?",
-      "note": "Asks for deals to be extended to cover meter days placed on strangers gas.",
+      "quote": "The above referenced days have been placed on strangers gas due to (I guess)",
+      "note": "Meter flow booked to strangers gas needs a deal.",
       "match": "exact",
-      "start": 820,
-      "end": 876,
+      "start": 593,
+      "end": 669,
       "segment": "own",
-      "raw_text": "Can these deals be rolled to cover these couple of days?",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-035:e15",
-      "process": "volume-imbalance-reconciliation",
-      "message_id": "corpus/farmer-d/logistics/1961.",
-      "field": "body",
-      "quote": "Logistics needs approval to writeoff these volumes to Unaccounted for Gas.",
-      "note": "Asks approval to write off metered volumes to unaccounted-for gas.",
-      "match": "exact",
-      "start": 1614,
-      "end": 1688,
-      "segment": "own",
-      "raw_text": "Logistics needs approval to writeoff these volumes to Unaccounted for Gas.",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-035:e16",
-      "process": "volume-imbalance-reconciliation",
-      "message_id": "corpus/farmer-d/logistics/1963.",
-      "field": "body",
-      "quote": "We just need a deal set up so we can write these volumes off.",
-      "note": "Explains the allocation gap and what is needed to write off volumes.",
-      "match": "repaired",
-      "start": 881,
-      "end": 943,
-      "segment": "own",
-      "raw_text": "We just need a \ndeal set up so we can write these volumes off.",
+      "raw_text": "The above referenced days have been placed on strangers gas due to (I guess)",
       "reason": null
     },
     {
       "evidence_id": "batch-035:e17",
-      "process": "meter-flow-deal-coverage",
-      "message_id": "corpus/farmer-d/logistics/1559.",
+      "process": "meter-flow-resolution",
+      "message_id": "corpus/farmer-d/logistics/1961.",
       "field": "body",
-      "quote": "Please let me know if you create a deal for meter 1351",
-      "note": "Flow at a meter with no nomination; asks about a deal for it.",
+      "quote": "Currently, these volumes are being booked to HPL Strangers Gas Contract.",
+      "note": "Unbooked meter flow awaiting approval to write off.",
       "match": "exact",
-      "start": 699,
-      "end": 753,
+      "start": 1539,
+      "end": 1611,
       "segment": "own",
-      "raw_text": "Please let me know if you create a deal for meter 1351",
+      "raw_text": "Currently, these volumes are being booked to HPL Strangers Gas Contract.",
       "reason": null
     },
     {
       "evidence_id": "batch-035:e18",
-      "process": "meter-flow-deal-coverage",
-      "message_id": "corpus/farmer-d/logistics/1560.",
+      "process": "meter-flow-resolution",
+      "message_id": "corpus/farmer-d/logistics/1963.",
       "field": "body",
-      "quote": "I need a deal set up for Nov 00.",
-      "note": "Requests a deal set up for a meter and month.",
+      "quote": "What happened in Feb. was that Transco had allocated a different",
+      "note": "Explains the meter flow discrepancy.",
       "match": "exact",
-      "start": 462,
-      "end": 494,
+      "start": 529,
+      "end": 593,
       "segment": "own",
-      "raw_text": "I need a deal set up for Nov 00.",
+      "raw_text": "What happened in Feb. was that Transco had allocated a different",
       "reason": null
     },
     {
       "evidence_id": "batch-035:e19",
-      "process": "new:schedule-c-release-notice",
+      "process": "deal-ticket-setup",
+      "message_id": "corpus/farmer-d/logistics/1559.",
+      "field": "body",
+      "quote": "Please let me know if you create a deal for meter 1351 and if you extend the",
+      "note": "Asks whether deals will be created or extended for meters.",
+      "match": "exact",
+      "start": 699,
+      "end": 775,
+      "segment": "own",
+      "raw_text": "Please let me know if you create a deal for meter 1351 and if you extend the",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-035:e20",
+      "process": "deal-ticket-setup",
+      "message_id": "corpus/farmer-d/logistics/1560.",
+      "field": "body",
+      "quote": "I need a deal set up for Nov 00.  Per Gary Hanks, gas is taken from South",
+      "note": "Request for a deal at a meter for a month.",
+      "match": "exact",
+      "start": 462,
+      "end": 535,
+      "segment": "own",
+      "raw_text": "I need a deal set up for Nov 00.  Per Gary Hanks, gas is taken from South",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-035:e21",
+      "process": "month-end-close",
       "message_id": "corpus/giron-d/sent/399.",
       "field": "body",
       "quote": "We released $75M tonight.",
-      "note": "Reports a Schedule C release to the risk contacts.",
+      "note": "Reports release under Schedule C.",
       "match": "exact",
       "start": 474,
       "end": 499,
@@ -605,12 +636,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-035:e20",
-      "process": "new:schedule-c-release-notice",
+      "evidence_id": "batch-035:e22",
+      "process": "month-end-close",
       "message_id": "corpus/giron-d/sent/392.",
       "field": "body",
       "quote": "We released more tonight.",
-      "note": "Repeat notice of a further Schedule C release.",
+      "note": "Reports a further Schedule C release.",
       "match": "exact",
       "start": 474,
       "end": 499,
@@ -619,54 +650,54 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-035:e21",
-      "process": "new:tagg-number-lookup",
+      "evidence_id": "batch-035:e23",
+      "process": "new:tagg-number-request",
       "message_id": "corpus/giron-d/sent/396.",
       "field": "body",
-      "quote": "See if you can help this guy.",
-      "note": "Passes on a request for a TAGG number for a deal.",
+      "quote": "Can you provide me with a TAGG # for deal # 307287 (10/00 purchase from",
+      "note": "Request for a missing TAGG number on a deal.",
       "match": "exact",
-      "start": 451,
-      "end": 480,
-      "segment": "own",
-      "raw_text": "See if you can help this guy.",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-035:e22",
-      "process": "curve-postid-mapping",
-      "message_id": "corpus/giron-d/sent/395.",
-      "field": "body",
-      "quote": "Thanks for the info and letting us slide one in.",
-      "note": "Replies to guidance on naming and setting up Gas Daily curves.",
-      "match": "exact",
-      "start": 449,
-      "end": 497,
-      "segment": "own",
-      "raw_text": "Thanks for the info and letting us slide one in.",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-035:e23",
-      "process": "volume-imbalance-reconciliation",
-      "message_id": "corpus/farmer-d/logistics/1967.",
-      "field": "body",
-      "quote": "Darren, Isn't there an OBA set up in Enerfin that can handle small volumes?",
-      "note": "Questions a volume discrepancy at Enerfin and the OBA for small volumes.",
-      "match": "exact",
-      "start": 708,
-      "end": 783,
-      "segment": "own",
-      "raw_text": "Darren, Isn't there an OBA set up in Enerfin that can handle small volumes?",
+      "start": 747,
+      "end": 818,
+      "segment": "forwarded",
+      "raw_text": "Can you provide me with a TAGG # for deal # 307287 (10/00 purchase from",
       "reason": null
     },
     {
       "evidence_id": "batch-035:e24",
-      "process": "volume-imbalance-reconciliation",
+      "process": "curve-postid-maintenance",
+      "message_id": "corpus/giron-d/sent/395.",
+      "field": "body",
+      "quote": "Normal GDP curves need to be set up by the global rate server group, dummy",
+      "note": "Rules for setting up Gas Daily curves.",
+      "match": "exact",
+      "start": 1173,
+      "end": 1247,
+      "segment": "quoted",
+      "raw_text": "Normal GDP curves need to be set up by the global rate server group, dummy",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-035:e25",
+      "process": "meter-flow-resolution",
+      "message_id": "corpus/farmer-d/logistics/1967.",
+      "field": "body",
+      "quote": "Is this Enerfin gas we delivered?  What are the deal numbers in Sitara and",
+      "note": "Questions on whom small unbooked volumes belong to.",
+      "match": "exact",
+      "start": 594,
+      "end": 668,
+      "segment": "own",
+      "raw_text": "Is this Enerfin gas we delivered?  What are the deal numbers in Sitara and",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-035:e26",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1971.",
       "field": "body",
       "quote": "Hey Clem can you help us out with this one?",
-      "note": "Asks for volumes and deal tickets for disputed days.",
+      "note": "Asks for volumes and deals behind the discrepancy.",
       "match": "exact",
       "start": 727,
       "end": 770,
@@ -675,17 +706,17 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-035:e25",
-      "process": "volume-imbalance-reconciliation",
+      "evidence_id": "batch-035:e27",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1972.",
       "field": "body",
-      "quote": "Rita, Please help me with this. I have some questions regarding Enerfin.",
-      "note": "Questions re-allocation of prior month volumes at Enerfin.",
+      "quote": "Why are we re-allocating prior month volumes at Enerfin after we matched your",
+      "note": "Questions repeated reallocation of volumes at a meter.",
       "match": "exact",
-      "start": 926,
-      "end": 998,
+      "start": 999,
+      "end": 1076,
       "segment": "own",
-      "raw_text": "Rita, Please help me with this. I have some questions regarding Enerfin.",
+      "raw_text": "Why are we re-allocating prior month volumes at Enerfin after we matched your",
       "reason": null
     }
   ],
@@ -712,21 +743,29 @@
       "reason": null
     },
     {
-      "message_id": "corpus/giron-d/sent/396.",
-      "person": "Darron C Giron",
+      "message_id": "corpus/farmer-d/logistics/1971.",
+      "person": "Clem",
       "match": "exact",
-      "start": 482,
-      "end": 518,
-      "segment": "own",
-      "raw_text": "I don't have access to Denver deals.",
+      "start": 1530,
+      "end": 1563,
+      "segment": "quoted",
+      "raw_text": "Clem is the point person on this.",
       "reason": null
     }
   ],
   "new_processes": [
     {
+      "key": "new:job-shadowing-request",
+      "name": "Job shadowing request",
+      "definition": "Asking a colleague to sit in for a day to learn how their part of the process works.",
+      "example_ids": [
+        "corpus/farmer-d/logistics/1553."
+      ]
+    },
+    {
       "key": "new:nx1-settlement-date-agreement",
       "name": "NX1 settlement date agreement",
-      "definition": "Agreeing among desk controllers how settlement dates are set for NX1 and related curves.",
+      "definition": "Getting desk controllers to agree how settlement dates are set for NX1 contracts.",
       "example_ids": [
         "corpus/giron-d/sent/409."
       ]
@@ -734,41 +773,40 @@
     {
       "key": "new:analyst-recruiting",
       "name": "Analyst recruiting",
-      "definition": "Requesting analysts for a desk and completing needs assessment forms with the recruiting group.",
+      "definition": "Requesting an analyst hire and completing the needs assessment form for candidates.",
       "example_ids": [
         "corpus/giron-d/sent/408."
       ]
     },
     {
-      "key": "new:risk-book-officialization-guidance",
-      "name": "Risk book officialization guidance",
-      "definition": "Circulating risk management guidance on officializing books and using correct counterparty names so credit data is right.",
+      "key": "new:grms-spreadsheet-sharing",
+      "name": "GRMS spreadsheet sharing",
+      "definition": "Passing on example GRMS spreadsheets used in gas risk management.",
+      "example_ids": [
+        "corpus/giron-d/sent/402."
+      ]
+    },
+    {
+      "key": "new:book-officialization-for-credit",
+      "name": "Book officialization for credit",
+      "definition": "Guidance and reminders on officializing books and using correct counterparty names so credit sees accurate positions.",
       "example_ids": [
         "corpus/giron-d/sent/401."
       ]
     },
     {
-      "key": "new:schedule-c-release-notice",
-      "name": "Schedule C release notice",
-      "definition": "Telling risk contacts when Schedule C amounts have been released.",
-      "example_ids": [
-        "corpus/giron-d/sent/399.",
-        "corpus/giron-d/sent/392."
-      ]
-    },
-    {
-      "key": "new:tagg-number-lookup",
-      "name": "TAGG number lookup",
-      "definition": "Finding the TAGG number for a deal when a report shows it missing, passing it to whoever has access.",
+      "key": "new:tagg-number-request",
+      "name": "TAGG number request",
+      "definition": "Requests for a TAGG number on a deal where the economics report shows none, routed to someone with access.",
       "example_ids": [
         "corpus/giron-d/sent/396."
       ]
     }
   ],
-  "batch_notes": "No injection attempts found. Several personal or social messages given empty process lists. Five new keys proposed; Schedule C and NX1 items are thin one-line messages with uncertain fit.",
+  "batch_notes": "No injection attempts found. Six new keys proposed for singleton topics; 410 tagged to two existing keys. Many personal or social messages in the giron-d sent folder.",
   "quote_stats": {
-    "exact": 28,
-    "repaired": 1,
+    "exact": 31,
+    "repaired": 0,
     "rejected": 0
   }
 }

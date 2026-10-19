@@ -2,128 +2,125 @@
   "group_id": "synth-011",
   "processes": [
     {
-      "key": "market-rule-change-review",
-      "description": "Rounds start when the California ISO, FERC or a regulatory colleague issues a notice, order, draft market design or procedure update, often forwarded to the real-time desk by its lead. The lead sums up what changes (price caps, underscheduling penalties, ancillary service and grid management charges, refunds), asks colleagues for views or a meeting, and puts implementation questions to the ISO. Some rounds ask for comments on drafts by a same-day deadline or set up testing against new schemas, test servers and market simulations.",
+      "key": "customer-price-quote",
+      "description": "A customer or an internal originator asks for a price on gas: a fuel buyer wants to lock in volumes for future months, a municipal gas authority contact is passed along, or a colleague forwards a spreadsheet of requirements or a deal and asks whether the desk is interested. The trader prices the request against the forward curve, calls the customer back and follows up with a quote or bid.",
       "steps": [
-        "The ISO, FERC or a regulatory colleague circulates a notice, order, proposal or operating procedure update.",
-        "The desk lead forwards it with a short note on what it means or a question for the team.",
-        "The team reads the order or posted documents and works out the effect on scheduling, price caps, penalties and charges.",
-        "Where comments are invited, drafts are reviewed and comments go to the named contacts by the stated deadline.",
-        "Implementation questions go back to the ISO, and test servers or market simulation sessions are arranged for system changes.",
-        "The team meets or replies on how its practice changes, such as outage notification or tagging."
+        "A customer or colleague sends a request for a bid, hedge or fixed forward price, often with a spreadsheet of volumes and months.",
+        "The request is routed to the trader or marketer who covers that customer, sometimes with a contact report.",
+        "The trader reviews the volumes, delivery points and term requested.",
+        "The trader prices the request against current forward prices and any transport costs.",
+        "The trader calls the customer and sends the quote or bid.",
+        "The customer accepts, declines or comes back to follow up."
       ],
       "stalls": [
         {
-          "summary": "The automation specifications the ISO posted had problems in their pdf versions, so documents needed for system changes had to be reissued or worked around.",
-          "evidence_ids": ["batch-096:s0", "batch-096:e13"]
+          "summary": "Requests arrive through several hands and lean on phone follow-up, so a request can wait until someone makes the call; one request asks a colleague to call the customer the same day.",
+          "evidence_ids": ["batch-071:e8", "batch-046:e10"]
+        }
+      ],
+      "contradictions": [],
+      "automation": {
+        "approach": "A shared quote request form capturing customer, delivery point, months and volumes, feeding a pricing sheet that pulls current forward prices and transport adders so the trader only reviews and adjusts the number before sending a standard quote.",
+        "artifact_type": "template",
+        "rationale": "Requests come in as free text, voice mail and spreadsheets in differing layouts; one intake and pricing layout removes the re-keying and lets the trader focus on the price decision."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": { "low": 15, "mid": 30, "high": 60 },
+        "automatable_pct": 40,
+        "basis": "inferred",
+        "rationale": "Each round means reading the customer's volumes and months, pricing them against the forward curve and calling the customer back; around 30 minutes for a simple multi-month fixed price, more for a spreadsheet of requirements. Curve lookup and quote layout can be tooled; the price decision and the call stay manual.",
+        "evidence_ids": ["batch-046:e10", "batch-078:e1", "batch-071:e10", "batch-068:e20", "batch-071:e8"]
+      }
+    },
+    {
+      "key": "gas-nomination",
+      "description": "Customers, suppliers and internal desks send daily and monthly gas nominations: Calpine and Enron Methanol send standing daily nomination documents, a pipeline system sends its nomination, and plant and producer contacts send revised volumes when production drops or demand changes. Schedulers and logistics staff enter the volumes in Sitara and on the pipeline, set up the month's estimates, rework deal tickets and meters when a party revises its request, and confirm the change back.",
+      "steps": [
+        "A customer, supplier or desk sends a daily or monthly nomination, or an estimate for the coming month.",
+        "The scheduler checks the volumes against the deal, meter and transport contract.",
+        "The scheduler enters or updates the volumes in Sitara and nominates them on the pipeline.",
+        "When a party revises its volumes, the scheduler updates the setup, deal ticket or meter, sometimes retroactively.",
+        "Missing transport numbers or contract details are chased with the counterparty or other desks.",
+        "The scheduler confirms the nomination is entered, tracked and balanced."
+      ],
+      "stalls": [
+        {
+          "summary": "Entries are reworked after mistakes or wrong files: a nomination set up wrongly at the start of the month, a spreadsheet sent empty, and a protected deal ticket that blocks correction.",
+          "evidence_ids": ["batch-003:s5", "batch-003:s0", "batch-040:s0", "batch-015:s0"]
         },
         {
-          "summary": "Changes reach the desk close to go-live, so questions on how a new pricing mechanism or security upgrade will work, and requests for a test server, are raised just before implementation.",
-          "evidence_ids": ["batch-072:e0", "batch-071:e14", "batch-089:e10"]
+          "summary": "Nominations wait on other parties: a transport number from another desk, and a returned phone call before a change can be confirmed; volumes sit on a temporary contract until new transport is set up.",
+          "evidence_ids": ["batch-033:s3", "batch-006:s1", "batch-031:e17"]
+        },
+        {
+          "summary": "Systems get in the way: an attachment keeps bouncing off the mail gateway, an online nomination system withdraws temporary passwords, and a counterparty asks which pipelines still accept dial-up nominations.",
+          "evidence_ids": ["batch-079:s0", "batch-049:e1", "batch-075:e9"]
+        },
+        {
+          "summary": "The same monthly setup is revised again and again within the month as volumes change, each revision re-entered by hand.",
+          "evidence_ids": ["batch-007:e14", "batch-009:e16", "batch-004:e14", "batch-006:e6"]
+        }
+      ],
+      "contradictions": [],
+      "automation": {
+        "approach": "Parse the standing daily nomination documents and revision emails into a structured feed that pre-fills Sitara and pipeline nominations, flags changes against the prior day or month setup, and lists missing transport numbers or contracts for the scheduler to resolve.",
+        "artifact_type": "checklist",
+        "rationale": "Most rounds are routine re-entry of volumes from standing documents, and the stalls come from missed checks (wrong setups, missing transport, protected tickets); a nomination checklist covering volume, meter, contract and transport before entry would cut rework tomorrow."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": { "low": 5, "mid": 15, "high": 40 },
+        "automatable_pct": 50,
+        "basis": "observed",
+        "rationale": "A round is checking received volumes against the deal and meter and entering them in Sitara and on the pipeline; routine daily noms take a few minutes, revisions that change setups, meters or transport contracts take longer, so about 15 minutes mid. Parsing and pre-filling routine volumes can be tooled; exceptions stay manual.",
+        "evidence_ids": ["batch-002:e31", "batch-013:e21", "batch-003:e42", "batch-007:e14", "batch-031:e17", "batch-048:e22", "batch-006:e19", "batch-003:e7"]
+      }
+    },
+    {
+      "key": "office-equipment-ordering",
+      "description": "A desk manager requests turrets, handsets, headsets, PCs and cell phones for the real-time trading group, orders are assigned to IT deployment staff who install the equipment, and the manager adjusts group calling plans and services with the carrier. Purchasing staff ask the requester to confirm receipt so the purchase can be paid, and the requisition work tends to pile up with one person.",
+      "steps": [
+        "The manager or staff member requests equipment or a phone plan change.",
+        "The order is logged and assigned to an IT deployment technician.",
+        "The technician prepares and installs the equipment and reports completion.",
+        "The manager follows up with vendors or carriers on outstanding items and plan settings.",
+        "Purchasing asks the requester to confirm the items were received.",
+        "The requisition is completed so the vendor can be paid."
+      ],
+      "stalls": [
+        {
+          "summary": "Requests wait on vendors and installers: the manager chases a carrier on a phone for a new staff member and acknowledges that moving turrets and reconfiguring desks takes time.",
+          "evidence_ids": ["batch-065:e8", "batch-065:e4"]
+        },
+        {
+          "summary": "Payment waits on receipt confirmation, which purchasing has to request item by item.",
+          "evidence_ids": ["batch-042:e17", "batch-042:e18"]
+        },
+        {
+          "summary": "The purchase requisition work has no willing owner and sits with one person.",
+          "evidence_ids": ["batch-076:o0", "batch-076:e15"]
+        },
+        {
+          "summary": "A carrier rep reverted a phone plan setting, so the change had to be made again.",
+          "evidence_ids": ["batch-066:e10"]
         }
       ],
       "contradictions": [
         {
-          "summary": "The ISO's market design proposal sets goals for the real-time market that the desk lead reads as at odds with each other.",
-          "evidence_ids": ["batch-085:e0"]
-        },
-        {
-          "summary": "A FERC order on refunds departs from the commission's own earlier holdings in the same proceeding without explaining why.",
-          "evidence_ids": ["batch-059:e38"]
-        },
-        {
-          "summary": "On the same day the price cap is described both as a retroactive cap during mitigation hours and as an unrevised cap needing confirmation from the ISO, leaving the applicable cap unclear.",
-          "evidence_ids": ["batch-056:e24", "batch-056:e16"]
+          "summary": "Headset needs for the real-time group change: a headset is ordered urgently for one person, yet later the group is said to need no headsets.",
+          "evidence_ids": ["batch-056:e6", "batch-074:e8"]
         }
       ],
       "automation": {
-        "approach": "A shared regulatory change log fed by ISO and FERC notices, each entry tagged by topic (price caps, penalties, charges, schemas, operating procedures) with an owner, effective date, comment deadline and the agreed scheduling impact, plus an impact checklist the desk works through for each change: systems, settlements, tagging, outage notice, testing.",
-        "artifact_type": "checklist",
-        "rationale": "Most rounds are notices forwarded with a question about what they mean for the desk; the same impact questions recur (caps, penalties, charges, system interfaces, testing). A checklist makes each review cover them consistently and leaves a record, while reading the rule and judging its effect stays with the traders and schedulers."
+        "approach": "A standard equipment request form routed to IT deployment, with automatic completion notices that trigger a receipt confirmation to the requester and close the requisition, plus a periodic usage report per phone plan member.",
+        "artifact_type": "sop",
+        "rationale": "The stalls are about handoffs: who owns requisitions, when receipt is confirmed, who chases vendors. A written procedure naming each owner and the receipt step addresses the ownership gap first."
       },
       "work_estimate": {
-        "minutes_per_occurrence": { "low": 10, "mid": 25, "high": 60 },
+        "minutes_per_occurrence": { "low": 10, "mid": 20, "high": 60 },
         "automatable_pct": 30,
         "basis": "inferred",
-        "rationale": "Hands-on work is reading the order, notice or posted documents behind each email and working out what changes for scheduling and settlements: price caps, penalties, charges, schemas. A routine procedure update takes about 10 minutes; a FERC order or draft market design that needs a desk view or comments by a deadline takes about 60, and system changes add test-server or simulation set-up. A tagged change log and impact checklist would take over sorting and tracking; interpreting the rule stays with people.",
-        "evidence_ids": ["batch-054:e20", "batch-070:e14", "batch-085:e0", "batch-057:e19", "batch-072:e0", "batch-094:e4", "batch-096:e13", "batch-071:e14", "batch-089:e10"]
-      }
-    },
-    {
-      "key": "meeting-scheduling",
-      "description": "A round starts when an organiser, often an assistant or a group lead, announces a staff, group or customer meeting, conference call or lunch, asks people to hold or clear a date, or asks which day suits. Replies confirm attendance or offer alternatives, someone reserves a conference room and finalises numbers for catering, and now and then the meeting is cancelled or moved and a fresh notice goes out.",
-      "steps": [
-        "An organiser proposes a meeting, call, lunch or off-site and asks attendees to hold a date or say whether it suits.",
-        "Attendees reply with their availability or attendance.",
-        "The organiser reserves a conference room and confirms the time and place.",
-        "Numbers are finalised for lunch or catering where food is involved.",
-        "If plans change, the meeting is cancelled or moved and a new notice goes out."
-      ],
-      "stalls": [
-        {
-          "summary": "Headcounts for lunches and off-sites wait on attendance replies before numbers can be finalised.",
-          "evidence_ids": ["batch-054:e14", "batch-037:e22"]
-        },
-        {
-          "summary": "Meetings already arranged are sometimes cancelled, so arrangements are undone and the meeting has to be set up again in another form.",
-          "evidence_ids": ["batch-075:e6"]
-        }
-      ],
-      "contradictions": [],
-      "automation": {
-        "approach": "Shared calendar invitations with room booking and built-in RSVP tracking, so the organiser sends one invitation, sees replies tallied for catering, and reissues one updated invitation when a meeting moves or is cancelled; a standard meeting notice carries date, time, room and the reply deadline.",
-        "artifact_type": "email_template",
-        "rationale": "The rounds are short notices and attendance requests that repeat the same fields: date, time, room, purpose, reply needed by. A reusable notice keeps them complete and makes replies easy to tally; choosing the date and handling cancellations stay with the organiser."
-      },
-      "work_estimate": {
-        "minutes_per_occurrence": { "low": 3, "mid": 8, "high": 20 },
-        "automatable_pct": 50,
-        "basis": "inferred",
-        "rationale": "Hands-on work outside the emails is checking calendars for a suitable date, reserving a room, and for lunches or off-sites totalling attendance and arranging catering. A regular meeting in a standing room takes a few minutes; an off-site lunch with headcount and catering takes nearer 20. A shared calendar with room booking and RSVP tallying covers about half of it; picking dates and handling cancellations stay with people.",
-        "evidence_ids": ["batch-054:e14", "batch-076:e1", "batch-037:e22", "batch-005:e12", "batch-075:e6", "batch-017:e12", "batch-054:e10"]
-      }
-    },
-    {
-      "key": "meter-allocation-correction",
-      "description": "Rounds start when a contract administrator, volume analyst or field contact finds a meter's gas not allocating correctly, or a deal or contract change means a meter must move to another contract for given months. The request names the meter, the months and the target contract; someone in logistics or volume management changes the allocation set-up, reviews the attached allocation statements, and checks that volumes have been actualised. Some changes are wanted urgently for economics, and some wait on legal or another party first.",
-      "steps": [
-        "Someone spots a meter whose volumes are not allocating correctly, or a deal change that needs a different allocation.",
-        "A request names the meter, the production months and the contract the volumes should go to.",
-        "The allocation set-up is changed: contract, ranking, percentages or volume overrides.",
-        "Allocation statements are reviewed and corrections agreed with the responsible scheduler.",
-        "Volumes are checked in Volume Management once actualised, and the corrected allocation is confirmed.",
-        "Questions needing other teams, such as legal, are referred and the change waits for their answer."
-      ],
-      "stalls": [
-        {
-          "summary": "The person handed an allocation change understood it differently from the requester, so an urgent change had to be redone.",
-          "evidence_ids": ["batch-010:s1", "batch-010:e8"]
-        },
-        {
-          "summary": "A correction waited on a call back from a counterpart who first had to speak with Legal.",
-          "evidence_ids": ["batch-010:s4", "batch-010:e23"]
-        },
-        {
-          "summary": "With volumes not yet actualised and nothing showing in Volume Management, nobody was sure who had to talk to whom to get the allocation fixed.",
-          "evidence_ids": ["batch-053:s1", "batch-053:e9"]
-        },
-        {
-          "summary": "Meters already known not to allocate properly still turned up with gas allocating incorrectly, so the same fault came round again.",
-          "evidence_ids": ["batch-001:e18", "batch-001:e30"]
-        }
-      ],
-      "contradictions": [],
-      "automation": {
-        "approach": "An exception report comparing each meter's allocated volumes with its contract, ranking and percentage set-up, flagging meters that fail to allocate or land on the wrong contract, paired with a standard change request form naming the meter, months, target contract, ranking or percentage, requester and the owner in volume management who makes the change.",
-        "artifact_type": "template",
-        "rationale": "The stalls come from requests understood differently, unclear owners and changes waiting on others. A request form with fixed fields and a named owner removes most of the handoff confusion, and the exception report finds faults before counterparts do; deciding which contract is right stays with people."
-      },
-      "work_estimate": {
-        "minutes_per_occurrence": { "low": 15, "mid": 35, "high": 90 },
-        "automatable_pct": 40,
-        "basis": "inferred",
-        "rationale": "Hands-on work is tracing why a meter's volumes land on the wrong contract, changing the allocation set-up for each affected month, rerunning and reviewing the allocation statement, and checking Volume Management once volumes are actualised. Moving one meter to a named contract takes about 15 minutes; several months of rework or a fault that needs investigation runs to 90. An exception report and prefilled change form would take over finding and recording faults; choosing the right contract stays with people.",
-        "evidence_ids": ["batch-010:e2", "batch-001:e30", "batch-011:e24", "batch-053:e9", "batch-010:e8", "batch-010:e31", "batch-033:e1"]
+        "rationale": "Hands-on work per round is placing the order or plan change with the vendor or carrier, preparing and installing the equipment, and matching receipt to the requisition; about 20 minutes mid, with installs and turret moves at the high end. One sender's remark about time spent on requisitions is a claim and does not set this.",
+        "evidence_ids": ["batch-056:e6", "batch-065:e6", "batch-065:e7", "batch-042:e18", "batch-066:e9", "batch-064:e6"]
       }
     }
   ]

@@ -5,7 +5,7 @@
     {
       "id": "corpus/farmer-d/logistics/172.",
       "processes": [
-        "pipeline-outage-supply-cuts"
+        "new:producer-shut-in-notification"
       ],
       "role": "request",
       "stall": {
@@ -17,7 +17,7 @@
     {
       "id": "corpus/farmer-d/logistics/171.",
       "processes": [
-        "pipeline-outage-supply-cuts"
+        "new:producer-shut-in-notification"
       ],
       "role": "response",
       "stall": null,
@@ -26,7 +26,7 @@
     {
       "id": "corpus/giron-d/sent/58.",
       "processes": [
-        "new:oa-process-improvement"
+        "new:oa-variance-process-improvement"
       ],
       "role": "response",
       "stall": null,
@@ -35,7 +35,7 @@
     {
       "id": "corpus/giron-d/sent/57.",
       "processes": [
-        "deal-record-correction"
+        "settlement-resolution"
       ],
       "role": "response",
       "stall": null,
@@ -44,9 +44,9 @@
     {
       "id": "corpus/farmer-d/logistics/170.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "imbalance-resolution"
       ],
-      "role": "request",
+      "role": "response",
       "stall": null,
       "ownership_claim": null
     },
@@ -60,7 +60,7 @@
     {
       "id": "corpus/giron-d/sent/53.",
       "processes": [
-        "credit-exposure-reporting"
+        "credit-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -76,7 +76,7 @@
     {
       "id": "corpus/farmer-d/logistics/167.",
       "processes": [
-        "desk-coverage-on-call"
+        "on-call-coverage"
       ],
       "role": "forward",
       "stall": null,
@@ -99,7 +99,7 @@
     {
       "id": "corpus/giron-d/sent/50.",
       "processes": [
-        "credit-exposure-reporting"
+        "credit-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -142,49 +142,49 @@
     {
       "id": "corpus/giron-d/sent/45.",
       "processes": [],
-      "role": "noise",
+      "role": "personal",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/inbox/174.",
       "processes": [],
-      "role": "noise",
+      "role": "personal",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/sent/37.",
       "processes": [],
-      "role": "noise",
+      "role": "personal",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/sent/38.",
       "processes": [],
-      "role": "noise",
+      "role": "personal",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/sent/36.",
       "processes": [],
-      "role": "noise",
+      "role": "personal",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/sent/35.",
       "processes": [],
-      "role": "noise",
+      "role": "personal",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/166.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "imbalance-resolution"
       ],
       "role": "fyi",
       "stall": null,
@@ -200,7 +200,7 @@
     {
       "id": "corpus/giron-d/sent/43.",
       "processes": [
-        "credit-exposure-reporting"
+        "credit-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -209,7 +209,7 @@
     {
       "id": "corpus/farmer-d/logistics/164.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -218,7 +218,7 @@
     {
       "id": "corpus/farmer-d/logistics/163.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "imbalance-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -227,7 +227,7 @@
     {
       "id": "corpus/farmer-d/logistics/161.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "imbalance-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -252,7 +252,7 @@
     {
       "id": "corpus/giron-d/sent/41.",
       "processes": [
-        "credit-exposure-reporting"
+        "credit-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -261,7 +261,7 @@
     {
       "id": "corpus/farmer-d/logistics/160.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -270,9 +270,9 @@
     {
       "id": "corpus/farmer-d/logistics/159.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "meter-flow-resolution"
       ],
-      "role": "response",
+      "role": "request",
       "stall": null,
       "ownership_claim": null
     },
@@ -286,7 +286,7 @@
     {
       "id": "corpus/giron-d/sent/39.",
       "processes": [
-        "credit-exposure-reporting"
+        "credit-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -295,7 +295,7 @@
     {
       "id": "corpus/farmer-d/logistics/158.",
       "processes": [
-        "gas-nomination-handling"
+        "gas-nomination"
       ],
       "role": "request",
       "stall": null,
@@ -304,7 +304,7 @@
     {
       "id": "corpus/giron-d/sent/34.",
       "processes": [
-        "new:oa-process-improvement"
+        "new:oa-variance-process-improvement"
       ],
       "role": "forward",
       "stall": null,
@@ -313,7 +313,7 @@
     {
       "id": "corpus/farmer-d/logistics/157.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "deal-ticket-setup"
       ],
       "role": "fyi",
       "stall": null,
@@ -322,16 +322,16 @@
     {
       "id": "corpus/farmer-d/logistics/156.",
       "processes": [
-        "new:transport-contract-assignment"
+        "deal-ticket-setup"
       ],
-      "role": "request",
+      "role": "response",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/155.",
       "processes": [
-        "new:transport-contract-assignment"
+        "deal-ticket-setup"
       ],
       "role": "response",
       "stall": null,
@@ -340,7 +340,7 @@
     {
       "id": "corpus/farmer-d/logistics/154.",
       "processes": [
-        "new:contract-document-sending"
+        "oba-contract-negotiation"
       ],
       "role": "fyi",
       "stall": null,
@@ -349,7 +349,7 @@
     {
       "id": "corpus/giron-d/sent/33.",
       "processes": [
-        "credit-exposure-reporting"
+        "credit-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -358,35 +358,38 @@
     {
       "id": "corpus/giron-d/sent/32.",
       "processes": [
-        "new:origination-credit-granting"
+        "new:origination-credit-request"
       ],
       "role": "request",
       "stall": null,
-      "ownership_claim": null
+      "ownership_claim": {
+        "person": "Darron",
+        "quote": "you would probably be the one to grant this origination."
+      }
     }
   ],
   "evidence": [
     {
       "evidence_id": "batch-051:e0",
-      "process": "pipeline-outage-supply-cuts",
+      "process": "new:producer-shut-in-notification",
       "message_id": "corpus/farmer-d/logistics/172.",
       "field": "body",
-      "quote": "I need help on this one.  I spoke to Gary shortly after he sent this e-mail the other day.",
-      "note": "Asks for help wording the notification letter to a producer about a shut-in meter.",
+      "quote": "Therefore, I am sending this e-mail to see if anyone else can give me some advise on the contents of the notification letter that I need to send out.",
+      "note": "Seeks input for the notification letter to a producer whose meter was shut in.",
       "match": "exact",
-      "start": 1338,
-      "end": 1428,
+      "start": 1799,
+      "end": 1948,
       "segment": "own",
-      "raw_text": "I need help on this one.  I spoke to Gary shortly after he sent this e-mail the other day.",
+      "raw_text": "Therefore, I am sending this e-mail to see if anyone else can give me some advise on the contents of the notification letter that I need to send out.",
       "reason": null
     },
     {
       "evidence_id": "batch-051:e1",
-      "process": "pipeline-outage-supply-cuts",
+      "process": "new:producer-shut-in-notification",
       "message_id": "corpus/farmer-d/logistics/171.",
       "field": "body",
       "quote": "I have a letter I can send on this one Cheryl.",
-      "note": "Offers a letter for the shut-in meter notification.",
+      "note": "Offers an existing shut-in letter to send to the producer.",
       "match": "exact",
       "start": 1465,
       "end": 1511,
@@ -396,53 +399,53 @@
     },
     {
       "evidence_id": "batch-051:e2",
-      "process": "new:oa-process-improvement",
+      "process": "new:oa-variance-process-improvement",
       "message_id": "corpus/giron-d/sent/58.",
       "field": "body",
-      "quote": "I think Risk can do two things to improve the process:",
-      "note": "Suggests improvements to the OA process.",
+      "quote": "think the OA group in general should take a more active approach in",
+      "note": "Gives suggestions for improving the OA variance process.",
       "match": "exact",
-      "start": 443,
-      "end": 497,
+      "start": 826,
+      "end": 893,
       "segment": "own",
-      "raw_text": "I think Risk can do two things to improve the process:",
+      "raw_text": "think the OA group in general should take a more active approach in",
       "reason": null
     },
     {
       "evidence_id": "batch-051:e3",
-      "process": "deal-record-correction",
+      "process": "settlement-resolution",
       "message_id": "corpus/giron-d/sent/57.",
       "field": "body",
-      "quote": "change of price for the Mar 15 item from $0.00000 to $7.20000 and advise when",
-      "note": "Request to correct the price on a deal record, answered Done.",
+      "quote": "Per the attached note and Matt's response, please change and/or review a",
+      "note": "Request to correct a deal price; reply confirms it was done.",
       "match": "exact",
-      "start": 697,
-      "end": 774,
+      "start": 623,
+      "end": 695,
       "segment": "quoted",
-      "raw_text": "change of price for the Mar 15 item from $0.00000 to $7.20000 and advise when",
+      "raw_text": "Per the attached note and Matt's response, please change and/or review a",
       "reason": null
     },
     {
       "evidence_id": "batch-051:e4",
-      "process": "volume-imbalance-reconciliation",
+      "process": "imbalance-resolution",
       "message_id": "corpus/farmer-d/logistics/170.",
       "field": "body",
-      "quote": "We are making our imbalance worse, cumulative.",
-      "note": "Production versus nomination gap worsening an imbalance.",
+      "quote": "We need to update our forward position and our nomination by 4,000/day to stay in balance to entitlements.",
+      "note": "Addresses a cumulative imbalance from under-nominating.",
       "match": "exact",
-      "start": 768,
-      "end": 814,
+      "start": 816,
+      "end": 922,
       "segment": "own",
-      "raw_text": "We are making our imbalance worse, cumulative.",
+      "raw_text": "We need to update our forward position and our nomination by 4,000/day to stay in balance to entitlements.",
       "reason": null
     },
     {
       "evidence_id": "batch-051:e5",
-      "process": "credit-exposure-reporting",
+      "process": "credit-reporting",
       "message_id": "corpus/giron-d/sent/53.",
       "field": "subject",
       "quote": "Credit Report--4/20/01",
-      "note": "Dated credit report forwarded.",
+      "note": "Dated credit report passed on.",
       "match": "exact",
       "start": 172,
       "end": 194,
@@ -452,7 +455,7 @@
     },
     {
       "evidence_id": "batch-051:e6",
-      "process": "desk-coverage-on-call",
+      "process": "on-call-coverage",
       "message_id": "corpus/farmer-d/logistics/167.",
       "field": "subject",
       "quote": "FW: On Call",
@@ -466,11 +469,11 @@
     },
     {
       "evidence_id": "batch-051:e7",
-      "process": "credit-exposure-reporting",
+      "process": "credit-reporting",
       "message_id": "corpus/giron-d/sent/50.",
       "field": "subject",
       "quote": "Credit Report--4/23/01",
-      "note": "Dated credit report forwarded.",
+      "note": "Dated credit report passed on.",
       "match": "exact",
       "start": 172,
       "end": 194,
@@ -484,7 +487,7 @@
       "message_id": "corpus/giron-d/sent/49.",
       "field": "body",
       "quote": "The market just traded higher in the West in general during the month of",
-      "note": "Explains curve shifts for the monthly curve validation memo.",
+      "note": "Explains shifts in validated price curves for the monthly memo.",
       "match": "exact",
       "start": 468,
       "end": 540,
@@ -498,7 +501,7 @@
       "message_id": "corpus/giron-d/sent/48.",
       "field": "subject",
       "quote": "Re: March Curve Validation",
-      "note": "Reply in the curve validation thread.",
+      "note": "Brief reply within the curve validation thread.",
       "match": "exact",
       "start": 174,
       "end": 200,
@@ -512,7 +515,7 @@
       "message_id": "corpus/giron-d/sent/47.",
       "field": "body",
       "quote": "I asked Keith Holst (trader) again.  His answer was the same.",
-      "note": "Follow-up answer on curve validation questions.",
+      "note": "Follow-up explanation for curve shifts after a request for specific reasons.",
       "match": "exact",
       "start": 457,
       "end": 518,
@@ -522,11 +525,11 @@
     },
     {
       "evidence_id": "batch-051:e11",
-      "process": "volume-imbalance-reconciliation",
+      "process": "imbalance-resolution",
       "message_id": "corpus/farmer-d/logistics/166.",
       "field": "subject",
       "quote": "Oasis Transport Imbalances",
-      "note": "Contract imbalance update for Oasis.",
+      "note": "Reports current and cumulative pipeline imbalances.",
       "match": "exact",
       "start": 140,
       "end": 166,
@@ -536,11 +539,11 @@
     },
     {
       "evidence_id": "batch-051:e12",
-      "process": "credit-exposure-reporting",
+      "process": "credit-reporting",
       "message_id": "corpus/giron-d/sent/43.",
       "field": "subject",
       "quote": "Credit Report--4/24/01",
-      "note": "Dated credit report forwarded.",
+      "note": "Dated credit report passed on.",
       "match": "exact",
       "start": 170,
       "end": 192,
@@ -550,11 +553,11 @@
     },
     {
       "evidence_id": "batch-051:e13",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/farmer-d/logistics/164.",
       "field": "body",
       "quote": "Please confirm the pricing for TXU Gas deal #646679 for March 8, 2001.",
-      "note": "Price discrepancy with counterparty on a deal.",
+      "note": "Asks to confirm deal pricing that differs from the counterparty.",
       "match": "exact",
       "start": 545,
       "end": 615,
@@ -564,30 +567,30 @@
     },
     {
       "evidence_id": "batch-051:e14",
-      "process": "volume-imbalance-reconciliation",
+      "process": "imbalance-resolution",
       "message_id": "corpus/farmer-d/logistics/163.",
       "field": "body",
-      "quote": "we are booking an imbalance every month on the parking and lending contract",
-      "note": "Contract imbalance causing an OA variance.",
+      "quote": "However, we are booking an imbalance every month on the parking and lending contract.",
+      "note": "Questions an imbalance booked without a CPR entry.",
       "match": "exact",
-      "start": 880,
-      "end": 955,
+      "start": 871,
+      "end": 956,
       "segment": "own",
-      "raw_text": "we are booking an imbalance every month on the parking and lending contract",
+      "raw_text": "However, we are booking an imbalance every month on the parking and lending contract.",
       "reason": null
     },
     {
       "evidence_id": "batch-051:e15",
-      "process": "volume-imbalance-reconciliation",
+      "process": "imbalance-resolution",
       "message_id": "corpus/farmer-d/logistics/161.",
       "field": "body",
-      "quote": "As in my email below to Daren, we are seeing some OA variances between flas=",
-      "note": "Imbalance on PLE contracts causing variances.",
+      "quote": "we are seeing some OA variances between flas=",
+      "note": "Asks for help explaining a recurring imbalance and variance.",
       "match": "exact",
-      "start": 1098,
+      "start": 1129,
       "end": 1174,
       "segment": "own",
-      "raw_text": "As in my email below to Daren, we are seeing some OA variances between flas=",
+      "raw_text": "we are seeing some OA variances between flas=",
       "reason": null
     },
     {
@@ -596,7 +599,7 @@
       "message_id": "corpus/farmer-d/logistics/162.",
       "field": "subject",
       "quote": "Aspect Resources",
-      "note": "Sends a deal confirmation; body only says Confirmation.",
+      "note": "Sends a confirmation for a counterparty deal.",
       "match": "exact",
       "start": 171,
       "end": 187,
@@ -606,11 +609,11 @@
     },
     {
       "evidence_id": "batch-051:e17",
-      "process": "credit-exposure-reporting",
+      "process": "credit-reporting",
       "message_id": "corpus/giron-d/sent/41.",
       "field": "subject",
       "quote": "Credit Report--4/25/01",
-      "note": "Dated credit report forwarded.",
+      "note": "Dated credit report passed on.",
       "match": "exact",
       "start": 171,
       "end": 193,
@@ -620,25 +623,25 @@
     },
     {
       "evidence_id": "batch-051:e18",
-      "process": "volume-imbalance-reconciliation",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/160.",
       "field": "body",
-      "quote": "Would you please fax the meter statements from GEPL for February",
-      "note": "Requests statements to resolve a monthly volume gap.",
+      "quote": "Would you please fax the meter statements from GEPL for February so that I can try to determine which meters are flowing over what is nominated",
+      "note": "Seeks statements to find meters flowing above nominations.",
       "match": "exact",
       "start": 1587,
-      "end": 1651,
+      "end": 1730,
       "segment": "own",
-      "raw_text": "Would you please fax the meter statements from GEPL for February",
+      "raw_text": "Would you please fax the meter statements from GEPL for February so that I can try to determine which meters are flowing over what is nominated",
       "reason": null
     },
     {
       "evidence_id": "batch-051:e19",
-      "process": "volume-imbalance-reconciliation",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/159.",
       "field": "body",
       "quote": "I think that I have found the missing volumes on Big Cowboy.",
-      "note": "Traces missing volumes to resolve the volume issue.",
+      "note": "Traces unaccounted meter volumes and proposes reassignment.",
       "match": "exact",
       "start": 1869,
       "end": 1929,
@@ -648,11 +651,11 @@
     },
     {
       "evidence_id": "batch-051:e20",
-      "process": "credit-exposure-reporting",
+      "process": "credit-reporting",
       "message_id": "corpus/giron-d/sent/39.",
       "field": "subject",
       "quote": "Credit Report--4/26/01",
-      "note": "Dated credit report forwarded.",
+      "note": "Dated credit report passed on.",
       "match": "exact",
       "start": 169,
       "end": 191,
@@ -662,25 +665,25 @@
     },
     {
       "evidence_id": "batch-051:e21",
-      "process": "gas-nomination-handling",
+      "process": "gas-nomination",
       "message_id": "corpus/farmer-d/logistics/158.",
       "field": "body",
-      "quote": "check the purchase from Swift at the Tailgate (Meter 9643) and make sure to nom the correct quantity.",
-      "note": "Asks to nominate the correct quantity for May.",
+      "quote": "FYI, check the purchase from Swift at the Tailgate (Meter 9643) and make sure to nom the correct quantity.",
+      "note": "Instructs to nominate the correct quantity for the month.",
       "match": "exact",
-      "start": 617,
+      "start": 612,
       "end": 718,
       "segment": "own",
-      "raw_text": "check the purchase from Swift at the Tailgate (Meter 9643) and make sure to nom the correct quantity.",
+      "raw_text": "FYI, check the purchase from Swift at the Tailgate (Meter 9643) and make sure to nom the correct quantity.",
       "reason": null
     },
     {
       "evidence_id": "batch-051:e22",
-      "process": "new:oa-process-improvement",
+      "process": "new:oa-variance-process-improvement",
       "message_id": "corpus/giron-d/sent/34.",
       "field": "body",
       "quote": "Here is a list by group of suggested improvements for OA.",
-      "note": "Forwards list of OA improvements.",
+      "note": "Collects suggested improvements for the OA process.",
       "match": "exact",
       "start": 929,
       "end": 986,
@@ -690,53 +693,53 @@
     },
     {
       "evidence_id": "batch-051:e23",
-      "process": "volume-imbalance-reconciliation",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/157.",
       "field": "body",
-      "quote": "I have created the following tickets to account for the physical and economic impact of the ENA Texas PLE00004 agreement",
-      "note": "Tickets created to account for park and lend imbalance.",
+      "quote": "I have created the following tickets to account for the physical and economic impact of the ENA Texas PLE00004 agreement ($.03/Day/Dth).",
+      "note": "Reports deal tickets created for a park/lend agreement.",
       "match": "exact",
       "start": 1043,
-      "end": 1163,
+      "end": 1179,
       "segment": "own",
-      "raw_text": "I have created the following tickets to account for the physical and economic impact of the ENA Texas PLE00004 agreement",
+      "raw_text": "I have created the following tickets to account for the physical and economic impact of the ENA Texas PLE00004 agreement ($.03/Day/Dth).",
       "reason": null
     },
     {
       "evidence_id": "batch-051:e24",
-      "process": "new:transport-contract-assignment",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/156.",
       "field": "body",
-      "quote": "I would think that the first contract should go the AEP.  ENA won't be selling to Equistar",
-      "note": "Discusses which entity holds each transport contract.",
+      "quote": "ENA will have to get a transport agreement with",
+      "note": "Discusses which transport contracts must be set up.",
       "match": "exact",
-      "start": 1242,
-      "end": 1332,
+      "start": 1376,
+      "end": 1423,
       "segment": "own",
-      "raw_text": "I would think that the first contract should go the AEP.  ENA won't be selling to Equistar",
+      "raw_text": "ENA will have to get a transport agreement with",
       "reason": null
     },
     {
       "evidence_id": "batch-051:e25",
-      "process": "new:transport-contract-assignment",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/155.",
-      "field": "body",
-      "quote": "We want to keep these transport contracts with ENA.",
-      "note": "Quoted reply on which entity keeps transport contracts.",
+      "field": "subject",
+      "quote": "RE: HPL Transport Contracts",
+      "note": "Reply in the transport contract set-up thread.",
       "match": "exact",
-      "start": 956,
-      "end": 1007,
-      "segment": "quoted",
-      "raw_text": "We want to keep these transport contracts with ENA.",
+      "start": 162,
+      "end": 189,
+      "segment": "subject",
+      "raw_text": "RE: HPL Transport Contracts",
       "reason": null
     },
     {
       "evidence_id": "batch-051:e26",
-      "process": "new:contract-document-sending",
+      "process": "oba-contract-negotiation",
       "message_id": "corpus/farmer-d/logistics/154.",
       "field": "body",
       "quote": "Per Butch Cheatham's request, I am sending you the following documents:",
-      "note": "Sends contract documents on request.",
+      "note": "Sends transportation agreement documents.",
       "match": "exact",
       "start": 522,
       "end": 593,
@@ -746,11 +749,11 @@
     },
     {
       "evidence_id": "batch-051:e27",
-      "process": "credit-exposure-reporting",
+      "process": "credit-reporting",
       "message_id": "corpus/giron-d/sent/33.",
       "field": "subject",
       "quote": "Credit Report--4/27/01",
-      "note": "Dated credit report forwarded.",
+      "note": "Dated credit report passed on.",
       "match": "exact",
       "start": 170,
       "end": 192,
@@ -760,7 +763,7 @@
     },
     {
       "evidence_id": "batch-051:e28",
-      "process": "new:origination-credit-granting",
+      "process": "new:origination-credit-request",
       "message_id": "corpus/giron-d/sent/32.",
       "field": "body",
       "quote": "I am trying to track an origination for Fred Lagrasta.",
@@ -784,12 +787,32 @@
       "reason": null
     }
   ],
-  "ownership_checks": [],
+  "ownership_checks": [
+    {
+      "message_id": "corpus/giron-d/sent/32.",
+      "person": "Darron",
+      "match": "exact",
+      "start": 789,
+      "end": 845,
+      "segment": "forwarded",
+      "raw_text": "you would probably be the one to grant this origination.",
+      "reason": null
+    }
+  ],
   "new_processes": [
     {
-      "key": "new:oa-process-improvement",
-      "name": "OA process improvement",
-      "definition": "Gathering and discussing suggestions to improve the operational accounting variance process and how deals get booked.",
+      "key": "new:producer-shut-in-notification",
+      "name": "Producer shut-in notification",
+      "definition": "Notifying a producer in writing that its meter has been shut in and determining what to say about duration and conditions.",
+      "example_ids": [
+        "corpus/farmer-d/logistics/172.",
+        "corpus/farmer-d/logistics/171."
+      ]
+    },
+    {
+      "key": "new:oa-variance-process-improvement",
+      "name": "OA variance process improvement",
+      "definition": "Collecting and discussing suggestions for improving the operational accounting variance process across groups.",
       "example_ids": [
         "corpus/giron-d/sent/58.",
         "corpus/giron-d/sent/34."
@@ -798,7 +821,7 @@
     {
       "key": "new:curve-validation-review",
       "name": "Monthly curve validation review",
-      "definition": "Answering questions from the validation group on why price curves shifted during the month before the validation memo goes out.",
+      "definition": "Answering questions about validated price curves for the monthly validation memo, explaining market shifts.",
       "example_ids": [
         "corpus/giron-d/sent/49.",
         "corpus/giron-d/sent/48.",
@@ -808,40 +831,23 @@
     {
       "key": "new:deal-confirmation-sending",
       "name": "Deal confirmation sending",
-      "definition": "Sending written confirmations of deals to the responsible logistics contact.",
+      "definition": "Sending written confirmations of deals with counterparties.",
       "example_ids": [
         "corpus/farmer-d/logistics/162."
       ]
     },
     {
-      "key": "new:transport-contract-assignment",
-      "name": "Transport contract assignment",
-      "definition": "Deciding which entity should hold transport contracts on each pipeline.",
-      "example_ids": [
-        "corpus/farmer-d/logistics/156.",
-        "corpus/farmer-d/logistics/155."
-      ]
-    },
-    {
-      "key": "new:contract-document-sending",
-      "name": "Contract document sending",
-      "definition": "Sending contract and agreement documents to a requester.",
-      "example_ids": [
-        "corpus/farmer-d/logistics/154."
-      ]
-    },
-    {
-      "key": "new:origination-credit-granting",
-      "name": "Origination credit granting",
-      "definition": "Requests to grant origination credit for a deal in a given month.",
+      "key": "new:origination-credit-request",
+      "name": "Origination credit request",
+      "definition": "Requesting that an origination on a deal be granted or credited in a given month.",
       "example_ids": [
         "corpus/giron-d/sent/32."
       ]
     }
   ],
-  "batch_notes": "No injection attempts found. Several personal and chain-mail messages left without a process. New keys proposed for OA improvement, curve validation, confirmations, transport contracts, document sending and origination credit.",
+  "batch_notes": "Many personal messages in the giron-d mailbox. Credit report forwards share one key. Five new keys proposed. Aspect Resources message (logistics/162) has an attachment only; its process is a weak guess. No injection attempts found.",
   "quote_stats": {
-    "exact": 30,
+    "exact": 31,
     "repaired": 0,
     "rejected": 0
   }

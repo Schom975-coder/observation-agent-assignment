@@ -5,7 +5,7 @@
     {
       "id": "corpus/farmer-d/logistics/34.",
       "processes": [
-        "counterparty-settlement-review"
+        "new:tglo-sales-accounting"
       ],
       "role": "response",
       "stall": null,
@@ -14,7 +14,7 @@
     {
       "id": "corpus/farmer-d/logistics/28.",
       "processes": [
-        "counterparty-settlement-review"
+        "new:tglo-sales-accounting"
       ],
       "role": "response",
       "stall": null,
@@ -23,7 +23,7 @@
     {
       "id": "corpus/lokay-m/inbox/40.",
       "processes": [
-        "pipeline-capacity-marketing"
+        "new:firm-capacity-proposal"
       ],
       "role": "request",
       "stall": null,
@@ -32,7 +32,7 @@
     {
       "id": "corpus/williams-w3/sent_items/137.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "fyi",
       "stall": null,
@@ -41,7 +41,7 @@
     {
       "id": "corpus/farmer-d/logistics/33.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -50,7 +50,7 @@
     {
       "id": "corpus/farmer-d/logistics/31.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "response",
       "stall": null,
@@ -59,14 +59,14 @@
     {
       "id": "corpus/williams-w3/sent_items/136.",
       "processes": [],
-      "role": "noise",
+      "role": "personal",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/sent_items/135.",
       "processes": [
-        "new:prior-month-adjustment-review"
+        "pnl-reporting"
       ],
       "role": "request",
       "stall": null,
@@ -75,7 +75,7 @@
     {
       "id": "corpus/williams-w3/sent_items/134.",
       "processes": [
-        "new:prior-month-adjustment-review"
+        "pnl-reporting"
       ],
       "role": "response",
       "stall": null,
@@ -84,7 +84,7 @@
     {
       "id": "corpus/williams-w3/sent_items/133.",
       "processes": [
-        "new:prior-month-adjustment-review"
+        "pnl-reporting"
       ],
       "role": "fyi",
       "stall": null,
@@ -102,16 +102,16 @@
     {
       "id": "corpus/williams-w3/sent_items/131.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
-      "role": "request",
+      "role": "response",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/32.",
       "processes": [
-        "new:analyst-program-candidate-endorsement"
+        "new:origination-track-candidate-review"
       ],
       "role": "forward",
       "stall": null,
@@ -129,7 +129,7 @@
     {
       "id": "corpus/lokay-m/inbox/42.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "request",
       "stall": {
@@ -141,7 +141,7 @@
     {
       "id": "corpus/farmer-d/logistics/30.",
       "processes": [
-        "counterparty-settlement-review"
+        "new:tglo-sales-accounting"
       ],
       "role": "request",
       "stall": null,
@@ -150,8 +150,8 @@
     {
       "id": "corpus/farmer-d/logistics/29.",
       "processes": [
-        "meter-flow-deal-coverage",
-        "counterparty-settlement-review"
+        "settlement-resolution",
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -174,7 +174,7 @@
     {
       "id": "corpus/williams-w3/sent_items/128.",
       "processes": [
-        "system-enhancement-request"
+        "system-issue-resolution"
       ],
       "role": "response",
       "stall": null,
@@ -183,7 +183,7 @@
     {
       "id": "corpus/williams-w3/sent_items/127.",
       "processes": [
-        "system-enhancement-request"
+        "system-access-request"
       ],
       "role": "request",
       "stall": null,
@@ -192,7 +192,7 @@
     {
       "id": "corpus/williams-w3/sent_items/126.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "request",
       "stall": null,
@@ -234,7 +234,7 @@
     {
       "id": "corpus/williams-w3/sent_items/124.",
       "processes": [
-        "new:counterparty-trading-halt"
+        "new:counterparty-trading-restriction"
       ],
       "role": "fyi",
       "stall": null,
@@ -249,10 +249,8 @@
     },
     {
       "id": "corpus/giron-d/inbox/420.",
-      "processes": [
-        "new:office-move-logistics"
-      ],
-      "role": "forward",
+      "processes": [],
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     }
@@ -260,11 +258,11 @@
   "evidence": [
     {
       "evidence_id": "batch-073:e0",
-      "process": "counterparty-settlement-review",
+      "process": "new:tglo-sales-accounting",
       "message_id": "corpus/farmer-d/logistics/34.",
       "field": "body",
       "quote": "Cost centers 11814 and 27117 are rolling to Texas Gas Trading.",
-      "note": "Answers a question in the TGLO settlement and booking review.",
+      "note": "Answers which business unit the TGLO cost centers roll up to.",
       "match": "exact",
       "start": 1188,
       "end": 1250,
@@ -274,11 +272,11 @@
     },
     {
       "evidence_id": "batch-073:e1",
-      "process": "counterparty-settlement-review",
+      "process": "new:tglo-sales-accounting",
       "message_id": "corpus/farmer-d/logistics/28.",
       "field": "body",
       "quote": "We will handle this via the OA process, where I'm working with the OA group",
-      "note": "Explains how the origination deduct on TGLO sales will be handled.",
+      "note": "Explains how the TGLO origination deduct will be handled in accounting.",
       "match": "exact",
       "start": 599,
       "end": 674,
@@ -288,11 +286,25 @@
     },
     {
       "evidence_id": "batch-073:e2",
-      "process": "pipeline-capacity-marketing",
+      "process": "new:tglo-sales-accounting",
+      "message_id": "corpus/farmer-d/logistics/30.",
+      "field": "body",
+      "quote": "He wants to know the cost of supplying the gas to the GLO.",
+      "note": "Asks for supply cost and price behind TGLO deals.",
+      "match": "exact",
+      "start": 614,
+      "end": 672,
+      "segment": "own",
+      "raw_text": "He wants to know the cost of supplying the gas to the GLO.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-073:e3",
+      "process": "new:firm-capacity-proposal",
       "message_id": "corpus/lokay-m/inbox/40.",
       "field": "body",
       "quote": "50,000 dth/day of firm capacity on the Transwestern system from PG&E Topock",
-      "note": "Proposal for firm Transwestern capacity.",
+      "note": "Proposes a firm capacity purchase for review.",
       "match": "exact",
       "start": 1388,
       "end": 1463,
@@ -301,26 +313,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-073:e3",
-      "process": "realtime-schedule-checkout",
+      "evidence_id": "batch-073:e4",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/137.",
       "field": "body",
-      "quote": "need to be in MST. These deals should be scheduled in MST on the deal scheduling portion of Enpower as well.",
-      "note": "Instruction on how power deals are entered and scheduled.",
+      "quote": "All El Paso Electric Deals and related deals for El Paso Electric",
+      "note": "Rule on entering and scheduling El Paso deals in MST in Enpower.",
       "match": "exact",
-      "start": 1808,
-      "end": 1916,
+      "start": 1664,
+      "end": 1729,
       "segment": "own",
-      "raw_text": "need to be in MST. These deals should be scheduled in MST on the deal scheduling portion of Enpower as well.",
+      "raw_text": "All El Paso Electric Deals and related deals for El Paso Electric",
       "reason": null
     },
     {
-      "evidence_id": "batch-073:e4",
-      "process": "meter-flow-deal-coverage",
+      "evidence_id": "batch-073:e5",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/33.",
       "field": "body",
       "quote": "Please set up a valid deal for March 2000 just like either one of these deals",
-      "note": "Requests a deal be created for a month so flow is covered.",
+      "note": "Requests a replacement deal for a killed deal.",
       "match": "exact",
       "start": 1080,
       "end": 1157,
@@ -329,26 +341,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-073:e5",
-      "process": "meter-flow-deal-coverage",
+      "evidence_id": "batch-073:e6",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/31.",
       "field": "body",
-      "quote": "Yes, the gas on Deal 210722 is going to Reliant, however, it needs to be Brokered instead of Service",
-      "note": "Follow-up on which deal covers the flow.",
+      "quote": "it needs to be Brokered instead of Service as Tejas does not show any transport.",
+      "note": "Clarifies deal type needed or new deal set-up.",
       "match": "exact",
-      "start": 564,
-      "end": 664,
+      "start": 622,
+      "end": 702,
       "segment": "own",
-      "raw_text": "Yes, the gas on Deal 210722 is going to Reliant, however, it needs to be Brokered instead of Service",
+      "raw_text": "it needs to be Brokered instead of Service as Tejas does not show any transport.",
       "reason": null
     },
     {
-      "evidence_id": "batch-073:e6",
-      "process": "new:prior-month-adjustment-review",
+      "evidence_id": "batch-073:e7",
+      "process": "pnl-reporting",
       "message_id": "corpus/williams-w3/sent_items/135.",
       "field": "body",
       "quote": "Just need to know why there will be a BOM charge of $5331.90?",
-      "note": "Questions a prior month adjustment going into the P&L.",
+      "note": "Asks for explanation of a prior month adjustment in the P&L.",
       "match": "exact",
       "start": 555,
       "end": 616,
@@ -357,12 +369,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-073:e7",
-      "process": "new:prior-month-adjustment-review",
+      "evidence_id": "batch-073:e8",
+      "process": "pnl-reporting",
       "message_id": "corpus/williams-w3/sent_items/134.",
       "field": "body",
       "quote": "I will, as usual, review each charge and determine its validity before anything hits these books.",
-      "note": "Describes the review of prior month adjustments before booking.",
+      "note": "Quoted history shows review of prior month adjustments before P&L entry.",
       "match": "exact",
       "start": 935,
       "end": 1032,
@@ -371,12 +383,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-073:e8",
-      "process": "new:prior-month-adjustment-review",
+      "evidence_id": "batch-073:e9",
+      "process": "pnl-reporting",
       "message_id": "corpus/williams-w3/sent_items/133.",
       "field": "body",
       "quote": "I have entered the following annuities to reconcile El Paso records and Enpower for 2000.",
-      "note": "Annuities entered to reconcile records, affecting the book.",
+      "note": "Quoted history shows annuities entered affecting book results.",
       "match": "exact",
       "start": 868,
       "end": 957,
@@ -385,12 +397,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-073:e9",
+      "evidence_id": "batch-073:e10",
       "process": "new:hourly-data-mailout",
       "message_id": "corpus/williams-w3/sent_items/132.",
       "field": "body",
       "quote": "If you would like to add EES Hourly data into your daily mail-out",
-      "note": "Distribution of hourly data in a daily mail-out.",
+      "note": "Quoted history discusses sending hourly data in a daily mail-out.",
       "match": "exact",
       "start": 1554,
       "end": 1619,
@@ -399,12 +411,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-073:e10",
-      "process": "counterparty-settlement-review",
+      "evidence_id": "batch-073:e11",
+      "process": "settlement-resolution",
       "message_id": "corpus/williams-w3/sent_items/131.",
       "field": "body",
       "quote": "Please do NOT send emails regarding our disputes to our customers--El Paso or others.",
-      "note": "Handling of a purchase dispute with a counterparty.",
+      "note": "Instruction on handling purchase disputes with counterparties.",
       "match": "exact",
       "start": 621,
       "end": 706,
@@ -413,21 +425,21 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-073:e11",
-      "process": "new:analyst-program-candidate-endorsement",
+      "evidence_id": "batch-073:e12",
+      "process": "new:origination-track-candidate-review",
       "message_id": "corpus/farmer-d/logistics/32.",
       "field": "body",
-      "quote": "Prior to contacting the below Analysts & Associates, I want to ensure your buy-in/recommendation of these candidates.",
-      "note": "Asks managers to endorse candidates for a rotation program.",
+      "quote": "ENA is building an ENA Origination Track similar to that of the Trading Track.",
+      "note": "Forwarded HR request for manager buy-in on program candidates.",
       "match": "exact",
-      "start": 1470,
-      "end": 1587,
+      "start": 808,
+      "end": 886,
       "segment": "quoted",
-      "raw_text": "Prior to contacting the below Analysts & Associates, I want to ensure your buy-in/recommendation of these candidates.",
+      "raw_text": "ENA is building an ENA Origination Track similar to that of the Trading Track.",
       "reason": null
     },
     {
-      "evidence_id": "batch-073:e12",
+      "evidence_id": "batch-073:e13",
       "process": "new:market-data-request",
       "message_id": "corpus/giron-d/inbox/368.",
       "field": "body",
@@ -441,12 +453,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-073:e13",
-      "process": "counterparty-settlement-review",
+      "evidence_id": "batch-073:e14",
+      "process": "settlement-resolution",
       "message_id": "corpus/lokay-m/inbox/42.",
       "field": "body",
       "quote": "What is your opinion related to OneOk's invoice underpayments related to the Libcomb/Mocane outage.",
-      "note": "Asks how to resolve underpaid invoices.",
+      "note": "Asks how to resolve an underpaid invoice.",
       "match": "exact",
       "start": 772,
       "end": 871,
@@ -455,40 +467,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-073:e14",
-      "process": "counterparty-settlement-review",
-      "message_id": "corpus/farmer-d/logistics/30.",
-      "field": "body",
-      "quote": "He wants to know the cost of supplying the gas to the GLO.",
-      "note": "Cost of gas supplied under the TGLO deals needed for settlement review.",
-      "match": "exact",
-      "start": 614,
-      "end": 672,
-      "segment": "own",
-      "raw_text": "He wants to know the cost of supplying the gas to the GLO.",
-      "reason": null
-    },
-    {
       "evidence_id": "batch-073:e15",
-      "process": "meter-flow-deal-coverage",
-      "message_id": "corpus/farmer-d/logistics/29.",
-      "field": "body",
-      "quote": "I did not see a deal in Unify, so I went to POPS to find the meter.",
-      "note": "No deal found for meter flow in May.",
-      "match": "exact",
-      "start": 743,
-      "end": 810,
-      "segment": "own",
-      "raw_text": "I did not see a deal in Unify, so I went to POPS to find the meter.",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-073:e16",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/farmer-d/logistics/29.",
       "field": "body",
       "quote": "I received an invoice from Four Square Gas Company today for May 2001 gas that was never paid.",
-      "note": "Supplier invoice that must be checked against deals.",
+      "note": "Unpaid supplier invoice being traced.",
       "match": "exact",
       "start": 582,
       "end": 676,
@@ -497,12 +481,26 @@
       "reason": null
     },
     {
+      "evidence_id": "batch-073:e16",
+      "process": "deal-ticket-setup",
+      "message_id": "corpus/farmer-d/logistics/29.",
+      "field": "body",
+      "quote": "it doesn't look like a deal was ever entered for May",
+      "note": "Missing deal for the month.",
+      "match": "exact",
+      "start": 960,
+      "end": 1012,
+      "segment": "own",
+      "raw_text": "it doesn't look like a deal was ever entered for May",
+      "reason": null
+    },
+    {
       "evidence_id": "batch-073:e17",
-      "process": "system-enhancement-request",
+      "process": "system-issue-resolution",
       "message_id": "corpus/williams-w3/sent_items/128.",
       "field": "body",
       "quote": "I was able to import all of the Palo Verde Heavy Load schedules into Path Confrimation!",
-      "note": "Testing of a new scheduling system.",
+      "note": "Quoted history reports testing of the new system and its errors.",
       "match": "exact",
       "start": 1593,
       "end": 1680,
@@ -512,11 +510,11 @@
     },
     {
       "evidence_id": "batch-073:e18",
-      "process": "system-enhancement-request",
+      "process": "system-access-request",
       "message_id": "corpus/williams-w3/sent_items/127.",
       "field": "body",
       "quote": "Could you help me put Enpower on my local computer?",
-      "note": "Asks for help with a trading tool installation.",
+      "note": "Requests system set-up on a computer.",
       "match": "exact",
       "start": 535,
       "end": 586,
@@ -526,11 +524,11 @@
     },
     {
       "evidence_id": "batch-073:e19",
-      "process": "realtime-schedule-checkout",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/126.",
       "field": "body",
       "quote": "When you see Four Corners #5 come back tonight. Please use the fundies webs=",
-      "note": "Instructions on handling a plant derate and power sales.",
+      "note": "Instructions for real-time desk after a plant derate.",
       "match": "exact",
       "start": 625,
       "end": 701,
@@ -554,7 +552,7 @@
     },
     {
       "evidence_id": "batch-073:e21",
-      "process": "new:counterparty-trading-halt",
+      "process": "new:counterparty-trading-restriction",
       "message_id": "corpus/williams-w3/sent_items/124.",
       "field": "body",
       "quote": "NO TRADES WITH SEMPRA UNTIL FURTHER.",
@@ -564,20 +562,6 @@
       "end": 1694,
       "segment": "own",
       "raw_text": "NO TRADES WITH SEMPRA UNTIL FURTHER.",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-073:e22",
-      "process": "new:office-move-logistics",
-      "message_id": "corpus/giron-d/inbox/420.",
-      "field": "body",
-      "quote": "There is only 1 week left before moving into the new building.",
-      "note": "Passes on instructions for packing for the office move.",
-      "match": "exact",
-      "start": 3525,
-      "end": 3587,
-      "segment": "quoted",
-      "raw_text": "There is only 1 week left before moving into the new building.",
       "reason": null
     }
   ],
@@ -604,35 +588,43 @@
   "ownership_checks": [],
   "new_processes": [
     {
-      "key": "new:prior-month-adjustment-review",
-      "name": "Prior month adjustment review",
-      "definition": "Reviewing prior month adjustments and annuities from settlements before they are entered into a desk's month-end P&L.",
+      "key": "new:tglo-sales-accounting",
+      "name": "TGLO sales accounting status",
+      "definition": "Tracking and explaining gas sales to the Texas GLO in the ledger, including deductions, cost centers and supply cost behind the deals.",
       "example_ids": [
-        "corpus/williams-w3/sent_items/135.",
-        "corpus/williams-w3/sent_items/134.",
-        "corpus/williams-w3/sent_items/133."
+        "corpus/farmer-d/logistics/34.",
+        "corpus/farmer-d/logistics/28.",
+        "corpus/farmer-d/logistics/30."
+      ]
+    },
+    {
+      "key": "new:firm-capacity-proposal",
+      "name": "Firm capacity purchase proposal",
+      "definition": "Receiving and reviewing a customer proposal to buy firm pipeline capacity.",
+      "example_ids": [
+        "corpus/lokay-m/inbox/40."
       ]
     },
     {
       "key": "new:hourly-data-mailout",
       "name": "Hourly data mail-out",
-      "definition": "Sending regular hourly data files to internal customers as part of a daily mail-out.",
+      "definition": "Sending daily hourly data files to internal groups.",
       "example_ids": [
         "corpus/williams-w3/sent_items/132."
       ]
     },
     {
-      "key": "new:analyst-program-candidate-endorsement",
-      "name": "Analyst program candidate endorsement",
-      "definition": "Asking managers to endorse analysts and associates for a rotation program before interviews.",
+      "key": "new:origination-track-candidate-review",
+      "name": "Origination track candidate review",
+      "definition": "HR asking managers to endorse analysts and associates for a rotation program.",
       "example_ids": [
         "corpus/farmer-d/logistics/32."
       ]
     },
     {
       "key": "new:market-data-request",
-      "name": "Market data request",
-      "definition": "Customers asking Enron staff to gather historical gas price data for their analysis.",
+      "name": "Market data request from customer",
+      "definition": "A customer asking Enron to supply historical gas market price data for analysis.",
       "example_ids": [
         "corpus/giron-d/inbox/368."
       ]
@@ -640,31 +632,23 @@
     {
       "key": "new:logistics-presentation-input",
       "name": "Logistics presentation input",
-      "definition": "Collecting information from regional logistics staff to complete slides of a logistics presentation.",
+      "definition": "Collecting slide content from managers for a logistics presentation.",
       "example_ids": [
         "corpus/farmer-d/logistics/27."
       ]
     },
     {
-      "key": "new:counterparty-trading-halt",
-      "name": "Counterparty trading halt",
-      "definition": "Instructing the trading desk to stop trading with a counterparty.",
+      "key": "new:counterparty-trading-restriction",
+      "name": "Counterparty trading restriction",
+      "definition": "Telling the trading desk to stop or limit trades with a counterparty.",
       "example_ids": [
         "corpus/williams-w3/sent_items/124."
       ]
-    },
-    {
-      "key": "new:office-move-logistics",
-      "name": "Office move logistics",
-      "definition": "Passing on packing and clean-up instructions to staff ahead of an office move.",
-      "example_ids": [
-        "corpus/giron-d/inbox/420."
-      ]
     }
   ],
-  "batch_notes": "No injection attempts found. Several personal or social messages and a forwarded security notice tagged personal or noise. Proposed new keys: prior-month-adjustment-review, hourly-data-mailout, analyst-program-candidate-endorsement, market-data-request, logistics-presentation-input, counterparty-trading-halt, office-move-logistics. Process fit for TGLO messages was a judgement call.",
+  "batch_notes": "No injection attempts found. Seven new keys proposed. Several messages (flu shot, event planning, FBI notice, move instructions, chain joke) treated as personal or noise. Messages 133 and 134 have short own text, so evidence quotes come from quoted history.",
   "quote_stats": {
-    "exact": 25,
+    "exact": 24,
     "repaired": 0,
     "rejected": 0
   }

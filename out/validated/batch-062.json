@@ -4,29 +4,35 @@
   "messages": [
     {
       "id": "corpus/williams-w3/sent_items/307.",
-      "processes": [],
-      "role": "noise",
+      "processes": [
+        "new:market-news-sharing"
+      ],
+      "role": "forward",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/sent_items/306.",
-      "processes": [],
-      "role": "noise",
+      "processes": [
+        "new:desk-conduct-notice"
+      ],
+      "role": "fyi",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/sent_items/305.",
-      "processes": [],
-      "role": "noise",
+      "processes": [
+        "new:desk-conduct-notice"
+      ],
+      "role": "fyi",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/78.",
       "processes": [
-        "deal-record-correction"
+        "settlement-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -42,7 +48,7 @@
     {
       "id": "corpus/farmer-d/logistics/77.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -51,7 +57,7 @@
     {
       "id": "corpus/farmer-d/logistics/75.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "meter-flow-resolution"
       ],
       "role": "response",
       "stall": null,
@@ -63,7 +69,7 @@
     {
       "id": "corpus/williams-w3/sent_items/304.",
       "processes": [
-        "new:desk-procedure-reminders"
+        "new:trading-desk-guidance"
       ],
       "role": "forward",
       "stall": null,
@@ -72,16 +78,16 @@
     {
       "id": "corpus/williams-w3/sent_items/303.",
       "processes": [
-        "market-rule-change-review"
+        "regulatory-notice-review"
       ],
-      "role": "fyi",
+      "role": "forward",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/sent_items/302.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -90,12 +96,12 @@
     {
       "id": "corpus/farmer-d/logistics/76.",
       "processes": [
-        "system-enhancement-request"
+        "system-issue-resolution"
       ],
       "role": "forward",
       "stall": {
         "kind": "system_failure",
-        "quote": "the problem that caused Unify's Gas Production database to hang indefinitely today"
+        "quote": "Unify's Gas Production database to hang indefinitely today"
       },
       "ownership_claim": null
     },
@@ -111,21 +117,21 @@
     {
       "id": "corpus/giron-d/inbox/201.",
       "processes": [],
-      "role": "automated",
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/inbox/202.",
       "processes": [],
-      "role": "noise",
+      "role": "personal",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/sent_items/300.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "fyi",
       "stall": null,
@@ -134,23 +140,26 @@
     {
       "id": "corpus/williams-w3/sent_items/299.",
       "processes": [],
-      "role": "noise",
+      "role": "personal",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/sent_items/298.",
       "processes": [
-        "new:desk-procedure-reminders"
+        "new:trading-desk-guidance"
       ],
       "role": "fyi",
-      "stall": null,
+      "stall": {
+        "kind": "rework",
+        "quote": "Do NOT let this happen again."
+      },
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/sent_items/297.",
       "processes": [
-        "reference-data-update"
+        "system-access-request"
       ],
       "role": "request",
       "stall": null,
@@ -159,7 +168,7 @@
     {
       "id": "corpus/williams-w3/sent_items/296.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "fyi",
       "stall": null,
@@ -175,16 +184,19 @@
     {
       "id": "corpus/farmer-d/logistics/74.",
       "processes": [
-        "deal-record-correction"
+        "settlement-resolution"
       ],
       "role": "request",
-      "stall": null,
+      "stall": {
+        "kind": "rework",
+        "quote": "Deal 895691 - swing deal - currently has 234,000 in the scheduled column and it should be 441,000 based on the spreadsheet I sent."
+      },
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/73.",
       "processes": [
-        "deal-record-correction"
+        "settlement-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -193,9 +205,9 @@
     {
       "id": "corpus/williams-w3/sent_items/295.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
-      "role": "fyi",
+      "role": "request",
       "stall": null,
       "ownership_claim": null
     },
@@ -216,14 +228,14 @@
     {
       "id": "corpus/giron-d/inbox/206.",
       "processes": [],
-      "role": "automated",
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/sent_items/294.",
       "processes": [
-        "system-enhancement-request"
+        "system-issue-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -232,7 +244,7 @@
     {
       "id": "corpus/farmer-d/logistics/72.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -250,7 +262,7 @@
     {
       "id": "corpus/farmer-d/logistics/71.",
       "processes": [
-        "counterparty-settlement-review"
+        "new:counterparty-information-request"
       ],
       "role": "forward",
       "stall": null,
@@ -260,11 +272,53 @@
   "evidence": [
     {
       "evidence_id": "batch-062:e0",
-      "process": "deal-record-correction",
+      "process": "new:market-news-sharing",
+      "message_id": "corpus/williams-w3/sent_items/307.",
+      "field": "body",
+      "quote": "Pretty big Enron influence in this article from what I can tell...",
+      "note": "Shares a press article on California power buying with a colleague and asks for thoughts.",
+      "match": "exact",
+      "start": 561,
+      "end": 627,
+      "segment": "own",
+      "raw_text": "Pretty big Enron influence in this article from what I can tell...",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-062:e1",
+      "process": "new:desk-conduct-notice",
+      "message_id": "corpus/williams-w3/sent_items/306.",
+      "field": "body",
+      "quote": "Leaving chew spit cups on other desks or throwing chew in the sink is unacceptable.",
+      "note": "Group notice setting floor conduct expectations.",
+      "match": "exact",
+      "start": 965,
+      "end": 1048,
+      "segment": "own",
+      "raw_text": "Leaving chew spit cups on other desks or throwing chew in the sink is unacceptable.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-062:e2",
+      "process": "new:desk-conduct-notice",
+      "message_id": "corpus/williams-w3/sent_items/305.",
+      "field": "body",
+      "quote": "Leaving chew spit cups on other desks or throwing chew in the sink is unacceptable.",
+      "note": "Same group notice sent to the whole desk.",
+      "match": "exact",
+      "start": 1915,
+      "end": 1998,
+      "segment": "own",
+      "raw_text": "Leaving chew spit cups on other desks or throwing chew in the sink is unacceptable.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-062:e3",
+      "process": "settlement-resolution",
       "message_id": "corpus/farmer-d/logistics/78.",
       "field": "body",
       "quote": "On day 18, did you intentionally enter 50,000 days or was it a slip of the fingers?",
-      "note": "Questions a possibly wrong volume entered on a deal.",
+      "note": "Settlements queries a deal volume that conflicts with another figure.",
       "match": "exact",
       "start": 644,
       "end": 727,
@@ -273,26 +327,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-062:e1",
-      "process": "volume-imbalance-reconciliation",
+      "evidence_id": "batch-062:e4",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/77.",
       "field": "body",
-      "quote": "that there was around 20,000 MMBTU scheduled, but when it was actualized, it was actualized at 0.",
-      "note": "Scheduled versus actualized volume mismatch to be checked.",
+      "quote": "Can you check into this and get back with Daren?",
+      "note": "Asks for a check on scheduled versus actualized volume on a deal.",
       "match": "exact",
-      "start": 731,
-      "end": 828,
+      "start": 860,
+      "end": 908,
       "segment": "own",
-      "raw_text": "that there was around 20,000 MMBTU scheduled, but when it was actualized, it was actualized at 0.",
+      "raw_text": "Can you check into this and get back with Daren?",
       "reason": null
     },
     {
-      "evidence_id": "batch-062:e2",
-      "process": "volume-imbalance-reconciliation",
+      "evidence_id": "batch-062:e5",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/75.",
       "field": "body",
       "quote": "ENA Volume Management has assumed all of the volume duties associated with all Texas deals that are not specifically on Houston Pipe Line.",
-      "note": "Redirects the volume question to the volume management contact.",
+      "note": "Routes the volume discrepancy to the right volume management contact.",
       "match": "exact",
       "start": 1099,
       "end": 1237,
@@ -301,12 +355,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-062:e3",
-      "process": "new:desk-procedure-reminders",
+      "evidence_id": "batch-062:e6",
+      "process": "new:trading-desk-guidance",
       "message_id": "corpus/williams-w3/sent_items/304.",
       "field": "body",
       "quote": "Purchases made under one book must be sold under the same book.",
-      "note": "Draft of trading desk procedure reminders sent to the group.",
+      "note": "Trading procedure reminders drafted for the desk.",
       "match": "exact",
       "start": 1026,
       "end": 1089,
@@ -315,12 +369,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-062:e4",
-      "process": "market-rule-change-review",
+      "evidence_id": "batch-062:e7",
+      "process": "regulatory-notice-review",
       "message_id": "corpus/williams-w3/sent_items/303.",
       "field": "body",
       "quote": "Another update on the situation with California.",
-      "note": "Passes on ISO creditworthiness letter as market update.",
+      "note": "Circulates a letter to the ISO on creditworthiness to the group.",
       "match": "exact",
       "start": 1509,
       "end": 1557,
@@ -329,12 +383,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-062:e5",
-      "process": "counterparty-settlement-review",
+      "evidence_id": "batch-062:e8",
+      "process": "settlement-resolution",
       "message_id": "corpus/williams-w3/sent_items/302.",
       "field": "body",
       "quote": "We are missing the congestion revenue from HE 7 on Saturday morning (10 mws at $99.00) in the flash we received yesterday.",
-      "note": "Checks ISO congestion revenue against the flash report.",
+      "note": "Flags missing congestion revenue in a report.",
       "match": "exact",
       "start": 730,
       "end": 852,
@@ -343,26 +397,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-062:e6",
-      "process": "system-enhancement-request",
+      "evidence_id": "batch-062:e9",
+      "process": "system-issue-resolution",
       "message_id": "corpus/farmer-d/logistics/76.",
       "field": "body",
-      "quote": "Please reply and tell us when we can shut down the Unify Gas Production system for this maintenance on Saturday, Aug. 18th.",
-      "note": "Coordinates maintenance on the Unify scheduling system.",
+      "quote": "The server should be back up by 10pm.",
+      "note": "Planned Unify server outage after a database hang during nominations.",
       "match": "exact",
-      "start": 5029,
-      "end": 5152,
+      "start": 1332,
+      "end": 1369,
       "segment": "quoted",
-      "raw_text": "Please reply and tell us when we can shut down the Unify Gas Production system for this maintenance on Saturday, Aug. 18th.",
+      "raw_text": "The server should be back up by 10pm.",
       "reason": null
     },
     {
-      "evidence_id": "batch-062:e7",
+      "evidence_id": "batch-062:e10",
       "process": "performance-review",
       "message_id": "corpus/williams-w3/sent_items/301.",
       "field": "body",
       "quote": "I have attached your review, for our conference call tomorrow morning at 10 AM Houston time.",
-      "note": "Sends a review ahead of a review call.",
+      "note": "Sends a staff review ahead of a review call.",
       "match": "exact",
       "start": 549,
       "end": 641,
@@ -371,12 +425,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-062:e8",
-      "process": "counterparty-settlement-review",
+      "evidence_id": "batch-062:e11",
+      "process": "settlement-resolution",
       "message_id": "corpus/williams-w3/sent_items/300.",
       "field": "body",
       "quote": "We relieved congestion this morning (08/16/01). The hours and volumes are in the inc sheet.",
-      "note": "Heads up on congestion hours and volumes for settlement.",
+      "note": "Reports congestion relieved so revenue can be tracked.",
       "match": "exact",
       "start": 742,
       "end": 833,
@@ -385,12 +439,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-062:e9",
-      "process": "new:desk-procedure-reminders",
+      "evidence_id": "batch-062:e12",
+      "process": "new:trading-desk-guidance",
       "message_id": "corpus/williams-w3/sent_items/298.",
       "field": "body",
       "quote": "DO NOT SELL BELOW $15 FOR EL PASO WITHOUT RAMPING DOWN FOUR CORNERS!",
-      "note": "Repeats a desk trading rule to the group.",
+      "note": "Repeats a trading rule to the desk.",
       "match": "exact",
       "start": 1480,
       "end": 1548,
@@ -399,12 +453,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-062:e10",
-      "process": "reference-data-update",
+      "evidence_id": "batch-062:e13",
+      "process": "system-access-request",
       "message_id": "corpus/williams-w3/sent_items/297.",
       "field": "body",
       "quote": "Below are the names of the folks in our real-time group, they share the same phone and fax number.",
-      "note": "Supplies a contact list for ID registration.",
+      "note": "Supplies user IDs for the group to be set up with an external party.",
       "match": "exact",
       "start": 510,
       "end": 608,
@@ -413,12 +467,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-062:e11",
-      "process": "realtime-schedule-checkout",
+      "evidence_id": "batch-062:e14",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/296.",
       "field": "body",
       "quote": "There will be a 100 mw schedule delivered at COB to NCPA going on NCPA rights into NP-15.",
-      "note": "Describes a schedule and short position for the next day.",
+      "note": "Announces a schedule and short position for the desk.",
       "match": "exact",
       "start": 1486,
       "end": 1575,
@@ -427,26 +481,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-062:e12",
-      "process": "deal-record-correction",
+      "evidence_id": "batch-062:e15",
+      "process": "settlement-resolution",
       "message_id": "corpus/farmer-d/logistics/74.",
       "field": "body",
-      "quote": "Deal 819592 - the commodity price needs to be 3.6318",
-      "note": "Requests changes to deal prices in Sitara.",
+      "quote": "Deal 819594 - the commodity price needs to be WAHA.HUB.GDP.D.A+.02",
+      "note": "Requests corrected deal prices and volumes in Sitara.",
       "match": "exact",
-      "start": 708,
-      "end": 760,
+      "start": 761,
+      "end": 827,
       "segment": "own",
-      "raw_text": "Deal 819592 - the commodity price needs to be 3.6318",
+      "raw_text": "Deal 819594 - the commodity price needs to be WAHA.HUB.GDP.D.A+.02",
       "reason": null
     },
     {
-      "evidence_id": "batch-062:e13",
-      "process": "deal-record-correction",
+      "evidence_id": "batch-062:e16",
+      "process": "settlement-resolution",
       "message_id": "corpus/farmer-d/logistics/73.",
       "field": "body",
       "quote": "The pricing for the base deal is based on the GD, but it's the average of the gas daily plus .02, right?",
-      "note": "Follow-up on how to price a corrected deal in Sitara.",
+      "note": "Questions how the corrected deal price should be entered.",
       "match": "exact",
       "start": 537,
       "end": 641,
@@ -455,40 +509,40 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-062:e14",
-      "process": "realtime-schedule-checkout",
+      "evidence_id": "batch-062:e17",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/295.",
       "field": "body",
-      "quote": "25 mws on peak Monday at @$45 in SP-15 (check with Kysa)",
-      "note": "Lists next-day short positions to cover.",
+      "quote": "25 mws on peak Monday at @$50 at PV with EPE (check with Holden)",
+      "note": "Lists short positions to cover for upcoming days.",
       "match": "exact",
-      "start": 655,
-      "end": 711,
+      "start": 713,
+      "end": 777,
       "segment": "own",
-      "raw_text": "25 mws on peak Monday at @$45 in SP-15 (check with Kysa)",
+      "raw_text": "25 mws on peak Monday at @$50 at PV with EPE (check with Holden)",
       "reason": null
     },
     {
-      "evidence_id": "batch-062:e15",
-      "process": "system-enhancement-request",
+      "evidence_id": "batch-062:e18",
+      "process": "system-issue-resolution",
       "message_id": "corpus/williams-w3/sent_items/294.",
       "field": "body",
-      "quote": "We are getting several requests from customers to allow them to \"personalize\" their quotes to only include hourly EOL products.",
-      "note": "Requests a new filter in the online trading site.",
+      "quote": "A same day filter or hourly product filter would work nicely.",
+      "note": "Requests an EOL website change.",
       "match": "exact",
-      "start": 533,
-      "end": 660,
+      "start": 761,
+      "end": 822,
       "segment": "own",
-      "raw_text": "We are getting several requests from customers to allow them to \"personalize\" their quotes to only include hourly EOL products.",
+      "raw_text": "A same day filter or hourly product filter would work nicely.",
       "reason": null
     },
     {
-      "evidence_id": "batch-062:e16",
-      "process": "meter-flow-deal-coverage",
+      "evidence_id": "batch-062:e19",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/72.",
       "field": "body",
       "quote": "We are not able to find out July deal for TGLO in the system.",
-      "note": "Asks for a missing deal number for the month.",
+      "note": "Asks for a deal number for the month.",
       "match": "exact",
       "start": 653,
       "end": 714,
@@ -497,12 +551,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-062:e17",
+      "evidence_id": "batch-062:e20",
       "process": "deal-book-transfer",
       "message_id": "corpus/williams-w3/sent_items/293.",
       "field": "body",
       "quote": "HERE ARE THE BOOK TO BOOK TRANSFER NUMBERS FOR BOM AND STSW",
-      "note": "Deal numbers for book to book transfers.",
+      "note": "Forwards deal numbers for book to book transfers.",
       "match": "exact",
       "start": 712,
       "end": 771,
@@ -511,17 +565,17 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-062:e18",
-      "process": "counterparty-settlement-review",
+      "evidence_id": "batch-062:e21",
+      "process": "new:counterparty-information-request",
       "message_id": "corpus/farmer-d/logistics/71.",
       "field": "body",
-      "quote": "Do we know anything about purchases and sales?",
-      "note": "Question about purchases and sales with a counterparty.",
+      "quote": "Can you answer with some specifics to Jeff's question on (a) \"Do we know anything about purchases and sales?\"",
+      "note": "Forwarded request for information on a counterparty's purchases and sales.",
       "match": "exact",
-      "start": 821,
-      "end": 867,
+      "start": 759,
+      "end": 868,
       "segment": "quoted",
-      "raw_text": "Do we know anything about purchases and sales?",
+      "raw_text": "Can you answer with some specifics to Jeff's question on (a) \"Do we know anything about purchases and sales?\"",
       "reason": null
     }
   ],
@@ -529,10 +583,28 @@
     {
       "message_id": "corpus/farmer-d/logistics/76.",
       "match": "exact",
-      "start": 4899,
+      "start": 4923,
       "end": 4981,
       "segment": "quoted",
-      "raw_text": "the problem that caused Unify's Gas Production database to hang indefinitely today",
+      "raw_text": "Unify's Gas Production database to hang indefinitely today",
+      "reason": null
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/298.",
+      "match": "exact",
+      "start": 1601,
+      "end": 1630,
+      "segment": "own",
+      "raw_text": "Do NOT let this happen again.",
+      "reason": null
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/74.",
+      "match": "exact",
+      "start": 1027,
+      "end": 1157,
+      "segment": "own",
+      "raw_text": "Deal 895691 - swing deal - currently has 234,000 in the scheduled column and it should be 441,000 based on the spreadsheet I sent.",
       "reason": null
     }
   ],
@@ -550,18 +622,43 @@
   ],
   "new_processes": [
     {
-      "key": "new:desk-procedure-reminders",
-      "name": "Trading desk procedure reminders",
-      "definition": "Desk leads reminding traders of booking, curtailment and pricing rules to follow when entering and extending deals.",
+      "key": "new:market-news-sharing",
+      "name": "Market news sharing",
+      "definition": "Forwarding press articles and market commentary on the power crisis to colleagues for discussion.",
+      "example_ids": [
+        "corpus/williams-w3/sent_items/307."
+      ]
+    },
+    {
+      "key": "new:desk-conduct-notice",
+      "name": "Desk conduct notices",
+      "definition": "Group notices from a manager setting expectations for behavior and housekeeping on the trading floor.",
+      "example_ids": [
+        "corpus/williams-w3/sent_items/306.",
+        "corpus/williams-w3/sent_items/305."
+      ]
+    },
+    {
+      "key": "new:trading-desk-guidance",
+      "name": "Trading desk procedure guidance",
+      "definition": "Reminders and rules sent to traders about booking, curtailment, reconciliation and pricing procedure.",
       "example_ids": [
         "corpus/williams-w3/sent_items/304.",
         "corpus/williams-w3/sent_items/298."
       ]
+    },
+    {
+      "key": "new:counterparty-information-request",
+      "name": "Counterparty information request",
+      "definition": "Passing on and answering requests for what is known about a counterparty's purchases and sales.",
+      "example_ids": [
+        "corpus/farmer-d/logistics/71."
+      ]
     }
   ],
-  "batch_notes": "No injection attempts found. Williams sent items 305-307 (floor etiquette, article) tagged noise. Guadalupe forward (logistics/71) tagged settlement review with low confidence. Proposed new:desk-procedure-reminders.",
+  "batch_notes": "No injection attempts found. Giron-d messages are personal or corporate announcements. Four new keys proposed; 71 is weakly classified.",
   "quote_stats": {
-    "exact": 21,
+    "exact": 26,
     "repaired": 0,
     "rejected": 0
   }

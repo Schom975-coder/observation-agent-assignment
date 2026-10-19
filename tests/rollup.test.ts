@@ -467,9 +467,9 @@ test('the rollup is byte-identical on the same inputs', () => {
   assert.equal(JSON.stringify(rollupOf()), JSON.stringify(ROLLUP));
 });
 
-// ---- The committed M4 outputs (the WP-D acceptance, pinned) ----
+// ---- The committed run's outputs (pinned) ----
 
-test('on the committed M4 outputs, with every proposed key unassigned: the approved counts, tiers, windows and conflict pairs', (t) => {
+test('on the committed run outputs, with every proposed key unassigned: the counts, tiers, windows and conflict pairs', (t) => {
   const out = join(repo, 'out');
   const needed = ['validated', 'threads.json', 'messages.jsonl', 'people.json', 'taxonomy.json', 'prepare-stats.json'];
   if (!needed.every((f) => existsSync(join(out, f)))) {
@@ -499,39 +499,39 @@ test('on the committed M4 outputs, with every proposed key unassigned: the appro
   const scoring = loadScoring(join(repo, 'config', 'scoring.json'));
   const byOccurrences = [...rollup.processes].sort((a, b) => b.occurrences - a.occurrences);
   assert.equal(rollup.processes.length, 25);
-  assert.deepEqual(byOccurrences.slice(0, 5).map((p) => p.occurrences), [204, 129, 125, 104, 92]);
+  assert.deepEqual(byOccurrences.slice(0, 5).map((p) => p.occurrences), [178, 148, 131, 119, 105]);
   const tiers = { A: 0, B: 0, C: 0 };
   for (const p of rollup.processes) tiers[tierOf(p, scoring)]++;
-  assert.deepEqual(tiers, { A: 14, B: 9, C: 2 });
+  assert.deepEqual(tiers, { A: 11, B: 14, C: 0 });
   const get = (key: string) => rollup.processes.find((p) => p.key === key) as ProcessRollup;
-  assert.deepEqual([get('realtime-schedule-checkout').window.span_days, get('realtime-schedule-checkout').window.months_x100], [241, 792]);
-  assert.deepEqual([get('volume-imbalance-reconciliation').window.span_days, get('volume-imbalance-reconciliation').window.months_x100], [828, 2720]);
-  assert.deepEqual([rollup.coverage.tagged, rollup.coverage.counted, rollup.coverage.unassigned], [2345, 1700, 645]);
+  assert.deepEqual([get('real-time-power-scheduling').window.span_days, get('real-time-power-scheduling').window.months_x100], [241, 792]);
+  assert.deepEqual([get('imbalance-resolution').window.span_days, get('imbalance-resolution').window.months_x100], [804, 2641]);
+  assert.deepEqual([rollup.coverage.tagged, rollup.coverage.counted, rollup.coverage.unassigned], [2370, 1641, 729]);
   // Ownership claims resolve against the process's participants only (matchClaim) and conflicts are
-  // pairs within 60 days (conflictPairs), never chained. Of the 51 claims: 33 match one participant,
-  // 5 could be any of several ("Mary", "Mark", "Daren", "Robert"), 10 match nobody on their trail
-  // (claimants the old directory fallback found elsewhere, such as Heidi Withers, Ryan Slinger and
-  // Souad, and the nickname "Bob Cotten"), and the 3 group claims stay groups. Pairs in 6 of 25
-  // processes; the planted pair (483./526., "Bill" and "Darron", a day apart) is one of them.
+  // pairs within 60 days (conflictPairs), never chained. Of the 43 claims: 30 match one participant,
+  // 4 could be any of several ("Clem", "Daren", "Mary", "Robert"), 7 match nobody on their trail
+  // (such as Ryan Slinger, Mike Olsen and the misspelling "Darren"), and the 2 group claims stay
+  // groups. Pairs in 5 of 25 processes; the planted pair (483./526., "Bill" and "Darron", a day
+  // apart) is one of them.
   const claims = rollup.processes.flatMap((p) => p.ownership_claims);
   const status = (s: string) => claims.filter((c) => c.match.status === s);
-  assert.deepEqual([claims.length, status('matched').length, status('several').length, status('unmatched').length, status('group').length], [51, 33, 5, 10, 3]);
-  assert.deepEqual(status('group').map((c) => c.person).sort(), ['Volume Management', 'each trader', 'volume management group']);
-  for (const person of ['Heidi Withers', 'Ryan Slinger', 'Souad', 'Bob Cotten', 'Darren']) assert.ok(status('unmatched').some((c) => c.person === person), person);
+  assert.deepEqual([claims.length, status('matched').length, status('several').length, status('unmatched').length, status('group').length], [43, 30, 4, 7, 2]);
+  assert.deepEqual(status('group').map((c) => c.person).sort(), ['Volume Management', 'volume management group']);
+  for (const person of ['Ryan Slinger', 'Mike Olsen', 'Darren']) assert.ok(status('unmatched').some((c) => c.person === person), person);
   assert.deepEqual(
     rollup.processes.filter((p) => p.ownership_conflicts.length > 0).map((p) => [p.key, p.ownership_conflicts.length]),
-    [['counterparty-settlement-review', 3], ['deal-book-transfer', 2], ['deal-record-correction', 1], ['desk-coverage-on-call', 3], ['meter-flow-deal-coverage', 4], ['volume-imbalance-reconciliation', 3]],
+    [['deal-book-transfer', 2], ['imbalance-resolution', 1], ['meter-flow-resolution', 2], ['on-call-coverage', 3], ['settlement-resolution', 3]],
   );
-  assert.equal(get('realtime-schedule-checkout').ownership_claims.length, 3, 'the claims stay listed');
-  assert.deepEqual(get('realtime-schedule-checkout').ownership_conflicts, []);
+  assert.equal(get('real-time-power-scheduling').ownership_claims.length, 1, 'the claim stays listed');
+  assert.deepEqual(get('real-time-power-scheduling').ownership_conflicts, []);
   assert.ok(
-    get('volume-imbalance-reconciliation').ownership_conflicts.some((x) => [x.a, x.b].sort().join(' ') === 'corpus/giron-d/inbox/483. corpus/williams-w3/sent_items/526.'),
-    JSON.stringify(get('volume-imbalance-reconciliation').ownership_conflicts),
+    get('imbalance-resolution').ownership_conflicts.some((x) => [x.a, x.b].sort().join(' ') === 'corpus/giron-d/inbox/483. corpus/williams-w3/sent_items/526.'),
+    JSON.stringify(get('imbalance-resolution').ownership_conflicts),
   );
   // The counted formula of a process with shared messages shows the plain sum and the shared one.
   const scored = score({ rollup, synthesis: [], rates, scoring, estimates: null, files: { rates: 'config/effort-rates.json', estimates: null }, shas: { rollup_sha: 'r', synthesis_sha: 's', rates_sha: 'rt', scoring_sha: 'sc', estimates_sha: null } });
-  const realtime = scored.opportunities.find((o) => o.key === 'realtime-schedule-checkout');
-  assert.ok(realtime?.formula.counted.includes(' = 825.00 min, 808.50 min after sharing = 102.08 min/mo; '), realtime?.formula.counted);
+  const realtime = scored.opportunities.find((o) => o.key === 'real-time-power-scheduling');
+  assert.ok(realtime?.formula.counted.includes(' = 1,013.00 min, 1,004.00 min after sharing = 126.77 min/mo; '), realtime?.formula.counted);
 });
 
 // ---- Synthesis inputs ----
@@ -575,7 +575,7 @@ test('planGroups: 65 equal processes make 20 groups of 3-4; 90 make 23, the coun
   assert.throws(() => planGroups(equal(3), (keys) => !keys.includes('k001')), (e: unknown) => e instanceof SynthesisInputError && /k001 does not fit in a group even alone/.test(e.message));
 });
 
-test('synthesis inputs: one balanced wave on the committed M5 outputs: 20 groups, the largest within 25% of the mean cost', (t) => {
+test('synthesis inputs: one balanced wave on the committed run outputs: 20 groups, the largest within 25% of the mean cost', (t) => {
   const out = join(repo, 'out');
   const needed = ['merge.json', 'taxonomy.json', 'validated', 'threads.json', 'messages.jsonl', 'people.json', 'prepare-stats.json'];
   if (!needed.every((f) => existsSync(join(out, f)))) {
@@ -593,13 +593,13 @@ test('synthesis inputs: one balanced wave on the committed M5 outputs: 20 groups
     const m = JSON.parse(line) as ParsedMessage;
     messages.set(m.id, m);
   }
-  // The M5 run's membership (its merge table), counted again by this code.
+  // The run's membership (its merge table), counted again by this code.
   const identity = identityOf(json('people.json') as Person[], rates);
   const threads = json('threads.json') as Thread[];
   const flagged = new Set((json('prepare-stats.json') as { suspected_injection: string[] }).suspected_injection);
   const rollup = buildRollup({ validated, merge: json('merge.json') as MergeTable, threads, messages, identity, rates, taxonomy: json('taxonomy.json'), flagged, shas: SHAS });
   const groups = buildSynthesisInputs(rollup, validated, messages, identity, threads);
-  assert.equal(rollup.processes.length, 65, 'the M5 run: 22 groups of 3 before');
+  assert.equal(rollup.processes.length, 60, 'the final run: 60 processes in 20 groups of 3');
   assert.equal(groups.length, SYNTH_MAX_GROUPS);
   const cost = (g: (typeof groups)[number]) => g.entry.est_tokens + SYNTH_PROCESS_COST * g.entry.process_keys.length;
   const costs = groups.map(cost);

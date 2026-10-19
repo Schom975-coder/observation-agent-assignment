@@ -5,19 +5,19 @@
     {
       "id": "corpus/giron-d/sent/300.",
       "processes": [
-        "deal-record-correction"
+        "settlement-resolution"
       ],
       "role": "response",
       "stall": null,
       "ownership_claim": {
-        "person": "Darron C Giron",
+        "person": "Darron",
         "quote": "This is a Central deal.  I work on the West Desk."
       }
     },
     {
       "id": "corpus/farmer-d/logistics/2052.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -26,7 +26,7 @@
     {
       "id": "corpus/giron-d/sent/299.",
       "processes": [
-        "pnl-position-reporting"
+        "pnl-reporting"
       ],
       "role": "request",
       "stall": null,
@@ -70,7 +70,7 @@
     {
       "id": "corpus/giron-d/sent/294.",
       "processes": [
-        "deal-record-correction"
+        "deal-book-transfer"
       ],
       "role": "forward",
       "stall": null,
@@ -79,7 +79,7 @@
     {
       "id": "corpus/farmer-d/logistics/2054.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -88,16 +88,16 @@
     {
       "id": "corpus/farmer-d/logistics/2055.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution"
       ],
-      "role": "fyi",
+      "role": "request",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/sent/293.",
       "processes": [
-        "reference-data-update"
+        "new:tds-book-code-mapping"
       ],
       "role": "response",
       "stall": null,
@@ -106,7 +106,7 @@
     {
       "id": "corpus/farmer-d/logistics/2056.",
       "processes": [
-        "reference-data-update"
+        "gas-nomination"
       ],
       "role": "fyi",
       "stall": null,
@@ -123,8 +123,10 @@
     },
     {
       "id": "corpus/giron-d/sent/291.",
-      "processes": [],
-      "role": "noise",
+      "processes": [
+        "new:internal-candidate-review"
+      ],
+      "role": "response",
       "stall": null,
       "ownership_claim": null
     },
@@ -138,10 +140,13 @@
     {
       "id": "corpus/farmer-d/logistics/2057.",
       "processes": [
-        "reference-data-update"
+        "gas-nomination"
       ],
       "role": "fyi",
-      "stall": null,
+      "stall": {
+        "kind": "rework",
+        "quote": "Sorry, I attached an empty spreadsheet.  Try launching this one!!"
+      },
       "ownership_claim": null
     },
     {
@@ -168,14 +173,16 @@
     {
       "id": "corpus/giron-d/sent/286.",
       "processes": [],
-      "role": "personal",
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/sent/285.",
-      "processes": [],
-      "role": "noise",
+      "processes": [
+        "new:basis-data-sharing"
+      ],
+      "role": "fyi",
       "stall": null,
       "ownership_claim": null
     },
@@ -189,21 +196,21 @@
     {
       "id": "corpus/giron-d/sent/283.",
       "processes": [],
-      "role": "personal",
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/sent/282.",
       "processes": [],
-      "role": "personal",
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/2058.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution"
       ],
       "role": "response",
       "stall": null,
@@ -219,7 +226,7 @@
     {
       "id": "corpus/giron-d/sent/280.",
       "processes": [],
-      "role": "personal",
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
@@ -228,7 +235,7 @@
       "processes": [
         "performance-review"
       ],
-      "role": "fyi",
+      "role": "request",
       "stall": null,
       "ownership_claim": null
     }
@@ -236,25 +243,25 @@
   "evidence": [
     {
       "evidence_id": "batch-040:e0",
-      "process": "deal-record-correction",
+      "process": "settlement-resolution",
       "message_id": "corpus/giron-d/sent/300.",
       "field": "body",
-      "quote": "This is a Central deal.  I work on the West Desk.",
-      "note": "Reply to a request to update deal pricing, redirecting it to the right desk.",
+      "quote": "Can you please update the pricing for the 12/00 purchase from Agave",
+      "note": "Request to correct the deal price for a purchase month.",
       "match": "exact",
-      "start": 569,
-      "end": 618,
-      "segment": "own",
-      "raw_text": "This is a Central deal.  I work on the West Desk.",
+      "start": 803,
+      "end": 870,
+      "segment": "quoted",
+      "raw_text": "Can you please update the pricing for the 12/00 purchase from Agave",
       "reason": null
     },
     {
       "evidence_id": "batch-040:e1",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/2052.",
       "field": "body",
       "quote": "The above deal number expired at the end of November 2000 and needs to either",
-      "note": "Expired deal needs extending or a new deal for the month.",
+      "note": "Expired deal needing extension or a new deal.",
       "match": "exact",
       "start": 457,
       "end": 534,
@@ -264,11 +271,11 @@
     },
     {
       "evidence_id": "batch-040:e2",
-      "process": "pnl-position-reporting",
+      "process": "pnl-reporting",
       "message_id": "corpus/giron-d/sent/299.",
       "field": "body",
       "quote": "Please contact Mark and provide him with the documentation he needs.",
-      "note": "Asks staff to give P&L support documentation for testing.",
+      "note": "Asks desk staff to supply P&L support documentation for testing.",
       "match": "exact",
       "start": 651,
       "end": 719,
@@ -278,11 +285,11 @@
     },
     {
       "evidence_id": "batch-040:e3",
-      "process": "deal-record-correction",
+      "process": "deal-book-transfer",
       "message_id": "corpus/giron-d/sent/294.",
       "field": "body",
       "quote": "We have had a few recent instances where deals have been unwound in TAGG and",
-      "note": "Forwarded rule on unwinding deals consistently in TAGG and Sitara.",
+      "note": "Forwarded rule about unwinding physical deals consistently across systems.",
       "match": "exact",
       "start": 1113,
       "end": 1189,
@@ -292,11 +299,11 @@
     },
     {
       "evidence_id": "batch-040:e4",
-      "process": "meter-flow-deal-coverage",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/2054.",
       "field": "body",
       "quote": "I have flow at the meter everyday without a deal in Dec.",
-      "note": "Meter flow with no deal needing a ticket.",
+      "note": "Flow at a meter with no matching deal.",
       "match": "exact",
       "start": 463,
       "end": 519,
@@ -306,39 +313,39 @@
     },
     {
       "evidence_id": "batch-040:e5",
-      "process": "meter-flow-deal-coverage",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/2055.",
       "field": "body",
-      "quote": "Was on deal ticket 138605, which expired in September, and has been",
-      "note": "Meter flow tied to an expired deal ticket.",
+      "quote": "Last one, Shawnee Springs meter 986315.",
+      "note": "Remaining UA4 meter variance to be cleared.",
       "match": "exact",
-      "start": 705,
-      "end": 772,
+      "start": 617,
+      "end": 656,
       "segment": "own",
-      "raw_text": "Was on deal ticket 138605, which expired in September, and has been",
+      "raw_text": "Last one, Shawnee Springs meter 986315.",
       "reason": null
     },
     {
       "evidence_id": "batch-040:e6",
-      "process": "reference-data-update",
+      "process": "new:tds-book-code-mapping",
       "message_id": "corpus/giron-d/sent/293.",
       "field": "body",
-      "quote": "Can you provide for your desk all Org Region Codes used on your desk,",
-      "note": "Request for a mapping list of region codes to book codes, answered by the desk.",
+      "quote": "Can you provide for your desk all Org Region Codes used on your desk, and",
+      "note": "Request for mapping of region codes to Tagg books, answered by the desk.",
       "match": "exact",
       "start": 1437,
-      "end": 1506,
+      "end": 1510,
       "segment": "quoted",
-      "raw_text": "Can you provide for your desk all Org Region Codes used on your desk,",
+      "raw_text": "Can you provide for your desk all Org Region Codes used on your desk, and",
       "reason": null
     },
     {
       "evidence_id": "batch-040:e7",
-      "process": "reference-data-update",
+      "process": "gas-nomination",
       "message_id": "corpus/farmer-d/logistics/2056.",
       "field": "body",
       "quote": "The only meter number change will be at the El Paso Field Services Waha",
-      "note": "Counterparty notice of changed meter number and contacts.",
+      "note": "Pipeline notice changing the meter used for nominations.",
       "match": "exact",
       "start": 1381,
       "end": 1452,
@@ -348,25 +355,11 @@
     },
     {
       "evidence_id": "batch-040:e8",
-      "process": "deal-book-transfer",
-      "message_id": "corpus/giron-d/sent/292.",
-      "field": "body",
-      "quote": "Please flip these if applicable.",
-      "note": "Forwards a list of deals to flip to another book.",
-      "match": "exact",
-      "start": 629,
-      "end": 661,
-      "segment": "own",
-      "raw_text": "Please flip these if applicable.",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-040:e9",
-      "process": "reference-data-update",
+      "process": "gas-nomination",
       "message_id": "corpus/farmer-d/logistics/2057.",
       "field": "body",
       "quote": "Sorry, I attached an empty spreadsheet.  Try launching this one!!",
-      "note": "Resends the counterparty meter list.",
+      "note": "Resends the shipper meter list used for nominating.",
       "match": "exact",
       "start": 959,
       "end": 1024,
@@ -375,12 +368,54 @@
       "reason": null
     },
     {
+      "evidence_id": "batch-040:e9",
+      "process": "deal-book-transfer",
+      "message_id": "corpus/giron-d/sent/292.",
+      "field": "body",
+      "quote": "Please flip these if applicable.",
+      "note": "Asks team to flip listed deals to another book.",
+      "match": "exact",
+      "start": 629,
+      "end": 661,
+      "segment": "own",
+      "raw_text": "Please flip these if applicable.",
+      "reason": null
+    },
+    {
       "evidence_id": "batch-040:e10",
-      "process": "meter-flow-deal-coverage",
+      "process": "new:internal-candidate-review",
+      "message_id": "corpus/giron-d/sent/291.",
+      "field": "body",
+      "quote": "Chris is an internal candidate.  What do you think?",
+      "note": "Managers weigh an internal candidate for a risk group opening.",
+      "match": "exact",
+      "start": 1082,
+      "end": 1133,
+      "segment": "forwarded",
+      "raw_text": "Chris is an internal candidate.  What do you think?",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-040:e11",
+      "process": "new:basis-data-sharing",
+      "message_id": "corpus/giron-d/sent/285.",
+      "field": "body",
+      "quote": "Let me know if you have any questions.",
+      "note": "Sends basis material to a colleague; the body carries no detail.",
+      "match": "exact",
+      "start": 455,
+      "end": 493,
+      "segment": "own",
+      "raw_text": "Let me know if you have any questions.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-040:e12",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/2058.",
       "field": "body",
       "quote": "I have reallocated the above referenced meter, per Daren and Clem's",
-      "note": "Reallocates meter gas to the valid deal ticket.",
+      "note": "Meter volumes reallocated to a valid deal.",
       "match": "exact",
       "start": 726,
       "end": 793,
@@ -389,12 +424,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-040:e11",
+      "evidence_id": "batch-040:e13",
       "process": "performance-review",
       "message_id": "corpus/farmer-d/logistics/2059.",
       "field": "body",
       "quote": "Heather will be calling each of up to set up a time to discuss your review",
-      "note": "Scheduling year-end review meetings.",
+      "note": "Scheduling year-end performance review discussions.",
       "match": "exact",
       "start": 647,
       "end": 721,
@@ -403,11 +438,21 @@
       "reason": null
     }
   ],
-  "stall_checks": [],
+  "stall_checks": [
+    {
+      "message_id": "corpus/farmer-d/logistics/2057.",
+      "match": "exact",
+      "start": 959,
+      "end": 1024,
+      "segment": "own",
+      "raw_text": "Sorry, I attached an empty spreadsheet.  Try launching this one!!",
+      "reason": null
+    }
+  ],
   "ownership_checks": [
     {
       "message_id": "corpus/giron-d/sent/300.",
-      "person": "Darron C Giron",
+      "person": "Darron",
       "match": "exact",
       "start": 569,
       "end": 618,
@@ -416,10 +461,35 @@
       "reason": null
     }
   ],
-  "new_processes": [],
-  "batch_notes": "Mostly personal forwards from one mailbox. Process choices for 293 (region-to-book mapping) and 300 (pricing update) were loose fits to existing keys. 291 and 285 treated as noise. No injection attempts.",
+  "new_processes": [
+    {
+      "key": "new:tds-book-code-mapping",
+      "name": "TDS region code to book mapping",
+      "definition": "Supplying the mapping from physical Org region codes to Tagg book codes so positions can be rolled into TDS.",
+      "example_ids": [
+        "corpus/giron-d/sent/293."
+      ]
+    },
+    {
+      "key": "new:internal-candidate-review",
+      "name": "Internal candidate review",
+      "definition": "Managers considering an internal candidate for an open position and deciding whether to interview.",
+      "example_ids": [
+        "corpus/giron-d/sent/291."
+      ]
+    },
+    {
+      "key": "new:basis-data-sharing",
+      "name": "Basis data sharing",
+      "definition": "Sending basis pricing material, such as for the Permian, to a colleague who needs it.",
+      "example_ids": [
+        "corpus/giron-d/sent/285."
+      ]
+    }
+  ],
+  "batch_notes": "Mostly Giron forwards and Farmer logistics meter traffic. Many personal and joke forwards. Message 285 has almost no text, so its process is a weak guess. No injection attempts found.",
   "quote_stats": {
-    "exact": 13,
+    "exact": 16,
     "repaired": 0,
     "rejected": 0
   }

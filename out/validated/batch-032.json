@@ -12,21 +12,21 @@
     {
       "id": "corpus/giron-d/sent/495.",
       "processes": [],
-      "role": "personal",
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/sent/496.",
       "processes": [],
-      "role": "personal",
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/1513.",
       "processes": [
-        "system-enhancement-request"
+        "system-issue-resolution"
       ],
       "role": "fyi",
       "stall": null,
@@ -42,16 +42,16 @@
     {
       "id": "corpus/giron-d/sent/492.",
       "processes": [
-        "pnl-position-reporting"
+        "new:official-books-list"
       ],
-      "role": "response",
+      "role": "fyi",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/1514.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -60,19 +60,16 @@
     {
       "id": "corpus/farmer-d/logistics/1516.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "response",
-      "stall": {
-        "kind": "waiting_on_reply",
-        "quote": "I haven't received an answer as to whether there is a"
-      },
+      "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/1518.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "response",
       "stall": null,
@@ -88,7 +85,7 @@
     {
       "id": "corpus/giron-d/sent/489.",
       "processes": [],
-      "role": "personal",
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
@@ -109,7 +106,7 @@
     {
       "id": "corpus/giron-d/sent/486.",
       "processes": [
-        "pnl-position-reporting"
+        "pnl-reporting"
       ],
       "role": "response",
       "stall": null,
@@ -118,7 +115,7 @@
     {
       "id": "corpus/giron-d/sent/485.",
       "processes": [
-        "new:vacation-calendar-confirmation"
+        "new:management-calendar-review"
       ],
       "role": "response",
       "stall": null,
@@ -127,7 +124,7 @@
     {
       "id": "corpus/giron-d/sent/484.",
       "processes": [
-        "system-enhancement-request"
+        "new:desk-tool-sharing"
       ],
       "role": "forward",
       "stall": null,
@@ -150,7 +147,8 @@
     {
       "id": "corpus/farmer-d/logistics/1520.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution",
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -159,7 +157,7 @@
     {
       "id": "corpus/farmer-d/logistics/1522.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "response",
       "stall": null,
@@ -168,7 +166,7 @@
     {
       "id": "corpus/farmer-d/logistics/1521.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "imbalance-resolution"
       ],
       "role": "fyi",
       "stall": null,
@@ -205,7 +203,7 @@
     {
       "id": "corpus/farmer-d/logistics/1523.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "meter-flow-resolution"
       ],
       "role": "response",
       "stall": null,
@@ -228,7 +226,7 @@
     {
       "id": "corpus/giron-d/sent/478.",
       "processes": [
-        "pnl-position-reporting"
+        "pnl-reporting"
       ],
       "role": "response",
       "stall": null,
@@ -237,7 +235,7 @@
     {
       "id": "corpus/giron-d/sent/477.",
       "processes": [
-        "new:training-class-planning"
+        "new:desk-training-class"
       ],
       "role": "response",
       "stall": null,
@@ -246,7 +244,7 @@
     {
       "id": "corpus/giron-d/sent/421.",
       "processes": [
-        "new:training-class-planning"
+        "new:desk-training-class"
       ],
       "role": "response",
       "stall": null,
@@ -255,7 +253,7 @@
     {
       "id": "corpus/giron-d/sent/397.",
       "processes": [
-        "new:training-class-planning"
+        "new:desk-training-class"
       ],
       "role": "request",
       "stall": null,
@@ -264,7 +262,7 @@
     {
       "id": "corpus/farmer-d/logistics/1526.",
       "processes": [
-        "new:retro-contract-assignment-handling"
+        "deal-ticket-setup"
       ],
       "role": "fyi",
       "stall": null,
@@ -283,11 +281,11 @@
   "evidence": [
     {
       "evidence_id": "batch-032:e0",
-      "process": "system-enhancement-request",
+      "process": "system-issue-resolution",
       "message_id": "corpus/farmer-d/logistics/1513.",
       "field": "body",
       "quote": "The name of the SCADA server has been changed from ECTHOU_SCADA1 to",
-      "note": "Notice of a system change requiring users to edit their spreadsheets.",
+      "note": "Announces a system change and its effect on users' spreadsheets.",
       "match": "exact",
       "start": 2975,
       "end": 3042,
@@ -297,11 +295,11 @@
     },
     {
       "evidence_id": "batch-032:e1",
-      "process": "pnl-position-reporting",
+      "process": "new:official-books-list",
       "message_id": "corpus/giron-d/sent/492.",
       "field": "body",
       "quote": "I believe this is all of the Enovate/EMW books that are officialized each",
-      "note": "Lists the books officialized nightly for position and P&L reporting.",
+      "note": "Lists the books officialized nightly for a colleague.",
       "match": "exact",
       "start": 452,
       "end": 525,
@@ -311,11 +309,11 @@
     },
     {
       "evidence_id": "batch-032:e2",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1514.",
       "field": "body",
       "quote": "I need HPL Sales and Purchases, back dated to 8/99 between HPL and TECO to",
-      "note": "Requests deal tickets be created so revenue can be booked.",
+      "note": "Requests new deal tickets to be put in place.",
       "match": "exact",
       "start": 713,
       "end": 787,
@@ -325,11 +323,11 @@
     },
     {
       "evidence_id": "batch-032:e3",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1516.",
       "field": "body",
       "quote": "This deal is to book the Teco PVR revenue.",
-      "note": "Explains the purpose of the requested deal.",
+      "note": "Explains the purpose of the deal being requested.",
       "match": "exact",
       "start": 453,
       "end": 495,
@@ -339,11 +337,11 @@
     },
     {
       "evidence_id": "batch-032:e4",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1518.",
       "field": "body",
       "quote": "Deal #487040 has been setup with demand charge equally to the amounts that",
-      "note": "Reply that the requested deal was set up.",
+      "note": "Confirms the deal was created.",
       "match": "exact",
       "start": 749,
       "end": 823,
@@ -353,39 +351,39 @@
     },
     {
       "evidence_id": "batch-032:e5",
-      "process": "pnl-position-reporting",
+      "process": "pnl-reporting",
       "message_id": "corpus/giron-d/sent/486.",
       "field": "body",
-      "quote": "I am afraid I have not made that much progress on my assignment.",
-      "note": "Status on investigating how a basis swap got into the West P&L.",
+      "quote": "the $ got in the West P&L.",
+      "note": "Investigates and explains how a sum reached the West desk P&L.",
       "match": "exact",
-      "start": 432,
-      "end": 496,
+      "start": 743,
+      "end": 769,
       "segment": "own",
-      "raw_text": "I am afraid I have not made that much progress on my assignment.",
+      "raw_text": "the $ got in the West P&L.",
       "reason": null
     },
     {
       "evidence_id": "batch-032:e6",
-      "process": "new:vacation-calendar-confirmation",
+      "process": "new:management-calendar-review",
       "message_id": "corpus/giron-d/sent/485.",
       "field": "body",
-      "quote": "Put me down for the 15th also.",
-      "note": "Replies to a management calendar vacation review request.",
+      "quote": "Put me down for the 15th also.  Thanks.",
+      "note": "Replies to a request to review vacation entries on the management calendar.",
       "match": "exact",
       "start": 458,
-      "end": 488,
+      "end": 497,
       "segment": "own",
-      "raw_text": "Put me down for the 15th also.",
+      "raw_text": "Put me down for the 15th also.  Thanks.",
       "reason": null
     },
     {
       "evidence_id": "batch-032:e7",
-      "process": "system-enhancement-request",
+      "process": "new:desk-tool-sharing",
       "message_id": "corpus/giron-d/sent/484.",
       "field": "body",
       "quote": "As discussed in the brown bag classes today many people would like to be able",
-      "note": "Forwarded tool file for real-time NYMEX prices.",
+      "note": "Forwarded file for seeing NYMEX prices in real time, shared with the group.",
       "match": "exact",
       "start": 1267,
       "end": 1344,
@@ -395,11 +393,25 @@
     },
     {
       "evidence_id": "batch-032:e8",
-      "process": "meter-flow-deal-coverage",
+      "process": "meter-flow-resolution",
+      "message_id": "corpus/farmer-d/logistics/1520.",
+      "field": "body",
+      "quote": "have flow on this meter for the entire month, with the exception of a few",
+      "note": "Flow on a meter for the month without a covering deal.",
+      "match": "exact",
+      "start": 642,
+      "end": 715,
+      "segment": "own",
+      "raw_text": "have flow on this meter for the entire month, with the exception of a few",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-032:e9",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1520.",
       "field": "body",
       "quote": "I show that you extended the purchase, deal ticket 461059, to cover flow on",
-      "note": "Asks whether to extend a deal ticket to cover meter flow.",
+      "note": "Asks whether to extend the deal ticket.",
       "match": "exact",
       "start": 486,
       "end": 561,
@@ -408,12 +420,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-032:e9",
-      "process": "meter-flow-deal-coverage",
+      "evidence_id": "batch-032:e10",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1522.",
       "field": "body",
       "quote": "Yes it is a GTC Spot.  But the deal is a Day Firm.",
-      "note": "Answers whether the deal contract covers the next month.",
+      "note": "Answers a question on the contract for a deal ticket.",
       "match": "exact",
       "start": 481,
       "end": 531,
@@ -422,12 +434,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-032:e10",
-      "process": "volume-imbalance-reconciliation",
+      "evidence_id": "batch-032:e11",
+      "process": "imbalance-resolution",
       "message_id": "corpus/farmer-d/logistics/1521.",
       "field": "body",
       "quote": "Imbalance update:  I spoke with Mike Bilberry and confirmed that this deal",
-      "note": "Imbalance update on a plant deal and payback.",
+      "note": "Imbalance update and plan to balance with the counterparty.",
       "match": "exact",
       "start": 643,
       "end": 717,
@@ -436,12 +448,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-032:e11",
-      "process": "volume-imbalance-reconciliation",
+      "evidence_id": "batch-032:e12",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1523.",
       "field": "body",
       "quote": "Attached per your request is the Big Cowboy production for October 2000.",
-      "note": "Supplies monthly meter volumes for reconciliation.",
+      "note": "Provides production volumes for meters.",
       "match": "exact",
       "start": 518,
       "end": 590,
@@ -450,12 +462,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-032:e12",
-      "process": "pnl-position-reporting",
+      "evidence_id": "batch-032:e13",
+      "process": "pnl-reporting",
       "message_id": "corpus/giron-d/sent/478.",
       "field": "body",
       "quote": "I show a net open position of (15.9) contracts.",
-      "note": "Answers a question on the Enovate daily position report.",
+      "note": "Answers a question on the daily position report.",
       "match": "exact",
       "start": 465,
       "end": 512,
@@ -464,12 +476,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-032:e13",
-      "process": "new:training-class-planning",
+      "evidence_id": "batch-032:e14",
+      "process": "new:desk-training-class",
       "message_id": "corpus/giron-d/sent/477.",
       "field": "body",
       "quote": "In addition:  expert clauses - which ones need to be changed, when and why -",
-      "note": "Adds topics for the internal P&L procedures class.",
+      "note": "Suggests topics for the desk's training class.",
       "match": "exact",
       "start": 609,
       "end": 685,
@@ -478,12 +490,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-032:e14",
-      "process": "new:training-class-planning",
+      "evidence_id": "batch-032:e15",
+      "process": "new:desk-training-class",
       "message_id": "corpus/giron-d/sent/421.",
       "field": "body",
       "quote": "I vote for next week.  And since I didn't get involved in the prior",
-      "note": "Replies on scheduling the next internal class.",
+      "note": "Replies on timing of the next class.",
       "match": "exact",
       "start": 562,
       "end": 629,
@@ -492,12 +504,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-032:e15",
-      "process": "new:training-class-planning",
+      "evidence_id": "batch-032:e16",
+      "process": "new:desk-training-class",
       "message_id": "corpus/giron-d/sent/397.",
       "field": "body",
       "quote": "We really need to pick up again next week.  Potential topics:",
-      "note": "Proposes topics and timing for the next class.",
+      "note": "Asks to resume the class and proposes topics.",
       "match": "exact",
       "start": 605,
       "end": 666,
@@ -506,12 +518,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-032:e16",
-      "process": "new:retro-contract-assignment-handling",
+      "evidence_id": "batch-032:e17",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1526.",
       "field": "body",
       "quote": "This is a follow up to the conversation you had with Pat yesterday and to",
-      "note": "Restates how retro contract assignments are handled.",
+      "note": "Sets out how retro contract assignments become new deals.",
       "match": "exact",
       "start": 858,
       "end": 931,
@@ -520,61 +532,59 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-032:e17",
+      "evidence_id": "batch-032:e18",
       "process": "performance-review",
       "message_id": "corpus/farmer-d/logistics/1527.",
       "field": "body",
-      "quote": "Gas Logistics PRE-PRC Meeting",
-      "note": "Lists PRC meetings added to calendars.",
+      "quote": "Below are the upcoming meetings that have been added to your calendar and",
+      "note": "Lists PRC process meetings.",
       "match": "exact",
-      "start": 1047,
-      "end": 1076,
+      "start": 907,
+      "end": 980,
       "segment": "own",
-      "raw_text": "Gas Logistics PRE-PRC Meeting",
+      "raw_text": "Below are the upcoming meetings that have been added to your calendar and",
       "reason": null
     }
   ],
-  "stall_checks": [
-    {
-      "message_id": "corpus/farmer-d/logistics/1516.",
-      "match": "exact",
-      "start": 554,
-      "end": 607,
-      "segment": "own",
-      "raw_text": "I haven't received an answer as to whether there is a",
-      "reason": null
-    }
-  ],
+  "stall_checks": [],
   "ownership_checks": [],
   "new_processes": [
     {
-      "key": "new:vacation-calendar-confirmation",
-      "name": "Vacation calendar confirmation",
-      "definition": "Reviewing the management vacation calendar and telling the coordinator about revisions or dates to add.",
+      "key": "new:official-books-list",
+      "name": "Official books list",
+      "definition": "Identifying and sharing the list of trading books officialized each night.",
+      "example_ids": [
+        "corpus/giron-d/sent/492."
+      ]
+    },
+    {
+      "key": "new:management-calendar-review",
+      "name": "Management calendar review",
+      "definition": "Reviewing the management vacation calendar and reporting revisions to the coordinator.",
       "example_ids": [
         "corpus/giron-d/sent/485."
       ]
     },
     {
-      "key": "new:training-class-planning",
-      "name": "Internal training class planning",
-      "definition": "Scheduling and choosing topics for recurring internal classes on P&L and systems procedures among desk staff.",
+      "key": "new:desk-tool-sharing",
+      "name": "Desk tool sharing",
+      "definition": "Passing along spreadsheets or files that help the desk see market data.",
+      "example_ids": [
+        "corpus/giron-d/sent/484."
+      ]
+    },
+    {
+      "key": "new:desk-training-class",
+      "name": "Desk training class",
+      "definition": "Planning and scheduling internal training classes on P&L procedures and systems, including topics.",
       "example_ids": [
         "corpus/giron-d/sent/477.",
         "corpus/giron-d/sent/421.",
         "corpus/giron-d/sent/397."
       ]
-    },
-    {
-      "key": "new:retro-contract-assignment-handling",
-      "name": "Retro contract assignment handling",
-      "definition": "Setting the rule for handling contract assignments received after the cutoff, creating new deals and leaving earlier months to volume management.",
-      "example_ids": [
-        "corpus/farmer-d/logistics/1526."
-      ]
     }
   ],
-  "batch_notes": "Mostly personal forwards from one mailbox. Weak fits: SCADA notice and NYMEX file tagged to system-enhancement-request; Enovate books and status tagged to pnl-position-reporting. Three new keys proposed. No injection attempts.",
+  "batch_notes": "Many personal and chain-letter forwards in the giron-d mailbox. No injection attempts found. New keys proposed: official-books-list, management-calendar-review, desk-tool-sharing, desk-training-class.",
   "quote_stats": {
     "exact": 19,
     "repaired": 0,

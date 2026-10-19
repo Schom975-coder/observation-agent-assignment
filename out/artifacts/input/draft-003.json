@@ -1,0 +1,437 @@
+{
+ "version": 1,
+ "job_id": "draft-003",
+ "key": "deal-ticket-setup",
+ "name": "Deal ticket and transport contract set-up",
+ "slug": "deal-ticket-setup",
+ "artifact_type": "template",
+ "definition": "Creating, extending or replacing deal tickets and transport contracts in Sitara so that gas at a meter or on a pipeline has a valid deal for the month.",
+ "synthesis": {
+  "description": "A round usually starts when a scheduler, volume analyst or accountant finds gas flowing at a meter or on a pipeline with no valid deal: a ticket expired, ended mid-month or was never created. They email the desk, mostly Daren Farmer, asking for a Sitara deal to be created, extended, zeroed out or corrected. The desk or a logistics coordinator enters or extends the ticket and replies with the deal or track number. The requester then checks that the ticket reflects the flow, so that allocations and the Unify volume drafts can clear.",
+  "steps": [
+   "A scheduler or analyst finds flow at a meter with no deal, an expired ticket or an allocation exception.",
+   "They email the desk with the meter, dates, counterparty and any existing deal number.",
+   "The desk checks Sitara to see whether the existing deal should be extended or a new one created.",
+   "The trader or coordinator creates, extends, zeroes or corrects the ticket in Sitara.",
+   "The deal or track number is sent back to the requester.",
+   "The requester confirms the ticket is released and flows into Unify so allocations and volume drafts can clear."
+  ],
+  "stalls": [
+   "Requesters wait on the desk to enter or release a deal and have to ask again; logistics stays blocked until the trader answers.",
+   "Expired or unreleased tickets stop deals from passing into Unify, so volumes cannot be drafted until the ticket is fixed.",
+   "Requesters are unsure who can make the change, and requests are passed between people or redirected to another person.",
+   "Deal terms are sent with mistakes in the effective date or price and have to be corrected after the first request."
+  ],
+  "contradictions": [
+   "Different people are named as the one who puts these deals in: an outside party is told to call Daren Farmer, while another sender says Danny Conner handles it and a third says to talk to Darren.",
+   "In the same round, setting up the accounting arrangements is assigned to Volume Management as a group, while Robert E Lloyd splits the months between himself and a colleague."
+  ],
+  "approach": "A daily exception report comparing measured flow and allocation exceptions by meter against active Sitara tickets would flag meters with flow but no deal, and tickets expiring before month end, before anyone has to email. A standard request form would capture meter, dates, counterparty, price and existing deal number, and route to the named owner for that pipeline, with the new deal number returned automatically.",
+  "rationale": "Most rounds are the same request missing the same fields (meter, dates, deal number, extend or create), and many stall on who handles it. A structured request form with a routing owner column removes the back-and-forth and the incorrect terms, while the trader still decides whether to extend or create."
+ },
+ "counted": {
+  "label": "facts counted by the pipeline",
+  "occurrences": 190,
+  "active_months": 25,
+  "first_day": "1999-12-14",
+  "last_day": "2001-12-12",
+  "messages": 255,
+  "staff_participants": 113,
+  "actions": {
+   "short": 110,
+   "medium": 73,
+   "long": 2,
+   "forwards": 38,
+   "chasers": 32,
+   "reads": 629
+  },
+  "stalls": {
+   "waiting_on_reply": 16,
+   "rework": 4,
+   "handoff_confusion": 5,
+   "ownership_conflict": 0,
+   "avoidance": 0,
+   "system_failure": 4,
+   "other": 1
+  }
+ },
+ "participants": [
+  {
+   "name": "Daren J Farmer",
+   "kind": "person",
+   "staff": true,
+   "authored": 0,
+   "forwards": 0,
+   "chasers": 0,
+   "reads": 236
+  },
+  {
+   "name": "Aimee Lannou",
+   "kind": "person",
+   "staff": true,
+   "authored": 21,
+   "forwards": 5,
+   "chasers": 5,
+   "reads": 6
+  },
+  {
+   "name": "Jackie Young",
+   "kind": "person",
+   "staff": true,
+   "authored": 24,
+   "forwards": 2,
+   "chasers": 4,
+   "reads": 6
+  },
+  {
+   "name": "Michael Olsen",
+   "kind": "person",
+   "staff": true,
+   "authored": 10,
+   "forwards": 3,
+   "chasers": 3,
+   "reads": 10
+  },
+  {
+   "name": "Sherlyn Schumack",
+   "kind": "person",
+   "staff": true,
+   "authored": 4,
+   "forwards": 1,
+   "chasers": 0,
+   "reads": 19
+  },
+  {
+   "name": "Julie Meyers",
+   "kind": "person",
+   "staff": true,
+   "authored": 8,
+   "forwards": 1,
+   "chasers": 0,
+   "reads": 14
+  },
+  {
+   "name": "Howard B Camp",
+   "kind": "person",
+   "staff": true,
+   "authored": 1,
+   "forwards": 0,
+   "chasers": 0,
+   "reads": 20
+  },
+  {
+   "name": "Pat Clynes",
+   "kind": "person",
+   "staff": true,
+   "authored": 0,
+   "forwards": 0,
+   "chasers": 0,
+   "reads": 19
+  }
+ ],
+ "ownership": {
+  "claims": [
+   {
+    "person": "Daren Farmer",
+    "date": "2001-06-14",
+    "status": "matched",
+    "name": "Daren J Farmer"
+   },
+   {
+    "person": "Danny Conner",
+    "date": "2000-10-18",
+    "status": "matched",
+    "name": "Danny Conner"
+   },
+   {
+    "person": "Darren",
+    "date": "2000-12-15",
+    "status": "unmatched",
+    "name": null
+   },
+   {
+    "person": "Volume Management",
+    "date": "2000-01-10",
+    "status": "group",
+    "name": null
+   },
+   {
+    "person": "Robert E Lloyd",
+    "date": "2000-01-10",
+    "status": "matched",
+    "name": "Robert E Lloyd"
+   },
+   {
+    "person": "Kristen Clause",
+    "date": "2001-03-20",
+    "status": "matched",
+    "name": null
+   },
+   {
+    "person": "Scott",
+    "date": "2000-10-11",
+    "status": "several",
+    "name": null
+   }
+  ],
+  "conflicts": 1
+ },
+ "estimate": {
+  "label": "estimate, not a count",
+  "minutes_per_occurrence": {
+   "low": 10,
+   "mid": 20,
+   "high": 45
+  },
+  "automatable_pct": 45,
+  "basis": "observed",
+  "rationale": "The requester looks up the meter, flow dates and expired ticket; the desk checks Sitara for the existing deal, decides extend or create, enters or corrects the ticket and confirms it reaches Unify. A simple extension takes about 10 minutes; multi-ticket clean-ups and replacement deals take longer, hence the mid of 20. Detection of missing deals and the request fields can be automated; the trading decision and entry review stay manual.",
+  "source": "model"
+ },
+ "evidence": [
+  {
+   "id": "batch-011:e24",
+   "message_id": "corpus/farmer-d/logistics/1082.",
+   "date": "2000-05-01",
+   "sender": "Kenny J Soignet",
+   "role": "request",
+   "quote": "Daren- Please enter Texas purchase from Cannon Interest and a Texas sale to"
+  },
+  {
+   "id": "batch-006:e30",
+   "message_id": "corpus/farmer-d/logistics/881.",
+   "date": "2000-03-06",
+   "sender": "Aimee Lannou",
+   "role": "request",
+   "quote": "Could one of you please extend deal # 151203 for meter 1595?"
+  },
+  {
+   "id": "batch-020:e13",
+   "message_id": "corpus/farmer-d/logistics/1341.",
+   "date": "2000-08-16",
+   "sender": "Gary A Hanks",
+   "role": "forward",
+   "quote": "The Samson well will be coming on this afternoon at 1.5 to 2.5 million/d and"
+  },
+  {
+   "id": "batch-003:e14",
+   "message_id": "corpus/farmer-d/logistics/741.",
+   "date": "2000-02-01",
+   "sender": "Jackie Young",
+   "role": "request",
+   "quote": "Can you please \"0\" all activity on Sitara Deal Tickets 113858, 93779, 138094,"
+  },
+  {
+   "id": "batch-004:e24",
+   "message_id": "corpus/farmer-d/logistics/809.",
+   "date": "2000-02-17",
+   "sender": "Thu Nguyen",
+   "role": "request",
+   "quote": "Please let me know when you have it set up."
+  },
+  {
+   "id": "batch-006:e11",
+   "message_id": "corpus/farmer-d/logistics/872.",
+   "date": "2000-03-03",
+   "sender": "Jackie Young",
+   "role": "request",
+   "quote": "Can you please extend sitara deal #156657 for 3/1/00, if the deal will"
+  },
+  {
+   "id": "batch-019:e7",
+   "message_id": "corpus/farmer-d/logistics/1304.",
+   "date": "2000-07-25",
+   "sender": "Lee L Papayoti",
+   "role": "response",
+   "quote": "It's been created - sitara # 343421"
+  },
+  {
+   "id": "batch-016:e14",
+   "message_id": "corpus/farmer-d/logistics/1231.",
+   "date": "2000-06-22",
+   "sender": "Brenda F Herod",
+   "role": "request",
+   "quote": "Can the systems and processes handle this?"
+  },
+  {
+   "id": "batch-052:e17",
+   "message_id": "corpus/farmer-d/logistics/148.",
+   "date": "2001-05-07",
+   "sender": "Tom Acton",
+   "role": "request",
+   "quote": "deal ticket 745546 extended on both ends."
+  },
+  {
+   "id": "batch-001:e24",
+   "message_id": "corpus/farmer-d/logistics/647.",
+   "date": "2000-01-04",
+   "sender": "Donald P Reinhardt",
+   "role": "request",
+   "quote": "Please create a Sitara record for this production at your"
+  },
+  {
+   "id": "batch-003:e36",
+   "message_id": "corpus/farmer-d/logistics/766.",
+   "date": "2000-02-08",
+   "sender": "Winfree, O'Neal D.",
+   "role": "request",
+   "quote": "I have created the new deals reflecting the Mid-Texas meters for the"
+  },
+  {
+   "id": "batch-013:e9",
+   "message_id": "corpus/farmer-d/logistics/1146.",
+   "date": "2000-05-25",
+   "sender": "Sherlyn Schumack",
+   "role": "request",
+   "quote": "Loraine sent an allocation for fuel that is not scheduled."
+  },
+  {
+   "id": "batch-035:e19",
+   "message_id": "corpus/farmer-d/logistics/1559.",
+   "date": "2000-12-12",
+   "sender": "Aimee Lannou",
+   "role": "request",
+   "quote": "Please let me know if you create a deal for meter 1351 and if you extend the"
+  },
+  {
+   "id": "batch-008:e25",
+   "message_id": "corpus/farmer-d/logistics/948.",
+   "date": "2000-03-23",
+   "sender": "Bryan Hull",
+   "role": "fyi",
+   "quote": "I combined the tickets for the Southern Union plants at Port Arthur and"
+  },
+  {
+   "id": "batch-042:e28",
+   "message_id": "corpus/farmer-d/logistics/2081.",
+   "date": "2001-02-07",
+   "sender": "David Baumbach",
+   "role": "request",
+   "quote": "Check these deals:\n70422\n92754"
+  },
+  {
+   "id": "batch-049:e27",
+   "message_id": "corpus/farmer-d/logistics/190.",
+   "date": "2001-04-09",
+   "sender": "Mary Poorman",
+   "role": "request",
+   "quote": "Please update the ticket to reflect that HPL is receiving these volumes from ENA - IM Central."
+  },
+  {
+   "id": "batch-038:e37",
+   "message_id": "corpus/farmer-d/logistics/2038.",
+   "date": "2001-01-09",
+   "sender": "Aimee Lannou",
+   "role": "request",
+   "quote": "extend this deal for these 3 days or create a new one?"
+  },
+  {
+   "id": "batch-029:e13",
+   "message_id": "corpus/farmer-d/logistics/1478.",
+   "date": "2000-10-30",
+   "sender": "Susan Hadix",
+   "role": "request",
+   "quote": "I have 2 allocation exceptions that require a deal to be extended."
+  },
+  {
+   "id": "batch-082:e8",
+   "message_id": "corpus/farmer-d/logistics/12.",
+   "date": "2001-12-11",
+   "sender": "Rita Wynne",
+   "role": "request",
+   "quote": "Have the two of you been able to get the deal in for the sale of the Centana storage to AEP?"
+  },
+  {
+   "id": "batch-017:e5",
+   "message_id": "corpus/farmer-d/logistics/1257.",
+   "date": "2000-06-30",
+   "sender": "Heidi Withers",
+   "role": "request",
+   "quote": "I have input and updated transport usage tickets for July."
+  }
+ ],
+ "stall_quotes": [
+  {
+   "id": "batch-057:s2",
+   "message_id": "corpus/farmer-d/logistics/100.",
+   "date": "2001-07-09",
+   "sender": "Michael Olsen",
+   "kind": "waiting_on_reply",
+   "quote": "I looked in Sitara and deal 70550 is still not released."
+  },
+  {
+   "id": "batch-011:s0",
+   "message_id": "corpus/farmer-d/logistics/1055.",
+   "date": "2000-04-19",
+   "sender": "Lauri A Allen",
+   "kind": "handoff_confusion",
+   "quote": "could you guys coordinate who should be rolling"
+  },
+  {
+   "id": "batch-016:s1",
+   "message_id": "corpus/farmer-d/logistics/1246.",
+   "date": "2000-06-27",
+   "sender": "Joanie H Ngo",
+   "kind": "waiting_on_reply",
+   "quote": "I left you a message regarding this matter 2 days ago."
+  },
+  {
+   "id": "batch-049:s0",
+   "message_id": "corpus/farmer-d/logistics/195.",
+   "date": "2001-04-04",
+   "sender": "Katherine Herrera",
+   "kind": "system_failure",
+   "quote": "Unable to draft volume in Unify due to the expired deal ticket;"
+  },
+  {
+   "id": "batch-002:s0",
+   "message_id": "corpus/farmer-d/logistics/679.",
+   "date": "2000-01-12",
+   "sender": "Kimberly Vaughn",
+   "kind": "waiting_on_reply",
+   "quote": "Please let me know if you have a chance to revisit this issue for meter 4045"
+  },
+  {
+   "id": "batch-005:s1",
+   "message_id": "corpus/farmer-d/logistics/875.",
+   "date": "2000-03-03",
+   "sender": "Stella L Morris",
+   "kind": "waiting_on_reply",
+   "quote": "I never saw where you opened your e-mail."
+  }
+ ],
+ "ownership_quotes": [
+  {
+   "id": "batch-054:o0",
+   "message_id": "corpus/farmer-d/logistics/117.",
+   "date": "2001-06-14",
+   "sender": "aep.com",
+   "person": "Daren Farmer",
+   "quote": "Call\nDaren Farmer at 713-853-6905, and he could probably put the deal in for\nyou."
+  },
+  {
+   "id": "batch-028:o1",
+   "message_id": "corpus/farmer-d/logistics/1458.",
+   "date": "2000-10-18",
+   "sender": "Mark McCoy",
+   "person": "Danny Conner",
+   "quote": "Unfortunately, Danny Conner handles this"
+  },
+  {
+   "id": "batch-001:o2",
+   "message_id": "corpus/farmer-d/logistics/662.",
+   "date": "2000-01-10",
+   "sender": "Kenneth Seaman",
+   "person": "Volume Management",
+   "quote": "Volume Management will need to set up accounting arrangements to cover"
+  },
+  {
+   "id": "batch-047:o0",
+   "message_id": "corpus/giron-d/sent/141.",
+   "date": "2001-03-20",
+   "sender": "Darron C Giron",
+   "person": "Kristen Clause",
+   "quote": "Please send these to Kristen Clause in the future."
+  }
+ ]
+}

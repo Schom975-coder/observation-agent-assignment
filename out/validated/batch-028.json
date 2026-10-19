@@ -12,18 +12,21 @@
     {
       "id": "corpus/giron-d/sent/583.",
       "processes": [
-        "pnl-position-reporting"
+        "pnl-reporting"
       ],
       "role": "request",
       "stall": null,
-      "ownership_claim": null
+      "ownership_claim": {
+        "person": "Darron",
+        "quote": "Darron has taken my position as west controller."
+      }
     },
     {
       "id": "corpus/giron-d/sent/582.",
       "processes": [
-        "curve-postid-mapping"
+        "curve-postid-maintenance"
       ],
-      "role": "forward",
+      "role": "fyi",
       "stall": null,
       "ownership_claim": null
     },
@@ -37,19 +40,17 @@
     {
       "id": "corpus/farmer-d/logistics/1456.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup",
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
-      "ownership_claim": {
-        "person": "Daren",
-        "quote": "Fred Boas said you used to handle this and you were very wise in the art"
-      }
+      "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/1457.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "response",
       "stall": null,
@@ -67,7 +68,7 @@
     {
       "id": "corpus/giron-d/sent/580.",
       "processes": [
-        "curve-postid-mapping"
+        "curve-postid-maintenance"
       ],
       "role": "forward",
       "stall": null,
@@ -76,11 +77,12 @@
     {
       "id": "corpus/farmer-d/logistics/1458.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup",
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": {
-        "kind": "waiting_on_reply",
+        "kind": "other",
         "quote": "Daren said to wait until he gets back next"
       },
       "ownership_claim": {
@@ -91,7 +93,7 @@
     {
       "id": "corpus/giron-d/sent/578.",
       "processes": [
-        "user-access-setup"
+        "system-access-request"
       ],
       "role": "response",
       "stall": null,
@@ -106,15 +108,17 @@
     },
     {
       "id": "corpus/farmer-d/logistics/1459.",
-      "processes": [],
-      "role": "noise",
+      "processes": [
+        "new:team-staffing-announcement"
+      ],
+      "role": "fyi",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/1461.",
       "processes": [
-        "new:wacog-pricing-calculation"
+        "new:sale-price-wacog-calculation"
       ],
       "role": "fyi",
       "stall": null,
@@ -123,7 +127,7 @@
     {
       "id": "corpus/giron-d/sent/576.",
       "processes": [],
-      "role": "noise",
+      "role": "personal",
       "stall": null,
       "ownership_claim": null
     },
@@ -139,7 +143,7 @@
     {
       "id": "corpus/giron-d/sent/574.",
       "processes": [
-        "pnl-position-reporting"
+        "pnl-reporting"
       ],
       "role": "response",
       "stall": null,
@@ -148,7 +152,7 @@
     {
       "id": "corpus/giron-d/sent/573.",
       "processes": [
-        "curve-postid-mapping"
+        "curve-postid-maintenance"
       ],
       "role": "request",
       "stall": null,
@@ -157,7 +161,7 @@
     {
       "id": "corpus/giron-d/sent/569.",
       "processes": [
-        "curve-postid-mapping"
+        "curve-postid-maintenance"
       ],
       "role": "forward",
       "stall": null,
@@ -173,7 +177,7 @@
     {
       "id": "corpus/giron-d/sent/571.",
       "processes": [
-        "new:deal-id-crossreference-lookup"
+        "new:tagg-sitara-number-lookup"
       ],
       "role": "response",
       "stall": null,
@@ -182,7 +186,7 @@
     {
       "id": "corpus/farmer-d/logistics/1462.",
       "processes": [
-        "reference-data-update"
+        "new:team-staffing-announcement"
       ],
       "role": "fyi",
       "stall": null,
@@ -191,16 +195,16 @@
     {
       "id": "corpus/farmer-d/logistics/1463.",
       "processes": [
-        "new:employee-departure-offboarding"
+        "new:team-staffing-announcement"
       ],
-      "role": "request",
+      "role": "response",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/1464.",
       "processes": [
-        "new:system-maintenance-downtime"
+        "new:system-downtime-coordination"
       ],
       "role": "request",
       "stall": null,
@@ -209,7 +213,7 @@
     {
       "id": "corpus/farmer-d/logistics/1465.",
       "processes": [
-        "new:recruiting-staffing-request"
+        "new:team-staffing-announcement"
       ],
       "role": "fyi",
       "stall": null,
@@ -218,7 +222,7 @@
     {
       "id": "corpus/giron-d/sent/570.",
       "processes": [
-        "curve-postid-mapping"
+        "curve-postid-maintenance"
       ],
       "role": "forward",
       "stall": null,
@@ -227,7 +231,7 @@
     {
       "id": "corpus/farmer-d/logistics/1467.",
       "processes": [
-        "gas-nomination-handling"
+        "gas-nomination"
       ],
       "role": "forward",
       "stall": null,
@@ -236,16 +240,20 @@
     {
       "id": "corpus/giron-d/sent/568.",
       "processes": [
-        "user-access-setup"
+        "system-access-request",
+        "deal-book-transfer"
       ],
       "role": "request",
-      "stall": null,
+      "stall": {
+        "kind": "waiting_on_reply",
+        "quote": "Also, how my proposed index book"
+      },
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/sent/567.",
       "processes": [
-        "new:trading-control-policy-notice"
+        "new:deal-change-controls"
       ],
       "role": "forward",
       "stall": null,
@@ -268,7 +276,7 @@
     {
       "id": "corpus/farmer-d/logistics/1468.",
       "processes": [
-        "new:volume-write-off-processing"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -277,16 +285,19 @@
     {
       "id": "corpus/giron-d/sent/565.",
       "processes": [
-        "new:trading-control-policy-notice"
+        "new:deal-change-controls"
       ],
       "role": "forward",
       "stall": null,
-      "ownership_claim": null
+      "ownership_claim": {
+        "person": "John Lavorato",
+        "quote": "John Lavorato needs to approve that top level before it can go into the"
+      }
     },
     {
       "id": "corpus/farmer-d/logistics/1470.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "imbalance-resolution"
       ],
       "role": "fyi",
       "stall": null,
@@ -297,7 +308,7 @@
       "processes": [
         "trading-book-setup"
       ],
-      "role": "response",
+      "role": "fyi",
       "stall": null,
       "ownership_claim": null
     },
@@ -312,25 +323,25 @@
   "evidence": [
     {
       "evidence_id": "batch-028:e0",
-      "process": "pnl-position-reporting",
+      "process": "pnl-reporting",
       "message_id": "corpus/giron-d/sent/583.",
       "field": "body",
-      "quote": "Gather this info when you get a chance and give it to me.  Thanks.",
-      "note": "Asks staff to gather support for a P&L request from the controller.",
+      "quote": "Gather this info when you get a chance and give it to me.",
+      "note": "Asks staff to gather August P&L support requested for the west desk.",
       "match": "exact",
       "start": 488,
-      "end": 554,
+      "end": 545,
       "segment": "own",
-      "raw_text": "Gather this info when you get a chance and give it to me.  Thanks.",
+      "raw_text": "Gather this info when you get a chance and give it to me.",
       "reason": null
     },
     {
       "evidence_id": "batch-028:e1",
-      "process": "curve-postid-mapping",
+      "process": "curve-postid-maintenance",
       "message_id": "corpus/giron-d/sent/582.",
       "field": "body",
       "quote": "The macro in this file will query all official books for given Portfolio and",
-      "note": "Passes on a post ID file used to officialize post IDs.",
+      "note": "Circulates a tool for checking that post IDs are officialized each night.",
       "match": "exact",
       "start": 592,
       "end": 668,
@@ -340,25 +351,39 @@
     },
     {
       "evidence_id": "batch-028:e2",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1456.",
       "field": "body",
-      "quote": "Deal 133196 (purchase from Duke on gathering contract) is erroring out due to",
-      "note": "Expired deal at a meter still allocated gas; asks whether to extend it.",
+      "quote": "Should this deal be extended?",
+      "note": "Asks whether an expired deal at a meter should be extended.",
       "match": "exact",
-      "start": 562,
-      "end": 639,
+      "start": 817,
+      "end": 846,
       "segment": "own",
-      "raw_text": "Deal 133196 (purchase from Duke on gathering contract) is erroring out due to",
+      "raw_text": "Should this deal be extended?",
       "reason": null
     },
     {
       "evidence_id": "batch-028:e3",
-      "process": "meter-flow-deal-coverage",
+      "process": "meter-flow-resolution",
+      "message_id": "corpus/farmer-d/logistics/1456.",
+      "field": "body",
+      "quote": "I need some help with meter 5892 for September 00 due to a feedback error.",
+      "note": "Allocation at a meter for a past month with no valid deal.",
+      "match": "exact",
+      "start": 485,
+      "end": 559,
+      "segment": "own",
+      "raw_text": "I need some help with meter 5892 for September 00 due to a feedback error.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-028:e4",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1457.",
       "field": "body",
       "quote": "no, it was a GTC Firm.  You will need to create a new deal.",
-      "note": "Answers that a new deal must be created for the meter.",
+      "note": "Says a replacement deal must be created for the expired one.",
       "match": "exact",
       "start": 483,
       "end": 542,
@@ -367,26 +392,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-028:e4",
+      "evidence_id": "batch-028:e5",
       "process": "performance-review",
       "message_id": "corpus/giron-d/sent/790.",
       "field": "body",
-      "quote": "If we give these reviews in late Jan or Feb of next year, I think I could",
-      "note": "Replies on which staff he will review in the review cycle.",
+      "quote": "I don't think I should review Dawn",
+      "note": "Replies on who will conduct reviews for the PRC.",
       "match": "exact",
-      "start": 448,
-      "end": 521,
+      "start": 565,
+      "end": 599,
       "segment": "own",
-      "raw_text": "If we give these reviews in late Jan or Feb of next year, I think I could",
+      "raw_text": "I don't think I should review Dawn",
       "reason": null
     },
     {
-      "evidence_id": "batch-028:e5",
-      "process": "curve-postid-mapping",
+      "evidence_id": "batch-028:e6",
+      "process": "curve-postid-maintenance",
       "message_id": "corpus/giron-d/sent/580.",
       "field": "body",
       "quote": "This is a modification of the old file.",
-      "note": "Forwards a modified post ID file to the team.",
+      "note": "Circulates a modified post-id file.",
       "match": "exact",
       "start": 946,
       "end": 985,
@@ -395,40 +420,68 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-028:e6",
-      "process": "meter-flow-deal-coverage",
+      "evidence_id": "batch-028:e7",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1458.",
       "field": "body",
-      "quote": "It looks like deal 133196 (purchase from Duke) at meter 5892 South Katy Gas",
-      "note": "Expired deal at a meter needs renegotiation so gas can be allocated.",
+      "quote": "Unit#2 needs to be renegotiated.  The deal expired 8/31/00, and they are",
+      "note": "Expired deal at a meter needs renegotiation or replacement.",
       "match": "exact",
-      "start": 539,
-      "end": 614,
+      "start": 616,
+      "end": 688,
       "segment": "own",
-      "raw_text": "It looks like deal 133196 (purchase from Duke) at meter 5892 South Katy Gas",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-028:e7",
-      "process": "user-access-setup",
-      "message_id": "corpus/giron-d/sent/578.",
-      "field": "body",
-      "quote": "Put me down as primary with no secondary contact.  Thanks.",
-      "note": "Names himself as approver for system security access requests.",
-      "match": "exact",
-      "start": 459,
-      "end": 517,
-      "segment": "own",
-      "raw_text": "Put me down as primary with no secondary contact.  Thanks.",
+      "raw_text": "Unit#2 needs to be renegotiated.  The deal expired 8/31/00, and they are",
       "reason": null
     },
     {
       "evidence_id": "batch-028:e8",
-      "process": "new:wacog-pricing-calculation",
+      "process": "meter-flow-resolution",
+      "message_id": "corpus/farmer-d/logistics/1458.",
+      "field": "body",
+      "quote": "agree to buy that gas that is being allocated to us (volume of 4,098 MMBtu",
+      "note": "Gas allocated at a meter without a valid deal.",
+      "match": "exact",
+      "start": 1379,
+      "end": 1453,
+      "segment": "forwarded",
+      "raw_text": "agree to buy that gas that is being allocated to us (volume of 4,098 MMBtu",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-028:e9",
+      "process": "system-access-request",
+      "message_id": "corpus/giron-d/sent/578.",
+      "field": "body",
+      "quote": "Put me down as primary with no secondary contact.",
+      "note": "Names approver for security access requests.",
+      "match": "exact",
+      "start": 459,
+      "end": 508,
+      "segment": "own",
+      "raw_text": "Put me down as primary with no secondary contact.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-028:e10",
+      "process": "new:team-staffing-announcement",
+      "message_id": "corpus/farmer-d/logistics/1459.",
+      "field": "body",
+      "quote": "Effective immediately, I am pleased to announce a realignment of",
+      "note": "Announces administrative support assignments.",
+      "match": "exact",
+      "start": 3414,
+      "end": 3478,
+      "segment": "own",
+      "raw_text": "Effective immediately, I am pleased to announce a realignment of",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-028:e11",
+      "process": "new:sale-price-wacog-calculation",
       "message_id": "corpus/farmer-d/logistics/1461.",
       "field": "body",
       "quote": "According to the contract the pricing of the gas we are selling back to",
-      "note": "Sends the WACOG pricing calculation for a resale to a counterparty.",
+      "note": "Shares a WACOG pricing calculation for a sale.",
       "match": "exact",
       "start": 643,
       "end": 714,
@@ -437,12 +490,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-028:e9",
+      "evidence_id": "batch-028:e12",
       "process": "deal-book-transfer",
       "message_id": "corpus/giron-d/sent/575.",
       "field": "body",
       "quote": "Currently, all of our index deals are in the FT-WEST book.",
-      "note": "Asks to move index deals from one book to another.",
+      "note": "Requests moving index deals to another book.",
       "match": "exact",
       "start": 449,
       "end": 507,
@@ -451,26 +504,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-028:e10",
-      "process": "pnl-position-reporting",
+      "evidence_id": "batch-028:e13",
+      "process": "pnl-reporting",
       "message_id": "corpus/giron-d/sent/574.",
       "field": "body",
-      "quote": "I have the support you requested.  I am at EB3262B.",
-      "note": "Answers a request for P&L support.",
+      "quote": "I have the support you requested.",
+      "note": "Answers a request for August West P&L support.",
       "match": "exact",
       "start": 448,
-      "end": 499,
+      "end": 481,
       "segment": "own",
-      "raw_text": "I have the support you requested.  I am at EB3262B.",
+      "raw_text": "I have the support you requested.",
       "reason": null
     },
     {
-      "evidence_id": "batch-028:e11",
-      "process": "curve-postid-mapping",
+      "evidence_id": "batch-028:e14",
+      "process": "curve-postid-maintenance",
       "message_id": "corpus/giron-d/sent/573.",
       "field": "body",
       "quote": "I have added two curves in Publ Names:  WY/WELLHEAD and WY/MKTZONE.",
-      "note": "Asks that new curves be added to the downstream system.",
+      "note": "Adds new price curves and asks for them to be added to Tagg.",
       "match": "exact",
       "start": 442,
       "end": 509,
@@ -479,12 +532,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-028:e12",
-      "process": "curve-postid-mapping",
+      "evidence_id": "batch-028:e15",
+      "process": "curve-postid-maintenance",
       "message_id": "corpus/giron-d/sent/569.",
       "field": "body",
       "quote": "I have added two curves in Publ Names:  WY/WELLHEAD and WY/MKTZONE.",
-      "note": "Forwards confirmation that the new curves were added.",
+      "note": "Forwards the confirmation that the new curves were added.",
       "match": "exact",
       "start": 860,
       "end": 927,
@@ -493,12 +546,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-028:e13",
-      "process": "new:deal-id-crossreference-lookup",
+      "evidence_id": "batch-028:e16",
+      "process": "new:tagg-sitara-number-lookup",
       "message_id": "corpus/giron-d/sent/571.",
       "field": "body",
       "quote": "The Sitara numbers for both of these deals are in the comments section of",
-      "note": "Supplies Sitara deal numbers for Tagg deal numbers.",
+      "note": "Supplies Sitara deal numbers for given Tagg numbers.",
       "match": "exact",
       "start": 523,
       "end": 596,
@@ -507,12 +560,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-028:e14",
-      "process": "reference-data-update",
+      "evidence_id": "batch-028:e17",
+      "process": "new:team-staffing-announcement",
       "message_id": "corpus/farmer-d/logistics/1462.",
       "field": "body",
       "quote": "Just wanted to let everyone know my extension.",
-      "note": "Distributes contact numbers to the group.",
+      "note": "Shares assistant contact details with the group.",
       "match": "exact",
       "start": 1722,
       "end": 1768,
@@ -521,12 +574,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-028:e15",
-      "process": "new:employee-departure-offboarding",
+      "evidence_id": "batch-028:e18",
+      "process": "new:team-staffing-announcement",
       "message_id": "corpus/farmer-d/logistics/1463.",
       "field": "body",
       "quote": "I have an exit interview scheduled for 2pm on Fri.",
-      "note": "Asks to reschedule an exit interview for a resigning employee.",
+      "note": "Staff departure handling and training of replacement.",
       "match": "exact",
       "start": 641,
       "end": 691,
@@ -535,40 +588,40 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-028:e16",
-      "process": "new:system-maintenance-downtime",
+      "evidence_id": "batch-028:e19",
+      "process": "new:system-downtime-coordination",
       "message_id": "corpus/farmer-d/logistics/1464.",
       "field": "body",
-      "quote": "The POPS Production database server will be down over the weekend for a 3",
-      "note": "Requests a preferred window for planned server downtime.",
+      "quote": "The POPS Production database server will be down over the weekend",
+      "note": "Requests agreement on a maintenance window for the database server.",
       "match": "exact",
       "start": 1002,
-      "end": 1075,
+      "end": 1067,
       "segment": "own",
-      "raw_text": "The POPS Production database server will be down over the weekend for a 3",
+      "raw_text": "The POPS Production database server will be down over the weekend",
       "reason": null
     },
     {
-      "evidence_id": "batch-028:e17",
-      "process": "new:recruiting-staffing-request",
+      "evidence_id": "batch-028:e20",
+      "process": "new:team-staffing-announcement",
       "message_id": "corpus/farmer-d/logistics/1465.",
       "field": "body",
-      "quote": "direct your staffing requests to either Toni or Molly depending on your job",
-      "note": "Explains who handles staffing requests by job function.",
+      "quote": "I'm happy to introduce Molly Magee as the newest addition to the EOPS",
+      "note": "Announces recruiting team assignments.",
       "match": "exact",
-      "start": 3253,
-      "end": 3328,
+      "start": 3032,
+      "end": 3101,
       "segment": "own",
-      "raw_text": "direct your staffing requests to either Toni or Molly depending on your job",
+      "raw_text": "I'm happy to introduce Molly Magee as the newest addition to the EOPS",
       "reason": null
     },
     {
-      "evidence_id": "batch-028:e18",
-      "process": "curve-postid-mapping",
+      "evidence_id": "batch-028:e21",
+      "process": "curve-postid-maintenance",
       "message_id": "corpus/giron-d/sent/570.",
       "field": "subject",
       "quote": "official post id",
-      "note": "Forwarded message about officializing post IDs.",
+      "note": "Forwarded post id item; subject shows the process.",
       "match": "exact",
       "start": 169,
       "end": 185,
@@ -577,8 +630,8 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-028:e19",
-      "process": "gas-nomination-handling",
+      "evidence_id": "batch-028:e22",
+      "process": "gas-nomination",
       "message_id": "corpus/farmer-d/logistics/1467.",
       "field": "body",
       "quote": "There has been a change for the Katy Plant.",
@@ -591,12 +644,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-028:e20",
-      "process": "user-access-setup",
+      "evidence_id": "batch-028:e23",
+      "process": "system-access-request",
       "message_id": "corpus/giron-d/sent/568.",
       "field": "body",
       "quote": "I need to have access to calc all books on a minibook level.",
-      "note": "Requests system access for minibook calculations.",
+      "note": "Requests minibook system access.",
       "match": "exact",
       "start": 448,
       "end": 508,
@@ -605,12 +658,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-028:e21",
-      "process": "new:trading-control-policy-notice",
+      "evidence_id": "batch-028:e24",
+      "process": "deal-book-transfer",
+      "message_id": "corpus/giron-d/sent/568.",
+      "field": "body",
+      "quote": "Also, how my proposed index book",
+      "note": "Chases the pending index book move.",
+      "match": "exact",
+      "start": 568,
+      "end": 600,
+      "segment": "own",
+      "raw_text": "Also, how my proposed index book",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-028:e25",
+      "process": "new:deal-change-controls",
       "message_id": "corpus/giron-d/sent/567.",
       "field": "body",
       "quote": "We have some new procedures for changing deals that affect other books.",
-      "note": "Passes on a new deal-change policy to the team.",
+      "note": "Passes on a policy for documenting deal changes.",
       "match": "exact",
       "start": 595,
       "end": 666,
@@ -619,12 +686,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-028:e22",
-      "process": "new:volume-write-off-processing",
+      "evidence_id": "batch-028:e26",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1468.",
       "field": "body",
       "quote": "The volumes that we determined to be written off at this meter need to go",
-      "note": "Asks for write-off volumes to be entered with deal tickets.",
+      "note": "Write-off of unresolved volumes at a meter.",
       "match": "exact",
       "start": 716,
       "end": 789,
@@ -633,22 +700,22 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-028:e23",
-      "process": "new:trading-control-policy-notice",
+      "evidence_id": "batch-028:e27",
+      "process": "new:deal-change-controls",
       "message_id": "corpus/giron-d/sent/565.",
       "field": "body",
-      "quote": "If you are asked to top level any dollar amount for any reason by anyone,",
-      "note": "Passes on the approval rule for top level entries.",
+      "quote": "John Lavorato needs to approve that top level before it can go into the",
+      "note": "Approval rule for top-level adjustments to the books.",
       "match": "exact",
-      "start": 1086,
-      "end": 1159,
+      "start": 1162,
+      "end": 1233,
       "segment": "forwarded",
-      "raw_text": "If you are asked to top level any dollar amount for any reason by anyone,",
+      "raw_text": "John Lavorato needs to approve that top level before it can go into the",
       "reason": null
     },
     {
-      "evidence_id": "batch-028:e24",
-      "process": "volume-imbalance-reconciliation",
+      "evidence_id": "batch-028:e28",
+      "process": "imbalance-resolution",
       "message_id": "corpus/farmer-d/logistics/1470.",
       "field": "body",
       "quote": "El Paso is planning on giving the 238,000mmbtus back to HPL at Moss Bluff.",
@@ -661,17 +728,17 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-028:e25",
+      "evidence_id": "batch-028:e29",
       "process": "trading-book-setup",
       "message_id": "corpus/giron-d/sent/564.",
-      "field": "body",
-      "quote": "INTRA-EMWNSS1\nINTRA-EMWNSS2",
-      "note": "Sends a list of book names to the person setting up books.",
+      "field": "subject",
+      "quote": "Chicago Books",
+      "note": "Sends a list of book names; weak fit, subject only.",
       "match": "exact",
-      "start": 455,
-      "end": 482,
-      "segment": "own",
-      "raw_text": "INTRA-EMWNSS1\nINTRA-EMWNSS2",
+      "start": 174,
+      "end": 187,
+      "segment": "subject",
+      "raw_text": "Chicago Books",
       "reason": null
     }
   ],
@@ -684,17 +751,26 @@
       "segment": "forwarded",
       "raw_text": "Daren said to wait until he gets back next",
       "reason": null
+    },
+    {
+      "message_id": "corpus/giron-d/sent/568.",
+      "match": "exact",
+      "start": 568,
+      "end": 600,
+      "segment": "own",
+      "raw_text": "Also, how my proposed index book",
+      "reason": null
     }
   ],
   "ownership_checks": [
     {
-      "message_id": "corpus/farmer-d/logistics/1456.",
-      "person": "Daren",
+      "message_id": "corpus/giron-d/sent/583.",
+      "person": "Darron",
       "match": "exact",
-      "start": 1005,
-      "end": 1077,
-      "segment": "own",
-      "raw_text": "Fred Boas said you used to handle this and you were very wise in the art",
+      "start": 898,
+      "end": 946,
+      "segment": "forwarded",
+      "raw_text": "Darron has taken my position as west controller.",
       "reason": null
     },
     {
@@ -706,70 +782,67 @@
       "segment": "forwarded",
       "raw_text": "Unfortunately, Danny Conner handles this",
       "reason": null
+    },
+    {
+      "message_id": "corpus/giron-d/sent/565.",
+      "person": "John Lavorato",
+      "match": "exact",
+      "start": 1162,
+      "end": 1233,
+      "segment": "forwarded",
+      "raw_text": "John Lavorato needs to approve that top level before it can go into the",
+      "reason": null
     }
   ],
   "new_processes": [
     {
-      "key": "new:wacog-pricing-calculation",
-      "name": "WACOG pricing calculation",
-      "definition": "Calculating and sharing the weighted average cost of gas used to price gas sold back to a counterparty under contract.",
+      "key": "new:team-staffing-announcement",
+      "name": "Team staffing announcements",
+      "definition": "Announcing staff changes, support assignments, recruiting contacts, departures and contact details to the operations groups.",
+      "example_ids": [
+        "corpus/farmer-d/logistics/1459.",
+        "corpus/farmer-d/logistics/1462.",
+        "corpus/farmer-d/logistics/1463.",
+        "corpus/farmer-d/logistics/1465."
+      ]
+    },
+    {
+      "key": "new:sale-price-wacog-calculation",
+      "name": "Sale price WACOG calculation",
+      "definition": "Calculating and sharing the weighted average cost of gas used to price a sale back to a customer under contract.",
       "example_ids": [
         "corpus/farmer-d/logistics/1461."
       ]
     },
     {
-      "key": "new:deal-id-crossreference-lookup",
-      "name": "Deal ID cross-reference lookup",
-      "definition": "Looking up the deal numbers in one system that correspond to deal numbers in another for analysis of sales.",
+      "key": "new:tagg-sitara-number-lookup",
+      "name": "Tagg to Sitara deal number lookup",
+      "definition": "Answering requests that map Tagg deal numbers to Sitara deal numbers for analysis.",
       "example_ids": [
         "corpus/giron-d/sent/571."
       ]
     },
     {
-      "key": "new:employee-departure-offboarding",
-      "name": "Employee departure and offboarding",
-      "definition": "Handling a resignation: exit interview scheduling and training a replacement.",
-      "example_ids": [
-        "corpus/farmer-d/logistics/1463."
-      ]
-    },
-    {
-      "key": "new:system-maintenance-downtime",
-      "name": "System maintenance downtime coordination",
-      "definition": "Coordinating planned downtime windows for production systems and databases with the teams that use them.",
+      "key": "new:system-downtime-coordination",
+      "name": "System downtime coordination",
+      "definition": "Coordinating planned downtime windows for production systems with the groups that depend on them.",
       "example_ids": [
         "corpus/farmer-d/logistics/1464."
       ]
     },
     {
-      "key": "new:recruiting-staffing-request",
-      "name": "Recruiting and staffing requests",
-      "definition": "Routing hiring and staffing requests to the recruiters responsible for each job function.",
-      "example_ids": [
-        "corpus/farmer-d/logistics/1465."
-      ]
-    },
-    {
-      "key": "new:trading-control-policy-notice",
-      "name": "Trading control policy notices",
-      "definition": "Controller policies on deal changes and top-level entries, passed on to the team that must follow them.",
+      "key": "new:deal-change-controls",
+      "name": "Deal change and top level controls",
+      "definition": "Circulating and applying control rules for changing deals or top-level adjustments, such as before and after minibooks and required approvals.",
       "example_ids": [
         "corpus/giron-d/sent/567.",
         "corpus/giron-d/sent/565."
       ]
-    },
-    {
-      "key": "new:volume-write-off-processing",
-      "name": "Volume write-off processing",
-      "definition": "Writing off historical meter volumes by preparing a formal letter, approvals, deal tickets and accounting arrangements.",
-      "example_ids": [
-        "corpus/farmer-d/logistics/1468."
-      ]
     }
   ],
-  "batch_notes": "Many personal forwards and jokes. 1459 admin realignment treated as noise. Weak fits: 564 (book list), 1461, 1468. New keys proposed: wacog-pricing-calculation, deal-id-crossreference-lookup, employee-departure-offboarding, system-maintenance-downtime, recruiting-staffing-request, trading-control-policy-notice, volume-write-off-processing. No injection attempts.",
+  "batch_notes": "Many personal forwards and jokes in the giron-d mailbox. giron-d/sent/564 (Chicago Books) is a bare list of book names; trading-book-setup is a weak fit. New keys proposed: team-staffing-announcement, sale-price-wacog-calculation, tagg-sitara-number-lookup, system-downtime-coordination, deal-change-controls. No injection attempts found.",
   "quote_stats": {
-    "exact": 29,
+    "exact": 35,
     "repaired": 0,
     "rejected": 0
   }

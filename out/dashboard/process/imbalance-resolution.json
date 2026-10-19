@@ -1,0 +1,4366 @@
+{
+  "key": "imbalance-resolution",
+  "name": "Pipeline imbalance resolution",
+  "definition": "Reconciling gas imbalances with pipelines and counterparties, exchanging volume statements and agreeing how the imbalance is cleared.",
+  "rank": 16,
+  "tier": "B",
+  "row": {
+    "rank": 16,
+    "key": "imbalance-resolution",
+    "name": "Pipeline imbalance resolution",
+    "tier": "B",
+    "tier_words": "in the total: 10 or more times over 3 or more months by 2 or more staff",
+    "in_total": true,
+    "origin": "taxonomy",
+    "total": {
+      "v": 4264,
+      "t": "$43",
+      "x": "$42.64",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "imbalance-resolution"
+      }
+    },
+    "counted": {
+      "v": 680,
+      "t": "$7",
+      "x": "$6.80",
+      "k": "counted",
+      "d": {
+        "kind": "formula",
+        "key": "imbalance-resolution"
+      }
+    },
+    "estimated": {
+      "v": 3584,
+      "t": "$36",
+      "x": "$35.84",
+      "k": "estimated",
+      "d": {
+        "kind": "formula",
+        "key": "imbalance-resolution"
+      }
+    },
+    "low": {
+      "v": 2274,
+      "t": "$23",
+      "x": "$22.74",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "imbalance-resolution"
+      }
+    },
+    "high": {
+      "v": 10238,
+      "t": "$102",
+      "x": "$102.38",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "imbalance-resolution"
+      }
+    },
+    "today": {
+      "v": 9323,
+      "t": "$93",
+      "x": "$93.23",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "imbalance-resolution"
+      }
+    },
+    "hours": {
+      "v": 50,
+      "t": "0.5",
+      "x": "0.50 hours",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "imbalance-resolution"
+      }
+    },
+    "hours_today": {
+      "v": 110,
+      "t": "1.1",
+      "x": "1.10 hours",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "imbalance-resolution"
+      }
+    },
+    "occurrences": {
+      "v": 33,
+      "t": "33 times",
+      "d": {
+        "kind": "occurrences",
+        "key": "imbalance-resolution"
+      }
+    },
+    "shared_occurrences": 0,
+    "active_months": {
+      "v": 19,
+      "t": "19 active months",
+      "d": {
+        "kind": "months",
+        "key": "imbalance-resolution"
+      }
+    },
+    "span_days": 804,
+    "first_utc": "2000-01-07T08:54:00Z",
+    "last_utc": "2002-03-21T03:22:24Z",
+    "messages": {
+      "v": 42,
+      "t": "42 emails",
+      "d": {
+        "kind": "occurrences",
+        "key": "imbalance-resolution"
+      }
+    },
+    "threads": 33,
+    "mailboxes": [
+      {
+        "key": "farmer-d",
+        "n": 26,
+        "pct": 62
+      },
+      {
+        "key": "lokay-m",
+        "n": 14,
+        "pct": 33
+      },
+      {
+        "key": "giron-d",
+        "n": 1,
+        "pct": 2
+      },
+      {
+        "key": "williams-w3",
+        "n": 1,
+        "pct": 2
+      }
+    ],
+    "top_mailbox": "farmer-d",
+    "top_pct": 62,
+    "one_mailbox": false,
+    "seen_in": "Seen in: 4 mailboxes",
+    "staff": {
+      "v": 58,
+      "t": "58 staff",
+      "d": {
+        "kind": "participants",
+        "key": "imbalance-resolution",
+        "filter": "staff"
+      }
+    },
+    "writers": {
+      "v": 19,
+      "t": "19",
+      "d": {
+        "kind": "participants",
+        "key": "imbalance-resolution",
+        "filter": "writers"
+      }
+    },
+    "copied": {
+      "v": 39,
+      "t": "39",
+      "d": {
+        "kind": "participants",
+        "key": "imbalance-resolution",
+        "filter": "copied"
+      }
+    },
+    "estimate": {
+      "low": 20,
+      "mid": 45,
+      "high": 120,
+      "automatable_pct": 45,
+      "basis_words": "worked out from the steps the emails show",
+      "source": "model"
+    },
+    "stall_label": "Rounds wait on the other party: the Hub sends park and loan information late, a…",
+    "stall_summary": "Rounds wait on the other party: the Hub sends park and loan information late, a counterparty has no answer yet on why actuals differed, and an expected wire transfer is chased for over a week.",
+    "stall_kind": "waiting_on_reply",
+    "stall_quotes": {
+      "v": 5,
+      "t": "5 stall quotes",
+      "d": {
+        "kind": "stalls",
+        "key": "imbalance-resolution"
+      }
+    },
+    "fix": "A scheduled report that pulls measured and scheduled volumes per meter, contract and interconnect, flags differences beyond a tolerance, and produces the reconciliation…",
+    "document": null,
+    "status_line": "Not drafted: $43 a month is under the $85 drafting line",
+    "chasers": {
+      "v": 2,
+      "t": "2 chasers",
+      "d": {
+        "kind": "actions",
+        "key": "imbalance-resolution",
+        "type": "chaser"
+      }
+    },
+    "stall_count": {
+      "v": 3,
+      "t": "3",
+      "d": {
+        "kind": "stalls",
+        "key": "imbalance-resolution",
+        "stall_kind": "waiting_on_reply"
+      }
+    },
+    "loops": {
+      "v": 5,
+      "t": "5 open loops",
+      "d": {
+        "kind": "loops",
+        "key": "imbalance-resolution"
+      }
+    },
+    "loops_recent": {
+      "v": 1,
+      "t": "1",
+      "d": {
+        "kind": "loops",
+        "key": "imbalance-resolution",
+        "recent": true
+      }
+    },
+    "claims": {
+      "v": 2,
+      "t": "2 claims",
+      "d": {
+        "kind": "claims",
+        "key": "imbalance-resolution"
+      }
+    },
+    "conflicts": {
+      "v": 1,
+      "t": "1 conflict",
+      "d": {
+        "kind": "claims",
+        "key": "imbalance-resolution"
+      }
+    },
+    "reply_gap": null,
+    "last_three_months_share": {
+      "v": 12,
+      "t": "12 of 33",
+      "d": {
+        "kind": "occurrences",
+        "key": "imbalance-resolution"
+      }
+    },
+    "flags": []
+  },
+  "synthesis": {
+    "description": "Schedulers and pipeline account staff compare measured against scheduled or confirmed volumes at meters and interconnects, find where actuals did not come in as scheduled, and agree with the pipeline or counterparty how the imbalance is cleared: lending or parking gas, shifting nominations, paying back volumes in kind, or making manual book entries when the system cannot clear it. Rounds trade spreadsheets, OBA imbalance reports and volume statements, and ask the other side to verify or update contract and meter lists.",
+    "steps": [
+      "A scheduler or the pipeline notices that actual volumes at a meter or contract differ from scheduled or confirmed volumes.",
+      "Staff pull measured versus scheduled volumes and prepare a spreadsheet or imbalance report by contract.",
+      "The report or a list of meters and contracts goes to the counterparty or pipeline to verify, add or update.",
+      "Both sides compare their numbers and request statements to support any volume differences by month.",
+      "The parties agree how to clear the imbalance: lend or park gas, adjust nominations, or pay back volumes.",
+      "Where the system cannot clear it, accounting makes manual entries to clear the imbalance from the books."
+    ],
+    "approach": "A scheduled report that pulls measured and scheduled volumes per meter, contract and interconnect, flags differences beyond a tolerance, and produces the reconciliation spreadsheet and supporting statements by month, plus a written procedure naming the owner of the daily imbalance check and the steps for clearing imbalances the system cannot clear.",
+    "rationale": "The mail shows the same reconciliation spreadsheets rebuilt by hand and confusion over who owns the daily check and who signs off. A written procedure that fixes ownership, sign-off and the manual-entry path addresses the stalls directly, while the comparison report takes over the volume pulling.",
+    "artifact_type": "sop"
+  },
+  "formula": {
+    "counted": "33 occ over 804 d = 26.41 mo; email: 19 short x2 + 13 medium x6 + 1 long x15 + 7 fwd x2 + 2 chaser x3 + 102 read x1 = 253.00 min = 9.58 min/mo; automatable 60/40/30/80/100/50% = 126.70 min = 4.80 min/mo",
+    "estimated": "33.00 occ x 45 min/occ (estimate, mid of 20-120, basis inferred, 7 quotes from 7 occurrences) = 1,485.00 min = 56.23 min/mo; automatable 45% (estimate) = 25.30 min/mo; at the low end 20 min/occ = $22.74/mo, at the high end 120 min/occ = $102.38/mo (the row's automatable total)",
+    "total": "today 65.81 min/mo = 1.10 h/mo = $93.23/mo (email 9.58 min/mo = $13.57 + work 56.23 min/mo = $79.66); automatable 30.10 min/mo = 0.50 h/mo = $42.64/mo (counted email 4.80 min/mo = $6.80 + estimated work 25.30 min/mo = $35.84)"
+  },
+  "window": {
+    "first_utc": "2000-01-07T08:54:00Z",
+    "last_utc": "2002-03-21T03:22:24Z",
+    "span_days": 804,
+    "months_x100": 2641,
+    "active_months": 19,
+    "undated_occurrences": 0
+  },
+  "months": 2641,
+  "occurrence_share_x100": 3300,
+  "actions": {
+    "priced": {
+      "authored_short": 19,
+      "authored_medium": 13,
+      "authored_long": 1,
+      "forward": 7,
+      "chaser": 2,
+      "read": 102
+    },
+    "unpriced": {
+      "authored_short": 0,
+      "authored_medium": 0,
+      "authored_long": 0,
+      "forward": 0,
+      "chaser": 0,
+      "read": 7
+    }
+  },
+  "action_table": [
+    {
+      "type": "authored_short",
+      "words": "short emails written",
+      "count": {
+        "v": 19,
+        "t": "19",
+        "d": {
+          "kind": "actions",
+          "key": "imbalance-resolution",
+          "type": "authored_short"
+        }
+      },
+      "minutes_each": 2,
+      "minutes": "38.00",
+      "automatable_pct": 60,
+      "automatable_minutes": "22.80"
+    },
+    {
+      "type": "authored_medium",
+      "words": "medium emails written",
+      "count": {
+        "v": 13,
+        "t": "13",
+        "d": {
+          "kind": "actions",
+          "key": "imbalance-resolution",
+          "type": "authored_medium"
+        }
+      },
+      "minutes_each": 6,
+      "minutes": "78.00",
+      "automatable_pct": 40,
+      "automatable_minutes": "31.20"
+    },
+    {
+      "type": "authored_long",
+      "words": "long emails written",
+      "count": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "actions",
+          "key": "imbalance-resolution",
+          "type": "authored_long"
+        }
+      },
+      "minutes_each": 15,
+      "minutes": "15.00",
+      "automatable_pct": 30,
+      "automatable_minutes": "4.50"
+    },
+    {
+      "type": "forward",
+      "words": "forwards",
+      "count": {
+        "v": 7,
+        "t": "7",
+        "d": {
+          "kind": "actions",
+          "key": "imbalance-resolution",
+          "type": "forward"
+        }
+      },
+      "minutes_each": 2,
+      "minutes": "14.00",
+      "automatable_pct": 80,
+      "automatable_minutes": "11.20"
+    },
+    {
+      "type": "chaser",
+      "words": "chasers",
+      "count": {
+        "v": 2,
+        "t": "2",
+        "d": {
+          "kind": "actions",
+          "key": "imbalance-resolution",
+          "type": "chaser"
+        }
+      },
+      "minutes_each": 3,
+      "minutes": "6.00",
+      "automatable_pct": 100,
+      "automatable_minutes": "6.00"
+    },
+    {
+      "type": "read",
+      "words": "reads, one per addressee",
+      "count": {
+        "v": 102,
+        "t": "102",
+        "d": {
+          "kind": "actions",
+          "key": "imbalance-resolution",
+          "type": "read"
+        }
+      },
+      "minutes_each": 1,
+      "minutes": "102.00",
+      "automatable_pct": 50,
+      "automatable_minutes": "51.00"
+    }
+  ],
+  "email": {
+    "today_x100": 25300,
+    "automatable_x100": 12670,
+    "per_month_today_x100": 958,
+    "per_month_automatable_x100": 480
+  },
+  "work": {
+    "per_month_today_x100": 5623,
+    "per_month_automatable_x100": 2530,
+    "low_cents": 1594,
+    "high_cents": 9558
+  },
+  "estimate_quotes": [
+    {
+      "id": "batch-007:e24",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/924.",
+      "start": 687,
+      "end": 755,
+      "raw_text": "The Cilco volumes are different than the confirmed volumes to Cilco.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "kenny.soignet@enron.com",
+      "sender_label": "Kenny J Soignet",
+      "date_utc": "2000-03-21T08:58:00Z"
+    },
+    {
+      "id": "batch-013:e4",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1141.",
+      "start": 555,
+      "end": 623,
+      "raw_text": "After comparing HPL's numbers with PG&E's numbers I have found a few",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "aimee.lannou@enron.com",
+      "sender_label": "Aimee Lannou",
+      "date_utc": "2000-05-24T16:08:00Z"
+    },
+    {
+      "id": "batch-091:e17",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/76.",
+      "start": 539,
+      "end": 627,
+      "raw_text": "Here are the historical measured versus scheduled volumes for the Mojave OBA imbalances.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-01-31T16:27:28Z"
+    },
+    {
+      "id": "batch-088:e13",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/29.",
+      "start": 538,
+      "end": 626,
+      "raw_text": "Here is a spreadsheet that will hopefully help with reconciling the Mojave interconnect.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-01-24T21:11:51Z"
+    },
+    {
+      "id": "batch-075:e3",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/21.",
+      "start": 832,
+      "end": 931,
+      "raw_text": "we can't do it in POPS so we will have to make manual entries to clear the imbalance from the books",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "rita.wynne@enron.com",
+      "sender_label": "Rita Wynne",
+      "date_utc": "2001-11-08T23:19:34Z"
+    },
+    {
+      "id": "batch-047:e18",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/2127.",
+      "start": 1038,
+      "end": 1096,
+      "raw_text": "Please verify, add or update the information based on your",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "mary.poorman@enron.com",
+      "sender_label": "Mary Poorman",
+      "date_utc": "2001-03-21T10:09:00Z"
+    },
+    {
+      "id": "batch-051:e4",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/170.",
+      "start": 816,
+      "end": 922,
+      "raw_text": "We need to update our forward position and our nomination by 4,000/day to stay in balance to entitlements.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "mary.poorman@enron.com",
+      "sender_label": "Mary Poorman",
+      "date_utc": "2001-04-19T19:30:51Z"
+    }
+  ],
+  "estimate_check": {
+    "occurrences_cited": 7,
+    "senders_cited": 5
+  },
+  "monthly": [
+    {
+      "month": "2000-01",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "imbalance-resolution",
+          "month": "2000-01"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-bcc76a58dcc9-o1"
+      ]
+    },
+    {
+      "month": "2000-03",
+      "occurrences": {
+        "v": 2,
+        "t": "2",
+        "d": {
+          "kind": "occurrences",
+          "key": "imbalance-resolution",
+          "month": "2000-03"
+        }
+      },
+      "messages": 3,
+      "ids": [
+        "t-0cae47bbae1b-o1",
+        "t-fe868740b750-o1"
+      ]
+    },
+    {
+      "month": "2000-05",
+      "occurrences": {
+        "v": 2,
+        "t": "2",
+        "d": {
+          "kind": "occurrences",
+          "key": "imbalance-resolution",
+          "month": "2000-05"
+        }
+      },
+      "messages": 2,
+      "ids": [
+        "t-2f049abcb5a0-o1",
+        "t-cdd2c19ad2b9-o1"
+      ]
+    },
+    {
+      "month": "2000-06",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "imbalance-resolution",
+          "month": "2000-06"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-6e490c25e357-o1"
+      ]
+    },
+    {
+      "month": "2000-09",
+      "occurrences": {
+        "v": 2,
+        "t": "2",
+        "d": {
+          "kind": "occurrences",
+          "key": "imbalance-resolution",
+          "month": "2000-09"
+        }
+      },
+      "messages": 2,
+      "ids": [
+        "t-88cedfc795ae-o1",
+        "t-a66bfc9f37d6-o1"
+      ]
+    },
+    {
+      "month": "2000-10",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "imbalance-resolution",
+          "month": "2000-10"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-ffc379f47467-o1"
+      ]
+    },
+    {
+      "month": "2000-11",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "imbalance-resolution",
+          "month": "2000-11"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-598606951ea0-o1"
+      ]
+    },
+    {
+      "month": "2000-12",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "imbalance-resolution",
+          "month": "2000-12"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-5ab92cc72c0b-o1"
+      ]
+    },
+    {
+      "month": "2001-01",
+      "occurrences": {
+        "v": 2,
+        "t": "2",
+        "d": {
+          "kind": "occurrences",
+          "key": "imbalance-resolution",
+          "month": "2001-01"
+        }
+      },
+      "messages": 2,
+      "ids": [
+        "t-0a0b101aa78a-o1",
+        "t-ca39ec9724a6-o1"
+      ]
+    },
+    {
+      "month": "2001-03",
+      "occurrences": {
+        "v": 3,
+        "t": "3",
+        "d": {
+          "kind": "occurrences",
+          "key": "imbalance-resolution",
+          "month": "2001-03"
+        }
+      },
+      "messages": 3,
+      "ids": [
+        "t-5b1e5580e7c3-o1",
+        "t-7b2d72935231-o1",
+        "t-c4362f9da496-o1"
+      ]
+    },
+    {
+      "month": "2001-04",
+      "occurrences": {
+        "v": 3,
+        "t": "3",
+        "d": {
+          "kind": "occurrences",
+          "key": "imbalance-resolution",
+          "month": "2001-04"
+        }
+      },
+      "messages": 4,
+      "ids": [
+        "t-01a6e5651b00-o1",
+        "t-248692f8a422-o1",
+        "t-798e86c021c8-o1"
+      ]
+    },
+    {
+      "month": "2001-05",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "imbalance-resolution",
+          "month": "2001-05"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-9e11bb690a60-o1"
+      ]
+    },
+    {
+      "month": "2001-06",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "imbalance-resolution",
+          "month": "2001-06"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-56da10c54264-o1"
+      ]
+    },
+    {
+      "month": "2001-10",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "imbalance-resolution",
+          "month": "2001-10"
+        }
+      },
+      "messages": 2,
+      "ids": [
+        "t-cceab415b0bf-o1"
+      ]
+    },
+    {
+      "month": "2001-11",
+      "occurrences": {
+        "v": 4,
+        "t": "4",
+        "d": {
+          "kind": "occurrences",
+          "key": "imbalance-resolution",
+          "month": "2001-11"
+        }
+      },
+      "messages": 4,
+      "ids": [
+        "t-22aa0b9d06b1-o1",
+        "t-5cfabcf386fb-o1",
+        "t-c356cbb7865e-o1",
+        "t-d726d897e1e9-o1"
+      ]
+    },
+    {
+      "month": "2001-12",
+      "occurrences": {
+        "v": 2,
+        "t": "2",
+        "d": {
+          "kind": "occurrences",
+          "key": "imbalance-resolution",
+          "month": "2001-12"
+        }
+      },
+      "messages": 3,
+      "ids": [
+        "t-28c65efd1da8-o1",
+        "t-9cfd1d56d4bc-o1"
+      ]
+    },
+    {
+      "month": "2002-01",
+      "occurrences": {
+        "v": 2,
+        "t": "2",
+        "d": {
+          "kind": "occurrences",
+          "key": "imbalance-resolution",
+          "month": "2002-01"
+        }
+      },
+      "messages": 2,
+      "ids": [
+        "t-6c213bb4e4ea-o1",
+        "t-7e51e8d20d7c-o1"
+      ]
+    },
+    {
+      "month": "2002-02",
+      "occurrences": {
+        "v": 2,
+        "t": "2",
+        "d": {
+          "kind": "occurrences",
+          "key": "imbalance-resolution",
+          "month": "2002-02"
+        }
+      },
+      "messages": 5,
+      "ids": [
+        "t-8fca0a54d22d-o1",
+        "t-b1e429d27394-o1"
+      ]
+    },
+    {
+      "month": "2002-03",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "imbalance-resolution",
+          "month": "2002-03"
+        }
+      },
+      "messages": 3,
+      "ids": [
+        "t-30af73d0151f-o1"
+      ]
+    }
+  ],
+  "occurrences": [
+    {
+      "id": "t-01a6e5651b00-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/163.",
+        "corpus/farmer-d/logistics/161."
+      ],
+      "date_utc": "2001-04-24T18:02:25Z"
+    },
+    {
+      "id": "t-0a0b101aa78a-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/2026."
+      ],
+      "date_utc": "2001-01-03T14:27:00Z"
+    },
+    {
+      "id": "t-0cae47bbae1b-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/924.",
+        "corpus/farmer-d/logistics/934."
+      ],
+      "date_utc": "2000-03-21T08:58:00Z"
+    },
+    {
+      "id": "t-22aa0b9d06b1-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/21."
+      ],
+      "date_utc": "2001-11-08T23:19:34Z"
+    },
+    {
+      "id": "t-248692f8a422-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/166."
+      ],
+      "date_utc": "2001-04-23T14:43:03Z"
+    },
+    {
+      "id": "t-28c65efd1da8-o1",
+      "message_ids": [
+        "corpus/lokay-m/sent_items/10."
+      ],
+      "date_utc": "2001-12-13T17:17:09Z"
+    },
+    {
+      "id": "t-2f049abcb5a0-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1164."
+      ],
+      "date_utc": "2000-05-31T17:58:00Z"
+    },
+    {
+      "id": "t-30af73d0151f-o1",
+      "message_ids": [
+        "corpus/lokay-m/inbox/30."
+      ],
+      "date_utc": "2002-03-21T03:22:24Z"
+    },
+    {
+      "id": "t-56da10c54264-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/103."
+      ],
+      "date_utc": "2001-06-28T15:34:09Z"
+    },
+    {
+      "id": "t-598606951ea0-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1521."
+      ],
+      "date_utc": "2000-11-15T17:28:00Z"
+    },
+    {
+      "id": "t-5ab92cc72c0b-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1976."
+      ],
+      "date_utc": "2000-12-15T08:10:00Z"
+    },
+    {
+      "id": "t-5b1e5580e7c3-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/2126."
+      ],
+      "date_utc": "2001-03-21T09:38:00Z"
+    },
+    {
+      "id": "t-5cfabcf386fb-o1",
+      "message_ids": [
+        "corpus/lokay-m/inbox/70."
+      ],
+      "date_utc": "2001-11-27T19:55:01Z"
+    },
+    {
+      "id": "t-6c213bb4e4ea-o1",
+      "message_ids": [
+        "corpus/lokay-m/sent_items/29."
+      ],
+      "date_utc": "2002-01-24T21:11:51Z"
+    },
+    {
+      "id": "t-6e490c25e357-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1250."
+      ],
+      "date_utc": "2000-06-28T13:03:00Z"
+    },
+    {
+      "id": "t-798e86c021c8-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/170."
+      ],
+      "date_utc": "2001-04-19T19:30:51Z"
+    },
+    {
+      "id": "t-7b2d72935231-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/2127."
+      ],
+      "date_utc": "2001-03-21T10:09:00Z"
+    },
+    {
+      "id": "t-7e51e8d20d7c-o1",
+      "message_ids": [
+        "corpus/lokay-m/sent_items/76."
+      ],
+      "date_utc": "2002-01-31T16:27:28Z"
+    },
+    {
+      "id": "t-88cedfc795ae-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1433."
+      ],
+      "date_utc": "2000-09-29T08:59:00Z"
+    },
+    {
+      "id": "t-8fca0a54d22d-o1",
+      "message_ids": [
+        "corpus/lokay-m/sent_items/101.",
+        "corpus/lokay-m/sent_items/122."
+      ],
+      "date_utc": "2002-02-14T16:39:31Z"
+    },
+    {
+      "id": "t-9cfd1d56d4bc-o1",
+      "message_ids": [
+        "corpus/lokay-m/sent_items/69.",
+        "corpus/lokay-m/sent_items/68."
+      ],
+      "date_utc": "2001-12-20T19:13:04Z"
+    },
+    {
+      "id": "t-9e11bb690a60-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/140."
+      ],
+      "date_utc": "2001-05-14T13:24:28Z"
+    },
+    {
+      "id": "t-a66bfc9f37d6-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1426."
+      ],
+      "date_utc": "2000-09-27T07:26:00Z"
+    },
+    {
+      "id": "t-b1e429d27394-o1",
+      "message_ids": [
+        "corpus/lokay-m/sent_items/89.",
+        "corpus/lokay-m/sent_items/90.",
+        "corpus/lokay-m/sent_items/91.",
+        "corpus/lokay-m/sent_items/103.",
+        "corpus/lokay-m/sent_items/123."
+      ],
+      "date_utc": "2002-02-11T20:03:37Z"
+    },
+    {
+      "id": "t-bcc76a58dcc9-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/657."
+      ],
+      "date_utc": "2000-01-07T08:54:00Z"
+    },
+    {
+      "id": "t-c356cbb7865e-o1",
+      "message_ids": [
+        "corpus/giron-d/inbox/483."
+      ],
+      "date_utc": "2001-11-16T17:05:40Z"
+    },
+    {
+      "id": "t-c4362f9da496-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/2128."
+      ],
+      "date_utc": "2001-03-21T11:30:00Z"
+    },
+    {
+      "id": "t-ca39ec9724a6-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/2032."
+      ],
+      "date_utc": "2001-01-08T11:02:00Z"
+    },
+    {
+      "id": "t-cceab415b0bf-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/46.",
+        "corpus/farmer-d/logistics/45."
+      ],
+      "date_utc": "2001-10-15T18:48:54Z"
+    },
+    {
+      "id": "t-cdd2c19ad2b9-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1141."
+      ],
+      "date_utc": "2000-05-24T16:08:00Z"
+    },
+    {
+      "id": "t-d726d897e1e9-o1",
+      "message_ids": [
+        "corpus/williams-w3/sent_items/526."
+      ],
+      "date_utc": "2001-11-15T16:31:17Z"
+    },
+    {
+      "id": "t-fe868740b750-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/972."
+      ],
+      "date_utc": "2000-03-28T09:19:00Z"
+    },
+    {
+      "id": "t-ffc379f47467-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1470."
+      ],
+      "date_utc": "2000-10-24T11:14:00Z"
+    }
+  ],
+  "undated_occurrences": [],
+  "action_sources": [
+    {
+      "message_id": "corpus/farmer-d/logistics/103.",
+      "type": "authored_short",
+      "person": "d..winfree@enron.com",
+      "address": "d..winfree@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/103.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "j..farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1141.",
+      "type": "authored_medium",
+      "person": "aimee.lannou@enron.com",
+      "address": "aimee.lannou@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1141.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1141.",
+      "type": "read",
+      "person": "david.baumbach@enron.com",
+      "address": "david.baumbach@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1141.",
+      "type": "read",
+      "person": "gary.hanks@enron.com",
+      "address": "gary.hanks@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1141.",
+      "type": "read",
+      "person": "pat.clynes@enron.com",
+      "address": "pat.clynes@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1164.",
+      "type": "authored_short",
+      "person": "gary.hanks@enron.com",
+      "address": "gary.hanks@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1164.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1164.",
+      "type": "read",
+      "person": "pat.clynes@enron.com",
+      "address": "pat.clynes@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1250.",
+      "type": "authored_short",
+      "person": "mark.mccoy@enron.com",
+      "address": "mark.mccoy@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1250.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/140.",
+      "type": "authored_medium",
+      "person": "mary.poorman@enron.com",
+      "address": "mary.poorman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/140.",
+      "type": "read",
+      "person": "edward.terry@enron.com",
+      "address": "edward.terry@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/140.",
+      "type": "read",
+      "person": "michael.olsen@enron.com",
+      "address": "michael.olsen@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1426.",
+      "type": "forward",
+      "person": "silver.breaux@enron.com",
+      "address": "silver.breaux@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1426.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1433.",
+      "type": "authored_long",
+      "person": "edward.gottlob@enron.com",
+      "address": "edward.gottlob@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1433.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "dfarmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1433.",
+      "type": "read",
+      "person": "edward.d.gottlob@enron.com",
+      "address": "edward.d.gottlob@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1433.",
+      "type": "read",
+      "person": "lauri.allen@enron.com",
+      "address": "lauri.a.allen@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1433.",
+      "type": "read",
+      "person": "michael.walters@enron.com",
+      "address": "michael.walters@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1433.",
+      "type": "read",
+      "person": "pat.clynes@enron.com",
+      "address": "pat.clynes@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1470.",
+      "type": "authored_short",
+      "person": "pat.clynes@enron.com",
+      "address": "pat.clynes@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1470.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1470.",
+      "type": "read",
+      "person": "edward.gottlob@enron.com",
+      "address": "edward.gottlob@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1470.",
+      "type": "read",
+      "person": "gary.hanks@enron.com",
+      "address": "gary.hanks@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1470.",
+      "type": "read",
+      "person": "lauri.allen@enron.com",
+      "address": "lauri.allen@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1470.",
+      "type": "read",
+      "person": "sabrae.zajac@enron.com",
+      "address": "sabrae.zajac@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1521.",
+      "type": "authored_medium",
+      "person": "mary.poorman@enron.com",
+      "address": "mary.poorman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1521.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1521.",
+      "type": "read",
+      "person": "edward.gottlob@enron.com",
+      "address": "edward.gottlob@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1521.",
+      "type": "read",
+      "person": "lauri.allen@enron.com",
+      "address": "lauri.allen@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1521.",
+      "type": "read",
+      "person": "michael.bilberry@enron.com",
+      "address": "michael.bilberry@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1521.",
+      "type": "read",
+      "person": "pat.clynes@enron.com",
+      "address": "pat.clynes@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/161.",
+      "type": "chaser",
+      "person": "rita.wynne@enron.com",
+      "address": "rita.wynne@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/161.",
+      "type": "read",
+      "person": "edward.terry@enron.com",
+      "address": "edward.terry@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/161.",
+      "type": "read",
+      "person": "mary.poorman@enron.com",
+      "address": "mary.poorman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/161.",
+      "type": "read",
+      "person": "milton.bolanos@enron.com",
+      "address": "milton.bolanos@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/161.",
+      "type": "read",
+      "person": "thu.nguyen@enron.com",
+      "address": "thu.nguyen@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/163.",
+      "type": "authored_medium",
+      "person": "rita.wynne@enron.com",
+      "address": "rita.wynne@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/163.",
+      "type": "read",
+      "person": "milton.bolanos@enron.com",
+      "address": "milton.bolanos@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/166.",
+      "type": "authored_short",
+      "person": "mark.mccoy@enron.com",
+      "address": "mark.mccoy@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/170.",
+      "type": "authored_medium",
+      "person": "mary.poorman@enron.com",
+      "address": "mary.poorman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/170.",
+      "type": "read",
+      "person": "sean.maki@enron.com",
+      "address": "sean.maki@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1976.",
+      "type": "authored_medium",
+      "person": "mary.poorman@enron.com",
+      "address": "mary.poorman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1976.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1976.",
+      "type": "read",
+      "person": "elsa.villarreal@enron.com",
+      "address": "elsa.villarreal@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1976.",
+      "type": "read",
+      "person": "jesse.villarreal@enron.com",
+      "address": "jesse.villarreal@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1976.",
+      "type": "read",
+      "person": "victor.lamadrid@enron.com",
+      "address": "victor.lamadrid@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2026.",
+      "type": "authored_medium",
+      "person": "mary.poorman@enron.com",
+      "address": "mary.poorman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2026.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2026.",
+      "type": "read",
+      "person": "edward.terry@enron.com",
+      "address": "edward.terry@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2026.",
+      "type": "read",
+      "person": "jackie.young@enron.com",
+      "address": "jackie.young@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2032.",
+      "type": "forward",
+      "person": "edward.gottlob@enron.com",
+      "address": "edward.gottlob@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2032.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2032.",
+      "type": "read",
+      "person": "elsa.villarreal@enron.com",
+      "address": "elsa.villarreal@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/21.",
+      "type": "authored_short",
+      "person": "rita.wynne@enron.com",
+      "address": "rita.wynne@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/21.",
+      "type": "read",
+      "person": "hbcamp@aep.com",
+      "address": "hbcamp@aep.com",
+      "priced": false,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/21.",
+      "type": "read",
+      "person": "bob.hall@enron.com",
+      "address": "m.hall@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2126.",
+      "type": "authored_medium",
+      "person": "mary.poorman@enron.com",
+      "address": "mary.poorman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2126.",
+      "type": "read",
+      "person": "clem.cernosek@enron.com",
+      "address": "clem.cernosek@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2126.",
+      "type": "read",
+      "person": "edward.terry@enron.com",
+      "address": "edward.terry@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2126.",
+      "type": "read",
+      "person": "michael.olsen@enron.com",
+      "address": "michael.olsen@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2126.",
+      "type": "read",
+      "person": "robert.cotten@enron.com",
+      "address": "robert.cotten@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2126.",
+      "type": "read",
+      "person": "tom.acton@enron.com",
+      "address": "tom.acton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2127.",
+      "type": "authored_medium",
+      "person": "mary.poorman@enron.com",
+      "address": "mary.poorman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2127.",
+      "type": "read",
+      "person": "clem.cernosek@enron.com",
+      "address": "clem.cernosek@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2127.",
+      "type": "read",
+      "person": "edward.terry@enron.com",
+      "address": "edward.terry@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2127.",
+      "type": "read",
+      "person": "michael.olsen@enron.com",
+      "address": "michael.olsen@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2127.",
+      "type": "read",
+      "person": "robert.cotten@enron.com",
+      "address": "robert.cotten@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2127.",
+      "type": "read",
+      "person": "tom.acton@enron.com",
+      "address": "tom.acton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2128.",
+      "type": "forward",
+      "person": "mary.poorman@enron.com",
+      "address": "mary.poorman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2128.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2128.",
+      "type": "read",
+      "person": "edward.terry@enron.com",
+      "address": "edward.terry@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/45.",
+      "type": "authored_medium",
+      "person": "bob.hall@enron.com",
+      "address": "m.hall@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/45.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "j..farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/45.",
+      "type": "read",
+      "person": "laallen@aep.com",
+      "address": "laallen@aep.com",
+      "priced": false,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/45.",
+      "type": "read",
+      "person": "rita.wynne@enron.com",
+      "address": "rita.wynne@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/46.",
+      "type": "forward",
+      "person": "david.baumbach@enron.com",
+      "address": "david.baumbach@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/46.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "j..farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/46.",
+      "type": "read",
+      "person": "bob.hall@enron.com",
+      "address": "m.hall@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/46.",
+      "type": "read",
+      "person": "michael.olsen@enron.com",
+      "address": "michael.olsen@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/657.",
+      "type": "authored_short",
+      "person": "ami.chokshi@enron.com",
+      "address": "ami.chokshi@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/657.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/657.",
+      "type": "read",
+      "person": "howard.camp@enron.com",
+      "address": "howard.camp@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/657.",
+      "type": "read",
+      "person": "joanie.ngo@enron.com",
+      "address": "joanie.ngo@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/924.",
+      "type": "authored_medium",
+      "person": "kenny.soignet@enron.com",
+      "address": "kenny.soignet@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/924.",
+      "type": "read",
+      "person": "aimee.lannou@enron.com",
+      "address": "aimee.lannou@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/924.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/924.",
+      "type": "read",
+      "person": "fred.boas@enron.com",
+      "address": "fred.boas@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/924.",
+      "type": "read",
+      "person": "george.grant@enron.com",
+      "address": "george.grant@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/924.",
+      "type": "read",
+      "person": "howard.camp@enron.com",
+      "address": "howard.camp@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/934.",
+      "type": "authored_short",
+      "person": "george.grant@enron.com",
+      "address": "george.grant@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/934.",
+      "type": "read",
+      "person": "aimee.lannou@enron.com",
+      "address": "aimee.lannou@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/934.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/934.",
+      "type": "read",
+      "person": "kenny.soignet@enron.com",
+      "address": "kenny.soignet@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/972.",
+      "type": "authored_medium",
+      "person": "sherlyn.schumack@enron.com",
+      "address": "sherlyn.schumack@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/972.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/972.",
+      "type": "read",
+      "person": "gregory.steagall@enron.com",
+      "address": "gregory.steagall@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/972.",
+      "type": "read",
+      "person": "howard.camp@enron.com",
+      "address": "howard.camp@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/972.",
+      "type": "read",
+      "person": "kyle.lilly@enron.com",
+      "address": "kyle.lilly@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/972.",
+      "type": "read",
+      "person": "stacey.neuweiler@enron.com",
+      "address": "stacey.neuweiler@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/483.",
+      "type": "authored_short",
+      "person": "mary.poorman@enron.com",
+      "address": "mary.poorman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/483.",
+      "type": "read",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/483.",
+      "type": "read",
+      "person": "darron.giron@enron.com",
+      "address": "darron.giron@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/30.",
+      "type": "authored_short",
+      "person": "richard.hanagriff@enron.com",
+      "address": "richard.hanagriff@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/30.",
+      "type": "read",
+      "person": "amy.mulligan@enron.com",
+      "address": "amy.mulligan@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/30.",
+      "type": "read",
+      "person": "bert.hernandez@enron.com",
+      "address": "bert.hernandez@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/30.",
+      "type": "read",
+      "person": "darrell.schoolcraft@enron.com",
+      "address": "darrell.schoolcraft@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/30.",
+      "type": "read",
+      "person": "kimberly.watson@enron.com",
+      "address": "kimberly.watson@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/30.",
+      "type": "read",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/70.",
+      "type": "authored_short",
+      "person": "lynn.blair@enron.com",
+      "address": "lynn.blair@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/70.",
+      "type": "read",
+      "person": "darrell.schoolcraft@enron.com",
+      "address": "darrell.schoolcraft@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/70.",
+      "type": "read",
+      "person": "kimberly.watson@enron.com",
+      "address": "kimberly.watson@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/70.",
+      "type": "read",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/70.",
+      "type": "read",
+      "person": "richard.hanagriff@enron.com",
+      "address": "richard.hanagriff@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/70.",
+      "type": "read",
+      "person": "steve.january@enron.com",
+      "address": "steve.january@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/10.",
+      "type": "authored_short",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/10.",
+      "type": "read",
+      "person": "kimberly.watson@enron.com",
+      "address": "kimberly.watson@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/10.",
+      "type": "read",
+      "person": "lorraine.lindberg@enron.com",
+      "address": "lorraine.lindberg@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/10.",
+      "type": "read",
+      "person": "mark.mcconnell@enron.com",
+      "address": "mark.mcconnell@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/10.",
+      "type": "read",
+      "person": "paul.y'barbo@enron.com",
+      "address": "paul.y'barbo@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/10.",
+      "type": "read",
+      "person": "steven.harris@enron.com",
+      "address": "steven.harris@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/101.",
+      "type": "authored_short",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/101.",
+      "type": "read",
+      "person": "'mayher@enron.com",
+      "address": "'mayher@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/101.",
+      "type": "read",
+      "person": "susan.mayher@elpaso.com",
+      "address": "susan.mayher@elpaso.com",
+      "priced": false,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/103.",
+      "type": "authored_medium",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/103.",
+      "type": "read",
+      "person": "richard.hanagriff@enron.com",
+      "address": "richard.hanagriff@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/122.",
+      "type": "forward",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/122.",
+      "type": "read",
+      "person": "richard.hanagriff@enron.com",
+      "address": "richard.hanagriff@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/123.",
+      "type": "chaser",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/123.",
+      "type": "read",
+      "person": "richard.hanagriff@enron.com",
+      "address": "richard.hanagriff@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/29.",
+      "type": "authored_short",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/29.",
+      "type": "read",
+      "person": "michael.clark@elpaso.com",
+      "address": "michael.clark@elpaso.com",
+      "priced": false,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/68.",
+      "type": "forward",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/68.",
+      "type": "read",
+      "person": "paul.cherry@enron.com",
+      "address": "paul.cherry@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/68.",
+      "type": "read",
+      "person": "steve.kleb@enron.com",
+      "address": "steve.kleb@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/68.",
+      "type": "read",
+      "person": "tracy.geaccone@enron.com",
+      "address": "tracy.geaccone@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/69.",
+      "type": "authored_short",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/69.",
+      "type": "read",
+      "person": "laura.giambrone@enron.com",
+      "address": "laura.giambrone@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/76.",
+      "type": "authored_short",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/76.",
+      "type": "read",
+      "person": "michael.clark@elpaso.com",
+      "address": "michael.clark@elpaso.com",
+      "priced": false,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/89.",
+      "type": "authored_short",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/89.",
+      "type": "read",
+      "person": "'mayher@enron.com",
+      "address": "'mayher@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/89.",
+      "type": "read",
+      "person": "susan.mayher@elpaso.com",
+      "address": "susan.mayher@elpaso.com",
+      "priced": false,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/90.",
+      "type": "authored_short",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/91.",
+      "type": "forward",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/91.",
+      "type": "read",
+      "person": "susan.mayher@elpaso.com",
+      "address": "susan.mayher@elpaso.com",
+      "priced": false,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/526.",
+      "type": "authored_short",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/526.",
+      "type": "read",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    }
+  ],
+  "participants": [
+    {
+      "email": "daren.farmer@enron.com",
+      "name": "Daren J Farmer",
+      "label": "Daren J Farmer",
+      "kind": "person",
+      "addresses": [
+        "daren.farmer@enron.com",
+        "dfarmer@enron.com",
+        "j..farmer@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 18,
+      "wrote": false
+    },
+    {
+      "email": "michelle.lokay@enron.com",
+      "name": "Lokay, Michelle",
+      "label": "Michelle Lokay",
+      "kind": "person",
+      "addresses": [
+        "michelle.lokay@enron.com"
+      ],
+      "staff": true,
+      "authored": 8,
+      "forwards": 3,
+      "chasers": 1,
+      "reads": 3,
+      "wrote": true
+    },
+    {
+      "email": "mary.poorman@enron.com",
+      "name": "Mary Poorman",
+      "label": "Mary Poorman",
+      "kind": "person",
+      "addresses": [
+        "mary.poorman@enron.com"
+      ],
+      "staff": true,
+      "authored": 8,
+      "forwards": 1,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": true
+    },
+    {
+      "email": "edward.terry@enron.com",
+      "name": "Edward Terry",
+      "label": "Edward Terry",
+      "kind": "person",
+      "addresses": [
+        "edward.terry@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 6,
+      "wrote": false
+    },
+    {
+      "email": "pat.clynes@enron.com",
+      "name": "Pat Clynes",
+      "label": "Pat Clynes",
+      "kind": "person",
+      "addresses": [
+        "pat.clynes@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 4,
+      "wrote": true
+    },
+    {
+      "email": "richard.hanagriff@enron.com",
+      "name": "Hanagriff, Richard",
+      "label": "Richard Hanagriff",
+      "kind": "person",
+      "addresses": [
+        "richard.hanagriff@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 4,
+      "wrote": true
+    },
+    {
+      "email": "edward.gottlob@enron.com",
+      "name": "Edward D Gottlob",
+      "label": "Edward D Gottlob",
+      "kind": "person",
+      "addresses": [
+        "edward.gottlob@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 1,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": true
+    },
+    {
+      "email": "michael.olsen@enron.com",
+      "name": "Michael Olsen",
+      "label": "Michael Olsen",
+      "kind": "person",
+      "addresses": [
+        "michael.olsen@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 4,
+      "wrote": false
+    },
+    {
+      "email": "rita.wynne@enron.com",
+      "name": "Rita Wynne",
+      "label": "Rita Wynne",
+      "kind": "person",
+      "addresses": [
+        "rita.wynne@enron.com"
+      ],
+      "staff": true,
+      "authored": 2,
+      "forwards": 0,
+      "chasers": 1,
+      "reads": 1,
+      "wrote": true
+    },
+    {
+      "email": "aimee.lannou@enron.com",
+      "name": "Aimee Lannou",
+      "label": "Aimee Lannou",
+      "kind": "person",
+      "addresses": [
+        "aimee.lannou@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": true
+    },
+    {
+      "email": "bob.hall@enron.com",
+      "name": "Bob M Hall",
+      "label": "Bob M Hall",
+      "kind": "person",
+      "addresses": [
+        "m.hall@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": true
+    },
+    {
+      "email": "gary.hanks@enron.com",
+      "name": "Gary A Hanks",
+      "label": "Gary A Hanks",
+      "kind": "person",
+      "addresses": [
+        "gary.hanks@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": true
+    },
+    {
+      "email": "howard.camp@enron.com",
+      "name": "Howard B Camp",
+      "label": "Howard B Camp",
+      "kind": "person",
+      "addresses": [
+        "howard.camp@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 3,
+      "wrote": false
+    },
+    {
+      "email": "kimberly.watson@enron.com",
+      "name": "Watson, Kimberly",
+      "label": "Kimberly Watson",
+      "kind": "person",
+      "addresses": [
+        "kimberly.watson@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 3,
+      "wrote": false
+    },
+    {
+      "email": "lauri.allen@enron.com",
+      "name": "Lauri A Allen",
+      "label": "Lauri A Allen",
+      "kind": "person",
+      "addresses": [
+        "lauri.a.allen@enron.com",
+        "lauri.allen@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 3,
+      "wrote": false
+    },
+    {
+      "email": "susan.mayher@elpaso.com",
+      "name": null,
+      "label": "susan.mayher@elpaso.com",
+      "kind": "person",
+      "addresses": [
+        "susan.mayher@elpaso.com"
+      ],
+      "staff": false,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 3,
+      "wrote": false
+    },
+    {
+      "email": "'mayher@enron.com",
+      "name": null,
+      "label": "'mayher@enron.com",
+      "kind": "person",
+      "addresses": [
+        "'mayher@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "bill.williams@enron.com",
+      "name": "Williams III, Bill",
+      "label": "Bill Williams III",
+      "kind": "person",
+      "addresses": [
+        "bill.williams@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": true
+    },
+    {
+      "email": "clem.cernosek@enron.com",
+      "name": "Clem Cernosek",
+      "label": "Clem Cernosek",
+      "kind": "person",
+      "addresses": [
+        "clem.cernosek@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "darrell.schoolcraft@enron.com",
+      "name": "Schoolcraft, Darrell",
+      "label": "Darrell Schoolcraft",
+      "kind": "person",
+      "addresses": [
+        "darrell.schoolcraft@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "david.baumbach@enron.com",
+      "name": "David Baumbach",
+      "label": "David Baumbach",
+      "kind": "person",
+      "addresses": [
+        "david.baumbach@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 1,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": true
+    },
+    {
+      "email": "elsa.villarreal@enron.com",
+      "name": "Elsa Villarreal",
+      "label": "Elsa Villarreal",
+      "kind": "person",
+      "addresses": [
+        "elsa.villarreal@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "george.grant@enron.com",
+      "name": "George Grant",
+      "label": "George Grant",
+      "kind": "person",
+      "addresses": [
+        "george.grant@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": true
+    },
+    {
+      "email": "kenny.soignet@enron.com",
+      "name": "Kenny J Soignet",
+      "label": "Kenny J Soignet",
+      "kind": "person",
+      "addresses": [
+        "kenny.soignet@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": true
+    },
+    {
+      "email": "mark.mccoy@enron.com",
+      "name": "Mark McCoy",
+      "label": "Mark McCoy",
+      "kind": "person",
+      "addresses": [
+        "mark.mccoy@enron.com"
+      ],
+      "staff": true,
+      "authored": 2,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "michael.clark@elpaso.com",
+      "name": null,
+      "label": "michael.clark@elpaso.com",
+      "kind": "person",
+      "addresses": [
+        "michael.clark@elpaso.com"
+      ],
+      "staff": false,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "milton.bolanos@enron.com",
+      "name": null,
+      "label": "milton.bolanos@enron.com",
+      "kind": "person",
+      "addresses": [
+        "milton.bolanos@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "robert.cotten@enron.com",
+      "name": "Robert Cotten",
+      "label": "Robert Cotten",
+      "kind": "person",
+      "addresses": [
+        "robert.cotten@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "tom.acton@enron.com",
+      "name": "Tom Acton",
+      "label": "Tom Acton",
+      "kind": "person",
+      "addresses": [
+        "tom.acton@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "ami.chokshi@enron.com",
+      "name": "Ami Chokshi",
+      "label": "Ami Chokshi",
+      "kind": "person",
+      "addresses": [
+        "ami.chokshi@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "amy.mulligan@enron.com",
+      "name": null,
+      "label": "amy.mulligan@enron.com",
+      "kind": "person",
+      "addresses": [
+        "amy.mulligan@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "bert.hernandez@enron.com",
+      "name": null,
+      "label": "bert.hernandez@enron.com",
+      "kind": "person",
+      "addresses": [
+        "bert.hernandez@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "d..winfree@enron.com",
+      "name": "Winfree, O'Neal D.",
+      "label": "O'Neal D. Winfree",
+      "kind": "person",
+      "addresses": [
+        "d..winfree@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "darron.giron@enron.com",
+      "name": "Darron C Giron",
+      "label": "Darron C Giron",
+      "kind": "person",
+      "addresses": [
+        "darron.giron@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "edward.d.gottlob@enron.com",
+      "name": null,
+      "label": "edward.d.gottlob@enron.com",
+      "kind": "person",
+      "addresses": [
+        "edward.d.gottlob@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "fred.boas@enron.com",
+      "name": "Fred Boas",
+      "label": "Fred Boas",
+      "kind": "person",
+      "addresses": [
+        "fred.boas@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "gregory.steagall@enron.com",
+      "name": null,
+      "label": "gregory.steagall@enron.com",
+      "kind": "person",
+      "addresses": [
+        "gregory.steagall@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "hbcamp@aep.com",
+      "name": null,
+      "label": "hbcamp@aep.com",
+      "kind": "person",
+      "addresses": [
+        "hbcamp@aep.com"
+      ],
+      "staff": false,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "jackie.young@enron.com",
+      "name": "Jackie Young",
+      "label": "Jackie Young",
+      "kind": "person",
+      "addresses": [
+        "jackie.young@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "jesse.villarreal@enron.com",
+      "name": null,
+      "label": "jesse.villarreal@enron.com",
+      "kind": "person",
+      "addresses": [
+        "jesse.villarreal@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "joanie.ngo@enron.com",
+      "name": "Joanie H Ngo",
+      "label": "Joanie H Ngo",
+      "kind": "person",
+      "addresses": [
+        "joanie.ngo@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "kyle.lilly@enron.com",
+      "name": "Kyle R Lilly",
+      "label": "Kyle R Lilly",
+      "kind": "person",
+      "addresses": [
+        "kyle.lilly@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "laallen@aep.com",
+      "name": null,
+      "label": "laallen@aep.com",
+      "kind": "person",
+      "addresses": [
+        "laallen@aep.com"
+      ],
+      "staff": false,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "laura.giambrone@enron.com",
+      "name": null,
+      "label": "laura.giambrone@enron.com",
+      "kind": "person",
+      "addresses": [
+        "laura.giambrone@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "lorraine.lindberg@enron.com",
+      "name": "Lindberg, Lorraine",
+      "label": "Lorraine Lindberg",
+      "kind": "person",
+      "addresses": [
+        "lorraine.lindberg@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "lynn.blair@enron.com",
+      "name": "Blair, Lynn",
+      "label": "Lynn Blair",
+      "kind": "person",
+      "addresses": [
+        "lynn.blair@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "mark.mcconnell@enron.com",
+      "name": null,
+      "label": "mark.mcconnell@enron.com",
+      "kind": "person",
+      "addresses": [
+        "mark.mcconnell@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "michael.bilberry@enron.com",
+      "name": null,
+      "label": "michael.bilberry@enron.com",
+      "kind": "person",
+      "addresses": [
+        "michael.bilberry@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "michael.walters@enron.com",
+      "name": "Michael Walters",
+      "label": "Michael Walters",
+      "kind": "person",
+      "addresses": [
+        "michael.walters@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "paul.cherry@enron.com",
+      "name": null,
+      "label": "paul.cherry@enron.com",
+      "kind": "person",
+      "addresses": [
+        "paul.cherry@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "paul.y'barbo@enron.com",
+      "name": null,
+      "label": "paul.y'barbo@enron.com",
+      "kind": "person",
+      "addresses": [
+        "paul.y'barbo@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "sabrae.zajac@enron.com",
+      "name": "Sabrae Zajac",
+      "label": "Sabrae Zajac",
+      "kind": "person",
+      "addresses": [
+        "sabrae.zajac@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "sean.maki@enron.com",
+      "name": null,
+      "label": "sean.maki@enron.com",
+      "kind": "person",
+      "addresses": [
+        "sean.maki@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "sherlyn.schumack@enron.com",
+      "name": "Sherlyn Schumack",
+      "label": "Sherlyn Schumack",
+      "kind": "person",
+      "addresses": [
+        "sherlyn.schumack@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "silver.breaux@enron.com",
+      "name": "Silver Breaux",
+      "label": "Silver Breaux",
+      "kind": "person",
+      "addresses": [
+        "silver.breaux@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 1,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "stacey.neuweiler@enron.com",
+      "name": "Stacey Neuweiler",
+      "label": "Stacey Neuweiler",
+      "kind": "person",
+      "addresses": [
+        "stacey.neuweiler@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "steve.january@enron.com",
+      "name": null,
+      "label": "steve.january@enron.com",
+      "kind": "person",
+      "addresses": [
+        "steve.january@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "steve.kleb@enron.com",
+      "name": null,
+      "label": "steve.kleb@enron.com",
+      "kind": "person",
+      "addresses": [
+        "steve.kleb@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "steven.harris@enron.com",
+      "name": "Harris, Steven",
+      "label": "Steven Harris",
+      "kind": "person",
+      "addresses": [
+        "steven.harris@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "thu.nguyen@enron.com",
+      "name": "Thu Nguyen",
+      "label": "Thu Nguyen",
+      "kind": "person",
+      "addresses": [
+        "thu.nguyen@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "tracy.geaccone@enron.com",
+      "name": null,
+      "label": "tracy.geaccone@enron.com",
+      "kind": "person",
+      "addresses": [
+        "tracy.geaccone@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "victor.lamadrid@enron.com",
+      "name": "Victor Lamadrid",
+      "label": "Victor Lamadrid",
+      "kind": "person",
+      "addresses": [
+        "victor.lamadrid@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    }
+  ],
+  "stalls_by_kind": [
+    {
+      "kind": "waiting_on_reply",
+      "words": "3 waiting on a reply",
+      "count": {
+        "v": 3,
+        "t": "3",
+        "d": {
+          "kind": "stalls",
+          "key": "imbalance-resolution",
+          "stall_kind": "waiting_on_reply"
+        }
+      }
+    },
+    {
+      "kind": "handoff_confusion",
+      "words": "2 handoff confusion",
+      "count": {
+        "v": 2,
+        "t": "2",
+        "d": {
+          "kind": "stalls",
+          "key": "imbalance-resolution",
+          "stall_kind": "handoff_confusion"
+        }
+      }
+    }
+  ],
+  "stall_groups": [
+    {
+      "summary": "Rounds wait on the other party: the Hub sends park and loan information late, a counterparty has no answer yet on why actuals differed, and an expected wire transfer is chased for over a week.",
+      "quotes": [
+        {
+          "id": "batch-053:s0",
+          "kind": "stall",
+          "message_id": "corpus/farmer-d/logistics/140.",
+          "start": 853,
+          "end": 929,
+          "raw_text": "We are not receiving timely information from the Hub regarding our Park and=",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "mary.poorman@enron.com",
+          "sender_label": "Mary Poorman",
+          "date_utc": "2001-05-14T13:24:28Z",
+          "stall_kind": "waiting_on_reply"
+        },
+        {
+          "id": "batch-009:s0",
+          "kind": "stall",
+          "message_id": "corpus/farmer-d/logistics/972.",
+          "start": 904,
+          "end": 942,
+          "raw_text": "she told me she did have an answer yet",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "sherlyn.schumack@enron.com",
+          "sender_label": "Sherlyn Schumack",
+          "date_utc": "2000-03-28T09:19:00Z",
+          "stall_kind": "waiting_on_reply"
+        },
+        {
+          "id": "batch-083:s0",
+          "kind": "stall",
+          "message_id": "corpus/lokay-m/sent_items/68.",
+          "start": 739,
+          "end": 810,
+          "raw_text": "This is the wire transfer that I have been looking for since last week.",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "michelle.lokay@enron.com",
+          "sender_label": "Michelle Lokay",
+          "date_utc": "2001-12-21T16:47:50Z",
+          "stall_kind": "waiting_on_reply"
+        }
+      ]
+    },
+    {
+      "summary": "Reconciliations with pipelines run long and get chased, with reports rerun for older months after the other side reconciles.",
+      "quotes": [
+        {
+          "id": "batch-026:e0",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/1433.",
+          "start": 1340,
+          "end": 1386,
+          "raw_text": "Where do we stand on the NGPL reconcilliation?",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "edward.gottlob@enron.com",
+          "sender_label": "Edward D Gottlob",
+          "date_utc": "2000-09-29T08:59:00Z"
+        },
+        {
+          "id": "batch-097:e8",
+          "kind": "evidence",
+          "message_id": "corpus/lokay-m/sent_items/89.",
+          "start": 593,
+          "end": 682,
+          "raw_text": "Based on your reconciling, I will run additional reports on our side for 09/00 and 11/00.",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "michelle.lokay@enron.com",
+          "sender_label": "Michelle Lokay",
+          "date_utc": "2002-02-11T20:03:37Z"
+        },
+        {
+          "id": "batch-097:e20",
+          "kind": "evidence",
+          "message_id": "corpus/lokay-m/sent_items/101.",
+          "start": 601,
+          "end": 681,
+          "raw_text": "yes, please send statements to support the volume difference for 07/01 and 03/00",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "michelle.lokay@enron.com",
+          "sender_label": "Michelle Lokay",
+          "date_utc": "2002-02-14T16:39:31Z"
+        }
+      ]
+    },
+    {
+      "summary": "Requests arrive without a clear owner: a responder is unsure why Settlements is asking about imbalance deals, and another notes nobody with sign-off authority sits on the work, so papers are walked over by hand.",
+      "quotes": [
+        {
+          "id": "batch-055:s7",
+          "kind": "stall",
+          "message_id": "corpus/farmer-d/logistics/103.",
+          "start": 552,
+          "end": 605,
+          "raw_text": "I'm not sure, this request is coming from Settlements",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "d..winfree@enron.com",
+          "sender_label": "O'Neal D. Winfree",
+          "date_utc": "2001-06-28T15:34:09Z",
+          "stall_kind": "handoff_confusion"
+        },
+        {
+          "id": "batch-078:s0",
+          "kind": "stall",
+          "message_id": "corpus/giron-d/inbox/483.",
+          "start": 631,
+          "end": 712,
+          "raw_text": "one with sign off authority on it, so anything you send me I have to walk over to",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "mary.poorman@enron.com",
+          "sender_label": "Mary Poorman",
+          "date_utc": "2001-11-16T17:05:40Z",
+          "stall_kind": "handoff_confusion"
+        }
+      ]
+    },
+    {
+      "summary": "The scheduling system cannot clear some imbalances, so they recur monthly on the parking and lending contract and need manual book entries.",
+      "quotes": [
+        {
+          "id": "batch-051:e14",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/163.",
+          "start": 871,
+          "end": 956,
+          "raw_text": "However, we are booking an imbalance every month on the parking and lending contract.",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "rita.wynne@enron.com",
+          "sender_label": "Rita Wynne",
+          "date_utc": "2001-04-24T18:02:25Z"
+        },
+        {
+          "id": "batch-075:e3",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/21.",
+          "start": 832,
+          "end": 931,
+          "raw_text": "we can't do it in POPS so we will have to make manual entries to clear the imbalance from the books",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "rita.wynne@enron.com",
+          "sender_label": "Rita Wynne",
+          "date_utc": "2001-11-08T23:19:34Z"
+        }
+      ]
+    }
+  ],
+  "stall_quotes": [
+    {
+      "id": "batch-055:s7",
+      "kind": "stall",
+      "message_id": "corpus/farmer-d/logistics/103.",
+      "start": 552,
+      "end": 605,
+      "raw_text": "I'm not sure, this request is coming from Settlements",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "d..winfree@enron.com",
+      "sender_label": "O'Neal D. Winfree",
+      "date_utc": "2001-06-28T15:34:09Z",
+      "stall_kind": "handoff_confusion"
+    },
+    {
+      "id": "batch-053:s0",
+      "kind": "stall",
+      "message_id": "corpus/farmer-d/logistics/140.",
+      "start": 853,
+      "end": 929,
+      "raw_text": "We are not receiving timely information from the Hub regarding our Park and=",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "mary.poorman@enron.com",
+      "sender_label": "Mary Poorman",
+      "date_utc": "2001-05-14T13:24:28Z",
+      "stall_kind": "waiting_on_reply"
+    },
+    {
+      "id": "batch-009:s0",
+      "kind": "stall",
+      "message_id": "corpus/farmer-d/logistics/972.",
+      "start": 904,
+      "end": 942,
+      "raw_text": "she told me she did have an answer yet",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "sherlyn.schumack@enron.com",
+      "sender_label": "Sherlyn Schumack",
+      "date_utc": "2000-03-28T09:19:00Z",
+      "stall_kind": "waiting_on_reply"
+    },
+    {
+      "id": "batch-078:s0",
+      "kind": "stall",
+      "message_id": "corpus/giron-d/inbox/483.",
+      "start": 631,
+      "end": 712,
+      "raw_text": "one with sign off authority on it, so anything you send me I have to walk over to",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "mary.poorman@enron.com",
+      "sender_label": "Mary Poorman",
+      "date_utc": "2001-11-16T17:05:40Z",
+      "stall_kind": "handoff_confusion"
+    },
+    {
+      "id": "batch-083:s0",
+      "kind": "stall",
+      "message_id": "corpus/lokay-m/sent_items/68.",
+      "start": 739,
+      "end": 810,
+      "raw_text": "This is the wire transfer that I have been looking for since last week.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2001-12-21T16:47:50Z",
+      "stall_kind": "waiting_on_reply"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "batch-001:e32",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/657.",
+      "start": 581,
+      "end": 633,
+      "raw_text": "I've moved around volumes in order to keep the Enron",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "ami.chokshi@enron.com",
+      "sender_label": "Ami Chokshi",
+      "date_utc": "2000-01-07T08:54:00Z"
+    },
+    {
+      "id": "batch-007:e24",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/924.",
+      "start": 687,
+      "end": 755,
+      "raw_text": "The Cilco volumes are different than the confirmed volumes to Cilco.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "kenny.soignet@enron.com",
+      "sender_label": "Kenny J Soignet",
+      "date_utc": "2000-03-21T08:58:00Z"
+    },
+    {
+      "id": "batch-007:e25",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/934.",
+      "start": 588,
+      "end": 665,
+      "raw_text": "Yes, they are taken care of. But in the future we need to devise some sort of",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "george.grant@enron.com",
+      "sender_label": "George Grant",
+      "date_utc": "2000-03-21T14:50:00Z"
+    },
+    {
+      "id": "batch-009:e9",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/972.",
+      "start": 1522,
+      "end": 1580,
+      "raw_text": "The actuals on this contract did not come in as scheduled.",
+      "match": "exact",
+      "segment": "forwarded",
+      "field": "body",
+      "sender": "sherlyn.schumack@enron.com",
+      "sender_label": "Sherlyn Schumack",
+      "date_utc": "2000-03-28T09:19:00Z"
+    },
+    {
+      "id": "batch-013:e4",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1141.",
+      "start": 555,
+      "end": 623,
+      "raw_text": "After comparing HPL's numbers with PG&E's numbers I have found a few",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "aimee.lannou@enron.com",
+      "sender_label": "Aimee Lannou",
+      "date_utc": "2000-05-24T16:08:00Z"
+    },
+    {
+      "id": "batch-013:e27",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1164.",
+      "start": 191,
+      "end": 222,
+      "raw_text": "Bennington/Lamar Power UA4 data",
+      "match": "exact",
+      "segment": "subject",
+      "field": "subject",
+      "sender": "gary.hanks@enron.com",
+      "sender_label": "Gary A Hanks",
+      "date_utc": "2000-05-31T17:58:00Z"
+    },
+    {
+      "id": "batch-017:e1",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1250.",
+      "start": 484,
+      "end": 537,
+      "raw_text": "Here are our updated imbalances per contract & total:",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "mark.mccoy@enron.com",
+      "sender_label": "Mark McCoy",
+      "date_utc": "2000-06-28T13:03:00Z"
+    },
+    {
+      "id": "batch-025:e10",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1426.",
+      "start": 172,
+      "end": 178,
+      "raw_text": "Accum.",
+      "match": "exact",
+      "segment": "subject",
+      "field": "subject",
+      "sender": "silver.breaux@enron.com",
+      "sender_label": "Silver Breaux",
+      "date_utc": "2000-09-27T07:26:00Z"
+    },
+    {
+      "id": "batch-026:e0",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1433.",
+      "start": 1340,
+      "end": 1386,
+      "raw_text": "Where do we stand on the NGPL reconcilliation?",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "edward.gottlob@enron.com",
+      "sender_label": "Edward D Gottlob",
+      "date_utc": "2000-09-29T08:59:00Z"
+    },
+    {
+      "id": "batch-028:e28",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1470.",
+      "start": 717,
+      "end": 791,
+      "raw_text": "El Paso is planning on giving the 238,000mmbtus back to HPL at Moss Bluff.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "pat.clynes@enron.com",
+      "sender_label": "Pat Clynes",
+      "date_utc": "2000-10-24T11:14:00Z"
+    },
+    {
+      "id": "batch-032:e11",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1521.",
+      "start": 643,
+      "end": 717,
+      "raw_text": "Imbalance update:  I spoke with Mike Bilberry and confirmed that this deal",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "mary.poorman@enron.com",
+      "sender_label": "Mary Poorman",
+      "date_utc": "2000-11-15T17:28:00Z"
+    },
+    {
+      "id": "batch-036:e6",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1976.",
+      "start": 611,
+      "end": 686,
+      "raw_text": "I received a call from the plant, apparently, they shorted us 60 Dth on the",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "mary.poorman@enron.com",
+      "sender_label": "Mary Poorman",
+      "date_utc": "2000-12-15T08:10:00Z"
+    },
+    {
+      "id": "batch-038:e13",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/2026.",
+      "start": 661,
+      "end": 713,
+      "raw_text": "Patsy agreed to lend us the gas we need at the meter",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "mary.poorman@enron.com",
+      "sender_label": "Mary Poorman",
+      "date_utc": "2001-01-03T14:27:00Z"
+    },
+    {
+      "id": "batch-038:e27",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/2032.",
+      "start": 1120,
+      "end": 1156,
+      "raw_text": "I would like to keep it at 40.0/day.",
+      "match": "exact",
+      "segment": "forwarded",
+      "field": "body",
+      "sender": "edward.gottlob@enron.com",
+      "sender_label": "Edward D Gottlob",
+      "date_utc": "2001-01-08T11:02:00Z"
+    },
+    {
+      "id": "batch-047:e15",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/2126.",
+      "start": 1105,
+      "end": 1164,
+      "raw_text": "Please email me a list of any meters/contracts that you are",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "mary.poorman@enron.com",
+      "sender_label": "Mary Poorman",
+      "date_utc": "2001-03-21T09:38:00Z"
+    },
+    {
+      "id": "batch-047:e18",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/2127.",
+      "start": 1038,
+      "end": 1096,
+      "raw_text": "Please verify, add or update the information based on your",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "mary.poorman@enron.com",
+      "sender_label": "Mary Poorman",
+      "date_utc": "2001-03-21T10:09:00Z"
+    },
+    {
+      "id": "batch-047:e19",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/2128.",
+      "start": 795,
+      "end": 831,
+      "raw_text": "contract 012-87794-02-001 (delivery)",
+      "match": "exact",
+      "segment": "forwarded",
+      "field": "body",
+      "sender": "mary.poorman@enron.com",
+      "sender_label": "Mary Poorman",
+      "date_utc": "2001-03-21T11:30:00Z"
+    },
+    {
+      "id": "batch-051:e4",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/170.",
+      "start": 816,
+      "end": 922,
+      "raw_text": "We need to update our forward position and our nomination by 4,000/day to stay in balance to entitlements.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "mary.poorman@enron.com",
+      "sender_label": "Mary Poorman",
+      "date_utc": "2001-04-19T19:30:51Z"
+    },
+    {
+      "id": "batch-051:e11",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/166.",
+      "start": 140,
+      "end": 166,
+      "raw_text": "Oasis Transport Imbalances",
+      "match": "exact",
+      "segment": "subject",
+      "field": "subject",
+      "sender": "mark.mccoy@enron.com",
+      "sender_label": "Mark McCoy",
+      "date_utc": "2001-04-23T14:43:03Z"
+    },
+    {
+      "id": "batch-051:e14",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/163.",
+      "start": 871,
+      "end": 956,
+      "raw_text": "However, we are booking an imbalance every month on the parking and lending contract.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "rita.wynne@enron.com",
+      "sender_label": "Rita Wynne",
+      "date_utc": "2001-04-24T18:02:25Z"
+    },
+    {
+      "id": "batch-051:e15",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/161.",
+      "start": 1129,
+      "end": 1174,
+      "raw_text": "we are seeing some OA variances between flas=",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "rita.wynne@enron.com",
+      "sender_label": "Rita Wynne",
+      "date_utc": "2001-04-24T23:47:17Z"
+    },
+    {
+      "id": "batch-053:e1",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/140.",
+      "start": 853,
+      "end": 929,
+      "raw_text": "We are not receiving timely information from the Hub regarding our Park and=",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "mary.poorman@enron.com",
+      "sender_label": "Mary Poorman",
+      "date_utc": "2001-05-14T13:24:28Z"
+    },
+    {
+      "id": "batch-055:e24",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/103.",
+      "start": 981,
+      "end": 1035,
+      "raw_text": "The deals listed below are related to TUFCO imbalances",
+      "match": "exact",
+      "segment": "quoted",
+      "field": "body",
+      "sender": "d..winfree@enron.com",
+      "sender_label": "O'Neal D. Winfree",
+      "date_utc": "2001-06-28T15:34:09Z"
+    },
+    {
+      "id": "batch-070:e6",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/46.",
+      "start": 2323,
+      "end": 2397,
+      "raw_text": "Our imbalance to date is 6798dkthm, and we would like to schedule this for",
+      "match": "exact",
+      "segment": "forwarded",
+      "field": "body",
+      "sender": "david.baumbach@enron.com",
+      "sender_label": "David Baumbach",
+      "date_utc": "2001-10-15T18:48:54Z"
+    },
+    {
+      "id": "batch-070:e7",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/45.",
+      "start": 970,
+      "end": 1026,
+      "raw_text": "Can you guys follow up and let me know what you decided.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "bob.hall@enron.com",
+      "sender_label": "Bob M Hall",
+      "date_utc": "2001-10-15T19:26:49Z"
+    },
+    {
+      "id": "batch-075:e3",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/21.",
+      "start": 832,
+      "end": 931,
+      "raw_text": "we can't do it in POPS so we will have to make manual entries to clear the imbalance from the books",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "rita.wynne@enron.com",
+      "sender_label": "Rita Wynne",
+      "date_utc": "2001-11-08T23:19:34Z"
+    },
+    {
+      "id": "batch-077:e1",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/526.",
+      "start": 518,
+      "end": 573,
+      "raw_text": "Darron has owned the daily imbalance check since March.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-11-15T16:31:17Z"
+    },
+    {
+      "id": "batch-078:e3",
+      "kind": "evidence",
+      "message_id": "corpus/giron-d/inbox/483.",
+      "start": 550,
+      "end": 615,
+      "raw_text": "The daily imbalance check is Bill's and has been since the reorg.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "mary.poorman@enron.com",
+      "sender_label": "Mary Poorman",
+      "date_utc": "2001-11-16T17:05:40Z"
+    },
+    {
+      "id": "batch-080:e6",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/inbox/70.",
+      "start": 439,
+      "end": 456,
+      "raw_text": "TW Imbalance Mtg.",
+      "match": "exact",
+      "segment": "subject",
+      "field": "subject",
+      "sender": "lynn.blair@enron.com",
+      "sender_label": "Lynn Blair",
+      "date_utc": "2001-11-27T19:55:01Z"
+    },
+    {
+      "id": "batch-082:e23",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/10.",
+      "start": 286,
+      "end": 327,
+      "raw_text": "Latest OBA imbalances, effective 12/10/01",
+      "match": "exact",
+      "segment": "subject",
+      "field": "subject",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2001-12-13T17:17:09Z"
+    },
+    {
+      "id": "batch-083:e10",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/69.",
+      "start": 558,
+      "end": 614,
+      "raw_text": "Yes.  Kim Richards with Williams confirmed this morning.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2001-12-20T19:13:04Z"
+    },
+    {
+      "id": "batch-083:e11",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/68.",
+      "start": 739,
+      "end": 810,
+      "raw_text": "This is the wire transfer that I have been looking for since last week.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2001-12-21T16:47:50Z"
+    },
+    {
+      "id": "batch-088:e13",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/29.",
+      "start": 538,
+      "end": 626,
+      "raw_text": "Here is a spreadsheet that will hopefully help with reconciling the Mojave interconnect.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-01-24T21:11:51Z"
+    },
+    {
+      "id": "batch-091:e17",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/76.",
+      "start": 539,
+      "end": 627,
+      "raw_text": "Here are the historical measured versus scheduled volumes for the Mojave OBA imbalances.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-01-31T16:27:28Z"
+    },
+    {
+      "id": "batch-097:e8",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/89.",
+      "start": 593,
+      "end": 682,
+      "raw_text": "Based on your reconciling, I will run additional reports on our side for 09/00 and 11/00.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-02-11T20:03:37Z"
+    },
+    {
+      "id": "batch-097:e9",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/90.",
+      "start": 582,
+      "end": 660,
+      "raw_text": "I would like to receive your daily volume statements...my fax is 713-646-4095.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-02-11T20:21:47Z"
+    },
+    {
+      "id": "batch-097:e10",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/91.",
+      "start": 550,
+      "end": 627,
+      "raw_text": "I would also like to receive your daily volume statements for 09/00 and 11/00",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-02-11T20:23:18Z"
+    },
+    {
+      "id": "batch-097:e11",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/103.",
+      "start": 655,
+      "end": 707,
+      "raw_text": "Those are really helping me with the reconciliation.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-02-19T21:54:10Z"
+    },
+    {
+      "id": "batch-097:e12",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/123.",
+      "start": 768,
+      "end": 867,
+      "raw_text": "Here is a summary of the support I have faxed to you concerning the scheduled volume discrepancies:",
+      "match": "exact",
+      "segment": "quoted",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-03-04T16:32:00Z"
+    },
+    {
+      "id": "batch-097:e20",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/101.",
+      "start": 601,
+      "end": 681,
+      "raw_text": "yes, please send statements to support the volume difference for 07/01 and 03/00",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-02-14T16:39:31Z"
+    },
+    {
+      "id": "batch-097:e21",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/122.",
+      "start": 774,
+      "end": 873,
+      "raw_text": "Here is a summary of the support I have faxed to you concerning the scheduled volume discrepancies:",
+      "match": "exact",
+      "segment": "quoted",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-03-04T16:31:49Z"
+    },
+    {
+      "id": "batch-098:e19",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/inbox/30.",
+      "start": 1884,
+      "end": 1980,
+      "raw_text": "line pack has increased by approximately 253,000 mmbtus during March as a result of oba activity",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "richard.hanagriff@enron.com",
+      "sender_label": "Richard Hanagriff",
+      "date_utc": "2002-03-21T03:22:24Z"
+    }
+  ],
+  "chasers": [
+    "corpus/farmer-d/logistics/161.",
+    "corpus/lokay-m/sent_items/123."
+  ],
+  "reply_gaps": [
+    {
+      "from": "corpus/farmer-d/logistics/46.",
+      "to": "corpus/farmer-d/logistics/45.",
+      "hours_x10": 6
+    },
+    {
+      "from": "corpus/farmer-d/logistics/924.",
+      "to": "corpus/farmer-d/logistics/934.",
+      "hours_x10": 59
+    }
+  ],
+  "reply_gap_n": 2,
+  "median_reply_gap_h": 3.2,
+  "claims": [
+    {
+      "message_id": "corpus/giron-d/inbox/483.",
+      "person": "Bill",
+      "date_utc": "2001-11-16T17:05:40Z",
+      "status": "matched",
+      "status_words": "matched to someone on the threads",
+      "name": "Williams III, Bill",
+      "people": [
+        "bill.williams@enron.com"
+      ],
+      "quote": {
+        "id": "batch-078:o1",
+        "kind": "claim",
+        "message_id": "corpus/giron-d/inbox/483.",
+        "start": 550,
+        "end": 615,
+        "raw_text": "The daily imbalance check is Bill's and has been since the reorg.",
+        "match": "exact",
+        "segment": "own",
+        "field": "body",
+        "sender": "mary.poorman@enron.com",
+        "sender_label": "Mary Poorman",
+        "date_utc": "2001-11-16T17:05:40Z",
+        "person": "Bill"
+      }
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/526.",
+      "person": "Darron",
+      "date_utc": "2001-11-15T16:31:17Z",
+      "status": "matched",
+      "status_words": "matched to someone on the threads",
+      "name": "Darron C Giron",
+      "people": [
+        "darron.giron@enron.com"
+      ],
+      "quote": {
+        "id": "batch-077:o0",
+        "kind": "claim",
+        "message_id": "corpus/williams-w3/sent_items/526.",
+        "start": 518,
+        "end": 573,
+        "raw_text": "Darron has owned the daily imbalance check since March.",
+        "match": "exact",
+        "segment": "own",
+        "field": "body",
+        "sender": "bill.williams@enron.com",
+        "sender_label": "Bill Williams III",
+        "date_utc": "2001-11-15T16:31:17Z",
+        "person": "Darron"
+      }
+    }
+  ],
+  "conflicts": [
+    {
+      "a": "corpus/williams-w3/sent_items/526.",
+      "b": "corpus/giron-d/inbox/483.",
+      "days_apart": 1
+    }
+  ],
+  "contradictions": [
+    {
+      "summary": "Two people name different owners of the daily imbalance check: one says it has been Bill's since the reorg, while Bill says Darron has owned it since March.",
+      "quotes": [
+        {
+          "id": "batch-078:o1",
+          "kind": "claim",
+          "message_id": "corpus/giron-d/inbox/483.",
+          "start": 550,
+          "end": 615,
+          "raw_text": "The daily imbalance check is Bill's and has been since the reorg.",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "mary.poorman@enron.com",
+          "sender_label": "Mary Poorman",
+          "date_utc": "2001-11-16T17:05:40Z",
+          "person": "Bill"
+        },
+        {
+          "id": "batch-077:o0",
+          "kind": "claim",
+          "message_id": "corpus/williams-w3/sent_items/526.",
+          "start": 518,
+          "end": 573,
+          "raw_text": "Darron has owned the daily imbalance check since March.",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "bill.williams@enron.com",
+          "sender_label": "Bill Williams III",
+          "date_utc": "2001-11-15T16:31:17Z",
+          "person": "Darron"
+        }
+      ],
+      "claims": [
+        {
+          "message_id": "corpus/giron-d/inbox/483.",
+          "person": "Bill",
+          "date_utc": "2001-11-16T17:05:40Z",
+          "status": "matched",
+          "name": "Williams III, Bill"
+        },
+        {
+          "message_id": "corpus/williams-w3/sent_items/526.",
+          "person": "Darron",
+          "date_utc": "2001-11-15T16:31:17Z",
+          "status": "matched",
+          "name": "Darron C Giron"
+        }
+      ]
+    }
+  ],
+  "contradictions_dropped": 0,
+  "loops": [
+    {
+      "thread_id": "t-b1e429d27394",
+      "message_id": "corpus/lokay-m/sent_items/123.",
+      "why": "chase",
+      "date_utc": "2002-03-04T16:32:00Z",
+      "mailbox": "lokay-m",
+      "mailbox_end_utc": "2002-03-25T23:13:29Z",
+      "days_before_end": 21,
+      "recent": true,
+      "subject": "FW: Mojave Imbalance with Transwestern",
+      "from": "michelle.lokay@enron.com",
+      "from_label": "Michelle Lokay",
+      "thread_length": 5,
+      "processes": [
+        "imbalance-resolution"
+      ],
+      "quote": null
+    },
+    {
+      "thread_id": "t-9cfd1d56d4bc",
+      "message_id": "corpus/lokay-m/sent_items/68.",
+      "why": "waiting",
+      "date_utc": "2001-12-21T16:47:50Z",
+      "mailbox": "lokay-m",
+      "mailbox_end_utc": "2002-03-25T23:13:29Z",
+      "days_before_end": 94,
+      "recent": false,
+      "subject": "FW: cash in",
+      "from": "michelle.lokay@enron.com",
+      "from_label": "Michelle Lokay",
+      "thread_length": 2,
+      "processes": [
+        "imbalance-resolution"
+      ],
+      "quote": {
+        "id": "batch-083:s0",
+        "kind": "stall",
+        "message_id": "corpus/lokay-m/sent_items/68.",
+        "start": 739,
+        "end": 810,
+        "raw_text": "This is the wire transfer that I have been looking for since last week.",
+        "match": "exact",
+        "segment": "own",
+        "field": "body",
+        "sender": "michelle.lokay@enron.com",
+        "sender_label": "Michelle Lokay",
+        "date_utc": "2001-12-21T16:47:50Z",
+        "stall_kind": "waiting_on_reply"
+      }
+    },
+    {
+      "thread_id": "t-9e11bb690a60",
+      "message_id": "corpus/farmer-d/logistics/140.",
+      "why": "waiting",
+      "date_utc": "2001-05-14T13:24:28Z",
+      "mailbox": "farmer-d",
+      "mailbox_end_utc": "2001-12-14T16:11:23Z",
+      "days_before_end": 214,
+      "recent": false,
+      "subject": "Hub Park and Lend Agreement",
+      "from": "mary.poorman@enron.com",
+      "from_label": "Mary Poorman",
+      "thread_length": 1,
+      "processes": [
+        "imbalance-resolution"
+      ],
+      "quote": {
+        "id": "batch-053:s0",
+        "kind": "stall",
+        "message_id": "corpus/farmer-d/logistics/140.",
+        "start": 853,
+        "end": 929,
+        "raw_text": "We are not receiving timely information from the Hub regarding our Park and=",
+        "match": "exact",
+        "segment": "own",
+        "field": "body",
+        "sender": "mary.poorman@enron.com",
+        "sender_label": "Mary Poorman",
+        "date_utc": "2001-05-14T13:24:28Z",
+        "stall_kind": "waiting_on_reply"
+      }
+    },
+    {
+      "thread_id": "t-01a6e5651b00",
+      "message_id": "corpus/farmer-d/logistics/161.",
+      "why": "chase",
+      "date_utc": "2001-04-24T23:47:17Z",
+      "mailbox": "farmer-d",
+      "mailbox_end_utc": "2001-12-14T16:11:23Z",
+      "days_before_end": 233,
+      "recent": false,
+      "subject": "PLE00004 2000",
+      "from": "rita.wynne@enron.com",
+      "from_label": "Rita Wynne",
+      "thread_length": 2,
+      "processes": [
+        "imbalance-resolution"
+      ],
+      "quote": null
+    },
+    {
+      "thread_id": "t-fe868740b750",
+      "message_id": "corpus/farmer-d/logistics/972.",
+      "why": "waiting",
+      "date_utc": "2000-03-28T09:19:00Z",
+      "mailbox": "farmer-d",
+      "mailbox_end_utc": "2001-12-14T16:11:23Z",
+      "days_before_end": 626,
+      "recent": false,
+      "subject": "PG&E Texas contract 5095-037 for 2/00",
+      "from": "sherlyn.schumack@enron.com",
+      "from_label": "Sherlyn Schumack",
+      "thread_length": 1,
+      "processes": [
+        "imbalance-resolution"
+      ],
+      "quote": {
+        "id": "batch-009:s0",
+        "kind": "stall",
+        "message_id": "corpus/farmer-d/logistics/972.",
+        "start": 904,
+        "end": 942,
+        "raw_text": "she told me she did have an answer yet",
+        "match": "exact",
+        "segment": "own",
+        "field": "body",
+        "sender": "sherlyn.schumack@enron.com",
+        "sender_label": "Sherlyn Schumack",
+        "date_utc": "2000-03-28T09:19:00Z",
+        "stall_kind": "waiting_on_reply"
+      }
+    }
+  ],
+  "document": null
+}

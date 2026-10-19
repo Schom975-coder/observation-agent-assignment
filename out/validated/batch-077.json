@@ -70,7 +70,7 @@
     {
       "id": "corpus/williams-w3/sent_items/526.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "imbalance-resolution"
       ],
       "role": "response",
       "stall": null,
@@ -81,8 +81,10 @@
     },
     {
       "id": "corpus/giron-d/inbox/387.",
-      "processes": [],
-      "role": "noise",
+      "processes": [
+        "new:excel-class-assignment"
+      ],
+      "role": "request",
       "stall": null,
       "ownership_claim": null
     },
@@ -100,27 +102,41 @@
       "process": "new:gisb-standards-meeting-notes",
       "message_id": "corpus/farmer-d/logistics/19.",
       "field": "body",
-      "quote": "Finalized the Transactional Information (FT, IT, and Capacity Release).",
-      "note": "Meeting notes summarising GISB informational reporting standards work.",
+      "quote": "Majority of the two days was spent developing the data dictionary for the new Producer Imbalance Statement.",
+      "note": "Meeting notes from the GISB informational reporting standards working group circulated to the logistics team.",
       "match": "exact",
-      "start": 1857,
-      "end": 1928,
+      "start": 2024,
+      "end": 2131,
       "segment": "own",
-      "raw_text": "Finalized the Transactional Information (FT, IT, and Capacity Release).",
+      "raw_text": "Majority of the two days was spent developing the data dictionary for the new Producer Imbalance Statement.",
       "reason": null
     },
     {
       "evidence_id": "batch-077:e1",
-      "process": "volume-imbalance-reconciliation",
+      "process": "imbalance-resolution",
       "message_id": "corpus/williams-w3/sent_items/526.",
       "field": "body",
-      "quote": "Send him the Tuesday numbers directly and it will move a lot faster.",
-      "note": "Directs the daily imbalance check numbers to the person who owns that check.",
+      "quote": "Darron has owned the daily imbalance check since March.",
+      "note": "Explains who handles the recurring daily imbalance check and where to send the numbers.",
       "match": "exact",
-      "start": 664,
-      "end": 732,
+      "start": 518,
+      "end": 573,
       "segment": "own",
-      "raw_text": "Send him the Tuesday numbers directly and it will move a lot faster.",
+      "raw_text": "Darron has owned the daily imbalance check since March.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-077:e2",
+      "process": "new:excel-class-assignment",
+      "message_id": "corpus/giron-d/inbox/387.",
+      "field": "body",
+      "quote": "You should write functions that tally the results asked for on Sheet1",
+      "note": "Instructor passes on a programming exercise to Excel class participants.",
+      "match": "exact",
+      "start": 1062,
+      "end": 1131,
+      "segment": "own",
+      "raw_text": "You should write functions that tally the results asked for on Sheet1",
       "reason": null
     }
   ],
@@ -141,15 +157,23 @@
     {
       "key": "new:gisb-standards-meeting-notes",
       "name": "GISB standards meeting notes",
-      "definition": "Circulating notes from GISB industry standards committee meetings on data sets, code values and reporting documents to the logistics staff.",
+      "definition": "Circulating notes from industry GISB working group meetings on gas data standards to the logistics staff.",
       "example_ids": [
         "corpus/farmer-d/logistics/19."
       ]
+    },
+    {
+      "key": "new:excel-class-assignment",
+      "name": "Excel class assignment",
+      "definition": "Distributing and following up on practice projects for staff taking an in-house Excel programming class.",
+      "example_ids": [
+        "corpus/giron-d/inbox/387."
+      ]
     }
   ],
-  "batch_notes": "Mostly newsletters and personal mail in the giron-d mailbox. Proposed new:gisb-standards-meeting-notes. Message 387 (Excel class project) treated as noise. No injection attempts found.",
+  "batch_notes": "Newsletters and the Texas Exes tailgate series tagged noise. The chairman's investor call overview (386) is a company-wide announcement tagged noise, no recurring process. 388 is personal. No injection attempts found. New keys proposed: gisb-standards-meeting-notes, excel-class-assignment.",
   "quote_stats": {
-    "exact": 3,
+    "exact": 4,
     "repaired": 0,
     "rejected": 0
   }

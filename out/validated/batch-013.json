@@ -5,7 +5,7 @@
     {
       "id": "corpus/farmer-d/logistics/1134.",
       "processes": [
-        "trading-book-setup"
+        "new:eol-new-product-rollout"
       ],
       "role": "request",
       "stall": null,
@@ -14,7 +14,7 @@
     {
       "id": "corpus/farmer-d/logistics/1136.",
       "processes": [
-        "trading-book-setup"
+        "new:eol-new-product-rollout"
       ],
       "role": "request",
       "stall": null,
@@ -23,7 +23,7 @@
     {
       "id": "corpus/farmer-d/logistics/1137.",
       "processes": [
-        "gas-nomination-handling"
+        "deal-ticket-setup"
       ],
       "role": "fyi",
       "stall": null,
@@ -32,7 +32,7 @@
     {
       "id": "corpus/farmer-d/logistics/1140.",
       "processes": [
-        "pipeline-outage-supply-cuts"
+        "meter-flow-resolution"
       ],
       "role": "fyi",
       "stall": null,
@@ -41,7 +41,7 @@
     {
       "id": "corpus/farmer-d/logistics/1141.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "imbalance-resolution"
       ],
       "role": "fyi",
       "stall": null,
@@ -62,7 +62,7 @@
     {
       "id": "corpus/farmer-d/logistics/1143.",
       "processes": [
-        "desk-coverage-on-call"
+        "new:staff-vacation-coordination"
       ],
       "role": "request",
       "stall": null,
@@ -89,19 +89,16 @@
     {
       "id": "corpus/farmer-d/logistics/1146.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "new:transport-fuel-booking"
       ],
       "role": "request",
-      "stall": {
-        "kind": "handoff_confusion",
-        "quote": "We called Loraine and she told us to contact you since you are aware of this."
-      },
+      "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/1149.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -110,19 +107,16 @@
     {
       "id": "corpus/farmer-d/logistics/1152.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution"
       ],
       "role": "response",
-      "stall": {
-        "kind": "waiting_on_reply",
-        "quote": "re-negotiate the deal and Daren will respond to me on Tuesday next week."
-      },
+      "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/1156.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": {
@@ -134,7 +128,7 @@
     {
       "id": "corpus/farmer-d/logistics/1151.",
       "processes": [
-        "gas-nomination-handling"
+        "gas-nomination"
       ],
       "role": "forward",
       "stall": null,
@@ -191,7 +185,7 @@
     {
       "id": "corpus/farmer-d/logistics/1157.",
       "processes": [
-        "new:monthly-update-distribution"
+        "new:desk-update-distribution"
       ],
       "role": "fyi",
       "stall": null,
@@ -200,7 +194,7 @@
     {
       "id": "corpus/farmer-d/logistics/1158.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -209,7 +203,7 @@
     {
       "id": "corpus/farmer-d/logistics/1161.",
       "processes": [
-        "gas-nomination-handling"
+        "gas-nomination"
       ],
       "role": "fyi",
       "stall": null,
@@ -218,7 +212,7 @@
     {
       "id": "corpus/farmer-d/logistics/1163.",
       "processes": [
-        "gas-nomination-handling"
+        "gas-nomination"
       ],
       "role": "request",
       "stall": null,
@@ -227,43 +221,43 @@
     {
       "id": "corpus/farmer-d/logistics/3215.",
       "processes": [
-        "desk-coverage-on-call"
+        "new:staff-vacation-coordination"
       ],
       "role": "fyi",
       "stall": null,
       "ownership_claim": {
-        "person": "Robert",
-        "quote": "Confirmation of meters - Robert"
+        "person": "Sabrae",
+        "quote": "Error Reports - Sabrae"
       }
     },
     {
       "id": "corpus/farmer-d/logistics/3217.",
       "processes": [
-        "desk-coverage-on-call"
+        "new:staff-vacation-coordination"
       ],
       "role": "fyi",
       "stall": null,
       "ownership_claim": {
-        "person": "Stella Morris",
-        "quote": "My main contact will be Stella Morris at ext. 3319."
+        "person": "Tom Acton",
+        "quote": "Tom Acton - Send nominations MOPS to POPS"
       }
     },
     {
       "id": "corpus/farmer-d/logistics/3218.",
       "processes": [
-        "desk-coverage-on-call"
+        "new:staff-vacation-coordination"
       ],
       "role": "fyi",
       "stall": null,
       "ownership_claim": {
         "person": "Bob Cotten",
-        "quote": "Bob Cotten  will handle my entire desk ."
+        "quote": "Bob Cotten  will handle my entire desk"
       }
     },
     {
       "id": "corpus/farmer-d/logistics/1162.",
       "processes": [
-        "new:hpl-buy-sell-reporting"
+        "new:buy-sell-report-delivery"
       ],
       "role": "fyi",
       "stall": null,
@@ -272,7 +266,7 @@
     {
       "id": "corpus/farmer-d/logistics/1164.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "imbalance-resolution"
       ],
       "role": "fyi",
       "stall": null,
@@ -281,7 +275,7 @@
     {
       "id": "corpus/farmer-d/logistics/1166.",
       "processes": [
-        "gas-nomination-handling"
+        "gas-nomination"
       ],
       "role": "request",
       "stall": null,
@@ -291,11 +285,11 @@
   "evidence": [
     {
       "evidence_id": "batch-013:e0",
-      "process": "trading-book-setup",
+      "process": "new:eol-new-product-rollout",
       "message_id": "corpus/farmer-d/logistics/1134.",
       "field": "body",
       "quote": "Please read the attached and make sure the schedulers understand this new",
-      "note": "Asks schedulers to learn a newly rolled-out online trading product.",
+      "note": "Asks managers to make schedulers understand a new EOL product that must be entered manually.",
       "match": "exact",
       "start": 486,
       "end": 559,
@@ -305,11 +299,11 @@
     },
     {
       "evidence_id": "batch-013:e1",
-      "process": "trading-book-setup",
+      "process": "new:eol-new-product-rollout",
       "message_id": "corpus/farmer-d/logistics/1136.",
       "field": "body",
       "quote": "Please make sure this is clearly understood by the schedulers.",
-      "note": "Passes on the new 24 x 5 online product notice for schedulers.",
+      "note": "Passes on the new product notice and asks that schedulers understand it.",
       "match": "exact",
       "start": 486,
       "end": 548,
@@ -319,11 +313,11 @@
     },
     {
       "evidence_id": "batch-013:e2",
-      "process": "gas-nomination-handling",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1137.",
       "field": "body",
       "quote": "i put in 35000 for the expected volume for the sale to SDS/TUFCO.",
-      "note": "Enters expected volume for a sale in Sitara.",
+      "note": "Reports an expected volume entered on a Sitara deal.",
       "match": "exact",
       "start": 433,
       "end": 498,
@@ -333,25 +327,25 @@
     },
     {
       "evidence_id": "batch-013:e3",
-      "process": "pipeline-outage-supply-cuts",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1140.",
       "field": "body",
-      "quote": "Please see the attached memo.  Meter 98-6487 was shut-in at approximately",
-      "note": "Notice of a meter shut-in and lost volume.",
+      "quote": "Meter 98-6487 was shut-in at approximately",
+      "note": "Reports a meter shut-in and the lost flow at that meter.",
       "match": "exact",
-      "start": 730,
+      "start": 761,
       "end": 803,
       "segment": "own",
-      "raw_text": "Please see the attached memo.  Meter 98-6487 was shut-in at approximately",
+      "raw_text": "Meter 98-6487 was shut-in at approximately",
       "reason": null
     },
     {
       "evidence_id": "batch-013:e4",
-      "process": "volume-imbalance-reconciliation",
+      "process": "imbalance-resolution",
       "message_id": "corpus/farmer-d/logistics/1141.",
       "field": "body",
       "quote": "After comparing HPL's numbers with PG&E's numbers I have found a few",
-      "note": "Compares volumes with the pipeline and corrects discrepancies.",
+      "note": "Reconciles volumes between HPL and PG&E and updates the cumulative imbalance.",
       "match": "exact",
       "start": 555,
       "end": 623,
@@ -365,7 +359,7 @@
       "message_id": "corpus/farmer-d/logistics/1142.",
       "field": "body",
       "quote": "Logistics has made the following changes:",
-      "note": "Announces reassignment of desks and counterparties among schedulers.",
+      "note": "Announces reassignment of counterparties and portfolios among logistics staff.",
       "match": "exact",
       "start": 1465,
       "end": 1506,
@@ -375,11 +369,11 @@
     },
     {
       "evidence_id": "batch-013:e6",
-      "process": "desk-coverage-on-call",
+      "process": "new:staff-vacation-coordination",
       "message_id": "corpus/farmer-d/logistics/1143.",
       "field": "body",
       "quote": "Please submit your June Vacation to me ASAP.",
-      "note": "Collects vacation plans for staffing.",
+      "note": "Collects vacation schedules from staff.",
       "match": "exact",
       "start": 968,
       "end": 1012,
@@ -406,22 +400,22 @@
       "process": "new:transport-usage-ticket-update",
       "message_id": "corpus/farmer-d/logistics/1145.",
       "field": "body",
-      "quote": "The tickets are finished.  I have updated most of the third party tickets,",
-      "note": "Completion of the transport usage ticket update.",
+      "quote": "The tickets are finished.",
+      "note": "Reports completion of the monthly transport ticket update.",
       "match": "exact",
       "start": 606,
-      "end": 680,
+      "end": 631,
       "segment": "own",
-      "raw_text": "The tickets are finished.  I have updated most of the third party tickets,",
+      "raw_text": "The tickets are finished.",
       "reason": null
     },
     {
       "evidence_id": "batch-013:e9",
-      "process": "volume-imbalance-reconciliation",
+      "process": "new:transport-fuel-booking",
       "message_id": "corpus/farmer-d/logistics/1146.",
       "field": "body",
       "quote": "Loraine sent an allocation for fuel that is not scheduled.",
-      "note": "Questions an allocation that differs from the schedule.",
+      "note": "Asks whether fuel should be booked on a transport contract for days without flow.",
       "match": "exact",
       "start": 553,
       "end": 611,
@@ -431,11 +425,11 @@
     },
     {
       "evidence_id": "batch-013:e10",
-      "process": "meter-flow-deal-coverage",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1149.",
       "field": "body",
       "quote": "Can you assist Anita and I w/a deal number to place the 1st 20 days on.",
-      "note": "Asks for a deal number so meter flow can be booked.",
+      "note": "Asks for a deal number for unallocated gas at a meter for past production days.",
       "match": "exact",
       "start": 691,
       "end": 762,
@@ -445,25 +439,25 @@
     },
     {
       "evidence_id": "batch-013:e11",
-      "process": "meter-flow-deal-coverage",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1152.",
       "field": "body",
-      "quote": "re-negotiate the deal and Daren will respond to me on Tuesday next week.",
-      "note": "Status on getting a deal for uncovered meter flow.",
+      "quote": "I spoke w/Daren and he apprised that he e-mailed Craig and that Craig has to",
+      "note": "Status update on the unresolved meter allocation issue.",
       "match": "exact",
-      "start": 648,
-      "end": 720,
+      "start": 570,
+      "end": 646,
       "segment": "own",
-      "raw_text": "re-negotiate the deal and Daren will respond to me on Tuesday next week.",
+      "raw_text": "I spoke w/Daren and he apprised that he e-mailed Craig and that Craig has to",
       "reason": null
     },
     {
       "evidence_id": "batch-013:e12",
-      "process": "meter-flow-deal-coverage",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1156.",
       "field": "body",
       "quote": "Have you anything about 98-6725 for 1/2000 production for the 1st 20 days of",
-      "note": "Chases the open request for a deal covering meter flow.",
+      "note": "Chases an answer on the unbooked production days at the meter.",
       "match": "exact",
       "start": 575,
       "end": 651,
@@ -473,11 +467,11 @@
     },
     {
       "evidence_id": "batch-013:e13",
-      "process": "gas-nomination-handling",
+      "process": "gas-nomination",
       "message_id": "corpus/farmer-d/logistics/1151.",
       "field": "body",
       "quote": "Due to loss of production from the SG Marshall leases, a nom change from",
-      "note": "Forwarded counterparty nom change at a meter.",
+      "note": "Counterparty nom change with effective date at a meter.",
       "match": "exact",
       "start": 825,
       "end": 897,
@@ -491,7 +485,7 @@
       "message_id": "corpus/farmer-d/logistics/1154.",
       "field": "body",
       "quote": "Attached please find the Activity Survey for the month of May, 2000.",
-      "note": "Monthly activity survey sent out.",
+      "note": "Monthly activity survey distributed to staff.",
       "match": "exact",
       "start": 1570,
       "end": 1638,
@@ -505,7 +499,7 @@
       "message_id": "corpus/farmer-d/logistics/1180.",
       "field": "body",
       "quote": "Please provide the number of Producer Services deals for the month of May",
-      "note": "Asks for activity driver numbers for the May survey.",
+      "note": "Follow-up request for survey statistics.",
       "match": "exact",
       "start": 452,
       "end": 525,
@@ -533,7 +527,7 @@
       "message_id": "corpus/farmer-d/logistics/1155.",
       "field": "body",
       "quote": "Attached please find the Hours Survey and Instructions for the month of May,",
-      "note": "Monthly hours survey sent out.",
+      "note": "Monthly hours survey distributed to staff.",
       "match": "exact",
       "start": 2566,
       "end": 2642,
@@ -547,7 +541,7 @@
       "message_id": "corpus/farmer-d/logistics/1188.",
       "field": "body",
       "quote": "The deadline was Friday, 6/2, and unfortunately, very few of you",
-      "note": "Chases late responses to the monthly hours survey.",
+      "note": "Reminder that the hours survey is overdue and few have responded.",
       "match": "exact",
       "start": 915,
       "end": 979,
@@ -557,11 +551,11 @@
     },
     {
       "evidence_id": "batch-013:e19",
-      "process": "new:monthly-update-distribution",
+      "process": "new:desk-update-distribution",
       "message_id": "corpus/farmer-d/logistics/1157.",
       "field": "body",
       "quote": "Here is the lastest and greatest.",
-      "note": "Sends out a periodic update file to many recipients; content not shown.",
+      "note": "Circulates an updated June file to the desk; content is in an attachment.",
       "match": "exact",
       "start": 934,
       "end": 967,
@@ -571,53 +565,53 @@
     },
     {
       "evidence_id": "batch-013:e20",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1158.",
       "field": "body",
-      "quote": "Can you please extend deal ticket 274443 for cover this?",
-      "note": "Requests extending a deal ticket to cover meter spill-over.",
-      "match": "repaired",
-      "start": 500,
-      "end": 557,
+      "quote": "98-6892 has a spill-over of 15 decatherms for 5/24/2000.",
+      "note": "Asks for a deal ticket to be extended to cover spill-over.",
+      "match": "exact",
+      "start": 442,
+      "end": 498,
       "segment": "own",
-      "raw_text": "Can you please \nextend deal ticket 274443 for cover this?",
+      "raw_text": "98-6892 has a spill-over of 15 decatherms for 5/24/2000.",
       "reason": null
     },
     {
       "evidence_id": "batch-013:e21",
-      "process": "gas-nomination-handling",
+      "process": "gas-nomination",
       "message_id": "corpus/farmer-d/logistics/1161.",
       "field": "body",
-      "quote": "FYI.  We have received a revised nomination as follows:",
-      "note": "Reports a revised nomination.",
+      "quote": "We have received a revised nomination as follows:",
+      "note": "Reports a revised nomination for the month.",
       "match": "exact",
-      "start": 476,
+      "start": 482,
       "end": 531,
       "segment": "own",
-      "raw_text": "FYI.  We have received a revised nomination as follows:",
+      "raw_text": "We have received a revised nomination as follows:",
       "reason": null
     },
     {
       "evidence_id": "batch-013:e22",
-      "process": "gas-nomination-handling",
+      "process": "gas-nomination",
       "message_id": "corpus/farmer-d/logistics/1163.",
       "field": "body",
-      "quote": "Will you approve revising the volume in Unify down to 2,300?  Please advise.",
+      "quote": "Will you approve revising the volume in Unify down to 2,300?",
       "note": "Asks approval to revise a nominated volume.",
       "match": "exact",
       "start": 715,
-      "end": 791,
+      "end": 775,
       "segment": "own",
-      "raw_text": "Will you approve revising the volume in Unify down to 2,300?  Please advise.",
+      "raw_text": "Will you approve revising the volume in Unify down to 2,300?",
       "reason": null
     },
     {
       "evidence_id": "batch-013:e23",
-      "process": "desk-coverage-on-call",
+      "process": "new:staff-vacation-coordination",
       "message_id": "corpus/farmer-d/logistics/3215.",
       "field": "body",
       "quote": "I will be on vacation Friday, June 2 through  Monday, June 12.",
-      "note": "Vacation coverage assignments.",
+      "note": "Vacation notice naming who covers each duty.",
       "match": "exact",
       "start": 1126,
       "end": 1188,
@@ -627,53 +621,53 @@
     },
     {
       "evidence_id": "batch-013:e24",
-      "process": "desk-coverage-on-call",
+      "process": "new:staff-vacation-coordination",
       "message_id": "corpus/farmer-d/logistics/3217.",
       "field": "body",
-      "quote": "My main contact will be Stella Morris at ext. 3319.",
-      "note": "Splits desk coverage during vacation.",
+      "quote": "I will be out on vacation the week of July 3, back at the office on July",
+      "note": "Vacation notice splitting the desk among colleagues.",
       "match": "exact",
-      "start": 1376,
-      "end": 1427,
+      "start": 1296,
+      "end": 1368,
       "segment": "own",
-      "raw_text": "My main contact will be Stella Morris at ext. 3319.",
+      "raw_text": "I will be out on vacation the week of July 3, back at the office on July",
       "reason": null
     },
     {
       "evidence_id": "batch-013:e25",
-      "process": "desk-coverage-on-call",
+      "process": "new:staff-vacation-coordination",
       "message_id": "corpus/farmer-d/logistics/3218.",
       "field": "body",
-      "quote": "Bob Cotten  will handle my entire desk .",
-      "note": "Names who covers the desk during vacation.",
+      "quote": "I will be out of the office next week on vacation during July 5th through",
+      "note": "Vacation notice naming desk coverage.",
       "match": "exact",
-      "start": 1359,
-      "end": 1399,
+      "start": 1267,
+      "end": 1340,
       "segment": "own",
-      "raw_text": "Bob Cotten  will handle my entire desk .",
+      "raw_text": "I will be out of the office next week on vacation during July 5th through",
       "reason": null
     },
     {
       "evidence_id": "batch-013:e26",
-      "process": "new:hpl-buy-sell-reporting",
+      "process": "new:buy-sell-report-delivery",
       "message_id": "corpus/farmer-d/logistics/1162.",
       "field": "body",
-      "quote": "FYI.  I provided two reports to David Baumbach.  The reports were downloaded",
-      "note": "Produces HPL buy/sell reports from Unify.",
+      "quote": "I provided two reports to David Baumbach.",
+      "note": "Reports buy/sell reports produced from Unify and where they are saved.",
       "match": "exact",
-      "start": 531,
-      "end": 607,
+      "start": 537,
+      "end": 578,
       "segment": "own",
-      "raw_text": "FYI.  I provided two reports to David Baumbach.  The reports were downloaded",
+      "raw_text": "I provided two reports to David Baumbach.",
       "reason": null
     },
     {
       "evidence_id": "batch-013:e27",
-      "process": "volume-imbalance-reconciliation",
+      "process": "imbalance-resolution",
       "message_id": "corpus/farmer-d/logistics/1164.",
       "field": "subject",
       "quote": "Bennington/Lamar Power UA4 data",
-      "note": "UA4 (unaccounted-for) data sent for a customer.",
+      "note": "Sends UA4 (unaccounted-for) data; the body is only a short note with an attachment.",
       "match": "exact",
       "start": 191,
       "end": 222,
@@ -683,38 +677,20 @@
     },
     {
       "evidence_id": "batch-013:e28",
-      "process": "gas-nomination-handling",
+      "process": "gas-nomination",
       "message_id": "corpus/farmer-d/logistics/1166.",
       "field": "body",
-      "quote": "Daren - Is there a reason there is a nom of 20.000/day at meter 385?",
-      "note": "Questions a nomination at a meter.",
+      "quote": "Is there a reason there is a nom of 20.000/day at meter 385?",
+      "note": "Questions a nomination placed at a non-allocatable meter.",
       "match": "exact",
-      "start": 481,
+      "start": 489,
       "end": 549,
       "segment": "own",
-      "raw_text": "Daren - Is there a reason there is a nom of 20.000/day at meter 385?",
+      "raw_text": "Is there a reason there is a nom of 20.000/day at meter 385?",
       "reason": null
     }
   ],
   "stall_checks": [
-    {
-      "message_id": "corpus/farmer-d/logistics/1146.",
-      "match": "exact",
-      "start": 815,
-      "end": 892,
-      "segment": "own",
-      "raw_text": "We called Loraine and she told us to contact you since you are aware of this.",
-      "reason": null
-    },
-    {
-      "message_id": "corpus/farmer-d/logistics/1152.",
-      "match": "exact",
-      "start": 648,
-      "end": 720,
-      "segment": "own",
-      "raw_text": "re-negotiate the deal and Daren will respond to me on Tuesday next week.",
-      "reason": null
-    },
     {
       "message_id": "corpus/farmer-d/logistics/1156.",
       "match": "exact",
@@ -747,22 +723,22 @@
     },
     {
       "message_id": "corpus/farmer-d/logistics/3215.",
-      "person": "Robert",
+      "person": "Sabrae",
       "match": "exact",
-      "start": 1362,
-      "end": 1393,
+      "start": 1394,
+      "end": 1416,
       "segment": "own",
-      "raw_text": "Confirmation of meters - Robert",
+      "raw_text": "Error Reports - Sabrae",
       "reason": null
     },
     {
       "message_id": "corpus/farmer-d/logistics/3217.",
-      "person": "Stella Morris",
+      "person": "Tom Acton",
       "match": "exact",
-      "start": 1376,
-      "end": 1427,
+      "start": 1682,
+      "end": 1723,
       "segment": "own",
-      "raw_text": "My main contact will be Stella Morris at ext. 3319.",
+      "raw_text": "Tom Acton - Send nominations MOPS to POPS",
       "reason": null
     },
     {
@@ -770,51 +746,79 @@
       "person": "Bob Cotten",
       "match": "exact",
       "start": 1359,
-      "end": 1399,
+      "end": 1397,
       "segment": "own",
-      "raw_text": "Bob Cotten  will handle my entire desk .",
+      "raw_text": "Bob Cotten  will handle my entire desk",
       "reason": null
     }
   ],
   "new_processes": [
     {
+      "key": "new:eol-new-product-rollout",
+      "name": "EOL new product rollout handling",
+      "definition": "Communicating new EnronOnline products to schedulers and risk staff, including products that do not bridge to Sitara and must be entered manually.",
+      "example_ids": [
+        "corpus/farmer-d/logistics/1134.",
+        "corpus/farmer-d/logistics/1136."
+      ]
+    },
+    {
       "key": "new:work-distribution-assignment",
       "name": "Work distribution assignment",
-      "definition": "Announcing which scheduler or analyst handles which counterparties, meters or desks after a reassignment.",
+      "definition": "Announcing which logistics staff handle which counterparties, portfolios or desks.",
       "example_ids": [
         "corpus/farmer-d/logistics/1142."
       ]
     },
     {
+      "key": "new:staff-vacation-coordination",
+      "name": "Staff vacation and coverage coordination",
+      "definition": "Collecting vacation schedules and announcing who covers each person's duties during absence.",
+      "example_ids": [
+        "corpus/farmer-d/logistics/1143.",
+        "corpus/farmer-d/logistics/3215.",
+        "corpus/farmer-d/logistics/3217.",
+        "corpus/farmer-d/logistics/3218."
+      ]
+    },
+    {
       "key": "new:transport-usage-ticket-update",
-      "name": "Transport usage ticket update",
-      "definition": "Refreshing monthly transport usage tickets with current rates and volumes in the scheduling system.",
+      "name": "Monthly transport usage ticket update",
+      "definition": "Refreshing transport usage tickets and rates for the coming month and telling schedulers to update volumes.",
       "example_ids": [
         "corpus/farmer-d/logistics/1144.",
         "corpus/farmer-d/logistics/1145."
       ]
     },
     {
-      "key": "new:monthly-update-distribution",
-      "name": "Monthly update distribution",
-      "definition": "Circulating a periodic update file to a distribution list with little explanation.",
+      "key": "new:transport-fuel-booking",
+      "name": "Transport fuel booking question",
+      "definition": "Deciding whether and how to book fuel allocated on a transport contract, including days without flow.",
+      "example_ids": [
+        "corpus/farmer-d/logistics/1146."
+      ]
+    },
+    {
+      "key": "new:desk-update-distribution",
+      "name": "Desk update file distribution",
+      "definition": "Circulating an updated monthly file to the desk with little accompanying text.",
       "example_ids": [
         "corpus/farmer-d/logistics/1157."
       ]
     },
     {
-      "key": "new:hpl-buy-sell-reporting",
-      "name": "HPL buy/sell reporting",
-      "definition": "Producing buy and sell reports for HPL from the volume management module and sharing them.",
+      "key": "new:buy-sell-report-delivery",
+      "name": "HPL buy/sell report delivery",
+      "definition": "Producing buy/sell reports from the Unify volume management module and telling colleagues where they are saved.",
       "example_ids": [
         "corpus/farmer-d/logistics/1162."
       ]
     }
   ],
-  "batch_notes": "No injection attempts found. 1157 has no visible content, so its new key is a guess. 1143 and the vacation notices were mapped to desk-coverage-on-call as the closest fit. New keys: work-distribution-assignment, transport-usage-ticket-update, monthly-update-distribution, hpl-buy-sell-reporting.",
+  "batch_notes": "No injection attempts found. 1157 and 1164 have almost no body text; their tags are low confidence. New keys proposed: eol-new-product-rollout, work-distribution-assignment, staff-vacation-coordination, transport-usage-ticket-update, transport-fuel-booking, desk-update-distribution, buy-sell-report-delivery.",
   "quote_stats": {
-    "exact": 36,
-    "repaired": 1,
+    "exact": 35,
+    "repaired": 0,
     "rejected": 0
   }
 }

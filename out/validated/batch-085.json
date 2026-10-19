@@ -5,7 +5,7 @@
     {
       "id": "corpus/williams-w3/sent_items/31.",
       "processes": [
-        "market-rule-change-review"
+        "regulatory-notice-review"
       ],
       "role": "response",
       "stall": null,
@@ -14,7 +14,7 @@
     {
       "id": "corpus/williams-w3/inbox/106.",
       "processes": [
-        "market-rule-change-review"
+        "regulatory-notice-review"
       ],
       "role": "fyi",
       "stall": null,
@@ -23,7 +23,7 @@
     {
       "id": "corpus/williams-w3/sent_items/23.",
       "processes": [
-        "market-rule-change-review"
+        "regulatory-notice-review"
       ],
       "role": "forward",
       "stall": null,
@@ -60,7 +60,7 @@
     {
       "id": "corpus/giron-d/inbox/156.",
       "processes": [
-        "curve-postid-mapping"
+        "curve-postid-maintenance"
       ],
       "role": "fyi",
       "stall": null,
@@ -69,7 +69,7 @@
     {
       "id": "corpus/giron-d/inbox/155.",
       "processes": [
-        "curve-postid-mapping"
+        "curve-postid-maintenance"
       ],
       "role": "request",
       "stall": null,
@@ -78,7 +78,7 @@
     {
       "id": "corpus/giron-d/inbox/154.",
       "processes": [
-        "curve-postid-mapping"
+        "curve-postid-maintenance"
       ],
       "role": "response",
       "stall": null,
@@ -94,18 +94,16 @@
     {
       "id": "corpus/giron-d/inbox/153.",
       "processes": [
-        "user-access-setup"
+        "system-access-request"
       ],
-      "role": "response",
+      "role": "fyi",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/inbox/152.",
-      "processes": [
-        "new:netco-estate-split-transition"
-      ],
-      "role": "fyi",
+      "processes": [],
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
@@ -154,7 +152,7 @@
     {
       "id": "corpus/giron-d/inbox/150.",
       "processes": [
-        "curve-postid-mapping"
+        "curve-postid-maintenance"
       ],
       "role": "request",
       "stall": null,
@@ -170,7 +168,7 @@
     {
       "id": "corpus/williams-w3/sent_items/29.",
       "processes": [
-        "new:netco-estate-split-transition"
+        "new:system-outage-coordination"
       ],
       "role": "response",
       "stall": null,
@@ -179,7 +177,7 @@
     {
       "id": "corpus/williams-w3/inbox/110.",
       "processes": [
-        "new:netco-estate-split-transition"
+        "new:system-outage-coordination"
       ],
       "role": "fyi",
       "stall": null,
@@ -244,7 +242,7 @@
     {
       "id": "corpus/giron-d/inbox/147.",
       "processes": [
-        "trading-book-setup"
+        "system-access-request"
       ],
       "role": "request",
       "stall": null,
@@ -253,7 +251,7 @@
     {
       "id": "corpus/giron-d/inbox/146.",
       "processes": [
-        "new:netco-estate-split-transition"
+        "new:netco-estate-file-migration"
       ],
       "role": "request",
       "stall": null,
@@ -269,7 +267,7 @@
     {
       "id": "corpus/williams-w3/inbox/112.",
       "processes": [
-        "market-rule-change-review"
+        "regulatory-notice-review"
       ],
       "role": "automated",
       "stall": null,
@@ -286,25 +284,25 @@
   "evidence": [
     {
       "evidence_id": "batch-085:e0",
-      "process": "market-rule-change-review",
+      "process": "regulatory-notice-review",
       "message_id": "corpus/williams-w3/sent_items/31.",
       "field": "body",
-      "quote": "In the CISO's proposal the first two \"goals\" for the real time market appear to be at odds with each other.",
-      "note": "Comments on the CAISO market design proposal and its effect on trading.",
+      "quote": "Certainly the ability to go long or short into R/T will be important",
+      "note": "Gives feedback on CAISO market redesign proposal elements.",
       "match": "exact",
-      "start": 857,
-      "end": 964,
+      "start": 615,
+      "end": 683,
       "segment": "own",
-      "raw_text": "In the CISO's proposal the first two \"goals\" for the real time market appear to be at odds with each other.",
+      "raw_text": "Certainly the ability to go long or short into R/T will be important",
       "reason": null
     },
     {
       "evidence_id": "batch-085:e1",
-      "process": "market-rule-change-review",
+      "process": "regulatory-notice-review",
       "message_id": "corpus/williams-w3/inbox/106.",
       "field": "body",
       "quote": "It appears that the CAISO proposal will allow for SC's to go short or long in the R/T market",
-      "note": "Summarises the CAISO MD02 proposal for the trading group.",
+      "note": "Circulates analysis of the CAISO market design proposal.",
       "match": "exact",
       "start": 2166,
       "end": 2258,
@@ -314,25 +312,25 @@
     },
     {
       "evidence_id": "batch-085:e2",
-      "process": "market-rule-change-review",
+      "process": "regulatory-notice-review",
       "message_id": "corpus/williams-w3/sent_items/23.",
-      "field": "body",
-      "quote": "In essencence, CAISO is proposing a capacity market (similar to what IEP",
-      "note": "Forwarded summary of the CAISO market design proposal.",
+      "field": "subject",
+      "quote": "FW: California ISO Market Re-Design 2002 (MD02)",
+      "note": "Forwards the CAISO market redesign analysis to a colleague.",
       "match": "exact",
-      "start": 1700,
-      "end": 1772,
-      "segment": "quoted",
-      "raw_text": "In essencence, CAISO is proposing a capacity market (similar to what IEP",
+      "start": 172,
+      "end": 219,
+      "segment": "subject",
+      "raw_text": "FW: California ISO Market Re-Design 2002 (MD02)",
       "reason": null
     },
     {
       "evidence_id": "batch-085:e3",
-      "process": "curve-postid-mapping",
+      "process": "curve-postid-maintenance",
       "message_id": "corpus/giron-d/inbox/156.",
       "field": "body",
       "quote": "The curve lists are saved in O:\\erms\\erms_adm\\netco\\central\\current central/ontario curves.xls",
-      "note": "Points to the saved central and Ontario curve lists.",
+      "note": "Points to the curve list files for Netco curves.",
       "match": "exact",
       "start": 544,
       "end": 638,
@@ -342,39 +340,39 @@
     },
     {
       "evidence_id": "batch-085:e4",
-      "process": "curve-postid-mapping",
+      "process": "curve-postid-maintenance",
       "message_id": "corpus/giron-d/inbox/155.",
       "field": "body",
-      "quote": "Check your regions and if you see any locations mapped to curves we won't be setting anymore, make a list of those and what the new mappings should be.",
-      "note": "Asks desk staff to review curve mappings and list changes.",
+      "quote": "Check your regions and if you see any locations mapped to curves we won't be setting anymore, make a list of those",
+      "note": "Asks desks to review curve mappings and list changes.",
       "match": "exact",
       "start": 851,
-      "end": 1002,
+      "end": 965,
       "segment": "own",
-      "raw_text": "Check your regions and if you see any locations mapped to curves we won't be setting anymore, make a list of those and what the new mappings should be.",
+      "raw_text": "Check your regions and if you see any locations mapped to curves we won't be setting anymore, make a list of those",
       "reason": null
     },
     {
       "evidence_id": "batch-085:e5",
-      "process": "curve-postid-mapping",
+      "process": "curve-postid-maintenance",
       "message_id": "corpus/giron-d/inbox/154.",
       "field": "body",
-      "quote": "I have done the west and I have resaved this file out there.",
-      "note": "Reports completing the west region of the curve mapping review.",
+      "quote": "I highlighted the rows to be changed in yellow.",
+      "note": "Reports marking curve mapping rows to be changed.",
       "match": "exact",
-      "start": 784,
-      "end": 844,
+      "start": 846,
+      "end": 893,
       "segment": "own",
-      "raw_text": "I have done the west and I have resaved this file out there.",
+      "raw_text": "I highlighted the rows to be changed in yellow.",
       "reason": null
     },
     {
       "evidence_id": "batch-085:e6",
-      "process": "user-access-setup",
+      "process": "system-access-request",
       "message_id": "corpus/giron-d/inbox/153.",
       "field": "body",
       "quote": "Requests for RiskTrac have been sent.",
-      "note": "Confirms access requests for the RiskTrac system were submitted.",
+      "note": "Confirms RiskTrac access requests were submitted.",
       "match": "exact",
       "start": 853,
       "end": 890,
@@ -384,39 +382,25 @@
     },
     {
       "evidence_id": "batch-085:e7",
-      "process": "new:netco-estate-split-transition",
-      "message_id": "corpus/giron-d/inbox/152.",
-      "field": "subject",
-      "quote": "Central Implementation Plan",
-      "note": "Implementation plan for the Central desk during the Netco split; body is empty, so subject only.",
+      "process": "curve-postid-maintenance",
+      "message_id": "corpus/giron-d/inbox/150.",
+      "field": "body",
+      "quote": "Zhiyong needs to get a list of all curves we will be loading for Netco. by tomorrow.",
+      "note": "Requests a list of curves to load for Netco.",
       "match": "exact",
-      "start": 217,
-      "end": 244,
-      "segment": "subject",
-      "raw_text": "Central Implementation Plan",
+      "start": 863,
+      "end": 947,
+      "segment": "own",
+      "raw_text": "Zhiyong needs to get a list of all curves we will be loading for Netco. by tomorrow.",
       "reason": null
     },
     {
       "evidence_id": "batch-085:e8",
-      "process": "curve-postid-mapping",
-      "message_id": "corpus/giron-d/inbox/150.",
-      "field": "body",
-      "quote": "Zhiyong needs to get a list of all curves we will be loading for Netco.",
-      "note": "Requests a list of curves to be loaded, by risk type.",
-      "match": "exact",
-      "start": 863,
-      "end": 934,
-      "segment": "own",
-      "raw_text": "Zhiyong needs to get a list of all curves we will be loading for Netco.",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-085:e9",
-      "process": "new:netco-estate-split-transition",
+      "process": "new:system-outage-coordination",
       "message_id": "corpus/williams-w3/sent_items/29.",
       "field": "body",
       "quote": "Real-Time is on board and is comfortable with this...any questions from settlements?",
-      "note": "Approves a database outage for the Netco/Estate split.",
+      "note": "Approves a planned database outage and checks with settlements.",
       "match": "exact",
       "start": 972,
       "end": 1056,
@@ -425,40 +409,40 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-085:e10",
-      "process": "new:netco-estate-split-transition",
+      "evidence_id": "batch-085:e9",
+      "process": "new:system-outage-coordination",
       "message_id": "corpus/williams-w3/inbox/110.",
       "field": "body",
-      "quote": "The EnPower database will be down from 4 PM Friday afternoon (6 PM Houston) to 4 PM Saturday afternoon (6PM Houston).",
-      "note": "Announces the outage tied to the Netco/Estate system split.",
+      "quote": "You must re-boot your machines following this shut down to access any EnPower applications.",
+      "note": "Notifies users of the planned database downtime.",
       "match": "exact",
-      "start": 561,
-      "end": 678,
+      "start": 782,
+      "end": 873,
       "segment": "own",
-      "raw_text": "The EnPower database will be down from 4 PM Friday afternoon (6 PM Houston) to 4 PM Saturday afternoon (6PM Houston).",
+      "raw_text": "You must re-boot your machines following this shut down to access any EnPower applications.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-085:e10",
+      "process": "system-access-request",
+      "message_id": "corpus/giron-d/inbox/147.",
+      "field": "body",
+      "quote": "Ramesh will be loading our information into risktrac for us once we have all of the information",
+      "note": "Collecting trader and book data to set users up in RiskTrac.",
+      "match": "exact",
+      "start": 842,
+      "end": 937,
+      "segment": "own",
+      "raw_text": "Ramesh will be loading our information into risktrac for us once we have all of the information",
       "reason": null
     },
     {
       "evidence_id": "batch-085:e11",
-      "process": "trading-book-setup",
-      "message_id": "corpus/giron-d/inbox/147.",
-      "field": "body",
-      "quote": "Do you guys know which books each of your people will be doing?",
-      "note": "Collects book assignments to load traders into the risk system.",
-      "match": "exact",
-      "start": 701,
-      "end": 764,
-      "segment": "own",
-      "raw_text": "Do you guys know which books each of your people will be doing?",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-085:e12",
-      "process": "new:netco-estate-split-transition",
+      "process": "new:netco-estate-file-migration",
       "message_id": "corpus/giron-d/inbox/146.",
       "field": "body",
       "quote": "Are there any other files/directories that the estate people in risk will need to use to do their jobs.",
-      "note": "Gathers files the estate group needs ahead of the new database.",
+      "note": "Asks desks to list files needed for the Netco and estate database split.",
       "match": "exact",
       "start": 963,
       "end": 1066,
@@ -467,12 +451,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-085:e13",
-      "process": "market-rule-change-review",
+      "evidence_id": "batch-085:e12",
+      "process": "regulatory-notice-review",
       "message_id": "corpus/williams-w3/inbox/112.",
       "field": "body",
       "quote": "The ISO has posted its Draft Market Design 2002 on it's web site.",
-      "note": "ISO notice of a market design proposal.",
+      "note": "CAISO market notice about a draft proposal.",
       "match": "exact",
       "start": 665,
       "end": 730,
@@ -485,20 +469,26 @@
   "ownership_checks": [],
   "new_processes": [
     {
-      "key": "new:netco-estate-split-transition",
-      "name": "Netco and estate split transition",
-      "definition": "Preparing systems, databases, files and plans so that the Netco and estate groups can work separately after the business split.",
+      "key": "new:system-outage-coordination",
+      "name": "System outage coordination",
+      "definition": "Announcing and approving planned downtime of trading and settlement databases and telling users what to do afterwards.",
       "example_ids": [
-        "corpus/giron-d/inbox/152.",
         "corpus/williams-w3/sent_items/29.",
-        "corpus/williams-w3/inbox/110.",
+        "corpus/williams-w3/inbox/110."
+      ]
+    },
+    {
+      "key": "new:netco-estate-file-migration",
+      "name": "Netco and estate file migration",
+      "definition": "Identifying the files, directories and curve lists that must move or be repointed when the trading databases are split between Netco and the estate.",
+      "example_ids": [
         "corpus/giron-d/inbox/146."
       ]
     }
   ],
-  "batch_notes": "Many personal and company-announcement messages left unprocessed. Proposed new key new:netco-estate-split-transition. Message giron-d/inbox/152 has an empty body, tagged from subject only (uncertain). No injection attempts found.",
+  "batch_notes": "Mostly personal mail and company announcements. Proposed new keys: new:system-outage-coordination, new:netco-estate-file-migration. Message giron-d/inbox/152 has an essentially empty body, treated as noise. No injection attempts found.",
   "quote_stats": {
-    "exact": 14,
+    "exact": 13,
     "repaired": 0,
     "rejected": 0
   }

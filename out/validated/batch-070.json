@@ -5,7 +5,7 @@
     {
       "id": "corpus/farmer-d/logistics/47.",
       "processes": [
-        "system-enhancement-request"
+        "new:path-manager-rewrite-testing"
       ],
       "role": "request",
       "stall": null,
@@ -14,7 +14,7 @@
     {
       "id": "corpus/farmer-d/logistics/44.",
       "processes": [
-        "system-enhancement-request"
+        "new:path-manager-rewrite-testing"
       ],
       "role": "response",
       "stall": null,
@@ -26,7 +26,7 @@
     {
       "id": "corpus/williams-w3/sent_items/177.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "response",
       "stall": null,
@@ -58,7 +58,7 @@
     {
       "id": "corpus/williams-w3/sent_items/175.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "request",
       "stall": null,
@@ -69,14 +69,14 @@
       "processes": [
         "commercial-strategy-planning"
       ],
-      "role": "request",
+      "role": "fyi",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/46.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "imbalance-resolution"
       ],
       "role": "forward",
       "stall": null,
@@ -85,7 +85,7 @@
     {
       "id": "corpus/farmer-d/logistics/45.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "imbalance-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -108,7 +108,7 @@
     {
       "id": "corpus/williams-w3/sent_items/174.",
       "processes": [
-        "new:realtime-desk-guidance"
+        "real-time-power-scheduling"
       ],
       "role": "fyi",
       "stall": null,
@@ -117,7 +117,7 @@
     {
       "id": "corpus/farmer-d/logistics/43.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -126,16 +126,16 @@
     {
       "id": "corpus/williams-w3/sent_items/172.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
-      "role": "fyi",
+      "role": "request",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/42.",
       "processes": [
-        "market-rule-change-review"
+        "regulatory-notice-review"
       ],
       "role": "fyi",
       "stall": null,
@@ -144,9 +144,9 @@
     {
       "id": "corpus/williams-w3/sent_items/171.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
-      "role": "fyi",
+      "role": "request",
       "stall": null,
       "ownership_claim": null
     },
@@ -167,16 +167,16 @@
     {
       "id": "corpus/williams-w3/sent_items/169.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
-      "role": "response",
+      "role": "request",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/lokay-m/inbox/16.",
       "processes": [
-        "market-rule-change-review"
+        "regulatory-notice-review"
       ],
       "role": "request",
       "stall": null,
@@ -185,13 +185,10 @@
     {
       "id": "corpus/farmer-d/logistics/41.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "request",
-      "stall": {
-        "kind": "handoff_confusion",
-        "quote": "If ENA Upstream is not responsible, let me know who/where I should forward the invoices."
-      },
+      "stall": null,
       "ownership_claim": null
     },
     {
@@ -204,16 +201,16 @@
     {
       "id": "corpus/williams-w3/sent_items/168.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
-      "role": "fyi",
+      "role": "request",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/sent_items/167.",
       "processes": [
-        "system-enhancement-request"
+        "system-issue-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -222,7 +219,7 @@
     {
       "id": "corpus/williams-w3/sent_items/166.",
       "processes": [
-        "new:realtime-desk-guidance"
+        "real-time-power-scheduling"
       ],
       "role": "fyi",
       "stall": null,
@@ -238,7 +235,7 @@
     {
       "id": "corpus/williams-w3/sent_items/165.",
       "processes": [
-        "new:realtime-desk-guidance"
+        "real-time-power-scheduling"
       ],
       "role": "forward",
       "stall": null,
@@ -247,7 +244,7 @@
     {
       "id": "corpus/williams-w3/sent_items/164.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "request",
       "stall": null,
@@ -264,25 +261,25 @@
   "evidence": [
     {
       "evidence_id": "batch-070:e0",
-      "process": "system-enhancement-request",
+      "process": "new:path-manager-rewrite-testing",
       "message_id": "corpus/farmer-d/logistics/47.",
       "field": "body",
-      "quote": "get a representative from each of the desks, who will be the designated tester in addition to Richard.",
-      "note": "Asks desk managers to name a tester for the Path Manager rewrite.",
+      "quote": "Please respond with that person name.",
+      "note": "Asks desk managers to name a designated tester for the Path Manager rewrite.",
       "match": "exact",
-      "start": 1363,
-      "end": 1465,
+      "start": 1468,
+      "end": 1505,
       "segment": "own",
-      "raw_text": "get a representative from each of the desks, who will be the designated tester in addition to Richard.",
+      "raw_text": "Please respond with that person name.",
       "reason": null
     },
     {
       "evidence_id": "batch-070:e1",
-      "process": "system-enhancement-request",
+      "process": "new:path-manager-rewrite-testing",
       "message_id": "corpus/farmer-d/logistics/44.",
       "field": "body",
       "quote": "Cora and Mark will tag team this one.",
-      "note": "Names who will cover the Path Manager rewrite testing.",
+      "note": "Names the desk's representatives for the Path Manager rewrite.",
       "match": "exact",
       "start": 1492,
       "end": 1529,
@@ -292,11 +289,11 @@
     },
     {
       "evidence_id": "batch-070:e2",
-      "process": "realtime-schedule-checkout",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/177.",
       "field": "subject",
       "quote": "RE: October 14th and 15th",
-      "note": "Reply questioning a daily schedule file for specific dates.",
+      "note": "Query about the daily schedule sheet for the real-time desk.",
       "match": "exact",
       "start": 171,
       "end": 196,
@@ -310,7 +307,7 @@
       "message_id": "corpus/lokay-m/inbox/19.",
       "field": "body",
       "quote": "It has been more difficult than expected to get a map with the power plant",
-      "note": "Supplier replies on a requested system map for evaluating opportunities.",
+      "note": "Supplier replies on a requested pipeline system map.",
       "match": "exact",
       "start": 622,
       "end": 696,
@@ -320,11 +317,11 @@
     },
     {
       "evidence_id": "batch-070:e4",
-      "process": "realtime-schedule-checkout",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/175.",
       "field": "body",
       "quote": "We are short 2 pieces of BOM at SP-15 7-22.",
-      "note": "Reports short position for next day to the scheduler.",
+      "note": "Reports short position for next day.",
       "match": "exact",
       "start": 533,
       "end": 576,
@@ -348,11 +345,11 @@
     },
     {
       "evidence_id": "batch-070:e6",
-      "process": "volume-imbalance-reconciliation",
+      "process": "imbalance-resolution",
       "message_id": "corpus/farmer-d/logistics/46.",
       "field": "body",
       "quote": "Our imbalance to date is 6798dkthm, and we would like to schedule this for",
-      "note": "Forwarded notice of imbalance payback to be scheduled.",
+      "note": "Forwarded notice about paying back a pipeline imbalance.",
       "match": "exact",
       "start": 2323,
       "end": 2397,
@@ -362,11 +359,11 @@
     },
     {
       "evidence_id": "batch-070:e7",
-      "process": "volume-imbalance-reconciliation",
+      "process": "imbalance-resolution",
       "message_id": "corpus/farmer-d/logistics/45.",
       "field": "body",
       "quote": "Can you guys follow up and let me know what you decided.",
-      "note": "Asks staff to work out the HPL imbalance payback with AEP.",
+      "note": "Asks staff to settle how the HPL imbalance payback is handled.",
       "match": "exact",
       "start": 970,
       "end": 1026,
@@ -376,11 +373,11 @@
     },
     {
       "evidence_id": "batch-070:e8",
-      "process": "new:realtime-desk-guidance",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/174.",
       "field": "body",
       "quote": "We are starting to see some market changes as we transition into the winter=",
-      "note": "Desk lead briefs the real-time group on operating changes.",
+      "note": "Guidance to the real-time group on managing schedules and ramps.",
       "match": "exact",
       "start": 1653,
       "end": 1729,
@@ -390,11 +387,11 @@
     },
     {
       "evidence_id": "batch-070:e9",
-      "process": "volume-imbalance-reconciliation",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/43.",
       "field": "body",
       "quote": "I am missing the following meters:",
-      "note": "Asks for missing meter volumes on a monthly production statement.",
+      "note": "Lists meters with missing production volumes for a month.",
       "match": "exact",
       "start": 671,
       "end": 705,
@@ -404,11 +401,11 @@
     },
     {
       "evidence_id": "batch-070:e10",
-      "process": "realtime-schedule-checkout",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/172.",
       "field": "body",
       "quote": "ONLY schedule the energy to or from the originally prescheduled delivery point.",
-      "note": "Instruction on how to schedule parking and lending energy.",
+      "note": "Rule for scheduling parking and lending energy in real time.",
       "match": "exact",
       "start": 2046,
       "end": 2125,
@@ -418,25 +415,25 @@
     },
     {
       "evidence_id": "batch-070:e11",
-      "process": "market-rule-change-review",
+      "process": "regulatory-notice-review",
       "message_id": "corpus/farmer-d/logistics/42.",
-      "field": "body",
-      "quote": "FERC has issued a notice of proposed rulemaking (NOPR)",
-      "note": "Circulates a FERC proposed rule on capacity recalls.",
+      "field": "subject",
+      "quote": "FERC Issues NOPR on Intra-day Recalls of Released Capacity",
+      "note": "Circulates a FERC rulemaking notice.",
       "match": "exact",
-      "start": 2108,
-      "end": 2162,
-      "segment": "own",
-      "raw_text": "FERC has issued a notice of proposed rulemaking (NOPR)",
+      "start": 546,
+      "end": 604,
+      "segment": "subject",
+      "raw_text": "FERC Issues NOPR on Intra-day Recalls of Released Capacity",
       "reason": null
     },
     {
       "evidence_id": "batch-070:e12",
-      "process": "realtime-schedule-checkout",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/171.",
       "field": "body",
       "quote": "We are short 3 pieces tomorrow at $27.20, $28.00, and a piece at the ST-CALI index.",
-      "note": "Reports next-day short and long positions to the scheduler.",
+      "note": "Reports short and long positions for next day.",
       "match": "exact",
       "start": 523,
       "end": 606,
@@ -446,25 +443,25 @@
     },
     {
       "evidence_id": "batch-070:e13",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/williams-w3/sent_items/169.",
       "field": "body",
-      "quote": "I am concerned that our bids to relieve congestion were awarded but that the respective dollar value for those bids was incorrect.",
-      "note": "Questions ISO congestion settlement amount.",
+      "quote": "it appears that the CAISO published price is not appropriate for the amount of mws flowed.",
+      "note": "Disputes the price paid on awarded congestion bids.",
       "match": "exact",
-      "start": 595,
-      "end": 725,
+      "start": 894,
+      "end": 984,
       "segment": "own",
-      "raw_text": "I am concerned that our bids to relieve congestion were awarded but that the respective dollar value for those bids was incorrect.",
+      "raw_text": "it appears that the CAISO published price is not appropriate for the amount of mws flowed.",
       "reason": null
     },
     {
       "evidence_id": "batch-070:e14",
-      "process": "market-rule-change-review",
+      "process": "regulatory-notice-review",
       "message_id": "corpus/lokay-m/inbox/16.",
       "field": "body",
       "quote": "Please review and comment to either Greg Porter or myself by the end of today.",
-      "note": "Requests review of comments on a CPUC proposed decision.",
+      "note": "Asks for review of comments on a CPUC proposed decision.",
       "match": "exact",
       "start": 1702,
       "end": 1780,
@@ -474,11 +471,11 @@
     },
     {
       "evidence_id": "batch-070:e15",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/farmer-d/logistics/41.",
       "field": "body",
       "quote": "Are we responsible for transportation fees for September and future production months?",
-      "note": "Questions responsibility for a counterparty invoice.",
+      "note": "Questions whether an invoice is owed.",
       "match": "exact",
       "start": 1041,
       "end": 1127,
@@ -488,25 +485,25 @@
     },
     {
       "evidence_id": "batch-070:e16",
-      "process": "realtime-schedule-checkout",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/168.",
       "field": "body",
-      "quote": "we are still short the two BOM pieces in SP-15 for a total of 50 mws each hour on peak",
-      "note": "Communicates short and long positions for upcoming days.",
+      "quote": "ST-WBOM is long at PV parking with PNM for HE 2 through HE 5, 20 mws each hour--for Friday and Saturday.",
+      "note": "Reports long and short positions for upcoming days.",
       "match": "exact",
-      "start": 860,
-      "end": 946,
+      "start": 555,
+      "end": 659,
       "segment": "own",
-      "raw_text": "we are still short the two BOM pieces in SP-15 for a total of 50 mws each hour on peak",
+      "raw_text": "ST-WBOM is long at PV parking with PNM for HE 2 through HE 5, 20 mws each hour--for Friday and Saturday.",
       "reason": null
     },
     {
       "evidence_id": "batch-070:e17",
-      "process": "system-enhancement-request",
+      "process": "system-issue-resolution",
       "message_id": "corpus/williams-w3/sent_items/167.",
       "field": "body",
       "quote": "Probably 3 to 5 months ago David Poston demonstrated a new position manager=",
-      "note": "Asks for real-time group involvement in a new position manager.",
+      "note": "Asks for the real-time group to be involved in a position manager system change.",
       "match": "exact",
       "start": 559,
       "end": 635,
@@ -516,11 +513,11 @@
     },
     {
       "evidence_id": "batch-070:e18",
-      "process": "new:realtime-desk-guidance",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/166.",
       "field": "body",
       "quote": "Please do not fill any sale to EnMax with MPC energy.",
-      "note": "Desk lead instructs the group on handling a counterparty.",
+      "note": "Instruction on how real-time sales to a counterparty are filled.",
       "match": "exact",
       "start": 2281,
       "end": 2334,
@@ -530,25 +527,25 @@
     },
     {
       "evidence_id": "batch-070:e19",
-      "process": "new:realtime-desk-guidance",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/165.",
       "field": "body",
-      "quote": "this email shows how closely they are watching our performance and what they expect",
-      "note": "Passes on customer feedback on running their system.",
+      "quote": "Let's do our best to continue to provide them with good service.",
+      "note": "Passes on a customer's expectations for real-time operation of their system.",
       "match": "exact",
-      "start": 1810,
-      "end": 1893,
+      "start": 1895,
+      "end": 1959,
       "segment": "own",
-      "raw_text": "this email shows how closely they are watching our performance and what they expect",
+      "raw_text": "Let's do our best to continue to provide them with good service.",
       "reason": null
     },
     {
       "evidence_id": "batch-070:e20",
-      "process": "realtime-schedule-checkout",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/164.",
       "field": "body",
       "quote": "If you could adjust your sheets for tomorrow I would appreciate it.",
-      "note": "Asks scheduler to adjust sheets for a parking position.",
+      "note": "Asks that position sheets be adjusted for a long position.",
       "match": "exact",
       "start": 731,
       "end": 798,
@@ -557,17 +554,7 @@
       "reason": null
     }
   ],
-  "stall_checks": [
-    {
-      "message_id": "corpus/farmer-d/logistics/41.",
-      "match": "exact",
-      "start": 1238,
-      "end": 1326,
-      "segment": "own",
-      "raw_text": "If ENA Upstream is not responsible, let me know who/where I should forward the invoices.",
-      "reason": null
-    }
-  ],
+  "stall_checks": [],
   "ownership_checks": [
     {
       "message_id": "corpus/farmer-d/logistics/44.",
@@ -582,27 +569,26 @@
   ],
   "new_processes": [
     {
-      "key": "new:pipeline-map-request",
-      "name": "Pipeline system map request",
-      "definition": "Requesting maps or system information from other pipelines or utilities to evaluate future commercial opportunities.",
+      "key": "new:path-manager-rewrite-testing",
+      "name": "Path Manager rewrite tester nomination",
+      "definition": "Naming designated desk testers and resources for the Path Manager rewrite and optimization project.",
       "example_ids": [
-        "corpus/lokay-m/inbox/19."
+        "corpus/farmer-d/logistics/47.",
+        "corpus/farmer-d/logistics/44."
       ]
     },
     {
-      "key": "new:realtime-desk-guidance",
-      "name": "Real-time desk guidance",
-      "definition": "The real-time desk lead briefing the group on market changes, counterparty handling rules and customer feedback on running the grid.",
+      "key": "new:pipeline-map-request",
+      "name": "Pipeline system map request",
+      "definition": "Requesting system maps and plant locations from a utility or pipeline counterparty to evaluate commercial opportunities.",
       "example_ids": [
-        "corpus/williams-w3/sent_items/174.",
-        "corpus/williams-w3/sent_items/166.",
-        "corpus/williams-w3/sent_items/165."
+        "corpus/lokay-m/inbox/19."
       ]
     }
   ],
-  "batch_notes": "No injection attempts found. Proposed new keys new:pipeline-map-request and new:realtime-desk-guidance. Several short administrative or social messages treated as noise or personal.",
+  "batch_notes": "No injection attempts found. Several one-off messages (all-employee notice, spark spread solicitation, staff move, meeting scheduling) tagged noise. 176 treated as personal. 167 mapped to system-issue-resolution as a loose fit. New keys: path-manager-rewrite-testing, pipeline-map-request.",
   "quote_stats": {
-    "exact": 23,
+    "exact": 22,
     "repaired": 0,
     "rejected": 0
   }

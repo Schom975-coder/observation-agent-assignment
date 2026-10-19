@@ -1,42 +1,60 @@
 {
-  "taxonomy_sha": "9f2eca0e89459b62abd599b4950ef3bc14994b4a027f839e12eccf2b087ee687",
+  "taxonomy_sha": "a3c765d1042e6910f565da87b30c2982385140d6f29eb069ec921580c0b37820",
   "labels": 52,
   "confirmed": 52,
   "scored": 52,
   "missing": [],
   "exact": {
-    "agree": 44,
+    "agree": 42,
     "of": 52,
-    "pct": 84.6
+    "pct": 80.8
   },
   "overlap": {
-    "agree": 45,
+    "agree": 42,
     "of": 52,
-    "pct": 86.5
+    "pct": 80.8
   },
   "role": {
-    "agree": 43,
+    "agree": 38,
     "of": 52,
-    "pct": 82.7
+    "pct": 73.1
   },
   "mismatches": [
+    {
+      "id": "corpus/farmer-d/logistics/1969.",
+      "label": {
+        "processes": [
+          "deal-ticket-setup"
+        ],
+        "role": "request"
+      },
+      "extracted": {
+        "processes": [
+          "deal-book-transfer"
+        ],
+        "role": "request"
+      },
+      "exact": false,
+      "overlap": false,
+      "role": true
+    },
     {
       "id": "corpus/farmer-d/logistics/811.",
       "label": {
         "processes": [
-          "gas-nomination-handling"
+          "gas-nomination"
         ],
         "role": "fyi"
       },
       "extracted": {
         "processes": [
-          "new:storage-transport-pathing-setup"
+          "new:pipeline-pathing-instructions"
         ],
-        "role": "fyi"
+        "role": "request"
       },
       "exact": false,
       "overlap": false,
-      "role": true
+      "role": false
     },
     {
       "id": "corpus/giron-d/inbox/1.",
@@ -46,7 +64,7 @@
       },
       "extracted": {
         "processes": [
-          "new:ubs-transition-coordination"
+          "new:ubs-transition-onboarding"
         ],
         "role": "fyi"
       },
@@ -55,14 +73,14 @@
       "role": false
     },
     {
-      "id": "corpus/giron-d/inbox/18.",
+      "id": "corpus/giron-d/inbox/260.",
       "label": {
         "processes": [],
-        "role": "noise"
+        "role": "personal"
       },
       "extracted": {
         "processes": [],
-        "role": "automated"
+        "role": "noise"
       },
       "exact": true,
       "overlap": true,
@@ -72,7 +90,7 @@
       "id": "corpus/giron-d/inbox/393.",
       "label": {
         "processes": [
-          "new:customer-price-quote"
+          "new:customer-fixed-price-sales"
         ],
         "role": "request"
       },
@@ -87,16 +105,30 @@
       "role": false
     },
     {
+      "id": "corpus/giron-d/inbox/81.",
+      "label": {
+        "processes": [],
+        "role": "personal"
+      },
+      "extracted": {
+        "processes": [],
+        "role": "noise"
+      },
+      "exact": true,
+      "overlap": true,
+      "role": false
+    },
+    {
       "id": "corpus/giron-d/sent/327.",
       "label": {
         "processes": [
-          "pnl-position-reporting"
+          "pnl-reporting"
         ],
         "role": "response"
       },
       "extracted": {
         "processes": [
-          "new:audit-document-request"
+          "new:audit-testing-documentation-request"
         ],
         "role": "response"
       },
@@ -108,7 +140,7 @@
       "id": "corpus/giron-d/sent/49.",
       "label": {
         "processes": [
-          "curve-postid-mapping"
+          "curve-postid-maintenance"
         ],
         "role": "response"
       },
@@ -123,20 +155,6 @@
       "role": true
     },
     {
-      "id": "corpus/giron-d/sent/734.",
-      "label": {
-        "processes": [],
-        "role": "personal"
-      },
-      "extracted": {
-        "processes": [],
-        "role": "noise"
-      },
-      "exact": true,
-      "overlap": true,
-      "role": false
-    },
-    {
       "id": "corpus/lokay-m/inbox/25.",
       "label": {
         "processes": [
@@ -146,25 +164,25 @@
       },
       "extracted": {
         "processes": [
-          "commercial-strategy-planning"
+          "new:pipeline-project-evaluation"
         ],
-        "role": "fyi"
+        "role": "response"
       },
-      "exact": true,
-      "overlap": true,
-      "role": false
+      "exact": false,
+      "overlap": false,
+      "role": true
     },
     {
       "id": "corpus/lokay-m/inbox/70.",
       "label": {
         "processes": [
-          "volume-imbalance-reconciliation"
+          "imbalance-resolution"
         ],
         "role": "request"
       },
       "extracted": {
         "processes": [
-          "volume-imbalance-reconciliation"
+          "imbalance-resolution"
         ],
         "role": "fyi"
       },
@@ -187,6 +205,42 @@
       "role": false
     },
     {
+      "id": "corpus/lokay-m/sent_items/125.",
+      "label": {
+        "processes": [
+          "settlement-resolution"
+        ],
+        "role": "response"
+      },
+      "extracted": {
+        "processes": [
+          "new:index-price-request"
+        ],
+        "role": "response"
+      },
+      "exact": false,
+      "overlap": false,
+      "role": true
+    },
+    {
+      "id": "corpus/lokay-m/sent_items/14.",
+      "label": {
+        "processes": [
+          "oba-contract-negotiation"
+        ],
+        "role": "forward"
+      },
+      "extracted": {
+        "processes": [
+          "new:transport-capacity-increase-approval"
+        ],
+        "role": "response"
+      },
+      "exact": false,
+      "overlap": false,
+      "role": false
+    },
+    {
       "id": "corpus/lokay-m/sent_items/155.",
       "label": {
         "processes": [],
@@ -201,69 +255,102 @@
       "role": false
     },
     {
+      "id": "corpus/williams-w3/inbox/1.",
+      "label": {
+        "processes": [
+          "real-time-power-scheduling"
+        ],
+        "role": "fyi"
+      },
+      "extracted": {
+        "processes": [
+          "real-time-power-scheduling"
+        ],
+        "role": "automated"
+      },
+      "exact": true,
+      "overlap": true,
+      "role": false
+    },
+    {
+      "id": "corpus/williams-w3/inbox/68.",
+      "label": {
+        "processes": [
+          "regulatory-notice-review"
+        ],
+        "role": "fyi"
+      },
+      "extracted": {
+        "processes": [
+          "regulatory-notice-review"
+        ],
+        "role": "automated"
+      },
+      "exact": true,
+      "overlap": true,
+      "role": false
+    },
+    {
       "id": "corpus/williams-w3/sent_items/16.",
       "label": {
         "processes": [
           "trading-book-setup"
         ],
-        "role": "forward"
-      },
-      "extracted": {
-        "processes": [
-          "new:enpower-deal-entry-guidance"
-        ],
-        "role": "forward"
-      },
-      "exact": false,
-      "overlap": false,
-      "role": true
-    },
-    {
-      "id": "corpus/williams-w3/sent_items/391.",
-      "label": {
-        "processes": [
-          "realtime-schedule-checkout",
-          "pnl-position-reporting",
-          "user-access-setup"
-        ],
-        "role": "request"
-      },
-      "extracted": {
-        "processes": [
-          "realtime-schedule-checkout",
-          "user-access-setup"
-        ],
-        "role": "request"
-      },
-      "exact": false,
-      "overlap": true,
-      "role": true
-    },
-    {
-      "id": "corpus/williams-w3/sent_items/481.",
-      "label": {
-        "processes": [
-          "pnl-position-reporting"
-        ],
-        "role": "response"
-      },
-      "extracted": {
-        "processes": [
-          "counterparty-settlement-review"
-        ],
         "role": "fyi"
+      },
+      "extracted": {
+        "processes": [
+          "new:enpower-deal-entry"
+        ],
+        "role": "forward"
       },
       "exact": false,
       "overlap": false,
       "role": false
     },
     {
+      "id": "corpus/williams-w3/sent_items/253.",
+      "label": {
+        "processes": [
+          "commercial-strategy-planning"
+        ],
+        "role": "response"
+      },
+      "extracted": {
+        "processes": [
+          "new:annual-budget-preparation"
+        ],
+        "role": "response"
+      },
+      "exact": false,
+      "overlap": false,
+      "role": true
+    },
+    {
+      "id": "corpus/williams-w3/sent_items/481.",
+      "label": {
+        "processes": [
+          "pnl-reporting"
+        ],
+        "role": "response"
+      },
+      "extracted": {
+        "processes": [
+          "pnl-reporting"
+        ],
+        "role": "fyi"
+      },
+      "exact": true,
+      "overlap": true,
+      "role": false
+    },
+    {
       "id": "corpus/williams-w3/sent_items/53.",
       "label": {
         "processes": [
-          "new:customer-relationship-planning"
+          "commercial-strategy-planning"
         ],
-        "role": "request"
+        "role": "fyi"
       },
       "extracted": {
         "processes": [
@@ -271,9 +358,9 @@
         ],
         "role": "request"
       },
-      "exact": false,
-      "overlap": false,
-      "role": true
+      "exact": true,
+      "overlap": true,
+      "role": false
     }
   ],
   "merged": {
@@ -283,33 +370,51 @@
       "pct": 84.6
     },
     "overlap": {
-      "agree": 45,
+      "agree": 44,
       "of": 52,
-      "pct": 86.5
+      "pct": 84.6
     },
     "role": {
-      "agree": 43,
+      "agree": 38,
       "of": 52,
-      "pct": 82.7
+      "pct": 73.1
     },
     "mismatches": [
+      {
+        "id": "corpus/farmer-d/logistics/1969.",
+        "label": {
+          "processes": [
+            "deal-ticket-setup"
+          ],
+          "role": "request"
+        },
+        "extracted": {
+          "processes": [
+            "deal-book-transfer"
+          ],
+          "role": "request"
+        },
+        "exact": false,
+        "overlap": false,
+        "role": true
+      },
       {
         "id": "corpus/farmer-d/logistics/811.",
         "label": {
           "processes": [
-            "gas-nomination-handling"
+            "gas-nomination"
           ],
           "role": "fyi"
         },
         "extracted": {
           "processes": [
-            "new:storage-transport-pathing-setup"
+            "new:pipeline-pathing-instructions"
           ],
-          "role": "fyi"
+          "role": "request"
         },
         "exact": false,
         "overlap": false,
-        "role": true
+        "role": false
       },
       {
         "id": "corpus/giron-d/inbox/1.",
@@ -319,7 +424,7 @@
         },
         "extracted": {
           "processes": [
-            "new:ubs-transition-coordination"
+            "new:ubs-transition-onboarding"
           ],
           "role": "fyi"
         },
@@ -328,14 +433,14 @@
         "role": false
       },
       {
-        "id": "corpus/giron-d/inbox/18.",
+        "id": "corpus/giron-d/inbox/260.",
         "label": {
           "processes": [],
-          "role": "noise"
+          "role": "personal"
         },
         "extracted": {
           "processes": [],
-          "role": "automated"
+          "role": "noise"
         },
         "exact": true,
         "overlap": true,
@@ -345,7 +450,7 @@
         "id": "corpus/giron-d/inbox/393.",
         "label": {
           "processes": [
-            "new:customer-price-quote"
+            "new:customer-fixed-price-sales"
           ],
           "role": "request"
         },
@@ -360,43 +465,7 @@
         "role": false
       },
       {
-        "id": "corpus/giron-d/sent/327.",
-        "label": {
-          "processes": [
-            "pnl-position-reporting"
-          ],
-          "role": "response"
-        },
-        "extracted": {
-          "processes": [
-            "new:audit-document-request"
-          ],
-          "role": "response"
-        },
-        "exact": false,
-        "overlap": false,
-        "role": true
-      },
-      {
-        "id": "corpus/giron-d/sent/49.",
-        "label": {
-          "processes": [
-            "curve-postid-mapping"
-          ],
-          "role": "response"
-        },
-        "extracted": {
-          "processes": [
-            "new:curve-validation-review"
-          ],
-          "role": "response"
-        },
-        "exact": false,
-        "overlap": false,
-        "role": true
-      },
-      {
-        "id": "corpus/giron-d/sent/734.",
+        "id": "corpus/giron-d/inbox/81.",
         "label": {
           "processes": [],
           "role": "personal"
@@ -410,6 +479,24 @@
         "role": false
       },
       {
+        "id": "corpus/giron-d/sent/327.",
+        "label": {
+          "processes": [
+            "pnl-reporting"
+          ],
+          "role": "response"
+        },
+        "extracted": {
+          "processes": [
+            "new:audit-testing-documentation-request"
+          ],
+          "role": "response"
+        },
+        "exact": false,
+        "overlap": false,
+        "role": true
+      },
+      {
         "id": "corpus/lokay-m/inbox/25.",
         "label": {
           "processes": [
@@ -419,25 +506,25 @@
         },
         "extracted": {
           "processes": [
-            "commercial-strategy-planning"
+            "new:pipeline-project-evaluation"
           ],
-          "role": "fyi"
+          "role": "response"
         },
-        "exact": true,
-        "overlap": true,
-        "role": false
+        "exact": false,
+        "overlap": false,
+        "role": true
       },
       {
         "id": "corpus/lokay-m/inbox/70.",
         "label": {
           "processes": [
-            "volume-imbalance-reconciliation"
+            "imbalance-resolution"
           ],
           "role": "request"
         },
         "extracted": {
           "processes": [
-            "volume-imbalance-reconciliation"
+            "imbalance-resolution"
           ],
           "role": "fyi"
         },
@@ -460,6 +547,42 @@
         "role": false
       },
       {
+        "id": "corpus/lokay-m/sent_items/125.",
+        "label": {
+          "processes": [
+            "settlement-resolution"
+          ],
+          "role": "response"
+        },
+        "extracted": {
+          "processes": [
+            "new:index-price-request"
+          ],
+          "role": "response"
+        },
+        "exact": false,
+        "overlap": false,
+        "role": true
+      },
+      {
+        "id": "corpus/lokay-m/sent_items/14.",
+        "label": {
+          "processes": [
+            "oba-contract-negotiation"
+          ],
+          "role": "forward"
+        },
+        "extracted": {
+          "processes": [
+            "new:transport-capacity-increase-approval"
+          ],
+          "role": "response"
+        },
+        "exact": true,
+        "overlap": true,
+        "role": false
+      },
+      {
         "id": "corpus/lokay-m/sent_items/155.",
         "label": {
           "processes": [],
@@ -474,69 +597,102 @@
         "role": false
       },
       {
+        "id": "corpus/williams-w3/inbox/1.",
+        "label": {
+          "processes": [
+            "real-time-power-scheduling"
+          ],
+          "role": "fyi"
+        },
+        "extracted": {
+          "processes": [
+            "real-time-power-scheduling"
+          ],
+          "role": "automated"
+        },
+        "exact": true,
+        "overlap": true,
+        "role": false
+      },
+      {
+        "id": "corpus/williams-w3/inbox/68.",
+        "label": {
+          "processes": [
+            "regulatory-notice-review"
+          ],
+          "role": "fyi"
+        },
+        "extracted": {
+          "processes": [
+            "regulatory-notice-review"
+          ],
+          "role": "automated"
+        },
+        "exact": true,
+        "overlap": true,
+        "role": false
+      },
+      {
         "id": "corpus/williams-w3/sent_items/16.",
         "label": {
           "processes": [
             "trading-book-setup"
           ],
-          "role": "forward"
-        },
-        "extracted": {
-          "processes": [
-            "new:enpower-deal-entry-guidance"
-          ],
-          "role": "forward"
-        },
-        "exact": false,
-        "overlap": false,
-        "role": true
-      },
-      {
-        "id": "corpus/williams-w3/sent_items/391.",
-        "label": {
-          "processes": [
-            "realtime-schedule-checkout",
-            "pnl-position-reporting",
-            "user-access-setup"
-          ],
-          "role": "request"
-        },
-        "extracted": {
-          "processes": [
-            "realtime-schedule-checkout",
-            "user-access-setup"
-          ],
-          "role": "request"
-        },
-        "exact": false,
-        "overlap": true,
-        "role": true
-      },
-      {
-        "id": "corpus/williams-w3/sent_items/481.",
-        "label": {
-          "processes": [
-            "pnl-position-reporting"
-          ],
-          "role": "response"
-        },
-        "extracted": {
-          "processes": [
-            "counterparty-settlement-review"
-          ],
           "role": "fyi"
+        },
+        "extracted": {
+          "processes": [
+            "new:enpower-deal-entry"
+          ],
+          "role": "forward"
         },
         "exact": false,
         "overlap": false,
         "role": false
       },
       {
+        "id": "corpus/williams-w3/sent_items/253.",
+        "label": {
+          "processes": [
+            "commercial-strategy-planning"
+          ],
+          "role": "response"
+        },
+        "extracted": {
+          "processes": [
+            "new:annual-budget-preparation"
+          ],
+          "role": "response"
+        },
+        "exact": false,
+        "overlap": false,
+        "role": true
+      },
+      {
+        "id": "corpus/williams-w3/sent_items/481.",
+        "label": {
+          "processes": [
+            "pnl-reporting"
+          ],
+          "role": "response"
+        },
+        "extracted": {
+          "processes": [
+            "pnl-reporting"
+          ],
+          "role": "fyi"
+        },
+        "exact": true,
+        "overlap": true,
+        "role": false
+      },
+      {
         "id": "corpus/williams-w3/sent_items/53.",
         "label": {
           "processes": [
-            "new:customer-relationship-planning"
+            "commercial-strategy-planning"
           ],
-          "role": "request"
+          "role": "fyi"
         },
         "extracted": {
           "processes": [
@@ -544,9 +700,9 @@
           ],
           "role": "request"
         },
-        "exact": false,
-        "overlap": false,
-        "role": true
+        "exact": true,
+        "overlap": true,
+        "role": false
       }
     ]
   }

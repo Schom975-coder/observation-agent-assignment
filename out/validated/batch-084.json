@@ -19,21 +19,21 @@
     {
       "id": "corpus/giron-d/inbox/308.",
       "processes": [],
-      "role": "automated",
+      "role": "personal",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/inbox/128.",
       "processes": [],
-      "role": "automated",
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/lokay-m/sent_items/63.",
       "processes": [
-        "weekly-commercial-reporting"
+        "capacity-reporting"
       ],
       "role": "fyi",
       "stall": null,
@@ -42,7 +42,7 @@
     {
       "id": "corpus/lokay-m/sent_items/62.",
       "processes": [
-        "pipeline-capacity-marketing"
+        "capacity-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -81,7 +81,7 @@
     {
       "id": "corpus/lokay-m/sent_items/61.",
       "processes": [
-        "new:transport-contract-amendment"
+        "oba-contract-negotiation"
       ],
       "role": "forward",
       "stall": null,
@@ -90,16 +90,16 @@
     {
       "id": "corpus/lokay-m/sent_items/60.",
       "processes": [
-        "new:transport-contract-amendment"
+        "oba-contract-negotiation"
       ],
-      "role": "request",
+      "role": "response",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/lokay-m/sent_items/59.",
       "processes": [
-        "new:transport-contract-amendment"
+        "oba-contract-negotiation"
       ],
       "role": "forward",
       "stall": null,
@@ -122,7 +122,7 @@
     {
       "id": "corpus/williams-w3/sent_items/37.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "fyi",
       "stall": {
@@ -148,7 +148,7 @@
     {
       "id": "corpus/williams-w3/inbox/127.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "request",
       "stall": null,
@@ -157,16 +157,19 @@
     {
       "id": "corpus/williams-w3/inbox/126.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "request",
-      "stall": null,
+      "stall": {
+        "kind": "rework",
+        "quote": "Import ID ENRJ_CISO_8000 is wrong."
+      },
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/inbox/125.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "response",
       "stall": null,
@@ -175,7 +178,7 @@
     {
       "id": "corpus/williams-w3/sent_items/36.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "fyi",
       "stall": null,
@@ -190,17 +193,15 @@
     },
     {
       "id": "corpus/giron-d/inbox/165.",
-      "processes": [
-        "expense-report-approval"
-      ],
-      "role": "fyi",
+      "processes": [],
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/inbox/124.",
       "processes": [
-        "desk-coverage-on-call"
+        "real-time-power-scheduling"
       ],
       "role": "request",
       "stall": null,
@@ -209,7 +210,7 @@
     {
       "id": "corpus/williams-w3/inbox/123.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "request",
       "stall": null,
@@ -218,7 +219,7 @@
     {
       "id": "corpus/williams-w3/inbox/122.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "request",
       "stall": {
@@ -236,10 +237,8 @@
     },
     {
       "id": "corpus/williams-w3/sent_items/33.",
-      "processes": [
-        "realtime-schedule-checkout"
-      ],
-      "role": "fyi",
+      "processes": [],
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
@@ -269,9 +268,9 @@
     {
       "id": "corpus/lokay-m/sent_items/57.",
       "processes": [
-        "new:transport-contract-amendment"
+        "oba-contract-negotiation"
       ],
-      "role": "request",
+      "role": "response",
       "stall": null,
       "ownership_claim": null
     },
@@ -317,7 +316,7 @@
     {
       "id": "corpus/lokay-m/sent_items/55.",
       "processes": [
-        "weekly-commercial-reporting"
+        "capacity-reporting"
       ],
       "role": "fyi",
       "stall": null,
@@ -326,7 +325,7 @@
     {
       "id": "corpus/lokay-m/sent_items/47.",
       "processes": [
-        "weekly-commercial-reporting"
+        "capacity-reporting"
       ],
       "role": "fyi",
       "stall": null,
@@ -370,58 +369,58 @@
   "evidence": [
     {
       "evidence_id": "batch-084:e0",
-      "process": "weekly-commercial-reporting",
+      "process": "capacity-reporting",
       "message_id": "corpus/lokay-m/sent_items/63.",
       "field": "body",
-      "quote": "Transwestern's average deliveries to California were 959 MMBtu/d (88%)",
-      "note": "Weekly California capacity and deliveries report.",
+      "quote": "Transwestern's average deliveries to California were 959 MMBtu/d (88%), with San Juan lateral throughput at 827 MMBtu/d.",
+      "note": "Weekly California deliveries report.",
       "match": "exact",
       "start": 1338,
-      "end": 1408,
+      "end": 1458,
       "segment": "own",
-      "raw_text": "Transwestern's average deliveries to California were 959 MMBtu/d (88%)",
+      "raw_text": "Transwestern's average deliveries to California were 959 MMBtu/d (88%), with San Juan lateral throughput at 827 MMBtu/d.",
       "reason": null
     },
     {
       "evidence_id": "batch-084:e1",
-      "process": "weekly-commercial-reporting",
-      "message_id": "corpus/lokay-m/sent_items/55.",
+      "process": "capacity-reporting",
+      "message_id": "corpus/lokay-m/sent_items/62.",
       "field": "body",
-      "quote": "Transwestern's average deliveries to California were 840 MMBtu/d (77%)",
-      "note": "Weekly California capacity and deliveries report.",
+      "quote": "Section 13(h) does state 3 months prior to expiration",
+      "note": "Discusses right of first refusal timing on posted capacity.",
       "match": "exact",
-      "start": 1336,
-      "end": 1406,
+      "start": 570,
+      "end": 623,
       "segment": "own",
-      "raw_text": "Transwestern's average deliveries to California were 840 MMBtu/d (77%)",
+      "raw_text": "Section 13(h) does state 3 months prior to expiration",
       "reason": null
     },
     {
       "evidence_id": "batch-084:e2",
-      "process": "weekly-commercial-reporting",
-      "message_id": "corpus/lokay-m/sent_items/47.",
+      "process": "capacity-reporting",
+      "message_id": "corpus/lokay-m/sent_items/55.",
       "field": "body",
-      "quote": "Transwestern's average deliveries to California were 855 MMBtu/d (79%)",
-      "note": "Weekly California capacity report resent.",
+      "quote": "Transwestern's average deliveries to California were 840 MMBtu/d (77%), with San Juan lateral throughput at 829 MMBtu/d.",
+      "note": "Weekly California deliveries report.",
       "match": "exact",
-      "start": 1343,
-      "end": 1413,
+      "start": 1336,
+      "end": 1456,
       "segment": "own",
-      "raw_text": "Transwestern's average deliveries to California were 855 MMBtu/d (79%)",
+      "raw_text": "Transwestern's average deliveries to California were 840 MMBtu/d (77%), with San Juan lateral throughput at 829 MMBtu/d.",
       "reason": null
     },
     {
       "evidence_id": "batch-084:e3",
-      "process": "pipeline-capacity-marketing",
-      "message_id": "corpus/lokay-m/sent_items/62.",
+      "process": "capacity-reporting",
+      "message_id": "corpus/lokay-m/sent_items/47.",
       "field": "body",
-      "quote": "Section 13(h) does state 3 months prior to expiration and 07/31/02 is 3 months before 10/31/02.",
-      "note": "Right of first refusal timing on posted capacity.",
+      "quote": "Transwestern's average deliveries to California were 855 MMBtu/d (79%), with San Juan lateral throughput at 839 MMBtu/d.",
+      "note": "Weekly California deliveries report resent.",
       "match": "exact",
-      "start": 570,
-      "end": 665,
+      "start": 1343,
+      "end": 1463,
       "segment": "own",
-      "raw_text": "Section 13(h) does state 3 months prior to expiration and 07/31/02 is 3 months before 10/31/02.",
+      "raw_text": "Transwestern's average deliveries to California were 855 MMBtu/d (79%), with San Juan lateral throughput at 839 MMBtu/d.",
       "reason": null
     },
     {
@@ -430,7 +429,7 @@
       "message_id": "corpus/giron-d/inbox/309.",
       "field": "body",
       "quote": "I would like to schedule a meeting for Wednesday, January 2nd at 10:00 a.m. to discuss the below and map out our plan of action.",
-      "note": "Schedules planning of the move to Netco.",
+      "note": "Schedules planning meeting for the move to Netco.",
       "match": "exact",
       "start": 1217,
       "end": 1345,
@@ -444,7 +443,7 @@
       "message_id": "corpus/williams-w3/inbox/121.",
       "field": "body",
       "quote": "The master status file for NETCO transmission service agreements is located at:",
-      "note": "Points to the Netco transition status file.",
+      "note": "Points to Netco transition contract status file.",
       "match": "exact",
       "start": 1700,
       "end": 1779,
@@ -454,39 +453,39 @@
     },
     {
       "evidence_id": "batch-084:e6",
-      "process": "new:transport-contract-amendment",
+      "process": "oba-contract-negotiation",
       "message_id": "corpus/lokay-m/sent_items/61.",
       "field": "body",
-      "quote": "This is the San Juan to San Juan contract, with alternates out of the path.  Same as December.",
-      "note": "Passes a shipper's request to continue contract capacity for processing.",
+      "quote": "Per our phone conversation, Reliant requests to continue its use of",
+      "note": "Contract capacity arrangement raised with the pipeline.",
       "match": "exact",
-      "start": 655,
-      "end": 749,
-      "segment": "own",
-      "raw_text": "This is the San Juan to San Juan contract, with alternates out of the path.  Same as December.",
+      "start": 920,
+      "end": 987,
+      "segment": "quoted",
+      "raw_text": "Per our phone conversation, Reliant requests to continue its use of",
       "reason": null
     },
     {
       "evidence_id": "batch-084:e7",
-      "process": "new:transport-contract-amendment",
+      "process": "oba-contract-negotiation",
       "message_id": "corpus/lokay-m/sent_items/60.",
       "field": "body",
-      "quote": "Approved.  Amendment to increase TQ by 10,000 for 2 days.",
-      "note": "Approves a shipper's contract quantity increase and sends it for amendment.",
+      "quote": "Please increase the MDQ of TW #27792 by 10000 to 20000/d for January 1-2, 2002 at the same rates.",
+      "note": "Transport contract amendment approved.",
       "match": "exact",
-      "start": 550,
-      "end": 607,
-      "segment": "own",
-      "raw_text": "Approved.  Amendment to increase TQ by 10,000 for 2 days.",
+      "start": 766,
+      "end": 863,
+      "segment": "quoted",
+      "raw_text": "Please increase the MDQ of TW #27792 by 10000 to 20000/d for January 1-2, 2002 at the same rates.",
       "reason": null
     },
     {
       "evidence_id": "batch-084:e8",
-      "process": "new:transport-contract-amendment",
+      "process": "oba-contract-negotiation",
       "message_id": "corpus/lokay-m/sent_items/59.",
       "field": "body",
       "quote": "Please increase the MDQ of TW #27792 by 10000 to 20000/d for January 1-2, 2002 at the same rates.",
-      "note": "Forwarded shipper request to increase contract MDQ.",
+      "note": "Forwarded approved contract amendment.",
       "match": "exact",
       "start": 903,
       "end": 1000,
@@ -496,39 +495,39 @@
     },
     {
       "evidence_id": "batch-084:e9",
-      "process": "new:transport-contract-amendment",
+      "process": "oba-contract-negotiation",
       "message_id": "corpus/lokay-m/sent_items/57.",
       "field": "body",
-      "quote": "Please increase, on Amendment #4, the West Texas receipts from 14,265 to 18,000",
-      "note": "Approves and instructs a contract amendment change.",
+      "quote": "Please increase, on Amendment #4, the West Texas receipts from 14,265 to 18,000 effective Nov 2002-Feb 2003.",
+      "note": "Approves contract amendment change.",
       "match": "exact",
       "start": 669,
-      "end": 748,
+      "end": 777,
       "segment": "own",
-      "raw_text": "Please increase, on Amendment #4, the West Texas receipts from 14,265 to 18,000",
+      "raw_text": "Please increase, on Amendment #4, the West Texas receipts from 14,265 to 18,000 effective Nov 2002-Feb 2003.",
       "reason": null
     },
     {
       "evidence_id": "batch-084:e10",
-      "process": "realtime-schedule-checkout",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/37.",
       "field": "body",
-      "quote": "we first need to import DA finals and then create DA finals in CAPS.",
-      "note": "Steps for completing day-ahead and hour-ahead finals checkout.",
+      "quote": "We have had some problems recently with the creation of HA finals, with SQL errors, and as a result we have not been able to run reports.",
+      "note": "Hour-ahead finals procedure for schedulers.",
       "match": "exact",
-      "start": 1727,
-      "end": 1795,
+      "start": 1556,
+      "end": 1693,
       "segment": "own",
-      "raw_text": "we first need to import DA finals and then create DA finals in CAPS.",
+      "raw_text": "We have had some problems recently with the creation of HA finals, with SQL errors, and as a result we have not been able to run reports.",
       "reason": null
     },
     {
       "evidence_id": "batch-084:e11",
-      "process": "realtime-schedule-checkout",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/inbox/127.",
       "field": "body",
       "quote": "I agreed to take a schedule from the DA to the HA in NP15 with the APX.",
-      "note": "Schedule moved to the hour-ahead market; asks to restore the original.",
+      "note": "Schedule moved to hour-ahead market.",
       "match": "exact",
       "start": 886,
       "end": 957,
@@ -538,25 +537,25 @@
     },
     {
       "evidence_id": "batch-084:e12",
-      "process": "realtime-schedule-checkout",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/inbox/126.",
       "field": "body",
-      "quote": "Import ID ENRJ_CISO_8000 is wrong.  The On-peak needs to be a 35mw and the off-peak needs to be a 45mw.",
-      "note": "Correction to an hourly import schedule.",
+      "quote": "Please note that for Wednesday 01/02/02, Import ID ENRJ_CISO_8000 is wrong.",
+      "note": "Import schedule correction request.",
       "match": "exact",
-      "start": 701,
-      "end": 804,
+      "start": 660,
+      "end": 735,
       "segment": "own",
-      "raw_text": "Import ID ENRJ_CISO_8000 is wrong.  The On-peak needs to be a 35mw and the off-peak needs to be a 45mw.",
+      "raw_text": "Please note that for Wednesday 01/02/02, Import ID ENRJ_CISO_8000 is wrong.",
       "reason": null
     },
     {
       "evidence_id": "batch-084:e13",
-      "process": "realtime-schedule-checkout",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/inbox/125.",
       "field": "body",
       "quote": "ENRJ_CISO_8000 has been corrected for the whole day.",
-      "note": "Confirms the import correction was made.",
+      "note": "Import schedule correction completed.",
       "match": "exact",
       "start": 532,
       "end": 584,
@@ -566,11 +565,11 @@
     },
     {
       "evidence_id": "batch-084:e14",
-      "process": "realtime-schedule-checkout",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/36.",
       "field": "body",
       "quote": "First, TNP now has a 75 MW call on EPE.",
-      "note": "New EPE schedule handling procedures for the real-time desk.",
+      "note": "New real-time schedule procedures.",
       "match": "exact",
       "start": 1675,
       "end": 1714,
@@ -580,25 +579,11 @@
     },
     {
       "evidence_id": "batch-084:e15",
-      "process": "expense-report-approval",
-      "message_id": "corpus/giron-d/inbox/165.",
-      "field": "body",
-      "quote": "If your cellular phone bill was submitted for payment prior to December 17th, it was covered under pre-petition.",
-      "note": "Status of employee phone bills submitted for payment.",
-      "match": "exact",
-      "start": 1957,
-      "end": 2069,
-      "segment": "own",
-      "raw_text": "If your cellular phone bill was submitted for payment prior to December 17th, it was covered under pre-petition.",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-084:e16",
-      "process": "desk-coverage-on-call",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/inbox/124.",
       "field": "body",
       "quote": "If you will be unable to work a shift it is your responsibility to find a replacement",
-      "note": "Shift swap procedure for the desk.",
+      "note": "Real-time shift schedule staffing rule.",
       "match": "exact",
       "start": 1285,
       "end": 1370,
@@ -607,12 +592,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-084:e17",
-      "process": "realtime-schedule-checkout",
+      "evidence_id": "batch-084:e16",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/inbox/123.",
       "field": "body",
       "quote": "please put all cuts and scheduling sheets in the accordion file on the RT overflow desk",
-      "note": "Tracking counterparty cuts and moved schedules.",
+      "note": "Tracking schedule cuts at the real-time desk.",
       "match": "exact",
       "start": 1335,
       "end": 1422,
@@ -621,40 +606,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-084:e18",
-      "process": "realtime-schedule-checkout",
+      "evidence_id": "batch-084:e17",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/inbox/122.",
       "field": "body",
-      "quote": "There is a new binder for EPE hourly deals for 2002.",
-      "note": "Keeping hourly deal sheets for schedule records.",
+      "quote": "The deal sheets MUST be kept in this binder.",
+      "note": "Record keeping for hourly real-time deals.",
       "match": "exact",
-      "start": 1156,
-      "end": 1208,
+      "start": 1209,
+      "end": 1253,
       "segment": "own",
-      "raw_text": "There is a new binder for EPE hourly deals for 2002.",
+      "raw_text": "The deal sheets MUST be kept in this binder.",
       "reason": null
     },
     {
-      "evidence_id": "batch-084:e19",
-      "process": "realtime-schedule-checkout",
-      "message_id": "corpus/williams-w3/sent_items/33.",
-      "field": "body",
-      "quote": "http://dotect.ect.enron.com/genstat/epe/status/",
-      "note": "Link to El Paso unit status used by the desk.",
-      "match": "exact",
-      "start": 538,
-      "end": 585,
-      "segment": "own",
-      "raw_text": "http://dotect.ect.enron.com/genstat/epe/status/",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-084:e20",
+      "evidence_id": "batch-084:e18",
       "process": "time-activity-reporting",
       "message_id": "corpus/lokay-m/sent_items/56.",
       "field": "body",
       "quote": "Send me your time reports today.",
-      "note": "Reminder that time reports are due; reply covers vacation entry.",
+      "note": "Quoted reminder that time reports are due.",
       "match": "exact",
       "start": 1010,
       "end": 1042,
@@ -663,12 +634,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-084:e21",
+      "evidence_id": "batch-084:e19",
       "process": "trading-book-setup",
       "message_id": "corpus/giron-d/inbox/164.",
       "field": "body",
       "quote": "I saved the file for us to send to Susan Trevino for all the book access requests.",
-      "note": "Prepares the desk matrix for new Netco book requests.",
+      "note": "Prepares book access requests.",
       "match": "exact",
       "start": 1029,
       "end": 1111,
@@ -677,7 +648,7 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-084:e22",
+      "evidence_id": "batch-084:e20",
       "process": "trading-book-setup",
       "message_id": "corpus/giron-d/inbox/161.",
       "field": "body",
@@ -691,12 +662,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-084:e23",
+      "evidence_id": "batch-084:e21",
       "process": "trading-book-setup",
       "message_id": "corpus/giron-d/inbox/160.",
       "field": "body",
       "quote": "attached is a new matrix for each desk.  This should replace the previous matrix you are using.",
-      "note": "Supplies the desk matrix for book requests.",
+      "note": "Updates matrix used for book requests.",
       "match": "exact",
       "start": 1062,
       "end": 1157,
@@ -705,12 +676,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-084:e24",
+      "evidence_id": "batch-084:e22",
       "process": "trading-book-setup",
       "message_id": "corpus/giron-d/inbox/159.",
       "field": "body",
       "quote": "Please add Financial and Control group to these book requests if they are missing.",
-      "note": "Follow-up on the book requests.",
+      "note": "Follow-up on book requests.",
       "match": "exact",
       "start": 1056,
       "end": 1138,
@@ -730,6 +701,15 @@
       "reason": null
     },
     {
+      "message_id": "corpus/williams-w3/inbox/126.",
+      "match": "exact",
+      "start": 701,
+      "end": 735,
+      "segment": "own",
+      "raw_text": "Import ID ENRJ_CISO_8000 is wrong.",
+      "reason": null
+    },
+    {
       "message_id": "corpus/williams-w3/inbox/122.",
       "match": "exact",
       "start": 1371,
@@ -744,27 +724,16 @@
     {
       "key": "new:netco-transition-planning",
       "name": "Netco transition planning",
-      "definition": "Planning and organising the move of the commercial business to Netco, including restart plans, planning meetings and tracking transition files.",
+      "definition": "Planning and organising the move of the trading business to Netco, including restart plans, meetings and contract status files.",
       "example_ids": [
         "corpus/giron-d/inbox/309.",
         "corpus/williams-w3/inbox/121."
       ]
-    },
-    {
-      "key": "new:transport-contract-amendment",
-      "name": "Transport contract amendment",
-      "definition": "Approving shipper requests to extend, increase or amend Transwestern transport contracts and passing them to the contract administrator to process.",
-      "example_ids": [
-        "corpus/lokay-m/sent_items/61.",
-        "corpus/lokay-m/sent_items/60.",
-        "corpus/lokay-m/sent_items/59.",
-        "corpus/lokay-m/sent_items/57."
-      ]
     }
   ],
-  "batch_notes": "Many personal and automated messages. Proposed new keys: new:netco-transition-planning and new:transport-contract-amendment. The phone bill message was loosely tagged expense-report-approval. No injection attempts found.",
+  "batch_notes": "Many personal and noise messages. Proposed new:netco-transition-planning. Phone bill notice and El Paso status link treated as noise. No injection attempts found.",
   "quote_stats": {
-    "exact": 27,
+    "exact": 26,
     "repaired": 0,
     "rejected": 0
   }

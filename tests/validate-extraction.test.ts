@@ -440,7 +440,7 @@ test('real run: every proposed key in the committed extractions is within the ca
     const x = JSON.parse(readFileSync(join(dir, f), 'utf8')) as Extraction;
     for (const k of [...x.messages.flatMap((m) => m.processes), ...x.new_processes.map((p) => p.key)]) if (k.startsWith('new:')) longest = Math.max(longest, k.length);
   }
-  assert.equal(longest, 45, 'the longest proposed key of the M4 run');
+  assert.equal(longest, 43, 'the longest proposed key of the final run');
   assert.ok(longest <= NEW_KEY_MAX_CHARS);
 });
 

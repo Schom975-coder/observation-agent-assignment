@@ -2,125 +2,107 @@
   "group_id": "synth-018",
   "processes": [
     {
-      "key": "staff-training-coordination",
-      "description": "Desk leads and managers arrange classes, system sessions and presentations for their staff. A round starts when a lead proposes a session or a course comes up: they pick topics, choose who attends, sometimes build balanced class rosters, and ask the training side to sign people up. Staff also ask whether they may enrol in a suggested course, and a supervisor approves the registration. Timing is fitted around shifts and other commitments, and session details, timelines and changes are circulated to the group.",
+      "key": "meter-point-setup",
+      "description": "A trader, scheduler or pipeline contact asks the data or facility team to set up new pooling, storage or delivery points and combinations, re-map a zone, change a pipe code, zero confirmed nominations or remove meters from an estimate. The facility team enters the change in Global Facilities or the scheduling system, sometimes only after authorization from the desk lead, and confirms it back, often naming who is assigned the meter. Some rounds need extra data gathered first, such as State and County details for a list of meters.",
       "steps": [
-        "A lead or manager proposes a class, presentation or system session and its topics.",
-        "The lead picks attendees, sometimes building class rosters of equal strength.",
-        "Attendees are signed up, or staff ask whether they may enrol in a suggested course.",
-        "A supervisor approves the course registration in the training system.",
-        "Timing is arranged around shifts, such as asking night shift staff to come in early.",
-        "Session details, timelines and any changes are circulated to the group."
+        "A requester emails a list of points, meters or mappings to create, change or retire.",
+        "Missing reference data, such as State and County for listed meters, is gathered from colleagues.",
+        "Where needed, the change is authorized by the responsible desk lead.",
+        "The facility team sets up or changes the record in Global Facilities or the scheduling system.",
+        "Related records are adjusted, such as deferred delivery points, nominations or estimates.",
+        "The team confirms the set-up and names the person assigned to the meter."
       ],
       "stalls": [
         {
-          "summary": "Approving a course registration fails with an error in the system, so the approval cannot be completed as sent.",
-          "evidence_ids": ["batch-047:s1", "batch-047:e18"]
-        },
-        {
-          "summary": "An organiser writes that news from the night before forces a change, reopening arrangements that had already been made.",
-          "evidence_ids": ["batch-020:e9"]
+          "summary": "A forwarded spreadsheet of meters arrived without clear instructions, and the recipient could not tell what was being asked before passing it on for State and County details.",
+          "evidence_ids": ["batch-071:s1", "batch-071:e12"]
         }
       ],
       "contradictions": [],
       "automation": {
-        "approach": "A shared training tracker listing each session with its topic, date, attendees, shift and approval status, filled from a simple sign-up form. Leads choose attendees in the tracker, the training side registers from it, and approvals are checked off there instead of being assembled from separate messages.",
+        "approach": "A standard set-up request form capturing point type, pipeline, zone, mapping, State and County, effective date and approver, validated against the facility master before entry, with an automatic confirmation naming the assigned scheduler.",
         "artifact_type": "template",
-        "rationale": "Most of a round is assembling lists of names, signing them up and tracking approvals and timing. A standard tracker layout keeps attendee lists, rosters and approval status in a single place, while choosing topics and people stays with the leads."
+        "rationale": "Requests arrive as free-text lists of differing shape and sometimes lack the data needed to set up a point. A fixed request layout gets complete, approved requests to the facility team the first time and makes entry largely mechanical."
       },
       "work_estimate": {
         "minutes_per_occurrence": { "low": 10, "mid": 20, "high": 45 },
         "automatable_pct": 40,
         "basis": "inferred",
-        "rationale": "Minutes go to choosing attendees and building rosters, registering named staff for a class or pilot, approving registrations and arranging shift timing. Most rounds name a few people and a class, so the work is modest; building balanced rosters for a class series sits at the high end. Registration lists and approval tracking suit a template; choosing people does not.",
-        "evidence_ids": ["batch-031:e13", "batch-061:e16", "batch-065:e20", "batch-017:e2", "batch-098:e15", "batch-067:e2", "batch-047:e18"]
+        "rationale": "Entering a few points or mappings in the facility system, checking the related contracts or nominations, and occasionally looking up location data for a meter list takes roughly a quarter to half an hour; larger lists take longer. Validation and data entry from a structured form could be largely tooled; approval and exceptions stay manual.",
+        "evidence_ids": ["batch-080:e0", "batch-071:e13", "batch-012:e11", "batch-061:e21", "batch-011:e32", "batch-026:e10", "batch-071:e12"]
       }
     },
     {
-      "key": "supply-change-notice",
-      "description": "The commercial and supply side tells logistics about changes to gas supply. A round starts with a notice or a forward: a new well coming on with its expected volume, a producer deal that has been continued, a plant processing election for the month, or where a producer's gas should flow. Logistics schedulers read it and adjust deals, nominations and flow paths to match, and the sender sometimes has to chase the producer for confirmation.",
+      "key": "office-move-coordination",
+      "description": "Staff or facilities announce a move and pass on packing and labeling instructions from the move packets, such as tagging chairs with wire tags. Individuals reply with timing preferences and how much they have to move, and coordinators ask facilities to move equipment such as flat screens on a set morning, chasing when the work has not happened.",
       "steps": [
-        "Supply or commercial staff learn of a change: a new well, a continued deal, a processing election or a new flow path.",
-        "They send or forward a notice to logistics with the producer, volumes and timing.",
-        "Schedulers update the deal, nomination or delivery point to match.",
-        "Where the producer must confirm, the sender follows up by phone and email.",
-        "Logistics leads forward the notice to the schedulers who handle the affected points."
+        "Facilities or an assistant circulates the move date and packing and labeling instructions.",
+        "Staff pack and label boxes, chairs and equipment.",
+        "Staff reply with timing preferences and the size of their move.",
+        "A coordinator asks facilities to move specific equipment at a set time.",
+        "The coordinator follows up when the move has not been carried out."
       ],
       "stalls": [
         {
-          "summary": "A requested change of flow waits on the producer, who has not answered repeated voice and email contacts.",
-          "evidence_ids": ["batch-033:s1", "batch-033:e3"]
+          "summary": "A requested equipment move was promised early in the week and still had not been done days later, so the coordinator had to chase facilities.",
+          "evidence_ids": ["batch-030:s0", "batch-030:e17"]
         }
       ],
       "contradictions": [],
       "automation": {
-        "approach": "A standard supply change notice with fixed fields: producer, well or meter, effective date and time, expected volume, processing election and delivery point. Logistics can then update deals and nominations straight from the notice, and an open item stays flagged until the producer confirms.",
-        "artifact_type": "email_template",
-        "rationale": "The notices are short free-text messages carrying the same handful of facts each time. A fixed template makes sure volume, timing and flow path arrive together, which cuts the lookup and follow-up schedulers do before entering the change."
+        "approach": "A move checklist sent with the packet listing labeling, packing, equipment and timing items, with a facilities ticket per equipment move that carries a promised date and triggers a reminder when it passes.",
+        "artifact_type": "checklist",
+        "rationale": "The work is packing and labeling by individuals plus scheduling with facilities; a checklist keeps instructions in one place, and tracked requests replace manual chasing."
       },
       "work_estimate": {
-        "minutes_per_occurrence": { "low": 5, "mid": 15, "high": 30 },
-        "automatable_pct": 30,
+        "minutes_per_occurrence": { "low": 10, "mid": 20, "high": 45 },
+        "automatable_pct": 10,
         "basis": "inferred",
-        "rationale": "Minutes go to entering the change in the deal and nomination records: continuing a deal, setting up a new well's volumes, applying the processing election or moving gas to a different line, plus checking it with the producer. Each notice covers a single change, so the work is short; an unresponsive producer pushes it toward the high end. Entry from a structured notice can be partly automated; confirming with producers cannot.",
-        "evidence_ids": ["batch-021:e17", "batch-020:e14", "batch-021:e19", "batch-033:e8", "batch-033:e3"]
+        "rationale": "Hands-on work is packing a few boxes, labeling chairs and equipment, and arranging a slot with facilities; the quotes show small moves, so a short block per round. Physical packing cannot be tooled; only scheduling and reminders could be.",
+        "evidence_ids": ["batch-030:e17", "batch-076:e12", "batch-098:e7"]
       }
     },
     {
-      "key": "system-enhancement-request",
-      "description": "Desk staff report problems with trading, scheduling and position tools and ask for enhancements. A round starts with an error, a wrong position or flow figure, missing curve data or a feed that is down, or with a customer or desk need for a new feature. IT answers with a cause, a workaround or a fix; enhancement lists are compiled and reviewed in requirements and use-case sessions; desks name testers for rebuilt or new releases; and IT announces outages, migrations and maintenance windows that desks must confirm or plan around.",
+      "key": "system-issue-resolution",
+      "description": "Users report errors in operations and trading systems: bridge-back errors on meters for a production month, bad numbers in POPS, failed scrapes, Unify database hangs, duplicate Sitara deals and position manager faults. Support or IT investigates and fixes them, while IT also announces outages, releases, URL and server changes and EOL rollouts, sometimes with steps users must take such as rebooting or mapping a drive. Users collect enhancement requests and confirm releases look right from the commercial side.",
       "steps": [
-        "A user hits an error, a wrong figure or missing data in a tool, or sees a need for a new feature.",
-        "The user reports it to IT or the application team, often copying the desk lead.",
-        "IT replies with a cause or workaround, such as an unmapped drive, or schedules a fix.",
-        "Enhancement requests are compiled into lists and discussed in requirements or use-case sessions.",
-        "Desks name testers who test rebuilt or new releases before they go live.",
-        "IT announces outages, migrations and maintenance windows and asks desks to confirm timing.",
-        "Desk leads forward fixes, new features and notices to their groups."
+        "A user notices an error, such as a bridge-back error, bad volumes or a failed import, and reports it with the meter, deal or date.",
+        "Support investigates the cause in the affected system.",
+        "Data is corrected, such as killing a duplicate Sitara deal or re-running a bridge.",
+        "IT announces outages, releases or configuration changes and any user action needed.",
+        "Users test or confirm the fix or release and report remaining issues.",
+        "Recurring problems are listed as enhancement requests for later releases."
       ],
       "stalls": [
         {
-          "summary": "Tools fail during daily work: errors launching a program, approving or importing finals, server errors at login and a data scrape down through a night shift.",
-          "evidence_ids": ["batch-004:s0", "batch-050:s0", "batch-088:s0", "batch-090:s2", "batch-087:e12"]
+          "summary": "Bridges between systems keep erroring out, leaving meters and months unbridged until someone corrects them by hand.",
+          "evidence_ids": ["batch-020:s0", "batch-001:e25", "batch-003:e20", "batch-001:e4"]
         },
         {
-          "summary": "Position and flow tools show wrong or incomplete figures, such as a short position, excessive flow or a missing curve, which staff must catch and chase.",
-          "evidence_ids": ["batch-059:e20", "batch-059:s4", "batch-039:s1", "batch-095:s0", "batch-029:s3"]
+          "summary": "System outages and bad data after restarts disrupt operations, such as wrong POPS numbers after TDS was taken down, a Unify database hang and a scrape down through a night shift.",
+          "evidence_ids": ["batch-029:s2", "batch-029:s3", "batch-062:s0", "batch-087:s0"]
         },
         {
-          "summary": "Planned outages and maintenance take scheduling and trading systems offline, and IT has to ask desks when a shutdown can happen.",
-          "evidence_ids": ["batch-055:s3", "batch-078:e12", "batch-062:e6", "batch-002:e0"]
+          "summary": "Fixes wait on release cycles: a missing curve in the latest version is held until a code freeze lifts, and access problems persist after a cluster is not reconfigured.",
+          "evidence_ids": ["batch-095:s0", "batch-095:e12", "batch-095:s2"]
         },
         {
-          "summary": "Enhancements linger: a position manager rework demonstrated months earlier is raised again, and a manager complains of a lack of accountability and urgency.",
-          "evidence_ids": ["batch-070:e17", "batch-010:s0"]
-        },
-        {
-          "summary": "Local setup problems, such as installing a tool on a desktop or an unmapped drive, cause errors that need IT help.",
-          "evidence_ids": ["batch-073:e18", "batch-092:e4"]
-        },
-        {
-          "summary": "Requirements and test sessions are rescheduled to fit around other meetings.",
-          "evidence_ids": ["batch-002:e23", "batch-091:e0"]
+          "summary": "Desktop tools fail in ways users must diagnose themselves, such as a browser error on import caused by an unmapped drive, and a position manager that is not working.",
+          "evidence_ids": ["batch-088:s0", "batch-092:e5", "batch-059:s4"]
         }
       ],
-      "contradictions": [
-        {
-          "summary": "The testing request asks each desk for a single designated tester, while a desk answers that two people will share the role.",
-          "evidence_ids": ["batch-070:e0", "batch-070:o0"]
-        }
-      ],
+      "contradictions": [],
       "automation": {
-        "approach": "A single issue and enhancement intake form (system, symptom, steps to reproduce, desk, impact) feeding a tracked list with owner and status, a published outage and maintenance calendar that desks confirm against, and a known-fixes checklist for common local errors such as drive mapping and browser paths.",
-        "artifact_type": "template",
-        "rationale": "Problems arrive as free-text emails and forwards, and enhancement lists are compiled by hand. A standard intake form gives IT what it needs to reproduce an issue the first time and lets owners and status be tracked, which addresses the lingering items and accountability complaints; diagnosing and testing stay with people."
+        "approach": "Automated monitoring of bridge jobs and scrapes that flags failed meters, deals and runs to the owning team, a single outage and release calendar with required user actions, and a known-issues guide for common desktop errors.",
+        "artifact_type": "sop",
+        "rationale": "Much of the hands-on time goes to spotting and correcting recurring bridge errors and diagnosing known desktop faults. A written procedure for triage and correction, backed by exception reports, shortens each round and routes issues to the right owner."
       },
       "work_estimate": {
-        "minutes_per_occurrence": { "low": 10, "mid": 30, "high": 90 },
-        "automatable_pct": 30,
+        "minutes_per_occurrence": { "low": 15, "mid": 30, "high": 90 },
+        "automatable_pct": 35,
         "basis": "inferred",
-        "rationale": "Minutes go to reproducing and documenting a failure, checking a wrong position or flow against other data, compiling enhancement lists and testing rebuilt releases. A simple outage notice needs little work, while a position discrepancy or a test phase takes much longer, hence the wide range. Intake, status tracking and outage notices suit a template; diagnosis and testing do not.",
-        "evidence_ids": ["batch-063:e5", "batch-011:e20", "batch-059:e20", "batch-039:e27", "batch-088:e26", "batch-082:e28", "batch-070:e0", "batch-012:e20", "batch-004:e0"]
+        "rationale": "A typical round is diagnosing one error, such as a bridge-back failure or bad volumes, checking the affected deal or meter and correcting it, or testing a release; roughly half an hour, longer for outages that require re-checking data. Detection and routing of bridge failures could be tooled; diagnosis and fixes stay manual.",
+        "evidence_ids": ["batch-001:e25", "batch-029:e11", "batch-034:e0", "batch-065:e12", "batch-029:e12", "batch-092:e5", "batch-097:e7", "batch-037:e0"]
       }
     }
   ]

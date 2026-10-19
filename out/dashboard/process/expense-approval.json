@@ -1,0 +1,1273 @@
+{
+  "key": "expense-approval",
+  "name": "Expense report approval",
+  "definition": "Submitting and approving employee expense reports and their status changes in the expense system.",
+  "rank": 45,
+  "tier": "B",
+  "row": {
+    "rank": 45,
+    "key": "expense-approval",
+    "name": "Expense report approval",
+    "tier": "B",
+    "tier_words": "in the total: 10 or more times over 3 or more months by 2 or more staff",
+    "in_total": true,
+    "origin": "taxonomy",
+    "total": {
+      "v": 1118,
+      "t": "$11",
+      "x": "$11.18",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "expense-approval"
+      }
+    },
+    "counted": {
+      "v": 441,
+      "t": "$4",
+      "x": "$4.41",
+      "k": "counted",
+      "d": {
+        "kind": "formula",
+        "key": "expense-approval"
+      }
+    },
+    "estimated": {
+      "v": 677,
+      "t": "$7",
+      "x": "$6.77",
+      "k": "estimated",
+      "d": {
+        "kind": "formula",
+        "key": "expense-approval"
+      }
+    },
+    "low": {
+      "v": 848,
+      "t": "$8",
+      "x": "$8.48",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "expense-approval"
+      }
+    },
+    "high": {
+      "v": 2474,
+      "t": "$25",
+      "x": "$24.74",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "expense-approval"
+      }
+    },
+    "today": {
+      "v": 2833,
+      "t": "$28",
+      "x": "$28.33",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "expense-approval"
+      }
+    },
+    "hours": {
+      "v": 13,
+      "t": "0.1",
+      "x": "0.13 hours",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "expense-approval"
+      }
+    },
+    "hours_today": {
+      "v": 33,
+      "t": "0.3",
+      "x": "0.33 hours",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "expense-approval"
+      }
+    },
+    "occurrences": {
+      "v": 11,
+      "t": "11 times",
+      "d": {
+        "kind": "occurrences",
+        "key": "expense-approval"
+      }
+    },
+    "shared_occurrences": 0,
+    "active_months": {
+      "v": 5,
+      "t": "5 active months",
+      "d": {
+        "kind": "months",
+        "key": "expense-approval"
+      }
+    },
+    "span_days": 140,
+    "first_utc": "2001-09-19T23:00:14Z",
+    "last_utc": "2002-02-06T01:42:58Z",
+    "messages": {
+      "v": 11,
+      "t": "11 emails",
+      "d": {
+        "kind": "occurrences",
+        "key": "expense-approval"
+      }
+    },
+    "threads": 11,
+    "mailboxes": [
+      {
+        "key": "williams-w3",
+        "n": 6,
+        "pct": 55
+      },
+      {
+        "key": "giron-d",
+        "n": 3,
+        "pct": 27
+      },
+      {
+        "key": "farmer-d",
+        "n": 1,
+        "pct": 9
+      },
+      {
+        "key": "lokay-m",
+        "n": 1,
+        "pct": 9
+      }
+    ],
+    "top_mailbox": "williams-w3",
+    "top_pct": 55,
+    "one_mailbox": false,
+    "seen_in": "Seen in: 4 mailboxes",
+    "staff": {
+      "v": 7,
+      "t": "7 staff",
+      "d": {
+        "kind": "participants",
+        "key": "expense-approval",
+        "filter": "staff"
+      }
+    },
+    "writers": {
+      "v": 3,
+      "t": "3",
+      "d": {
+        "kind": "participants",
+        "key": "expense-approval",
+        "filter": "writers"
+      }
+    },
+    "copied": {
+      "v": 4,
+      "t": "4",
+      "d": {
+        "kind": "participants",
+        "key": "expense-approval",
+        "filter": "copied"
+      }
+    },
+    "estimate": {
+      "low": 3,
+      "mid": 5,
+      "high": 15,
+      "automatable_pct": 40,
+      "basis_words": "worked out from the steps the emails show",
+      "source": "model"
+    },
+    "stall_label": "An approver away at a class cannot access the system, so reports waiting on that…",
+    "stall_summary": "An approver away at a class cannot access the system, so reports waiting on that approval stay in the queue.",
+    "stall_kind": "system_failure",
+    "stall_quotes": {
+      "v": 1,
+      "t": "1 stall quote",
+      "d": {
+        "kind": "stalls",
+        "key": "expense-approval"
+      }
+    },
+    "fix": "The expense system already sends the notifications; an approver checklist and automatic policy checks on receipts, limits and coding would leave the approver reviewing only…",
+    "document": null,
+    "status_line": "Not drafted: $11 a month is under the $85 drafting line",
+    "chasers": {
+      "v": 0,
+      "t": "0 chasers",
+      "d": {
+        "kind": "actions",
+        "key": "expense-approval",
+        "type": "chaser"
+      }
+    },
+    "stall_count": {
+      "v": 1,
+      "t": "1",
+      "d": {
+        "kind": "stalls",
+        "key": "expense-approval",
+        "stall_kind": "system_failure"
+      }
+    },
+    "loops": {
+      "v": 0,
+      "t": "0 open loops",
+      "d": {
+        "kind": "loops",
+        "key": "expense-approval"
+      }
+    },
+    "loops_recent": {
+      "v": 0,
+      "t": "0",
+      "d": {
+        "kind": "loops",
+        "key": "expense-approval",
+        "recent": true
+      }
+    },
+    "claims": {
+      "v": 0,
+      "t": "0 claims",
+      "d": {
+        "kind": "claims",
+        "key": "expense-approval"
+      }
+    },
+    "conflicts": {
+      "v": 0,
+      "t": "0 conflicts",
+      "d": {
+        "kind": "claims",
+        "key": "expense-approval"
+      }
+    },
+    "reply_gap": null,
+    "last_three_months_share": {
+      "v": 9,
+      "t": "9 of 11",
+      "d": {
+        "kind": "occurrences",
+        "key": "expense-approval"
+      }
+    },
+    "flags": [
+      "1 round without a usable date"
+    ]
+  },
+  "synthesis": {
+    "description": "Employees submit expense reports in the Concur expense system, which emails the approving manager that a report is ready for approval and later that its approval status has changed. The manager opens the report, reviews it and approves or rejects it. Company announcements push staff to file outstanding expenses through the XMS system and to clear reports waiting in approvers' inboxes.",
+    "steps": [
+      "An employee files an expense report in the expense system.",
+      "The system emails the approver that the report is ready for approval.",
+      "The approver opens the report and checks the items and receipts.",
+      "The approver approves or rejects it, and the system emails the status change."
+    ],
+    "approach": "The expense system already sends the notifications; an approver checklist and automatic policy checks on receipts, limits and coding would leave the approver reviewing only flagged items, and a delegate approver could cover absences.",
+    "rationale": "The work is a short review against policy each time; a checklist makes it consistent, and naming a delegate addresses the one stall the mail shows.",
+    "artifact_type": "checklist"
+  },
+  "formula": {
+    "counted": "11 occ over 140 d = 4.60 mo; email: 0 short x2 + 2 medium x6 + 1 long x15 + 0 fwd x2 + 0 chaser x3 + 10 read x1 = 37.00 min = 8.04 min/mo; automatable 60/40/30/80/100/50% = 14.30 min = 3.11 min/mo",
+    "estimated": "11.00 occ x 5 min/occ (estimate, mid of 3-15, basis inferred, 5 quotes from 5 occurrences) = 55.00 min = 11.96 min/mo; automatable 40% (estimate) = 4.78 min/mo; at the low end 3 min/occ = $8.48/mo, at the high end 15 min/occ = $24.74/mo (the row's automatable total)",
+    "total": "today 20.00 min/mo = 0.33 h/mo = $28.33/mo (email 8.04 min/mo = $11.39 + work 11.96 min/mo = $16.94); automatable 7.89 min/mo = 0.13 h/mo = $11.18/mo (counted email 3.11 min/mo = $4.41 + estimated work 4.78 min/mo = $6.77)"
+  },
+  "window": {
+    "first_utc": "2001-09-19T23:00:14Z",
+    "last_utc": "2002-02-06T01:42:58Z",
+    "span_days": 140,
+    "months_x100": 460,
+    "active_months": 5,
+    "undated_occurrences": 1
+  },
+  "months": 460,
+  "occurrence_share_x100": 1100,
+  "actions": {
+    "priced": {
+      "authored_short": 0,
+      "authored_medium": 2,
+      "authored_long": 1,
+      "forward": 0,
+      "chaser": 0,
+      "read": 10
+    },
+    "unpriced": {
+      "authored_short": 0,
+      "authored_medium": 8,
+      "authored_long": 0,
+      "forward": 0,
+      "chaser": 0,
+      "read": 0
+    }
+  },
+  "action_table": [
+    {
+      "type": "authored_short",
+      "words": "short emails written",
+      "count": {
+        "v": 0,
+        "t": "0",
+        "d": {
+          "kind": "actions",
+          "key": "expense-approval",
+          "type": "authored_short"
+        }
+      },
+      "minutes_each": 2,
+      "minutes": "0.00",
+      "automatable_pct": 60,
+      "automatable_minutes": "0.00"
+    },
+    {
+      "type": "authored_medium",
+      "words": "medium emails written",
+      "count": {
+        "v": 2,
+        "t": "2",
+        "d": {
+          "kind": "actions",
+          "key": "expense-approval",
+          "type": "authored_medium"
+        }
+      },
+      "minutes_each": 6,
+      "minutes": "12.00",
+      "automatable_pct": 40,
+      "automatable_minutes": "4.80"
+    },
+    {
+      "type": "authored_long",
+      "words": "long emails written",
+      "count": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "actions",
+          "key": "expense-approval",
+          "type": "authored_long"
+        }
+      },
+      "minutes_each": 15,
+      "minutes": "15.00",
+      "automatable_pct": 30,
+      "automatable_minutes": "4.50"
+    },
+    {
+      "type": "forward",
+      "words": "forwards",
+      "count": {
+        "v": 0,
+        "t": "0",
+        "d": {
+          "kind": "actions",
+          "key": "expense-approval",
+          "type": "forward"
+        }
+      },
+      "minutes_each": 2,
+      "minutes": "0.00",
+      "automatable_pct": 80,
+      "automatable_minutes": "0.00"
+    },
+    {
+      "type": "chaser",
+      "words": "chasers",
+      "count": {
+        "v": 0,
+        "t": "0",
+        "d": {
+          "kind": "actions",
+          "key": "expense-approval",
+          "type": "chaser"
+        }
+      },
+      "minutes_each": 3,
+      "minutes": "0.00",
+      "automatable_pct": 100,
+      "automatable_minutes": "0.00"
+    },
+    {
+      "type": "read",
+      "words": "reads, one per addressee",
+      "count": {
+        "v": 10,
+        "t": "10",
+        "d": {
+          "kind": "actions",
+          "key": "expense-approval",
+          "type": "read"
+        }
+      },
+      "minutes_each": 1,
+      "minutes": "10.00",
+      "automatable_pct": 50,
+      "automatable_minutes": "5.00"
+    }
+  ],
+  "email": {
+    "today_x100": 3700,
+    "automatable_x100": 1430,
+    "per_month_today_x100": 804,
+    "per_month_automatable_x100": 311
+  },
+  "work": {
+    "per_month_today_x100": 1196,
+    "per_month_automatable_x100": 478,
+    "low_cents": 407,
+    "high_cents": 2033
+  },
+  "estimate_quotes": [
+    {
+      "id": "batch-092:e0",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/inbox/63.",
+      "start": 519,
+      "end": 570,
+      "raw_text": "The following expense report is ready for approval:",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "enron_update@concureworkplace.com",
+      "sender_label": "enron_update@concureworkplace.com",
+      "date_utc": "2002-01-31T22:05:03Z"
+    },
+    {
+      "id": "batch-067:e0",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/57.",
+      "start": 607,
+      "end": 658,
+      "raw_text": "The following expense report is ready for approval:",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "enron_update@concureworkplace.com",
+      "sender_label": "enron_update@concureworkplace.com",
+      "date_utc": "2001-09-19T23:00:14Z"
+    },
+    {
+      "id": "batch-076:e13",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/91.",
+      "start": 621,
+      "end": 699,
+      "raw_text": "I am at a class today and need to approve these expense reports in the system.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-11-14T18:58:43Z"
+    },
+    {
+      "id": "batch-081:e10",
+      "kind": "evidence",
+      "message_id": "corpus/giron-d/inbox/283.",
+      "start": 695,
+      "end": 791,
+      "raw_text": "Please either process and approve, or reject these outstanding business expenses in your inboxes",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "no.address@enron.com",
+      "sender_label": "Enron General Announcements@ENRON",
+      "date_utc": "2001-12-03T02:51:21Z"
+    },
+    {
+      "id": "batch-098:e26",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/inbox/50.",
+      "start": 573,
+      "end": 629,
+      "raw_text": "The Approval status has changed on the following report:",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "enron_update@concureworkplace.com",
+      "sender_label": "enron_update@concureworkplace.com",
+      "date_utc": null
+    }
+  ],
+  "estimate_check": {
+    "occurrences_cited": 5,
+    "senders_cited": 3
+  },
+  "monthly": [
+    {
+      "month": "2001-09",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "expense-approval",
+          "month": "2001-09"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-e825f546db7b-o1"
+      ]
+    },
+    {
+      "month": "2001-11",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "expense-approval",
+          "month": "2001-11"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-ae62b2475664-o1"
+      ]
+    },
+    {
+      "month": "2001-12",
+      "occurrences": {
+        "v": 2,
+        "t": "2",
+        "d": {
+          "kind": "occurrences",
+          "key": "expense-approval",
+          "month": "2001-12"
+        }
+      },
+      "messages": 2,
+      "ids": [
+        "t-075d3e8bfda6-o1",
+        "t-5af34d9f5976-o1"
+      ]
+    },
+    {
+      "month": "2002-01",
+      "occurrences": {
+        "v": 3,
+        "t": "3",
+        "d": {
+          "kind": "occurrences",
+          "key": "expense-approval",
+          "month": "2002-01"
+        }
+      },
+      "messages": 3,
+      "ids": [
+        "t-0a18ae7efd28-o1",
+        "t-3d4cd34a72b6-o1",
+        "t-e6299cfbd4e1-o1"
+      ]
+    },
+    {
+      "month": "2002-02",
+      "occurrences": {
+        "v": 3,
+        "t": "3",
+        "d": {
+          "kind": "occurrences",
+          "key": "expense-approval",
+          "month": "2002-02"
+        }
+      },
+      "messages": 3,
+      "ids": [
+        "t-640224b26d92-o1",
+        "t-85c12060648f-o1",
+        "t-a28c349cad74-o1"
+      ]
+    }
+  ],
+  "occurrences": [
+    {
+      "id": "t-075d3e8bfda6-o1",
+      "message_ids": [
+        "corpus/giron-d/inbox/172."
+      ],
+      "date_utc": "2001-12-17T14:33:59Z"
+    },
+    {
+      "id": "t-0a18ae7efd28-o1",
+      "message_ids": [
+        "corpus/williams-w3/inbox/63."
+      ],
+      "date_utc": "2002-01-31T22:05:03Z"
+    },
+    {
+      "id": "t-19587ac31f3f-o1",
+      "message_ids": [
+        "corpus/lokay-m/inbox/50."
+      ],
+      "date_utc": null
+    },
+    {
+      "id": "t-3d4cd34a72b6-o1",
+      "message_ids": [
+        "corpus/williams-w3/inbox/66."
+      ],
+      "date_utc": "2002-01-31T21:05:02Z"
+    },
+    {
+      "id": "t-5af34d9f5976-o1",
+      "message_ids": [
+        "corpus/giron-d/inbox/283."
+      ],
+      "date_utc": "2001-12-03T02:51:21Z"
+    },
+    {
+      "id": "t-640224b26d92-o1",
+      "message_ids": [
+        "corpus/williams-w3/inbox/55."
+      ],
+      "date_utc": "2002-02-01T21:07:56Z"
+    },
+    {
+      "id": "t-85c12060648f-o1",
+      "message_ids": [
+        "corpus/giron-d/inbox/15."
+      ],
+      "date_utc": "2002-02-05T17:06:41Z"
+    },
+    {
+      "id": "t-a28c349cad74-o1",
+      "message_ids": [
+        "corpus/williams-w3/inbox/28."
+      ],
+      "date_utc": "2002-02-06T01:42:58Z"
+    },
+    {
+      "id": "t-ae62b2475664-o1",
+      "message_ids": [
+        "corpus/williams-w3/sent_items/91."
+      ],
+      "date_utc": "2001-11-14T18:58:43Z"
+    },
+    {
+      "id": "t-e6299cfbd4e1-o1",
+      "message_ids": [
+        "corpus/williams-w3/inbox/96."
+      ],
+      "date_utc": "2002-01-26T00:27:06Z"
+    },
+    {
+      "id": "t-e825f546db7b-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/57."
+      ],
+      "date_utc": "2001-09-19T23:00:14Z"
+    }
+  ],
+  "undated_occurrences": [
+    "t-19587ac31f3f-o1"
+  ],
+  "action_sources": [
+    {
+      "message_id": "corpus/farmer-d/logistics/57.",
+      "type": "authored_medium",
+      "person": "enron_update@concureworkplace.com",
+      "address": "enron_update@concureworkplace.com",
+      "priced": false,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/57.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "dfarmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/15.",
+      "type": "authored_medium",
+      "person": "georgeanne.hodges@enron.com",
+      "address": "georgeanne.hodges@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/15.",
+      "type": "read",
+      "person": "energy.dl-ga-all_ubsw@enron.com",
+      "address": "energy.dl-ga-all_ubsw@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/172.",
+      "type": "authored_long",
+      "person": "announcements.enron@enron.com",
+      "address": "announcements.enron@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/172.",
+      "type": "read",
+      "person": "dl-ga-all_enron_worldwide1@enron.com",
+      "address": "dl-ga-all_enron_worldwide1@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/283.",
+      "type": "authored_medium",
+      "person": "no.address@enron.com",
+      "address": "no.address@enron.com",
+      "priced": false,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/50.",
+      "type": "authored_medium",
+      "person": "enron_update@concureworkplace.com",
+      "address": "enron_update@concureworkplace.com",
+      "priced": false,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/50.",
+      "type": "read",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/inbox/28.",
+      "type": "authored_medium",
+      "person": "enron_update@concureworkplace.com",
+      "address": "enron_update@concureworkplace.com",
+      "priced": false,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/inbox/28.",
+      "type": "read",
+      "person": "bwillia5@enron.com",
+      "address": "bwillia5@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/inbox/55.",
+      "type": "authored_medium",
+      "person": "enron_update@concureworkplace.com",
+      "address": "enron_update@concureworkplace.com",
+      "priced": false,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/inbox/55.",
+      "type": "read",
+      "person": "bwillia5@enron.com",
+      "address": "bwillia5@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/inbox/63.",
+      "type": "authored_medium",
+      "person": "enron_update@concureworkplace.com",
+      "address": "enron_update@concureworkplace.com",
+      "priced": false,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/inbox/63.",
+      "type": "read",
+      "person": "bwillia5@enron.com",
+      "address": "bwillia5@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/inbox/66.",
+      "type": "authored_medium",
+      "person": "enron_update@concureworkplace.com",
+      "address": "enron_update@concureworkplace.com",
+      "priced": false,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/inbox/66.",
+      "type": "read",
+      "person": "bwillia5@enron.com",
+      "address": "bwillia5@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/inbox/96.",
+      "type": "authored_medium",
+      "person": "enron_update@concureworkplace.com",
+      "address": "enron_update@concureworkplace.com",
+      "priced": false,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/inbox/96.",
+      "type": "read",
+      "person": "bwillia5@enron.com",
+      "address": "bwillia5@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/91.",
+      "type": "authored_medium",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/91.",
+      "type": "read",
+      "person": "jill.chatterton@enron.com",
+      "address": "jill.chatterton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    }
+  ],
+  "participants": [
+    {
+      "email": "enron_update@concureworkplace.com",
+      "name": null,
+      "label": "enron_update@concureworkplace.com",
+      "kind": "system",
+      "addresses": [
+        "enron_update@concureworkplace.com"
+      ],
+      "staff": false,
+      "authored": 7,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "bwillia5@enron.com",
+      "name": null,
+      "label": "bwillia5@enron.com",
+      "kind": "person",
+      "addresses": [
+        "bwillia5@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 5,
+      "wrote": false
+    },
+    {
+      "email": "announcements.enron@enron.com",
+      "name": "Enron General Announcements",
+      "label": "Enron General Announcements",
+      "kind": "person",
+      "addresses": [
+        "announcements.enron@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "bill.williams@enron.com",
+      "name": "Williams III, Bill",
+      "label": "Bill Williams III",
+      "kind": "person",
+      "addresses": [
+        "bill.williams@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "daren.farmer@enron.com",
+      "name": "Daren J Farmer",
+      "label": "Daren J Farmer",
+      "kind": "person",
+      "addresses": [
+        "dfarmer@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "dl-ga-all_enron_worldwide1@enron.com",
+      "name": null,
+      "label": "dl-ga-all_enron_worldwide1@enron.com",
+      "kind": "list",
+      "addresses": [
+        "dl-ga-all_enron_worldwide1@enron.com"
+      ],
+      "staff": false,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "energy.dl-ga-all_ubsw@enron.com",
+      "name": null,
+      "label": "energy.dl-ga-all_ubsw@enron.com",
+      "kind": "list",
+      "addresses": [
+        "energy.dl-ga-all_ubsw@enron.com"
+      ],
+      "staff": false,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "georgeanne.hodges@enron.com",
+      "name": "Hodges, Georgeanne",
+      "label": "Georgeanne Hodges",
+      "kind": "person",
+      "addresses": [
+        "georgeanne.hodges@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "jill.chatterton@enron.com",
+      "name": "Chatterton, Jill",
+      "label": "Jill Chatterton",
+      "kind": "person",
+      "addresses": [
+        "jill.chatterton@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "michelle.lokay@enron.com",
+      "name": "Lokay, Michelle",
+      "label": "Michelle Lokay",
+      "kind": "person",
+      "addresses": [
+        "michelle.lokay@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "no.address@enron.com",
+      "name": "Enron General Announcements@ENRON",
+      "label": "Enron General Announcements@ENRON",
+      "kind": "system",
+      "addresses": [
+        "no.address@enron.com"
+      ],
+      "staff": false,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    }
+  ],
+  "stalls_by_kind": [
+    {
+      "kind": "system_failure",
+      "words": "1 system failure",
+      "count": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "stalls",
+          "key": "expense-approval",
+          "stall_kind": "system_failure"
+        }
+      }
+    }
+  ],
+  "stall_groups": [
+    {
+      "summary": "An approver away at a class cannot access the system, so reports waiting on that approval stay in the queue.",
+      "quotes": [
+        {
+          "id": "batch-076:s1",
+          "kind": "stall",
+          "message_id": "corpus/williams-w3/sent_items/91.",
+          "start": 700,
+          "end": 735,
+          "raw_text": "However,I cannot access the system.",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "bill.williams@enron.com",
+          "sender_label": "Bill Williams III",
+          "date_utc": "2001-11-14T18:58:43Z",
+          "stall_kind": "system_failure"
+        },
+        {
+          "id": "batch-076:e13",
+          "kind": "evidence",
+          "message_id": "corpus/williams-w3/sent_items/91.",
+          "start": 621,
+          "end": 699,
+          "raw_text": "I am at a class today and need to approve these expense reports in the system.",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "bill.williams@enron.com",
+          "sender_label": "Bill Williams III",
+          "date_utc": "2001-11-14T18:58:43Z"
+        }
+      ]
+    },
+    {
+      "summary": "Reports pile up unprocessed in approvers' inboxes until a company-wide notice asks them to approve or reject them.",
+      "quotes": [
+        {
+          "id": "batch-081:e10",
+          "kind": "evidence",
+          "message_id": "corpus/giron-d/inbox/283.",
+          "start": 695,
+          "end": 791,
+          "raw_text": "Please either process and approve, or reject these outstanding business expenses in your inboxes",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "no.address@enron.com",
+          "sender_label": "Enron General Announcements@ENRON",
+          "date_utc": "2001-12-03T02:51:21Z"
+        },
+        {
+          "id": "batch-094:e12",
+          "kind": "evidence",
+          "message_id": "corpus/giron-d/inbox/15.",
+          "start": 639,
+          "end": 757,
+          "raw_text": "please have all outstanding employee expenses in your possession filed through Enron's XMS system as soon as possible.",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "georgeanne.hodges@enron.com",
+          "sender_label": "Georgeanne Hodges",
+          "date_utc": "2002-02-05T17:06:41Z"
+        }
+      ]
+    }
+  ],
+  "stall_quotes": [
+    {
+      "id": "batch-076:s1",
+      "kind": "stall",
+      "message_id": "corpus/williams-w3/sent_items/91.",
+      "start": 700,
+      "end": 735,
+      "raw_text": "However,I cannot access the system.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-11-14T18:58:43Z",
+      "stall_kind": "system_failure"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "batch-067:e0",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/57.",
+      "start": 607,
+      "end": 658,
+      "raw_text": "The following expense report is ready for approval:",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "enron_update@concureworkplace.com",
+      "sender_label": "enron_update@concureworkplace.com",
+      "date_utc": "2001-09-19T23:00:14Z"
+    },
+    {
+      "id": "batch-076:e13",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/91.",
+      "start": 621,
+      "end": 699,
+      "raw_text": "I am at a class today and need to approve these expense reports in the system.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-11-14T18:58:43Z"
+    },
+    {
+      "id": "batch-081:e10",
+      "kind": "evidence",
+      "message_id": "corpus/giron-d/inbox/283.",
+      "start": 695,
+      "end": 791,
+      "raw_text": "Please either process and approve, or reject these outstanding business expenses in your inboxes",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "no.address@enron.com",
+      "sender_label": "Enron General Announcements@ENRON",
+      "date_utc": "2001-12-03T02:51:21Z"
+    },
+    {
+      "id": "batch-083:e6",
+      "kind": "evidence",
+      "message_id": "corpus/giron-d/inbox/172.",
+      "start": 994,
+      "end": 1047,
+      "raw_text": "Expenses will be reimbursed promptly upon submission.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "announcements.enron@enron.com",
+      "sender_label": "Enron General Announcements",
+      "date_utc": "2001-12-17T14:33:59Z"
+    },
+    {
+      "id": "batch-088:e24",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/inbox/96.",
+      "start": 518,
+      "end": 569,
+      "raw_text": "The following expense report is ready for approval:",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "enron_update@concureworkplace.com",
+      "sender_label": "enron_update@concureworkplace.com",
+      "date_utc": "2002-01-26T00:27:06Z"
+    },
+    {
+      "id": "batch-091:e25",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/inbox/66.",
+      "start": 520,
+      "end": 571,
+      "raw_text": "The following expense report is ready for approval:",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "enron_update@concureworkplace.com",
+      "sender_label": "enron_update@concureworkplace.com",
+      "date_utc": "2002-01-31T21:05:02Z"
+    },
+    {
+      "id": "batch-092:e0",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/inbox/63.",
+      "start": 519,
+      "end": 570,
+      "raw_text": "The following expense report is ready for approval:",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "enron_update@concureworkplace.com",
+      "sender_label": "enron_update@concureworkplace.com",
+      "date_utc": "2002-01-31T22:05:03Z"
+    },
+    {
+      "id": "batch-093:e2",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/inbox/55.",
+      "start": 516,
+      "end": 567,
+      "raw_text": "The following expense report is ready for approval:",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "enron_update@concureworkplace.com",
+      "sender_label": "enron_update@concureworkplace.com",
+      "date_utc": "2002-02-01T21:07:56Z"
+    },
+    {
+      "id": "batch-094:e12",
+      "kind": "evidence",
+      "message_id": "corpus/giron-d/inbox/15.",
+      "start": 639,
+      "end": 757,
+      "raw_text": "please have all outstanding employee expenses in your possession filed through Enron's XMS system as soon as possible.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "georgeanne.hodges@enron.com",
+      "sender_label": "Georgeanne Hodges",
+      "date_utc": "2002-02-05T17:06:41Z"
+    },
+    {
+      "id": "batch-095:e3",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/inbox/28.",
+      "start": 517,
+      "end": 568,
+      "raw_text": "The following expense report is ready for approval:",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "enron_update@concureworkplace.com",
+      "sender_label": "enron_update@concureworkplace.com",
+      "date_utc": "2002-02-06T01:42:58Z"
+    },
+    {
+      "id": "batch-098:e26",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/inbox/50.",
+      "start": 573,
+      "end": 629,
+      "raw_text": "The Approval status has changed on the following report:",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "enron_update@concureworkplace.com",
+      "sender_label": "enron_update@concureworkplace.com",
+      "date_utc": null
+    }
+  ],
+  "chasers": [],
+  "reply_gaps": [],
+  "reply_gap_n": 0,
+  "median_reply_gap_h": null,
+  "claims": [],
+  "conflicts": [],
+  "contradictions": [],
+  "contradictions_dropped": 0,
+  "loops": [],
+  "document": null
+}

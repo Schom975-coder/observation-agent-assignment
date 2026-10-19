@@ -4,7 +4,9 @@
   "messages": [
     {
       "id": "corpus/williams-w3/inbox/75.",
-      "processes": [],
+      "processes": [
+        "new:market-news-circulation"
+      ],
       "role": "automated",
       "stall": null,
       "ownership_claim": null
@@ -12,7 +14,7 @@
     {
       "id": "corpus/lokay-m/sent_items/21.",
       "processes": [
-        "system-enhancement-request"
+        "system-issue-resolution"
       ],
       "role": "response",
       "stall": null,
@@ -38,22 +40,26 @@
     },
     {
       "id": "corpus/williams-w3/inbox/72.",
-      "processes": [],
-      "role": "noise",
+      "processes": [
+        "new:market-news-circulation"
+      ],
+      "role": "fyi",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/sent_items/9.",
-      "processes": [],
-      "role": "noise",
+      "processes": [
+        "new:market-news-circulation"
+      ],
+      "role": "forward",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/inbox/45.",
       "processes": [
-        "user-access-setup"
+        "system-access-request"
       ],
       "role": "request",
       "stall": null,
@@ -62,7 +68,7 @@
     {
       "id": "corpus/williams-w3/sent_items/8.",
       "processes": [
-        "new:desk-record-keeping"
+        "real-time-power-scheduling"
       ],
       "role": "request",
       "stall": null,
@@ -71,7 +77,7 @@
     {
       "id": "corpus/williams-w3/inbox/71.",
       "processes": [
-        "user-access-setup"
+        "system-access-request"
       ],
       "role": "request",
       "stall": null,
@@ -80,7 +86,7 @@
     {
       "id": "corpus/williams-w3/inbox/70.",
       "processes": [
-        "user-access-setup"
+        "system-access-request"
       ],
       "role": "response",
       "stall": null,
@@ -96,9 +102,9 @@
     {
       "id": "corpus/williams-w3/inbox/68.",
       "processes": [
-        "market-rule-change-review"
+        "regulatory-notice-review"
       ],
-      "role": "fyi",
+      "role": "automated",
       "stall": null,
       "ownership_claim": null
     },
@@ -114,7 +120,7 @@
     {
       "id": "corpus/giron-d/inbox/43.",
       "processes": [
-        "new:canadian-product-book-mapping"
+        "deal-book-transfer"
       ],
       "role": "forward",
       "stall": null,
@@ -141,7 +147,7 @@
     {
       "id": "corpus/giron-d/inbox/40.",
       "processes": [
-        "pnl-position-reporting"
+        "pnl-reporting"
       ],
       "role": "fyi",
       "stall": null,
@@ -159,7 +165,7 @@
     {
       "id": "corpus/lokay-m/sent_items/76.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "imbalance-resolution"
       ],
       "role": "response",
       "stall": null,
@@ -168,7 +174,7 @@
     {
       "id": "corpus/giron-d/inbox/38.",
       "processes": [
-        "user-access-setup"
+        "system-access-request"
       ],
       "role": "automated",
       "stall": null,
@@ -179,17 +185,17 @@
       "processes": [
         "deal-book-transfer"
       ],
-      "role": "request",
+      "role": "fyi",
       "stall": null,
       "ownership_claim": {
         "person": "Greg Couch",
-        "quote": "Greg Couch is going to be leading the estate risk effort and Pat Ryder a="
+        "quote": "Greg Couch is going to be leading the estate risk effort"
       }
     },
     {
       "id": "corpus/giron-d/inbox/36.",
       "processes": [
-        "pnl-position-reporting"
+        "pnl-reporting"
       ],
       "role": "request",
       "stall": null,
@@ -198,7 +204,7 @@
     {
       "id": "corpus/williams-w3/sent_items/7.",
       "processes": [
-        "new:distribution-list-update"
+        "new:daily-report-distribution-list"
       ],
       "role": "request",
       "stall": null,
@@ -206,15 +212,17 @@
     },
     {
       "id": "corpus/williams-w3/sent_items/6.",
-      "processes": [],
-      "role": "noise",
+      "processes": [
+        "new:daily-report-distribution-list"
+      ],
+      "role": "forward",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/inbox/67.",
       "processes": [
-        "new:distribution-list-update"
+        "new:daily-report-distribution-list"
       ],
       "role": "response",
       "stall": null,
@@ -223,7 +231,7 @@
     {
       "id": "corpus/williams-w3/sent_items/5.",
       "processes": [
-        "new:distribution-list-update"
+        "new:daily-report-distribution-list"
       ],
       "role": "response",
       "stall": null,
@@ -232,7 +240,7 @@
     {
       "id": "corpus/williams-w3/inbox/66.",
       "processes": [
-        "expense-report-approval"
+        "expense-approval"
       ],
       "role": "automated",
       "stall": null,
@@ -240,15 +248,19 @@
     },
     {
       "id": "corpus/williams-w3/inbox/141.",
-      "processes": [],
-      "role": "noise",
+      "processes": [
+        "new:benefits-paperwork"
+      ],
+      "role": "response",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/inbox/65.",
-      "processes": [],
-      "role": "noise",
+      "processes": [
+        "new:ercot-desk-opportunity"
+      ],
+      "role": "fyi",
       "stall": null,
       "ownership_claim": null
     }
@@ -256,11 +268,25 @@
   "evidence": [
     {
       "evidence_id": "batch-091:e0",
-      "process": "system-enhancement-request",
+      "process": "new:market-news-circulation",
+      "message_id": "corpus/williams-w3/inbox/75.",
+      "field": "body",
+      "quote": "Western Pre-Scheduled Firm Electricity Prices($/MWh)",
+      "note": "Daily energy market report forwarded to the desk.",
+      "match": "exact",
+      "start": 1789,
+      "end": 1841,
+      "segment": "own",
+      "raw_text": "Western Pre-Scheduled Firm Electricity Prices($/MWh)",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-091:e1",
+      "process": "system-issue-resolution",
       "message_id": "corpus/lokay-m/sent_items/21.",
       "field": "body",
       "quote": "Sounds good, but TW has a weekly gas control meeting every Friday at 3:00.",
-      "note": "Replies about scheduling the CAS system requirements meeting.",
+      "note": "Replies on scheduling a meeting about the CAS system problems.",
       "match": "exact",
       "start": 607,
       "end": 681,
@@ -269,12 +295,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-091:e1",
+      "evidence_id": "batch-091:e2",
       "process": "deal-book-transfer",
       "message_id": "corpus/giron-d/inbox/46.",
       "field": "body",
       "quote": "Attached are some additional phy gas deals that need to be moved over to the bankruptcy books.",
-      "note": "Sends additional deals to move to bankruptcy books.",
+      "note": "Sends deals to move to bankruptcy books.",
       "match": "exact",
       "start": 1258,
       "end": 1352,
@@ -283,12 +309,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-091:e2",
+      "evidence_id": "batch-091:e3",
       "process": "deal-book-transfer",
       "message_id": "corpus/giron-d/inbox/42.",
       "field": "body",
       "quote": "can you tell me why EH6453.2 is not on the list?",
-      "note": "Questions a deal missing from the bankruptcy book move list.",
+      "note": "Questions a missing deal on the bankruptcy move list.",
       "match": "exact",
       "start": 1262,
       "end": 1310,
@@ -297,12 +323,40 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-091:e3",
-      "process": "user-access-setup",
+      "evidence_id": "batch-091:e4",
+      "process": "new:market-news-circulation",
+      "message_id": "corpus/williams-w3/inbox/72.",
+      "field": "body",
+      "quote": "This article has good quotes reponding to McCullough's claim that Enron manipluated forward markets.",
+      "note": "Circulates a news article to the desk.",
+      "match": "exact",
+      "start": 3562,
+      "end": 3662,
+      "segment": "own",
+      "raw_text": "This article has good quotes reponding to McCullough's claim that Enron manipluated forward markets.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-091:e5",
+      "process": "new:market-news-circulation",
+      "message_id": "corpus/williams-w3/sent_items/9.",
+      "field": "body",
+      "quote": "This article has good quotes reponding to McCullough's claim that Enron manipluated forward markets.",
+      "note": "Forwards the circulated article.",
+      "match": "exact",
+      "start": 1332,
+      "end": 1432,
+      "segment": "quoted",
+      "raw_text": "This article has good quotes reponding to McCullough's claim that Enron manipluated forward markets.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-091:e6",
+      "process": "system-access-request",
       "message_id": "corpus/giron-d/inbox/45.",
       "field": "body",
       "quote": "Does anyone have the need to retain a estate id for support estate application during the last week?",
-      "note": "Asks who needs to keep an account ID during the transfer.",
+      "note": "Asks who needs to keep system IDs.",
       "match": "exact",
       "start": 1230,
       "end": 1330,
@@ -311,54 +365,54 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-091:e4",
-      "process": "new:desk-record-keeping",
+      "evidence_id": "batch-091:e7",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/8.",
       "field": "body",
-      "quote": "Please put all information from the previous day (ie printed dispatch, EPE preschedulng sheet) into the appropriate folder on Kate Symes' old desk.",
-      "note": "Instructs the desk to file the prior day's schedule records.",
+      "quote": "Please put all information from the previous day (ie printed dispatch, EPE preschedulng sheet) into the appropriate folder",
+      "note": "Asks the real-time group to file prior-day schedules and dispatch sheets.",
       "match": "exact",
       "start": 1213,
-      "end": 1360,
+      "end": 1335,
       "segment": "own",
-      "raw_text": "Please put all information from the previous day (ie printed dispatch, EPE preschedulng sheet) into the appropriate folder on Kate Symes' old desk.",
+      "raw_text": "Please put all information from the previous day (ie printed dispatch, EPE preschedulng sheet) into the appropriate folder",
       "reason": null
     },
     {
-      "evidence_id": "batch-091:e5",
-      "process": "user-access-setup",
+      "evidence_id": "batch-091:e8",
+      "process": "system-access-request",
       "message_id": "corpus/williams-w3/inbox/71.",
       "field": "body",
-      "quote": "We are in the process of confirming that all traders are set up correctly and ready to trade when the system goes live.",
-      "note": "Confirms traders are set up in Stack Manager.",
-      "match": "exact",
-      "start": 1019,
-      "end": 1138,
-      "segment": "own",
-      "raw_text": "We are in the process of confirming that all traders are set up correctly and ready to trade when the system goes live.",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-091:e6",
-      "process": "user-access-setup",
-      "message_id": "corpus/williams-w3/inbox/70.",
-      "field": "body",
       "quote": "We need to make sure that your Stack Managers are accessing the correct database.",
-      "note": "Reply to the trader set-up confirmation; quoted request.",
+      "note": "Confirms traders are set up correctly.",
       "match": "exact",
-      "start": 1450,
-      "end": 1531,
-      "segment": "quoted",
+      "start": 1141,
+      "end": 1222,
+      "segment": "own",
       "raw_text": "We need to make sure that your Stack Managers are accessing the correct database.",
       "reason": null
     },
     {
-      "evidence_id": "batch-091:e7",
-      "process": "market-rule-change-review",
+      "evidence_id": "batch-091:e9",
+      "process": "system-access-request",
+      "message_id": "corpus/williams-w3/inbox/70.",
+      "field": "body",
+      "quote": "We are in the process of confirming that all traders are set up correctly and ready to trade when the system goes live.",
+      "note": "Reply to the trader set-up confirmation request.",
+      "match": "exact",
+      "start": 1328,
+      "end": 1447,
+      "segment": "quoted",
+      "raw_text": "We are in the process of confirming that all traders are set up correctly and ready to trade when the system goes live.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-091:e10",
+      "process": "regulatory-notice-review",
       "message_id": "corpus/williams-w3/inbox/68.",
       "field": "body",
       "quote": "The ISO filed its Grid Management Charge (GMC) rate filing with the FERC on",
-      "note": "ISO market notice about a FERC-reviewed rate change.",
+      "note": "CAISO market notice on a rate filing.",
       "match": "exact",
       "start": 802,
       "end": 877,
@@ -367,26 +421,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-091:e8",
+      "evidence_id": "batch-091:e11",
       "process": "deal-book-transfer",
       "message_id": "corpus/giron-d/inbox/44.",
       "field": "body",
-      "quote": "Instead of book counterparty FT-CAND-TERMIN, move any deals with the FT-TERMIN-GD book to the bankruptcy book from NG-Price.",
+      "quote": "move any deals with the FT-TERMIN-GD book to the bankruptcy book from NG-Price",
       "note": "Requests moving deals to the bankruptcy book.",
       "match": "exact",
-      "start": 1012,
-      "end": 1136,
+      "start": 1057,
+      "end": 1135,
       "segment": "own",
-      "raw_text": "Instead of book counterparty FT-CAND-TERMIN, move any deals with the FT-TERMIN-GD book to the bankruptcy book from NG-Price.",
+      "raw_text": "move any deals with the FT-TERMIN-GD book to the bankruptcy book from NG-Price",
       "reason": null
     },
     {
-      "evidence_id": "batch-091:e9",
-      "process": "new:canadian-product-book-mapping",
+      "evidence_id": "batch-091:e12",
+      "process": "deal-book-transfer",
       "message_id": "corpus/giron-d/inbox/43.",
       "field": "body",
       "quote": "Please fill out the book and trader name.",
-      "note": "Asks for book and trader to be assigned to Canadian products.",
+      "note": "List of Canadian products needing a book, passed on.",
       "match": "exact",
       "start": 880,
       "end": 921,
@@ -395,26 +449,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-091:e10",
+      "evidence_id": "batch-091:e13",
       "process": "new:netco-data-migration-policy",
       "message_id": "corpus/giron-d/inbox/41.",
       "field": "body",
-      "quote": "As a general rule, all Enron data relating to or used in connection with the trading of North American Gas and Power",
-      "note": "Guidelines on which data to migrate to the new company.",
+      "quote": "all Enron data relating to or used in connection with the trading of North American Gas and Power",
+      "note": "Guidelines for which data is migrated to the new owner.",
       "match": "exact",
-      "start": 1482,
+      "start": 1501,
       "end": 1598,
       "segment": "quoted",
-      "raw_text": "As a general rule, all Enron data relating to or used in connection with the trading of North American Gas and Power",
+      "raw_text": "all Enron data relating to or used in connection with the trading of North American Gas and Power",
       "reason": null
     },
     {
-      "evidence_id": "batch-091:e11",
+      "evidence_id": "batch-091:e14",
       "process": "time-activity-reporting",
       "message_id": "corpus/lokay-m/sent_items/75.",
       "field": "body",
       "quote": "I was out Friday, the 25th, and would like to use my \"discretionary holiday\"!",
-      "note": "Absence entry for a time report.",
+      "note": "Reply to time report reminder.",
       "match": "exact",
       "start": 578,
       "end": 655,
@@ -423,8 +477,8 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-091:e12",
-      "process": "pnl-position-reporting",
+      "evidence_id": "batch-091:e15",
+      "process": "pnl-reporting",
       "message_id": "corpus/giron-d/inbox/40.",
       "field": "body",
       "quote": "The positions file for last night is saved out to o_dropbox and is attached.",
@@ -437,12 +491,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-091:e13",
+      "evidence_id": "batch-091:e16",
       "process": "deal-book-transfer",
       "message_id": "corpus/giron-d/inbox/39.",
       "field": "body",
       "quote": "Change the ENA book name from NG-Price to ENA-FT-WC-SJ",
-      "note": "Requests moving counterparty deals to another book.",
+      "note": "Asks for counterparties' deals to be moved between books.",
       "match": "exact",
       "start": 1115,
       "end": 1169,
@@ -451,12 +505,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-091:e14",
-      "process": "volume-imbalance-reconciliation",
+      "evidence_id": "batch-091:e17",
+      "process": "imbalance-resolution",
       "message_id": "corpus/lokay-m/sent_items/76.",
       "field": "body",
       "quote": "Here are the historical measured versus scheduled volumes for the Mojave OBA imbalances.",
-      "note": "Sends measured vs scheduled volumes for an imbalance.",
+      "note": "Sends volumes for imbalance review.",
       "match": "exact",
       "start": 539,
       "end": 627,
@@ -465,12 +519,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-091:e15",
-      "process": "user-access-setup",
+      "evidence_id": "batch-091:e18",
+      "process": "system-access-request",
       "message_id": "corpus/giron-d/inbox/38.",
       "field": "body",
       "quote": "You have received this email because you are listed as a data approver.",
-      "note": "System notice of an access request awaiting approval.",
+      "note": "Access request approval notice.",
       "match": "exact",
       "start": 568,
       "end": 639,
@@ -479,22 +533,22 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-091:e16",
+      "evidence_id": "batch-091:e19",
       "process": "deal-book-transfer",
       "message_id": "corpus/giron-d/inbox/37.",
       "field": "body",
-      "quote": "We just wanted to let you guys know of some changes in order to keep the te=",
-      "note": "Changes to who handles termination lists for book moves.",
+      "quote": "Greg Couch is going to be leading the estate risk effort",
+      "note": "Hands over termination list handling for book moves.",
       "match": "exact",
-      "start": 1180,
-      "end": 1256,
+      "start": 1495,
+      "end": 1551,
       "segment": "own",
-      "raw_text": "We just wanted to let you guys know of some changes in order to keep the te=",
+      "raw_text": "Greg Couch is going to be leading the estate risk effort",
       "reason": null
     },
     {
-      "evidence_id": "batch-091:e17",
-      "process": "pnl-position-reporting",
+      "evidence_id": "batch-091:e20",
+      "process": "pnl-reporting",
       "message_id": "corpus/giron-d/inbox/36.",
       "field": "body",
       "quote": "There is a P&L Summary for east desk in the Netco directory",
@@ -507,12 +561,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-091:e18",
-      "process": "new:distribution-list-update",
+      "evidence_id": "batch-091:e21",
+      "process": "new:daily-report-distribution-list",
       "message_id": "corpus/williams-w3/sent_items/7.",
       "field": "body",
       "quote": "Could you add DL-Portland Shift to this distribution.",
-      "note": "Asks to add a group to a daily report distribution.",
+      "note": "Asks to extend a daily report distribution.",
       "match": "exact",
       "start": 542,
       "end": 595,
@@ -521,8 +575,22 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-091:e19",
-      "process": "new:distribution-list-update",
+      "evidence_id": "batch-091:e22",
+      "process": "new:daily-report-distribution-list",
+      "message_id": "corpus/williams-w3/sent_items/6.",
+      "field": "body",
+      "quote": "Slaughter, Jeff G.; Swerzbin, Mike; Thomas, Jake; Thome, Stephen; Van houten, Maria; Wente, Laura; Williams III, Bill",
+      "note": "Forwards the daily report distribution message.",
+      "match": "exact",
+      "start": 926,
+      "end": 1043,
+      "segment": "quoted",
+      "raw_text": "Slaughter, Jeff G.; Swerzbin, Mike; Thomas, Jake; Thome, Stephen; Van houten, Maria; Wente, Laura; Williams III, Bill",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-091:e23",
+      "process": "new:daily-report-distribution-list",
       "message_id": "corpus/williams-w3/inbox/67.",
       "field": "body",
       "quote": "No problem, is it possible for you to give me a list of names as I am not sure who does what just yet.",
@@ -535,12 +603,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-091:e20",
-      "process": "new:distribution-list-update",
+      "evidence_id": "batch-091:e24",
+      "process": "new:daily-report-distribution-list",
       "message_id": "corpus/williams-w3/sent_items/5.",
       "field": "body",
       "quote": "The other members in the real-time group are:",
-      "note": "Supplies the names for the distribution list.",
+      "note": "Supplies the names for the distribution.",
       "match": "exact",
       "start": 538,
       "end": 583,
@@ -549,17 +617,45 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-091:e21",
-      "process": "expense-report-approval",
+      "evidence_id": "batch-091:e25",
+      "process": "expense-approval",
       "message_id": "corpus/williams-w3/inbox/66.",
       "field": "body",
       "quote": "The following expense report is ready for approval:",
-      "note": "Expense approval notice.",
+      "note": "Expense report awaiting approval.",
       "match": "exact",
       "start": 520,
       "end": 571,
       "segment": "own",
       "raw_text": "The following expense report is ready for approval:",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-091:e26",
+      "process": "new:benefits-paperwork",
+      "message_id": "corpus/williams-w3/inbox/141.",
+      "field": "body",
+      "quote": "I believe you want bill.williams.III@enron.com rather than me",
+      "note": "Replies to the benefits memo, redirecting it to the right person.",
+      "match": "exact",
+      "start": 746,
+      "end": 807,
+      "segment": "own",
+      "raw_text": "I believe you want bill.williams.III@enron.com rather than me",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-091:e27",
+      "process": "new:ercot-desk-opportunity",
+      "message_id": "corpus/williams-w3/inbox/65.",
+      "field": "body",
+      "quote": "I am sending you an outline of what we intend to be doing in Ercot",
+      "note": "Outlines an ERCOT real-time desk opportunity.",
+      "match": "exact",
+      "start": 575,
+      "end": 641,
+      "segment": "own",
+      "raw_text": "I am sending you an outline of what we intend to be doing in Ercot",
       "reason": null
     }
   ],
@@ -570,51 +666,62 @@
       "person": "Greg Couch",
       "match": "exact",
       "start": 1495,
-      "end": 1568,
+      "end": 1551,
       "segment": "own",
-      "raw_text": "Greg Couch is going to be leading the estate risk effort and Pat Ryder a=",
+      "raw_text": "Greg Couch is going to be leading the estate risk effort",
       "reason": null
     }
   ],
   "new_processes": [
     {
-      "key": "new:desk-record-keeping",
-      "name": "Desk record keeping",
-      "definition": "Instructions on filing the previous day's dispatch and prescheduling records for the real-time desk.",
+      "key": "new:market-news-circulation",
+      "name": "Market news and report circulation",
+      "definition": "Circulating daily market reports and news articles to traders and the desk.",
       "example_ids": [
-        "corpus/williams-w3/sent_items/8."
-      ]
-    },
-    {
-      "key": "new:canadian-product-book-mapping",
-      "name": "Canadian product book mapping",
-      "definition": "Assigning a book and trader name to Canadian products traded from another office.",
-      "example_ids": [
-        "corpus/giron-d/inbox/43."
+        "corpus/williams-w3/inbox/75.",
+        "corpus/williams-w3/inbox/72.",
+        "corpus/williams-w3/sent_items/9."
       ]
     },
     {
       "key": "new:netco-data-migration-policy",
-      "name": "Netco data migration policy",
-      "definition": "Guidelines on which application data and databases may be copied and transferred to the new owner of the trading business.",
+      "name": "Netco data migration guidance",
+      "definition": "Guidelines and decisions on which Enron data and applications may be copied or transferred to the new owner.",
       "example_ids": [
         "corpus/giron-d/inbox/41."
       ]
     },
     {
-      "key": "new:distribution-list-update",
-      "name": "Distribution list update",
-      "definition": "Adding groups or people to the distribution of a recurring daily report and supplying the names.",
+      "key": "new:daily-report-distribution-list",
+      "name": "Daily report distribution list upkeep",
+      "definition": "Adding people or groups to the distribution of daily gas and power reports and supplying the names.",
       "example_ids": [
         "corpus/williams-w3/sent_items/7.",
+        "corpus/williams-w3/sent_items/6.",
         "corpus/williams-w3/inbox/67.",
         "corpus/williams-w3/sent_items/5."
       ]
+    },
+    {
+      "key": "new:benefits-paperwork",
+      "name": "Benefits and payroll paperwork",
+      "definition": "Collecting employee benefit and payroll forms during the transfer of staff and correcting recipients of those notices.",
+      "example_ids": [
+        "corpus/williams-w3/inbox/141."
+      ]
+    },
+    {
+      "key": "new:ercot-desk-opportunity",
+      "name": "ERCOT desk opportunity outline",
+      "definition": "Describing a trading business opportunity in the ERCOT real-time market to a prospective team member.",
+      "example_ids": [
+        "corpus/williams-w3/inbox/65."
+      ]
     }
   ],
-  "batch_notes": "No injection attempts found. Market-report forwards, HR memo and ERCOT pitch tagged noise. Message sent_items/6 has no body text of its own, so it is tagged noise. New keys proposed: desk-record-keeping, canadian-product-book-mapping, netco-data-migration-policy, distribution-list-update.",
+  "batch_notes": "No injection attempts found. Five new keys proposed. Message 69 treated as noise. Several giron-d messages concern the bankruptcy book moves.",
   "quote_stats": {
-    "exact": 23,
+    "exact": 29,
     "repaired": 0,
     "rejected": 0
   }

@@ -1,155 +1,176 @@
 {
   "group_id": "synth-001",
-  "content_sha": "eb7f2e1d55fbaed7683708dcc8a4eaa77462b7cfc52d0414df5132a9f561c0ef",
+  "content_sha": "edbae8958874e650d050270bad498d99b56c2c9f2d2422d5026187a4c2f3145e",
   "processes": [
     {
-      "key": "book-officialization",
-      "description": "A desk lead answers requests for the list of trading books his desk marks official, explaining that the desk officializes by postid as the whole West desk does. Lists are sometimes sent late or built on a misread request and have to be redone. Guidance on officialization is forwarded to the desk, stressing that Credit needs correct counterparty codes and names on the deals.",
+      "key": "audit-support-request",
+      "description": "Arthur Andersen auditors send requests for their periodic testing (monthly gas testing, quarter-end P&L top sheets, MTM mini-book valuations, deal tickets and confirmations, index choices). Darron Giron receives them, forwards each to the desk or person who holds the support, collects what comes back and passes it to the auditors, chasing when replies lag. He also keeps a matrix of all requests made in a quarter and redirects requests for other desks, such as West desk work to Pat Ryder.",
       "steps": [
-        "Someone outside the desk asks for the list of books the desk officializes.",
-        "The desk lead compiles the list, noting that the desk officializes by postid.",
-        "If the request was misread, the list is reworked and sent again.",
-        "Guidance on officialization is forwarded to the desk, stressing correct counterparty codes and names for Credit."
+        "Auditors send a request listing deals, books or figures they want support for.",
+        "The coordinator forwards the request to the trader, desk or risk contact who holds the data.",
+        "The contact pulls deal tickets, confirmations, valuations or P&L top sheets.",
+        "The coordinator chases contacts whose replies are late or asks who else can help.",
+        "Support is passed to the auditors, with explanations of differences where needed.",
+        "Open and closed requests are tracked in a request matrix for the quarter."
       ],
       "stalls": [
         {
-          "summary": "A list of officialized books was built on a misreading of the request and had to be redone.",
+          "summary": "Requests forwarded to desks sit unanswered and have to be chased more than once for status, sometimes days apart on the same request.",
           "evidence_ids": [
-            "batch-031:s1",
-            "batch-031:e25"
+            "batch-048:s2",
+            "batch-048:s3",
+            "batch-048:e12"
           ]
         },
         {
-          "summary": "The list of officialized books went out late, with an apology for the delay.",
+          "summary": "The right contact is not always known, so the request is bounced back asking who else can direct the auditors, while the coordinator is travelling and auditors press for answers.",
           "evidence_ids": [
-            "batch-031:e24"
+            "batch-039:s0",
+            "batch-039:e9",
+            "batch-039:e15"
+          ]
+        },
+        {
+          "summary": "Information gathered for the auditors gets misplaced and has to be requested again.",
+          "evidence_ids": [
+            "batch-031:e4"
+          ]
+        }
+      ],
+      "contradictions": [
+        {
+          "summary": "Different people are named as the one who handles West desk audit questions: one message sends West desk requests to Pat Ryder, another says West Hourly deals are researched by Kate Symes.",
+          "evidence_ids": [
+            "batch-042:o1",
+            "batch-056:o0"
+          ]
+        }
+      ],
+      "automation": {
+        "approach": "Keep a shared request log, built from the quarterly matrix, that records each auditor item, the desk owner, the date sent and the date answered, and flags overdue items for follow-up. Standard extracts of deal tickets, confirmations and P&L top sheets by deal number would cut the manual lookup each desk does.",
+        "artifact_type": "template",
+        "rationale": "The work already revolves around a request matrix and repeated chasing; a structured tracker with owner by desk and status removes the guesswork over who holds the data and makes overdue items visible without manual status emails."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": {
+          "low": 20,
+          "mid": 45,
+          "high": 120
+        },
+        "automatable_pct": 40,
+        "basis": "observed",
+        "rationale": "Each round requires someone on the desk to look up deal tickets, confirmations, valuations or P&L top sheets for a list of deals and assemble them, plus the coordinator updating the request matrix and explaining differences. Simple single-deal lookups are quick; multi-deal lists or valuation books take a few hours. Pulling standard documents and tracking status is the automatable share; explaining amounts stays manual.",
+        "evidence_ids": [
+          "batch-048:e12",
+          "batch-031:e7",
+          "batch-042:e29",
+          "batch-049:e15",
+          "batch-052:e28",
+          "batch-056:e0"
+        ]
+      },
+      "estimate_check": {
+        "occurrences_cited": 6,
+        "senders_cited": 2
+      }
+    },
+    {
+      "key": "book-officialization",
+      "description": "Risk keeps the list of Enovate/EMW and other trading books that must be officialized each night, since Credit picks up all officialized books. When a book is missed or the list is wrong, Darron Giron explains why the benchmark signoff did not catch it, updates the list and recirculates it, sometimes after misreading what was asked.",
+      "steps": [
+        "A request arrives for the current list of books officialized each night.",
+        "The list of books is compiled and checked against the books in use.",
+        "Books are marked official so Credit and downstream users pick them up.",
+        "Missed books or errors are explained and the list is corrected and resent."
+      ],
+      "stalls": [
+        {
+          "summary": "The request for the book list was misread, so the list had to be redone and was sent late with an apology.",
+          "evidence_ids": [
+            "batch-031:s2",
+            "batch-031:e27",
+            "batch-031:e26"
+          ]
+        },
+        {
+          "summary": "A mistake on a book slipped past the benchmark signoff procedure and needed an explanation afterwards.",
+          "evidence_ids": [
+            "batch-027:e6"
           ]
         }
       ],
       "contradictions": [],
       "automation": {
-        "approach": "A standing report from the trading system listing the books and postids each desk officializes, so the list is pulled rather than compiled by hand, plus a check that flags deals whose counterparty code or name does not match the credit master before a book is marked official.",
+        "approach": "Maintain the officialized book list as a controlled list in the risk system and run a nightly check that compares books marked official against that list, reporting any book left unofficialized before Credit picks them up.",
         "artifact_type": "checklist",
-        "rationale": "The mail shows lists compiled on request, misread and sent late, and guidance repeated about counterparty data Credit relies on. A short checklist of which books to officialize, how to list them and what counterparty fields to verify would cut the rework the desk sees now."
+        "rationale": "The failures are missed books and lists that drift out of date; a nightly checklist tied to a maintained book list catches misses before they reach downstream users."
       },
       "work_estimate": null,
       "estimate_check": null
     },
     {
-      "key": "commercial-strategy-planning",
-      "description": "The pipeline commercial team's planning work. Managers and assistants call strategy and group-direction meetings, poll for dates and keep moving them as diaries and rooms change. Facility Planning prices proposed mainline expansions, laterals and bi-directional interconnects in spreadsheets with pressure ranges. Marketing reviews the costs, asks for line items split out, takes the marketing contact role on interconnect requests, meets producers and neighbouring pipelines, and brings storage projects, tariff filings and negotiating parameters to the group to settle strategy.",
+      "key": "on-call-coverage",
+      "description": "Schedulers and traders announce absences and name who covers for them, circulate weekend and holiday on-call schedules with cell and pager numbers, and send on-call notes after each weekend describing calls received and actions taken, such as gas control pages, meter problems reported by producers, and corrected confirms. Managers also arrange skeleton staff for holiday trading days and cover for affiliates.",
       "steps": [
-        "A manager or assistant calls a strategy meeting, setting date, time and room and asking who cannot attend.",
-        "Facility Planning prices a proposed expansion, lateral or interconnect and circulates the cost spreadsheet.",
-        "Marketing reviews the estimate and asks for changes, such as interest, overheads and AFUDC split out by line item.",
-        "Planners revise and recirculate the spreadsheet, cost estimate and pressure ranges.",
-        "A marketer is named contact for an interconnect or storage project and arranges meetings with the other party.",
-        "The group meets to discuss project benefits, risks, regulatory filings and negotiating parameters."
+        "Someone announces an absence or a weekend or holiday that needs coverage.",
+        "A backup or on-call person is named, with contact numbers for the period.",
+        "The on-call schedule or contact sheet is updated and circulated.",
+        "The on-call person handles calls from gas control, pipelines and counterparties.",
+        "Actions taken are logged, including changed nominations or confirms.",
+        "On-call notes are sent to the team after the shift for follow-up."
       ],
       "stalls": [
         {
-          "summary": "An interconnect cost estimate waits on facility information from a field office before the work list can be finished.",
+          "summary": "Coverage arranged in advance was not passed on, so the person expected to cover knew nothing about it.",
           "evidence_ids": [
-            "batch-097:s1",
-            "batch-097:e25"
+            "batch-079:s1"
           ]
         },
         {
-          "summary": "Supporting material for a project, a map showing the power plant, proved harder to obtain than expected.",
+          "summary": "On-call contact details go stale: a manager could not reach a staff member because the cell number on file no longer worked, and pager numbers need revised contact sheets.",
           "evidence_ids": [
-            "batch-070:e3"
-          ]
-        },
-        {
-          "summary": "Cost spreadsheets go round again: Marketing asks for interest, overheads and AFUDC split out for every line item, and a revised spreadsheet replaces one sent the day before.",
-          "evidence_ids": [
-            "batch-072:e2",
-            "batch-082:e21"
-          ]
-        },
-        {
-          "summary": "Strategy meetings are moved, change rooms or need several messages to settle a date among attendees.",
-          "evidence_ids": [
-            "batch-070:e5",
-            "batch-007:e17",
-            "batch-072:e6",
-            "batch-097:e29",
-            "batch-097:e31"
-          ]
-        },
-        {
-          "summary": "A negotiator cannot proceed on a project's fuel charge until he is told his negotiating parameters.",
-          "evidence_ids": [
-            "batch-074:e12"
+            "batch-088:e15",
+            "batch-088:e16",
+            "batch-011:e35"
           ]
         }
       ],
-      "contradictions": [],
+      "contradictions": [
+        {
+          "summary": "A coverage message names only \"Mary\" as handling off-system nominations, which could mean either of two staff with that first name, so the owner of that coverage is unclear.",
+          "evidence_ids": [
+            "batch-042:o0",
+            "batch-042:e16"
+          ]
+        }
+      ],
       "automation": {
-        "approach": "A standard cost-estimate workbook for expansion and interconnect projects, with interest, overheads and AFUDC split out by line item from the start and a version stamp on each revision, kept with a simple project tracker naming the marketing contact and the inputs still awaited. Strategy meetings booked through a shared calendar poll instead of reply-all date checks.",
+        "approach": "Keep one shared on-call calendar and contact sheet that each person updates when they will be out, with backups named per pipeline or desk, and use a fixed on-call notes form that captures each call, the counterparty, the meter or contract, and the action taken.",
         "artifact_type": "template",
-        "rationale": "The repeated hands-on work is pricing projects in spreadsheets, and much of the rework comes from format requests and revisions of those spreadsheets. A fixed layout that already carries the splits Marketing asks for, with clear versions, heads off a round of rework; the engineering pricing and the strategy calls stay with people."
+        "rationale": "Coverage notices and weekend notes are free-form and scattered; a standard notes form and a single contact sheet make handovers complete, keep numbers current and show who covers what."
       },
       "work_estimate": {
         "minutes_per_occurrence": {
-          "low": 15,
-          "mid": 60,
-          "high": 180
+          "low": 10,
+          "mid": 30,
+          "high": 90
         },
         "automatable_pct": 25,
         "basis": "inferred",
-        "rationale": "Rounds that only call or move a strategy meeting take about 10 to 15 minutes of calendar and room booking. Rounds that carry a cost estimate for an expansion, lateral or bi-directional interconnect need engineering work to price line items, set pressure ranges and revise the spreadsheet, up to about 180 minutes. Across that mix the mid is 60 minutes. A standard workbook and calendar polling could take over the formatting, line-item splits and booking; pricing and judgement stay manual.",
+        "rationale": "Most rounds are absence notices with little work beyond naming a backup. Weekend on-call rounds add handling calls from gas control and producers, changing nominations or confirms, and writing up the call log, which runs longer. Updating schedules and contact sheets and the structure of the notes can be templated; handling calls cannot.",
         "evidence_ids": [
-          "batch-097:e13",
-          "batch-071:e15",
-          "batch-072:e2",
-          "batch-082:e21",
-          "batch-098:e3",
-          "batch-097:e25",
-          "batch-097:e17",
-          "batch-098:e22",
-          "batch-070:e5"
+          "batch-020:e9",
+          "batch-046:e23",
+          "batch-046:e4",
+          "batch-014:e4",
+          "batch-050:e15",
+          "batch-036:e23",
+          "batch-098:e23"
         ]
       },
       "estimate_check": {
-        "occurrences_cited": 9,
-        "senders_cited": 4
-      }
-    },
-    {
-      "key": "continuity-seat-planning",
-      "description": "Gas logistics management plans backup seats for its desks. A manager asks desk leads how many desks they would need on the backup floor; a memo goes out asking desk leads to have their schedulers fill in requested data from their desk spreadsheets; the replies are compiled and the list of team members given backup spots is circulated.",
-      "steps": [
-        "A manager asks each desk lead how many desks the team would need on the backup floor.",
-        "A memo goes to desk leads, who ask their schedulers to fill in the requested data from their desk spreadsheets.",
-        "The replies are compiled into seat counts per desk.",
-        "Backup spots are assigned and the list of people given spots is sent to the team."
-      ],
-      "stalls": [],
-      "contradictions": [],
-      "automation": {
-        "approach": "A shared seat-request form, one row per desk, where schedulers enter the requested data and desk counts once; it totals the seats needed and produces the assignment list for circulation, replacing the forwarded memo and separately kept desk spreadsheets.",
-        "artifact_type": "template",
-        "rationale": "The work in each round is collecting the same counts and desk data from several leads and schedulers and turning them into an assignment list. One fixed layout makes the collection and the totals repeatable, while deciding who gets a backup spot stays with the managers."
-      },
-      "work_estimate": {
-        "minutes_per_occurrence": {
-          "low": 15,
-          "mid": 30,
-          "high": 75
-        },
-        "automatable_pct": 40,
-        "basis": "inferred",
-        "rationale": "Schedulers pull the requested figures from their desk spreadsheets, desk leads count the desks they need, and a manager compiles the replies into the list of people given spots. That collation is about 30 minutes a round, more when several desks report or the list changes. A shared form could total the counts and draft the list; choosing who gets a spot stays manual.",
-        "evidence_ids": [
-          "batch-072:e5",
-          "batch-059:e30",
-          "batch-074:e5"
-        ]
-      },
-      "estimate_check": {
-        "occurrences_cited": 3,
-        "senders_cited": 2
+        "occurrences_cited": 7,
+        "senders_cited": 5
       }
     }
   ]

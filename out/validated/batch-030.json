@@ -5,7 +5,7 @@
     {
       "id": "corpus/farmer-d/logistics/1479.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -14,7 +14,7 @@
     {
       "id": "corpus/farmer-d/logistics/1482.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "response",
       "stall": null,
@@ -23,7 +23,7 @@
     {
       "id": "corpus/farmer-d/logistics/1480.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -32,7 +32,7 @@
     {
       "id": "corpus/giron-d/sent/789.",
       "processes": [
-        "performance-review"
+        "system-access-request"
       ],
       "role": "request",
       "stall": null,
@@ -41,7 +41,7 @@
     {
       "id": "corpus/giron-d/sent/523.",
       "processes": [
-        "performance-review"
+        "system-access-request"
       ],
       "role": "request",
       "stall": null,
@@ -50,7 +50,7 @@
     {
       "id": "corpus/giron-d/sent/541.",
       "processes": [
-        "user-access-setup"
+        "system-access-request"
       ],
       "role": "request",
       "stall": null,
@@ -59,7 +59,7 @@
     {
       "id": "corpus/farmer-d/logistics/1483.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -68,7 +68,7 @@
     {
       "id": "corpus/farmer-d/logistics/1487.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution"
       ],
       "role": "response",
       "stall": null,
@@ -77,7 +77,7 @@
     {
       "id": "corpus/farmer-d/logistics/1486.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -86,7 +86,7 @@
     {
       "id": "corpus/farmer-d/logistics/1489.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "response",
       "stall": null,
@@ -95,7 +95,7 @@
     {
       "id": "corpus/farmer-d/logistics/1492.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "response",
       "stall": null,
@@ -104,7 +104,7 @@
     {
       "id": "corpus/farmer-d/logistics/1493.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "response",
       "stall": null,
@@ -145,19 +145,16 @@
     {
       "id": "corpus/farmer-d/logistics/1488.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "request",
-      "stall": {
-        "kind": "waiting_on_reply",
-        "quote": "Steve Mauch at Hesco is wanting an answer ASAP"
-      },
+      "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/1507.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -166,7 +163,7 @@
     {
       "id": "corpus/farmer-d/logistics/1519.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "response",
       "stall": null,
@@ -174,9 +171,14 @@
     },
     {
       "id": "corpus/giron-d/sent/538.",
-      "processes": [],
-      "role": "noise",
-      "stall": null,
+      "processes": [
+        "new:workstation-move-request"
+      ],
+      "role": "forward",
+      "stall": {
+        "kind": "waiting_on_reply",
+        "quote": "Monday or Tuesday and here it is Wednesday and nothing has been done."
+      },
       "ownership_claim": null
     },
     {
@@ -190,27 +192,26 @@
     },
     {
       "id": "corpus/giron-d/sent/534.",
-      "processes": [],
-      "role": "noise",
+      "processes": [
+        "new:deal-review-followup"
+      ],
+      "role": "fyi",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/sent/533.",
       "processes": [
-        "curve-postid-mapping"
+        "curve-postid-maintenance"
       ],
       "role": "request",
       "stall": null,
-      "ownership_claim": {
-        "person": "Jason",
-        "quote": "running the official post id macro most nights"
-      }
+      "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/sent/532.",
       "processes": [
-        "user-access-setup"
+        "system-access-request"
       ],
       "role": "request",
       "stall": null,
@@ -219,7 +220,7 @@
     {
       "id": "corpus/giron-d/sent/520.",
       "processes": [
-        "user-access-setup"
+        "system-access-request"
       ],
       "role": "request",
       "stall": null,
@@ -228,7 +229,7 @@
     {
       "id": "corpus/farmer-d/logistics/1491.",
       "processes": [
-        "commercial-strategy-planning"
+        "regulatory-notice-review"
       ],
       "role": "forward",
       "stall": null,
@@ -244,12 +245,12 @@
     {
       "id": "corpus/farmer-d/logistics/1890.",
       "processes": [
-        "deal-record-correction"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": {
         "kind": "handoff_confusion",
-        "quote": "let me know who is going to be doing this"
+        "quote": "doing this monthly allocation."
       },
       "ownership_claim": null
     },
@@ -277,7 +278,7 @@
     {
       "id": "corpus/giron-d/sent/528.",
       "processes": [
-        "pnl-position-reporting"
+        "new:ytd-reconciliation"
       ],
       "role": "response",
       "stall": null,
@@ -299,11 +300,11 @@
   "evidence": [
     {
       "evidence_id": "batch-030:e0",
-      "process": "meter-flow-deal-coverage",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1479.",
       "field": "body",
       "quote": "I have some flow at the above referenced meter without a deal.",
-      "note": "Flow at a meter with no deal; asks to extend the deal.",
+      "note": "Flow at a meter with no matching deal needs resolving.",
       "match": "exact",
       "start": 516,
       "end": 578,
@@ -313,25 +314,25 @@
     },
     {
       "evidence_id": "batch-030:e1",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1482.",
       "field": "body",
-      "quote": "The contract attached to that deal was a GTC Firm which ended 9/30/00.",
-      "note": "Explains expired contract and new ticket created for the flow.",
+      "quote": "created a new ticket for those two days (461059).",
+      "note": "Reports a new deal ticket created to cover flow.",
       "match": "exact",
-      "start": 518,
-      "end": 588,
+      "start": 593,
+      "end": 642,
       "segment": "own",
-      "raw_text": "The contract attached to that deal was a GTC Firm which ended 9/30/00.",
+      "raw_text": "created a new ticket for those two days (461059).",
       "reason": null
     },
     {
       "evidence_id": "batch-030:e2",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1480.",
       "field": "body",
       "quote": "Gas flowed for the first four days without a deal.",
-      "note": "Asks for a deal to cover meter flow.",
+      "note": "Requests a deal be input to cover flow at a meter.",
       "match": "exact",
       "start": 612,
       "end": 662,
@@ -341,11 +342,11 @@
     },
     {
       "evidence_id": "batch-030:e3",
-      "process": "performance-review",
+      "process": "system-access-request",
       "message_id": "corpus/giron-d/sent/789.",
       "field": "body",
       "quote": "I don't believe I am set up to review as a supervisor in the PEP system.",
-      "note": "Supervisor set-up for the PEP review system.",
+      "note": "Asks for supervisor role in a system to be fixed.",
       "match": "exact",
       "start": 447,
       "end": 519,
@@ -355,11 +356,11 @@
     },
     {
       "evidence_id": "batch-030:e4",
-      "process": "performance-review",
+      "process": "system-access-request",
       "message_id": "corpus/giron-d/sent/523.",
       "field": "body",
       "quote": "Kimberly S. Olinger is listed as reporting to me in the PEP system.",
-      "note": "Fixing reporting lines in the PEP review system.",
+      "note": "Asks for reporting line change in the PEP system.",
       "match": "exact",
       "start": 590,
       "end": 657,
@@ -369,11 +370,11 @@
     },
     {
       "evidence_id": "batch-030:e5",
-      "process": "user-access-setup",
+      "process": "system-access-request",
       "message_id": "corpus/giron-d/sent/541.",
       "field": "body",
       "quote": "Please add Carole Frank to the list.  Her NT username is cfrank2.",
-      "note": "Request to add a user to a send list by NT username.",
+      "note": "Requests a user be added to a distribution list by username.",
       "match": "exact",
       "start": 442,
       "end": 507,
@@ -383,25 +384,25 @@
     },
     {
       "evidence_id": "batch-030:e6",
-      "process": "meter-flow-deal-coverage",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1483.",
       "field": "body",
-      "quote": "could you check the volumes for gas days 28 - 31 for October, 1999.",
-      "note": "Verifying flow so a deal can be extended to allocate it.",
+      "quote": "This is the last allocation exception I have to clear.",
+      "note": "Clearing allocation exceptions at a meter.",
       "match": "exact",
-      "start": 751,
-      "end": 818,
+      "start": 670,
+      "end": 724,
       "segment": "own",
-      "raw_text": "could you check the volumes for gas days 28 - 31 for October, 1999.",
+      "raw_text": "This is the last allocation exception I have to clear.",
       "reason": null
     },
     {
       "evidence_id": "batch-030:e7",
-      "process": "meter-flow-deal-coverage",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1487.",
       "field": "body",
       "quote": "980070 DOES NOT EXISTS IN MIPS.",
-      "note": "Reply on the meter whose flow needs deal coverage.",
+      "note": "Answer on a meter volume check.",
       "match": "exact",
       "start": 750,
       "end": 781,
@@ -411,25 +412,25 @@
     },
     {
       "evidence_id": "batch-030:e8",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1486.",
       "field": "body",
-      "quote": "there was no nomination at the Enerfin meter.",
-      "note": "Asks to extend the deal to cover flow at the meter.",
+      "quote": "On the above mentioned dates, there was no nomination at the Enerfin meter.",
+      "note": "Asks for a deal to be extended to cover flow.",
       "match": "exact",
-      "start": 659,
+      "start": 629,
       "end": 704,
       "segment": "own",
-      "raw_text": "there was no nomination at the Enerfin meter.",
+      "raw_text": "On the above mentioned dates, there was no nomination at the Enerfin meter.",
       "reason": null
     },
     {
       "evidence_id": "batch-030:e9",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1489.",
       "field": "body",
       "quote": "I don't think we can even process this request.",
-      "note": "Response on whether the deal can be extended for old flow.",
+      "note": "Response to a request to extend a deal for past flow.",
       "match": "exact",
       "start": 927,
       "end": 974,
@@ -439,11 +440,11 @@
     },
     {
       "evidence_id": "batch-030:e10",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1492.",
       "field": "body",
       "quote": "I'm assuming from your answer that this is free gas for HPLC at this point.",
-      "note": "Outcome of the uncovered Enerfin flow.",
+      "note": "Outcome of the deal extension request.",
       "match": "exact",
       "start": 902,
       "end": 977,
@@ -453,16 +454,16 @@
     },
     {
       "evidence_id": "batch-030:e11",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1493.",
       "field": "body",
-      "quote": "Chances are we would have had to reverse any entry we made.",
-      "note": "Closing the uncovered flow request without a deal change.",
+      "quote": "Thanks Darren, I appreciate it.",
+      "note": "Closes the deal extension request.",
       "match": "exact",
-      "start": 994,
-      "end": 1053,
+      "start": 912,
+      "end": 943,
       "segment": "own",
-      "raw_text": "Chances are we would have had to reverse any entry we made.",
+      "raw_text": "Thanks Darren, I appreciate it.",
       "reason": null
     },
     {
@@ -485,7 +486,7 @@
       "message_id": "corpus/giron-d/sent/535.",
       "field": "body",
       "quote": "I can't remember if I forwarded this to you already.",
-      "note": "Re-forwards the request to flip Canadian deals to the right book.",
+      "note": "Re-forwards the book-flip request.",
       "match": "exact",
       "start": 607,
       "end": 659,
@@ -495,11 +496,11 @@
     },
     {
       "evidence_id": "batch-030:e14",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/farmer-d/logistics/1488.",
       "field": "body",
       "quote": "Steve Mauch at Hesco is wanting an answer ASAP",
-      "note": "Counterparty claims underpayment; price discrepancy needs answer.",
+      "note": "Counterparty price dispute needing an answer.",
       "match": "exact",
       "start": 734,
       "end": 780,
@@ -509,11 +510,11 @@
     },
     {
       "evidence_id": "batch-030:e15",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/farmer-d/logistics/1507.",
       "field": "body",
       "quote": "Daren would you look at the price for 29 and 30th of March 2000 .",
-      "note": "Missing prices for scheduled days in a counterparty price dispute.",
+      "note": "Missing price for settlement days.",
       "match": "exact",
       "start": 466,
       "end": 531,
@@ -523,11 +524,11 @@
     },
     {
       "evidence_id": "batch-030:e16",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/farmer-d/logistics/1519.",
       "field": "body",
       "quote": "Hesco is showing a price of $2.85 for tne 29 & 30",
-      "note": "Counterparty price supplied to resolve the discrepancy.",
+      "note": "Counterparty price supplied for settlement.",
       "match": "exact",
       "start": 468,
       "end": 517,
@@ -537,11 +538,25 @@
     },
     {
       "evidence_id": "batch-030:e17",
+      "process": "new:workstation-move-request",
+      "message_id": "corpus/giron-d/sent/538.",
+      "field": "body",
+      "quote": "Arnold, can you please have these flat screens moved 11/02 morning.",
+      "note": "Move team asked to relocate monitors.",
+      "match": "exact",
+      "start": 1067,
+      "end": 1134,
+      "segment": "forwarded",
+      "raw_text": "Arnold, can you please have these flat screens moved 11/02 morning.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-030:e18",
       "process": "new:regional-originator-list",
       "message_id": "corpus/giron-d/sent/536.",
       "field": "body",
       "quote": "Will you two please get this info to Dutch.  Thanks.",
-      "note": "Passes on a request to supply originators for a region.",
+      "note": "Passes on request to supply originators per region.",
       "match": "exact",
       "start": 492,
       "end": 544,
@@ -550,12 +565,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-030:e18",
-      "process": "curve-postid-mapping",
+      "evidence_id": "batch-030:e19",
+      "process": "new:deal-review-followup",
+      "message_id": "corpus/giron-d/sent/534.",
+      "field": "body",
+      "quote": "I will look at this more while I am here.",
+      "note": "Defers review of a deal.",
+      "match": "exact",
+      "start": 490,
+      "end": 531,
+      "segment": "own",
+      "raw_text": "I will look at this more while I am here.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-030:e20",
+      "process": "curve-postid-maintenance",
       "message_id": "corpus/giron-d/sent/533.",
       "field": "body",
       "quote": "Let's make sure we are doing this every night.",
-      "note": "Nightly post id officialization routine.",
+      "note": "Nightly post id officializing routine.",
       "match": "exact",
       "start": 584,
       "end": 630,
@@ -564,12 +593,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-030:e19",
-      "process": "user-access-setup",
+      "evidence_id": "batch-030:e21",
+      "process": "system-access-request",
       "message_id": "corpus/giron-d/sent/532.",
       "field": "body",
       "quote": "I don't have access to run this book.",
-      "note": "Requests authorization to run a book.",
+      "note": "Asks for authorization to a book.",
       "match": "exact",
       "start": 445,
       "end": 482,
@@ -578,12 +607,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-030:e20",
-      "process": "user-access-setup",
+      "evidence_id": "batch-030:e22",
+      "process": "system-access-request",
       "message_id": "corpus/giron-d/sent/520.",
       "field": "body",
       "quote": "I can calc postids for FT-NW but cannot print.",
-      "note": "Access gap on a book; asks for help.",
+      "note": "Access gap on a book, asks for help.",
       "match": "exact",
       "start": 443,
       "end": 489,
@@ -592,40 +621,40 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-030:e21",
-      "process": "commercial-strategy-planning",
+      "evidence_id": "batch-030:e23",
+      "process": "regulatory-notice-review",
       "message_id": "corpus/farmer-d/logistics/1491.",
       "field": "body",
-      "quote": "Steve and Tom S. will represent HPL at a meeting of the Texas",
-      "note": "Forward about preparing for a council meeting on supply outlook.",
+      "quote": "On 15 November, Steve and Tom S. will represent HPL at a meeting of the Texas",
+      "note": "Forwarded notice of a regulator-hosted council meeting.",
       "match": "exact",
-      "start": 917,
+      "start": 901,
       "end": 978,
       "segment": "forwarded",
-      "raw_text": "Steve and Tom S. will represent HPL at a meeting of the Texas",
+      "raw_text": "On 15 November, Steve and Tom S. will represent HPL at a meeting of the Texas",
       "reason": null
     },
     {
-      "evidence_id": "batch-030:e22",
-      "process": "deal-record-correction",
+      "evidence_id": "batch-030:e24",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1890.",
       "field": "body",
-      "quote": "I have been instructed to zero out the deal for 397957 and use",
-      "note": "Zeroing out a duplicate deal and moving volume to the correct one.",
+      "quote": "From my understanding, the allocation for meter 785: State Tract 121",
+      "note": "Recaps meter allocation and deal correction.",
       "match": "exact",
-      "start": 2314,
-      "end": 2376,
+      "start": 1259,
+      "end": 1327,
       "segment": "own",
-      "raw_text": "I have been instructed to zero out the deal for 397957 and use",
+      "raw_text": "From my understanding, the allocation for meter 785: State Tract 121",
       "reason": null
     },
     {
-      "evidence_id": "batch-030:e23",
-      "process": "pnl-position-reporting",
+      "evidence_id": "batch-030:e25",
+      "process": "new:ytd-reconciliation",
       "message_id": "corpus/giron-d/sent/528.",
       "field": "body",
       "quote": "You can tell Phillip I'll have it fixed when I return on Monday.",
-      "note": "Reply about fixing a YTD reconciliation.",
+      "note": "Reconciliation fix promised.",
       "match": "exact",
       "start": 476,
       "end": 540,
@@ -634,12 +663,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-030:e24",
+      "evidence_id": "batch-030:e26",
       "process": "new:cost-center-allocation",
       "message_id": "corpus/farmer-d/logistics/1494.",
       "field": "body",
       "quote": "I'm afraid I don't understand what you are asking me to do.",
-      "note": "Reply on a cost center move tied to monthly allocation percentages.",
+      "note": "Cost center move request for allocations.",
       "match": "exact",
       "start": 479,
       "end": 538,
@@ -650,21 +679,21 @@
   ],
   "stall_checks": [
     {
-      "message_id": "corpus/farmer-d/logistics/1488.",
+      "message_id": "corpus/giron-d/sent/538.",
       "match": "exact",
-      "start": 734,
-      "end": 780,
-      "segment": "own",
-      "raw_text": "Steve Mauch at Hesco is wanting an answer ASAP",
+      "start": 1743,
+      "end": 1812,
+      "segment": "quoted",
+      "raw_text": "Monday or Tuesday and here it is Wednesday and nothing has been done.",
       "reason": null
     },
     {
       "message_id": "corpus/farmer-d/logistics/1890.",
-      "match": "repaired",
-      "start": 3725,
-      "end": 3767,
+      "match": "exact",
+      "start": 3757,
+      "end": 3787,
       "segment": "own",
-      "raw_text": "let me know who is going to be \ndoing this",
+      "raw_text": "doing this monthly allocation.",
       "reason": null
     },
     {
@@ -677,40 +706,53 @@
       "reason": null
     }
   ],
-  "ownership_checks": [
-    {
-      "message_id": "corpus/giron-d/sent/533.",
-      "person": "Jason",
-      "match": "exact",
-      "start": 656,
-      "end": 702,
-      "segment": "own",
-      "raw_text": "running the official post id macro most nights",
-      "reason": null
-    }
-  ],
+  "ownership_checks": [],
   "new_processes": [
+    {
+      "key": "new:workstation-move-request",
+      "name": "Workstation move requests",
+      "definition": "Asking the move team to relocate or swap desk equipment and chasing completion.",
+      "example_ids": [
+        "corpus/giron-d/sent/538."
+      ]
+    },
     {
       "key": "new:regional-originator-list",
       "name": "Regional originator list",
-      "definition": "Collecting from each regional book administrator the list of originators for their region and passing it to the requester.",
+      "definition": "Collecting and supplying lists of originators per region for a manager.",
       "example_ids": [
         "corpus/giron-d/sent/536."
       ]
     },
     {
+      "key": "new:deal-review-followup",
+      "name": "Deal review follow-up",
+      "definition": "Reviewing a specific deal on request and reporting back.",
+      "example_ids": [
+        "corpus/giron-d/sent/534."
+      ]
+    },
+    {
+      "key": "new:ytd-reconciliation",
+      "name": "Year-to-date reconciliation",
+      "definition": "Preparing and fixing the year-to-date reconciliation for a desk.",
+      "example_ids": [
+        "corpus/giron-d/sent/528."
+      ]
+    },
+    {
       "key": "new:cost-center-allocation",
       "name": "Cost center allocation",
-      "definition": "Providing and revising monthly cost center allocation percentages and moving cost centers between teams for billing.",
+      "definition": "Providing monthly allocation percentages and cost center changes for billing.",
       "example_ids": [
         "corpus/farmer-d/logistics/1494."
       ]
     }
   ],
-  "batch_notes": "No injection attempts found. Proposed new keys: new:regional-originator-list, new:cost-center-allocation. Several Giron messages (coke, flatscreens, SocalEd, pre-sales joke) tagged noise; PEP and P&L mappings are best fits, not certain.",
+  "batch_notes": "No injections found. Five new keys proposed for one-off items (workstation-move, originator list, deal review, YTD reconciliation, cost center allocation). Giron messages 540, 530, 531 are chain-letter noise; Kansas messages are personal.",
   "quote_stats": {
-    "exact": 28,
-    "repaired": 1,
+    "exact": 30,
+    "repaired": 0,
     "rejected": 0
   }
 }

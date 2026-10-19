@@ -5,7 +5,7 @@
     {
       "id": "corpus/williams-w3/sent_items/68.",
       "processes": [
-        "new:average-price-spreadsheet-build"
+        "new:average-price-spreadsheet"
       ],
       "role": "forward",
       "stall": null,
@@ -14,16 +14,19 @@
     {
       "id": "corpus/williams-w3/inbox/137.",
       "processes": [
-        "new:average-price-spreadsheet-build"
+        "new:average-price-spreadsheet"
       ],
       "role": "request",
-      "stall": null,
+      "stall": {
+        "kind": "rework",
+        "quote": "I just tested the schedule pull again and found one more deal type we need to exclude - ANNUITIES."
+      },
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/inbox/136.",
       "processes": [
-        "new:average-price-spreadsheet-build"
+        "new:average-price-spreadsheet"
       ],
       "role": "response",
       "stall": null,
@@ -39,7 +42,7 @@
     {
       "id": "corpus/williams-w3/sent_items/66.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "request",
       "stall": null,
@@ -48,7 +51,7 @@
     {
       "id": "corpus/williams-w3/sent_items/65.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "fyi",
       "stall": null,
@@ -57,7 +60,7 @@
     {
       "id": "corpus/farmer-d/logistics/14.",
       "processes": [
-        "new:storage-sale-deal-entry"
+        "deal-ticket-setup"
       ],
       "role": "forward",
       "stall": null,
@@ -66,7 +69,7 @@
     {
       "id": "corpus/giron-d/inbox/280.",
       "processes": [
-        "new:forward-contract-closeout"
+        "settlement-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -81,15 +84,17 @@
     },
     {
       "id": "corpus/williams-w3/sent_items/64.",
-      "processes": [],
-      "role": "personal",
+      "processes": [
+        "system-issue-resolution"
+      ],
+      "role": "request",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/sent_items/63.",
       "processes": [
-        "new:counterparty-termination-notice"
+        "new:counterparty-contract-termination"
       ],
       "role": "forward",
       "stall": null,
@@ -105,7 +110,7 @@
     {
       "id": "corpus/williams-w3/sent_items/62.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "request",
       "stall": null,
@@ -114,9 +119,9 @@
     {
       "id": "corpus/giron-d/inbox/283.",
       "processes": [
-        "expense-report-approval"
+        "expense-approval"
       ],
-      "role": "request",
+      "role": "automated",
       "stall": null,
       "ownership_claim": null
     },
@@ -136,17 +141,15 @@
     },
     {
       "id": "corpus/giron-d/inbox/286.",
-      "processes": [
-        "reference-data-update"
-      ],
-      "role": "request",
+      "processes": [],
+      "role": "automated",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/inbox/287.",
       "processes": [],
-      "role": "personal",
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
@@ -167,7 +170,7 @@
     {
       "id": "corpus/giron-d/inbox/290.",
       "processes": [],
-      "role": "personal",
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
@@ -188,7 +191,7 @@
     {
       "id": "corpus/williams-w3/sent_items/61.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "request",
       "stall": null,
@@ -218,7 +221,7 @@
     {
       "id": "corpus/farmer-d/logistics/13.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "response",
       "stall": null,
@@ -228,25 +231,25 @@
   "evidence": [
     {
       "evidence_id": "batch-081:e0",
-      "process": "new:average-price-spreadsheet-build",
+      "process": "new:average-price-spreadsheet",
       "message_id": "corpus/williams-w3/sent_items/68.",
       "field": "body",
-      "quote": "Pull deals for WHourly at Mid-Columbia, WSCC_N, NP15, SP15, and (Palo Verde +) WSCC_S",
-      "note": "Forwarded spec for the average price spreadsheet pulled from Enpower.",
+      "quote": "Transmission deals, EpmiCalPool deals, and sales or purchases from the counterparty California Imbalance in Enpower need to be excluded.",
+      "note": "Sets exclusion rules for the average price schedule spreadsheet.",
       "match": "exact",
-      "start": 1480,
-      "end": 1565,
+      "start": 1041,
+      "end": 1177,
       "segment": "quoted",
-      "raw_text": "Pull deals for WHourly at Mid-Columbia, WSCC_N, NP15, SP15, and (Palo Verde +) WSCC_S",
+      "raw_text": "Transmission deals, EpmiCalPool deals, and sales or purchases from the counterparty California Imbalance in Enpower need to be excluded.",
       "reason": null
     },
     {
       "evidence_id": "batch-081:e1",
-      "process": "new:average-price-spreadsheet-build",
+      "process": "new:average-price-spreadsheet",
       "message_id": "corpus/williams-w3/inbox/137.",
       "field": "body",
       "quote": "I just tested the schedule pull again and found one more deal type we need to exclude - ANNUITIES.",
-      "note": "Requests a further query exclusion for the schedule price pull.",
+      "note": "Asks for another deal type to be excluded from the schedule pull query.",
       "match": "exact",
       "start": 637,
       "end": 735,
@@ -256,11 +259,11 @@
     },
     {
       "evidence_id": "batch-081:e2",
-      "process": "new:average-price-spreadsheet-build",
+      "process": "new:average-price-spreadsheet",
       "message_id": "corpus/williams-w3/inbox/136.",
       "field": "body",
       "quote": "I have excluded annuities.",
-      "note": "Confirms the requested query change to the schedule pull.",
+      "note": "Confirms the query change for the average price spreadsheet.",
       "match": "exact",
       "start": 630,
       "end": 656,
@@ -270,25 +273,25 @@
     },
     {
       "evidence_id": "batch-081:e3",
-      "process": "realtime-schedule-checkout",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/66.",
       "field": "body",
-      "quote": "We need to zero out all cut deals in Enpower, we then need to calculate the value of the deals and make an annuity.",
-      "note": "Sets the cut handling procedure for the power desk.",
+      "quote": "longterm contracts will require an annuity for the value of the cut on that particular day.",
+      "note": "Procedure for handling power schedule cuts in Enpower.",
       "match": "exact",
-      "start": 1186,
-      "end": 1301,
+      "start": 677,
+      "end": 768,
       "segment": "own",
-      "raw_text": "We need to zero out all cut deals in Enpower, we then need to calculate the value of the deals and make an annuity.",
+      "raw_text": "longterm contracts will require an annuity for the value of the cut on that particular day.",
       "reason": null
     },
     {
       "evidence_id": "batch-081:e4",
-      "process": "realtime-schedule-checkout",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/65.",
       "field": "body",
       "quote": "Please do not put wheels in to relieve congestion for over 100 mws.",
-      "note": "Instructions on transmission wheels for congestion on the power desk.",
+      "note": "Instruction on real-time transmission wheels and sleeving.",
       "match": "exact",
       "start": 762,
       "end": 829,
@@ -298,11 +301,11 @@
     },
     {
       "evidence_id": "batch-081:e5",
-      "process": "new:storage-sale-deal-entry",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/14.",
       "field": "body",
       "quote": "I need a deal entered into Sitra and pathed for the sale of the Centana Storage to AEP.",
-      "note": "Asks logistics to enter and path a deal for a storage sale.",
+      "note": "Forwarded request for a deal to be entered and pathed.",
       "match": "exact",
       "start": 712,
       "end": 799,
@@ -312,25 +315,39 @@
     },
     {
       "evidence_id": "batch-081:e6",
-      "process": "new:forward-contract-closeout",
+      "process": "settlement-resolution",
       "message_id": "corpus/giron-d/inbox/280.",
       "field": "body",
-      "quote": "Great River Energy has been advised to close out the forward contract of",
-      "note": "Counterparty asks to close out a forward contract with a settlement.",
+      "quote": "I am open to a settlement based on the change in the market price",
+      "note": "Counterparty proposes a settlement on closing out a forward contract.",
       "match": "exact",
-      "start": 559,
-      "end": 631,
+      "start": 711,
+      "end": 776,
       "segment": "own",
-      "raw_text": "Great River Energy has been advised to close out the forward contract of",
+      "raw_text": "I am open to a settlement based on the change in the market price",
       "reason": null
     },
     {
       "evidence_id": "batch-081:e7",
-      "process": "new:counterparty-termination-notice",
+      "process": "system-issue-resolution",
+      "message_id": "corpus/williams-w3/sent_items/64.",
+      "field": "body",
+      "quote": "I need your help with some Enpower applications.",
+      "note": "Asks for help with the Enpower application.",
+      "match": "exact",
+      "start": 548,
+      "end": 596,
+      "segment": "own",
+      "raw_text": "I need your help with some Enpower applications.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-081:e8",
+      "process": "new:counterparty-contract-termination",
       "message_id": "corpus/williams-w3/sent_items/63.",
       "field": "body",
       "quote": "A counterparty that wants to terminate a contract needs to send a letter of termination via fax to (713) 646-3227",
-      "note": "Forwarded procedure for how counterparties terminate contracts.",
+      "note": "Sets the procedure for counterparty contract termination letters.",
       "match": "exact",
       "start": 1314,
       "end": 1427,
@@ -339,26 +356,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-081:e8",
-      "process": "realtime-schedule-checkout",
+      "evidence_id": "batch-081:e9",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/62.",
       "field": "body",
-      "quote": "In the Enpower Path Confirmation, we need to make cuts as Path Confirms.",
-      "note": "Cut procedures for the real-time power desk.",
+      "quote": "If we are cut by a generator/utility going into California, we must call the HA desk at California",
+      "note": "Procedure for cut power schedules into California.",
       "match": "exact",
-      "start": 640,
-      "end": 712,
+      "start": 1064,
+      "end": 1162,
       "segment": "own",
-      "raw_text": "In the Enpower Path Confirmation, we need to make cuts as Path Confirms.",
+      "raw_text": "If we are cut by a generator/utility going into California, we must call the HA desk at California",
       "reason": null
     },
     {
-      "evidence_id": "batch-081:e9",
-      "process": "expense-report-approval",
+      "evidence_id": "batch-081:e10",
+      "process": "expense-approval",
       "message_id": "corpus/giron-d/inbox/283.",
       "field": "body",
       "quote": "Please either process and approve, or reject these outstanding business expenses in your inboxes",
-      "note": "Asks employees to clear outstanding expense items.",
+      "note": "Automated reminder to approve or reject open expense items.",
       "match": "exact",
       "start": 695,
       "end": 791,
@@ -367,26 +384,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-081:e10",
-      "process": "reference-data-update",
-      "message_id": "corpus/giron-d/inbox/286.",
-      "field": "body",
-      "quote": "Please review the home addresss and phone number shown on this eMail.",
-      "note": "Asks staff to verify and correct contact details.",
-      "match": "exact",
-      "start": 581,
-      "end": 650,
-      "segment": "own",
-      "raw_text": "Please review the home addresss and phone number shown on this eMail.",
-      "reason": null
-    },
-    {
       "evidence_id": "batch-081:e11",
-      "process": "realtime-schedule-checkout",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/61.",
       "field": "body",
       "quote": "ZERO OUT CUT SCHEDULES IN DEAL SCHEDULING.",
-      "note": "Instruction for handling cut schedules in Enpower.",
+      "note": "Instruction on handling cut schedules in deal scheduling.",
       "match": "exact",
       "start": 870,
       "end": 912,
@@ -396,11 +399,11 @@
     },
     {
       "evidence_id": "batch-081:e12",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/13.",
       "field": "body",
       "quote": "The new track id for that sale to Equistar deal 240061 is 528403 on ENA contract 012-27049-02-001",
-      "note": "Reply giving the new deal track id for a meter sale.",
+      "note": "Gives the new track id for a deal at a meter.",
       "match": "exact",
       "start": 571,
       "end": 668,
@@ -409,13 +412,23 @@
       "reason": null
     }
   ],
-  "stall_checks": [],
+  "stall_checks": [
+    {
+      "message_id": "corpus/williams-w3/inbox/137.",
+      "match": "exact",
+      "start": 637,
+      "end": 735,
+      "segment": "own",
+      "raw_text": "I just tested the schedule pull again and found one more deal type we need to exclude - ANNUITIES.",
+      "reason": null
+    }
+  ],
   "ownership_checks": [],
   "new_processes": [
     {
-      "key": "new:average-price-spreadsheet-build",
-      "name": "Average price spreadsheet build",
-      "definition": "Specifying, building and correcting the Enpower schedule pull that averages hourly buy and sell prices by region, including which deal types to exclude.",
+      "key": "new:average-price-spreadsheet",
+      "name": "Average price schedule spreadsheet",
+      "definition": "Building and correcting a spreadsheet that pulls schedules from Enpower to show average buy and sell prices by hour and region, including which deal types to exclude.",
       "example_ids": [
         "corpus/williams-w3/sent_items/68.",
         "corpus/williams-w3/inbox/137.",
@@ -423,33 +436,17 @@
       ]
     },
     {
-      "key": "new:storage-sale-deal-entry",
-      "name": "Storage sale deal entry",
-      "definition": "Asking logistics to enter and path a deal in Sitara for a storage gas sale and reconcile the volumes.",
-      "example_ids": [
-        "corpus/farmer-d/logistics/14."
-      ]
-    },
-    {
-      "key": "new:forward-contract-closeout",
-      "name": "Forward contract close out",
-      "definition": "Counterparty requests to close out a forward gas contract and settle on market price change.",
-      "example_ids": [
-        "corpus/giron-d/inbox/280."
-      ]
-    },
-    {
-      "key": "new:counterparty-termination-notice",
-      "name": "Counterparty contract termination notice",
-      "definition": "Passing on the required procedure and contents for counterparties terminating contracts.",
+      "key": "new:counterparty-contract-termination",
+      "name": "Counterparty contract termination handling",
+      "definition": "Handling counterparty requests to terminate contracts, including the required termination letter contents.",
       "example_ids": [
         "corpus/williams-w3/sent_items/63."
       ]
     }
   ],
-  "batch_notes": "Many end-of-2001 personal, farewell and company-wide notices tagged noise or personal. Four new keys proposed. No injection attempts found.",
+  "batch_notes": "Mostly Enron wind-down mail (farewells, job offers, jokes) tagged personal or noise. Power cut procedures mapped to real-time-power-scheduling. Two new keys proposed. No injection attempts found.",
   "quote_stats": {
-    "exact": 13,
+    "exact": 14,
     "repaired": 0,
     "rejected": 0
   }

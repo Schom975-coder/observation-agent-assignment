@@ -5,7 +5,7 @@
     {
       "id": "corpus/giron-d/sent/31.",
       "processes": [
-        "credit-exposure-reporting"
+        "credit-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -14,7 +14,7 @@
     {
       "id": "corpus/farmer-d/logistics/153.",
       "processes": [
-        "gas-nomination-handling"
+        "meter-flow-resolution"
       ],
       "role": "fyi",
       "stall": null,
@@ -37,7 +37,7 @@
     {
       "id": "corpus/farmer-d/logistics/152.",
       "processes": [
-        "gas-nomination-handling"
+        "gas-nomination"
       ],
       "role": "request",
       "stall": null,
@@ -46,7 +46,7 @@
     {
       "id": "corpus/giron-d/sent/28.",
       "processes": [
-        "credit-exposure-reporting"
+        "credit-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -55,7 +55,7 @@
     {
       "id": "corpus/farmer-d/logistics/151.",
       "processes": [
-        "deal-record-correction"
+        "settlement-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -71,7 +71,7 @@
     {
       "id": "corpus/farmer-d/logistics/150.",
       "processes": [
-        "pipeline-outage-supply-cuts"
+        "pipeline-maintenance-notice"
       ],
       "role": "request",
       "stall": null,
@@ -94,7 +94,7 @@
     {
       "id": "corpus/giron-d/sent/24.",
       "processes": [
-        "credit-exposure-reporting"
+        "credit-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -133,7 +133,7 @@
     {
       "id": "corpus/giron-d/sent/19.",
       "processes": [
-        "credit-exposure-reporting"
+        "credit-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -142,7 +142,7 @@
     {
       "id": "corpus/giron-d/sent/18.",
       "processes": [
-        "user-access-setup"
+        "system-access-request"
       ],
       "role": "request",
       "stall": null,
@@ -155,7 +155,10 @@
       ],
       "role": "request",
       "stall": null,
-      "ownership_claim": null
+      "ownership_claim": {
+        "person": "Darron C Giron",
+        "quote": "I cannot change tha Trading Group."
+      }
     },
     {
       "id": "corpus/giron-d/sent/15.",
@@ -169,7 +172,7 @@
     {
       "id": "corpus/giron-d/sent/16.",
       "processes": [
-        "credit-exposure-reporting"
+        "credit-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -178,7 +181,7 @@
     {
       "id": "corpus/farmer-d/logistics/149.",
       "processes": [
-        "pipeline-outage-supply-cuts"
+        "pipeline-maintenance-notice"
       ],
       "role": "fyi",
       "stall": null,
@@ -187,7 +190,7 @@
     {
       "id": "corpus/giron-d/sent/14.",
       "processes": [
-        "credit-exposure-reporting"
+        "credit-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -203,7 +206,7 @@
     {
       "id": "corpus/farmer-d/logistics/148.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -212,7 +215,7 @@
     {
       "id": "corpus/farmer-d/logistics/145.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "response",
       "stall": null,
@@ -221,7 +224,7 @@
     {
       "id": "corpus/farmer-d/logistics/147.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -230,7 +233,7 @@
     {
       "id": "corpus/farmer-d/logistics/146.",
       "processes": [
-        "pipeline-outage-supply-cuts"
+        "pipeline-maintenance-notice"
       ],
       "role": "fyi",
       "stall": null,
@@ -248,7 +251,7 @@
     {
       "id": "corpus/farmer-d/logistics/144.",
       "processes": [
-        "pipeline-outage-supply-cuts"
+        "customer-volume-confirmation"
       ],
       "role": "fyi",
       "stall": null,
@@ -257,7 +260,7 @@
     {
       "id": "corpus/farmer-d/logistics/143.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "settlement-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -266,7 +269,7 @@
     {
       "id": "corpus/giron-d/sent/12.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "forward",
       "stall": null,
@@ -275,7 +278,7 @@
     {
       "id": "corpus/giron-d/sent/10.",
       "processes": [
-        "credit-exposure-reporting"
+        "credit-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -284,7 +287,7 @@
     {
       "id": "corpus/giron-d/sent/11.",
       "processes": [
-        "credit-exposure-reporting"
+        "credit-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -293,15 +296,12 @@
     {
       "id": "corpus/giron-d/sent/9.",
       "processes": [
-        "deal-record-correction"
+        "new:trade-detail-correction"
       ],
       "role": "response",
-      "stall": {
-        "kind": "rework",
-        "quote": "Counterparty name should be BANKAMENAT."
-      },
+      "stall": null,
       "ownership_claim": {
-        "person": "Darron C Giron",
+        "person": "Carole",
         "quote": "I know that you are covering for Carole, so thank you for your time."
       }
     },
@@ -315,19 +315,19 @@
     {
       "id": "corpus/farmer-d/logistics/142.",
       "processes": [
-        "desk-coverage-on-call"
+        "on-call-coverage"
       ],
       "role": "fyi",
       "stall": null,
       "ownership_claim": {
-        "person": "Bob Cotten",
-        "quote": "Bob Cotten will do the NNGB (Black Marlin) and help Tom."
+        "person": "Tom Acton",
+        "quote": "Tom Acton will be my back up"
       }
     },
     {
       "id": "corpus/farmer-d/logistics/141.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -343,7 +343,7 @@
     {
       "id": "corpus/giron-d/sent/6.",
       "processes": [
-        "new:tagg-value-audit-explanation"
+        "new:tagg-audit-explanation"
       ],
       "role": "request",
       "stall": null,
@@ -352,7 +352,7 @@
     {
       "id": "corpus/giron-d/sent/5.",
       "processes": [
-        "performance-review"
+        "new:pba-nomination"
       ],
       "role": "request",
       "stall": null,
@@ -361,7 +361,7 @@
     {
       "id": "corpus/giron-d/inbox/173.",
       "processes": [],
-      "role": "personal",
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     }
@@ -369,11 +369,11 @@
   "evidence": [
     {
       "evidence_id": "batch-052:e0",
-      "process": "credit-exposure-reporting",
+      "process": "credit-reporting",
       "message_id": "corpus/giron-d/sent/31.",
       "field": "subject",
       "quote": "Credit Report--4/30/01",
-      "note": "Dated credit report forwarded to the credit group.",
+      "note": "Dated credit report passed on.",
       "match": "exact",
       "start": 171,
       "end": 193,
@@ -383,11 +383,11 @@
     },
     {
       "evidence_id": "batch-052:e1",
-      "process": "credit-exposure-reporting",
+      "process": "credit-reporting",
       "message_id": "corpus/giron-d/sent/28.",
       "field": "subject",
       "quote": "Credit Report--5/1/01",
-      "note": "Dated credit report forwarded.",
+      "note": "Dated credit report passed on.",
       "match": "exact",
       "start": 170,
       "end": 191,
@@ -397,11 +397,11 @@
     },
     {
       "evidence_id": "batch-052:e2",
-      "process": "credit-exposure-reporting",
+      "process": "credit-reporting",
       "message_id": "corpus/giron-d/sent/24.",
       "field": "subject",
       "quote": "Credit Report--5/2/01",
-      "note": "Dated credit report forwarded.",
+      "note": "Dated credit report passed on.",
       "match": "exact",
       "start": 170,
       "end": 191,
@@ -411,11 +411,11 @@
     },
     {
       "evidence_id": "batch-052:e3",
-      "process": "credit-exposure-reporting",
+      "process": "credit-reporting",
       "message_id": "corpus/giron-d/sent/19.",
       "field": "subject",
       "quote": "Credit Report--5/3/01",
-      "note": "Dated credit report forwarded.",
+      "note": "Dated credit report passed on.",
       "match": "exact",
       "start": 169,
       "end": 190,
@@ -425,11 +425,11 @@
     },
     {
       "evidence_id": "batch-052:e4",
-      "process": "credit-exposure-reporting",
+      "process": "credit-reporting",
       "message_id": "corpus/giron-d/sent/16.",
       "field": "subject",
       "quote": "Credit Report--5/4/01",
-      "note": "Dated credit report forwarded.",
+      "note": "Dated credit report passed on.",
       "match": "exact",
       "start": 170,
       "end": 191,
@@ -439,11 +439,11 @@
     },
     {
       "evidence_id": "batch-052:e5",
-      "process": "credit-exposure-reporting",
+      "process": "credit-reporting",
       "message_id": "corpus/giron-d/sent/14.",
       "field": "subject",
       "quote": "Credit Report - 5/7/01",
-      "note": "Dated credit report with counterparty rebook actions forwarded.",
+      "note": "Dated credit report passed on.",
       "match": "exact",
       "start": 170,
       "end": 192,
@@ -453,11 +453,11 @@
     },
     {
       "evidence_id": "batch-052:e6",
-      "process": "credit-exposure-reporting",
+      "process": "credit-reporting",
       "message_id": "corpus/giron-d/sent/10.",
       "field": "subject",
       "quote": "Credit Report--5/9/01",
-      "note": "Dated credit report forwarded.",
+      "note": "Dated credit report passed on.",
       "match": "exact",
       "start": 170,
       "end": 191,
@@ -467,11 +467,11 @@
     },
     {
       "evidence_id": "batch-052:e7",
-      "process": "credit-exposure-reporting",
+      "process": "credit-reporting",
       "message_id": "corpus/giron-d/sent/11.",
       "field": "subject",
       "quote": "Credit Report--5/8/01",
-      "note": "Dated credit report forwarded.",
+      "note": "Dated credit report passed on.",
       "match": "exact",
       "start": 169,
       "end": 190,
@@ -481,11 +481,11 @@
     },
     {
       "evidence_id": "batch-052:e8",
-      "process": "gas-nomination-handling",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/153.",
       "field": "body",
       "quote": "Break down for Duke - Three Rivers/Live Oak",
-      "note": "Volume breakdown by supplier for a meter for the month.",
+      "note": "Volume breakdown by source for a meter in the production month.",
       "match": "exact",
       "start": 599,
       "end": 642,
@@ -495,11 +495,11 @@
     },
     {
       "evidence_id": "batch-052:e9",
-      "process": "gas-nomination-handling",
+      "process": "gas-nomination",
       "message_id": "corpus/farmer-d/logistics/152.",
       "field": "body",
       "quote": "Can you give me deal numbers so I can confirm it. Thanks - Julie",
-      "note": "Asks for deal numbers to confirm received Equistar nominations.",
+      "note": "Equistar nominations received, deal numbers requested to confirm them.",
       "match": "exact",
       "start": 622,
       "end": 686,
@@ -509,11 +509,11 @@
     },
     {
       "evidence_id": "batch-052:e10",
-      "process": "deal-record-correction",
+      "process": "settlement-resolution",
       "message_id": "corpus/farmer-d/logistics/151.",
       "field": "body",
       "quote": "Could you please change the following deal tickets to the rates detailed below:",
-      "note": "Requests changes to rates on existing deal tickets.",
+      "note": "Requests corrected deal rates per contract.",
       "match": "exact",
       "start": 714,
       "end": 793,
@@ -523,11 +523,11 @@
     },
     {
       "evidence_id": "batch-052:e11",
-      "process": "pipeline-outage-supply-cuts",
+      "process": "pipeline-maintenance-notice",
       "message_id": "corpus/farmer-d/logistics/150.",
       "field": "body",
       "quote": "What would you like to do with the two day outage on May 8th and 9th.",
-      "note": "Planned maintenance shutting a meter for two days.",
+      "note": "Planned meter shutdown for maintenance.",
       "match": "exact",
       "start": 554,
       "end": 623,
@@ -551,11 +551,11 @@
     },
     {
       "evidence_id": "batch-052:e13",
-      "process": "user-access-setup",
+      "process": "system-access-request",
       "message_id": "corpus/giron-d/sent/18.",
       "field": "body",
       "quote": "Please add Elizabeth Shim to the Book Admin list on the Web sight.",
-      "note": "Asks to add a user to the book admin list.",
+      "note": "Asks to grant a user book admin access.",
       "match": "exact",
       "start": 597,
       "end": 663,
@@ -568,13 +568,13 @@
       "process": "trading-book-setup",
       "message_id": "corpus/giron-d/sent/17.",
       "field": "body",
-      "quote": "I also noticed that we have some books that are not listed under US",
-      "note": "Asks to have books listed under the correct group.",
+      "quote": "I cannot change tha Trading Group.",
+      "note": "Asks someone to list books under a trading group.",
       "match": "exact",
-      "start": 465,
-      "end": 532,
+      "start": 559,
+      "end": 593,
       "segment": "own",
-      "raw_text": "I also noticed that we have some books that are not listed under US",
+      "raw_text": "I cannot change tha Trading Group.",
       "reason": null
     },
     {
@@ -582,22 +582,22 @@
       "process": "trading-book-setup",
       "message_id": "corpus/giron-d/sent/15.",
       "field": "body",
-      "quote": "No positions.  Archive.",
-      "note": "Answers whether a book needs to be active.",
+      "quote": "Does WEST-KEYSTONE-IDX have any positions?",
+      "note": "Book set-up question being answered (no positions, archive).",
       "match": "exact",
-      "start": 456,
-      "end": 479,
-      "segment": "own",
-      "raw_text": "No positions.  Archive.",
+      "start": 710,
+      "end": 752,
+      "segment": "quoted",
+      "raw_text": "Does WEST-KEYSTONE-IDX have any positions?",
       "reason": null
     },
     {
       "evidence_id": "batch-052:e16",
-      "process": "pipeline-outage-supply-cuts",
+      "process": "pipeline-maintenance-notice",
       "message_id": "corpus/farmer-d/logistics/149.",
       "field": "body",
       "quote": "Looks like the outage scheduled is postponed.",
-      "note": "Update on a postponed maintenance outage.",
+      "note": "Update on a planned maintenance outage.",
       "match": "exact",
       "start": 564,
       "end": 609,
@@ -607,11 +607,11 @@
     },
     {
       "evidence_id": "batch-052:e17",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/148.",
       "field": "body",
       "quote": "deal ticket 745546 extended on both ends.",
-      "note": "Requests extension of a deal ticket to clear allocation exceptions.",
+      "note": "Requests extension of a deal ticket.",
       "match": "exact",
       "start": 575,
       "end": 616,
@@ -621,25 +621,25 @@
     },
     {
       "evidence_id": "batch-052:e18",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/145.",
       "field": "body",
-      "quote": "Yes, that sounds great!!",
-      "note": "Approves rolling the flow on the extended deal.",
+      "quote": "Should I roll the flow to Southern Union at Lockhart at HSC GD + .02 for the days listed below?",
+      "note": "Answer on how the extended deal is handled.",
       "match": "exact",
-      "start": 528,
-      "end": 552,
-      "segment": "own",
-      "raw_text": "Yes, that sounds great!!",
+      "start": 689,
+      "end": 784,
+      "segment": "quoted",
+      "raw_text": "Should I roll the flow to Southern Union at Lockhart at HSC GD + .02 for the days listed below?",
       "reason": null
     },
     {
       "evidence_id": "batch-052:e19",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/farmer-d/logistics/147.",
       "field": "body",
       "quote": "BP invoiced HPL at $4.955 for the deal below, and Sitara shows $4.95.",
-      "note": "Invoice price differs from system price.",
+      "note": "Invoice price discrepancy to verify.",
       "match": "exact",
       "start": 538,
       "end": 607,
@@ -649,11 +649,11 @@
     },
     {
       "evidence_id": "batch-052:e20",
-      "process": "pipeline-outage-supply-cuts",
+      "process": "pipeline-maintenance-notice",
       "message_id": "corpus/farmer-d/logistics/146.",
       "field": "subject",
       "quote": "Planned Deliveries For Phase II Pigging",
-      "note": "Pigging notice with planned delivery changes.",
+      "note": "Pigging delivery plan for affected points.",
       "match": "exact",
       "start": 262,
       "end": 301,
@@ -667,7 +667,7 @@
       "message_id": "corpus/williams-w3/sent_items/518.",
       "field": "body",
       "quote": "Below are the following names of some potential reviewers for this period.",
-      "note": "Supplies reviewer names for the review cycle.",
+      "note": "Supplies reviewer names for a mid-year review.",
       "match": "exact",
       "start": 535,
       "end": 609,
@@ -677,11 +677,11 @@
     },
     {
       "evidence_id": "batch-052:e22",
-      "process": "pipeline-outage-supply-cuts",
+      "process": "customer-volume-confirmation",
       "message_id": "corpus/farmer-d/logistics/144.",
       "field": "body",
       "quote": "Equistar will be bringing the Syngas plant back up effective May 10.",
-      "note": "Plant restart after downtime affecting gas purchases.",
+      "note": "Customer load and price notice for billing volumes.",
       "match": "exact",
       "start": 613,
       "end": 681,
@@ -691,11 +691,11 @@
     },
     {
       "evidence_id": "batch-052:e23",
-      "process": "meter-flow-deal-coverage",
+      "process": "settlement-resolution",
       "message_id": "corpus/farmer-d/logistics/143.",
       "field": "body",
       "quote": "Please let me know what price Tenaska should be billed for these two days.",
-      "note": "Gas pulled on days with no price or path on the deal.",
+      "note": "Asks for price to bill unpriced gas.",
       "match": "exact",
       "start": 1010,
       "end": 1084,
@@ -705,11 +705,11 @@
     },
     {
       "evidence_id": "batch-052:e24",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/giron-d/sent/12.",
       "field": "body",
       "quote": "Can you please update the 04/01 price for deal # 27253 in Sitara?",
-      "note": "Price in system differs from customer invoice.",
+      "note": "Corrected deal price after customer invoice.",
       "match": "exact",
       "start": 677,
       "end": 742,
@@ -719,11 +719,11 @@
     },
     {
       "evidence_id": "batch-052:e25",
-      "process": "deal-record-correction",
+      "process": "new:trade-detail-correction",
       "message_id": "corpus/giron-d/sent/9.",
       "field": "body",
       "quote": "Counterparty name should be BANKAMENAT.",
-      "note": "Corrections needed on trade records, marked done.",
+      "note": "Trade details corrected in the system.",
       "match": "exact",
       "start": 773,
       "end": 812,
@@ -733,53 +733,53 @@
     },
     {
       "evidence_id": "batch-052:e26",
-      "process": "desk-coverage-on-call",
+      "process": "on-call-coverage",
       "message_id": "corpus/farmer-d/logistics/142.",
       "field": "body",
-      "quote": "Bob Cotten will do the NNGB (Black Marlin) and help Tom.",
-      "note": "Backup coverage arranged during absence.",
+      "quote": "I will be on vacation from Thursday 5/10 thru Wednesday 5/16.",
+      "note": "Vacation backup coverage arrangement.",
       "match": "exact",
-      "start": 2408,
-      "end": 2464,
+      "start": 2279,
+      "end": 2340,
       "segment": "own",
-      "raw_text": "Bob Cotten will do the NNGB (Black Marlin) and help Tom.",
+      "raw_text": "I will be on vacation from Thursday 5/10 thru Wednesday 5/16.",
       "reason": null
     },
     {
       "evidence_id": "batch-052:e27",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/farmer-d/logistics/141.",
       "field": "body",
-      "quote": "We paid them $4.18 and they said that their price should be $5.18.",
-      "note": "Counterparty disputes the price paid on a deal.",
+      "quote": "that they were paid incorrectly on deal 681360",
+      "note": "Counterparty disputes price paid on a deal.",
       "match": "exact",
-      "start": 1034,
-      "end": 1100,
+      "start": 947,
+      "end": 993,
       "segment": "forwarded",
-      "raw_text": "We paid them $4.18 and they said that their price should be $5.18.",
+      "raw_text": "that they were paid incorrectly on deal 681360",
       "reason": null
     },
     {
       "evidence_id": "batch-052:e28",
-      "process": "new:tagg-value-audit-explanation",
+      "process": "new:tagg-audit-explanation",
       "message_id": "corpus/giron-d/sent/6.",
       "field": "body",
-      "quote": "For audit purposes, can you give us a brief description of where the value",
-      "note": "Audit request to explain annuity values in TAGG.",
+      "quote": "Please follow up with Joe about how we arrived at the amounts on the",
+      "note": "Asks for an explanation of TAGG values for audit.",
       "match": "exact",
-      "start": 890,
-      "end": 964,
-      "segment": "forwarded",
-      "raw_text": "For audit purposes, can you give us a brief description of where the value",
+      "start": 483,
+      "end": 551,
+      "segment": "own",
+      "raw_text": "Please follow up with Joe about how we arrived at the amounts on the",
       "reason": null
     },
     {
       "evidence_id": "batch-052:e29",
-      "process": "performance-review",
+      "process": "new:pba-nomination",
       "message_id": "corpus/giron-d/sent/5.",
       "field": "body",
       "quote": "Attached is my PBA nomination for Anne Bike.",
-      "note": "Submits an award nomination in the review cycle.",
+      "note": "Submits a PBA nomination.",
       "match": "exact",
       "start": 438,
       "end": 482,
@@ -788,21 +788,21 @@
       "reason": null
     }
   ],
-  "stall_checks": [
-    {
-      "message_id": "corpus/giron-d/sent/9.",
-      "match": "exact",
-      "start": 773,
-      "end": 812,
-      "segment": "quoted",
-      "raw_text": "Counterparty name should be BANKAMENAT.",
-      "reason": null
-    }
-  ],
+  "stall_checks": [],
   "ownership_checks": [
     {
-      "message_id": "corpus/giron-d/sent/9.",
+      "message_id": "corpus/giron-d/sent/17.",
       "person": "Darron C Giron",
+      "match": "exact",
+      "start": 559,
+      "end": 593,
+      "segment": "own",
+      "raw_text": "I cannot change tha Trading Group.",
+      "reason": null
+    },
+    {
+      "message_id": "corpus/giron-d/sent/9.",
+      "person": "Carole",
       "match": "exact",
       "start": 814,
       "end": 882,
@@ -812,26 +812,42 @@
     },
     {
       "message_id": "corpus/farmer-d/logistics/142.",
-      "person": "Bob Cotten",
+      "person": "Tom Acton",
       "match": "exact",
-      "start": 2408,
-      "end": 2464,
+      "start": 2341,
+      "end": 2369,
       "segment": "own",
-      "raw_text": "Bob Cotten will do the NNGB (Black Marlin) and help Tom.",
+      "raw_text": "Tom Acton will be my back up",
       "reason": null
     }
   ],
   "new_processes": [
     {
-      "key": "new:tagg-value-audit-explanation",
-      "name": "TAGG value audit explanation",
-      "definition": "Explaining to audit or book administrators how values recorded in the TAGG deal system were derived, and assigning follow-up.",
+      "key": "new:trade-detail-correction",
+      "name": "Trade detail correction",
+      "definition": "Correcting term or counterparty details on booked trades after a broker or trader flags errors.",
+      "example_ids": [
+        "corpus/giron-d/sent/9."
+      ]
+    },
+    {
+      "key": "new:tagg-audit-explanation",
+      "name": "TAGG audit value explanation",
+      "definition": "Explaining how values recorded in TAGG were derived so comments can be added for audit.",
       "example_ids": [
         "corpus/giron-d/sent/6."
       ]
+    },
+    {
+      "key": "new:pba-nomination",
+      "name": "PBA nomination",
+      "definition": "Submitting a nomination for a PBA for a colleague.",
+      "example_ids": [
+        "corpus/giron-d/sent/5."
+      ]
     }
   ],
-  "batch_notes": "No injection attempts found. Many personal messages in the giron-d mailbox. Uncertain: giron-d/sent/5 (PBA nomination) tagged performance-review; logistics/144 tagged as plant outage.",
+  "batch_notes": "No injections found. Many personal forwards in giron-d/sent. Three new keys proposed; PBA meaning is unclear, so it is kept separate from performance-review.",
   "quote_stats": {
     "exact": 33,
     "repaired": 0,

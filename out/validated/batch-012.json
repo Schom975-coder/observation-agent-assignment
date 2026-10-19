@@ -5,7 +5,7 @@
     {
       "id": "corpus/farmer-d/logistics/1098.",
       "processes": [
-        "new:ena-hpl-sales-customer-research"
+        "new:ena-hpl-sales-research"
       ],
       "role": "request",
       "stall": null,
@@ -14,19 +14,16 @@
     {
       "id": "corpus/farmer-d/logistics/1100.",
       "processes": [
-        "new:ena-hpl-sales-customer-research"
+        "new:ena-hpl-sales-research"
       ],
       "role": "fyi",
-      "stall": {
-        "kind": "waiting_on_reply",
-        "quote": "While I am waiting for a response from him"
-      },
+      "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/1131.",
       "processes": [
-        "new:ena-hpl-sales-customer-research"
+        "new:ena-hpl-sales-research"
       ],
       "role": "request",
       "stall": null,
@@ -35,10 +32,13 @@
     {
       "id": "corpus/farmer-d/logistics/1135.",
       "processes": [
-        "new:ena-hpl-sales-customer-research"
+        "new:ena-hpl-sales-research"
       ],
       "role": "response",
-      "stall": null,
+      "stall": {
+        "kind": "other",
+        "quote": "Last that I had, was that legal was reviewing the contract."
+      },
       "ownership_claim": null
     },
     {
@@ -53,7 +53,7 @@
     {
       "id": "corpus/farmer-d/logistics/1102.",
       "processes": [
-        "system-enhancement-request"
+        "new:unify-enhancement-tracking"
       ],
       "role": "request",
       "stall": null,
@@ -80,7 +80,7 @@
     {
       "id": "corpus/farmer-d/logistics/1105.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -89,16 +89,19 @@
     {
       "id": "corpus/farmer-d/logistics/1107.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "meter-flow-resolution"
       ],
       "role": "fyi",
-      "stall": null,
+      "stall": {
+        "kind": "system_failure",
+        "quote": "Sitara did not feed this deal to MOPS at all therefore it didn't feed to"
+      },
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/1106.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "response",
       "stall": null,
@@ -107,7 +110,7 @@
     {
       "id": "corpus/farmer-d/logistics/1110.",
       "processes": [
-        "new:hpl-zone-remap-request"
+        "new:zone-mapping-change"
       ],
       "role": "request",
       "stall": null,
@@ -115,8 +118,10 @@
     },
     {
       "id": "corpus/farmer-d/logistics/1113.",
-      "processes": [],
-      "role": "noise",
+      "processes": [
+        "new:meeting-attendance-confirmation"
+      ],
+      "role": "response",
       "stall": null,
       "ownership_claim": null
     },
@@ -144,7 +149,7 @@
     {
       "id": "corpus/farmer-d/logistics/1118.",
       "processes": [
-        "system-enhancement-request"
+        "system-issue-resolution"
       ],
       "role": "fyi",
       "stall": null,
@@ -173,7 +178,7 @@
       "processes": [
         "new:customer-meeting-planning"
       ],
-      "role": "request",
+      "role": "fyi",
       "stall": null,
       "ownership_claim": null
     },
@@ -187,7 +192,7 @@
     {
       "id": "corpus/farmer-d/logistics/1124.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution"
       ],
       "role": "fyi",
       "stall": null,
@@ -196,7 +201,7 @@
     {
       "id": "corpus/farmer-d/logistics/1126.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "oba-contract-negotiation"
       ],
       "role": "request",
       "stall": {
@@ -208,7 +213,7 @@
     {
       "id": "corpus/farmer-d/logistics/1127.",
       "processes": [
-        "system-enhancement-request"
+        "new:unify-enhancement-tracking"
       ],
       "role": "request",
       "stall": null,
@@ -216,17 +221,16 @@
     },
     {
       "id": "corpus/farmer-d/logistics/1128.",
-      "processes": [
-        "pipeline-outage-supply-cuts"
-      ],
-      "role": "fyi",
+      "processes": [],
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/1129.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup",
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -235,7 +239,7 @@
     {
       "id": "corpus/farmer-d/logistics/1130.",
       "processes": [
-        "deal-record-correction"
+        "settlement-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -244,7 +248,7 @@
     {
       "id": "corpus/farmer-d/logistics/1133.",
       "processes": [
-        "pipeline-outage-supply-cuts"
+        "supply-cut-handling"
       ],
       "role": "request",
       "stall": null,
@@ -254,58 +258,58 @@
   "evidence": [
     {
       "evidence_id": "batch-012:e0",
-      "process": "new:ena-hpl-sales-customer-research",
+      "process": "new:ena-hpl-sales-research",
       "message_id": "corpus/farmer-d/logistics/1098.",
       "field": "body",
-      "quote": "Are there buy/sell deals done with ENA on HPL's pipe that wouldn't show up in",
-      "note": "Asks whether the Sitara report captures all ENA sales off HPL's pipe.",
+      "quote": "she needs to know all of the Sales to customers that ENA is",
+      "note": "Asks colleagues to confirm a Sitara-based list of ENA sales off HPL.",
       "match": "exact",
-      "start": 1107,
-      "end": 1184,
+      "start": 828,
+      "end": 887,
       "segment": "own",
-      "raw_text": "Are there buy/sell deals done with ENA on HPL's pipe that wouldn't show up in",
+      "raw_text": "she needs to know all of the Sales to customers that ENA is",
       "reason": null
     },
     {
       "evidence_id": "batch-012:e1",
-      "process": "new:ena-hpl-sales-customer-research",
+      "process": "new:ena-hpl-sales-research",
       "message_id": "corpus/farmer-d/logistics/1100.",
       "field": "body",
-      "quote": "I will begin gathering the contractual volumes under the",
-      "note": "Status update on compiling ENA's HPL sales counterparties and contract volumes.",
+      "quote": "Based on a new report that Scott Mills ran for me from Sitara, I have come up",
+      "note": "Status update listing ENA sales counterparties from a Sitara report.",
       "match": "exact",
-      "start": 1587,
-      "end": 1643,
+      "start": 627,
+      "end": 704,
       "segment": "own",
-      "raw_text": "I will begin gathering the contractual volumes under the",
+      "raw_text": "Based on a new report that Scott Mills ran for me from Sitara, I have come up",
       "reason": null
     },
     {
       "evidence_id": "batch-012:e2",
-      "process": "new:ena-hpl-sales-customer-research",
+      "process": "new:ena-hpl-sales-research",
       "message_id": "corpus/farmer-d/logistics/1131.",
       "field": "body",
-      "quote": "I am confused about Praxair though.",
-      "note": "Questions whether a counterparty belongs under ENA or HPLC while compiling the customer list.",
+      "quote": "Does Praxair really need to remain under ENA or is it okay under HPLC?",
+      "note": "Question on which entity holds a customer contract in the sales research.",
       "match": "exact",
-      "start": 688,
-      "end": 723,
+      "start": 888,
+      "end": 958,
       "segment": "own",
-      "raw_text": "I am confused about Praxair though.",
+      "raw_text": "Does Praxair really need to remain under ENA or is it okay under HPLC?",
       "reason": null
     },
     {
       "evidence_id": "batch-012:e3",
-      "process": "new:ena-hpl-sales-customer-research",
+      "process": "new:ena-hpl-sales-research",
       "message_id": "corpus/farmer-d/logistics/1135.",
       "field": "body",
-      "quote": "Cheryl:  I would ask Dan Hyvl to find out where legal stands on this.",
-      "note": "Answers the Praxair contract question and points to legal.",
+      "quote": "Last that I had, was that legal was reviewing the contract.",
+      "note": "Reply on the Praxair contract status within the ENA sales review.",
       "match": "exact",
-      "start": 630,
-      "end": 699,
+      "start": 526,
+      "end": 585,
       "segment": "own",
-      "raw_text": "Cheryl:  I would ask Dan Hyvl to find out where legal stands on this.",
+      "raw_text": "Last that I had, was that legal was reviewing the contract.",
       "reason": null
     },
     {
@@ -314,7 +318,7 @@
       "message_id": "corpus/farmer-d/logistics/3214.",
       "field": "body",
       "quote": "The mid-year Performance Management cycle will begin on May 15 with the=20",
-      "note": "Announces the mid-year performance review cycle.",
+      "note": "Announces the mid-year performance cycle and PEP system.",
       "match": "exact",
       "start": 515,
       "end": 589,
@@ -324,16 +328,16 @@
     },
     {
       "evidence_id": "batch-012:e5",
-      "process": "system-enhancement-request",
+      "process": "new:unify-enhancement-tracking",
       "message_id": "corpus/farmer-d/logistics/1102.",
       "field": "body",
-      "quote": "Are there reports which can help?",
-      "note": "Asks how the Unify tool can help manage a problem.",
+      "quote": "How do you get your hands around this??  Are there reports which can help?",
+      "note": "Asks how Unify was meant to support managing this work.",
       "match": "exact",
-      "start": 584,
+      "start": 543,
       "end": 617,
       "segment": "own",
-      "raw_text": "Are there reports which can help?",
+      "raw_text": "How do you get your hands around this??  Are there reports which can help?",
       "reason": null
     },
     {
@@ -342,7 +346,7 @@
       "message_id": "corpus/farmer-d/logistics/1103.",
       "field": "body",
       "quote": "Please read the attached correspondence from Brent regarding the controls and",
-      "note": "Asks the group to prepare controls and standards listings for the assessment.",
+      "note": "Passes on a request to assess controls and standards for the gas logistics function.",
       "match": "exact",
       "start": 705,
       "end": 782,
@@ -366,11 +370,11 @@
     },
     {
       "evidence_id": "batch-012:e8",
-      "process": "volume-imbalance-reconciliation",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1105.",
       "field": "body",
       "quote": "There is an interconnect variance at meter 980071 for 2/99.",
-      "note": "Interconnect variance between delivered and received volumes passed on for investigation.",
+      "note": "Forwarded meter variance question handed to Daren to look into.",
       "match": "exact",
       "start": 1166,
       "end": 1225,
@@ -380,39 +384,39 @@
     },
     {
       "evidence_id": "batch-012:e9",
-      "process": "volume-imbalance-reconciliation",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1107.",
       "field": "body",
-      "quote": "There is an interconnect variance at meter 980071 for 2/99.",
-      "note": "Same variance, withdrawn after resolution.",
+      "quote": "Sitara did not feed this deal to MOPS at all therefore it didn't feed to",
+      "note": "Explains the cause of the meter variance and its resolution.",
       "match": "exact",
-      "start": 1719,
-      "end": 1778,
-      "segment": "quoted",
-      "raw_text": "There is an interconnect variance at meter 980071 for 2/99.",
+      "start": 936,
+      "end": 1008,
+      "segment": "forwarded",
+      "raw_text": "Sitara did not feed this deal to MOPS at all therefore it didn't feed to",
       "reason": null
     },
     {
       "evidence_id": "batch-012:e10",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1106.",
       "field": "body",
-      "quote": "Can you set up new deals for meter 6757 and 5192?",
-      "note": "Earlier request for new deals at meters; reply supplies the Duke prices.",
+      "quote": "Daren - Can you set up new deals for meter 6757 and 5192?",
+      "note": "History shows the request for new deals at meters; message supplies prices.",
       "match": "exact",
-      "start": 2991,
+      "start": 2983,
       "end": 3040,
       "segment": "forwarded",
-      "raw_text": "Can you set up new deals for meter 6757 and 5192?",
+      "raw_text": "Daren - Can you set up new deals for meter 6757 and 5192?",
       "reason": null
     },
     {
       "evidence_id": "batch-012:e11",
-      "process": "new:hpl-zone-remap-request",
+      "process": "new:zone-mapping-change",
       "message_id": "corpus/farmer-d/logistics/1110.",
       "field": "body",
       "quote": "Please re-map HPL Zone 4 from A/S East Beaumont to A/S East Beaumont Offer.",
-      "note": "Request to re-map a zone in a system.",
+      "note": "Request to change a zone mapping.",
       "match": "exact",
       "start": 635,
       "end": 710,
@@ -422,25 +426,39 @@
     },
     {
       "evidence_id": "batch-012:e12",
-      "process": "new:customer-meeting-planning",
-      "message_id": "corpus/farmer-d/logistics/1115.",
+      "process": "new:meeting-attendance-confirmation",
+      "message_id": "corpus/farmer-d/logistics/1113.",
       "field": "body",
-      "quote": "The planning has begun for our 2000 Customer Appreciation Meeting.",
-      "note": "Deadlines for guest lists and invitations for the customer meeting.",
+      "quote": "I have a call into Jo Williams for her to give me more info on the meeting.",
+      "note": "Confirms attendance at a meeting asked about by Daren.",
       "match": "exact",
-      "start": 1619,
-      "end": 1685,
-      "segment": "forwarded",
-      "raw_text": "The planning has begun for our 2000 Customer Appreciation Meeting.",
+      "start": 469,
+      "end": 544,
+      "segment": "own",
+      "raw_text": "I have a call into Jo Williams for her to give me more info on the meeting.",
       "reason": null
     },
     {
       "evidence_id": "batch-012:e13",
+      "process": "new:customer-meeting-planning",
+      "message_id": "corpus/farmer-d/logistics/1115.",
+      "field": "body",
+      "quote": "If you would please forward me your customer and employee trip designation",
+      "note": "Asks for guest and employee lists for the customer meeting.",
+      "match": "exact",
+      "start": 652,
+      "end": 726,
+      "segment": "own",
+      "raw_text": "If you would please forward me your customer and employee trip designation",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-012:e14",
       "process": "performance-review",
       "message_id": "corpus/farmer-d/logistics/1117.",
       "field": "body",
       "quote": "INSTEAD, please submit your list of reviewers to Brenda via e-mail.",
-      "note": "Workaround for collecting reviewer lists while PEP is down.",
+      "note": "Workaround for collecting review nominations when PEP fails.",
       "match": "exact",
       "start": 1189,
       "end": 1256,
@@ -449,12 +467,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-012:e14",
-      "process": "system-enhancement-request",
+      "evidence_id": "batch-012:e15",
+      "process": "system-issue-resolution",
       "message_id": "corpus/farmer-d/logistics/1118.",
       "field": "body",
       "quote": "To get immediate response on an EOL issue, such as a next day deal that is",
-      "note": "Contacts for reporting EOL issues.",
+      "note": "Contacts for handling EOL and Sitara issues.",
       "match": "exact",
       "start": 869,
       "end": 943,
@@ -463,12 +481,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-012:e15",
+      "evidence_id": "batch-012:e16",
       "process": "performance-review",
       "message_id": "corpus/farmer-d/logistics/1119.",
       "field": "body",
       "quote": "Janet Wallis\nKyle Lilly\nHoward Camp",
-      "note": "List of proposed reviewers sent for the review cycle.",
+      "note": "List of nominated reviewers for the performance review.",
       "match": "exact",
       "start": 442,
       "end": 477,
@@ -477,12 +495,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-012:e16",
+      "evidence_id": "batch-012:e17",
       "process": "performance-review",
       "message_id": "corpus/farmer-d/logistics/1121.",
       "field": "body",
       "quote": "Here's my performance evaluation choices:",
-      "note": "Reviewer choices sent for the review cycle.",
+      "note": "Submits reviewer choices.",
       "match": "exact",
       "start": 442,
       "end": 483,
@@ -491,12 +509,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-012:e17",
+      "evidence_id": "batch-012:e18",
       "process": "new:customer-meeting-planning",
       "message_id": "corpus/farmer-d/logistics/1122.",
       "field": "body",
       "quote": "I have attached the invitation to our 8th Annual Enron Customer Meeting to",
-      "note": "Distributes the customer meeting invitation and RSVP instructions.",
+      "note": "Distributes customer meeting invitation and RSVP forms.",
       "match": "exact",
       "start": 2904,
       "end": 2978,
@@ -505,40 +523,40 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-012:e18",
-      "process": "meter-flow-deal-coverage",
+      "evidence_id": "batch-012:e19",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1124.",
       "field": "body",
-      "quote": "HPL is the only counterparty doing business at this meter thus, Sitara",
-      "note": "Names the deal ticket that takes the swing at a meter.",
+      "quote": "Attached is a M-T-D daily reading of gas that has flowed at meter #: 1528",
+      "note": "Reports daily flow at a meter.",
       "match": "exact",
-      "start": 863,
-      "end": 933,
+      "start": 686,
+      "end": 759,
       "segment": "own",
-      "raw_text": "HPL is the only counterparty doing business at this meter thus, Sitara",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-012:e19",
-      "process": "volume-imbalance-reconciliation",
-      "message_id": "corpus/farmer-d/logistics/1126.",
-      "field": "body",
-      "quote": "HPLC transport contract TA99-027, several deals on the",
-      "note": "Unresolved contract and interconnect report volume issue being chased.",
-      "match": "exact",
-      "start": 759,
-      "end": 813,
-      "segment": "own",
-      "raw_text": "HPLC transport contract TA99-027, several deals on the",
+      "raw_text": "Attached is a M-T-D daily reading of gas that has flowed at meter #: 1528",
       "reason": null
     },
     {
       "evidence_id": "batch-012:e20",
-      "process": "system-enhancement-request",
+      "process": "oba-contract-negotiation",
+      "message_id": "corpus/farmer-d/logistics/1126.",
+      "field": "body",
+      "quote": "This issue still has not been resolved, and it is effecting  the PG&E",
+      "note": "Chases an unresolved contract issue for a PG&E contract.",
+      "match": "exact",
+      "start": 669,
+      "end": 738,
+      "segment": "own",
+      "raw_text": "This issue still has not been resolved, and it is effecting  the PG&E",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-012:e21",
+      "process": "new:unify-enhancement-tracking",
       "message_id": "corpus/farmer-d/logistics/1127.",
       "field": "body",
       "quote": "See attached a listing of the documented enhancements that pertain to ENA",
-      "note": "Enhancement tracking list for Unify.",
+      "note": "Collecting Unify enhancement list and impact input.",
       "match": "exact",
       "start": 678,
       "end": 751,
@@ -547,40 +565,40 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-012:e21",
-      "process": "pipeline-outage-supply-cuts",
-      "message_id": "corpus/farmer-d/logistics/1128.",
-      "field": "body",
-      "quote": "The MTBE plant went down about 1 a.m. on Saturday morning, May 20, as a",
-      "note": "Plant upset notice.",
-      "match": "exact",
-      "start": 1240,
-      "end": 1311,
-      "segment": "own",
-      "raw_text": "The MTBE plant went down about 1 a.m. on Saturday morning, May 20, as a",
-      "reason": null
-    },
-    {
       "evidence_id": "batch-012:e22",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1129.",
       "field": "body",
-      "quote": "Can you set up a deal for the days that",
-      "note": "Asks for a deal for flow with no nomination.",
-      "match": "exact",
+      "quote": "Can you set up a deal for the days that flowed?",
+      "note": "Asks for a deal to cover unnominated flow.",
+      "match": "repaired",
       "start": 555,
-      "end": 594,
+      "end": 603,
       "segment": "own",
-      "raw_text": "Can you set up a deal for the days that",
+      "raw_text": "Can you set up a deal for the days that \nflowed?",
       "reason": null
     },
     {
       "evidence_id": "batch-012:e23",
-      "process": "deal-record-correction",
+      "process": "meter-flow-resolution",
+      "message_id": "corpus/farmer-d/logistics/1129.",
+      "field": "body",
+      "quote": "During the Saxet Thompsonville outage, May 8 - May 11, the meter",
+      "note": "Small flow at a meter with no nomination.",
+      "match": "exact",
+      "start": 453,
+      "end": 517,
+      "segment": "own",
+      "raw_text": "During the Saxet Thompsonville outage, May 8 - May 11, the meter",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-012:e24",
+      "process": "settlement-resolution",
       "message_id": "corpus/farmer-d/logistics/1130.",
       "field": "body",
       "quote": "Settlements has brought an invoice to zero out a sale of 10,000 mmbtu to El",
-      "note": "Asks approval to zero out matching deals.",
+      "note": "Invoice to zero out a sale needs confirmation.",
       "match": "exact",
       "start": 561,
       "end": 636,
@@ -589,12 +607,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-012:e24",
-      "process": "pipeline-outage-supply-cuts",
+      "evidence_id": "batch-012:e25",
+      "process": "supply-cut-handling",
       "message_id": "corpus/farmer-d/logistics/1133.",
       "field": "body",
       "quote": "Conoco supply from El Paso #9DWE was cut into Oasis:",
-      "note": "Supply cut notice with request to verify entries.",
+      "note": "Reports supply cuts and how they were entered.",
       "match": "exact",
       "start": 549,
       "end": 601,
@@ -605,12 +623,21 @@
   ],
   "stall_checks": [
     {
-      "message_id": "corpus/farmer-d/logistics/1100.",
+      "message_id": "corpus/farmer-d/logistics/1135.",
       "match": "exact",
-      "start": 1524,
-      "end": 1566,
+      "start": 526,
+      "end": 585,
       "segment": "own",
-      "raw_text": "While I am waiting for a response from him",
+      "raw_text": "Last that I had, was that legal was reviewing the contract.",
+      "reason": null
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1107.",
+      "match": "exact",
+      "start": 936,
+      "end": 1008,
+      "segment": "forwarded",
+      "raw_text": "Sitara did not feed this deal to MOPS at all therefore it didn't feed to",
       "reason": null
     },
     {
@@ -635,9 +662,9 @@
   "ownership_checks": [],
   "new_processes": [
     {
-      "key": "new:ena-hpl-sales-customer-research",
-      "name": "ENA sales on HPL customer research",
-      "definition": "Compiling the list of customers ENA sells to off HPL's pipe and their contract volumes, to support drafting a transport/storage agreement.",
+      "key": "new:ena-hpl-sales-research",
+      "name": "ENA sales on HPL research",
+      "definition": "Compiling the list of ENA sales counterparties and contract volumes off the HPL pipe from Sitara reports to support drafting a transport agreement.",
       "example_ids": [
         "corpus/farmer-d/logistics/1098.",
         "corpus/farmer-d/logistics/1100.",
@@ -646,35 +673,52 @@
       ]
     },
     {
+      "key": "new:unify-enhancement-tracking",
+      "name": "Unify enhancement tracking",
+      "definition": "Documenting needed Unify enhancements and gathering impact input from the group for IT.",
+      "example_ids": [
+        "corpus/farmer-d/logistics/1102.",
+        "corpus/farmer-d/logistics/1127."
+      ]
+    },
+    {
       "key": "new:controls-standards-assessment",
       "name": "Controls and standards assessment",
-      "definition": "Preparing lists of controls, standards and measures per functional group for the trading controls assessment.",
+      "definition": "Listing controls, standards and measures per functional group for a trading controls assessment.",
       "example_ids": [
         "corpus/farmer-d/logistics/1103."
       ]
     },
     {
-      "key": "new:hpl-zone-remap-request",
-      "name": "HPL zone re-map request",
-      "definition": "Asking for a zone or point to be re-mapped in a system.",
+      "key": "new:zone-mapping-change",
+      "name": "Zone mapping change",
+      "definition": "Requesting that a pipeline zone be re-mapped to a different location in the systems.",
       "example_ids": [
         "corpus/farmer-d/logistics/1110."
       ]
     },
     {
+      "key": "new:meeting-attendance-confirmation",
+      "name": "Meeting attendance confirmation",
+      "definition": "Confirming attendance at an internal or cross-company meeting.",
+      "example_ids": [
+        "corpus/farmer-d/logistics/1113."
+      ]
+    },
+    {
       "key": "new:customer-meeting-planning",
       "name": "Customer meeting planning",
-      "definition": "Organizing the annual customer appreciation meeting: guest lists, invitations, RSVPs and deadlines.",
+      "definition": "Organising the annual customer meeting: guest lists, invitations, RSVPs and deadlines.",
       "example_ids": [
         "corpus/farmer-d/logistics/1115.",
         "corpus/farmer-d/logistics/1122."
       ]
     }
   ],
-  "batch_notes": "No injection attempts found. New keys: ena-hpl-sales-customer-research, controls-standards-assessment, hpl-zone-remap-request, customer-meeting-planning. 1113 and 1123 left untagged as noise and personal.",
+  "batch_notes": "Mixed logistics mail. New keys proposed: ena-hpl-sales-research, unify-enhancement-tracking, controls-standards-assessment, zone-mapping-change, meeting-attendance-confirmation, customer-meeting-planning. No injection attempts found. 1123 treated as personal; 1128 as noise.",
   "quote_stats": {
-    "exact": 28,
-    "repaired": 0,
+    "exact": 29,
+    "repaired": 1,
     "rejected": 0
   }
 }

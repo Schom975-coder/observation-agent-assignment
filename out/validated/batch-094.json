@@ -5,7 +5,7 @@
     {
       "id": "corpus/giron-d/inbox/20.",
       "processes": [
-        "new:ubsw-transition-logistics"
+        "new:ubsw-transition-onboarding"
       ],
       "role": "fyi",
       "stall": null,
@@ -14,7 +14,7 @@
     {
       "id": "corpus/williams-w3/inbox/48.",
       "processes": [
-        "new:caiso-usf-report-distribution"
+        "new:usf-report-distribution"
       ],
       "role": "fyi",
       "stall": null,
@@ -23,7 +23,7 @@
     {
       "id": "corpus/giron-d/inbox/19.",
       "processes": [
-        "new:peoples-deal-valuation-file"
+        "new:deal-valuation-file-sharing"
       ],
       "role": "request",
       "stall": null,
@@ -32,21 +32,21 @@
     {
       "id": "corpus/giron-d/inbox/18.",
       "processes": [],
-      "role": "automated",
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/inbox/37.",
       "processes": [],
-      "role": "automated",
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/inbox/47.",
       "processes": [
-        "new:ubsw-transition-logistics"
+        "new:ubsw-transition-onboarding"
       ],
       "role": "request",
       "stall": null,
@@ -55,7 +55,7 @@
     {
       "id": "corpus/williams-w3/inbox/46.",
       "processes": [
-        "market-rule-change-review"
+        "regulatory-notice-review"
       ],
       "role": "automated",
       "stall": null,
@@ -64,7 +64,7 @@
     {
       "id": "corpus/giron-d/inbox/17.",
       "processes": [
-        "new:ubsw-transition-logistics"
+        "new:ubsw-transition-onboarding"
       ],
       "role": "fyi",
       "stall": null,
@@ -73,7 +73,7 @@
     {
       "id": "corpus/williams-w3/inbox/44.",
       "processes": [
-        "market-rule-change-review"
+        "regulatory-notice-review"
       ],
       "role": "automated",
       "stall": null,
@@ -82,7 +82,7 @@
     {
       "id": "corpus/williams-w3/inbox/43.",
       "processes": [
-        "new:trading-assistant-recruiting"
+        "new:internal-job-posting"
       ],
       "role": "request",
       "stall": null,
@@ -91,7 +91,7 @@
     {
       "id": "corpus/williams-w3/sent_items/2.",
       "processes": [
-        "new:trading-assistant-recruiting"
+        "new:internal-job-posting"
       ],
       "role": "response",
       "stall": null,
@@ -100,7 +100,7 @@
     {
       "id": "corpus/williams-w3/inbox/39.",
       "processes": [
-        "new:trading-assistant-recruiting"
+        "new:internal-job-posting"
       ],
       "role": "response",
       "stall": null,
@@ -109,7 +109,7 @@
     {
       "id": "corpus/williams-w3/inbox/42.",
       "processes": [
-        "new:ubsw-transition-logistics"
+        "new:ubsw-transition-onboarding"
       ],
       "role": "request",
       "stall": null,
@@ -118,7 +118,7 @@
     {
       "id": "corpus/williams-w3/inbox/41.",
       "processes": [
-        "market-rule-change-review"
+        "regulatory-notice-review"
       ],
       "role": "automated",
       "stall": null,
@@ -141,7 +141,7 @@
     {
       "id": "corpus/giron-d/inbox/15.",
       "processes": [
-        "expense-report-approval"
+        "expense-approval"
       ],
       "role": "request",
       "stall": null,
@@ -156,7 +156,9 @@
     },
     {
       "id": "corpus/williams-w3/inbox/36.",
-      "processes": [],
+      "processes": [
+        "regulatory-notice-review"
+      ],
       "role": "automated",
       "stall": null,
       "ownership_claim": null
@@ -165,21 +167,21 @@
   "evidence": [
     {
       "evidence_id": "batch-094:e0",
-      "process": "new:ubsw-transition-logistics",
+      "process": "new:ubsw-transition-onboarding",
       "message_id": "corpus/giron-d/inbox/20.",
       "field": "body",
-      "quote": "Provide an opportunity for traders to verify their products and product setup",
-      "note": "Pre-launch simulation of the new trading system ahead of the UBS closing.",
+      "quote": "We are continuing work to ensure our new online trading system, UBSWenergy, is ready for launch",
+      "note": "Announces a trading simulation as part of preparing the UBS Warburg Energy launch.",
       "match": "exact",
-      "start": 51001,
-      "end": 51078,
+      "start": 50272,
+      "end": 50367,
       "segment": "own",
-      "raw_text": "Provide an opportunity for traders to verify their products and product setup",
+      "raw_text": "We are continuing work to ensure our new online trading system, UBSWenergy, is ready for launch",
       "reason": null
     },
     {
       "evidence_id": "batch-094:e1",
-      "process": "new:caiso-usf-report-distribution",
+      "process": "new:usf-report-distribution",
       "message_id": "corpus/williams-w3/inbox/48.",
       "field": "body",
       "quote": "Here is the latest report.",
@@ -193,11 +195,11 @@
     },
     {
       "evidence_id": "batch-094:e2",
-      "process": "new:peoples-deal-valuation-file",
+      "process": "new:deal-valuation-file-sharing",
       "message_id": "corpus/giron-d/inbox/19.",
       "field": "body",
       "quote": "Do you have quantities at price or is it all calculations?",
-      "note": "Follow-up question about the Peoples deal valuation file.",
+      "note": "Follow-up question on a shared deal valuation workbook.",
       "match": "exact",
       "start": 520,
       "end": 578,
@@ -207,25 +209,25 @@
     },
     {
       "evidence_id": "batch-094:e3",
-      "process": "new:ubsw-transition-logistics",
+      "process": "new:ubsw-transition-onboarding",
       "message_id": "corpus/williams-w3/inbox/47.",
       "field": "body",
-      "quote": "Please reply to this e-mail if you will be attending.",
-      "note": "Asks staff to confirm attendance at UBSW orientation.",
+      "quote": "Orientation will be split into two sessions and divided by alpha-order.",
+      "note": "Orientation session logistics for staff moving to UBSW.",
       "match": "exact",
-      "start": 15237,
-      "end": 15290,
+      "start": 14779,
+      "end": 14850,
       "segment": "own",
-      "raw_text": "Please reply to this e-mail if you will be attending.",
+      "raw_text": "Orientation will be split into two sessions and divided by alpha-order.",
       "reason": null
     },
     {
       "evidence_id": "batch-094:e4",
-      "process": "market-rule-change-review",
+      "process": "regulatory-notice-review",
       "message_id": "corpus/williams-w3/inbox/46.",
       "field": "body",
       "quote": "Attached for your review are the finalized versions of the ISO Statement",
-      "note": "ISO notice of settlement specification changes for review.",
+      "note": "CAISO notification of final settlement specification documents.",
       "match": "exact",
       "start": 690,
       "end": 762,
@@ -235,25 +237,25 @@
     },
     {
       "evidence_id": "batch-094:e5",
-      "process": "new:ubsw-transition-logistics",
+      "process": "new:ubsw-transition-onboarding",
       "message_id": "corpus/giron-d/inbox/17.",
       "field": "body",
-      "quote": "We will communicate further details of the migration plan on Tuesday, February 5, 2002.",
-      "note": "Employee migration to the UBSWE environment postponed.",
+      "quote": "Due to a variety of circumstances we did not migrate employees to the UBSWE environment tonight",
+      "note": "Notice about the staff migration to the UBSWE environment.",
       "match": "exact",
-      "start": 762,
-      "end": 849,
+      "start": 638,
+      "end": 733,
       "segment": "own",
-      "raw_text": "We will communicate further details of the migration plan on Tuesday, February 5, 2002.",
+      "raw_text": "Due to a variety of circumstances we did not migrate employees to the UBSWE environment tonight",
       "reason": null
     },
     {
       "evidence_id": "batch-094:e6",
-      "process": "market-rule-change-review",
+      "process": "regulatory-notice-review",
       "message_id": "corpus/williams-w3/inbox/44.",
       "field": "body",
       "quote": "Notification of Operating Procedure Update",
-      "note": "ISO operating procedure change notice.",
+      "note": "CAISO operating procedure update notice.",
       "match": "exact",
       "start": 814,
       "end": 856,
@@ -263,25 +265,25 @@
     },
     {
       "evidence_id": "batch-094:e7",
-      "process": "new:trading-assistant-recruiting",
+      "process": "new:internal-job-posting",
       "message_id": "corpus/williams-w3/inbox/43.",
       "field": "body",
-      "quote": "Please send an e-mail to Amy Fitzpatrick by noon on Tuesday expressing your interest.",
-      "note": "Asks interested staff to apply for trading assistant openings.",
+      "quote": "We have two positions open for Trading Assistants with UBSW Energy.",
+      "note": "Posts open positions and asks for expressions of interest.",
       "match": "exact",
-      "start": 1040,
-      "end": 1125,
+      "start": 568,
+      "end": 635,
       "segment": "own",
-      "raw_text": "Please send an e-mail to Amy Fitzpatrick by noon on Tuesday expressing your interest.",
+      "raw_text": "We have two positions open for Trading Assistants with UBSW Energy.",
       "reason": null
     },
     {
       "evidence_id": "batch-094:e8",
-      "process": "new:trading-assistant-recruiting",
+      "process": "new:internal-job-posting",
       "message_id": "corpus/williams-w3/sent_items/2.",
       "field": "body",
       "quote": "I am interested in either position...as I imagine each person in the real-time group will be.",
-      "note": "Applicant expresses interest in the trading assistant position.",
+      "note": "Employee expresses interest in the open positions.",
       "match": "exact",
       "start": 557,
       "end": 650,
@@ -291,11 +293,11 @@
     },
     {
       "evidence_id": "batch-094:e9",
-      "process": "new:trading-assistant-recruiting",
+      "process": "new:internal-job-posting",
       "message_id": "corpus/williams-w3/inbox/39.",
       "field": "body",
       "quote": "Thanks Bill - I will put your name in the hat (so to speak)!",
-      "note": "Recruiter acknowledges the application.",
+      "note": "Recruiter acknowledges the expression of interest.",
       "match": "exact",
       "start": 547,
       "end": 607,
@@ -305,44 +307,58 @@
     },
     {
       "evidence_id": "batch-094:e10",
-      "process": "new:ubsw-transition-logistics",
+      "process": "new:ubsw-transition-onboarding",
       "message_id": "corpus/williams-w3/inbox/42.",
       "field": "body",
-      "quote": "Some information is missing on your UBS application.",
+      "quote": "Some information is missing on your UBS application.  Please swing by to complete.",
       "note": "HR asks employee to complete the UBS application.",
       "match": "exact",
       "start": 531,
-      "end": 583,
+      "end": 613,
       "segment": "own",
-      "raw_text": "Some information is missing on your UBS application.",
+      "raw_text": "Some information is missing on your UBS application.  Please swing by to complete.",
       "reason": null
     },
     {
       "evidence_id": "batch-094:e11",
-      "process": "market-rule-change-review",
+      "process": "regulatory-notice-review",
       "message_id": "corpus/williams-w3/inbox/41.",
-      "field": "body",
-      "quote": "The California Independent System Operator (ISO) is announcing the",
-      "note": "ISO market notice of a pilot project rule change.",
-      "match": "exact",
-      "start": 662,
-      "end": 728,
-      "segment": "own",
-      "raw_text": "The California Independent System Operator (ISO) is announcing the",
+      "field": "subject",
+      "quote": "Aggregated Distributed Generation Pilot Project (ADGPP) Announcement",
+      "note": "CAISO market notice about a pilot project.",
+      "match": "repaired",
+      "start": 176,
+      "end": 246,
+      "segment": "subject",
+      "raw_text": "Aggregated Distributed Generation Pilot Project (ADGPP)\r\n Announcement",
       "reason": null
     },
     {
       "evidence_id": "batch-094:e12",
-      "process": "expense-report-approval",
+      "process": "expense-approval",
       "message_id": "corpus/giron-d/inbox/15.",
       "field": "body",
       "quote": "please have all outstanding employee expenses in your possession filed through Enron's XMS system as soon as possible.",
-      "note": "Asks staff to file outstanding expense reports before closing.",
+      "note": "Asks employees to file expenses and approvers to approve them.",
       "match": "exact",
       "start": 639,
       "end": 757,
       "segment": "own",
       "raw_text": "please have all outstanding employee expenses in your possession filed through Enron's XMS system as soon as possible.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-094:e13",
+      "process": "regulatory-notice-review",
+      "message_id": "corpus/williams-w3/inbox/36.",
+      "field": "subject",
+      "quote": "CAISO Notice: Market Notice of Attorney General Subpoena",
+      "note": "CAISO market notice to participants.",
+      "match": "exact",
+      "start": 175,
+      "end": 231,
+      "segment": "subject",
+      "raw_text": "CAISO Notice: Market Notice of Attorney General Subpoena",
       "reason": null
     }
   ],
@@ -350,9 +366,9 @@
   "ownership_checks": [],
   "new_processes": [
     {
-      "key": "new:ubsw-transition-logistics",
-      "name": "UBSW transition logistics",
-      "definition": "Preparing staff and systems for the move to UBS Warburg Energy: trading simulation, orientation, applications and system migration notices.",
+      "key": "new:ubsw-transition-onboarding",
+      "name": "UBSW transition onboarding",
+      "definition": "Preparing staff and systems for the move to UBS Warburg Energy: simulations, orientation sessions, environment migration and application paperwork.",
       "example_ids": [
         "corpus/giron-d/inbox/20.",
         "corpus/williams-w3/inbox/47.",
@@ -361,36 +377,36 @@
       ]
     },
     {
-      "key": "new:caiso-usf-report-distribution",
-      "name": "CAISO USF report distribution",
-      "definition": "Receiving and passing on the ISO's uninstructed flow report and cover letter for a settlement period.",
-      "example_ids": [
-        "corpus/williams-w3/inbox/48."
-      ]
-    },
-    {
-      "key": "new:peoples-deal-valuation-file",
-      "name": "Peoples deal valuation file",
-      "definition": "Sharing and clarifying the deal cash flow valuation file for the Peoples and PERC deals.",
-      "example_ids": [
-        "corpus/giron-d/inbox/19."
-      ]
-    },
-    {
-      "key": "new:trading-assistant-recruiting",
-      "name": "Trading assistant recruiting",
-      "definition": "Announcing open trading assistant positions and collecting expressions of interest.",
+      "key": "new:internal-job-posting",
+      "name": "Internal job posting and applications",
+      "definition": "Announcing open positions internally and collecting expressions of interest from staff.",
       "example_ids": [
         "corpus/williams-w3/inbox/43.",
         "corpus/williams-w3/sent_items/2.",
         "corpus/williams-w3/inbox/39."
       ]
+    },
+    {
+      "key": "new:usf-report-distribution",
+      "name": "USF report distribution",
+      "definition": "Distributing the ISO after-the-fact USF reports and cover letters to scheduling coordinator clients.",
+      "example_ids": [
+        "corpus/williams-w3/inbox/48."
+      ]
+    },
+    {
+      "key": "new:deal-valuation-file-sharing",
+      "name": "Deal valuation file sharing",
+      "definition": "Sharing deal valuation workbooks and answering questions on their contents.",
+      "example_ids": [
+        "corpus/giron-d/inbox/19."
+      ]
     }
   ],
-  "batch_notes": "No injection attempts found. Ken Lay announcements, CAISO subpoena notice, newsletter note and eBay and LendingTree mail left without a process. New keys proposed: ubsw-transition-logistics, caiso-usf-report-distribution, peoples-deal-valuation-file, trading-assistant-recruiting.",
+  "batch_notes": "No injection attempts found. New keys proposed: ubsw-transition-onboarding, internal-job-posting, usf-report-distribution, deal-valuation-file-sharing. Company announcements and personal mail left untagged.",
   "quote_stats": {
     "exact": 13,
-    "repaired": 0,
+    "repaired": 1,
     "rejected": 0
   }
 }

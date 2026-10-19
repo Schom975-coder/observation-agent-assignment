@@ -5,7 +5,7 @@
     {
       "id": "corpus/farmer-d/logistics/1528.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "request",
       "stall": {
@@ -20,7 +20,7 @@
     {
       "id": "corpus/farmer-d/logistics/1928.",
       "processes": [
-        "new:allocation-method-change"
+        "new:allocation-statement-change"
       ],
       "role": "request",
       "stall": null,
@@ -29,7 +29,7 @@
     {
       "id": "corpus/giron-d/sent/476.",
       "processes": [
-        "pnl-position-reporting"
+        "pnl-reporting"
       ],
       "role": "response",
       "stall": null,
@@ -55,7 +55,10 @@
         "new:producer-gas-rerouting"
       ],
       "role": "forward",
-      "stall": null,
+      "stall": {
+        "kind": "waiting_on_reply",
+        "quote": "It is now 330 and Hilcorp has not responded."
+      },
       "ownership_claim": null
     },
     {
@@ -66,7 +69,7 @@
       "role": "request",
       "stall": {
         "kind": "waiting_on_reply",
-        "quote": "I have officially NOT heard from Hilcorp after numerous voice and email"
+        "quote": "Well- I have officially NOT heard from Hilcorp after numerous voice and email"
       },
       "ownership_claim": null
     },
@@ -116,7 +119,7 @@
     {
       "id": "corpus/giron-d/sent/469.",
       "processes": [
-        "deal-record-correction"
+        "new:sitara-rate-change"
       ],
       "role": "response",
       "stall": null,
@@ -125,7 +128,7 @@
     {
       "id": "corpus/giron-d/sent/378.",
       "processes": [
-        "deal-record-correction"
+        "new:sitara-rate-change"
       ],
       "role": "response",
       "stall": null,
@@ -141,7 +144,7 @@
     {
       "id": "corpus/farmer-d/logistics/1535.",
       "processes": [
-        "new:training-course-approval"
+        "new:training-request"
       ],
       "role": "request",
       "stall": null,
@@ -150,7 +153,7 @@
     {
       "id": "corpus/farmer-d/logistics/1536.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -159,16 +162,16 @@
     {
       "id": "corpus/farmer-d/logistics/1537.",
       "processes": [
-        "gas-nomination-handling"
+        "gas-nomination"
       ],
-      "role": "fyi",
+      "role": "automated",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/1561.",
       "processes": [
-        "gas-nomination-handling"
+        "gas-nomination"
       ],
       "role": "fyi",
       "stall": null,
@@ -177,7 +180,7 @@
     {
       "id": "corpus/giron-d/sent/467.",
       "processes": [
-        "curve-postid-mapping"
+        "curve-postid-maintenance"
       ],
       "role": "forward",
       "stall": null,
@@ -193,12 +196,12 @@
     {
       "id": "corpus/farmer-d/logistics/1539.",
       "processes": [
-        "gas-nomination-handling"
+        "gas-nomination"
       ],
       "role": "fyi",
       "stall": {
         "kind": "waiting_on_reply",
-        "quote": "I am still waiting on a transport number from lori Allen in your"
+        "quote": "Aimee, I am still waiting on a transport number from lori Allen in your"
       },
       "ownership_claim": null
     },
@@ -251,7 +254,7 @@
     {
       "id": "corpus/farmer-d/logistics/1540.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -316,7 +319,7 @@
     {
       "id": "corpus/farmer-d/logistics/1541.",
       "processes": [
-        "gas-nomination-handling"
+        "gas-nomination"
       ],
       "role": "forward",
       "stall": null,
@@ -340,11 +343,11 @@
   "evidence": [
     {
       "evidence_id": "batch-033:e0",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/farmer-d/logistics/1528.",
       "field": "body",
       "quote": "Are these deals suppose to be a washout and netted together?",
-      "note": "Questions a sales and purchase pair that settlements says should not be billed or paid.",
+      "note": "Asks whether a sales and purchase deal pair should net out, as settlements shows a bill.",
       "match": "exact",
       "start": 868,
       "end": 928,
@@ -354,25 +357,25 @@
     },
     {
       "evidence_id": "batch-033:e1",
-      "process": "new:allocation-method-change",
+      "process": "new:allocation-statement-change",
       "message_id": "corpus/farmer-d/logistics/1928.",
       "field": "body",
-      "quote": "Pecos/Roberson number on the allocation statement will no longer have",
-      "note": "Instructs a change in how a producer's portion of the monthly allocation is calculated.",
+      "quote": "After speaking with Gary Lamphier, Big Thicket's allocation for",
+      "note": "Announces a change in how a monthly allocation statement is calculated and asks for it to be applied.",
       "match": "exact",
-      "start": 1450,
-      "end": 1519,
+      "start": 861,
+      "end": 924,
       "segment": "own",
-      "raw_text": "Pecos/Roberson number on the allocation statement will no longer have",
+      "raw_text": "After speaking with Gary Lamphier, Big Thicket's allocation for",
       "reason": null
     },
     {
       "evidence_id": "batch-033:e2",
-      "process": "pnl-position-reporting",
+      "process": "pnl-reporting",
       "message_id": "corpus/giron-d/sent/476.",
       "field": "body",
       "quote": "P&L is OK.  Open position is 39.0 contracts.",
-      "note": "Confirms the daily DPR P&L and open position.",
+      "note": "Reviews and signs off the daily P&L draft.",
       "match": "exact",
       "start": 456,
       "end": 500,
@@ -386,7 +389,7 @@
       "message_id": "corpus/farmer-d/logistics/1530.",
       "field": "body",
       "quote": "According to Gary Hanks, we would like to have the gas on the valley line",
-      "note": "Passes on the decision about which line a producer's gas should flow on.",
+      "note": "Passes on where producer gas should be routed.",
       "match": "exact",
       "start": 602,
       "end": 675,
@@ -400,7 +403,7 @@
       "message_id": "corpus/farmer-d/logistics/1532.",
       "field": "body",
       "quote": "Please plan to have the gas rerouted back down the valley line for",
-      "note": "Asks the team to reroute producer gas after no response.",
+      "note": "Asks that producer gas be rerouted after no reply from the producer.",
       "match": "exact",
       "start": 965,
       "end": 1031,
@@ -414,7 +417,7 @@
       "message_id": "corpus/farmer-d/logistics/1533.",
       "field": "body",
       "quote": "Are we going to have some quality problems with this gas?",
-      "note": "Follow-up question on the rerouted gas.",
+      "note": "Question about the rerouted producer gas.",
       "match": "exact",
       "start": 1004,
       "end": 1061,
@@ -428,7 +431,7 @@
       "message_id": "corpus/giron-d/sent/470.",
       "field": "body",
       "quote": "Here are our portfolio and book codes:",
-      "note": "Supplies portfolio and book codes for the group's books.",
+      "note": "Supplies portfolio and book codes for the book set-up.",
       "match": "exact",
       "start": 452,
       "end": 490,
@@ -442,7 +445,7 @@
       "message_id": "corpus/giron-d/sent/466.",
       "field": "body",
       "quote": "These are all of our book names:",
-      "note": "Supplies the list of book names and suffix rules.",
+      "note": "Lists book names and suffix conventions for the books.",
       "match": "exact",
       "start": 453,
       "end": 485,
@@ -456,7 +459,7 @@
       "message_id": "corpus/farmer-d/logistics/1534.",
       "field": "body",
       "quote": "HPL has elected to be kept whole with respect to processing during the month",
-      "note": "Monthly notice of HPL's processing election at a gas plant.",
+      "note": "Monthly plant processing election notice.",
       "match": "exact",
       "start": 522,
       "end": 598,
@@ -466,25 +469,25 @@
     },
     {
       "evidence_id": "batch-033:e9",
-      "process": "deal-record-correction",
+      "process": "new:sitara-rate-change",
       "message_id": "corpus/giron-d/sent/469.",
       "field": "body",
-      "quote": "Done.  I did the 1999 changes as well.",
-      "note": "Confirms a requested rate change on a Sitara deal.",
+      "quote": "Could you please change rate on the above Sitara to $4.878216 for Oct. 00",
+      "note": "Request to change a Sitara deal rate for a production month.",
       "match": "exact",
-      "start": 450,
-      "end": 488,
-      "segment": "own",
-      "raw_text": "Done.  I did the 1999 changes as well.",
+      "start": 684,
+      "end": 757,
+      "segment": "quoted",
+      "raw_text": "Could you please change rate on the above Sitara to $4.878216 for Oct. 00",
       "reason": null
     },
     {
       "evidence_id": "batch-033:e10",
-      "process": "deal-record-correction",
+      "process": "new:sitara-rate-change",
       "message_id": "corpus/giron-d/sent/378.",
       "field": "body",
       "quote": "Could you please change rate on the above Sitara to $4.15544 for Nov. 00",
-      "note": "Quoted request to change the rate on a Sitara deal, which was done.",
+      "note": "Same request for the following production month.",
       "match": "exact",
       "start": 571,
       "end": 643,
@@ -494,25 +497,25 @@
     },
     {
       "evidence_id": "batch-033:e11",
-      "process": "new:training-course-approval",
+      "process": "new:training-request",
       "message_id": "corpus/farmer-d/logistics/1535.",
       "field": "body",
-      "quote": "Is this the one you suggested for me, and if it is, may I attend this",
-      "note": "Asks the manager to approve attending a training course.",
+      "quote": "There is an effective communication course on December 7 (Thursday) from",
+      "note": "Asks manager approval to attend a course.",
       "match": "exact",
-      "start": 574,
-      "end": 643,
+      "start": 492,
+      "end": 564,
       "segment": "own",
-      "raw_text": "Is this the one you suggested for me, and if it is, may I attend this",
+      "raw_text": "There is an effective communication course on December 7 (Thursday) from",
       "reason": null
     },
     {
       "evidence_id": "batch-033:e12",
-      "process": "volume-imbalance-reconciliation",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1536.",
       "field": "body",
       "quote": "Please take a look at the attached spreadsheet, we have over 500,000mmbtu as",
-      "note": "Flags unaccounted-for volumes on an accrual spreadsheet for review.",
+      "note": "Asks for review of unaccounted volume.",
       "match": "exact",
       "start": 469,
       "end": 545,
@@ -522,11 +525,11 @@
     },
     {
       "evidence_id": "batch-033:e13",
-      "process": "gas-nomination-handling",
+      "process": "gas-nomination",
       "message_id": "corpus/farmer-d/logistics/1537.",
       "field": "subject",
       "quote": "Calpine Daily Gas Nomination",
-      "note": "Customer sends its daily gas nomination sheet.",
+      "note": "Daily nomination sent by Calpine.",
       "match": "exact",
       "start": 166,
       "end": 194,
@@ -536,11 +539,11 @@
     },
     {
       "evidence_id": "batch-033:e14",
-      "process": "gas-nomination-handling",
+      "process": "gas-nomination",
       "message_id": "corpus/farmer-d/logistics/1561.",
       "field": "subject",
       "quote": "Calpine Daily Gas Nomination",
-      "note": "Customer sends its daily gas nomination again.",
+      "note": "Daily nomination sent by Calpine.",
       "match": "exact",
       "start": 167,
       "end": 195,
@@ -550,30 +553,30 @@
     },
     {
       "evidence_id": "batch-033:e15",
-      "process": "curve-postid-mapping",
+      "process": "curve-postid-maintenance",
       "message_id": "corpus/giron-d/sent/467.",
-      "field": "body",
-      "quote": "I got this from Regina just before she changed groups.",
-      "note": "Passes on the west curve mappings file to the new owner.",
+      "field": "subject",
+      "quote": "West Curve Mappings",
+      "note": "Passes a curve mapping file to a colleague.",
       "match": "exact",
-      "start": 454,
-      "end": 508,
-      "segment": "own",
-      "raw_text": "I got this from Regina just before she changed groups.",
+      "start": 171,
+      "end": 190,
+      "segment": "subject",
+      "raw_text": "West Curve Mappings",
       "reason": null
     },
     {
       "evidence_id": "batch-033:e16",
-      "process": "gas-nomination-handling",
+      "process": "gas-nomination",
       "message_id": "corpus/farmer-d/logistics/1539.",
       "field": "body",
-      "quote": "I am still waiting on a transport number from lori Allen in your",
-      "note": "Sends the December monthly nomination while waiting on a transport number.",
+      "quote": "Aimee, I am still waiting on a transport number from lori Allen in your",
+      "note": "Sends the monthly nomination while waiting for a transport number.",
       "match": "exact",
-      "start": 823,
+      "start": 816,
       "end": 887,
       "segment": "own",
-      "raw_text": "I am still waiting on a transport number from lori Allen in your",
+      "raw_text": "Aimee, I am still waiting on a transport number from lori Allen in your",
       "reason": null
     },
     {
@@ -582,7 +585,7 @@
       "message_id": "corpus/giron-d/sent/460.",
       "field": "body",
       "quote": "Please move these deals to the FT-US/CAND-ERMS book by the end of tomorrow.",
-      "note": "Request to flip deals to another book.",
+      "note": "Request to move deals to another book.",
       "match": "exact",
       "start": 763,
       "end": 838,
@@ -606,11 +609,11 @@
     },
     {
       "evidence_id": "batch-033:e19",
-      "process": "volume-imbalance-reconciliation",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1540.",
       "field": "body",
       "quote": "Mary provided this to Brian, please check against your numbers ASAP",
-      "note": "Asks for processed volumes to be compared with the recipient's own numbers.",
+      "note": "Asks to check plant volumes against own numbers.",
       "match": "exact",
       "start": 482,
       "end": 549,
@@ -620,11 +623,11 @@
     },
     {
       "evidence_id": "batch-033:e20",
-      "process": "gas-nomination-handling",
+      "process": "gas-nomination",
       "message_id": "corpus/farmer-d/logistics/1541.",
       "field": "subject",
       "quote": "Equistar 12/00",
-      "note": "Forwards the month's Equistar nomination item for December.",
+      "note": "Forwarded monthly customer item for December.",
       "match": "exact",
       "start": 170,
       "end": 184,
@@ -644,21 +647,30 @@
       "reason": null
     },
     {
+      "message_id": "corpus/farmer-d/logistics/1530.",
+      "match": "exact",
+      "start": 1039,
+      "end": 1083,
+      "segment": "forwarded",
+      "raw_text": "It is now 330 and Hilcorp has not responded.",
+      "reason": null
+    },
+    {
       "message_id": "corpus/farmer-d/logistics/1532.",
       "match": "exact",
-      "start": 881,
+      "start": 875,
       "end": 952,
       "segment": "own",
-      "raw_text": "I have officially NOT heard from Hilcorp after numerous voice and email",
+      "raw_text": "Well- I have officially NOT heard from Hilcorp after numerous voice and email",
       "reason": null
     },
     {
       "message_id": "corpus/farmer-d/logistics/1539.",
       "match": "exact",
-      "start": 823,
+      "start": 816,
       "end": 887,
       "segment": "own",
-      "raw_text": "I am still waiting on a transport number from lori Allen in your",
+      "raw_text": "Aimee, I am still waiting on a transport number from lori Allen in your",
       "reason": null
     }
   ],
@@ -676,9 +688,9 @@
   ],
   "new_processes": [
     {
-      "key": "new:allocation-method-change",
-      "name": "Allocation method change",
-      "definition": "Instructing the allocation group to change how a producer's or party's portion of a monthly meter allocation is calculated.",
+      "key": "new:allocation-statement-change",
+      "name": "Allocation statement change",
+      "definition": "Changing how a monthly meter allocation statement is calculated and asking the allocation team to apply it.",
       "example_ids": [
         "corpus/farmer-d/logistics/1928."
       ]
@@ -686,7 +698,7 @@
     {
       "key": "new:producer-gas-rerouting",
       "name": "Producer gas rerouting",
-      "definition": "Deciding and communicating which line a producer's gas should flow on, including chasing the producer for a response.",
+      "definition": "Deciding and communicating which pipeline line a producer's gas is routed to when the producer does not respond.",
       "example_ids": [
         "corpus/farmer-d/logistics/1530.",
         "corpus/farmer-d/logistics/1532.",
@@ -695,24 +707,33 @@
     },
     {
       "key": "new:plant-processing-election",
-      "name": "Plant processing election notice",
-      "definition": "Monthly notice of HPL's election on processing, shrinkage and fuel treatment at a gas plant.",
+      "name": "Plant processing election",
+      "definition": "Monthly election notices on how gas is processed or kept whole at a gas plant.",
       "example_ids": [
         "corpus/farmer-d/logistics/1534."
       ]
     },
     {
-      "key": "new:training-course-approval",
-      "name": "Training course approval",
-      "definition": "Asking a manager to approve attendance at a training course.",
+      "key": "new:sitara-rate-change",
+      "name": "Sitara rate change",
+      "definition": "Requests to change the rate on a Sitara deal for a production month, and confirmation it was done.",
+      "example_ids": [
+        "corpus/giron-d/sent/469.",
+        "corpus/giron-d/sent/378."
+      ]
+    },
+    {
+      "key": "new:training-request",
+      "name": "Training course request",
+      "definition": "Staff asking a manager for approval to attend a training course.",
       "example_ids": [
         "corpus/farmer-d/logistics/1535."
       ]
     }
   ],
-  "batch_notes": "Giron sent items are mostly personal forwards. 1541 is a bare forward tagged to nominations on subject alone, low confidence. 462 is a company announcement tagged noise. New keys proposed: allocation-method-change, producer-gas-rerouting, plant-processing-election, training-course-approval. No injection attempts found.",
+  "batch_notes": "Many personal forwards in the giron-d mailbox. 1541 is an empty forward tagged gas-nomination with low confidence. New keys proposed: allocation-statement-change, producer-gas-rerouting, plant-processing-election, sitara-rate-change, training-request. No injection attempts found.",
   "quote_stats": {
-    "exact": 25,
+    "exact": 26,
     "repaired": 0,
     "rejected": 0
   }

@@ -5,19 +5,19 @@
     {
       "id": "corpus/farmer-d/logistics/3221.",
       "processes": [
-        "gas-nomination-handling"
+        "new:full-month-position-confirmation"
       ],
       "role": "request",
       "stall": {
         "kind": "system_failure",
-        "quote": "Pasting the full month position below since the attachment keeps bouncing off the gateway."
+        "quote": "since the attachment keeps bouncing off the gateway"
       },
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/inbox/394.",
       "processes": [],
-      "role": "personal",
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
@@ -26,7 +26,7 @@
       "processes": [
         "commercial-strategy-planning"
       ],
-      "role": "fyi",
+      "role": "request",
       "stall": null,
       "ownership_claim": null
     },
@@ -65,7 +65,7 @@
     {
       "id": "corpus/williams-w3/sent_items/80.",
       "processes": [
-        "user-access-setup"
+        "system-access-request"
       ],
       "role": "request",
       "stall": null,
@@ -74,19 +74,19 @@
     {
       "id": "corpus/giron-d/inbox/395.",
       "processes": [
-        "desk-coverage-on-call"
+        "on-call-coverage"
       ],
       "role": "fyi",
-      "stall": null,
-      "ownership_claim": {
-        "person": "Souad",
-        "quote": "Souad handled the nominations; Bonnie was also involved in the gas control issues as well."
-      }
+      "stall": {
+        "kind": "handoff_confusion",
+        "quote": "Bonnie knew nothing about it."
+      },
+      "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/sent_items/79.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "forward",
       "stall": null,
@@ -95,7 +95,7 @@
     {
       "id": "corpus/williams-w3/sent_items/78.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "forward",
       "stall": null,
@@ -111,7 +111,7 @@
     {
       "id": "corpus/williams-w3/sent_items/76.",
       "processes": [
-        "reference-data-update"
+        "real-time-power-scheduling"
       ],
       "role": "forward",
       "stall": null,
@@ -120,7 +120,7 @@
     {
       "id": "corpus/williams-w3/sent_items/75.",
       "processes": [
-        "pnl-position-reporting"
+        "new:enpower-report-spreadsheet"
       ],
       "role": "response",
       "stall": null,
@@ -129,7 +129,7 @@
     {
       "id": "corpus/lokay-m/inbox/49.",
       "processes": [
-        "market-rule-change-review"
+        "regulatory-notice-review"
       ],
       "role": "response",
       "stall": null,
@@ -138,16 +138,16 @@
     {
       "id": "corpus/lokay-m/sent_items/71.",
       "processes": [
-        "market-rule-change-review"
+        "regulatory-notice-review"
       ],
-      "role": "forward",
+      "role": "fyi",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/lokay-m/sent_items/52.",
       "processes": [
-        "market-rule-change-review"
+        "regulatory-notice-review"
       ],
       "role": "request",
       "stall": null,
@@ -163,7 +163,7 @@
     {
       "id": "corpus/giron-d/inbox/473.",
       "processes": [],
-      "role": "personal",
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
@@ -172,7 +172,10 @@
       "processes": [],
       "role": "noise",
       "stall": null,
-      "ownership_claim": null
+      "ownership_claim": {
+        "person": "Darren Farmer",
+        "quote": "Darren Farmer will manage the Texas Logistics team"
+      }
     },
     {
       "id": "corpus/giron-d/inbox/397.",
@@ -212,7 +215,7 @@
     {
       "id": "corpus/lokay-m/inbox/51.",
       "processes": [
-        "pipeline-capacity-marketing"
+        "capacity-reporting"
       ],
       "role": "fyi",
       "stall": null,
@@ -222,11 +225,11 @@
   "evidence": [
     {
       "evidence_id": "batch-079:e0",
-      "process": "gas-nomination-handling",
+      "process": "new:full-month-position-confirmation",
       "message_id": "corpus/farmer-d/logistics/3221.",
       "field": "body",
       "quote": "Please pull your own meters out of this and confirm back to me by close of business Thursday.",
-      "note": "Asks recipients to confirm their meters' volumes in the monthly position.",
+      "note": "Asks team members to check their meters in the full month position and confirm back.",
       "match": "exact",
       "start": 724,
       "end": 817,
@@ -239,13 +242,13 @@
       "process": "commercial-strategy-planning",
       "message_id": "corpus/lokay-m/inbox/47.",
       "field": "body",
-      "quote": "BR would provide an overview of our November 6th discussions with EPNG regarding the Window Rock Interconnect.",
-      "note": "Agenda for an interconnect project meeting.",
+      "quote": "We are looking forward to the planned meeting between BR and TW to further discuss the Window Rock interconnect.",
+      "note": "Agenda for a project strategy meeting with a customer.",
       "match": "exact",
-      "start": 1035,
-      "end": 1145,
+      "start": 861,
+      "end": 973,
       "segment": "own",
-      "raw_text": "BR would provide an overview of our November 6th discussions with EPNG regarding the Window Rock Interconnect.",
+      "raw_text": "We are looking forward to the planned meeting between BR and TW to further discuss the Window Rock interconnect.",
       "reason": null
     },
     {
@@ -254,7 +257,7 @@
       "message_id": "corpus/williams-w3/sent_items/82.",
       "field": "body",
       "quote": "I appreciate the goals and accomplishments, I was looking more for a quick outline of duties.",
-      "note": "Manager reviews an employee's accomplishments list.",
+      "note": "Feedback on a staff member's year-end goals and accomplishments draft.",
       "match": "exact",
       "start": 554,
       "end": 647,
@@ -268,7 +271,7 @@
       "message_id": "corpus/williams-w3/sent_items/81.",
       "field": "body",
       "quote": "I like that much better...super.",
-      "note": "Manager accepts the revised goals and accomplishments outline.",
+      "note": "Approves the revised accomplishments write-up.",
       "match": "exact",
       "start": 552,
       "end": 584,
@@ -278,11 +281,11 @@
     },
     {
       "evidence_id": "batch-079:e4",
-      "process": "user-access-setup",
+      "process": "system-access-request",
       "message_id": "corpus/williams-w3/sent_items/80.",
       "field": "body",
       "quote": "I would like to obtain Global Trader ID's for the following traders on the Short Term West Hourly desk in Portland, Oregon.",
-      "note": "Requests trader IDs so new traders can use EnronOnline.",
+      "note": "Requests trader IDs so traders can use the trading system.",
       "match": "exact",
       "start": 563,
       "end": 686,
@@ -292,25 +295,25 @@
     },
     {
       "evidence_id": "batch-079:e5",
-      "process": "desk-coverage-on-call",
+      "process": "on-call-coverage",
       "message_id": "corpus/giron-d/inbox/395.",
       "field": "body",
-      "quote": "Here's how we got rid of the 5 not taken by MRT and the 10 not taken by Domtar:",
-      "note": "Desk activity recap of weekend deals and issues handed to the manager.",
+      "quote": "I'll be reachable by cell over the holiday weekend at 713-213-7644.",
+      "note": "Holiday coverage recap with after-hours contact details.",
       "match": "exact",
-      "start": 1235,
-      "end": 1314,
+      "start": 3782,
+      "end": 3849,
       "segment": "own",
-      "raw_text": "Here's how we got rid of the 5 not taken by MRT and the 10 not taken by Domtar:",
+      "raw_text": "I'll be reachable by cell over the holiday weekend at 713-213-7644.",
       "reason": null
     },
     {
       "evidence_id": "batch-079:e6",
-      "process": "realtime-schedule-checkout",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/79.",
       "field": "body",
       "quote": "The Enpower deal #'s for the Sunday deal is as follows:",
-      "note": "Forwards deal numbers for a Sunday real-time power deal.",
+      "note": "Passes on deal numbers for a power trade booked with a scheduling coordinator.",
       "match": "exact",
       "start": 754,
       "end": 809,
@@ -320,25 +323,25 @@
     },
     {
       "evidence_id": "batch-079:e7",
-      "process": "realtime-schedule-checkout",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/78.",
       "field": "body",
-      "quote": "The Enpower deal #'s for the Sunday deal is as follows:",
-      "note": "Forwards deal numbers for a Sunday real-time power deal as a heads up.",
+      "quote": "Purchase from Sierra Pacific Holding (APX is their SC) #877812.",
+      "note": "Power purchase deal number forwarded to the scheduler.",
       "match": "exact",
-      "start": 727,
-      "end": 782,
+      "start": 784,
+      "end": 847,
       "segment": "quoted",
-      "raw_text": "The Enpower deal #'s for the Sunday deal is as follows:",
+      "raw_text": "Purchase from Sierra Pacific Holding (APX is their SC) #877812.",
       "reason": null
     },
     {
       "evidence_id": "batch-079:e8",
-      "process": "reference-data-update",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/76.",
       "field": "body",
       "quote": "Allegheny's SC is now APX 5. Contact numbers are below.",
-      "note": "Passes on a counterparty scheduling coordinator ID change.",
+      "note": "Scheduling coordinator ID change passed to the shift desk.",
       "match": "exact",
       "start": 602,
       "end": 657,
@@ -348,11 +351,11 @@
     },
     {
       "evidence_id": "batch-079:e9",
-      "process": "pnl-position-reporting",
+      "process": "new:enpower-report-spreadsheet",
       "message_id": "corpus/williams-w3/sent_items/75.",
       "field": "body",
       "quote": "price is per mw, not per deal. Transmission deals, EpmiCalPool deals, and sales or purchases from the counterparty California Imbalance in Enpower need to be excluded.",
-      "note": "Clarifies rules for an average price report built from deals.",
+      "note": "Specifies rules for building an average price spreadsheet from Enpower data.",
       "match": "exact",
       "start": 926,
       "end": 1093,
@@ -362,11 +365,11 @@
     },
     {
       "evidence_id": "batch-079:e10",
-      "process": "market-rule-change-review",
+      "process": "regulatory-notice-review",
       "message_id": "corpus/lokay-m/inbox/49.",
       "field": "body",
       "quote": "Thanks. I think we would definitely be interested.",
-      "note": "Interested in a briefing call on a FERC regulatory filing.",
+      "note": "Reply to an invitation to a briefing call on a regulatory filing.",
       "match": "exact",
       "start": 1111,
       "end": 1161,
@@ -376,11 +379,11 @@
     },
     {
       "evidence_id": "batch-079:e11",
-      "process": "market-rule-change-review",
+      "process": "regulatory-notice-review",
       "message_id": "corpus/lokay-m/sent_items/71.",
       "field": "body",
       "quote": "FYI...this is the conference call that I'd mentioned during staff meeting yesterday.",
-      "note": "Passes on the call about the PG&E FERC filing.",
+      "note": "Forwards the regulatory filing call details to colleagues.",
       "match": "exact",
       "start": 767,
       "end": 851,
@@ -390,11 +393,11 @@
     },
     {
       "evidence_id": "batch-079:e12",
-      "process": "market-rule-change-review",
+      "process": "regulatory-notice-review",
       "message_id": "corpus/lokay-m/sent_items/52.",
       "field": "body",
       "quote": "Are we still on tomorrow?  What are the calling instructions?",
-      "note": "Asks about the stakeholder conference call logistics.",
+      "note": "Asks for confirmation and dial-in details for the stakeholder call.",
       "match": "exact",
       "start": 704,
       "end": 765,
@@ -404,16 +407,16 @@
     },
     {
       "evidence_id": "batch-079:e13",
-      "process": "pipeline-capacity-marketing",
+      "process": "capacity-reporting",
       "message_id": "corpus/lokay-m/inbox/51.",
       "field": "body",
-      "quote": "Paul has scheduled a meeting to discuss \"Available Capacity\" on tomorrow, Tuesday, November 27, 10:30 - 11:30, ECN-1336.",
-      "note": "Meeting notice on available pipeline capacity.",
+      "quote": "Please note, Paul has scheduled a meeting to discuss \"Available Capacity\" on tomorrow",
+      "note": "Meeting notice about available capacity on the pipeline.",
       "match": "exact",
-      "start": 1208,
-      "end": 1328,
+      "start": 1195,
+      "end": 1280,
       "segment": "own",
-      "raw_text": "Paul has scheduled a meeting to discuss \"Available Capacity\" on tomorrow, Tuesday, November 27, 10:30 - 11:30, ECN-1336.",
+      "raw_text": "Please note, Paul has scheduled a meeting to discuss \"Available Capacity\" on tomorrow",
       "reason": null
     }
   ],
@@ -421,29 +424,55 @@
     {
       "message_id": "corpus/farmer-d/logistics/3221.",
       "match": "exact",
-      "start": 633,
-      "end": 723,
+      "start": 671,
+      "end": 722,
       "segment": "own",
-      "raw_text": "Pasting the full month position below since the attachment keeps bouncing off the gateway.",
+      "raw_text": "since the attachment keeps bouncing off the gateway",
+      "reason": null
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/395.",
+      "match": "exact",
+      "start": 2025,
+      "end": 2054,
+      "segment": "own",
+      "raw_text": "Bonnie knew nothing about it.",
       "reason": null
     }
   ],
   "ownership_checks": [
     {
-      "message_id": "corpus/giron-d/inbox/395.",
-      "person": "Souad",
+      "message_id": "corpus/giron-d/inbox/273.",
+      "person": "Darren Farmer",
       "match": "exact",
-      "start": 1859,
-      "end": 1949,
-      "segment": "own",
-      "raw_text": "Souad handled the nominations; Bonnie was also involved in the gas control issues as well.",
+      "start": 4449,
+      "end": 4499,
+      "segment": "quoted",
+      "raw_text": "Darren Farmer will manage the Texas Logistics team",
       "reason": null
     }
   ],
-  "new_processes": [],
-  "batch_notes": "No injection attempts found. Many personal, joke and company-wide announcement messages tagged personal or noise. Oversize message 3221 is mostly a data table; only its head text was used.",
+  "new_processes": [
+    {
+      "key": "new:full-month-position-confirmation",
+      "name": "Full month position confirmation",
+      "definition": "Circulating the full month position of nominations by meter and asking team members to extract and confirm their own meters.",
+      "example_ids": [
+        "corpus/farmer-d/logistics/3221."
+      ]
+    },
+    {
+      "key": "new:enpower-report-spreadsheet",
+      "name": "Enpower report spreadsheet building",
+      "definition": "Specifying and building spreadsheets from Enpower deal data, such as average price reports, including which deals to include or exclude.",
+      "example_ids": [
+        "corpus/williams-w3/sent_items/75."
+      ]
+    }
+  ],
+  "batch_notes": "No injection attempts found. Proposed new keys: new:full-month-position-confirmation, new:enpower-report-spreadsheet. Org announcement (giron-d/inbox/273) tagged noise but carries an ownership claim. Activity recap (giron-d/inbox/395) fit on-call-coverage loosely.",
   "quote_stats": {
-    "exact": 16,
+    "exact": 17,
     "repaired": 0,
     "rejected": 0
   }

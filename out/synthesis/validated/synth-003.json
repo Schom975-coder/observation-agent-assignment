@@ -1,197 +1,194 @@
 {
   "group_id": "synth-003",
-  "content_sha": "8b2d49daf126fcb5ab9e75fb95be805b70a26a77b65356b0db760283b33d4c0a",
+  "content_sha": "72254c078563ea3610ab143028f1b1a70e25955049e38a9a7932b42d2b6f6ca6",
   "processes": [
     {
-      "key": "counterparty-trading-status",
-      "description": "The desk lead, Bill Williams III, tells the traders when a counterparty is halted or cleared again, for example no trades with Sempra until further notice, or WWP being good to buy and sell with again. Notices from others are passed on too: how a counterparty that wants to terminate must send its termination letter by fax, and a forwarded notice about AEP Energy Services taking effect at a stated time that day. Each round is a one-way notice that traders read and act on.",
+      "key": "commercial-strategy-planning",
+      "description": "The Transwestern commercial team plans its strategy through meetings called by the director or an assistant: group direction and yearly goals, plus project and customer sessions such as a storage project, the Window Rock interconnect with Burlington, lost customers to win back and the fuel charge on the Sun Devil project. Staff bring supporting material to these sessions, such as pipeline expansion cases, energy estimates for new plants and the proposals sent to customers. The sessions decide negotiation positions and who will market to new loads.",
       "steps": [
-        "The desk lead or credit learns that a counterparty is halted, suspended, terminating or cleared again.",
-        "A short notice naming the counterparty and its status is written or forwarded to the traders.",
-        "Termination notices say how the counterparty must deliver its letter; suspension notices say when they take effect.",
-        "Traders read the notice and stop or resume dealing with that counterparty."
-      ],
-      "stalls": [],
-      "contradictions": [],
-      "automation": {
-        "approach": "Keep one counterparty status list owned by credit that feeds deal entry, so halted counterparties are blocked when a deal is entered, and send every status change to the trading desks in a fixed notice naming the counterparty, the new status, when it takes effect and what traders must do.",
-        "artifact_type": "email_template",
-        "rationale": "Rounds are short one-way notices written freehand in different styles, from a single capitalised line to forwarded legal notices. A fixed notice layout makes the status, effective time and required action unmistakable and can be used straight away, while blocking at deal entry needs system work first."
-      },
-      "work_estimate": {
-        "minutes_per_occurrence": {
-          "low": 2,
-          "mid": 5,
-          "high": 15
-        },
-        "automatable_pct": 30,
-        "basis": "inferred",
-        "rationale": "Beyond the notice itself, a round means confirming the counterparty's status with credit and updating the desk's counterparty list or deal entry so traders stop or resume dealing. That is about 5 minutes; as little as 2 when a notice is only relayed, up to 15 when the change must be set up in more than one place.",
-        "evidence_ids": [
-          "batch-073:e21",
-          "batch-069:e19",
-          "batch-081:e7",
-          "batch-080:e17"
-        ]
-      },
-      "estimate_check": {
-        "occurrences_cited": 4,
-        "senders_cited": 2
-      }
-    },
-    {
-      "key": "credit-exposure-reporting",
-      "description": "A round is one dated credit report: Darron Giron forwards the report for a trading date, titled with that date, to Carole Frank in the credit group, and a few other credit staff read it too. The report carries counterparty positions and exposure from the risk books. Most rounds are bare forwards; notes appear only when reports are late, as after a systems problem or an absence, when reports for several dates go together. In a later round credit asks that Risk and Credit Aggregation pull the same post IDs so counterparty exposure reconciles.",
-      "steps": [
-        "Pull the counterparty position and exposure report for the trading date from the risk books.",
-        "Save it as the credit report titled with that trading date.",
-        "Forward it to the credit group contact, who reads it with other credit staff.",
-        "When systems fail or the preparer is away, send the missed reports together later with a note.",
-        "When credit reconciles exposure, make sure risk and credit aggregation pull the same post IDs."
+        "A manager or assistant calls a strategy meeting, or a staff member asks for one on a project or customer.",
+        "The meeting time and room are set and often moved by the assistant.",
+        "Staff gather supporting material: expansion cases, plant energy estimates, earlier customer proposals.",
+        "The material is forwarded to the group before the meeting.",
+        "The group meets to settle direction, negotiation parameters and who covers which customer.",
+        "Follow-up meetings with customers or partners are arranged."
       ],
       "stalls": [
         {
-          "summary": "A systems problem held up distribution of the report, and the preparer apologised for the late send.",
+          "summary": "A strategy request reached the wrong person and had to be redirected before anyone could respond.",
           "evidence_ids": [
-            "batch-042:s0"
+            "batch-090:s0",
+            "batch-090:e2"
           ]
         },
         {
-          "summary": "While the preparer was out, reports were not sent; on his return reports for several trading dates went out together, with a note that he did not know whether the recipient had received any of them.",
+          "summary": "A staff member could not proceed on a project negotiation without being told the fuel charge parameters, and the team had to seek a volunteer to market to a new power plant.",
           "evidence_ids": [
-            "batch-046:e30",
-            "batch-046:e31",
-            "batch-046:e32",
-            "batch-046:e33",
-            "batch-046:e34"
+            "batch-074:e14",
+            "batch-071:e4"
           ]
         },
         {
-          "summary": "Reports also go out well after the trading date they cover, with earlier dates' reports forwarded together in one go.",
+          "summary": "An outside party cancelled a planned meeting, so the discussion had to be rearranged.",
           "evidence_ids": [
-            "batch-042:e1",
-            "batch-042:e3"
-          ]
-        },
-        {
-          "summary": "Counterparty exposure could not be reconciled until Risk and Credit Aggregation pulled the same post IDs.",
-          "evidence_ids": [
-            "batch-092:e6"
+            "batch-075:e5"
           ]
         }
       ],
       "contradictions": [],
       "automation": {
-        "approach": "Generate the credit report from the official post each night and send it to a credit distribution list, with a check that flags any trading date with no report sent and confirms that the post ID used matches the one credit aggregation pulls.",
-        "artifact_type": "sop",
-        "rationale": "The report itself is routine and comes from the risk system; what goes wrong is coverage and consistency. Reports pile up when the one sender is away or systems fail, and credit needs the same post IDs as risk to reconcile. A written procedure lets a backup run and send the report and fixes the post ID rule; scheduled distribution then removes the manual forward."
+        "approach": "Keep a shared strategy pack per project or customer: a standing agenda, the current expansion cases, open proposals and agreed negotiation parameters in one place, so each meeting starts from the same updated material instead of forwarded attachments.",
+        "artifact_type": "template",
+        "rationale": "Most rounds rebuild the same background (cases, proposals, customer status) for a meeting. A standard strategy-pack layout cuts that preparation, while the judgement in the meeting stays with the team."
       },
       "work_estimate": {
         "minutes_per_occurrence": {
-          "low": 5,
-          "mid": 10,
-          "high": 30
+          "low": 20,
+          "mid": 45,
+          "high": 120
         },
-        "automatable_pct": 60,
+        "automatable_pct": 20,
         "basis": "inferred",
-        "rationale": "A round means running or pulling the counterparty position and exposure report for the trading date, checking it ran on the right post, and saving it for sending. The quotes show a routine generated report with no rework beyond late or batched sends, so about 10 minutes; 5 when it runs cleanly, up to 30 when systems problems or post ID reconciliation get in the way.",
+        "rationale": "Time goes to preparing material for the meeting: running or pulling expansion cases, estimating plant energy needs, collecting past proposals, and scheduling the room. Some rounds are a calendar notice only, others need real analysis, hence the wide range. Only gathering and formatting the pack can be templated.",
         "evidence_ids": [
-          "batch-044:e2",
-          "batch-042:e3",
-          "batch-046:e30",
-          "batch-046:e34",
-          "batch-052:e6",
-          "batch-042:s0",
-          "batch-092:e6"
+          "batch-071:e15",
+          "batch-071:e11",
+          "batch-082:e34",
+          "batch-098:e8",
+          "batch-074:e14",
+          "batch-070:e5"
         ]
       },
       "estimate_check": {
-        "occurrences_cited": 7,
-        "senders_cited": 2
+        "occurrences_cited": 6,
+        "senders_cited": 6
       }
     },
     {
-      "key": "curve-postid-mapping",
-      "description": "Risk analysts keep the forward curve files and the mapping of curves, locations and post IDs to books in the risk system. A round starts when a new curve is set up and must be added to Tagg or the publication names, when a book owner is asked how a location should be mapped, or when the nightly official post ID is run and passed on. Dated curve files and post ID lists are forwarded to other groups. The last rounds rebuild curve lists and mappings for Netco, moving modified curve files to a new directory ready to load for portcalc.",
+      "key": "performance-review",
+      "description": "Each mid-year and year-end cycle, announced by HR with a schedule, managers ask staff to choose reviewers and list their accomplishments, staff send reviewer names and accomplishment bullets, reviewers write feedback, and managers hold a PRC meeting to rank people. Managers then write reviews on the PEP form, get signed copies back and communicate results, sometimes handling objections about who should review whom or how a rating was reached.",
       "steps": [
-        "A new or changed curve or location is set up and flagged for mapping.",
-        "The analyst asks the book owner how it should be mapped and waits for the answer.",
-        "The curve is added to the publication names and Tagg, and its mapping is entered in the risk system.",
-        "The official post ID macro queries the official books and the night's post ID is sent on.",
-        "Dated curve files and lists of new or changed post IDs are forwarded to the groups that use them.",
-        "For Netco, curve lists are rebuilt, retired curves' locations are listed and remapped, and modified files are loaded."
+        "HR announces the performance cycle and its schedule.",
+        "Managers ask staff to pick reviewers, entered in the PEP system or sent by email.",
+        "Staff submit their accomplishments and reviewers write feedback.",
+        "The manager schedules and holds the PRC meeting to rank staff.",
+        "The manager writes each review on the standard form and discusses it with the employee.",
+        "Signed copies are collected and filed."
       ],
       "stalls": [
         {
-          "summary": "Mapping changes wait on the book owner's decision about how a curve or location should be mapped.",
+          "summary": "The PEP system had problems, so reviewer lists had to be sent by email to the manager instead.",
           "evidence_ids": [
-            "batch-029:e6",
-            "batch-006:e31",
-            "batch-015:e14"
+            "batch-012:s2",
+            "batch-012:e14"
           ]
         },
         {
-          "summary": "The nightly official post ID run is not done reliably: one colleague is named as running the macro most nights, and the thread asks that it be done every night.",
+          "summary": "Accomplishments and reviews arrived late or needed chasing, including a manager asking for word on a pending review.",
           "evidence_ids": [
-            "batch-030:e18",
-            "batch-030:o0"
+            "batch-053:e25",
+            "batch-083:e3",
+            "batch-041:e5"
           ]
         },
         {
-          "summary": "The work depends on individuals: files were handed over just before a colleague changed groups, and checks for another region were done only because its owner was out.",
+          "summary": "Submissions came back in the wrong form: a manager wanted an outline of duties rather than goals and accomplishments.",
           "evidence_ids": [
-            "batch-033:e15",
-            "batch-036:e2"
-          ]
-        },
-        {
-          "summary": "The Netco move forces rework: curve files must be modified before use in the new environment, locations mapped to curves no longer set must be listed and remapped, a full curve list is needed, and files move to a new directory ahead of a load deadline.",
-          "evidence_ids": [
-            "batch-093:e3",
-            "batch-085:e4",
-            "batch-085:e8",
-            "batch-095:e10",
-            "batch-093:e13"
+            "batch-079:e2"
           ]
         }
       ],
       "contradictions": [
         {
-          "summary": "Instructions on where curve material lives change: one note gives the shared-drive location where the curve lists are saved, and a later note announces a new directory for the curve files.",
+          "summary": "The same manager set the PRC meeting for one Thursday and later reminded staff it would be held on a Tuesday the following week.",
           "evidence_ids": [
-            "batch-085:e3",
-            "batch-095:e10"
+            "batch-012:e7",
+            "batch-015:e4"
+          ]
+        },
+        {
+          "summary": "Reviewer selection was to be done in the PEP system, but another instruction told staff to email reviewer lists to the manager instead.",
+          "evidence_ids": [
+            "batch-053:e22",
+            "batch-012:e14"
           ]
         }
       ],
       "automation": {
-        "approach": "Keep one master table of curves, locations, post IDs and book mappings, with a check that flags locations mapped to curves no longer set and new curves missing from Tagg or the publication names. Schedule the official post ID macro every night and send the post ID and the list of changed post IDs to the groups that use them.",
-        "artifact_type": "sop",
-        "rationale": "The work rests on a few people's knowledge, handed over as files when someone changes groups and covered as needed when someone is out. A written procedure for adding and mapping a curve and running the nightly post lets anyone cover. The master table and scheduled macro then take over the repetitive lookups, while mapping decisions stay with the book owners."
+        "approach": "Use a cycle checklist with fixed dates for reviewer selection, accomplishments, feedback, PRC and signed copies, plus a standard accomplishments form that asks for duties and results, so managers track who is outstanding in one view.",
+        "artifact_type": "checklist",
+        "rationale": "The rounds repeat the same sequence and the stalls are late or misformatted submissions and a fallback when the system failed. A checklist with a standard form makes each stage and its owner clear; the writing and ranking remain people's work."
       },
       "work_estimate": {
         "minutes_per_occurrence": {
-          "low": 15,
-          "mid": 30,
-          "high": 90
+          "low": 20,
+          "mid": 60,
+          "high": 150
         },
-        "automatable_pct": 45,
-        "basis": "inferred",
-        "rationale": "A round means setting up or changing curves, entering mappings in the risk system and Tagg, running the post ID macro across the official books, or building lists of curves and remapped locations for Netco. A single curve change takes about 15 minutes; a typical round with checks about 30; list-building and file changes for the Netco move up to 90.",
+        "automatable_pct": 25,
+        "basis": "observed",
+        "rationale": "Time goes to compiling accomplishment lists, choosing reviewers, writing feedback or a review on the PEP form, and preparing for the PRC ranking. A reviewer list takes little, a written review and its discussion far more, so the range is wide. Collecting submissions and tracking status could be automated; the assessment cannot.",
         "evidence_ids": [
-          "batch-028:e11",
-          "batch-035:e3",
-          "batch-028:e1",
-          "batch-015:e14",
-          "batch-085:e4",
-          "batch-085:e8",
-          "batch-093:e3",
-          "batch-086:e2"
+          "batch-076:e4",
+          "batch-015:e0",
+          "batch-060:e26",
+          "batch-062:e10",
+          "batch-012:e17",
+          "batch-037:e21",
+          "batch-039:e22"
         ]
       },
       "estimate_check": {
-        "occurrences_cited": 8,
-        "senders_cited": 4
+        "occurrences_cited": 7,
+        "senders_cited": 5
+      }
+    },
+    {
+      "key": "real-time-model-distribution",
+      "description": "The real-time desk sends the daily EES and El Paso Electric models and hourly data files to customers and settlements, forwarding them on and keeping the recipient list current. Desk staff also reconcile the El Paso model against the internal CARP report each month and complete a monthly EPE reconciliation sheet.",
+      "steps": [
+        "The desk prepares the daily real-time model for EES or EPE for the prior day.",
+        "The model is emailed to the distribution list and forwarded where needed.",
+        "Recipients are added or removed from the list when staff change.",
+        "Hourly data are added to the daily mail-out on request.",
+        "The real-time model is reconciled against the CARP report and the monthly reconciliation sheet is completed."
+      ],
+      "stalls": [
+        {
+          "summary": "Files went to the wrong Bill Williams because of a name clash, so the sender had to confirm the correct recipient.",
+          "evidence_ids": [
+            "batch-053:s3",
+            "batch-053:e32"
+          ]
+        }
+      ],
+      "contradictions": [],
+      "automation": {
+        "approach": "Generate and send the daily model from the scheduling system to a maintained distribution list, and run an automatic comparison of the real-time model against the CARP report that flags only variances for review.",
+        "artifact_type": "sop",
+        "rationale": "The work is a fixed daily send and a periodic reconciliation. A short procedure covering the file, the list owner and the reconciliation check keeps it consistent, and most of the send and comparison can be scripted."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": {
+          "low": 5,
+          "mid": 15,
+          "high": 45
+        },
+        "automatable_pct": 60,
+        "basis": "observed",
+        "rationale": "Most rounds are a daily model saved and attached for the prior day; some add list maintenance, and the reconciliation round needs a check of several days against the CARP report. Producing and comparing files is mechanical, so much of it could be scripted, with people reviewing variances.",
+        "evidence_ids": [
+          "batch-088:e25",
+          "batch-086:e10",
+          "batch-057:e15",
+          "batch-057:e16",
+          "batch-054:e17",
+          "batch-094:e1"
+        ]
+      },
+      "estimate_check": {
+        "occurrences_cited": 6,
+        "senders_cited": 3
       }
     }
   ]

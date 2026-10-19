@@ -5,7 +5,7 @@
     {
       "id": "corpus/giron-d/inbox/68.",
       "processes": [
-        "system-enhancement-request"
+        "new:netco-integration-testing"
       ],
       "role": "forward",
       "stall": null,
@@ -41,7 +41,7 @@
     {
       "id": "corpus/giron-d/inbox/66.",
       "processes": [
-        "user-access-setup"
+        "new:desk-trader-roster"
       ],
       "role": "response",
       "stall": null,
@@ -50,7 +50,7 @@
     {
       "id": "corpus/giron-d/inbox/64.",
       "processes": [],
-      "role": "personal",
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
@@ -73,7 +73,7 @@
     {
       "id": "corpus/giron-d/inbox/59.",
       "processes": [
-        "pnl-position-reporting"
+        "pnl-reporting"
       ],
       "role": "fyi",
       "stall": null,
@@ -100,7 +100,7 @@
     {
       "id": "corpus/williams-w3/inbox/91.",
       "processes": [
-        "user-access-setup"
+        "new:online-launch-customer-enrollment"
       ],
       "role": "fyi",
       "stall": null,
@@ -109,7 +109,7 @@
     {
       "id": "corpus/williams-w3/inbox/89.",
       "processes": [
-        "market-rule-change-review"
+        "regulatory-notice-review"
       ],
       "role": "automated",
       "stall": null,
@@ -125,7 +125,7 @@
     {
       "id": "corpus/williams-w3/inbox/88.",
       "processes": [
-        "market-rule-change-review"
+        "regulatory-notice-review"
       ],
       "role": "automated",
       "stall": null,
@@ -134,7 +134,7 @@
     {
       "id": "corpus/lokay-m/sent_items/28.",
       "processes": [],
-      "role": "noise",
+      "role": "personal",
       "stall": null,
       "ownership_claim": null
     },
@@ -165,11 +165,11 @@
   "evidence": [
     {
       "evidence_id": "batch-089:e0",
-      "process": "system-enhancement-request",
+      "process": "new:netco-integration-testing",
       "message_id": "corpus/giron-d/inbox/68.",
       "field": "body",
       "quote": "Just an update on the testing front... O=20",
-      "note": "Forwards an integration testing status update for the migration.",
+      "note": "Forwards a status report on integration testing ahead of the Netco transition.",
       "match": "exact",
       "start": 1164,
       "end": 1207,
@@ -183,7 +183,7 @@
       "message_id": "corpus/giron-d/inbox/67.",
       "field": "body",
       "quote": "2. Move active Financial Deals from NG-PRICE (CP ID 11360)",
-      "note": "Asks to confirm which deals to move between books.",
+      "note": "Asks for confirmation of details to move deals between books.",
       "match": "exact",
       "start": 865,
       "end": 923,
@@ -196,13 +196,13 @@
       "process": "deal-book-transfer",
       "message_id": "corpus/giron-d/inbox/65.",
       "field": "body",
-      "quote": "Commodity code NG\nMove deals as of 1/1/02",
-      "note": "Answers the questions about moving deals to a new book.",
+      "quote": "Move deals as of 1/1/02",
+      "note": "Answers the questions about which deals to move to the new book.",
       "match": "exact",
-      "start": 784,
+      "start": 802,
       "end": 825,
       "segment": "own",
-      "raw_text": "Commodity code NG\nMove deals as of 1/1/02",
+      "raw_text": "Move deals as of 1/1/02",
       "reason": null
     },
     {
@@ -211,7 +211,7 @@
       "message_id": "corpus/giron-d/inbox/58.",
       "field": "body",
       "quote": "The deals have been moved to ENA-FT-WT-SOCAL and retranslated successfully.",
-      "note": "Confirms the requested deals were moved to the new book.",
+      "note": "Confirms completion of the deal move between books.",
       "match": "exact",
       "start": 1166,
       "end": 1241,
@@ -221,16 +221,16 @@
     },
     {
       "evidence_id": "batch-089:e4",
-      "process": "user-access-setup",
+      "process": "new:desk-trader-roster",
       "message_id": "corpus/giron-d/inbox/66.",
       "field": "body",
-      "quote": "Hunter Shively\nGeof Storey\nAndy Lewis\nJason Williams",
-      "note": "Provides the final list of traders on the desk, as requested for set-up.",
+      "quote": "Send me a final list of who will be trading on your desk.",
+      "note": "Request for the list of traders on a desk, answered with names.",
       "match": "exact",
-      "start": 550,
-      "end": 602,
-      "segment": "own",
-      "raw_text": "Hunter Shively\nGeof Storey\nAndy Lewis\nJason Williams",
+      "start": 746,
+      "end": 803,
+      "segment": "quoted",
+      "raw_text": "Send me a final list of who will be trading on your desk.",
       "reason": null
     },
     {
@@ -239,7 +239,7 @@
       "message_id": "corpus/giron-d/inbox/61.",
       "field": "body",
       "quote": "please move the following transactions from the BANKRUPTCY book back to the 'Live' side",
-      "note": "Requests moving deals between books.",
+      "note": "Asks that deals be moved out of the bankruptcy book.",
       "match": "exact",
       "start": 1715,
       "end": 1802,
@@ -249,11 +249,11 @@
     },
     {
       "evidence_id": "batch-089:e6",
-      "process": "pnl-position-reporting",
+      "process": "pnl-reporting",
       "message_id": "corpus/giron-d/inbox/59.",
       "field": "body",
       "quote": "We should also start creating a common file for each region to post the P&L to the website.",
-      "note": "Discusses P&L files posted to the website per region.",
+      "note": "Sets up regional P&L files for posting.",
       "match": "exact",
       "start": 1184,
       "end": 1275,
@@ -267,7 +267,7 @@
       "message_id": "corpus/giron-d/inbox/57.",
       "field": "body",
       "quote": "Here are a few more stragglers to move into the bankruptcy books:",
-      "note": "Follow-up list of deals to move to bankruptcy books.",
+      "note": "Request to move further deals into the bankruptcy books.",
       "match": "exact",
       "start": 1171,
       "end": 1236,
@@ -281,7 +281,7 @@
       "message_id": "corpus/giron-d/inbox/55.",
       "field": "body",
       "quote": "Here are a few more stragglers to move into the bankruptcy books:",
-      "note": "Reply Done to the request, quoted in history.",
+      "note": "Reply 'Done.' to the request to move deals into bankruptcy books.",
       "match": "exact",
       "start": 1450,
       "end": 1515,
@@ -291,39 +291,39 @@
     },
     {
       "evidence_id": "batch-089:e9",
-      "process": "user-access-setup",
+      "process": "new:online-launch-customer-enrollment",
       "message_id": "corpus/williams-w3/inbox/91.",
       "field": "body",
-      "quote": "Once we have a signed PA, we can send the customer their new User ID",
-      "note": "Customer user IDs issued once password applications are signed.",
+      "quote": "We will send out a mass mailing to approx. 3,000 individuals at 450 companies inviting them to sign up for the site.",
+      "note": "Plan for enrolling customers (password applications) before the online site launch.",
       "match": "exact",
-      "start": 2754,
-      "end": 2822,
+      "start": 3329,
+      "end": 3445,
       "segment": "own",
-      "raw_text": "Once we have a signed PA, we can send the customer their new User ID",
+      "raw_text": "We will send out a mass mailing to approx. 3,000 individuals at 450 companies inviting them to sign up for the site.",
       "reason": null
     },
     {
       "evidence_id": "batch-089:e10",
-      "process": "market-rule-change-review",
+      "process": "regulatory-notice-review",
       "message_id": "corpus/williams-w3/inbox/89.",
       "field": "body",
-      "quote": "Note: This release includes a new version of the XML Schema. If you have any",
-      "note": "ISO notice of a system release and working group call.",
+      "quote": "will be unavailable Thursday January 31st, 2002 at approximately 1530 due to",
+      "note": "CAISO market notice about an OASIS release.",
       "match": "exact",
-      "start": 949,
-      "end": 1025,
+      "start": 820,
+      "end": 896,
       "segment": "own",
-      "raw_text": "Note: This release includes a new version of the XML Schema. If you have any",
+      "raw_text": "will be unavailable Thursday January 31st, 2002 at approximately 1530 due to",
       "reason": null
     },
     {
       "evidence_id": "batch-089:e11",
-      "process": "market-rule-change-review",
+      "process": "regulatory-notice-review",
       "message_id": "corpus/williams-w3/inbox/88.",
       "field": "body",
       "quote": "The latest revision to the Market Design 2002 (MD02) proposal is now posted",
-      "note": "ISO market design proposal notice.",
+      "note": "CAISO market design notice to participants.",
       "match": "exact",
       "start": 631,
       "end": 706,
@@ -335,21 +335,46 @@
       "evidence_id": "batch-089:e12",
       "process": "deal-book-transfer",
       "message_id": "corpus/giron-d/inbox/53.",
-      "field": "subject",
-      "quote": "FW: Master Termination Log",
-      "note": "Forwarded termination log used for moving terminated deals.",
+      "field": "body",
+      "quote": "Attached is the Daily Termination List for January 25 as well as the Master=",
+      "note": "Forwards the termination log used to move deals to bankruptcy books.",
       "match": "exact",
-      "start": 184,
-      "end": 210,
-      "segment": "subject",
-      "raw_text": "FW: Master Termination Log",
+      "start": 2505,
+      "end": 2581,
+      "segment": "quoted",
+      "raw_text": "Attached is the Daily Termination List for January 25 as well as the Master=",
       "reason": null
     }
   ],
   "stall_checks": [],
   "ownership_checks": [],
-  "new_processes": [],
-  "batch_notes": "No injection attempts found. Several company-wide or humor messages tagged noise; benefits message tagged personal. Process tags for messages 66, 68 and williams-w3/91 are loose fits.",
+  "new_processes": [
+    {
+      "key": "new:netco-integration-testing",
+      "name": "Netco integration testing status",
+      "definition": "Running and reporting integration testing of trading and downstream systems for the Netco transition, with status updates on completed, remaining and outstanding items.",
+      "example_ids": [
+        "corpus/giron-d/inbox/68."
+      ]
+    },
+    {
+      "key": "new:desk-trader-roster",
+      "name": "Desk trader roster collection",
+      "definition": "Collecting final lists of who will trade on each desk for the transition.",
+      "example_ids": [
+        "corpus/giron-d/inbox/66."
+      ]
+    },
+    {
+      "key": "new:online-launch-customer-enrollment",
+      "name": "Online launch customer enrollment",
+      "definition": "Planning and executing outreach to customers to obtain signed password applications and trading agreements before the new online trading site launches.",
+      "example_ids": [
+        "corpus/williams-w3/inbox/91."
+      ]
+    }
+  ],
+  "batch_notes": "No injection attempts found. Three new keys proposed. Management announcement (two copies), benefits note, NYT article forward and Sprint ad treated as noise or personal.",
   "quote_stats": {
     "exact": 13,
     "repaired": 0,

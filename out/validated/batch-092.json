@@ -19,7 +19,7 @@
     {
       "id": "corpus/williams-w3/inbox/63.",
       "processes": [
-        "expense-report-approval"
+        "expense-approval"
       ],
       "role": "automated",
       "stall": null,
@@ -36,7 +36,9 @@
     },
     {
       "id": "corpus/williams-w3/inbox/61.",
-      "processes": [],
+      "processes": [
+        "system-access-request"
+      ],
       "role": "automated",
       "stall": null,
       "ownership_claim": null
@@ -44,7 +46,7 @@
     {
       "id": "corpus/williams-w3/sent_items/4.",
       "processes": [
-        "user-access-setup"
+        "new:trader-roster-submission"
       ],
       "role": "response",
       "stall": null,
@@ -53,7 +55,7 @@
     {
       "id": "corpus/williams-w3/inbox/60.",
       "processes": [
-        "system-enhancement-request"
+        "system-issue-resolution"
       ],
       "role": "response",
       "stall": null,
@@ -61,22 +63,29 @@
     },
     {
       "id": "corpus/williams-w3/inbox/59.",
-      "processes": [],
-      "role": "noise",
-      "stall": null,
+      "processes": [
+        "new:organization-transition-update"
+      ],
+      "role": "fyi",
+      "stall": {
+        "kind": "waiting_on_reply",
+        "quote": "several of these people to get direction and am waiting for a response.  I ="
+      },
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/inbox/58.",
-      "processes": [],
-      "role": "noise",
+      "processes": [
+        "new:organization-transition-update"
+      ],
+      "role": "fyi",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/lokay-m/sent_items/79.",
       "processes": [
-        "weekly-commercial-reporting"
+        "capacity-reporting"
       ],
       "role": "fyi",
       "stall": null,
@@ -85,7 +94,7 @@
     {
       "id": "corpus/giron-d/inbox/35.",
       "processes": [
-        "credit-exposure-reporting"
+        "new:counterparty-exposure-reconciliation"
       ],
       "role": "request",
       "stall": null,
@@ -94,19 +103,16 @@
     {
       "id": "corpus/giron-d/inbox/34.",
       "processes": [
-        "new:desk-pnl-responsibility-assignment"
+        "new:pnl-responsibility-assignment"
       ],
       "role": "forward",
       "stall": null,
-      "ownership_claim": {
-        "person": "Andy Lewis",
-        "quote": "Andy Lewis - Basis and Gas Daily"
-      }
+      "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/inbox/33.",
       "processes": [
-        "new:desk-pnl-responsibility-assignment"
+        "new:pnl-responsibility-assignment"
       ],
       "role": "response",
       "stall": null,
@@ -125,7 +131,7 @@
   "evidence": [
     {
       "evidence_id": "batch-092:e0",
-      "process": "expense-report-approval",
+      "process": "expense-approval",
       "message_id": "corpus/williams-w3/inbox/63.",
       "field": "body",
       "quote": "The following expense report is ready for approval:",
@@ -143,7 +149,7 @@
       "message_id": "corpus/williams-w3/inbox/62.",
       "field": "body",
       "quote": "Western Pre-Scheduled Firm Electricity Prices($/MWh)",
-      "note": "Daily energy market report forwarded to the trading group.",
+      "note": "Daily energy market report forwarded to the trading desk.",
       "match": "exact",
       "start": 1641,
       "end": 1693,
@@ -157,7 +163,7 @@
       "message_id": "corpus/williams-w3/inbox/57.",
       "field": "body",
       "quote": "Western Pre-Scheduled Firm Electricity Prices($/MWh)",
-      "note": "Next daily energy market report forwarded to the trading group.",
+      "note": "Next day's market report forwarded to the trading desk.",
       "match": "exact",
       "start": 1638,
       "end": 1690,
@@ -167,11 +173,25 @@
     },
     {
       "evidence_id": "batch-092:e3",
-      "process": "user-access-setup",
+      "process": "system-access-request",
+      "message_id": "corpus/williams-w3/inbox/61.",
+      "field": "body",
+      "quote": "Thank you for using our automated self service password reset option.",
+      "note": "Automated account password reset for trading and HR systems.",
+      "match": "exact",
+      "start": 506,
+      "end": 575,
+      "segment": "own",
+      "raw_text": "Thank you for using our automated self service password reset option.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-092:e4",
+      "process": "new:trader-roster-submission",
       "message_id": "corpus/williams-w3/sent_items/4.",
       "field": "body",
       "quote": "Here are the remaining hourly traders.",
-      "note": "Supplies list of traders to be set up for hourly trading.",
+      "note": "Sends a list of hourly traders to a colleague.",
       "match": "exact",
       "start": 544,
       "end": 582,
@@ -180,12 +200,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-092:e4",
-      "process": "system-enhancement-request",
+      "evidence_id": "batch-092:e5",
+      "process": "system-issue-resolution",
       "message_id": "corpus/williams-w3/inbox/60.",
       "field": "body",
       "quote": "This occurs when your H drive is not mapped.",
-      "note": "Answers a reported tool profile error with a fix.",
+      "note": "Explains the cause and fix of a CAPS profile error.",
       "match": "exact",
       "start": 678,
       "end": 722,
@@ -194,40 +214,68 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-092:e5",
-      "process": "weekly-commercial-reporting",
-      "message_id": "corpus/lokay-m/sent_items/79.",
-      "field": "body",
-      "quote": "Transwestern's average deliveries to California were 1058 MMBtu/d (97%), with San Juan lateral throughput at 864 MMBtu/d.",
-      "note": "Weekly California capacity and deliveries report.",
-      "match": "exact",
-      "start": 1337,
-      "end": 1458,
-      "segment": "own",
-      "raw_text": "Transwestern's average deliveries to California were 1058 MMBtu/d (97%), with San Juan lateral throughput at 864 MMBtu/d.",
-      "reason": null
-    },
-    {
       "evidence_id": "batch-092:e6",
-      "process": "credit-exposure-reporting",
-      "message_id": "corpus/giron-d/inbox/35.",
+      "process": "new:organization-transition-update",
+      "message_id": "corpus/williams-w3/inbox/59.",
       "field": "body",
-      "quote": "we will need Risk and Credit Aggregation to pull the same Post IDs in order to have counterparties $ exposure to reconcile.",
-      "note": "Asks groups to align counterparty exposure data for reconciliation.",
+      "quote": "Chris and I would like to take this opportunity to update everyone on what =",
+      "note": "Management update on staff moves and the UBS Warburg transition.",
       "match": "exact",
-      "start": 1281,
-      "end": 1404,
+      "start": 564,
+      "end": 640,
       "segment": "own",
-      "raw_text": "we will need Risk and Credit Aggregation to pull the same Post IDs in order to have counterparties $ exposure to reconcile.",
+      "raw_text": "Chris and I would like to take this opportunity to update everyone on what =",
       "reason": null
     },
     {
       "evidence_id": "batch-092:e7",
-      "process": "new:desk-pnl-responsibility-assignment",
+      "process": "new:organization-transition-update",
+      "message_id": "corpus/williams-w3/inbox/58.",
+      "field": "body",
+      "quote": "Just so there's no confusion: I, too, have accepted a position with UBS War=",
+      "note": "Reply adding a staff transition detail.",
+      "match": "exact",
+      "start": 676,
+      "end": 752,
+      "segment": "own",
+      "raw_text": "Just so there's no confusion: I, too, have accepted a position with UBS War=",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-092:e8",
+      "process": "capacity-reporting",
+      "message_id": "corpus/lokay-m/sent_items/79.",
+      "field": "body",
+      "quote": "Transwestern's average deliveries to California were 1058 MMBtu/d (97%)",
+      "note": "Weekly California deliveries and capacity report.",
+      "match": "exact",
+      "start": 1337,
+      "end": 1408,
+      "segment": "own",
+      "raw_text": "Transwestern's average deliveries to California were 1058 MMBtu/d (97%)",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-092:e9",
+      "process": "new:counterparty-exposure-reconciliation",
+      "message_id": "corpus/giron-d/inbox/35.",
+      "field": "body",
+      "quote": "we will need Risk and Credit Aggregation to pull the same Post IDs in order to have counterparties $ exposure to reconcile",
+      "note": "Asks groups to align post IDs so counterparty exposure can be reconciled.",
+      "match": "exact",
+      "start": 1281,
+      "end": 1403,
+      "segment": "own",
+      "raw_text": "we will need Risk and Credit Aggregation to pull the same Post IDs in order to have counterparties $ exposure to reconcile",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-092:e10",
+      "process": "new:pnl-responsibility-assignment",
       "message_id": "corpus/giron-d/inbox/34.",
       "field": "body",
       "quote": "Andy Lewis - Basis and Gas Daily",
-      "note": "Forwarded list assigning P&L responsibility per trader and region.",
+      "note": "Forwarded list of who holds P&L responsibility by region.",
       "match": "exact",
       "start": 732,
       "end": 764,
@@ -236,8 +284,8 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-092:e8",
-      "process": "new:desk-pnl-responsibility-assignment",
+      "evidence_id": "batch-092:e11",
+      "process": "new:pnl-responsibility-assignment",
       "message_id": "corpus/giron-d/inbox/33.",
       "field": "body",
       "quote": "will most likely reside on the east desk",
@@ -250,42 +298,66 @@
       "reason": null
     }
   ],
-  "stall_checks": [],
-  "ownership_checks": [
+  "stall_checks": [
     {
-      "message_id": "corpus/giron-d/inbox/34.",
-      "person": "Andy Lewis",
+      "message_id": "corpus/williams-w3/inbox/59.",
       "match": "exact",
-      "start": 732,
-      "end": 764,
-      "segment": "quoted",
-      "raw_text": "Andy Lewis - Basis and Gas Daily",
+      "start": 3702,
+      "end": 3778,
+      "segment": "own",
+      "raw_text": "several of these people to get direction and am waiting for a response.  I =",
       "reason": null
     }
   ],
+  "ownership_checks": [],
   "new_processes": [
     {
       "key": "new:energy-market-report-distribution",
       "name": "Energy market report distribution",
-      "definition": "Forwarding the daily Energy Market Report of western and eastern power prices, outages and gas prices to the trading group.",
+      "definition": "Forwarding the daily third-party energy market report on power prices, outages and weather to the trading desk.",
       "example_ids": [
         "corpus/williams-w3/inbox/62.",
         "corpus/williams-w3/inbox/57."
       ]
     },
     {
-      "key": "new:desk-pnl-responsibility-assignment",
-      "name": "Desk P&L responsibility assignment",
-      "definition": "Defining and circulating which traders and desks hold P&L responsibility for which regions and pipeline points.",
+      "key": "new:trader-roster-submission",
+      "name": "Trader roster submission",
+      "definition": "Supplying lists of traders by name to a colleague who needs them for set-up or staffing.",
+      "example_ids": [
+        "corpus/williams-w3/sent_items/4."
+      ]
+    },
+    {
+      "key": "new:organization-transition-update",
+      "name": "Organization transition update",
+      "definition": "Management communications about who is moving, staying or leaving and how offices are separated during a company sale.",
+      "example_ids": [
+        "corpus/williams-w3/inbox/59.",
+        "corpus/williams-w3/inbox/58."
+      ]
+    },
+    {
+      "key": "new:counterparty-exposure-reconciliation",
+      "name": "Counterparty exposure reconciliation",
+      "definition": "Aligning post IDs and counterparty lists between risk and credit groups so counterparty exposure can be reconciled.",
+      "example_ids": [
+        "corpus/giron-d/inbox/35."
+      ]
+    },
+    {
+      "key": "new:pnl-responsibility-assignment",
+      "name": "P&L responsibility assignment",
+      "definition": "Defining and circulating which trader or desk is responsible for P&L on each region, hub or pipeline.",
       "example_ids": [
         "corpus/giron-d/inbox/34.",
         "corpus/giron-d/inbox/33."
       ]
     }
   ],
-  "batch_notes": "No injection attempts. HR drug-test notice and Portland office reorganization updates tagged noise with no process; password reset automated. Two new keys proposed.",
+  "batch_notes": "Mostly unrelated one-off messages. Msg williams-w3/inbox/64 (HR drug test notice) tagged noise; lokay-m/sent_items/78 personal. Password reset mapped to system-access-request as a loose fit. Five new keys proposed. No injection attempts found.",
   "quote_stats": {
-    "exact": 10,
+    "exact": 13,
     "repaired": 0,
     "rejected": 0
   }

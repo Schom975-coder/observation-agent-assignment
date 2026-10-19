@@ -3,12 +3,12 @@
   "messages": [
     {"id": "corpus/giron-d/sent/647.", "processes": [], "role": "personal", "stall": null, "ownership_claim": null},
     {"id": "corpus/giron-d/sent/645.", "processes": [], "role": "personal", "stall": null, "ownership_claim": null},
-    {"id": "corpus/giron-d/sent/646.", "processes": ["reference-data-update"], "role": "response", "stall": null, "ownership_claim": null},
-    {"id": "corpus/farmer-d/logistics/1415.", "processes": ["time-activity-reporting"], "role": "request", "stall": null, "ownership_claim": null},
-    {"id": "corpus/farmer-d/logistics/1416.", "processes": ["new:wholesale-volume-variance-explanations"], "role": "response", "stall": null, "ownership_claim": null},
-    {"id": "corpus/giron-d/sent/643.", "processes": ["counterparty-settlement-review"], "role": "response", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/sent/646.", "processes": ["new:contact-list-update"], "role": "response", "stall": null, "ownership_claim": null},
+    {"id": "corpus/farmer-d/logistics/1415.", "processes": ["time-activity-reporting"], "role": "request", "stall": null, "ownership_claim": {"person": "Suzanne Nicholie", "quote": "Suzanne Nicholie - Primary Hours Survey Contact at #57341"}},
+    {"id": "corpus/farmer-d/logistics/1416.", "processes": ["new:volumetric-variance-explanation"], "role": "response", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/sent/643.", "processes": ["settlement-resolution"], "role": "response", "stall": {"kind": "waiting_on_reply", "quote": "Any word?  I am going to send in the water fall today so please let me know."}, "ownership_claim": {"person": "Melissa K Ratnala", "quote": "Please field all monetized questions/requests through me."}},
     {"id": "corpus/giron-d/sent/642.", "processes": [], "role": "personal", "stall": null, "ownership_claim": null},
-    {"id": "corpus/giron-d/sent/641.", "processes": ["trading-book-setup"], "role": "request", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/sent/641.", "processes": ["trading-book-setup"], "role": "response", "stall": null, "ownership_claim": null},
     {"id": "corpus/giron-d/sent/557.", "processes": ["trading-book-setup"], "role": "request", "stall": null, "ownership_claim": null},
     {"id": "corpus/giron-d/sent/527.", "processes": ["trading-book-setup"], "role": "forward", "stall": null, "ownership_claim": null},
     {"id": "corpus/giron-d/sent/525.", "processes": ["trading-book-setup"], "role": "forward", "stall": null, "ownership_claim": null},
@@ -17,18 +17,19 @@
     {"id": "corpus/giron-d/sent/638.", "processes": [], "role": "personal", "stall": null, "ownership_claim": null}
   ],
   "evidence": [
-    {"process": "reference-data-update", "message_id": "corpus/giron-d/sent/646.", "field": "body", "quote": "Please send me at your earliest convenience the following info:", "note": "Contact list info request being answered with phone numbers."},
-    {"process": "time-activity-reporting", "message_id": "corpus/farmer-d/logistics/1415.", "field": "body", "quote": "We have developed what we think to be an easier and more efficient method of", "note": "Announces the new Hours Survey method and its distribution."},
-    {"process": "new:wholesale-volume-variance-explanations", "message_id": "corpus/farmer-d/logistics/1416.", "field": "body", "quote": "Yr to Yr and Qtr to Qtr changes due to EOL and increased Entex takes.", "note": "Supplies requested explanation of volume variances."},
-    {"process": "counterparty-settlement-review", "message_id": "corpus/giron-d/sent/643.", "field": "body", "quote": "The deal number in Sitara was changed because of an internal book name", "note": "Answers a questioned shortfall in monetized volume payment."},
-    {"process": "trading-book-setup", "message_id": "corpus/giron-d/sent/641.", "field": "body", "quote": "Richard Tomaski wants one more physical book set up under the Enovate name", "note": "Requests a new physical book."},
-    {"process": "trading-book-setup", "message_id": "corpus/giron-d/sent/557.", "field": "body", "quote": "This book is for the West desk.  Please call if you have any questions.", "note": "Book request for the West desk."},
-    {"process": "trading-book-setup", "message_id": "corpus/giron-d/sent/527.", "field": "body", "quote": "This book is for the West desk.  Please call if you have any questions.", "note": "Forwarded book request."},
-    {"process": "trading-book-setup", "message_id": "corpus/giron-d/sent/525.", "field": "body", "quote": "This book is for the West desk.  Please call if you have any questions.", "note": "Forwarded book request."},
-    {"process": "trading-book-setup", "message_id": "corpus/giron-d/sent/491.", "field": "body", "quote": "Here is another one.  It will be another Chicago book.", "note": "Another book request."}
+    {"process": "new:contact-list-update", "message_id": "corpus/giron-d/sent/646.", "field": "body", "quote": "Please send me at your earliest convenience the following info:", "note": "Request to staff for contact details to update the group contact list."},
+    {"process": "time-activity-reporting", "message_id": "corpus/farmer-d/logistics/1415.", "field": "body", "quote": "Suzanne Nicholie - Primary Hours Survey Contact at #57341", "note": "Names the contact for the hours survey that staff must complete."},
+    {"process": "new:volumetric-variance-explanation", "message_id": "corpus/farmer-d/logistics/1416.", "field": "body", "quote": "Yr to Yr and Qtr to Qtr changes due to EOL and increased Entex takes.", "note": "Supplies the requested explanation of wholesale volume variances."},
+    {"process": "settlement-resolution", "message_id": "corpus/giron-d/sent/643.", "field": "body", "quote": "The deal number in Sitara was changed because of an internal book name", "note": "Explains a deal number change behind a payment shortfall query."},
+    {"process": "trading-book-setup", "message_id": "corpus/giron-d/sent/641.", "field": "body", "quote": "Richard Tomaski wants one more physical book set up under the Enovate name", "note": "Asks for an additional physical book to be created."},
+    {"process": "trading-book-setup", "message_id": "corpus/giron-d/sent/557.", "field": "body", "quote": "This book is for the West desk.  Please call if you have any questions.", "note": "Book request stating which desk the new book is for."},
+    {"process": "trading-book-setup", "message_id": "corpus/giron-d/sent/527.", "field": "body", "quote": "This book is for the West desk.  Please call if you have any questions.", "note": "Forwards an earlier book request to an outside contact."},
+    {"process": "trading-book-setup", "message_id": "corpus/giron-d/sent/525.", "field": "body", "quote": "This book is for the West desk.  Please call if you have any questions.", "note": "Forwards an earlier book request to an outside contact."},
+    {"process": "trading-book-setup", "message_id": "corpus/giron-d/sent/491.", "field": "body", "quote": "Here is another one.  It will be another Chicago book.", "note": "Requests a further trading book."}
   ],
   "new_processes": [
-    {"key": "new:wholesale-volume-variance-explanations", "name": "Wholesale volume variance explanations", "definition": "Monthly and quarterly requests that commercial staff verify wholesale volumes and explain material year, quarter and month variances for Investor Relations.", "example_ids": ["corpus/farmer-d/logistics/1416."]}
+    {"key": "new:contact-list-update", "name": "Contact list update", "definition": "Collecting phone, extension and pager details from team members to keep a group contact list current.", "example_ids": ["corpus/giron-d/sent/646."]},
+    {"key": "new:volumetric-variance-explanation", "name": "Wholesale volume variance explanation", "definition": "Commercial staff verify monthly wholesale volumetric analysis and explain material year, quarter and month changes for Investor Relations.", "example_ids": ["corpus/farmer-d/logistics/1416."]}
   ],
-  "batch_notes": "Mostly personal forwards in the giron-d mailbox. Proposed new:wholesale-volume-variance-explanations. No injection attempts found."
+  "batch_notes": "No injection attempts. Several personal forwards (jokes, political chain mail) tagged personal. Book request thread spans several dates; later forwards go to an outside auditor address. Two new keys proposed."
 }

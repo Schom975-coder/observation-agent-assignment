@@ -1,121 +1,116 @@
 {
   "group_id": "synth-005",
-  "content_sha": "42a5c6d31b7f920c30507b5b1d324ca301e0031673f6eca0466fbc45b707b4cd",
+  "content_sha": "8dd12d008425a545cf94580cc32aa9d213b99dc7c8bd872fcd8893022c821146",
   "processes": [
     {
-      "key": "customer-quote-requests",
-      "description": "A customer such as Great River Energy asks for a trader price on a fixed forward, hedge or firm gas volume at a named delivery point, or asks to close out an existing forward contract. The request often reaches a desk contact first and is forwarded to the person who can get a quote, sometimes with a request to call the customer that day. That person checks with the traders for bids or quotes, works out the close-out terms where a contract is being unwound, and gets back to the customer with the price.",
+      "key": "contract-termination-handling",
+      "description": "A round starts when someone in contracts or logistics finds contracts that need to end, or when a counterparty wants out. The requester asks a contract administrator to prepare and send a termination letter, sometimes with a next-day deadline, and other contracts awaiting termination get added to the same request. Counterparties terminating on their side are told to send a letter of termination by fax.",
       "steps": [
-        "A customer asks for a price quote on a forward, hedge or firm gas volume, or asks to close out a forward contract.",
-        "The contact who receives the request forwards it to the person who handles customer pricing.",
-        "That person checks with the traders for current bids and quotes at the requested location and volume.",
-        "For a close-out, the remaining contract terms are valued against current prices.",
-        "The quote or close-out price goes back to the customer by phone or email."
+        "Identify the contract or contracts that need to be terminated.",
+        "Check the contract terms for whether and how it can be terminated and what notice applies.",
+        "Ask contract administration to prepare and send the termination letter by a stated date.",
+        "Prepare the letter and send it to the counterparty, or receive the counterparty's faxed letter.",
+        "Update the contract record to show the termination."
       ],
-      "stalls": [
-        {
-          "summary": "Requests reach a contact who does not price them and are forwarded on, with the new handler asked to call the customer the same day, so each round depends on finding the right pricing contact before any quote work starts.",
-          "evidence_ids": [
-            "batch-046:e10",
-            "batch-071:e8"
-          ]
-        }
-      ],
+      "stalls": [],
       "contradictions": [],
       "automation": {
-        "approach": "A reusable quote-request message that captures customer, product type, delivery point, volume, term and response deadline and goes straight to the pricing desk, with current forward prices for that point pulled alongside so the trader confirms rather than looks up the quote. Close-out requests carry the contract reference so its remaining terms can be valued from the deal record.",
+        "approach": "A standard termination letter with fields for contract number, counterparty, effective date and notice clause, plus a short intake checklist that confirms the termination terms before the letter goes out and records the date it was sent or received.",
         "artifact_type": "email_template",
-        "rationale": "The visible friction is routing and missing details: requests get forwarded and the handler is asked to phone the customer. A reusable request message that collects every detail the trader needs and names the pricing contact helps most; the trader's judgement on the price stays manual."
+        "rationale": "The quotes show repeated requests to prepare and send the same kind of letter, often several contracts at once and against a short deadline. A ready letter with the variable fields marked removes most of the drafting, while the terms check stays with the contract administrator."
       },
       "work_estimate": {
         "minutes_per_occurrence": {
-          "low": 10,
-          "mid": 20,
-          "high": 45
+          "low": 15,
+          "mid": 30,
+          "high": 60
         },
-        "automatable_pct": 30,
+        "automatable_pct": 40,
         "basis": "inferred",
-        "rationale": "Minutes go to checking with traders for bids at the requested point and volume, valuing a forward contract close-out where one is asked for, and phoning the customer with the result. The quotes show the request and its routing but not the pricing work itself, so the range is wide: a simple bid check is quick, a close-out valuation takes longer.",
+        "rationale": "Pulling up each contract and checking its termination and notice terms takes around 10 to 20 minutes, preparing and sending the letter another 10 to 15, and updating the contract record a few more. Several contracts in one request push a round toward the high end. The letter drafting is the part a template takes over; the terms check stays manual.",
         "evidence_ids": [
-          "batch-046:e10",
-          "batch-081:e6",
-          "batch-078:e1",
-          "batch-071:e8"
+          "batch-081:e8",
+          "batch-010:e19",
+          "batch-046:e27"
         ]
       },
       "estimate_check": {
-        "occurrences_cited": 4,
+        "occurrences_cited": 3,
         "senders_cited": 3
       }
     },
     {
-      "key": "daily-file-distribution",
-      "description": "Desk and settlement staff send out the EPE and EES models, the EPE reconciliation sheet, hourly data files and Western pre-scheduled firm price reports to settlements, external customer contacts and desk groups. A round is one send: the file for the prior trade date is prepared and mailed, and sometimes forwarded on by the desk. Around it, the desk keeps recipient lists correct, asking senders to add or remove names and distribution groups, correcting a mis-addressed recipient, and checking that the reconciliation sheet is completed and source data is loaded before the file goes out.",
+      "key": "deal-pathing",
+      "description": "Schedulers and volume staff path deal volumes to contracts and meters in the scheduling systems and link buybacks to the market deals they offset. Rounds start when a buyback is announced, when a monthly path list is sent out for checking, when a storage customer needs a specific withdrawal path, or when one scheduler changes a path another created. Questions about pricing, documentation from the counterparty and whether a buyback exists at all go back and forth until the supply and market deals are attached as a buy/sell and the month's activity is reviewed.",
       "steps": [
-        "The source data for the trade date is checked as loaded, such as Gas Daily prices.",
-        "The model, reconciliation sheet or price report is prepared for that date.",
-        "The reconciliation sheet is completed even when there are no variances.",
-        "The file is mailed to the distribution list of settlement, external and desk contacts.",
-        "Desk staff forward the file on to further contacts where needed.",
-        "Recipient changes are requested and the sender updates the distribution list."
+        "Receive notice of a sale, buyback or pathing requirement from the desk or a customer.",
+        "Confirm the deal terms, pricing type and counterparty documentation.",
+        "Create or change the path in the scheduling system for the meter and volume.",
+        "Attach the supply deal to the market deal to establish the buy/sell or buyback link.",
+        "Circulate the monthly path list for others to check for anything out of line.",
+        "Review the month's allocations, links and buybacks and correct what is wrong."
       ],
       "stalls": [
         {
-          "summary": "The EPE reconciliation sheet was not completed, prompting a follow-up on the new reconciliation model's location and status and an instruction to complete it going forward.",
+          "summary": "A request about a buyback with no counterparty documentation sat until the requester asked for its status.",
           "evidence_ids": [
-            "batch-057:s2",
-            "batch-057:e17",
-            "batch-057:e16"
+            "batch-000:e23",
+            "batch-000:s1"
           ]
         },
         {
-          "summary": "A report waits on source data: Gas Daily prices were not loaded yet, so the sender had to keep checking back before the send could go out.",
+          "summary": "Two schedulers working the same industrial pathing disagree on how it should be done, and one expects the other will not agree on the approach.",
           "evidence_ids": [
-            "batch-093:s3",
-            "batch-093:e12"
+            "batch-003:s2",
+            "batch-003:e9"
           ]
         },
         {
-          "summary": "Distribution lists drift: files went to the wrong Bill Williams, names had to be added and removed, and a new sender needed a list of who is in the real-time group before the distribution could be set up correctly.",
+          "summary": "A storage withdrawal pathing request drew a complaint that its requester should have been driving the work, showing unclear ownership.",
           "evidence_ids": [
-            "batch-054:e9",
-            "batch-053:e31",
-            "batch-054:e11",
-            "batch-091:e19",
-            "batch-091:e20"
+            "batch-004:e26",
+            "batch-004:s2"
           ]
         }
       ],
       "contradictions": [
         {
-          "summary": "Practice and expectation differ on the reconciliation sheet: it was being left undone, apparently when there were no variances, while the desk asks that it be completed even when there are none.",
+          "summary": "The same buyback is described differently: one message reports volumes sold back over a period, a reply says the buyback will be in place through year end, and another reply says no swing and no buyback were intended.",
           "evidence_ids": [
-            "batch-057:s2",
-            "batch-057:e17"
+            "batch-000:e15",
+            "batch-000:e14",
+            "batch-000:e22"
+          ]
+        },
+        {
+          "summary": "The storage pathing request comes from one scheduler, while another party says he should have been the driving force behind it, so who owns that pathing is disputed.",
+          "evidence_ids": [
+            "batch-004:e26",
+            "batch-004:s2"
           ]
         }
       ],
       "automation": {
-        "approach": "A scheduled job that builds the model or price report once its source data is loaded, attaches the reconciliation sheet and mails one maintained distribution group, with a check that holds the send and alerts the owner when data is missing or the reconciliation sheet is blank. Recipient changes go to the shared group instead of each sender's personal list.",
+        "approach": "A validation report that compares each month's paths against active deals, flags buybacks with no linked market deal, flags path edits made by someone other than the creator, and lists deals with tiered pricing, so the monthly path list arrives pre-checked. A short procedure fixes who links buybacks and who confirms counterparty documentation.",
         "artifact_type": "checklist",
-        "rationale": "The repetitive part is preparing and mailing the same files to the same people; the visible failures are a skipped reconciliation sheet, data not yet loaded and stale recipient lists. A short send checklist covering data loaded, reconciliation done even with no variances, and distribution group current addresses all three right away, ahead of any scheduling tool."
+        "rationale": "Most rounds are a check of whether paths and buyback links match the deals. A checklist for the monthly review, covering links, buybacks, pricing type and documentation, gives schedulers one shared standard and reduces the disagreements and ownership questions the mail shows."
       },
       "work_estimate": {
         "minutes_per_occurrence": {
-          "low": 5,
-          "mid": 15,
-          "high": 30
+          "low": 15,
+          "mid": 35,
+          "high": 75
         },
-        "automatable_pct": 60,
-        "basis": "inferred",
-        "rationale": "Minutes go to checking the source data is loaded, preparing the model or price report for the date, completing the reconciliation sheet and, in some rounds, updating the recipient list. The quotes show these files are routine and repeated, so most rounds are short; the high end covers a round with variances to reconcile or a list to rebuild.",
+        "automatable_pct": 45,
+        "basis": "observed",
+        "rationale": "A round involves looking up the deal and its pricing, creating or changing a path for a meter and volume, attaching supply to market deals, and in the monthly cases reviewing a full path list or a month of allocations and links. Single path changes take around 15 minutes; monthly list reviews take an hour or more. Matching paths and links to deals is what a report can take over; judging the exceptions stays manual.",
         "evidence_ids": [
-          "batch-088:e25",
-          "batch-057:e17",
-          "batch-054:e11",
-          "batch-093:e12",
-          "batch-092:e2",
-          "batch-091:e18"
+          "batch-003:e29",
+          "batch-003:e8",
+          "batch-003:e45",
+          "batch-004:e26",
+          "batch-003:e27",
+          "batch-000:e15"
         ]
       },
       "estimate_check": {
@@ -124,105 +119,124 @@
       }
     },
     {
-      "key": "deal-book-transfer",
-      "description": "Risk, settlements and desk staff move deals from one risk book to another. Early rounds flip single deals or a whole book's contents into the right regional or desk book, such as FT-US/CAND-ERMS, often by a stated deadline. After the bankruptcy filing, rounds move auto-terminating deals and terminated counterparties' deals into bankruptcy books from attached lists, followed by lists of stragglers. The receiver moves the deals in TAGG, zeroes them in Sitara, recalculates and officializes the book, and cross-references the result with other groups' lists.",
+      "key": "meter-flow-resolution",
+      "description": "Volume management and allocation staff spot gas that flowed at a meter with no deal, no nomination or unexpected volumes, sometimes months after the flow. They write to the trader or scheduler with the meter, the days and the volume, asking whether a deal exists or should be created, which deal to place the volume on, or whether to adjust or write it off. Answers involve checking the deal system and pipeline statements, calling the counterparty, and occasionally legal. Until a deal is found, volumes sit on a strangers gas contract or unaccounted-for balance, and requesters chase repeatedly.",
       "steps": [
-        "A requester identifies deals to move: single deals in the wrong book, a whole book's contents, or terminated counterparties' deals.",
-        "The deal list is compiled or forwarded, often as an attachment, naming the source and target book and a deadline.",
-        "The book owner moves each deal to the target book in the risk system, zeroing bankruptcy deals forward in Sitara.",
-        "The book is recalculated and officialized after the move.",
-        "The moved deals are cross-referenced against the requester's final list and other groups' calcs.",
-        "Stragglers found later are sent and moved in a follow-up round, and wrongly moved deals are moved back."
+        "Spot flow at a meter with no matching deal, no nomination, or volumes out of line with the deal.",
+        "Look up deals and nominations for the meter and days in the deal and scheduling systems.",
+        "Ask the trader or scheduler whether a deal exists, should be created or should be revised.",
+        "Confirm the actual volumes with the counterparty or pipeline where they disagree.",
+        "Create, extend or path a deal, or decide to adjust or write off the volume.",
+        "Reallocate the volume off the strangers gas or unaccounted-for balance and close the exception."
       ],
       "stalls": [
         {
-          "summary": "Cross-checks wait on others: risk was still waiting on a final list to cross-reference with its calcs while settlements kept sending the deal lists behind terminated contracts.",
+          "summary": "Requesters wait on replies and chase repeatedly for status on a meter, sometimes after voicemails, and one escalates in capitals asking for anyone to help resolve the matter.",
           "evidence_ids": [
-            "batch-087:s2",
-            "batch-087:e23"
+            "batch-010:s0",
+            "batch-029:s0",
+            "batch-011:s4",
+            "batch-044:s0",
+            "batch-002:s0",
+            "batch-014:s0"
           ]
         },
         {
-          "summary": "Reconciling a book with another party's records needed help and the exact deal terms, and ended with the approach being redone a simpler way.",
+          "summary": "Resolution depends on outside parties: a scheduler waits for a counterparty contact to call back after speaking with legal before proceeding.",
           "evidence_ids": [
-            "batch-022:e21",
-            "batch-022:e22",
-            "batch-022:s2"
+            "batch-010:s5",
+            "batch-010:e23"
           ]
         },
         {
-          "summary": "Bulk moves are rarely complete in one pass: one more deal, more deals and repeated batches of stragglers follow the first list.",
+          "summary": "Questions get passed between people without a clear owner: an issue is placed in another person's lap, and requests are redirected to whoever handles or allocates the point.",
           "evidence_ids": [
-            "batch-048:e18",
-            "batch-082:e36",
-            "batch-089:e7",
-            "batch-088:e23",
-            "batch-087:e21"
+            "batch-021:s1",
+            "batch-036:o0",
+            "batch-028:o1",
+            "batch-044:o0"
           ]
         },
         {
-          "summary": "Some moves are reversed: transactions already moved to the bankruptcy book had to be moved back to the live side.",
+          "summary": "The same deal and volume questions go round and round between groups without being settled.",
           "evidence_ids": [
-            "batch-089:e5"
+            "batch-035:s0",
+            "batch-035:e25"
           ]
         },
         {
-          "summary": "Moves carry tight deadlines and repeated reminders, such as by the end of today, as soon as possible and right away.",
+          "summary": "System problems create or hide exceptions: mirrored meters misbehave, nothing comes through in the scheduling system, and a change to system defaults is proposed.",
           "evidence_ids": [
-            "batch-048:e17",
-            "batch-048:e22",
-            "batch-037:e32",
-            "batch-033:e17"
+            "batch-008:s1",
+            "batch-020:e12",
+            "batch-001:e42"
+          ]
+        },
+        {
+          "summary": "Old flow is raised long after the gas moved, with volumes booked to a strangers gas contract while an earlier request for a deal went unanswered.",
+          "evidence_ids": [
+            "batch-036:e3",
+            "batch-035:e17",
+            "batch-031:e8",
+            "batch-036:e21"
           ]
         }
       ],
       "contradictions": [
         {
-          "summary": "Who leads the termination and bankruptcy-book work is named differently: one note says Darron and the writer will handle terminations from now on after Scott moved to another project, while a later note says Greg Couch will lead the estate risk effort.",
+          "summary": "Different people are named as the one who handles meter flow questions: one sender says a named colleague handles it, another says a different person allocates the point, another names the volume management contact, and another says to talk to the desk lead.",
           "evidence_ids": [
-            "batch-087:o0",
-            "batch-091:o0"
+            "batch-028:o1",
+            "batch-044:o0",
+            "batch-062:o0",
+            "batch-036:o0"
           ]
         },
         {
-          "summary": "Instructions on target books change mid-stream: deals are first moved from NG-Price to the bankruptcy book, then a later note changes the book used for terminated deals and renames NG-Price, and some deals moved into the bankruptcy book are sent back to the live side.",
+          "summary": "Logistics claims it will inform the assets group of meter changes, while volume management staff separately take responsibility for adjustments, so the duty to communicate and correct is split.",
           "evidence_ids": [
-            "batch-088:e10",
-            "batch-091:e8",
-            "batch-091:e13",
-            "batch-089:e5",
-            "batch-087:e3"
+            "batch-031:o2",
+            "batch-001:o4"
+          ]
+        },
+        {
+          "summary": "The deal system and the pipeline disagree on volumes: discrepancies with the pipeline are listed by day, and a counterparty agrees volumes should have gone elsewhere than recorded.",
+          "evidence_ids": [
+            "batch-002:e5",
+            "batch-004:e3"
           ]
         }
       ],
       "automation": {
-        "approach": "A standard deal-transfer request layout listing deal number, counterparty, current book, target book, effective date and reason, plus a risk-system query that pulls every deal for a terminated counterparty and flags those not yet in a bankruptcy book, so stragglers surface in one pass. After the move, a check compares the book's deals and totals with the request list before the book is officialized.",
+        "approach": "A daily exception report that matches measured meter flow against deals and nominations and lists each meter, day and volume with no deal, with the last deal at that meter and its trader attached. A routing table names the owner for each meter or point, and a standard request message carries the meter, days, volume and proposed action, with ageing so old items surface before they go stale.",
         "artifact_type": "template",
-        "rationale": "Rounds repeat the same move with lists that arrive in pieces and in varying formats, and keep producing stragglers and reversals. One request template with fixed columns lets the book owner move and check deals line by line, and is the input a query or bulk-move script would read; deciding which deals belong in which book stays with risk staff."
+        "rationale": "Requests are written by hand in the same shape again and again: meter, dates, volume, last deal, question. A request form or tracker layout with those fields and a named owner per point cuts lookup and rewriting, and the ageing column addresses the chasing and handoff confusion the mail shows. Deciding how to book the flow stays with people."
       },
       "work_estimate": {
         "minutes_per_occurrence": {
-          "low": 15,
-          "mid": 35,
+          "low": 20,
+          "mid": 40,
           "high": 90
         },
-        "automatable_pct": 45,
+        "automatable_pct": 50,
         "basis": "observed",
-        "rationale": "Minutes go to compiling or checking the deal list against counterparties and contracts, moving each deal to the target book in TAGG and zeroing it in Sitara, recalculating and officializing the book, and cross-referencing against other groups' lists. Single-deal flips are short; bankruptcy rounds with attached lists of many deals and a reconciliation take far longer, hence the wide range.",
+        "rationale": "Each round involves looking up deals and nominations for the meter and days, checking pipeline statements or calling the counterparty, deciding where the volume goes, then creating or pathing a deal and reallocating off the strangers gas or unaccounted balance. Simple flow-with-no-nom cases take around 20 minutes; disputed or old volumes needing counterparty or legal checks run past an hour. Matching flow to deals and finding the last deal are mechanical; the booking decision is not.",
         "evidence_ids": [
-          "batch-082:e35",
-          "batch-039:e23",
-          "batch-087:e23",
-          "batch-087:s2",
-          "batch-022:e21",
-          "batch-088:e10",
-          "batch-046:e13",
-          "batch-091:e1"
+          "batch-047:e21",
+          "batch-045:e10",
+          "batch-031:e8",
+          "batch-031:e18",
+          "batch-002:e5",
+          "batch-004:e3",
+          "batch-035:e17",
+          "batch-028:e26",
+          "batch-013:e10",
+          "batch-055:e8"
         ]
       },
       "estimate_check": {
-        "occurrences_cited": 7,
-        "senders_cited": 4
+        "occurrences_cited": 10,
+        "senders_cited": 8
       }
     }
   ]

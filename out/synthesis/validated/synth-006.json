@@ -1,51 +1,115 @@
 {
   "group_id": "synth-006",
-  "content_sha": "c32868b9742bceab8f6d6acc79f53105e1236e0a69e61ab9763d6a5154cf6285",
+  "content_sha": "2ab2b69a55da2f0989d40c0a4c4374bdab94167f9af15a021eb3fd0226ec19d1",
   "processes": [
     {
-      "key": "deal-confirmation",
-      "description": "Gas sales and purchases are confirmed in writing with counterparties and internal groups. A round starts when the desk sends a copy of a confirmation or a notice of a sale, such as the pipeline selling operational gas to Western from April, or when a counterparty asks for a Transaction Confirmation sheet for a volume at a delivery point, or reports that confirmations for several months never arrived. The deal terms are pulled from the deal record and sent, and the recipient checks them against its own records.",
+      "key": "cost-center-allocation",
+      "description": "Operations accounting sets the allocation of Texas Operations costs across cost centers, both for the annual plan and month by month. Brenda Herod sends allocation files and asks managers to review them and update the spreadsheet with changes; Lisa Cousino sets up responsibility centers (RCs), announces charges that will or will not appear, and asks staff to check their RC reports for misposted charges. Labor Distribution and budget-versus-actual reports are distributed, and staff flag people or charges showing in the wrong place so they can be corrected.",
       "steps": [
-        "A sale or purchase is agreed, or a counterparty asks for written confirmation of a deal.",
-        "The desk pulls the deal terms (volume, delivery point, period) from the deal record.",
-        "The confirmation sheet or notice is prepared and sent to the counterparty and the internal groups that need it.",
-        "The counterparty checks the confirmation against its own records.",
-        "When confirmations are missing, the counterparty raises it and the desk sends the outstanding ones."
+        "Accounting prepares the plan or monthly allocation file for Texas Operations.",
+        "The allocation is sent to managers, who review it and return changes.",
+        "The allocation spreadsheet is updated and the final allocation is issued.",
+        "Monthly RC, Labor Distribution and budget-versus-actual reports are distributed.",
+        "Staff check their RC and labor reports for misposted charges or employees.",
+        "Misposted charges are reported and corrected with the RC owner or corporate."
       ],
       "stalls": [
         {
-          "summary": "A counterparty's fuel buyer reports never receiving confirmations for May, June and July, so a run of confirmations went missing before anyone noticed.",
+          "summary": "Spreadsheet tooling breaks during allocation updates: the person updating the allocation gave up on the spreadsheet after being unable to insert a column.",
+          "evidence_ids": [
+            "batch-002:s1",
+            "batch-002:e15"
+          ]
+        },
+        {
+          "summary": "Corporate IT invoices for months were not billed on time, so RC reports omitted IT charges and owners had to wait for them to appear later.",
+          "evidence_ids": [
+            "batch-014:s4",
+            "batch-014:e16"
+          ]
+        },
+        {
+          "summary": "Requests are unclear or have no obvious owner: a recipient did not understand what was being asked, someone had to ask who handles Labor Distribution reports, and one item 'just sits' because nobody wants to touch it.",
+          "evidence_ids": [
+            "batch-030:s2",
+            "batch-008:e8",
+            "batch-076:o0"
+          ]
+        }
+      ],
+      "contradictions": [],
+      "automation": {
+        "approach": "Keep the allocation percentages in one shared, structured workbook with a fixed layout per cost center, and generate a monthly exception report that compares RC postings against the allocation and the employee roster, flagging misposted charges and people showing in the wrong RC for owners to confirm.",
+        "artifact_type": "template",
+        "rationale": "Most rework comes from editing ad hoc spreadsheets and from owners eyeballing RC reports for errors. A standard allocation template removes the broken-spreadsheet step and gives reviewers a consistent sheet to mark up, while an exception check narrows manual review to the flagged lines."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": {
+          "low": 20,
+          "mid": 45,
+          "high": 90
+        },
+        "automatable_pct": 50,
+        "basis": "observed",
+        "rationale": "A round means building or revising an allocation file, reviewing it against plan, updating the spreadsheet with managers' changes, or checking an RC or labor report line by line and getting a correction made. Around 45 minutes covers the spreadsheet work and the check; plan allocations and corrections run longer. Template layout and exception flagging could take about half, leaving judgement on percentages and corrections.",
+        "evidence_ids": [
+          "batch-002:e14",
+          "batch-002:e15",
+          "batch-002:e20",
+          "batch-011:e28",
+          "batch-005:e14",
+          "batch-007:e16",
+          "batch-014:e16"
+        ]
+      },
+      "estimate_check": {
+        "occurrences_cited": 7,
+        "senders_cited": 3
+      }
+    },
+    {
+      "key": "deal-confirmation",
+      "description": "Written confirmations of gas purchases and sales are executed and passed on. A marketer executes a sales confirm and sends a copy to colleagues, counterparties ask for copies to be faxed or forwarded, and counterparties chase confirmations for months they never received. Senders are not always sure how the confirmation reaches the people who need it.",
+      "steps": [
+        "A gas purchase or sale is agreed with a counterparty.",
+        "The confirmation is prepared and executed.",
+        "A copy is sent to internal colleagues and to the counterparty.",
+        "Missing confirmations are requested by the counterparty and resent."
+      ],
+      "stalls": [
+        {
+          "summary": "A counterparty never received confirmations for several months of deals and had to chase them.",
           "evidence_ids": [
             "batch-080:s4",
             "batch-080:e15"
           ]
         },
         {
-          "summary": "When the pipeline sells operational gas to Western, the sender is unsure how the information reaches the group that needs it, so the routing of confirmations is unclear.",
+          "summary": "The sender of an executed confirm did not know the route by which confirmation details reach the downstream team.",
           "evidence_ids": [
-            "batch-093:s2",
-            "batch-093:e11"
+            "batch-093:s3",
+            "batch-093:e12"
           ]
         }
       ],
       "contradictions": [],
       "automation": {
-        "approach": "Generate the confirmation from the deal record when a deal is entered, send it to a standard distribution list per counterparty and internal group, and keep a log of confirmations sent and acknowledged so a report flags any deal or month without a confirmation before the counterparty has to ask.",
-        "artifact_type": "template",
-        "rationale": "The stalls are a run of confirmations that never arrived and uncertainty over who receives sale information. A standard confirmation form filled from the deal record, with a named distribution, addresses both, while people still review terms and handle disputes with the counterparty."
+        "approach": "Generate confirmations from the deal record when a deal is entered, send them to the counterparty and a fixed internal distribution automatically, and track which deals still lack a confirmation so gaps are caught before the counterparty asks.",
+        "artifact_type": "sop",
+        "rationale": "The problems shown are about routing: who gets the confirm and whether it was ever sent. A short written procedure naming the distribution and the check for unconfirmed deals addresses both right away."
       },
       "work_estimate": {
         "minutes_per_occurrence": {
           "low": 5,
-          "mid": 15,
-          "high": 30
+          "mid": 10,
+          "high": 25
         },
-        "automatable_pct": 50,
+        "automatable_pct": 60,
         "basis": "inferred",
-        "rationale": "The hands-on work is pulling the deal terms from the deal record, filling the confirmation sheet and checking it against what was agreed: about 15 minutes. A copy sent for information takes about 5; tracing and reissuing several missing months runs toward 30. Filling the form from the deal record is the automatable part; reviewing terms stays with people.",
+        "rationale": "Hands-on work is pulling the deal terms, preparing or locating the confirmation and getting it executed or faxed. Around 10 minutes per round; resending several months of missing confirms runs longer. Generating and distributing confirms from the deal record could take most of it, leaving review of terms.",
         "evidence_ids": [
+          "batch-093:e12",
           "batch-097:e4",
-          "batch-093:e11",
           "batch-080:e15",
           "batch-010:e1"
         ]
@@ -56,184 +120,60 @@
       }
     },
     {
-      "key": "deal-entry-pathing",
-      "description": "Schedulers, traders and the storage desk ask logistics to enter purchase, sale, storage and buyback deals in Sitara and path them against transport and market deals. Requests name the counterparty, the deal number and the pipelines to path on, and pass along pathing rules such as attaching a supply deal to a market deal as a buy/sell, or how a storage customer is pathed on withdrawal days. Staff also review the month's setup in UNIFY and industrial allocations, links and buybacks, and circulate lists and spreadsheets for checking.",
+      "key": "regulatory-notice-review",
+      "description": "ISO and FERC notices on market rules, price caps, settlement figures, operating procedures, outages and calls arrive from CAISO communications and regulatory staff. Bill Williams and others forward the relevant ones to traders and analysts with commentary, ask colleagues what an order means for the desk, set up meetings to discuss pros and cons, request test access for system changes, and review draft documents for comment by stated deadlines.",
       "steps": [
-        "A trader, scheduler or storage desk asks for a deal to be entered in Sitara, naming counterparty, deal number and pipelines.",
-        "The deal is entered in Sitara with its purchase or sale terms.",
-        "The deal is pathed against transport and market deals on each named pipeline so volumes balance.",
-        "The requester checks the path and asks about any pipeline left unpathed.",
-        "Staff review the month's setup in UNIFY and industrial allocations, links and buybacks for errors.",
-        "Lists and spreadsheets are circulated so others can flag anything out of line."
+        "An ISO, FERC or market notice arrives from CAISO or regulatory staff.",
+        "A desk lead reads it and judges whether it affects trading or scheduling.",
+        "Relevant notices are forwarded to the team with a summary or question.",
+        "The team discusses the impact, sometimes in a meeting, and asks follow-up questions of the ISO.",
+        "Comments on drafts are sent back by the stated deadline, and system changes are tested."
       ],
       "stalls": [
         {
-          "summary": "A deal requested for pathing on EPGT and TETC was found not pathed for HPL and CHAN, and the requester was still chasing its status in a later message.",
+          "summary": "Published market simulation documents had problems in their PDF versions, requiring the material to be reissued.",
           "evidence_ids": [
-            "batch-055:e7",
-            "batch-055:s1",
-            "batch-055:s2"
+            "batch-096:s1",
+            "batch-096:e16"
           ]
         },
         {
-          "summary": "On a Texas purchase and sale request, the counterparty is unsure whether the person contacted is the one who can schedule the volume.",
+          "summary": "Notices are repeatedly corrected or revised, such as a correction to a market notice about a FERC order and a later FAQ, so the same order is reviewed more than once.",
           "evidence_ids": [
-            "batch-011:s5",
-            "batch-011:e21"
-          ]
-        },
-        {
-          "summary": "The sale of the Centana storage to AEP was requested for entry and pathing, and a later message has to ask whether the deal has been entered yet.",
-          "evidence_ids": [
-            "batch-081:e5",
-            "batch-082:e8"
-          ]
-        },
-        {
-          "summary": "The Cilco storage pathing was laid out one way and then challenged as having originated from the wrong place, sending the setup back for rework.",
-          "evidence_ids": [
-            "batch-004:e26",
-            "batch-004:s4"
+            "batch-055:e5",
+            "batch-058:e7",
+            "batch-056:e16"
           ]
         }
       ],
-      "contradictions": [
-        {
-          "summary": "One message sets out how Cilco is to be pathed on a withdrawal day or month, while a reply in the same thread says the deal should have originated out of somewhere else; the quotes do not show which setup was settled on.",
-          "evidence_ids": [
-            "batch-004:e26",
-            "batch-004:s4"
-          ]
-        }
-      ],
+      "contradictions": [],
       "automation": {
-        "approach": "A standard deal request form capturing counterparty, deal number, volumes, dates and every pipeline to path, used for Sitara entry; an exception report listing deals entered but not pathed on each named pipeline, or whose paths do not balance against transport and market deals; and written pathing rules for recurring setups such as storage withdrawals and buy/sell links.",
-        "artifact_type": "template",
-        "rationale": "The stalls come from incomplete pathing, unclear routing of requests and setups challenged after the fact. A complete request form and an unpathed-deal report catch these before the requester has to chase, while choosing paths and handling exceptions stay with schedulers."
+        "approach": "Route ISO and FERC notices into a single feed tagged by topic (price caps, settlements, operating procedures, outages, calls), and produce a short daily digest that flags notices touching active positions or systems, with a standard impact note format for the desk lead to complete.",
+        "artifact_type": "checklist",
+        "rationale": "The work is triage of a high volume of notices, many routine. A checklist for assessing a notice's impact (pricing, scheduling, settlements, systems, comment deadline) makes the review consistent while the digest cuts the sorting; the judgement on market impact stays with people."
       },
       "work_estimate": {
         "minutes_per_occurrence": {
           "low": 10,
-          "mid": 30,
-          "high": 120
+          "mid": 25,
+          "high": 60
         },
-        "automatable_pct": 40,
+        "automatable_pct": 30,
         "basis": "inferred",
-        "rationale": "A typical request means entering the deal in Sitara and pathing it on each named pipeline against transport and market deals: about 30 minutes; a simple single entry about 10. Rounds that review a month's setup in UNIFY or industrial allocations, links and buybacks run toward 120. Balance checks and spotting unpathed legs are automatable; choosing paths and fixing setups stay with schedulers.",
+        "rationale": "Beyond reading, a round involves working out what an order or calculation change means for the desk, discussing it, preparing questions for the ISO, testing system changes, or reviewing a draft for comment. Routine automated notices need little; orders and rule changes need analysis or a meeting, so around 25 minutes with a wide range. Sorting and summarising could be tooled, the impact judgement much less.",
         "evidence_ids": [
-          "batch-011:e21",
-          "batch-055:e7",
-          "batch-003:e46",
-          "batch-081:e5",
-          "batch-004:e26",
-          "batch-003:e29",
-          "batch-003:e28"
+          "batch-054:e27",
+          "batch-057:e18",
+          "batch-070:e14",
+          "batch-072:e0",
+          "batch-071:e14",
+          "batch-077:e0",
+          "batch-056:e10"
         ]
       },
       "estimate_check": {
         "occurrences_cited": 7,
-        "senders_cited": 6
-      }
-    },
-    {
-      "key": "deal-entry-standards",
-      "description": "Deal-control and desk leads set and repeat the rules for booking deals in Sitara, Tagg, Enpower and CAPS: which book or service type to use, linking physical deals through the link field with the Sitara or EOL number, entering swaps through the swap function rather than annuities, and how to book spread, parking and buy-resale deals; EOL deals cannot be changed. Staff ask how to book unusual deals; the leads look over the deal in both systems, ask the trader where needed, answer, and forward revised procedures.",
-      "steps": [
-        "A lead circulates a booking rule or procedure change, or a staff member asks how to book an unfamiliar deal.",
-        "The lead looks over the deal in Sitara, Tagg or Enpower and checks the links between systems.",
-        "Where the deal is unclear, the lead asks the trader or originator before answering.",
-        "The answer gives the book, service type, deal type or link reference to use.",
-        "Mismatched or unlinked deals are listed and handed to the person named to correct them.",
-        "Revised procedures or spreadsheets are forwarded to the desk."
-      ],
-      "stalls": [
-        {
-          "summary": "A scheduler who had never scheduled a park and ride asks for help and is later still asking for the status of the meter.",
-          "evidence_ids": [
-            "batch-003:e13",
-            "batch-003:s0"
-          ]
-        },
-        {
-          "summary": "Deals looked right in Tagg and Sitara but the Tagg link field was wrong, and the fix was still waiting with no ready date.",
-          "evidence_ids": [
-            "batch-036:e29",
-            "batch-036:s5"
-          ]
-        },
-        {
-          "summary": "A spreadsheet of Bloomberg deals that could not be matched to Enpower was handed to a colleague to take care of when she had an opportunity, leaving the reconciliation open.",
-          "evidence_ids": [
-            "batch-064:e17",
-            "batch-064:o0"
-          ]
-        },
-        {
-          "summary": "The same booking errors come back: reminders to link all deals and to book spread deals consistently show rules being restated rather than enforced.",
-          "evidence_ids": [
-            "batch-020:e4",
-            "batch-027:e9",
-            "batch-026:e15"
-          ]
-        },
-        {
-          "summary": "Answering a booking question can wait on the originator: after looking over a deal, the lead has to ask Steve Jackson questions before resolving it.",
-          "evidence_ids": [
-            "batch-022:e1"
-          ]
-        }
-      ],
-      "contradictions": [
-        {
-          "summary": "The service-type rule changed within a day: first all deals are to be done under ST-Whourly, then all deals except a lending/parking deal or cut.",
-          "evidence_ids": [
-            "batch-064:e15",
-            "batch-064:e22"
-          ]
-        },
-        {
-          "summary": "One message warns staff about top-levelling any amount for anyone, while a later forwarded revision unprotects the Top Level cells; the mail does not show the control being formally relaxed.",
-          "evidence_ids": [
-            "batch-028:e23",
-            "batch-045:e7"
-          ]
-        },
-        {
-          "summary": "Within a day the same lead names two different people for desk questions: trading questions go to Ryan Slinger, while Kate Symes is to take care of the unmatched-deal spreadsheet, leaving unclear who owns booking questions.",
-          "evidence_ids": [
-            "batch-064:o1",
-            "batch-064:o0"
-          ]
-        }
-      ],
-      "automation": {
-        "approach": "One written booking procedure covering book and service type, link-field rules, swap entry, spread, parking and buy-resale setups, EOL deal changes and changes that affect other books, kept current in one place instead of serial reminders; paired with scheduled checks that flag unlinked physical deals, link fields that disagree between Tagg and Sitara, deals under the wrong book, and external trades that do not match Enpower.",
-        "artifact_type": "sop",
-        "rationale": "Most rounds restate or revise a booking rule, and the rules change and gain exceptions over time. A single maintained procedure gives staff one answer to check before asking, and the link and match checks catch the errors the reminders keep chasing, while unusual deals still need a lead's judgement."
-      },
-      "work_estimate": {
-        "minutes_per_occurrence": {
-          "low": 5,
-          "mid": 15,
-          "high": 60
-        },
-        "automatable_pct": 35,
-        "basis": "inferred",
-        "rationale": "Many rounds only restate a rule, with little work beyond the message: about 5 minutes. Rounds answering a question mean looking over the deal in Sitara, Tagg or Enpower, checking legs and link fields and sometimes rebooking: about 15. Reconciling a spreadsheet of external trades against Enpower or writing a new procedure runs toward 60. Link and match checks are automatable; deciding how unusual deals are booked stays with people.",
-        "evidence_ids": [
-          "batch-022:e1",
-          "batch-036:e29",
-          "batch-064:e17",
-          "batch-020:e4",
-          "batch-019:e1",
-          "batch-018:e22",
-          "batch-039:e8",
-          "batch-026:e15"
-        ]
-      },
-      "estimate_check": {
-        "occurrences_cited": 8,
-        "senders_cited": 4
+        "senders_cited": 3
       }
     }
   ]

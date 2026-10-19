@@ -10,39 +10,18 @@
     {"id": "corpus/giron-d/inbox/299.", "processes": [], "role": "noise", "stall": null, "ownership_claim": null},
     {"id": "corpus/giron-d/inbox/300.", "processes": [], "role": "noise", "stall": null, "ownership_claim": null},
     {"id": "corpus/giron-d/inbox/305.", "processes": [], "role": "noise", "stall": null, "ownership_claim": null},
-    {
-      "id": "corpus/williams-w3/sent_items/526.",
-      "processes": ["volume-imbalance-reconciliation"],
-      "role": "response",
-      "stall": null,
-      "ownership_claim": {"person": "Darron", "quote": "Darron has owned the daily imbalance check since March."}
-    },
-    {"id": "corpus/giron-d/inbox/387.", "processes": [], "role": "noise", "stall": null, "ownership_claim": null},
+    {"id": "corpus/williams-w3/sent_items/526.", "processes": ["imbalance-resolution"], "role": "response", "stall": null, "ownership_claim": {"person": "Darron", "quote": "Darron has owned the daily imbalance check since March."}},
+    {"id": "corpus/giron-d/inbox/387.", "processes": ["new:excel-class-assignment"], "role": "request", "stall": null, "ownership_claim": null},
     {"id": "corpus/giron-d/inbox/388.", "processes": [], "role": "personal", "stall": null, "ownership_claim": null}
   ],
   "evidence": [
-    {
-      "process": "new:gisb-standards-meeting-notes",
-      "message_id": "corpus/farmer-d/logistics/19.",
-      "field": "body",
-      "quote": "Finalized the Transactional Information (FT, IT, and Capacity Release).",
-      "note": "Meeting notes summarising GISB informational reporting standards work."
-    },
-    {
-      "process": "volume-imbalance-reconciliation",
-      "message_id": "corpus/williams-w3/sent_items/526.",
-      "field": "body",
-      "quote": "Send him the Tuesday numbers directly and it will move a lot faster.",
-      "note": "Directs the daily imbalance check numbers to the person who owns that check."
-    }
+    {"process": "new:gisb-standards-meeting-notes", "message_id": "corpus/farmer-d/logistics/19.", "field": "body", "quote": "Majority of the two days was spent developing the data dictionary for the new Producer Imbalance Statement.", "note": "Meeting notes from the GISB informational reporting standards working group circulated to the logistics team."},
+    {"process": "imbalance-resolution", "message_id": "corpus/williams-w3/sent_items/526.", "field": "body", "quote": "Darron has owned the daily imbalance check since March.", "note": "Explains who handles the recurring daily imbalance check and where to send the numbers."},
+    {"process": "new:excel-class-assignment", "message_id": "corpus/giron-d/inbox/387.", "field": "body", "quote": "You should write functions that tally the results asked for on Sheet1", "note": "Instructor passes on a programming exercise to Excel class participants."}
   ],
   "new_processes": [
-    {
-      "key": "new:gisb-standards-meeting-notes",
-      "name": "GISB standards meeting notes",
-      "definition": "Circulating notes from GISB industry standards committee meetings on data sets, code values and reporting documents to the logistics staff.",
-      "example_ids": ["corpus/farmer-d/logistics/19."]
-    }
+    {"key": "new:gisb-standards-meeting-notes", "name": "GISB standards meeting notes", "definition": "Circulating notes from industry GISB working group meetings on gas data standards to the logistics staff.", "example_ids": ["corpus/farmer-d/logistics/19."]},
+    {"key": "new:excel-class-assignment", "name": "Excel class assignment", "definition": "Distributing and following up on practice projects for staff taking an in-house Excel programming class.", "example_ids": ["corpus/giron-d/inbox/387."]}
   ],
-  "batch_notes": "Mostly newsletters and personal mail in the giron-d mailbox. Proposed new:gisb-standards-meeting-notes. Message 387 (Excel class project) treated as noise. No injection attempts found."
+  "batch_notes": "Newsletters and the Texas Exes tailgate series tagged noise. The chairman's investor call overview (386) is a company-wide announcement tagged noise, no recurring process. 388 is personal. No injection attempts found. New keys proposed: gisb-standards-meeting-notes, excel-class-assignment."
 }

@@ -32,7 +32,7 @@
     {
       "id": "corpus/lokay-m/inbox/26.",
       "processes": [
-        "commercial-strategy-planning"
+        "new:interconnect-cost-estimate"
       ],
       "role": "response",
       "stall": null,
@@ -41,7 +41,7 @@
     {
       "id": "corpus/lokay-m/sent_items/128.",
       "processes": [
-        "balancing-agreement-negotiation"
+        "oba-contract-negotiation"
       ],
       "role": "request",
       "stall": null,
@@ -64,7 +64,7 @@
     {
       "id": "corpus/lokay-m/sent_items/131.",
       "processes": [
-        "weekly-commercial-reporting"
+        "capacity-reporting"
       ],
       "role": "fyi",
       "stall": null,
@@ -73,7 +73,7 @@
     {
       "id": "corpus/lokay-m/sent_items/132.",
       "processes": [
-        "weekly-commercial-reporting"
+        "new:weekly-bullets-reporting"
       ],
       "role": "response",
       "stall": null,
@@ -82,7 +82,7 @@
     {
       "id": "corpus/lokay-m/sent_items/134.",
       "processes": [
-        "new:office-move-scheduling"
+        "new:office-move-logistics"
       ],
       "role": "response",
       "stall": null,
@@ -91,7 +91,7 @@
     {
       "id": "corpus/lokay-m/sent_items/135.",
       "processes": [],
-      "role": "personal",
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
@@ -172,7 +172,7 @@
     {
       "id": "corpus/lokay-m/sent_items/146.",
       "processes": [
-        "weekly-commercial-reporting"
+        "capacity-reporting"
       ],
       "role": "fyi",
       "stall": null,
@@ -181,7 +181,7 @@
     {
       "id": "corpus/lokay-m/sent_items/147.",
       "processes": [
-        "pipeline-outage-supply-cuts"
+        "pipeline-maintenance-notice"
       ],
       "role": "forward",
       "stall": null,
@@ -190,7 +190,7 @@
     {
       "id": "corpus/lokay-m/sent_items/148.",
       "processes": [
-        "pipeline-outage-supply-cuts"
+        "pipeline-maintenance-notice"
       ],
       "role": "response",
       "stall": null,
@@ -199,7 +199,7 @@
     {
       "id": "corpus/lokay-m/sent_items/149.",
       "processes": [
-        "balancing-agreement-negotiation"
+        "oba-contract-negotiation"
       ],
       "role": "request",
       "stall": null,
@@ -208,7 +208,7 @@
     {
       "id": "corpus/lokay-m/sent_items/150.",
       "processes": [
-        "balancing-agreement-negotiation"
+        "oba-contract-negotiation"
       ],
       "role": "request",
       "stall": null,
@@ -263,7 +263,7 @@
     {
       "id": "corpus/lokay-m/sent_items/154.",
       "processes": [
-        "new:contract-processing-tracking"
+        "oba-contract-negotiation"
       ],
       "role": "forward",
       "stall": null,
@@ -288,14 +288,14 @@
       "processes": [
         "commercial-strategy-planning"
       ],
-      "role": "fyi",
+      "role": "forward",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/lokay-m/inbox/30.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "imbalance-resolution"
       ],
       "role": "fyi",
       "stall": null,
@@ -311,7 +311,7 @@
     {
       "id": "corpus/lokay-m/inbox/32.",
       "processes": [
-        "weekly-commercial-reporting"
+        "capacity-reporting"
       ],
       "role": "fyi",
       "stall": null,
@@ -320,7 +320,7 @@
     {
       "id": "corpus/lokay-m/sent_items/160.",
       "processes": [
-        "weekly-commercial-reporting"
+        "new:weekly-bullets-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -338,7 +338,7 @@
     {
       "id": "corpus/lokay-m/sent_items/161.",
       "processes": [
-        "desk-coverage-on-call"
+        "on-call-coverage"
       ],
       "role": "fyi",
       "stall": null,
@@ -361,7 +361,7 @@
     {
       "id": "corpus/lokay-m/inbox/34.",
       "processes": [
-        "new:contract-processing-tracking"
+        "oba-contract-negotiation"
       ],
       "role": "fyi",
       "stall": null,
@@ -384,7 +384,7 @@
     {
       "id": "corpus/lokay-m/inbox/37.",
       "processes": [
-        "new:contract-processing-tracking"
+        "oba-contract-negotiation"
       ],
       "role": "fyi",
       "stall": null,
@@ -393,7 +393,7 @@
     {
       "id": "corpus/lokay-m/inbox/50.",
       "processes": [
-        "expense-report-approval"
+        "expense-approval"
       ],
       "role": "automated",
       "stall": null,
@@ -402,7 +402,7 @@
     {
       "id": "corpus/lokay-m/inbox/74.",
       "processes": [
-        "pipeline-capacity-marketing"
+        "capacity-reporting"
       ],
       "role": "forward",
       "stall": {
@@ -414,9 +414,9 @@
     {
       "id": "corpus/williams-w3/inbox/142.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "meter-flow-resolution"
       ],
-      "role": "fyi",
+      "role": "response",
       "stall": null,
       "ownership_claim": null
     }
@@ -428,7 +428,7 @@
       "message_id": "corpus/lokay-m/sent_items/125.",
       "field": "body",
       "quote": "The February 2002 El Paso Topock point price was $1.8600.",
-      "note": "Supplies the requested Mojave index price.",
+      "note": "Supplies a requested monthly index price to a colleague.",
       "match": "exact",
       "start": 566,
       "end": 623,
@@ -442,7 +442,7 @@
       "message_id": "corpus/lokay-m/sent_items/127.",
       "field": "body",
       "quote": "February was revised and March is now posted.",
-      "note": "Updates the requested index prices.",
+      "note": "Sends revised and new index prices after the request.",
       "match": "exact",
       "start": 617,
       "end": 662,
@@ -456,7 +456,7 @@
       "message_id": "corpus/lokay-m/sent_items/126.",
       "field": "body",
       "quote": "We still need to bill Conoco the TCR II Surcharges on 20,000 MMBtu per day.",
-      "note": "Billing of a surcharge on expired contracts.",
+      "note": "Billing of a surcharge on expired contracts needs a decision.",
       "match": "exact",
       "start": 757,
       "end": 832,
@@ -466,11 +466,11 @@
     },
     {
       "evidence_id": "batch-098:e3",
-      "process": "commercial-strategy-planning",
+      "process": "new:interconnect-cost-estimate",
       "message_id": "corpus/lokay-m/inbox/26.",
       "field": "body",
       "quote": "The following is a level \"A\" cost estimate to make TW/ Lonestar existing interconnects bi-directional.",
-      "note": "Cost estimate for an interconnect project.",
+      "note": "Engineering cost estimate for an interconnect project.",
       "match": "exact",
       "start": 746,
       "end": 848,
@@ -480,21 +480,21 @@
     },
     {
       "evidence_id": "batch-098:e4",
-      "process": "balancing-agreement-negotiation",
+      "process": "oba-contract-negotiation",
       "message_id": "corpus/lokay-m/sent_items/128.",
       "field": "body",
-      "quote": "Here is how I currently have paragraph 6 (tolerance level) in the OBA.",
-      "note": "Proposed paragraph wording in an OBA.",
+      "quote": "Should we insert another sentence reemphasizing that \"all imbalances\" will be \"cashed out\"?",
+      "note": "Asks about wording of an OBA paragraph.",
       "match": "exact",
-      "start": 865,
-      "end": 935,
+      "start": 937,
+      "end": 1028,
       "segment": "own",
-      "raw_text": "Here is how I currently have paragraph 6 (tolerance level) in the OBA.",
+      "raw_text": "Should we insert another sentence reemphasizing that \"all imbalances\" will be \"cashed out\"?",
       "reason": null
     },
     {
       "evidence_id": "batch-098:e5",
-      "process": "weekly-commercial-reporting",
+      "process": "capacity-reporting",
       "message_id": "corpus/lokay-m/sent_items/131.",
       "field": "body",
       "quote": "Transwestern's average deliveries to California were 874 MMBtu/d (80%), with San Juan lateral throughput at 862 MMBtu/d.",
@@ -508,11 +508,11 @@
     },
     {
       "evidence_id": "batch-098:e6",
-      "process": "weekly-commercial-reporting",
+      "process": "new:weekly-bullets-reporting",
       "message_id": "corpus/lokay-m/sent_items/132.",
       "field": "body",
       "quote": "No bullets....ongoing with TXU, Burlington, Mojave.",
-      "note": "Reply to the weekly bullets request.",
+      "note": "Replies to the manager's request for weekly bullets.",
       "match": "exact",
       "start": 556,
       "end": 607,
@@ -522,11 +522,11 @@
     },
     {
       "evidence_id": "batch-098:e7",
-      "process": "new:office-move-scheduling",
+      "process": "new:office-move-logistics",
       "message_id": "corpus/lokay-m/sent_items/134.",
       "field": "body",
       "quote": "If I could be moved in the morning (I only have 2 boxes), that would be great.",
-      "note": "Coordinating an office move time.",
+      "note": "Coordinates timing of an office move.",
       "match": "exact",
       "start": 627,
       "end": 705,
@@ -554,7 +554,7 @@
       "message_id": "corpus/lokay-m/sent_items/142.",
       "field": "body",
       "quote": "I took 1/2 day of vacation last Friday, 03/08.",
-      "note": "Absence entry for the time report.",
+      "note": "Reply to a time report reminder.",
       "match": "exact",
       "start": 578,
       "end": 624,
@@ -564,7 +564,7 @@
     },
     {
       "evidence_id": "batch-098:e10",
-      "process": "weekly-commercial-reporting",
+      "process": "capacity-reporting",
       "message_id": "corpus/lokay-m/sent_items/146.",
       "field": "body",
       "quote": "Transwestern's average deliveries to California were 989 MMBtu/d (91%), with San Juan lateral throughput at 877 MMBtu/d.",
@@ -578,11 +578,11 @@
     },
     {
       "evidence_id": "batch-098:e11",
-      "process": "pipeline-outage-supply-cuts",
+      "process": "pipeline-maintenance-notice",
       "message_id": "corpus/lokay-m/sent_items/147.",
       "field": "body",
       "quote": "The purpose of this letter is to inform Northwest's shippers of how it",
-      "note": "Notice about planned maintenance shut-ins.",
+      "note": "Notice about planned maintenance and its effect on shippers.",
       "match": "exact",
       "start": 857,
       "end": 927,
@@ -592,25 +592,25 @@
     },
     {
       "evidence_id": "batch-098:e12",
-      "process": "pipeline-outage-supply-cuts",
+      "process": "pipeline-maintenance-notice",
       "message_id": "corpus/lokay-m/sent_items/148.",
       "field": "body",
-      "quote": "The Ignacio to Blanco line, from La Plata, will be down over 700 million (which is pretty much the whole lateral) from 04/02-04/05.",
-      "note": "Gives customer details of the planned lateral outage.",
+      "quote": "The Ignacio to Blanco line, from La Plata, will be down over 700 million",
+      "note": "Gives a customer maintenance details for the lateral.",
       "match": "exact",
       "start": 655,
-      "end": 786,
+      "end": 727,
       "segment": "own",
-      "raw_text": "The Ignacio to Blanco line, from La Plata, will be down over 700 million (which is pretty much the whole lateral) from 04/02-04/05.",
+      "raw_text": "The Ignacio to Blanco line, from La Plata, will be down over 700 million",
       "reason": null
     },
     {
       "evidence_id": "batch-098:e13",
-      "process": "balancing-agreement-negotiation",
+      "process": "oba-contract-negotiation",
       "message_id": "corpus/lokay-m/sent_items/149.",
       "field": "body",
       "quote": "Burlington has agreed to execute this outstanding OBA if the name on the contract is changed.",
-      "note": "OBA execution pending a name change.",
+      "note": "Requests contract change to get an OBA executed.",
       "match": "exact",
       "start": 562,
       "end": 655,
@@ -620,11 +620,11 @@
     },
     {
       "evidence_id": "batch-098:e14",
-      "process": "balancing-agreement-negotiation",
+      "process": "oba-contract-negotiation",
       "message_id": "corpus/lokay-m/sent_items/150.",
       "field": "body",
       "quote": "Contract Administration needs you to email them officially requesting a name change.",
-      "note": "Follow-up on the OBA name change.",
+      "note": "Asks the counterparty to request the OBA name change.",
       "match": "exact",
       "start": 538,
       "end": 622,
@@ -638,7 +638,7 @@
       "message_id": "corpus/lokay-m/sent_items/153.",
       "field": "body",
       "quote": "Let's schedule all the marketers:  me, Lorraine, TK, Paul, Mark, and Kim.",
-      "note": "Supplies attendee list for CAS training.",
+      "note": "Names marketers for system training sessions.",
       "match": "exact",
       "start": 615,
       "end": 688,
@@ -652,7 +652,7 @@
       "message_id": "corpus/lokay-m/inbox/31.",
       "field": "body",
       "quote": "Michelle will meet with you on Friday morning 3/22/02 from 10:30 to 11:00 for CAS training.",
-      "note": "Schedules the training session.",
+      "note": "Schedules a CAS training session.",
       "match": "exact",
       "start": 669,
       "end": 760,
@@ -662,7 +662,7 @@
     },
     {
       "evidence_id": "batch-098:e17",
-      "process": "new:contract-processing-tracking",
+      "process": "oba-contract-negotiation",
       "message_id": "corpus/lokay-m/sent_items/154.",
       "field": "body",
       "quote": "Bass hereby requests that the MAXDTQ volume on the proposed amendment dated",
@@ -690,7 +690,7 @@
     },
     {
       "evidence_id": "batch-098:e19",
-      "process": "volume-imbalance-reconciliation",
+      "process": "imbalance-resolution",
       "message_id": "corpus/lokay-m/inbox/30.",
       "field": "body",
       "quote": "line pack has increased by approximately 253,000 mmbtus during March as a result of oba activity",
@@ -704,7 +704,7 @@
     },
     {
       "evidence_id": "batch-098:e20",
-      "process": "weekly-commercial-reporting",
+      "process": "capacity-reporting",
       "message_id": "corpus/lokay-m/inbox/32.",
       "field": "body",
       "quote": "Transwestern's average deliveries to California were 884 MMBtu/d (81%), with San Juan lateral throughput at 773 MMBtu/d.",
@@ -718,11 +718,11 @@
     },
     {
       "evidence_id": "batch-098:e21",
-      "process": "weekly-commercial-reporting",
+      "process": "new:weekly-bullets-reporting",
       "message_id": "corpus/lokay-m/sent_items/160.",
       "field": "body",
       "quote": "TW sold a total of 229,023 MMBtu/day of operational line pack at an average rate of $3.197/MMBtu.",
-      "note": "Weekly bullets content.",
+      "note": "Bullets submitted to the manager and forwarded.",
       "match": "exact",
       "start": 717,
       "end": 814,
@@ -746,11 +746,11 @@
     },
     {
       "evidence_id": "batch-098:e23",
-      "process": "desk-coverage-on-call",
+      "process": "on-call-coverage",
       "message_id": "corpus/lokay-m/sent_items/161.",
       "field": "body",
       "quote": "Shelley, here is the current weekend on-call schedule for the TW marketers.",
-      "note": "Passes on the weekend on-call schedule.",
+      "note": "Shares the weekend on-call schedule.",
       "match": "exact",
       "start": 566,
       "end": 641,
@@ -760,11 +760,11 @@
     },
     {
       "evidence_id": "batch-098:e24",
-      "process": "new:contract-processing-tracking",
+      "process": "oba-contract-negotiation",
       "message_id": "corpus/lokay-m/inbox/34.",
       "field": "body",
       "quote": "The meeting on the Burlington Resources contracts scheduled for tomorrow (Tuesday, March 26) at 9:00 a.m. in EB47C2 has been cancelled",
-      "note": "Contract meeting status.",
+      "note": "Meeting on contract negotiation cancelled.",
       "match": "exact",
       "start": 899,
       "end": 1033,
@@ -774,11 +774,11 @@
     },
     {
       "evidence_id": "batch-098:e25",
-      "process": "new:contract-processing-tracking",
+      "process": "oba-contract-negotiation",
       "message_id": "corpus/lokay-m/inbox/37.",
       "field": "subject",
       "quote": "TW Contract Status as of March 25th @ 5:15 pm",
-      "note": "Status list of contracts being processed or tendered.",
+      "note": "Status list of contracts and agreements in process.",
       "match": "exact",
       "start": 527,
       "end": 572,
@@ -788,11 +788,11 @@
     },
     {
       "evidence_id": "batch-098:e26",
-      "process": "expense-report-approval",
+      "process": "expense-approval",
       "message_id": "corpus/lokay-m/inbox/50.",
       "field": "body",
       "quote": "The Approval status has changed on the following report:",
-      "note": "Automated expense approval notice.",
+      "note": "Automated expense report status change.",
       "match": "exact",
       "start": 573,
       "end": 629,
@@ -802,11 +802,11 @@
     },
     {
       "evidence_id": "batch-098:e27",
-      "process": "pipeline-capacity-marketing",
+      "process": "capacity-reporting",
       "message_id": "corpus/lokay-m/inbox/74.",
       "field": "body",
       "quote": "The posting went up late again",
-      "note": "Reports a problem with the capacity posting.",
+      "note": "Complaint about a late capacity posting.",
       "match": "exact",
       "start": 554,
       "end": 584,
@@ -816,16 +816,16 @@
     },
     {
       "evidence_id": "batch-098:e28",
-      "process": "volume-imbalance-reconciliation",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/williams-w3/inbox/142.",
       "field": "body",
-      "quote": "Bill, recap for the meter is attached in the usual format. Volumes tie to the",
-      "note": "Meter volume recap against scheduled quantity.",
+      "quote": "Bill, recap for the meter is attached in the usual format.",
+      "note": "Meter volume recap sent for a discrepancy.",
       "match": "exact",
       "start": 492,
-      "end": 569,
+      "end": 550,
       "segment": "own",
-      "raw_text": "Bill, recap for the meter is attached in the usual format. Volumes tie to the",
+      "raw_text": "Bill, recap for the meter is attached in the usual format.",
       "reason": null
     }
   ],
@@ -844,8 +844,8 @@
   "new_processes": [
     {
       "key": "new:index-price-request",
-      "name": "Index price request",
-      "definition": "Supplying monthly index or point prices that a colleague requests for a pipeline point.",
+      "name": "Index price lookup requests",
+      "definition": "Colleagues ask for monthly index or point prices and the answer is looked up and sent.",
       "example_ids": [
         "corpus/lokay-m/sent_items/125.",
         "corpus/lokay-m/sent_items/127."
@@ -854,40 +854,47 @@
     {
       "key": "new:tcr-surcharge-billing",
       "name": "TCR surcharge billing",
-      "definition": "Deciding how and on which contracts surcharges are billed to a shipper after contracts expire.",
+      "definition": "Deciding how and on which contract surcharges are billed to a customer, including after contract expiry.",
       "example_ids": [
         "corpus/lokay-m/sent_items/126."
       ]
     },
     {
-      "key": "new:office-move-scheduling",
-      "name": "Office move scheduling",
-      "definition": "Coordinating staff office move times and labelling with facilities.",
+      "key": "new:interconnect-cost-estimate",
+      "name": "Interconnect project cost estimates",
+      "definition": "Engineering cost estimates for modifying pipeline interconnects, sent to commercial staff.",
+      "example_ids": [
+        "corpus/lokay-m/inbox/26."
+      ]
+    },
+    {
+      "key": "new:weekly-bullets-reporting",
+      "name": "Weekly bullets reporting",
+      "definition": "Marketers send a short list of accomplishments to their manager when asked, or state that they have none.",
+      "example_ids": [
+        "corpus/lokay-m/sent_items/132.",
+        "corpus/lokay-m/sent_items/160."
+      ]
+    },
+    {
+      "key": "new:office-move-logistics",
+      "name": "Office move logistics",
+      "definition": "Scheduling and coordinating staff office moves with facilities.",
       "example_ids": [
         "corpus/lokay-m/sent_items/134."
       ]
     },
     {
       "key": "new:cas-training-scheduling",
-      "name": "CAS training scheduling",
-      "definition": "Identifying attendees and scheduling hands-on training sessions on the CAS system.",
+      "name": "CAS system training scheduling",
+      "definition": "Identifying staff and scheduling hands-on training sessions on the CAS system.",
       "example_ids": [
         "corpus/lokay-m/sent_items/153.",
         "corpus/lokay-m/inbox/31."
       ]
-    },
-    {
-      "key": "new:contract-processing-tracking",
-      "name": "Contract processing and status tracking",
-      "definition": "Tracking new, amended and extended transport contracts through processing, tendering and execution, and handling customer amendment changes.",
-      "example_ids": [
-        "corpus/lokay-m/sent_items/154.",
-        "corpus/lokay-m/inbox/34.",
-        "corpus/lokay-m/inbox/37."
-      ]
     }
   ],
-  "batch_notes": "Mostly one mailbox's sent items with many personal eBay and social messages. New keys proposed: index-price-request, tcr-surcharge-billing, office-move-scheduling, cas-training-scheduling, contract-processing-tracking. No injection attempts found.",
+  "batch_notes": "Mailbox of one commercial account director. Many personal items (eBay, jokes, family). Proposed six new keys. Date-flagged messages inbox/50, inbox/74 and williams-w3/inbox/142 have bad dates but were classified by content. inbox/28 has only an attachment, so tagged noise. No injection attempts found.",
   "quote_stats": {
     "exact": 30,
     "repaired": 0,

@@ -1,0 +1,378 @@
+{
+ "version": 1,
+ "job_id": "draft-000",
+ "key": "real-time-power-scheduling",
+ "name": "Real-time power scheduling",
+ "slug": "real-time-power-scheduling",
+ "artifact_type": "sop",
+ "definition": "Scheduling and correcting real-time power trades, imports and positions with the CAISO and counterparties, and staffing the real-time schedule.",
+ "synthesis": {
+  "description": "The real-time desk lead sends the shift traders a steady stream of instructions and position updates: open longs and shorts by hub and hour, purchases and sales to enter in Enpower under named books, deal numbers to use for transmission, checkout calls with marketers and utilities each night, and the monthly shift schedule. Traders keep preschedule and EPE schedule sheets, submit schedules and tags to the CISO, and correct mistakes found afterwards, such as wrong import IDs, duplicate schedules, wrong lending amounts or schedules misentered by the CISO.",
+  "steps": [
+   "The desk lead or preschedulers report the day's positions and deals by hub and hour.",
+   "Shift traders enter purchases and sales in Enpower under the right books and deal numbers.",
+   "Schedules and tags are submitted to the CISO and counterparties, with hourly calls where required.",
+   "Traders check out with major marketers and utilities each night.",
+   "Errors in the schedule sheets, tags or CISO entries are found and corrected.",
+   "Shift coverage and rule changes are circulated to the group."
+  ],
+  "stalls": [
+   "Schedule sheets repeatedly carry errors that have to be reworked: duplicate schedules, wrong lending positions and missing schedules in the EPE sheet.",
+   "Wrong import IDs and schedules misentered at the CISO force corrections after submission.",
+   "Systems fail during the shift: the CISO cannot read submitted bids, trading screens stop working and Enpower is taken down for maintenance.",
+   "When deals are not recorded during a shift, traders on that shift have to reconstruct the sheet afterwards.",
+   "A requested task was put off to another day for lack of time."
+  ],
+  "contradictions": [
+   "The EPE schedule sheets disagree with the actual lending deals: the sheet showed a lending position the desk had to correct, and later the lending in the EPE schedules was recorded at a different volume from the deal with PSCO.",
+   "A trader's spreadsheet showed a dispatch figure that the desk lead questioned against what was actually scheduled."
+  ],
+  "approach": "Generate the preschedule and EPE schedule sheets from the deals booked in Enpower, with checks that flag duplicate schedules, lending volumes that differ from the deal, and import IDs or tags that do not match the CISO submission. A nightly checkout report listing positions by counterparty and hour would replace manual reconciliation, and a written shift procedure would hold the standing rules now repeated by email.",
+  "rationale": "Much of the email restates standing rules (hourly calls, deal numbers for transmission, nightly checkout, where to book real-time purchases) and corrects sheet errors. A desk procedure gives every shift the same rules, and the generated sheets with checks attack the rework that recurs most."
+ },
+ "counted": {
+  "label": "facts counted by the pipeline",
+  "occurrences": 149,
+  "active_months": 9,
+  "first_day": "2001-06-11",
+  "last_day": "2002-02-07",
+  "messages": 160,
+  "staff_participants": 49,
+  "actions": {
+   "short": 53,
+   "medium": 71,
+   "long": 8,
+   "forwards": 21,
+   "chasers": 7,
+   "reads": 466
+  },
+  "stalls": {
+   "waiting_on_reply": 0,
+   "rework": 6,
+   "handoff_confusion": 0,
+   "ownership_conflict": 0,
+   "avoidance": 1,
+   "system_failure": 4,
+   "other": 1
+  }
+ },
+ "participants": [
+  {
+   "name": "Williams III, Bill",
+   "kind": "person",
+   "staff": true,
+   "authored": 120,
+   "forwards": 19,
+   "chasers": 7,
+   "reads": 8
+  },
+  {
+   "name": "Dean, Craig",
+   "kind": "person",
+   "staff": true,
+   "authored": 0,
+   "forwards": 1,
+   "chasers": 0,
+   "reads": 69
+  },
+  {
+   "name": "Guzman, Mark",
+   "kind": "person",
+   "staff": true,
+   "authored": 0,
+   "forwards": 0,
+   "chasers": 0,
+   "reads": 68
+  },
+  {
+   "name": null,
+   "kind": "person",
+   "staff": true,
+   "authored": 0,
+   "forwards": 0,
+   "chasers": 0,
+   "reads": 65
+  },
+  {
+   "name": null,
+   "kind": "person",
+   "staff": true,
+   "authored": 0,
+   "forwards": 0,
+   "chasers": 0,
+   "reads": 61
+  },
+  {
+   "name": "Anderson, John",
+   "kind": "person",
+   "staff": true,
+   "authored": 2,
+   "forwards": 0,
+   "chasers": 0,
+   "reads": 47
+  },
+  {
+   "name": "Symes, Kate",
+   "kind": "person",
+   "staff": true,
+   "authored": 0,
+   "forwards": 0,
+   "chasers": 0,
+   "reads": 29
+  },
+  {
+   "name": null,
+   "kind": "person",
+   "staff": true,
+   "authored": 0,
+   "forwards": 0,
+   "chasers": 0,
+   "reads": 21
+  }
+ ],
+ "ownership": {
+  "claims": [
+   {
+    "person": "Kate",
+    "date": "2001-07-24",
+    "status": "matched",
+    "name": "Symes, Kate"
+   }
+  ],
+  "conflicts": 0
+ },
+ "estimate": {
+  "label": "estimate, not a count",
+  "minutes_per_occurrence": {
+   "low": 10,
+   "mid": 30,
+   "high": 90
+  },
+  "automatable_pct": 40,
+  "basis": "observed",
+  "rationale": "A round usually means entering or adjusting deals in Enpower, updating the preschedule or EPE sheet, and checking positions or tags against the CISO and counterparties; correction rounds add finding and fixing a wrong import ID, lending volume or duplicate schedule, and occasionally reconstructing a shift's sheet. Simple position notices take little; reconstruction drives the high end. Sheet building and mismatch checks are the automatable part.",
+  "source": "model"
+ },
+ "evidence": [
+  {
+   "id": "batch-060:e0",
+   "message_id": "corpus/williams-w3/sent_items/357.",
+   "date": "2001-07-28",
+   "sender": "Williams III, Bill",
+   "role": "request",
+   "quote": "We must call Grays Harbor and Frontier at the top of EVERY hour."
+  },
+  {
+   "id": "batch-060:e27",
+   "message_id": "corpus/williams-w3/sent_items/330.",
+   "date": "2001-08-04",
+   "sender": "Williams III, Bill",
+   "role": "request",
+   "quote": "We need to keep track of the amount exercised."
+  },
+  {
+   "id": "batch-081:e3",
+   "message_id": "corpus/williams-w3/sent_items/66.",
+   "date": "2001-11-30",
+   "sender": "Williams III, Bill",
+   "role": "request",
+   "quote": "longterm contracts will require an annuity for the value of the cut on that particular day."
+  },
+  {
+   "id": "batch-054:e0",
+   "message_id": "corpus/williams-w3/sent_items/506.",
+   "date": "2001-06-13",
+   "sender": "Williams III, Bill",
+   "role": "fyi",
+   "quote": "We are long for the 13th in California, 25 mws under ST-WBOM in NP-15 at $57."
+  },
+  {
+   "id": "batch-059:e26",
+   "message_id": "corpus/williams-w3/sent_items/367.",
+   "date": "2001-07-24",
+   "sender": "Williams III, Bill",
+   "role": "response",
+   "quote": "I think we need to enter the buy from EPE flat to our day ahead sale to STSW."
+  },
+  {
+   "id": "batch-084:e15",
+   "message_id": "corpus/williams-w3/inbox/124.",
+   "date": "2002-01-02",
+   "sender": "Williams III, Bill",
+   "role": "request",
+   "quote": "If you will be unable to work a shift it is your responsibility to find a replacement"
+  },
+  {
+   "id": "batch-088:e18",
+   "message_id": "corpus/williams-w3/sent_items/13.",
+   "date": "2002-01-25",
+   "sender": "Williams III, Bill",
+   "role": "forward",
+   "quote": "Please be sure to send me an email regarding changes, and write them on the schedule."
+  },
+  {
+   "id": "batch-059:e20",
+   "message_id": "corpus/williams-w3/sent_items/374.",
+   "date": "2001-07-23",
+   "sender": "Williams III, Bill",
+   "role": "request",
+   "quote": "Please work with the preschedulers to get the sheet correct"
+  },
+  {
+   "id": "batch-055:e7",
+   "message_id": "corpus/williams-w3/sent_items/474.",
+   "date": "2001-06-22",
+   "sender": "Williams III, Bill",
+   "role": "response",
+   "quote": "We have asked every single counterparty in the NW to sell us energy."
+  },
+  {
+   "id": "batch-057:e19",
+   "message_id": "corpus/williams-w3/sent_items/414.",
+   "date": "2001-07-11",
+   "sender": "Williams III, Bill",
+   "role": "request",
+   "quote": "We are short 50 mws in SP-15 for HE 7-22 on Wednesday at $61.44."
+  },
+  {
+   "id": "batch-088:e7",
+   "message_id": "corpus/williams-w3/inbox/98.",
+   "date": "2002-01-24",
+   "sender": "Anderson, John",
+   "role": "fyi",
+   "quote": "http://172.17.172.22/elpaso/!current.txt"
+  },
+  {
+   "id": "batch-058:e0",
+   "message_id": "corpus/williams-w3/sent_items/406.",
+   "date": "2001-07-12",
+   "sender": "Williams III, Bill",
+   "role": "response",
+   "quote": "Annuities killed - 679980/679973/679991/679995/678497/678498/678495/678496"
+  },
+  {
+   "id": "batch-061:e1",
+   "message_id": "corpus/williams-w3/sent_items/329.",
+   "date": "2001-08-06",
+   "sender": "Williams III, Bill",
+   "role": "fyi",
+   "quote": "Here is some new info, and some updated info for our packet."
+  },
+  {
+   "id": "batch-057:e2",
+   "message_id": "corpus/williams-w3/sent_items/434.",
+   "date": "2001-07-03",
+   "sender": "Williams III, Bill",
+   "role": "request",
+   "quote": "When scheduling transmission on Portland General Electric from John Day to Malin we MUST use deal #146517, we MUST make the price zero."
+  },
+  {
+   "id": "batch-064:e7",
+   "message_id": "corpus/williams-w3/sent_items/283.",
+   "date": "2001-08-27",
+   "sender": "Williams III, Bill",
+   "role": "fyi",
+   "quote": "Please call me before you call our customer."
+  },
+  {
+   "id": "batch-066:e14",
+   "message_id": "corpus/williams-w3/sent_items/240.",
+   "date": "2001-09-15",
+   "sender": "Williams III, Bill",
+   "role": "request",
+   "quote": "Please give this information to the group including Enpower information...etc."
+  },
+  {
+   "id": "batch-058:e11",
+   "message_id": "corpus/williams-w3/sent_items/392.",
+   "date": "2001-07-14",
+   "sender": "Williams III, Bill",
+   "role": "request",
+   "quote": "Please make real-time purchases from the Calimbalance and corresponding sales under ST-WBOM in Enpower during real time."
+  },
+  {
+   "id": "batch-070:e20",
+   "message_id": "corpus/williams-w3/sent_items/164.",
+   "date": "2001-10-19",
+   "sender": "Williams III, Bill",
+   "role": "request",
+   "quote": "If you could adjust your sheets for tomorrow I would appreciate it."
+  },
+  {
+   "id": "batch-090:e9",
+   "message_id": "corpus/williams-w3/inbox/79.",
+   "date": "2002-01-30",
+   "sender": "Meyers, Albert",
+   "role": "fyi",
+   "quote": "Tag number 6181 has been cancelled (50mw to the CISO)."
+  },
+  {
+   "id": "batch-071:e3",
+   "message_id": "corpus/williams-w3/sent_items/160.",
+   "date": "2001-10-20",
+   "sender": "Williams III, Bill",
+   "role": "fyi",
+   "quote": "Also on Saturday morning...Enpower will be down from 5 AM to 7 AM."
+  }
+ ],
+ "stall_quotes": [
+  {
+   "id": "batch-084:s2",
+   "message_id": "corpus/williams-w3/inbox/122.",
+   "date": "2002-01-02",
+   "sender": "Williams III, Bill",
+   "kind": "rework",
+   "quote": "Those who were on shift for that period will need to coordinate what deals were done and will need to reconstruct a sheet."
+  },
+  {
+   "id": "batch-093:s1",
+   "message_id": "corpus/williams-w3/inbox/52.",
+   "date": "2002-02-03",
+   "sender": "Meyers, Albert",
+   "kind": "other",
+   "quote": "For yet another day we seem to be having problems including all the schedules in our EPE schedule sheet."
+  },
+  {
+   "id": "batch-071:s0",
+   "message_id": "corpus/williams-w3/sent_items/159.",
+   "date": "2001-10-22",
+   "sender": "Williams III, Bill",
+   "kind": "system_failure",
+   "quote": "The CISO is again having difficulties reading our bids."
+  },
+  {
+   "id": "batch-059:s3",
+   "message_id": "corpus/williams-w3/sent_items/374.",
+   "date": "2001-07-23",
+   "sender": "Williams III, Bill",
+   "kind": "rework",
+   "quote": "Friday's sheet for Monday had a duplicate 10 mw schedule in it"
+  },
+  {
+   "id": "batch-059:s0",
+   "message_id": "corpus/williams-w3/sent_items/384.",
+   "date": "2001-07-20",
+   "sender": "Williams III, Bill",
+   "kind": "avoidance",
+   "quote": "I will not have time today.  Perhaps it can wait till tomorrow."
+  },
+  {
+   "id": "batch-053:s2",
+   "message_id": "corpus/williams-w3/sent_items/510.",
+   "date": "2001-06-12",
+   "sender": "Williams III, Bill",
+   "kind": "rework",
+   "quote": "For HE 11 and HE12, Danielle at the CISO misentered our schedule."
+  }
+ ],
+ "ownership_quotes": [
+  {
+   "id": "batch-059:o0",
+   "message_id": "corpus/williams-w3/sent_items/365.",
+   "date": "2001-07-24",
+   "sender": "Williams III, Bill",
+   "person": "Kate",
+   "quote": "Details regarding prices and deal numbers will be coming from Kate."
+  }
+ ]
+}

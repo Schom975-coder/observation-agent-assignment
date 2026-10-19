@@ -12,7 +12,7 @@
     {
       "id": "corpus/giron-d/sent/636.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "response",
       "stall": null,
@@ -21,7 +21,7 @@
     {
       "id": "corpus/giron-d/sent/635.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "response",
       "stall": null,
@@ -30,7 +30,7 @@
     {
       "id": "corpus/farmer-d/logistics/1418.",
       "processes": [
-        "pipeline-outage-supply-cuts"
+        "pipeline-maintenance-notice"
       ],
       "role": "fyi",
       "stall": null,
@@ -39,7 +39,7 @@
     {
       "id": "corpus/farmer-d/logistics/1419.",
       "processes": [
-        "pipeline-outage-supply-cuts"
+        "pipeline-maintenance-notice"
       ],
       "role": "fyi",
       "stall": null,
@@ -48,7 +48,7 @@
     {
       "id": "corpus/farmer-d/logistics/1816.",
       "processes": [
-        "pipeline-outage-supply-cuts"
+        "pipeline-maintenance-notice"
       ],
       "role": "fyi",
       "stall": null,
@@ -57,19 +57,19 @@
     {
       "id": "corpus/farmer-d/logistics/1420.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "response",
       "stall": null,
       "ownership_claim": {
         "person": "Megan Parker",
-        "quote": "Megan Parker is handling this deal going forward"
+        "quote": "Megan Parker is handling this"
       }
     },
     {
       "id": "corpus/farmer-d/logistics/1422.",
       "processes": [
-        "pipeline-outage-supply-cuts"
+        "supply-cut-handling"
       ],
       "role": "fyi",
       "stall": null,
@@ -78,16 +78,16 @@
     {
       "id": "corpus/farmer-d/logistics/1423.",
       "processes": [
-        "gas-nomination-handling"
+        "gas-nomination"
       ],
-      "role": "request",
+      "role": "fyi",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/1424.",
       "processes": [
-        "gas-nomination-handling"
+        "deal-ticket-setup"
       ],
       "role": "forward",
       "stall": null,
@@ -96,7 +96,7 @@
     {
       "id": "corpus/farmer-d/logistics/1454.",
       "processes": [
-        "deal-record-correction"
+        "deal-ticket-setup"
       ],
       "role": "response",
       "stall": null,
@@ -119,7 +119,7 @@
     {
       "id": "corpus/farmer-d/logistics/1426.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "imbalance-resolution"
       ],
       "role": "forward",
       "stall": null,
@@ -128,7 +128,7 @@
     {
       "id": "corpus/farmer-d/logistics/1428.",
       "processes": [
-        "gas-nomination-handling"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -137,7 +137,7 @@
     {
       "id": "corpus/giron-d/sent/631.",
       "processes": [
-        "pnl-position-reporting"
+        "new:basis-index-rolloff"
       ],
       "role": "forward",
       "stall": null,
@@ -146,7 +146,7 @@
     {
       "id": "corpus/farmer-d/logistics/1429.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -155,19 +155,19 @@
     {
       "id": "corpus/giron-d/sent/630.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "forward",
       "stall": {
         "kind": "waiting_on_reply",
-        "quote": "Trying to wrap up as much as I can before my last day on Friday.  Have you"
+        "quote": "Trying to wrap up as much as I can before my last day on Friday."
       },
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/1432.",
       "processes": [
-        "reference-data-update"
+        "on-call-coverage"
       ],
       "role": "fyi",
       "stall": null,
@@ -176,7 +176,7 @@
     {
       "id": "corpus/giron-d/sent/629.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "new:nss-volume-question"
       ],
       "role": "response",
       "stall": null,
@@ -199,7 +199,7 @@
     {
       "id": "corpus/giron-d/sent/626.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "new:nss-volume-question"
       ],
       "role": "forward",
       "stall": null,
@@ -209,25 +209,25 @@
   "evidence": [
     {
       "evidence_id": "batch-025:e0",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/giron-d/sent/636.",
       "field": "body",
-      "quote": "The Sitara was not updated for Aug.  I just corrected Sitara.",
-      "note": "Resolves a price discrepancy between Sitara and the supplier invoice.",
+      "quote": "The Sitara was not updated for Aug.",
+      "note": "Corrects the Sitara price so the Agave gas purchase can be redrafted and settled.",
       "match": "exact",
       "start": 466,
-      "end": 527,
+      "end": 501,
       "segment": "own",
-      "raw_text": "The Sitara was not updated for Aug.  I just corrected Sitara.",
+      "raw_text": "The Sitara was not updated for Aug.",
       "reason": null
     },
     {
       "evidence_id": "batch-025:e1",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/giron-d/sent/635.",
       "field": "body",
       "quote": "We have the NXAVC settle for Aug at $31.138.  So just pay the lesser of.",
-      "note": "Tells the payer which price to pay after an invoice price difference.",
+      "note": "Resolves a price difference against the counterparty invoice.",
       "match": "exact",
       "start": 457,
       "end": 529,
@@ -237,53 +237,53 @@
     },
     {
       "evidence_id": "batch-025:e2",
-      "process": "pipeline-outage-supply-cuts",
+      "process": "pipeline-maintenance-notice",
       "message_id": "corpus/farmer-d/logistics/1418.",
       "field": "body",
-      "quote": "Duke Energy Field Services will be reworking the Wilcox Plant on 9/26 f rom",
-      "note": "Plant work requiring a delivery shut-in.",
+      "quote": "Duke Energy Field Services will be reworking the Wilcox Plant on 9/26",
+      "note": "Notice of planned plant work affecting a delivery meter.",
       "match": "exact",
       "start": 638,
-      "end": 713,
+      "end": 707,
       "segment": "own",
-      "raw_text": "Duke Energy Field Services will be reworking the Wilcox Plant on 9/26 f rom",
+      "raw_text": "Duke Energy Field Services will be reworking the Wilcox Plant on 9/26",
       "reason": null
     },
     {
       "evidence_id": "batch-025:e3",
-      "process": "pipeline-outage-supply-cuts",
+      "process": "pipeline-maintenance-notice",
       "message_id": "corpus/farmer-d/logistics/1419.",
       "field": "body",
-      "quote": "Per Duke Energy Field Services, we can ramp up after the outtage and keep",
-      "note": "Follow-up on how to handle the meter after the plant outage.",
+      "quote": "Per Duke Energy Field Services, we can ramp up after the outtage",
+      "note": "Follow-up on the planned outage at the meter.",
       "match": "exact",
       "start": 798,
-      "end": 871,
+      "end": 862,
       "segment": "own",
-      "raw_text": "Per Duke Energy Field Services, we can ramp up after the outtage and keep",
+      "raw_text": "Per Duke Energy Field Services, we can ramp up after the outtage",
       "reason": null
     },
     {
       "evidence_id": "batch-025:e4",
-      "process": "pipeline-outage-supply-cuts",
+      "process": "pipeline-maintenance-notice",
       "message_id": "corpus/farmer-d/logistics/1816.",
       "field": "body",
-      "quote": "09/29/00 & 09/30/00 should have no noms.",
-      "note": "Third-party maintenance affecting a meter on specific days.",
+      "quote": "be some 3rd party maintenance done which will affect meter 6040 Riverside.",
+      "note": "Third party maintenance affecting a named meter.",
       "match": "exact",
-      "start": 1611,
-      "end": 1651,
+      "start": 1444,
+      "end": 1518,
       "segment": "own",
-      "raw_text": "09/29/00 & 09/30/00 should have no noms.",
+      "raw_text": "be some 3rd party maintenance done which will affect meter 6040 Riverside.",
       "reason": null
     },
     {
       "evidence_id": "batch-025:e5",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/farmer-d/logistics/1420.",
       "field": "body",
       "quote": "Duke will be paid 9/22 for  May 2000 through July 2000.",
-      "note": "Answers a payment inquiry from a supplier.",
+      "note": "Answers an unpaid invoice question from a counterparty.",
       "match": "exact",
       "start": 455,
       "end": 510,
@@ -293,11 +293,11 @@
     },
     {
       "evidence_id": "batch-025:e6",
-      "process": "pipeline-outage-supply-cuts",
+      "process": "supply-cut-handling",
       "message_id": "corpus/farmer-d/logistics/1422.",
       "field": "body",
       "quote": "Oasis made cut to WGR sale to HPL on Sunday 9/24 & Monday 9/25 for 5.0 /day",
-      "note": "Supply cut on an interconnect for specific days.",
+      "note": "Reports a supply cut on a deal for specific days.",
       "match": "exact",
       "start": 468,
       "end": 543,
@@ -307,11 +307,11 @@
     },
     {
       "evidence_id": "batch-025:e7",
-      "process": "gas-nomination-handling",
+      "process": "gas-nomination",
       "message_id": "corpus/farmer-d/logistics/1423.",
       "field": "body",
       "quote": "Enron Methanol nominates the following natural gas requirements for the",
-      "note": "Monthly nomination from a customer.",
+      "note": "Monthly nomination of gas volumes for the plant.",
       "match": "exact",
       "start": 1063,
       "end": 1134,
@@ -321,11 +321,11 @@
     },
     {
       "evidence_id": "batch-025:e8",
-      "process": "gas-nomination-handling",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1424.",
       "field": "body",
       "quote": "This is the last month we will be buying this gas!!!!",
-      "note": "Forwarded monthly volumes for a supply deal.",
+      "note": "Deal ends after October, relevant to the deal ticket in Sitara.",
       "match": "exact",
       "start": 793,
       "end": 846,
@@ -335,25 +335,25 @@
     },
     {
       "evidence_id": "batch-025:e9",
-      "process": "deal-record-correction",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1454.",
       "field": "body",
-      "quote": "However, the evergreen flag is activated in",
-      "note": "Deal record has a wrongly created November line to be fixed in Sitara.",
+      "quote": "the evergreen flag is activated in",
+      "note": "Asks to fix an evergreen deal line wrongly created for the next month.",
       "match": "exact",
-      "start": 695,
+      "start": 704,
       "end": 738,
       "segment": "quoted",
-      "raw_text": "However, the evergreen flag is activated in",
+      "raw_text": "the evergreen flag is activated in",
       "reason": null
     },
     {
       "evidence_id": "batch-025:e10",
-      "process": "volume-imbalance-reconciliation",
+      "process": "imbalance-resolution",
       "message_id": "corpus/farmer-d/logistics/1426.",
       "field": "subject",
       "quote": "Accum.",
-      "note": "Accumulation spreadsheet from a pipeline contact forwarded for volume work.",
+      "note": "Accumulation spreadsheet from a counterparty, likely for balance checking; low confidence.",
       "match": "exact",
       "start": 172,
       "end": 178,
@@ -363,25 +363,25 @@
     },
     {
       "evidence_id": "batch-025:e11",
-      "process": "gas-nomination-handling",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1428.",
       "field": "body",
-      "quote": "Should the nom be increased?",
-      "note": "Asks whether the nomination should rise to match flow.",
+      "quote": "Meter 1603 for September has a nom of 260.000 thru 9/26.",
+      "note": "Flow differs from nomination at a meter, asks how to handle.",
       "match": "exact",
-      "start": 751,
-      "end": 779,
+      "start": 556,
+      "end": 612,
       "segment": "own",
-      "raw_text": "Should the nom be increased?",
+      "raw_text": "Meter 1603 for September has a nom of 260.000 thru 9/26.",
       "reason": null
     },
     {
       "evidence_id": "batch-025:e12",
-      "process": "pnl-position-reporting",
+      "process": "new:basis-index-rolloff",
       "message_id": "corpus/giron-d/sent/631.",
       "field": "body",
       "quote": "Again this month, you are going to have to calculate your basis positions",
-      "note": "Instructions for calculating and officializing positions.",
+      "note": "Monthly basis and index position roll-off instructions.",
       "match": "exact",
       "start": 1285,
       "end": 1358,
@@ -391,39 +391,39 @@
     },
     {
       "evidence_id": "batch-025:e13",
-      "process": "volume-imbalance-reconciliation",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1429.",
       "field": "body",
-      "quote": "appeared to be flowing approximately 9M over the nomination/day.",
-      "note": "Flow versus nomination difference being traced.",
+      "quote": "I noticed that Big Cowboy, into King Ranch",
+      "note": "Flow above nomination at wells with zero noms.",
       "match": "exact",
-      "start": 712,
-      "end": 776,
+      "start": 668,
+      "end": 710,
       "segment": "own",
-      "raw_text": "appeared to be flowing approximately 9M over the nomination/day.",
+      "raw_text": "I noticed that Big Cowboy, into King Ranch",
       "reason": null
     },
     {
       "evidence_id": "batch-025:e14",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/giron-d/sent/630.",
       "field": "body",
-      "quote": "I cannot find a Sitara deal for this amount.",
-      "note": "Counterparty invoice with no matching deal.",
+      "quote": "I received an invoice from Peoples Gas to ENA for $5,000.",
+      "note": "Invoice with no matching deal needing resolution before payment.",
       "match": "exact",
-      "start": 1955,
-      "end": 1999,
+      "start": 1701,
+      "end": 1758,
       "segment": "forwarded",
-      "raw_text": "I cannot find a Sitara deal for this amount.",
+      "raw_text": "I received an invoice from Peoples Gas to ENA for $5,000.",
       "reason": null
     },
     {
       "evidence_id": "batch-025:e15",
-      "process": "reference-data-update",
+      "process": "on-call-coverage",
       "message_id": "corpus/farmer-d/logistics/1432.",
       "field": "body",
       "quote": "I can be reached at (228) 386-7111 on Friday if you need me.",
-      "note": "Contact number shared with the group.",
+      "note": "After-hours contact detail shared with the team.",
       "match": "exact",
       "start": 1080,
       "end": 1140,
@@ -433,30 +433,30 @@
     },
     {
       "evidence_id": "batch-025:e16",
-      "process": "volume-imbalance-reconciliation",
+      "process": "new:nss-volume-question",
       "message_id": "corpus/giron-d/sent/629.",
       "field": "body",
-      "quote": "See Aug - Are th TXOK and STX locations non-NSS deals?",
-      "note": "Volume questions on NSS and non-NSS tabs.",
+      "quote": "I think you forgot to attach the file.  Send it to Kevin.",
+      "note": "Handles a request on volume questions, routes to Kevin.",
       "match": "exact",
-      "start": 825,
-      "end": 879,
-      "segment": "quoted",
-      "raw_text": "See Aug - Are th TXOK and STX locations non-NSS deals?",
+      "start": 504,
+      "end": 561,
+      "segment": "own",
+      "raw_text": "I think you forgot to attach the file.  Send it to Kevin.",
       "reason": null
     },
     {
       "evidence_id": "batch-025:e17",
-      "process": "volume-imbalance-reconciliation",
+      "process": "new:nss-volume-question",
       "message_id": "corpus/giron-d/sent/626.",
       "field": "body",
-      "quote": "See Aug - Are th TXOK and STX locations non-NSS deals?",
-      "note": "Forwarded volume questions on NSS and non-NSS tabs.",
+      "quote": "See April tab for non-NSS and NSS volumes (each should come to zero",
+      "note": "Questions on NSS and non-NSS volumes in a spreadsheet.",
       "match": "exact",
-      "start": 1290,
-      "end": 1344,
+      "start": 1186,
+      "end": 1253,
       "segment": "quoted",
-      "raw_text": "See Aug - Are th TXOK and STX locations non-NSS deals?",
+      "raw_text": "See April tab for non-NSS and NSS volumes (each should come to zero",
       "reason": null
     }
   ],
@@ -465,9 +465,9 @@
       "message_id": "corpus/giron-d/sent/630.",
       "match": "exact",
       "start": 787,
-      "end": 861,
+      "end": 851,
       "segment": "forwarded",
-      "raw_text": "Trying to wrap up as much as I can before my last day on Friday.  Have you",
+      "raw_text": "Trying to wrap up as much as I can before my last day on Friday.",
       "reason": null
     }
   ],
@@ -475,19 +475,37 @@
     {
       "message_id": "corpus/farmer-d/logistics/1420.",
       "person": "Megan Parker",
-      "match": "repaired",
+      "match": "exact",
       "start": 577,
-      "end": 626,
+      "end": 606,
       "segment": "own",
-      "raw_text": "Megan Parker is handling this \ndeal going forward",
+      "raw_text": "Megan Parker is handling this",
       "reason": null
     }
   ],
-  "new_processes": [],
-  "batch_notes": "No injection attempts. Several giron-d personal and newsletter messages. Process fit uncertain for 1426 (Accum.), 1424, 631 and the NSS volume messages.",
+  "new_processes": [
+    {
+      "key": "new:basis-index-rolloff",
+      "name": "Basis and index position roll-off",
+      "definition": "Monthly calculation and roll-off of basis and index positions, including officializing positions and loading them to TDS and risk reports.",
+      "example_ids": [
+        "corpus/giron-d/sent/631."
+      ]
+    },
+    {
+      "key": "new:nss-volume-question",
+      "name": "NSS volume reconciliation questions",
+      "definition": "Questions and file exchanges on NSS and non-NSS volumes by month and location, to be answered by the responsible analyst.",
+      "example_ids": [
+        "corpus/giron-d/sent/629.",
+        "corpus/giron-d/sent/626."
+      ]
+    }
+  ],
+  "batch_notes": "Mostly gas logistics and settlement traffic; several personal and one newsletter. 1426 (Accum.) and the NSS volume pair are low confidence. New keys: new:basis-index-rolloff, new:nss-volume-question. No injection attempts found.",
   "quote_stats": {
-    "exact": 19,
-    "repaired": 1,
+    "exact": 20,
+    "repaired": 0,
     "rejected": 0
   }
 }

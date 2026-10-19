@@ -5,7 +5,7 @@
     {
       "id": "corpus/williams-w3/sent_items/219.",
       "processes": [
-        "new:internal-job-opening-referral"
+        "new:job-posting-circulation"
       ],
       "role": "forward",
       "stall": null,
@@ -14,7 +14,7 @@
     {
       "id": "corpus/williams-w3/sent_items/218.",
       "processes": [
-        "new:desk-turret-setup"
+        "system-access-request"
       ],
       "role": "request",
       "stall": null,
@@ -30,9 +30,9 @@
     {
       "id": "corpus/farmer-d/logistics/55.",
       "processes": [
-        "month-end-close-coordination"
+        "month-end-close"
       ],
-      "role": "request",
+      "role": "fyi",
       "stall": null,
       "ownership_claim": null
     },
@@ -69,7 +69,7 @@
     {
       "id": "corpus/williams-w3/sent_items/211.",
       "processes": [
-        "new:eol-friday-outage-window"
+        "system-issue-resolution"
       ],
       "role": "response",
       "stall": null,
@@ -78,7 +78,7 @@
     {
       "id": "corpus/lokay-m/inbox/20.",
       "processes": [
-        "weekly-commercial-reporting"
+        "capacity-reporting"
       ],
       "role": "response",
       "stall": null,
@@ -103,7 +103,7 @@
     {
       "id": "corpus/williams-w3/sent_items/209.",
       "processes": [
-        "reference-data-update"
+        "new:counterparty-booking-change"
       ],
       "role": "forward",
       "stall": null,
@@ -112,19 +112,19 @@
     {
       "id": "corpus/williams-w3/sent_items/208.",
       "processes": [
-        "desk-coverage-on-call"
+        "on-call-coverage"
       ],
       "role": "fyi",
       "stall": null,
       "ownership_claim": {
         "person": "Ryan Slinger",
-        "quote": "Please refer trading questions to Ryan Slinger"
+        "quote": "Please refer trading questions to Ryan Slinger or call me on my cell phone...503-887-3449."
       }
     },
     {
       "id": "corpus/williams-w3/sent_items/197.",
       "processes": [
-        "desk-coverage-on-call"
+        "on-call-coverage"
       ],
       "role": "fyi",
       "stall": null,
@@ -133,7 +133,7 @@
     {
       "id": "corpus/williams-w3/sent_items/123.",
       "processes": [
-        "desk-coverage-on-call"
+        "on-call-coverage"
       ],
       "role": "fyi",
       "stall": null,
@@ -142,7 +142,7 @@
     {
       "id": "corpus/farmer-d/logistics/54.",
       "processes": [
-        "market-rule-change-review"
+        "regulatory-notice-review"
       ],
       "role": "fyi",
       "stall": null,
@@ -160,7 +160,7 @@
     {
       "id": "corpus/williams-w3/sent_items/206.",
       "processes": [
-        "user-access-setup"
+        "system-access-request"
       ],
       "role": "fyi",
       "stall": null,
@@ -169,7 +169,7 @@
     {
       "id": "corpus/williams-w3/sent_items/205.",
       "processes": [
-        "reference-data-update"
+        "real-time-power-scheduling"
       ],
       "role": "forward",
       "stall": null,
@@ -178,7 +178,7 @@
     {
       "id": "corpus/williams-w3/sent_items/204.",
       "processes": [
-        "new:internal-job-opening-referral"
+        "new:job-posting-circulation"
       ],
       "role": "response",
       "stall": null,
@@ -195,10 +195,8 @@
     },
     {
       "id": "corpus/williams-w3/sent_items/202.",
-      "processes": [
-        "new:customer-trip-scheduling"
-      ],
-      "role": "response",
+      "processes": [],
+      "role": "personal",
       "stall": null,
       "ownership_claim": null
     },
@@ -219,7 +217,7 @@
     {
       "id": "corpus/williams-w3/sent_items/199.",
       "processes": [
-        "new:intern-paper-review"
+        "new:internship-paper-review"
       ],
       "role": "response",
       "stall": null,
@@ -228,7 +226,7 @@
     {
       "id": "corpus/giron-d/inbox/240.",
       "processes": [
-        "new:term-deal-opportunity-pitch"
+        "new:gas-sales-opportunity-offer"
       ],
       "role": "request",
       "stall": null,
@@ -237,7 +235,7 @@
     {
       "id": "corpus/williams-w3/sent_items/198.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "response",
       "stall": null,
@@ -246,7 +244,7 @@
     {
       "id": "corpus/farmer-d/logistics/53.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -255,7 +253,7 @@
     {
       "id": "corpus/farmer-d/logistics/52.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "response",
       "stall": null,
@@ -264,7 +262,7 @@
     {
       "id": "corpus/giron-d/inbox/241.",
       "processes": [],
-      "role": "noise",
+      "role": "personal",
       "stall": null,
       "ownership_claim": null
     }
@@ -272,11 +270,11 @@
   "evidence": [
     {
       "evidence_id": "batch-068:e0",
-      "process": "new:internal-job-opening-referral",
+      "process": "new:job-posting-circulation",
       "message_id": "corpus/williams-w3/sent_items/219.",
       "field": "body",
       "quote": "We currently have an opening for a Analyst or Associate in Middle Markets reporting to John Malowney.",
-      "note": "Forwards an internal job opening announcement.",
+      "note": "Internal job opening circulated to staff.",
       "match": "exact",
       "start": 727,
       "end": 828,
@@ -286,11 +284,25 @@
     },
     {
       "evidence_id": "batch-068:e1",
-      "process": "new:desk-turret-setup",
+      "process": "new:job-posting-circulation",
+      "message_id": "corpus/williams-w3/sent_items/204.",
+      "field": "body",
+      "quote": "Paul could likely do this, it does require a ton of hard work and is a difficult job.",
+      "note": "Gives a view on a candidate for an internal opening.",
+      "match": "exact",
+      "start": 548,
+      "end": 633,
+      "segment": "own",
+      "raw_text": "Paul could likely do this, it does require a ton of hard work and is a difficult job.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-068:e2",
+      "process": "system-access-request",
       "message_id": "corpus/williams-w3/sent_items/218.",
       "field": "body",
       "quote": "Could you send me a list of Turret ID's for the guys in the real-time group.",
-      "note": "Requests turret IDs so desk members can customize their turrets.",
+      "note": "Asks for turret IDs so each trader can set up their own turret.",
       "match": "exact",
       "start": 519,
       "end": 595,
@@ -299,12 +311,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-068:e2",
-      "process": "month-end-close-coordination",
+      "evidence_id": "batch-068:e3",
+      "process": "system-access-request",
+      "message_id": "corpus/williams-w3/sent_items/206.",
+      "field": "body",
+      "quote": "New login for www.friedwire.com is:",
+      "note": "Shares new login credentials for a trading system with the group.",
+      "match": "exact",
+      "start": 1638,
+      "end": 1673,
+      "segment": "own",
+      "raw_text": "New login for www.friedwire.com is:",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-068:e4",
+      "process": "month-end-close",
       "message_id": "corpus/farmer-d/logistics/55.",
       "field": "body",
       "quote": "After discussions with Bryce, Rita and myself, attached is the revised schedule.",
-      "note": "Sends the revised month end close schedule.",
+      "note": "Circulates the revised month end close schedule.",
       "match": "exact",
       "start": 2262,
       "end": 2342,
@@ -313,12 +339,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-068:e3",
+      "evidence_id": "batch-068:e5",
       "process": "new:engineering-subcontractor-payment-terms",
       "message_id": "corpus/williams-w3/sent_items/214.",
       "field": "body",
       "quote": "Mike ,as we have discussed several times Amec will perform the work based on trhe rate schedules provided ton date",
-      "note": "Subcontractor states its position on payment basis for engineering work.",
+      "note": "Contractor sets out payment basis for engineering work.",
       "match": "exact",
       "start": 929,
       "end": 1043,
@@ -327,12 +353,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-068:e4",
+      "evidence_id": "batch-068:e6",
       "process": "new:engineering-subcontractor-payment-terms",
       "message_id": "corpus/williams-w3/sent_items/213.",
       "field": "body",
       "quote": "I think you intended to send this to Bill Williams in Technical Assets.",
-      "note": "Flags a misaddressed payment-basis proposal thread.",
+      "note": "Flags a misdirected message on subcontractor payment basis.",
       "match": "exact",
       "start": 707,
       "end": 778,
@@ -341,12 +367,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-068:e5",
+      "evidence_id": "batch-068:e7",
       "process": "new:engineering-subcontractor-payment-terms",
       "message_id": "corpus/williams-w3/sent_items/212.",
       "field": "body",
       "quote": "The compensation issue is still under review by our management.",
-      "note": "Forwarded negotiation of compensation terms with the subcontractor.",
+      "note": "Quoted history shows compensation terms still open.",
       "match": "exact",
       "start": 916,
       "end": 979,
@@ -355,35 +381,35 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-068:e6",
-      "process": "new:eol-friday-outage-window",
+      "evidence_id": "batch-068:e8",
+      "process": "system-issue-resolution",
       "message_id": "corpus/williams-w3/sent_items/211.",
       "field": "body",
-      "quote": "We would have the following hourly physical products out until 6 PM CST (4 PST) on Friday",
-      "note": "Answers which products stay up during the Friday outage window.",
+      "quote": "We can then suspend or inactivate these products at 6 PM.",
+      "note": "Responds on EOL outage window and products affected.",
       "match": "exact",
-      "start": 656,
-      "end": 745,
+      "start": 858,
+      "end": 915,
       "segment": "own",
-      "raw_text": "We would have the following hourly physical products out until 6 PM CST (4 PST) on Friday",
+      "raw_text": "We can then suspend or inactivate these products at 6 PM.",
       "reason": null
     },
     {
-      "evidence_id": "batch-068:e7",
-      "process": "weekly-commercial-reporting",
+      "evidence_id": "batch-068:e9",
+      "process": "capacity-reporting",
       "message_id": "corpus/lokay-m/inbox/20.",
       "field": "body",
-      "quote": "As requested here is the CEC's Final Draft Report.",
-      "note": "Supplies a report and the California interstate capacity report as backup.",
+      "quote": "Below is my last California Interstate Capacity Report.",
+      "note": "Shares capacity report as backup data.",
       "match": "exact",
-      "start": 578,
-      "end": 628,
+      "start": 728,
+      "end": 783,
       "segment": "own",
-      "raw_text": "As requested here is the CEC's Final Draft Report.",
+      "raw_text": "Below is my last California Interstate Capacity Report.",
       "reason": null
     },
     {
-      "evidence_id": "batch-068:e8",
+      "evidence_id": "batch-068:e10",
       "process": "new:ees-transaction-charge-discussion",
       "message_id": "corpus/williams-w3/sent_items/210.",
       "field": "body",
@@ -397,26 +423,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-068:e9",
-      "process": "reference-data-update",
+      "evidence_id": "batch-068:e11",
+      "process": "new:counterparty-booking-change",
       "message_id": "corpus/williams-w3/sent_items/209.",
       "field": "body",
-      "quote": "Idaho Power Company, dba IdaCorp Energy, the utility (IPC) has assigned the=",
-      "note": "Counterparty change: trades moved to a new entity, book with the right CP.",
+      "quote": "Idaho Power Company, dba IdaCorp Energy, the utility (IPC) has assigned the",
+      "note": "Notice that trades moved to a new counterparty entity and must be booked accordingly.",
       "match": "exact",
       "start": 3667,
-      "end": 3743,
+      "end": 3742,
       "segment": "quoted",
-      "raw_text": "Idaho Power Company, dba IdaCorp Energy, the utility (IPC) has assigned the=",
+      "raw_text": "Idaho Power Company, dba IdaCorp Energy, the utility (IPC) has assigned the",
       "reason": null
     },
     {
-      "evidence_id": "batch-068:e10",
-      "process": "desk-coverage-on-call",
+      "evidence_id": "batch-068:e12",
+      "process": "on-call-coverage",
       "message_id": "corpus/williams-w3/sent_items/208.",
       "field": "body",
       "quote": "Please refer trading questions to Ryan Slinger or call me on my cell phone...503-887-3449.",
-      "note": "Names who covers trading questions while away.",
+      "note": "Names who covers trading questions during absence.",
       "match": "exact",
       "start": 2513,
       "end": 2603,
@@ -425,12 +451,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-068:e11",
-      "process": "desk-coverage-on-call",
+      "evidence_id": "batch-068:e13",
+      "process": "on-call-coverage",
       "message_id": "corpus/williams-w3/sent_items/197.",
       "field": "body",
       "quote": "Please see Ryan with any questions regarding trading.",
-      "note": "Delegates trading coverage during absence.",
+      "note": "Names cover for the trading group while away.",
       "match": "exact",
       "start": 1834,
       "end": 1887,
@@ -439,12 +465,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-068:e12",
-      "process": "desk-coverage-on-call",
+      "evidence_id": "batch-068:e14",
+      "process": "on-call-coverage",
       "message_id": "corpus/williams-w3/sent_items/123.",
       "field": "body",
       "quote": "I will be out of the office on Friday November 2nd, I will return on Monday November 5th.",
-      "note": "Absence notice to the desk group with contact instructions.",
+      "note": "Notice of absence with contact route for the group.",
       "match": "exact",
       "start": 1758,
       "end": 1847,
@@ -453,12 +479,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-068:e13",
-      "process": "market-rule-change-review",
+      "evidence_id": "batch-068:e15",
+      "process": "regulatory-notice-review",
       "message_id": "corpus/farmer-d/logistics/54.",
       "field": "body",
       "quote": "Federal Energy Regulatory Commissioners Wednesday agreed to issue a notice of proposed rulemaking",
-      "note": "News of a FERC proposed rule.",
+      "note": "Circulates news of a FERC proposed rule.",
       "match": "exact",
       "start": 1499,
       "end": 1596,
@@ -467,12 +493,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-068:e14",
+      "evidence_id": "batch-068:e16",
       "process": "new:longview-equipment-delivery-schedule",
       "message_id": "corpus/williams-w3/sent_items/207.",
       "field": "body",
       "quote": "Please note the generator delivery date has been changed from 10/1/02 to 11/1/02.",
-      "note": "Corrected owner-supplied equipment delivery date.",
+      "note": "Correction to owner-supplied equipment delivery dates.",
       "match": "exact",
       "start": 824,
       "end": 905,
@@ -481,45 +507,17 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-068:e15",
-      "process": "user-access-setup",
-      "message_id": "corpus/williams-w3/sent_items/206.",
-      "field": "body",
-      "quote": "New login for www.friedwire.com is:",
-      "note": "Distributes new shared login for a trading website.",
-      "match": "exact",
-      "start": 1638,
-      "end": 1673,
-      "segment": "own",
-      "raw_text": "New login for www.friedwire.com is:",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-068:e16",
-      "process": "reference-data-update",
+      "evidence_id": "batch-068:e17",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/205.",
       "field": "body",
-      "quote": "*****New ID is APX5******",
-      "note": "Notice that a counterparty scheduling coordinator ID changed.",
+      "quote": "ALLEGHENY ENERGY SUPPLY Scheduling Coordinator ID--",
+      "note": "Scheduling coordinator ID change affecting schedule submissions.",
       "match": "exact",
-      "start": 1728,
-      "end": 1753,
+      "start": 1674,
+      "end": 1725,
       "segment": "own",
-      "raw_text": "*****New ID is APX5******",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-068:e17",
-      "process": "new:internal-job-opening-referral",
-      "message_id": "corpus/williams-w3/sent_items/204.",
-      "field": "body",
-      "quote": "Paul could likely do this, it does require a ton of hard work and is a difficult job.",
-      "note": "Gives a candidate opinion on an internal job opening.",
-      "match": "exact",
-      "start": 548,
-      "end": 633,
-      "segment": "own",
-      "raw_text": "Paul could likely do this, it does require a ton of hard work and is a difficult job.",
+      "raw_text": "ALLEGHENY ENERGY SUPPLY Scheduling Coordinator ID--",
       "reason": null
     },
     {
@@ -528,7 +526,7 @@
       "message_id": "corpus/williams-w3/sent_items/203.",
       "field": "body",
       "quote": "Effective October 1st...BPA transmission will be the following prices...",
-      "note": "Tells the group new BPA transmission prices and booking rules.",
+      "note": "Announces new transmission prices to the desk.",
       "match": "exact",
       "start": 1641,
       "end": 1713,
@@ -538,25 +536,11 @@
     },
     {
       "evidence_id": "batch-068:e19",
-      "process": "new:customer-trip-scheduling",
-      "message_id": "corpus/williams-w3/sent_items/202.",
-      "field": "body",
-      "quote": "please revise the schedule and redistribute it with yourself attending the trip...",
-      "note": "Assigns attendee for a counterparty hosted trip and asks to update the schedule.",
-      "match": "exact",
-      "start": 621,
-      "end": 703,
-      "segment": "own",
-      "raw_text": "please revise the schedule and redistribute it with yourself attending the trip...",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-068:e20",
-      "process": "new:intern-paper-review",
+      "process": "new:internship-paper-review",
       "message_id": "corpus/williams-w3/sent_items/199.",
       "field": "body",
       "quote": "I would recommend using an appendix for the WSCC members, the FERC ruling, the NERC glossary",
-      "note": "Reviews an intern's paper and gives structure feedback.",
+      "note": "Reviews an intern's report and gives feedback.",
       "match": "exact",
       "start": 564,
       "end": 656,
@@ -565,12 +549,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-068:e21",
-      "process": "new:term-deal-opportunity-pitch",
+      "evidence_id": "batch-068:e20",
+      "process": "new:gas-sales-opportunity-offer",
       "message_id": "corpus/giron-d/inbox/240.",
       "field": "body",
       "quote": "Let me know if you are interested in this one.",
-      "note": "Counterparty pitches a term deal and asks for interest.",
+      "note": "Counterparty offers a term gas sale and asks for interest.",
       "match": "exact",
       "start": 815,
       "end": 861,
@@ -579,12 +563,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-068:e22",
-      "process": "realtime-schedule-checkout",
+      "evidence_id": "batch-068:e21",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/198.",
       "field": "body",
       "quote": "We are long at MIDC for Tuesday, 10/02/01.",
-      "note": "Prescheduling notice of a next-day long position at MIDC.",
+      "note": "Quoted notice of a next-day long position at MIDC.",
       "match": "exact",
       "start": 1125,
       "end": 1167,
@@ -593,12 +577,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-068:e23",
-      "process": "meter-flow-deal-coverage",
+      "evidence_id": "batch-068:e22",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/53.",
       "field": "body",
       "quote": "A path is needed on Delivery 17054701 for 19087mmbtus with the Receipt point 175054701.",
-      "note": "Asks for a path on a contract for a delivery point.",
+      "note": "Requests a missing path or contract for a delivery.",
       "match": "exact",
       "start": 834,
       "end": 921,
@@ -607,12 +591,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-068:e24",
-      "process": "meter-flow-deal-coverage",
+      "evidence_id": "batch-068:e23",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/52.",
       "field": "body",
       "quote": "This deal was not transported on contract 1856, the 15,000 was sold to El Paso Merchant directly at that point.",
-      "note": "Explains the contract coverage for the requested path.",
+      "note": "Answers the request for a path on the contract.",
       "match": "exact",
       "start": 759,
       "end": 870,
@@ -638,34 +622,26 @@
       "person": "Ryan Slinger",
       "match": "exact",
       "start": 2513,
-      "end": 2559,
+      "end": 2603,
       "segment": "own",
-      "raw_text": "Please refer trading questions to Ryan Slinger",
+      "raw_text": "Please refer trading questions to Ryan Slinger or call me on my cell phone...503-887-3449.",
       "reason": null
     }
   ],
   "new_processes": [
     {
-      "key": "new:internal-job-opening-referral",
-      "name": "Internal job opening referral",
-      "definition": "Passing on internal job postings and suggesting candidates for them.",
+      "key": "new:job-posting-circulation",
+      "name": "Internal job posting circulation",
+      "definition": "Circulating internal job openings and discussing candidates for them.",
       "example_ids": [
         "corpus/williams-w3/sent_items/219.",
         "corpus/williams-w3/sent_items/204."
       ]
     },
     {
-      "key": "new:desk-turret-setup",
-      "name": "Desk turret set-up",
-      "definition": "Collecting turret IDs so desk staff can customize their trading turrets.",
-      "example_ids": [
-        "corpus/williams-w3/sent_items/218."
-      ]
-    },
-    {
       "key": "new:engineering-subcontractor-payment-terms",
       "name": "Engineering subcontractor payment terms",
-      "definition": "Negotiating and clarifying the compensation basis for an engineering subcontractor under project services agreements.",
+      "definition": "Negotiating the payment basis and rate structure with an engineering subcontractor.",
       "example_ids": [
         "corpus/williams-w3/sent_items/214.",
         "corpus/williams-w3/sent_items/213.",
@@ -673,65 +649,57 @@
       ]
     },
     {
-      "key": "new:eol-friday-outage-window",
-      "name": "Online platform outage window coordination",
-      "definition": "Coordinating which products stay up and when they are suspended around the online trading platform outage window.",
-      "example_ids": [
-        "corpus/williams-w3/sent_items/211."
-      ]
-    },
-    {
       "key": "new:ees-transaction-charge-discussion",
-      "name": "Retail transaction charge discussion",
-      "definition": "Discussing the per-MW charge applied to retail transactions between trading desks.",
+      "name": "EES transaction charge discussion",
+      "definition": "Discussing the per-MW charge applied to retail transactions between desks.",
       "example_ids": [
         "corpus/williams-w3/sent_items/210."
       ]
     },
     {
+      "key": "new:counterparty-booking-change",
+      "name": "Counterparty booking change notice",
+      "definition": "Notifying traders that trades moved to a different counterparty entity and must be booked to it.",
+      "example_ids": [
+        "corpus/williams-w3/sent_items/209."
+      ]
+    },
+    {
       "key": "new:longview-equipment-delivery-schedule",
-      "name": "Project equipment delivery schedule",
-      "definition": "Circulating owner-supplied equipment delivery dates and corrections for a power project.",
+      "name": "Longview equipment delivery schedule",
+      "definition": "Communicating owner-supplied equipment delivery dates and corrections for the Longview project.",
       "example_ids": [
         "corpus/williams-w3/sent_items/207."
       ]
     },
     {
       "key": "new:bpa-transmission-pricing-update",
-      "name": "Transmission pricing update",
-      "definition": "Telling the desk new transmission prices, losses treatment and booking rules.",
+      "name": "BPA transmission pricing update",
+      "definition": "Telling the desk the current transmission prices and loss treatment to use when pricing and booking trades.",
       "example_ids": [
         "corpus/williams-w3/sent_items/203."
       ]
     },
     {
-      "key": "new:customer-trip-scheduling",
-      "name": "Counterparty hosted trip scheduling",
-      "definition": "Deciding who attends counterparty-hosted trips and updating the desk schedule.",
-      "example_ids": [
-        "corpus/williams-w3/sent_items/202."
-      ]
-    },
-    {
-      "key": "new:intern-paper-review",
-      "name": "Intern paper review",
-      "definition": "Reviewing an intern's report and giving feedback before submission.",
+      "key": "new:internship-paper-review",
+      "name": "Internship paper review",
+      "definition": "Reviewing and giving feedback on an intern's written report.",
       "example_ids": [
         "corpus/williams-w3/sent_items/199."
       ]
     },
     {
-      "key": "new:term-deal-opportunity-pitch",
-      "name": "Term deal opportunity pitch",
-      "definition": "A counterparty pitches a term gas transaction with value split and credit risk and asks for interest.",
+      "key": "new:gas-sales-opportunity-offer",
+      "name": "Gas sales opportunity offer",
+      "definition": "A counterparty proposes a term gas transaction with upside and downside and asks for interest.",
       "example_ids": [
         "corpus/giron-d/inbox/240."
       ]
     }
   ],
-  "batch_notes": "Mostly williams-w3 sent items with many one-off forwards; proposed ten new keys for singleton work. Personal and noise messages left without a process. No injection attempts found.",
+  "batch_notes": "Mixed mailboxes. Personal/noise: 215, giron-d 239, 241, williams-w3 200-202. No injection attempts found. Several new keys proposed for one-off topics in the williams-w3 mailbox.",
   "quote_stats": {
-    "exact": 27,
+    "exact": 26,
     "repaired": 0,
     "rejected": 0
   }

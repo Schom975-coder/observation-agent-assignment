@@ -1,52 +1,57 @@
 {
   "group_id": "synth-015",
-  "content_sha": "460a034621881e9e0c7ca45ba1a6b647804fdc1615180b8eb22d8d799f52cc90",
+  "content_sha": "8dfe571e85b270d32c22fca5d4ad9155052afde43ab27e640141e5855f1e30a9",
   "processes": [
     {
-      "key": "pipeline-outage-supply-cuts",
-      "description": "Notices come in from gas control, plant operators, field staff and upstream suppliers when a pipeline section is pigged or under line work, a plant or compressor goes down, a meter is shut in, or a supplier cuts volumes or claims force majeure. The notice names the meters, plants or interconnects affected, the expected duration and the volumes cut or capacity lost. It is forwarded to schedulers and traders, who work out which deals and customers are hit, call the pipeline or counterparty, rearrange supply, and track restart updates until normal flow resumes.",
+      "key": "desk-responsibility-assignment",
+      "description": "A logistics lead or manager announces who now handles which pooling points, industrial accounts, counterparties or duties, usually when someone joins, leaves or a desk is realigned. Recipients reply to confirm or to point out pieces that look unassigned, and departing or moving staff confirm what they hand over. Some rounds introduce new staff or share contact extensions so others know whom to call for work moved off another desk.",
       "steps": [
-        "A notice arrives from gas control, a plant operator, field staff or a supplier about maintenance, pigging, a plant upset, a shut-in meter or a supply cut.",
-        "The notice names the affected meters, plants or interconnects, the expected duration and the volumes cut or capacity lost.",
-        "It is forwarded to the schedulers, traders and logistics staff who hold deals at those points.",
-        "Staff identify the affected deals and customers and call the pipeline or counterparty for details.",
-        "Supply is rearranged: nominations are cut or replaced from other sources, and buyback or force majeure treatment is decided.",
-        "Follow-up notices report revised restart times, postponements or the return to full production, and arrangements are adjusted again."
+        "A staff change, reorganisation or new account triggers a reassignment.",
+        "The lead drafts a memo listing each pipeline, point or account and its new owner and backup.",
+        "The memo is sent to the desk and forwarded to affected groups.",
+        "Recipients check the list against what they handle and flag gaps or items left unassigned.",
+        "Outgoing and incoming owners confirm the handover of specific accounts.",
+        "A follow-up memo settles the open items and contact details."
       ],
       "stalls": [
         {
-          "summary": "Answers about an outage are slow to come: a call to the counterparty goes unreturned, a manager asks for the status of how December force majeure cuts should be treated against the buyback, and planners ask to be told as soon as possible about scheduled line work.",
+          "summary": "Pieces of work fall through the reassignment: an HPL operational duty is reported as left unassigned, and the follow-up memo still lists it as unresolved.",
           "evidence_ids": [
-            "batch-051:s0",
-            "batch-000:s0",
-            "batch-000:e21",
-            "batch-001:s0",
-            "batch-001:e7"
+            "batch-001:s1",
+            "batch-001:s3",
+            "batch-001:e43"
           ]
         },
         {
-          "summary": "Plant outages run across a string of separate notices as the restart picture keeps moving: operation at lower rates, a later earliest restart, full production sooner than expected, then extensive repairs needed, so the supply arrangements stay open through repeated updates.",
+          "summary": "Handovers of specific accounts are disputed in the mail, with the previous scheduler doubting the new owner could handle an account he believes he now covers.",
           "evidence_ids": [
-            "batch-008:e33",
-            "batch-008:e32",
-            "batch-009:e14",
-            "batch-017:e14",
-            "batch-012:e21"
-          ]
-        },
-        {
-          "summary": "Outage timing arrives second-hand and changes: an interconnect's downtime is passed on as what the sender is being told, and a scheduled outage turns out to be postponed, so plans built on the first notice have to be redone.",
-          "evidence_ids": [
-            "batch-007:e6",
-            "batch-052:e16"
+            "batch-001:s2",
+            "batch-001:e37"
           ]
         }
       ],
-      "contradictions": [],
+      "contradictions": [
+        {
+          "summary": "Ownership of the industrial accounts is stated differently: one forward says they transition to Robert as of January 1, Robert says he has taken over all industrial accounts, while the previous scheduler questions whether he can handle Valero yet agrees to leave the accounts to him.",
+          "evidence_ids": [
+            "batch-001:e22",
+            "batch-001:o5",
+            "batch-001:s2",
+            "batch-001:o6"
+          ]
+        },
+        {
+          "summary": "The desk assumed Carlos had taken over a departing colleague's work, while the same message reports an HPL operational duty as unassigned, so who owns that work was unclear.",
+          "evidence_ids": [
+            "batch-001:o1",
+            "batch-001:s1"
+          ]
+        }
+      ],
       "automation": {
-        "approach": "A shared outage log fed by a standard notice: each entry records the meter or point, pipeline, start and expected end, volume before and after, and cause. A lookup from meter to the deals and counterparties flowing there lists who is affected, drafts the customer notices and flags nominations to change; restart updates amend the same entry instead of starting a new thread.",
-        "artifact_type": "email_template",
-        "rationale": "Notices come from many senders in free text, and some leave out the meter, the volumes or the end date, which forces follow-up calls. A standard outage notice that always carries those fields lets schedulers find affected deals quickly and is the first step toward the log and lookup. Deciding how to replace supply and whether force majeure applies stays with people."
+        "approach": "Keep one shared assignment register listing every pipeline, pooling point, account and duty with its owner and backup. A reassignment memo is generated from the changes to the register, and any item without an owner is flagged before the memo goes out.",
+        "artifact_type": "template",
+        "rationale": "The confusion in the mail comes from items missing from free-text memos. A register laid out by item, owner and backup makes gaps visible and gives the desk one place to check who handles what."
       },
       "work_estimate": {
         "minutes_per_occurrence": {
@@ -54,152 +59,138 @@
           "mid": 20,
           "high": 45
         },
-        "automatable_pct": 35,
+        "automatable_pct": 40,
         "basis": "inferred",
-        "rationale": "The minutes go to working out which meters, deals and customers a cut or shut-in touches, adjusting nominations or finding replacement supply, and reconciling the cut volumes afterwards. Many rounds are short plant-status or shut-in notices needing only a check of affected deals, so the low end is 10 minutes and the typical round 20; supplier cuts across several deals or force majeure claims needing a summary of days push toward 45. A meter-to-deal lookup and a standard notice could take over identification and record keeping, not the supply decisions.",
+        "rationale": "Minutes go to compiling the list of points and accounts being moved, checking it against current coverage, resolving gaps such as unassigned duties, and updating contact or system records. Most rounds are short announcements; a full desk realignment takes longer. A register could produce the list and flag gaps, while decisions on who takes what stay with people.",
         "evidence_ids": [
-          "batch-001:e7",
-          "batch-001:e9",
-          "batch-015:e7",
-          "batch-014:e11",
-          "batch-003:e32",
-          "batch-020:e6",
-          "batch-041:e8",
-          "batch-010:e34",
-          "batch-012:e24"
+          "batch-001:e3",
+          "batch-013:e5",
+          "batch-001:s1",
+          "batch-001:e37",
+          "batch-028:e10",
+          "batch-001:e43"
         ]
       },
       "estimate_check": {
-        "occurrences_cited": 9,
-        "senders_cited": 6
+        "occurrences_cited": 6,
+        "senders_cited": 4
       }
     },
     {
-      "key": "pnl-position-reporting",
-      "description": "Daily P&L, mark-to-market and position reports (the DPR) are produced for each trading book, officialized and sent to traders, desk heads and managers, and saved to shared directories. Questions come back on specific books: open positions, MTM values as of a date, prior-month production hits, deals killed or wrongly included. The analyst checks figures against risk management numbers, prepares supporting files and summaries, and corrects deals or restates the P&L when an entry or calculation proves wrong, often before the morning flash.",
+      "key": "oba-contract-negotiation",
+      "description": "Shippers and interconnecting parties ask for new transport contracts, amendments, MDQ increases or operational balancing agreements. The marketer or contract administrator checks the request, submits it to CAS for capacity approval, approves it with the contract number, and routes amendments for signature. Draft language is revised between commercial and legal staff before going to the customer, and status reports track contracts outstanding. Open items such as unsigned OBAs or contracts under legal review are chased.",
       "steps": [
-        "The day's deals are officialized and the P&L, MTM and position reports for each book are produced.",
-        "The reports or summary files go to traders, desk heads and managers and are saved to a shared directory.",
-        "Traders and managers question specific figures: open positions, MTM values as of a date, revenue on particular deals.",
-        "The analyst checks the figures against risk management numbers and deal records and gathers supporting detail.",
-        "Errors are fixed by correcting deals, excluding deal types that do not belong, or restating the P&L file.",
-        "Corrected figures and explanations go back to the requester, and large hits are flagged ahead of the night's P&L."
+        "A shipper or internal group requests a contract, amendment, MDQ change or OBA.",
+        "The marketer confirms terms with the customer, often by phone.",
+        "The request is submitted to CAS for capacity approval.",
+        "Contract language is drafted or revised, with legal review where needed.",
+        "The approval and contract number are sent back and amendments are routed for signature.",
+        "Signed agreements are logged and status reports track what remains outstanding."
       ],
       "stalls": [
         {
-          "summary": "The reporting system goes down mid-round and the analyst cannot get the figures out.",
+          "summary": "Requests wait on replies and on legal review: a requester reports no updates on an unresolved issue affecting a customer, and another only knows legal was reviewing the contract.",
           "evidence_ids": [
-            "batch-020:s2"
+            "batch-012:s3",
+            "batch-012:e20",
+            "batch-012:s0",
+            "batch-012:e0"
           ]
         },
         {
-          "summary": "Wrong figures force rework: a trader's new deal summary shows revenue he should not receive and he asks for it to be recalculated or zeroed before the morning flash, a trader's reported P&L proves understated, and a month's P&L is restated after corrective transactions once part of the problem is found.",
+          "summary": "A contract sent for review and initial weeks earlier has its status chased, showing documents stall between hands.",
           "evidence_ids": [
-            "batch-059:s5",
-            "batch-059:e28",
-            "batch-042:e22",
-            "batch-093:e7",
-            "batch-093:e10",
-            "batch-093:e15"
+            "batch-014:s2",
+            "batch-014:e10"
           ]
         },
         {
-          "summary": "Confusion over what was sent or asked leads to a round being redone.",
+          "summary": "Requests and agreements go round again: a customer revises its own assignment request, and an OBA stays outstanding until the counterparty name is changed.",
           "evidence_ids": [
-            "batch-018:s1"
-          ]
-        },
-        {
-          "summary": "Requests wait on people: an assigned analysis has made little progress, and a question is held until a colleague returns the next day.",
-          "evidence_ids": [
-            "batch-032:e5",
-            "batch-037:o1"
-          ]
-        }
-      ],
-      "contradictions": [
-        {
-          "summary": "The deal summary and the trader disagree on revenue: the summary shows an amount as revenue that the trader says he should not receive.",
-          "evidence_ids": [
-            "batch-059:s5",
-            "batch-059:e28"
-          ]
-        },
-        {
-          "summary": "Two versions of the same P&L exist: a trader's reported figure is called understated by the analyst, and a desk's month-end P&L is restated into a new final file after corrective transactions.",
-          "evidence_ids": [
-            "batch-042:e22",
-            "batch-093:e15",
-            "batch-093:e10"
-          ]
-        }
-      ],
-      "automation": {
-        "approach": "An automated daily reconciliation that pulls each book's positions and P&L from the trading system and the risk report, applies the known exclusion rules (transmission deals, pool deals, imbalance counterparties), flags variances and large prior-period hits, and saves each day's final file under a standard name in the shared directory. Analysts review only the flagged items and handle restatements.",
-        "artifact_type": "checklist",
-        "rationale": "The rework in the mail comes from deals entered or included wrongly and from figures that differ between the desk and risk management. A daily close checklist (officialize books, apply exclusions, compare to risk numbers, note prior-period adjustments, save the final file) catches most of these before the report goes out, and the reconciliation report would then take over the comparison steps."
-      },
-      "work_estimate": {
-        "minutes_per_occurrence": {
-          "low": 15,
-          "mid": 30,
-          "high": 90
-        },
-        "automatable_pct": 45,
-        "basis": "inferred",
-        "rationale": "The minutes go to checking a book's P&L and positions against risk management numbers, pulling MTM values, basis positions or deal detail for a requester, and correcting deals or restating a file when a figure is wrong. A routine check of one report takes about 15 minutes; a typical query with supporting detail about 30; a restatement or a large prior-month adjustment traced through several deals can take 90. Data pulls and variance checks can be automated; explaining and approving adjustments cannot.",
-        "evidence_ids": [
-          "batch-043:e11",
-          "batch-042:e22",
-          "batch-093:e15",
-          "batch-054:e8",
-          "batch-079:e9",
-          "batch-032:e12",
-          "batch-025:e12",
-          "batch-043:e16",
-          "batch-059:e28"
-        ]
-      },
-      "estimate_check": {
-        "occurrences_cited": 9,
-        "senders_cited": 3
-      }
-    },
-    {
-      "key": "power-project-contract-admin",
-      "description": "Agreement letters, change orders, equipment delivery schedule changes, subcontractor rate disputes and status requests for a power plant project are addressed to Bill Williams III in power trading when they are meant for the Bill Williams in Technical Assets who administers the project. Each round he forwards the message to the intended recipient or asks colleagues who can answer, so the content (finance sign-off on a change order, a later generator delivery date, letters mailed) reaches its owner only after a detour.",
-      "steps": [
-        "A project party sends an agreement letter, change order, delivery schedule change, subcontractor note or status question.",
-        "Because of the shared name, the message reaches Bill Williams III instead of the Bill Williams in Technical Assets.",
-        "He forwards it to the intended recipient, or to colleagues who may answer it, noting that it was misdirected.",
-        "The intended owner handles the notice, approval or question."
-      ],
-      "stalls": [
-        {
-          "summary": "Project mail repeatedly goes to the wrong Bill Williams and has to be redirected to the one in Technical Assets, delaying change orders, rate disputes and letters on their way to the owner.",
-          "evidence_ids": [
-            "batch-074:s2",
-            "batch-074:s1",
-            "batch-069:s0",
-            "batch-068:s0"
-          ]
-        },
-        {
-          "summary": "Status questions sent to the wrong person are passed on to a group with a request that anyone answer, leaving no clear owner for the reply.",
-          "evidence_ids": [
-            "batch-057:e6",
-            "batch-057:e0"
+            "batch-080:s2",
+            "batch-080:e3",
+            "batch-098:e13"
           ]
         }
       ],
       "contradictions": [],
       "automation": {
-        "approach": "Give the two employees clearly different display names and directory entries, and set a mail rule or auto-reply on the trader's mailbox for project terms that points senders to the Technical Assets contact. The project's notices, change orders and delivery dates could then be kept in a contract register by their actual owner.",
-        "artifact_type": "email_template",
-        "rationale": "The repetitive part of these rounds is redirecting misaddressed project mail. A standard redirect reply that names the right Bill Williams and asks the sender to correct their address list fixes the source of the detours; the contract work itself happens elsewhere and is not shown in this mail."
+        "approach": "A contract request form capturing contract number, counterparty, quantities, dates and rates feeds a tracker that records CAS submission, approval, legal review and signature status. The tracker produces the status report and flags items that have waited too long for review or signature.",
+        "artifact_type": "template",
+        "rationale": "Most rounds are structured MDQ or amendment changes, and the stalls are items lost in review. A standard request form plus status tracker cuts retyping of terms and makes outstanding contracts visible without chasing."
       },
-      "work_estimate": null,
-      "estimate_check": null
+      "work_estimate": {
+        "minutes_per_occurrence": {
+          "low": 15,
+          "mid": 30,
+          "high": 75
+        },
+        "automatable_pct": 35,
+        "basis": "observed",
+        "rationale": "Minutes go to checking the contract and requested quantities, entering the CAS capacity request, approving and recording the change, and for amendments or OBAs drafting or revising language and routing it for signature. Simple MDQ increases are quick; new OBAs with language revisions take longer. Forms and tracking can be automated, but terms and legal language need people.",
+        "evidence_ids": [
+          "batch-082:e5",
+          "batch-083:e2",
+          "batch-080:e9",
+          "batch-098:e4",
+          "batch-067:e7",
+          "batch-088:e2",
+          "batch-098:e25",
+          "batch-036:e0"
+        ]
+      },
+      "estimate_check": {
+        "occurrences_cited": 8,
+        "senders_cited": 5
+      }
+    },
+    {
+      "key": "plant-outage-notice",
+      "description": "When the methanol or MTBE plant trips, runs at reduced rates or restarts, the plant contact sends a short notice to gas schedulers and commercial staff describing the cause, such as a boiler taken out or a broken compressor shaft, and the expected restart. Updates follow as the restart estimate moves, ending with a notice that the plant is up and making spec product. Schedulers use these notices to adjust the gas they nominate to the plant.",
+      "steps": [
+        "The plant goes down, cuts rates or plans a restart.",
+        "The plant contact sends a notice with the cause and expected timing.",
+        "Schedulers adjust gas nominations to the plant's expected burn.",
+        "Updates are sent as the restart estimate changes.",
+        "A final notice confirms the plant is producing spec product."
+      ],
+      "stalls": [
+        {
+          "summary": "Restart timing is often unknown or keeps moving, leaving schedulers waiting on further notices before they can settle volumes.",
+          "evidence_ids": [
+            "batch-017:e8",
+            "batch-008:e34",
+            "batch-017:e13"
+          ]
+        }
+      ],
+      "contradictions": [],
+      "automation": {
+        "approach": "A standard outage notice form with fields for plant, status, cause, current rate, expected restart and expected gas use, sent to a fixed distribution list, so schedulers get the same facts in the same place each time.",
+        "artifact_type": "email_template",
+        "rationale": "The notices are short and repetitive. A fixed template ensures each one states the expected gas impact and restart time that schedulers need to rebalance nominations."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": {
+          "low": 5,
+          "mid": 10,
+          "high": 25
+        },
+        "automatable_pct": 30,
+        "basis": "inferred",
+        "rationale": "Minutes go to the plant contact confirming status and restart estimates with operations, and to schedulers adjusting nominations for the changed plant load. The notices themselves are brief and the quotes show little beyond them, so the estimate stays small. A template helps the notice, while the operational judgement and nomination changes stay manual.",
+        "evidence_ids": [
+          "batch-008:e17",
+          "batch-008:e20",
+          "batch-008:e33",
+          "batch-017:e13",
+          "batch-009:e8"
+        ]
+      },
+      "estimate_check": {
+        "occurrences_cited": 5,
+        "senders_cited": 2
+      }
     }
   ]
 }

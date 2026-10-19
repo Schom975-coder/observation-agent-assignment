@@ -5,7 +5,7 @@
     {
       "id": "corpus/giron-d/sent/149.",
       "processes": [
-        "credit-exposure-reporting"
+        "credit-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -30,14 +30,14 @@
     {
       "id": "corpus/giron-d/sent/145.",
       "processes": [],
-      "role": "personal",
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/sent/144.",
       "processes": [
-        "credit-exposure-reporting"
+        "credit-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -53,7 +53,7 @@
     {
       "id": "corpus/farmer-d/logistics/2122.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -62,7 +62,7 @@
     {
       "id": "corpus/farmer-d/logistics/2123.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -71,7 +71,7 @@
     {
       "id": "corpus/farmer-d/logistics/221.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -80,7 +80,7 @@
     {
       "id": "corpus/giron-d/sent/142.",
       "processes": [
-        "curve-postid-mapping"
+        "curve-postid-maintenance"
       ],
       "role": "fyi",
       "stall": null,
@@ -92,10 +92,7 @@
         "new:sitara-rate-change-request"
       ],
       "role": "response",
-      "stall": {
-        "kind": "handoff_confusion",
-        "quote": "Please let me know if you're no longer handling this."
-      },
+      "stall": null,
       "ownership_claim": {
         "person": "Kristen Clause",
         "quote": "Please send these to Kristen Clause in the future."
@@ -104,7 +101,7 @@
     {
       "id": "corpus/farmer-d/logistics/2124.",
       "processes": [
-        "counterparty-settlement-review"
+        "customer-volume-confirmation"
       ],
       "role": "request",
       "stall": null,
@@ -113,7 +110,7 @@
     {
       "id": "corpus/farmer-d/logistics/209.",
       "processes": [
-        "counterparty-settlement-review"
+        "customer-volume-confirmation"
       ],
       "role": "response",
       "stall": null,
@@ -122,7 +119,7 @@
     {
       "id": "corpus/farmer-d/logistics/2125.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -131,7 +128,7 @@
     {
       "id": "corpus/giron-d/sent/140.",
       "processes": [
-        "user-access-setup"
+        "system-access-request"
       ],
       "role": "request",
       "stall": null,
@@ -147,7 +144,7 @@
     {
       "id": "corpus/giron-d/sent/138.",
       "processes": [
-        "credit-exposure-reporting"
+        "credit-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -156,7 +153,7 @@
     {
       "id": "corpus/farmer-d/logistics/2126.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "imbalance-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -165,7 +162,7 @@
     {
       "id": "corpus/giron-d/sent/137.",
       "processes": [
-        "pnl-position-reporting"
+        "pnl-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -174,16 +171,16 @@
     {
       "id": "corpus/giron-d/sent/136.",
       "processes": [
-        "pnl-position-reporting"
+        "pnl-reporting"
       ],
-      "role": "response",
+      "role": "forward",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/2127.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "imbalance-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -192,7 +189,7 @@
     {
       "id": "corpus/farmer-d/logistics/2128.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "imbalance-resolution"
       ],
       "role": "forward",
       "stall": null,
@@ -227,7 +224,7 @@
     {
       "id": "corpus/farmer-d/logistics/2129.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -248,16 +245,13 @@
         "new:curve-validation-review"
       ],
       "role": "response",
-      "stall": {
-        "kind": "waiting_on_reply",
-        "quote": "Can you or anyone in your group follow up on the curves below?"
-      },
+      "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/sent/131.",
       "processes": [
-        "new:machine-inventory-survey"
+        "new:gem-workstation-inventory"
       ],
       "role": "response",
       "stall": null,
@@ -266,7 +260,7 @@
     {
       "id": "corpus/giron-d/sent/130.",
       "processes": [
-        "new:odbc-dsn-listing"
+        "new:gem-workstation-inventory"
       ],
       "role": "fyi",
       "stall": null,
@@ -275,7 +269,7 @@
     {
       "id": "corpus/giron-d/sent/129.",
       "processes": [
-        "credit-exposure-reporting"
+        "credit-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -284,7 +278,7 @@
     {
       "id": "corpus/farmer-d/logistics/2130.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -302,7 +296,7 @@
     {
       "id": "corpus/giron-d/sent/128.",
       "processes": [
-        "credit-exposure-reporting"
+        "credit-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -311,7 +305,7 @@
     {
       "id": "corpus/giron-d/sent/127.",
       "processes": [
-        "new:counterparty-entity-rebook"
+        "deal-book-transfer"
       ],
       "role": "forward",
       "stall": null,
@@ -320,7 +314,7 @@
     {
       "id": "corpus/farmer-d/logistics/212.",
       "processes": [
-        "new:aep-transition-planning"
+        "new:hpl-aep-transition"
       ],
       "role": "request",
       "stall": null,
@@ -329,7 +323,7 @@
     {
       "id": "corpus/farmer-d/logistics/211.",
       "processes": [
-        "new:contract-termination-report"
+        "new:contract-assignment-termination-report"
       ],
       "role": "fyi",
       "stall": null,
@@ -339,11 +333,11 @@
   "evidence": [
     {
       "evidence_id": "batch-047:e0",
-      "process": "credit-exposure-reporting",
+      "process": "credit-reporting",
       "message_id": "corpus/giron-d/sent/149.",
       "field": "subject",
       "quote": "Credit Report 3/19/01",
-      "note": "Dated credit report forwarded to the credit contact.",
+      "note": "Dated daily credit report passed on.",
       "match": "exact",
       "start": 170,
       "end": 191,
@@ -353,25 +347,11 @@
     },
     {
       "evidence_id": "batch-047:e1",
-      "process": "new:credit-reserve-request",
-      "message_id": "corpus/giron-d/sent/147.",
-      "field": "body",
-      "quote": "Please take a credit reserve for the transaction detailed below.",
-      "note": "Forwarded request to take a credit reserve on a transaction.",
-      "match": "exact",
-      "start": 840,
-      "end": 904,
-      "segment": "forwarded",
-      "raw_text": "Please take a credit reserve for the transaction detailed below.",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-047:e2",
-      "process": "credit-exposure-reporting",
+      "process": "credit-reporting",
       "message_id": "corpus/giron-d/sent/144.",
       "field": "subject",
       "quote": "Credit Report--3/20/01",
-      "note": "Dated credit report forwarded.",
+      "note": "Dated daily credit report passed on.",
       "match": "exact",
       "start": 171,
       "end": 193,
@@ -380,12 +360,68 @@
       "reason": null
     },
     {
+      "evidence_id": "batch-047:e2",
+      "process": "credit-reporting",
+      "message_id": "corpus/giron-d/sent/138.",
+      "field": "subject",
+      "quote": "Credit Report--3/21/01",
+      "note": "Dated daily credit report passed on.",
+      "match": "exact",
+      "start": 171,
+      "end": 193,
+      "segment": "subject",
+      "raw_text": "Credit Report--3/21/01",
+      "reason": null
+    },
+    {
       "evidence_id": "batch-047:e3",
-      "process": "meter-flow-deal-coverage",
+      "process": "credit-reporting",
+      "message_id": "corpus/giron-d/sent/129.",
+      "field": "subject",
+      "quote": "Credit Report--3/22/01",
+      "note": "Dated daily credit report passed on.",
+      "match": "exact",
+      "start": 170,
+      "end": 192,
+      "segment": "subject",
+      "raw_text": "Credit Report--3/22/01",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-047:e4",
+      "process": "credit-reporting",
+      "message_id": "corpus/giron-d/sent/128.",
+      "field": "subject",
+      "quote": "Credit Report--3/23/01",
+      "note": "Dated daily credit report passed on.",
+      "match": "exact",
+      "start": 171,
+      "end": 193,
+      "segment": "subject",
+      "raw_text": "Credit Report--3/23/01",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-047:e5",
+      "process": "new:credit-reserve-request",
+      "message_id": "corpus/giron-d/sent/147.",
+      "field": "body",
+      "quote": "Please take a credit reserve for the transaction detailed below.",
+      "note": "Asks that a credit reserve be taken on a named transaction.",
+      "match": "exact",
+      "start": 840,
+      "end": 904,
+      "segment": "forwarded",
+      "raw_text": "Please take a credit reserve for the transaction detailed below.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-047:e6",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/2122.",
       "field": "body",
       "quote": "Can this deal be extended to cover the January and February flow?",
-      "note": "Asks to extend a deal to cover meter flow.",
+      "note": "Asks for a deal to be extended to cover flow.",
       "match": "exact",
       "start": 649,
       "end": 714,
@@ -394,12 +430,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-047:e4",
-      "process": "meter-flow-deal-coverage",
+      "evidence_id": "batch-047:e7",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/2123.",
       "field": "body",
       "quote": "This has not yet shown up in Unify.  Did you use the same deal ticket?",
-      "note": "Follow-up on whether the extended deal ticket was entered.",
+      "note": "Follows up on whether the extended deal ticket was created.",
       "match": "exact",
       "start": 472,
       "end": 542,
@@ -408,12 +444,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-047:e5",
-      "process": "meter-flow-deal-coverage",
+      "evidence_id": "batch-047:e8",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/221.",
       "field": "body",
       "quote": "This has not yet shown up in Unify.  Did you use the same deal ticket?",
-      "note": "Follow-up on whether the extended deal ticket was entered.",
+      "note": "Follows up on whether the extended deal ticket was created.",
       "match": "exact",
       "start": 536,
       "end": 606,
@@ -422,12 +458,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-047:e6",
-      "process": "curve-postid-mapping",
+      "evidence_id": "batch-047:e9",
+      "process": "curve-postid-maintenance",
       "message_id": "corpus/giron-d/sent/142.",
       "field": "body",
       "quote": "Our phsical post id last night was 1075424",
-      "note": "Reports the post ID for the west desk.",
+      "note": "Supplies the post ID used for the west desk.",
       "match": "exact",
       "start": 446,
       "end": 488,
@@ -436,7 +472,7 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-047:e7",
+      "evidence_id": "batch-047:e10",
       "process": "new:sitara-rate-change-request",
       "message_id": "corpus/giron-d/sent/141.",
       "field": "body",
@@ -450,12 +486,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-047:e8",
-      "process": "counterparty-settlement-review",
+      "evidence_id": "batch-047:e11",
+      "process": "customer-volume-confirmation",
       "message_id": "corpus/farmer-d/logistics/2124.",
       "field": "body",
       "quote": "was there a deal for 5.000 at CP&L on Feb. 21?",
-      "note": "Invoice amount from counterparty questioned against deals.",
+      "note": "Checks a customer's invoiced volume against deals.",
       "match": "exact",
       "start": 603,
       "end": 649,
@@ -464,12 +500,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-047:e9",
-      "process": "counterparty-settlement-review",
+      "evidence_id": "batch-047:e12",
+      "process": "customer-volume-confirmation",
       "message_id": "corpus/farmer-d/logistics/209.",
       "field": "body",
       "quote": "No record here and I was here at that time.",
-      "note": "Answer to a query on a disputed invoice volume.",
+      "note": "Answers the CP&L volume query.",
       "match": "exact",
       "start": 526,
       "end": 569,
@@ -478,12 +514,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-047:e10",
-      "process": "meter-flow-deal-coverage",
+      "evidence_id": "batch-047:e13",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/2125.",
       "field": "body",
       "quote": "Daren I have three meters that have flow in Feb but no deal.",
-      "note": "Meters with flow but no deal ticket, asks to extend.",
+      "note": "Requests deals be extended for meters with flow.",
       "match": "exact",
       "start": 440,
       "end": 500,
@@ -492,12 +528,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-047:e11",
-      "process": "user-access-setup",
+      "evidence_id": "batch-047:e14",
+      "process": "system-access-request",
       "message_id": "corpus/giron-d/sent/140.",
       "field": "body",
       "quote": "Please add Eric Moon to the list of users for the Canadian Logic On/Off",
-      "note": "Request to add a user to a script's user list.",
+      "note": "Asks to add a user to a script's user list.",
       "match": "exact",
       "start": 500,
       "end": 571,
@@ -506,68 +542,54 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-047:e12",
-      "process": "credit-exposure-reporting",
-      "message_id": "corpus/giron-d/sent/138.",
-      "field": "subject",
-      "quote": "Credit Report--3/21/01",
-      "note": "Dated credit report forwarded.",
-      "match": "exact",
-      "start": 171,
-      "end": 193,
-      "segment": "subject",
-      "raw_text": "Credit Report--3/21/01",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-047:e13",
-      "process": "volume-imbalance-reconciliation",
+      "evidence_id": "batch-047:e15",
+      "process": "imbalance-resolution",
       "message_id": "corpus/farmer-d/logistics/2126.",
       "field": "body",
-      "quote": "Ed has requested that we compile a list this morning of all parties/points",
-      "note": "Compiling list of parties owed gas, imbalances.",
+      "quote": "Please email me a list of any meters/contracts that you are",
+      "note": "Collects list of parties owed gas (imbalances).",
       "match": "exact",
-      "start": 939,
-      "end": 1013,
+      "start": 1105,
+      "end": 1164,
       "segment": "own",
-      "raw_text": "Ed has requested that we compile a list this morning of all parties/points",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-047:e14",
-      "process": "pnl-position-reporting",
-      "message_id": "corpus/giron-d/sent/137.",
-      "field": "subject",
-      "quote": "12/29/2000 - MTM",
-      "note": "Request for total MTM values for a date.",
-      "match": "exact",
-      "start": 171,
-      "end": 187,
-      "segment": "subject",
-      "raw_text": "12/29/2000 - MTM",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-047:e15",
-      "process": "pnl-position-reporting",
-      "message_id": "corpus/giron-d/sent/136.",
-      "field": "body",
-      "quote": "MTM Value:  -$3,768,104",
-      "note": "Reply supplying MTM totals for the West Desk.",
-      "match": "exact",
-      "start": 889,
-      "end": 912,
-      "segment": "forwarded",
-      "raw_text": "MTM Value:  -$3,768,104",
+      "raw_text": "Please email me a list of any meters/contracts that you are",
       "reason": null
     },
     {
       "evidence_id": "batch-047:e16",
-      "process": "volume-imbalance-reconciliation",
+      "process": "pnl-reporting",
+      "message_id": "corpus/giron-d/sent/137.",
+      "field": "body",
+      "quote": "Two more counterparties need MTM values for Dec. 29, 2000.",
+      "note": "Request for MTM values by counterparty.",
+      "match": "exact",
+      "start": 799,
+      "end": 857,
+      "segment": "forwarded",
+      "raw_text": "Two more counterparties need MTM values for Dec. 29, 2000.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-047:e17",
+      "process": "pnl-reporting",
+      "message_id": "corpus/giron-d/sent/136.",
+      "field": "body",
+      "quote": "The following are the totals for Tudor BVI and Ospraie.",
+      "note": "Provides MTM totals for the west desk.",
+      "match": "exact",
+      "start": 680,
+      "end": 735,
+      "segment": "forwarded",
+      "raw_text": "The following are the totals for Tudor BVI and Ospraie.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-047:e18",
+      "process": "imbalance-resolution",
       "message_id": "corpus/farmer-d/logistics/2127.",
       "field": "body",
       "quote": "Please verify, add or update the information based on your",
-      "note": "Verify list of imbalance and variance by desk.",
+      "note": "Asks desks to verify the list of imbalances owed.",
       "match": "exact",
       "start": 1038,
       "end": 1096,
@@ -576,26 +598,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-047:e17",
-      "process": "volume-imbalance-reconciliation",
+      "evidence_id": "batch-047:e19",
+      "process": "imbalance-resolution",
       "message_id": "corpus/farmer-d/logistics/2128.",
       "field": "body",
-      "quote": "Mary we just have two.  Thanks - Julie",
-      "note": "Forwarded list of imbalance gas owed at meters.",
+      "quote": "contract 012-87794-02-001 (delivery)",
+      "note": "Forwards imbalance amounts owed at meters.",
       "match": "exact",
-      "start": 755,
-      "end": 793,
+      "start": 795,
+      "end": 831,
       "segment": "forwarded",
-      "raw_text": "Mary we just have two.  Thanks - Julie",
+      "raw_text": "contract 012-87794-02-001 (delivery)",
       "reason": null
     },
     {
-      "evidence_id": "batch-047:e18",
+      "evidence_id": "batch-047:e20",
       "process": "new:training-order-approval",
       "message_id": "corpus/giron-d/sent/135.",
       "field": "body",
       "quote": "I get an error when I try to approve this.",
-      "note": "Course order approval fails.",
+      "note": "Training order approval fails with an error.",
       "match": "exact",
       "start": 494,
       "end": 536,
@@ -604,12 +626,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-047:e19",
-      "process": "meter-flow-deal-coverage",
+      "evidence_id": "batch-047:e21",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/2129.",
       "field": "body",
       "quote": "This meter has recorded flow for the following days with no deal.",
-      "note": "Meter flow with no deal; asks how to handle.",
+      "note": "Meter flow without a deal, asks how to handle.",
       "match": "exact",
       "start": 457,
       "end": 522,
@@ -618,12 +640,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-047:e20",
+      "evidence_id": "batch-047:e22",
       "process": "new:curve-validation-review",
       "message_id": "corpus/giron-d/sent/133.",
       "field": "body",
       "quote": "If you could, please identify the factors that are driving their drastic",
-      "note": "Asks for explanation of curve changes.",
+      "note": "Asks for explanations of monthly curve changes.",
       "match": "exact",
       "start": 1115,
       "end": 1187,
@@ -632,26 +654,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-047:e21",
+      "evidence_id": "batch-047:e23",
       "process": "new:curve-validation-review",
       "message_id": "corpus/giron-d/sent/132.",
       "field": "body",
-      "quote": "IF-TW/PERMIAN is a production area curve.",
-      "note": "Explains curve changes to the validator.",
+      "quote": "NGI-PGE/TOPOCK is an internal curve used to value transport",
+      "note": "Explains why a curve changed.",
       "match": "exact",
-      "start": 696,
-      "end": 737,
+      "start": 473,
+      "end": 532,
       "segment": "own",
-      "raw_text": "IF-TW/PERMIAN is a production area curve.",
+      "raw_text": "NGI-PGE/TOPOCK is an internal curve used to value transport",
       "reason": null
     },
     {
-      "evidence_id": "batch-047:e22",
-      "process": "new:machine-inventory-survey",
+      "evidence_id": "batch-047:e24",
+      "process": "new:gem-workstation-inventory",
       "message_id": "corpus/giron-d/sent/131.",
       "field": "body",
       "quote": "I have 3 flat screen monitors and a Sun monitor.",
-      "note": "Answers a survey of machines and screens.",
+      "note": "Replies to an equipment survey.",
       "match": "exact",
       "start": 443,
       "end": 491,
@@ -660,54 +682,40 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-047:e23",
-      "process": "new:odbc-dsn-listing",
+      "evidence_id": "batch-047:e25",
+      "process": "new:gem-workstation-inventory",
       "message_id": "corpus/giron-d/sent/130.",
       "field": "body",
-      "quote": "rmsprod32   Oracle 73",
-      "note": "Sends a list of configured ODBC data sources.",
+      "quote": "cpr    Oracle 73\nCPR HOUSTON  Oracle 73",
+      "note": "Lists workstation ODBC data sources, likely for the same project; uncertain.",
       "match": "exact",
-      "start": 890,
-      "end": 911,
+      "start": 466,
+      "end": 505,
       "segment": "own",
-      "raw_text": "rmsprod32   Oracle 73",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-047:e24",
-      "process": "credit-exposure-reporting",
-      "message_id": "corpus/giron-d/sent/129.",
-      "field": "subject",
-      "quote": "Credit Report--3/22/01",
-      "note": "Dated credit report forwarded.",
-      "match": "exact",
-      "start": 170,
-      "end": 192,
-      "segment": "subject",
-      "raw_text": "Credit Report--3/22/01",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-047:e25",
-      "process": "counterparty-settlement-review",
-      "message_id": "corpus/farmer-d/logistics/2130.",
-      "field": "body",
-      "quote": "Please make a note that we did a deal with Kinder Morgan that nets out and",
-      "note": "Notes a netted deal that should not be billed or paid.",
-      "match": "exact",
-      "start": 605,
-      "end": 679,
-      "segment": "own",
-      "raw_text": "Please make a note that we did a deal with Kinder Morgan that nets out and",
+      "raw_text": "cpr    Oracle 73\nCPR HOUSTON  Oracle 73",
       "reason": null
     },
     {
       "evidence_id": "batch-047:e26",
+      "process": "settlement-resolution",
+      "message_id": "corpus/farmer-d/logistics/2130.",
+      "field": "body",
+      "quote": "we did a deal with Kinder Morgan that nets out and",
+      "note": "Notes a netted deal that should not be billed or paid.",
+      "match": "exact",
+      "start": 629,
+      "end": 679,
+      "segment": "own",
+      "raw_text": "we did a deal with Kinder Morgan that nets out and",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-047:e27",
       "process": "new:off-system-scheduling-rotation",
       "message_id": "corpus/farmer-d/logistics/213.",
       "field": "body",
       "quote": "Yes this is still on.  I talked to everyone except Daren.",
-      "note": "Confirms planned rotation to off-system scheduling.",
+      "note": "Confirms a rotation to off-system scheduling.",
       "match": "exact",
       "start": 618,
       "end": 675,
@@ -716,26 +724,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-047:e27",
-      "process": "credit-exposure-reporting",
-      "message_id": "corpus/giron-d/sent/128.",
-      "field": "subject",
-      "quote": "Credit Report--3/23/01",
-      "note": "Dated credit report forwarded.",
-      "match": "exact",
-      "start": 171,
-      "end": 193,
-      "segment": "subject",
-      "raw_text": "Credit Report--3/23/01",
-      "reason": null
-    },
-    {
       "evidence_id": "batch-047:e28",
-      "process": "new:counterparty-entity-rebook",
+      "process": "deal-book-transfer",
       "message_id": "corpus/giron-d/sent/127.",
       "field": "body",
       "quote": "Can you please have the following deals rebooked from ENA to ECC.",
-      "note": "Request to rebook deals to another Enron entity.",
+      "note": "Asks for deals to be moved between entities.",
       "match": "exact",
       "start": 739,
       "end": 804,
@@ -745,11 +739,11 @@
     },
     {
       "evidence_id": "batch-047:e29",
-      "process": "new:aep-transition-planning",
+      "process": "new:hpl-aep-transition",
       "message_id": "corpus/farmer-d/logistics/212.",
       "field": "body",
       "quote": "Attached is a brief memo outline some of the transtion issues with HPL to AEP",
-      "note": "Draft memo of transition items to collect input on.",
+      "note": "Circulates transition issues memo for additions.",
       "match": "exact",
       "start": 1369,
       "end": 1446,
@@ -759,11 +753,11 @@
     },
     {
       "evidence_id": "batch-047:e30",
-      "process": "new:contract-termination-report",
+      "process": "new:contract-assignment-termination-report",
       "message_id": "corpus/farmer-d/logistics/211.",
       "field": "body",
       "quote": "Attached is the April 2001 Assignment, Termination & Expiration Report for Houston Pipe Line's contracts.",
-      "note": "Periodic contract report distribution.",
+      "note": "Periodic contract report distributed to a list.",
       "match": "exact",
       "start": 2926,
       "end": 3031,
@@ -774,30 +768,12 @@
   ],
   "stall_checks": [
     {
-      "message_id": "corpus/giron-d/sent/141.",
-      "match": "repaired",
-      "start": 773,
-      "end": 827,
-      "segment": "quoted",
-      "raw_text": "Please let me know if you're no longer handling \nthis.",
-      "reason": null
-    },
-    {
       "message_id": "corpus/giron-d/sent/135.",
       "match": "exact",
       "start": 494,
       "end": 536,
       "segment": "own",
       "raw_text": "I get an error when I try to approve this.",
-      "reason": null
-    },
-    {
-      "message_id": "corpus/giron-d/sent/132.",
-      "match": "exact",
-      "start": 1070,
-      "end": 1132,
-      "segment": "quoted",
-      "raw_text": "Can you or anyone in your group follow up on the curves below?",
       "reason": null
     }
   ],
@@ -817,7 +793,7 @@
     {
       "key": "new:credit-reserve-request",
       "name": "Credit reserve request",
-      "definition": "Asking that a credit reserve be taken on a specific counterparty transaction.",
+      "definition": "Asking a desk to take a credit reserve on a named counterparty transaction.",
       "example_ids": [
         "corpus/giron-d/sent/147."
       ]
@@ -833,73 +809,58 @@
     {
       "key": "new:training-order-approval",
       "name": "Training order approval",
-      "definition": "Approving course registration orders for staff.",
+      "definition": "Approving course registration orders raised for staff through the training vendor.",
       "example_ids": [
         "corpus/giron-d/sent/135."
       ]
     },
     {
       "key": "new:curve-validation-review",
-      "name": "Curve validation review",
-      "definition": "Explaining why monthly forward curves changed shape or seasonality when asked by the validation group.",
+      "name": "Monthly curve validation review",
+      "definition": "Explaining changes in price curves flagged in the monthly curve validation.",
       "example_ids": [
         "corpus/giron-d/sent/133.",
         "corpus/giron-d/sent/132."
       ]
     },
     {
-      "key": "new:machine-inventory-survey",
-      "name": "Machine inventory survey",
-      "definition": "Answering project requests for how many computers and screens each person has.",
+      "key": "new:gem-workstation-inventory",
+      "name": "Workstation inventory for IT project",
+      "definition": "Answering IT project requests about screens, computers and data sources on a user's machine.",
       "example_ids": [
-        "corpus/giron-d/sent/131."
-      ]
-    },
-    {
-      "key": "new:odbc-dsn-listing",
-      "name": "ODBC data source listing",
-      "definition": "Sending the list of configured ODBC data sources for a workstation.",
-      "example_ids": [
+        "corpus/giron-d/sent/131.",
         "corpus/giron-d/sent/130."
       ]
     },
     {
       "key": "new:off-system-scheduling-rotation",
       "name": "Off-system scheduling rotation",
-      "definition": "Arranging for a staff member to rotate onto off-system pipeline scheduling and learn it.",
+      "definition": "Arranging for a staff member to rotate into off-system gas scheduling and learn the pipes.",
       "example_ids": [
         "corpus/farmer-d/logistics/213."
       ]
     },
     {
-      "key": "new:counterparty-entity-rebook",
-      "name": "Counterparty entity rebook",
-      "definition": "Rebooking deals from one Enron entity to another or to a renamed counterparty.",
-      "example_ids": [
-        "corpus/giron-d/sent/127."
-      ]
-    },
-    {
-      "key": "new:aep-transition-planning",
-      "name": "AEP transition planning",
-      "definition": "Listing and tracking transition issues for the handover of the pipeline to AEP.",
+      "key": "new:hpl-aep-transition",
+      "name": "HPL to AEP transition items",
+      "definition": "Collecting and tracking transition issues in handing the pipeline business to the new owner.",
       "example_ids": [
         "corpus/farmer-d/logistics/212."
       ]
     },
     {
-      "key": "new:contract-termination-report",
-      "name": "Contract assignment and termination report",
-      "definition": "Distributing the periodic assignment, termination and expiration report for pipeline contracts.",
+      "key": "new:contract-assignment-termination-report",
+      "name": "Contract assignment, termination and expiration report",
+      "definition": "Distributing the periodic report of contract assignments, terminations and expirations to a list.",
       "example_ids": [
         "corpus/farmer-d/logistics/211."
       ]
     }
   ],
-  "batch_notes": "No injection attempts. Several credit report forwards have only headers, so the subject is quoted. Personal and chain-mail messages left without processes. Ten new keys proposed.",
+  "batch_notes": "No injection attempts found. Personal or joke mail tagged personal/noise. The ODBC and Machine Info messages share one new key; the fit is uncertain. Eight new keys proposed.",
   "quote_stats": {
-    "exact": 34,
-    "repaired": 1,
+    "exact": 33,
+    "repaired": 0,
     "rejected": 0
   }
 }

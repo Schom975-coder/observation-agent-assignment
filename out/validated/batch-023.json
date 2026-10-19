@@ -5,7 +5,7 @@
     {
       "id": "corpus/farmer-d/logistics/1393.",
       "processes": [
-        "pipeline-outage-supply-cuts"
+        "supply-cut-handling"
       ],
       "role": "fyi",
       "stall": null,
@@ -14,7 +14,7 @@
     {
       "id": "corpus/giron-d/sent/661.",
       "processes": [
-        "curve-postid-mapping"
+        "deal-book-transfer"
       ],
       "role": "fyi",
       "stall": null,
@@ -23,7 +23,7 @@
     {
       "id": "corpus/giron-d/sent/660.",
       "processes": [
-        "reference-data-update"
+        "new:risk-contact-list"
       ],
       "role": "fyi",
       "stall": null,
@@ -53,7 +53,7 @@
     {
       "id": "corpus/giron-d/sent/656.",
       "processes": [
-        "pnl-position-reporting"
+        "new:park-and-loan-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -62,7 +62,7 @@
     {
       "id": "corpus/giron-d/sent/655.",
       "processes": [
-        "deal-record-correction"
+        "settlement-resolution"
       ],
       "role": "response",
       "stall": null,
@@ -95,7 +95,7 @@
     {
       "id": "corpus/farmer-d/logistics/1398.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -104,7 +104,7 @@
     {
       "id": "corpus/farmer-d/logistics/1796.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "response",
       "stall": null,
@@ -131,7 +131,7 @@
     {
       "id": "corpus/farmer-d/logistics/1400.",
       "processes": [
-        "new:opm-activity-review"
+        "time-activity-reporting"
       ],
       "role": "fyi",
       "stall": null,
@@ -140,7 +140,7 @@
     {
       "id": "corpus/farmer-d/logistics/1401.",
       "processes": [
-        "new:annual-budget-preparation"
+        "new:budget-questionnaire"
       ],
       "role": "request",
       "stall": null,
@@ -149,7 +149,7 @@
     {
       "id": "corpus/farmer-d/logistics/1403.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -158,7 +158,7 @@
     {
       "id": "corpus/farmer-d/logistics/1404.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -167,7 +167,7 @@
     {
       "id": "corpus/farmer-d/logistics/1406.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "response",
       "stall": {
@@ -186,7 +186,7 @@
     {
       "id": "corpus/farmer-d/logistics/1405.",
       "processes": [
-        "pipeline-outage-supply-cuts"
+        "pipeline-maintenance-notice"
       ],
       "role": "fyi",
       "stall": null,
@@ -195,7 +195,7 @@
     {
       "id": "corpus/farmer-d/logistics/1407.",
       "processes": [
-        "user-access-setup"
+        "system-access-request"
       ],
       "role": "automated",
       "stall": null,
@@ -204,9 +204,9 @@
     {
       "id": "corpus/farmer-d/logistics/1409.",
       "processes": [
-        "new:annual-budget-preparation"
+        "new:budget-questionnaire"
       ],
-      "role": "request",
+      "role": "fyi",
       "stall": null,
       "ownership_claim": null
     },
@@ -249,7 +249,7 @@
     {
       "id": "corpus/giron-d/sent/791.",
       "processes": [
-        "new:annual-budget-preparation"
+        "new:budget-questionnaire"
       ],
       "role": "response",
       "stall": null,
@@ -265,7 +265,7 @@
     {
       "id": "corpus/farmer-d/logistics/1412.",
       "processes": [
-        "trading-book-setup"
+        "new:trading-product-setup"
       ],
       "role": "request",
       "stall": null,
@@ -274,7 +274,7 @@
     {
       "id": "corpus/farmer-d/logistics/1413.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -284,39 +284,39 @@
   "evidence": [
     {
       "evidence_id": "batch-023:e0",
-      "process": "pipeline-outage-supply-cuts",
+      "process": "supply-cut-handling",
       "message_id": "corpus/farmer-d/logistics/1393.",
       "field": "body",
-      "quote": "Exxon supply at Mobil Cayanosa has fallen off due to problems, so starting",
-      "note": "Supply to a meter is cut for specific days and replacement gas bought.",
+      "quote": "Stacey has already bought gas from Duke to resupply (the",
+      "note": "Supply fell off and replacement gas was bought to resupply the customer.",
       "match": "exact",
-      "start": 468,
-      "end": 542,
+      "start": 638,
+      "end": 694,
       "segment": "own",
-      "raw_text": "Exxon supply at Mobil Cayanosa has fallen off due to problems, so starting",
+      "raw_text": "Stacey has already bought gas from Duke to resupply (the",
       "reason": null
     },
     {
       "evidence_id": "batch-023:e1",
-      "process": "curve-postid-mapping",
+      "process": "deal-book-transfer",
       "message_id": "corpus/giron-d/sent/661.",
       "field": "body",
-      "quote": "NQ2167.1\nNQ2177.1\nNQ4558.1",
-      "note": "List of IDs sent to a colleague, apparently post IDs; classification uncertain.",
+      "quote": "NQ4558.1\nNQ4558.4\nNS7295.1",
+      "note": "List of deal references sent for handling; weak fit, likely deals to be moved.",
       "match": "exact",
-      "start": 428,
-      "end": 454,
+      "start": 446,
+      "end": 472,
       "segment": "own",
-      "raw_text": "NQ2167.1\nNQ2177.1\nNQ4558.1",
+      "raw_text": "NQ4558.1\nNQ4558.4\nNS7295.1",
       "reason": null
     },
     {
       "evidence_id": "batch-023:e2",
-      "process": "reference-data-update",
+      "process": "new:risk-contact-list",
       "message_id": "corpus/giron-d/sent/660.",
       "field": "body",
       "quote": "Central  Kam Keiser 3-5781",
-      "note": "Contact list of risk contacts by region with phone numbers.",
+      "note": "Lists risk contacts by region for another person.",
       "match": "exact",
       "start": 451,
       "end": 477,
@@ -326,25 +326,25 @@
     },
     {
       "evidence_id": "batch-023:e3",
-      "process": "pnl-position-reporting",
+      "process": "new:park-and-loan-reporting",
       "message_id": "corpus/giron-d/sent/656.",
       "field": "body",
-      "quote": "Darin, this is a summary of the Park and Loan deals that you should have.",
-      "note": "Forwarded summary of park and loan deals and expected revenues for the book.",
+      "quote": "this is a summary of the Park and Loan deals that you should have.",
+      "note": "Park and Loan deal summary passed on for revenue recording.",
       "match": "exact",
-      "start": 893,
+      "start": 900,
       "end": 966,
       "segment": "forwarded",
-      "raw_text": "Darin, this is a summary of the Park and Loan deals that you should have.",
+      "raw_text": "this is a summary of the Park and Loan deals that you should have.",
       "reason": null
     },
     {
       "evidence_id": "batch-023:e4",
-      "process": "deal-record-correction",
+      "process": "settlement-resolution",
       "message_id": "corpus/giron-d/sent/655.",
       "field": "body",
       "quote": "can you please change the full volume to be priced at",
-      "note": "Quoted request to fix a deal's pricing; reply says Done.",
+      "note": "Asks for a corrected deal price; reply says done.",
       "match": "exact",
       "start": 882,
       "end": 935,
@@ -357,13 +357,13 @@
       "process": "new:meter-assignment-notice",
       "message_id": "corpus/farmer-d/logistics/1396.",
       "field": "body",
-      "quote": "Tetco Enerfin is going to be assigned meter #0439.",
-      "note": "Announces a new meter number and who is assigned it.",
+      "quote": "Jackie Young is assigned this meter.",
+      "note": "Announces a new meter number and who is assigned to it.",
       "match": "exact",
-      "start": 1329,
-      "end": 1379,
+      "start": 1443,
+      "end": 1479,
       "segment": "own",
-      "raw_text": "Tetco Enerfin is going to be assigned meter #0439.",
+      "raw_text": "Jackie Young is assigned this meter.",
       "reason": null
     },
     {
@@ -382,30 +382,30 @@
     },
     {
       "evidence_id": "batch-023:e7",
-      "process": "meter-flow-deal-coverage",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1398.",
       "field": "body",
-      "quote": "Deal 351653 is set up for 20,000mmbtu purchase from Duke at meter 981040 on",
-      "note": "Actual flow shows with no matching deal set up; asks where it should be.",
+      "quote": "the actuals on CENT show a volume of 19,606 mmbtu at meter 77455 on",
+      "note": "Actual flow at a meter with no matching deal.",
       "match": "exact",
-      "start": 625,
-      "end": 700,
+      "start": 711,
+      "end": 778,
       "segment": "own",
-      "raw_text": "Deal 351653 is set up for 20,000mmbtu purchase from Duke at meter 981040 on",
+      "raw_text": "the actuals on CENT show a volume of 19,606 mmbtu at meter 77455 on",
       "reason": null
     },
     {
       "evidence_id": "batch-023:e8",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1796.",
       "field": "body",
-      "quote": "Per our meeting yesterday, I have set up the necessary usage tickets.",
-      "note": "Sets up deal tickets so volume can be allocated.",
+      "quote": "I have set up the necessary usage tickets.",
+      "note": "Deal tickets created in Sitara.",
       "match": "exact",
-      "start": 718,
+      "start": 745,
       "end": 787,
       "segment": "own",
-      "raw_text": "Per our meeting yesterday, I have set up the necessary usage tickets.",
+      "raw_text": "I have set up the necessary usage tickets.",
       "reason": null
     },
     {
@@ -414,7 +414,7 @@
       "message_id": "corpus/giron-d/sent/653.",
       "field": "body",
       "quote": "I am going to set up a new counterparty in our system:  Enovate LLC.",
-      "note": "Proposes new counterparty and Tagg books.",
+      "note": "Plans new counterparty and books for review.",
       "match": "exact",
       "start": 633,
       "end": 701,
@@ -428,7 +428,7 @@
       "message_id": "corpus/giron-d/sent/634.",
       "field": "body",
       "quote": "Call me if you have any further questions.",
-      "note": "Short follow-up in the Enovate book set-up thread.",
+      "note": "Follow-up on the Enovate set-up, with no other content.",
       "match": "exact",
       "start": 435,
       "end": 477,
@@ -438,25 +438,25 @@
     },
     {
       "evidence_id": "batch-023:e11",
-      "process": "new:opm-activity-review",
+      "process": "time-activity-reporting",
       "message_id": "corpus/farmer-d/logistics/1400.",
       "field": "body",
-      "quote": "I wanted to send you a copy of the activities as we have redefined them, if",
-      "note": "Shares redefined team activities ahead of a review meeting.",
+      "quote": "We will be identifying what activities are being performed by your team, and",
+      "note": "Activity survey of the team's work.",
       "match": "exact",
-      "start": 464,
-      "end": 539,
+      "start": 604,
+      "end": 680,
       "segment": "own",
-      "raw_text": "I wanted to send you a copy of the activities as we have redefined them, if",
+      "raw_text": "We will be identifying what activities are being performed by your team, and",
       "reason": null
     },
     {
       "evidence_id": "batch-023:e12",
-      "process": "new:annual-budget-preparation",
+      "process": "new:budget-questionnaire",
       "message_id": "corpus/farmer-d/logistics/1401.",
       "field": "body",
       "quote": "PLEASE FILL IN THE ATTACHED BUDGET QUESTIONAIRE AND RETURN TO ME NO LATER",
-      "note": "Asks managers to complete the budget questionnaire.",
+      "note": "Asks managers to return the budget questionnaire.",
       "match": "exact",
       "start": 1762,
       "end": 1835,
@@ -466,11 +466,11 @@
     },
     {
       "evidence_id": "batch-023:e13",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1403.",
       "field": "body",
       "quote": "Please extend the deal to cover September.",
-      "note": "Requests deal extension for a month of flow.",
+      "note": "Requests extension of a deal for the month.",
       "match": "exact",
       "start": 556,
       "end": 598,
@@ -480,11 +480,11 @@
     },
     {
       "evidence_id": "batch-023:e14",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1404.",
       "field": "body",
       "quote": "can you get a deal set up for meter 6879 for Sept. 00?",
-      "note": "Requests a deal for a meter and month.",
+      "note": "Requests a deal at a meter for the month.",
       "match": "exact",
       "start": 464,
       "end": 518,
@@ -494,25 +494,25 @@
     },
     {
       "evidence_id": "batch-023:e15",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1406.",
       "field": "body",
-      "quote": "There is no evergreen to the contract.  The deal will end when the",
-      "note": "Corrects the deal term so September is covered.",
+      "quote": "There is no evergreen to the contract.",
+      "note": "Corrects the deal term and adds September.",
       "match": "exact",
       "start": 618,
-      "end": 684,
+      "end": 656,
       "segment": "own",
-      "raw_text": "There is no evergreen to the contract.  The deal will end when the",
+      "raw_text": "There is no evergreen to the contract.",
       "reason": null
     },
     {
       "evidence_id": "batch-023:e16",
-      "process": "pipeline-outage-supply-cuts",
+      "process": "pipeline-maintenance-notice",
       "message_id": "corpus/farmer-d/logistics/1405.",
       "field": "body",
       "quote": "Per Gas Control, this will be down until the 18th.",
-      "note": "Meter outage notice from gas control.",
+      "note": "Meter outage dates from Gas Control.",
       "match": "exact",
       "start": 633,
       "end": 683,
@@ -522,30 +522,30 @@
     },
     {
       "evidence_id": "batch-023:e17",
-      "process": "user-access-setup",
+      "process": "system-access-request",
       "message_id": "corpus/farmer-d/logistics/1407.",
-      "field": "body",
-      "quote": "Please review and act upon this request.",
+      "field": "subject",
+      "quote": "Request Submitted: Access Request for liz.bellamy@enron.com",
       "note": "Automated access request awaiting manager approval.",
       "match": "exact",
-      "start": 514,
-      "end": 554,
-      "segment": "own",
-      "raw_text": "Please review and act upon this request.",
+      "start": 171,
+      "end": 230,
+      "segment": "subject",
+      "raw_text": "Request Submitted: Access Request for liz.bellamy@enron.com",
       "reason": null
     },
     {
       "evidence_id": "batch-023:e18",
-      "process": "new:annual-budget-preparation",
+      "process": "new:budget-questionnaire",
       "message_id": "corpus/farmer-d/logistics/1409.",
       "field": "body",
-      "quote": "Make a list of your staff just their positions.",
-      "note": "Instructions for providing salary and training inputs to the budget.",
+      "quote": "Once I put all of your budget information into the spreadsheets, we will",
+      "note": "Guidance on completing budget inputs.",
       "match": "exact",
-      "start": 1877,
-      "end": 1924,
+      "start": 3453,
+      "end": 3525,
       "segment": "own",
-      "raw_text": "Make a list of your staff just their positions.",
+      "raw_text": "Once I put all of your budget information into the spreadsheets, we will",
       "reason": null
     },
     {
@@ -554,7 +554,7 @@
       "message_id": "corpus/giron-d/sent/650.",
       "field": "body",
       "quote": "I need some Tagg books set up for the Chicago office.",
-      "note": "Requests new Tagg books.",
+      "note": "Requests new trading books.",
       "match": "exact",
       "start": 505,
       "end": 558,
@@ -596,7 +596,7 @@
       "message_id": "corpus/farmer-d/logistics/3219.",
       "field": "body",
       "quote": "Here's the latest Global Performance Management Schedule for YE2000",
-      "note": "Year-end performance review schedule and reminders.",
+      "note": "Schedule and reminders for the year-end review cycle.",
       "match": "exact",
       "start": 2761,
       "end": 2828,
@@ -606,11 +606,11 @@
     },
     {
       "evidence_id": "batch-023:e23",
-      "process": "new:annual-budget-preparation",
+      "process": "new:budget-questionnaire",
       "message_id": "corpus/giron-d/sent/791.",
       "field": "body",
       "quote": "The Chicago region is just me.  If you need my salary, let me know.",
-      "note": "Supplies budget inputs for the region.",
+      "note": "Late reply with budget input.",
       "match": "exact",
       "start": 439,
       "end": 506,
@@ -620,11 +620,11 @@
     },
     {
       "evidence_id": "batch-023:e24",
-      "process": "trading-book-setup",
+      "process": "new:trading-product-setup",
       "message_id": "corpus/farmer-d/logistics/1412.",
       "field": "body",
       "quote": "We would like to get these products out by bid week if at all possible.",
-      "note": "Requests set-up of new trading products with meters.",
+      "note": "Asks for new trading products with meters to be created.",
       "match": "exact",
       "start": 1453,
       "end": 1524,
@@ -634,11 +634,11 @@
     },
     {
       "evidence_id": "batch-023:e25",
-      "process": "meter-flow-deal-coverage",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1413.",
       "field": "body",
       "quote": "The two meters below are new and have unallocatable flow",
-      "note": "New meters with flow need a purchase deal.",
+      "note": "Unallocatable flow at meters needs a purchase deal to clear.",
       "match": "exact",
       "start": 519,
       "end": 575,
@@ -682,34 +682,50 @@
   ],
   "new_processes": [
     {
+      "key": "new:risk-contact-list",
+      "name": "Risk contact list",
+      "definition": "Providing lists of risk contacts by region to colleagues.",
+      "example_ids": [
+        "corpus/giron-d/sent/660."
+      ]
+    },
+    {
+      "key": "new:park-and-loan-reporting",
+      "name": "Park and loan deal summary",
+      "definition": "Circulating summaries of park and loan deals and their expected revenues for recording.",
+      "example_ids": [
+        "corpus/giron-d/sent/656."
+      ]
+    },
+    {
       "key": "new:meter-assignment-notice",
-      "name": "Meter assignment notice",
-      "definition": "Announcing a new meter number and which logistics person is assigned to it, and when it becomes operable.",
+      "name": "New meter assignment notice",
+      "definition": "Announcing a new meter number, its start date and the person assigned to it.",
       "example_ids": [
         "corpus/farmer-d/logistics/1396.",
         "corpus/farmer-d/logistics/1430."
       ]
     },
     {
-      "key": "new:opm-activity-review",
-      "name": "OPM activity review",
-      "definition": "Defining and reviewing the activities a team performs, with meetings about them and automation of driver information.",
-      "example_ids": [
-        "corpus/farmer-d/logistics/1400."
-      ]
-    },
-    {
-      "key": "new:annual-budget-preparation",
-      "name": "Annual budget preparation",
-      "definition": "Collecting budget questionnaires, salary, staffing and training inputs from managers for the coming year's budget.",
+      "key": "new:budget-questionnaire",
+      "name": "Annual budget questionnaire",
+      "definition": "Collecting budget inputs such as salaries, training and staffing from managers for the yearly budget.",
       "example_ids": [
         "corpus/farmer-d/logistics/1401.",
         "corpus/farmer-d/logistics/1409.",
         "corpus/giron-d/sent/791."
       ]
+    },
+    {
+      "key": "new:trading-product-setup",
+      "name": "Trading product set-up",
+      "definition": "Requesting new tradeable products defined by receipt and delivery meters.",
+      "example_ids": [
+        "corpus/farmer-d/logistics/1412."
+      ]
     }
   ],
-  "batch_notes": "No injection attempts. corpus/giron-d/sent/661 (bare ID list) classified as curve-postid-mapping with low confidence. Proposed new keys: meter-assignment-notice, opm-activity-review, annual-budget-preparation.",
+  "batch_notes": "No injection attempts found. Message 661 (bare deal reference list) is a weak fit for deal-book-transfer. Six personal messages (chain letters, investments). New keys: risk-contact-list, park-and-loan-reporting, meter-assignment-notice, budget-questionnaire, trading-product-setup.",
   "quote_stats": {
     "exact": 29,
     "repaired": 0,

@@ -5,25 +5,25 @@
     {
       "id": "corpus/williams-w3/inbox/23.",
       "processes": [],
-      "role": "noise",
+      "role": "automated",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/inbox/6.",
       "processes": [
-        "user-access-setup"
+        "system-access-request"
       ],
-      "role": "fyi",
+      "role": "response",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/inbox/14.",
       "processes": [
-        "user-access-setup"
+        "system-access-request"
       ],
-      "role": "fyi",
+      "role": "response",
       "stall": null,
       "ownership_claim": null
     },
@@ -39,7 +39,7 @@
     {
       "id": "corpus/williams-w3/inbox/21.",
       "processes": [
-        "user-access-setup"
+        "system-access-request"
       ],
       "role": "request",
       "stall": null,
@@ -48,7 +48,7 @@
     {
       "id": "corpus/williams-w3/inbox/20.",
       "processes": [
-        "user-access-setup"
+        "system-access-request"
       ],
       "role": "response",
       "stall": null,
@@ -57,7 +57,7 @@
     {
       "id": "corpus/williams-w3/inbox/19.",
       "processes": [
-        "user-access-setup"
+        "system-access-request"
       ],
       "role": "response",
       "stall": null,
@@ -66,7 +66,7 @@
     {
       "id": "corpus/williams-w3/inbox/18.",
       "processes": [
-        "user-access-setup"
+        "system-access-request"
       ],
       "role": "request",
       "stall": null,
@@ -75,11 +75,14 @@
     {
       "id": "corpus/williams-w3/inbox/17.",
       "processes": [
-        "user-access-setup"
+        "system-access-request"
       ],
       "role": "response",
       "stall": null,
-      "ownership_claim": null
+      "ownership_claim": {
+        "person": "Dave",
+        "quote": "Dan has layed out a process for this to happen that I will follow."
+      }
     },
     {
       "id": "corpus/giron-d/inbox/3.",
@@ -91,7 +94,7 @@
     {
       "id": "corpus/giron-d/inbox/4.",
       "processes": [
-        "new:ubs-transition-coordination"
+        "new:estate-handover-of-procedures"
       ],
       "role": "request",
       "stall": null,
@@ -100,7 +103,7 @@
     {
       "id": "corpus/giron-d/inbox/2.",
       "processes": [
-        "new:ubs-transition-coordination"
+        "new:ubs-transition-onboarding"
       ],
       "role": "fyi",
       "stall": null,
@@ -109,25 +112,31 @@
     {
       "id": "corpus/williams-w3/inbox/16.",
       "processes": [
-        "new:ubs-transition-coordination"
+        "new:ubs-transition-onboarding"
       ],
       "role": "fyi",
-      "stall": null,
+      "stall": {
+        "kind": "system_failure",
+        "quote": "attachments WILL NOT BE SAVED!"
+      },
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/inbox/15.",
       "processes": [
-        "new:ubs-transition-coordination"
+        "new:ubs-transition-onboarding"
       ],
       "role": "request",
       "stall": null,
-      "ownership_claim": null
+      "ownership_claim": {
+        "person": "Cara Freeland",
+        "quote": "I am going to send all of our File Migration compliance forms in one batch"
+      }
     },
     {
       "id": "corpus/giron-d/inbox/1.",
       "processes": [
-        "new:ubs-transition-coordination"
+        "new:ubs-transition-onboarding"
       ],
       "role": "fyi",
       "stall": null,
@@ -135,15 +144,17 @@
     },
     {
       "id": "corpus/williams-w3/inbox/13.",
-      "processes": [],
-      "role": "noise",
+      "processes": [
+        "new:interview-scheduling"
+      ],
+      "role": "fyi",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/inbox/12.",
       "processes": [
-        "market-rule-change-review"
+        "regulatory-notice-review"
       ],
       "role": "fyi",
       "stall": null,
@@ -152,19 +163,19 @@
     {
       "id": "corpus/williams-w3/inbox/10.",
       "processes": [
-        "market-rule-change-review"
+        "regulatory-notice-review"
       ],
       "role": "fyi",
       "stall": {
         "kind": "rework",
-        "quote": "There appears to be an issue with the pdf versions of the automation\nspecifications."
+        "quote": "There appears to be an issue with the pdf versions of the automation"
       },
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/inbox/11.",
       "processes": [
-        "new:ubs-transition-coordination"
+        "new:ubs-transition-onboarding"
       ],
       "role": "fyi",
       "stall": null,
@@ -173,7 +184,7 @@
     {
       "id": "corpus/williams-w3/inbox/8.",
       "processes": [
-        "new:ubs-transition-coordination"
+        "new:estate-handover-of-procedures"
       ],
       "role": "fyi",
       "stall": null,
@@ -190,11 +201,11 @@
   "evidence": [
     {
       "evidence_id": "batch-096:e0",
-      "process": "user-access-setup",
+      "process": "system-access-request",
       "message_id": "corpus/giron-d/inbox/6.",
       "field": "body",
       "quote": "Your PRODUCTION User ID and Password has been set up on UBSWenergy.",
-      "note": "Notice of production account set-up.",
+      "note": "Notice that a production user account was set up.",
       "match": "exact",
       "start": 561,
       "end": 628,
@@ -204,11 +215,11 @@
     },
     {
       "evidence_id": "batch-096:e1",
-      "process": "user-access-setup",
+      "process": "system-access-request",
       "message_id": "corpus/williams-w3/inbox/14.",
       "field": "body",
       "quote": "Your PRODUCTION User ID and Password has been set up on UBSWenergy.",
-      "note": "Notice of production account set-up.",
+      "note": "Notice that a production user account was set up.",
       "match": "exact",
       "start": 626,
       "end": 693,
@@ -221,22 +232,22 @@
       "process": "new:test-deal-booking-review",
       "message_id": "corpus/giron-d/inbox/5.",
       "field": "body",
-      "quote": "I pushed a few test deals for Canadian products through and need you to review these deals in Tagg and Sitara",
-      "note": "Asks reviewers to verify test deals book correctly.",
+      "quote": "need you to review these deals in Tagg and Sitara to verify that they are booking correctly",
+      "note": "Asks colleagues to verify test deals book correctly in the deal systems.",
       "match": "exact",
-      "start": 744,
-      "end": 853,
+      "start": 804,
+      "end": 895,
       "segment": "own",
-      "raw_text": "I pushed a few test deals for Canadian products through and need you to review these deals in Tagg and Sitara",
+      "raw_text": "need you to review these deals in Tagg and Sitara to verify that they are booking correctly",
       "reason": null
     },
     {
       "evidence_id": "batch-096:e3",
-      "process": "user-access-setup",
+      "process": "system-access-request",
       "message_id": "corpus/williams-w3/inbox/21.",
       "field": "body",
       "quote": "I need to know now who will need an exception to this. ASAP.",
-      "note": "Asks who needs an account exception before accounts are disabled.",
+      "note": "Asks who needs an exception to the account disabling.",
       "match": "exact",
       "start": 822,
       "end": 882,
@@ -246,21 +257,21 @@
     },
     {
       "evidence_id": "batch-096:e4",
-      "process": "user-access-setup",
+      "process": "system-access-request",
       "message_id": "corpus/williams-w3/inbox/20.",
       "field": "body",
-      "quote": "However, I do not feel that the accounts for the resources should be disabled.",
-      "note": "Objects to disabling accounts.",
+      "quote": "I do not feel that the accounts for the resources should be disabled.",
+      "note": "Objects to disabling user accounts.",
       "match": "exact",
-      "start": 843,
+      "start": 852,
       "end": 921,
       "segment": "own",
-      "raw_text": "However, I do not feel that the accounts for the resources should be disabled.",
+      "raw_text": "I do not feel that the accounts for the resources should be disabled.",
       "reason": null
     },
     {
       "evidence_id": "batch-096:e5",
-      "process": "user-access-setup",
+      "process": "system-access-request",
       "message_id": "corpus/williams-w3/inbox/19.",
       "field": "body",
       "quote": "It is in the best interest of the Estate to keep these accounts active until the Estate has a solid alternative plan established!",
@@ -274,11 +285,11 @@
     },
     {
       "evidence_id": "batch-096:e6",
-      "process": "user-access-setup",
+      "process": "system-access-request",
       "message_id": "corpus/williams-w3/inbox/18.",
       "field": "body",
       "quote": "What do we need to do to make sure these accounts stay active past Sunday?",
-      "note": "Asks how to keep accounts active.",
+      "note": "Asks how to keep accounts from being disabled.",
       "match": "exact",
       "start": 815,
       "end": 889,
@@ -288,7 +299,7 @@
     },
     {
       "evidence_id": "batch-096:e7",
-      "process": "user-access-setup",
+      "process": "system-access-request",
       "message_id": "corpus/williams-w3/inbox/17.",
       "field": "body",
       "quote": "Dan has layed out a process for this to happen that I will follow.",
@@ -302,25 +313,39 @@
     },
     {
       "evidence_id": "batch-096:e8",
-      "process": "new:ubs-transition-coordination",
+      "process": "new:estate-handover-of-procedures",
       "message_id": "corpus/giron-d/inbox/4.",
       "field": "body",
-      "quote": "Could you please let me know if there are any procedures that any UBS people are still running that should be run by the estate team?",
-      "note": "Asks for procedures to hand over to the estate team.",
+      "quote": "if there are any procedures that any UBS people are still running that should be run by the estate team",
+      "note": "Asks for procedures to hand to the estate team.",
       "match": "exact",
-      "start": 785,
-      "end": 918,
+      "start": 814,
+      "end": 917,
       "segment": "own",
-      "raw_text": "Could you please let me know if there are any procedures that any UBS people are still running that should be run by the estate team?",
+      "raw_text": "if there are any procedures that any UBS people are still running that should be run by the estate team",
       "reason": null
     },
     {
       "evidence_id": "batch-096:e9",
-      "process": "new:ubs-transition-coordination",
+      "process": "new:estate-handover-of-procedures",
+      "message_id": "corpus/williams-w3/inbox/8.",
+      "field": "body",
+      "quote": "The estate will be settling CAPS each day (creating DA and HA finals) beginning on Friday.",
+      "note": "Announces estate taking over a daily settlement task.",
+      "match": "exact",
+      "start": 1369,
+      "end": 1459,
+      "segment": "own",
+      "raw_text": "The estate will be settling CAPS each day (creating DA and HA finals) beginning on Friday.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-096:e10",
+      "process": "new:ubs-transition-onboarding",
       "message_id": "corpus/giron-d/inbox/2.",
       "field": "body",
       "quote": "Orientation will be split into two sessions and divided by alpha-order.",
-      "note": "UBSW orientation logistics.",
+      "note": "Orientation logistics for staff moving to the new employer.",
       "match": "exact",
       "start": 14659,
       "end": 14730,
@@ -329,12 +354,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-096:e10",
-      "process": "new:ubs-transition-coordination",
+      "evidence_id": "batch-096:e11",
+      "process": "new:ubs-transition-onboarding",
       "message_id": "corpus/williams-w3/inbox/16.",
       "field": "body",
       "quote": "When exporting your EMAIL messages listed in the instructions or via the Outlook Export utility, attachments WILL NOT BE SAVED!",
-      "note": "Email migration instruction for UBS move.",
+      "note": "Email export migration instruction for transferring staff.",
       "match": "exact",
       "start": 617,
       "end": 744,
@@ -343,12 +368,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-096:e11",
-      "process": "new:ubs-transition-coordination",
+      "evidence_id": "batch-096:e12",
+      "process": "new:ubs-transition-onboarding",
       "message_id": "corpus/williams-w3/inbox/15.",
       "field": "body",
       "quote": "I am going to send all of our File Migration compliance forms in one batch",
-      "note": "Collecting migration compliance forms.",
+      "note": "Collecting compliance forms for file migration.",
       "match": "exact",
       "start": 621,
       "end": 695,
@@ -357,54 +382,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-096:e12",
-      "process": "new:ubs-transition-coordination",
+      "evidence_id": "batch-096:e13",
+      "process": "new:ubs-transition-onboarding",
       "message_id": "corpus/giron-d/inbox/1.",
       "field": "body",
-      "quote": "please read the announcement below from Security about how you can obtain a new UBS Warburg access card",
-      "note": "Access card transition for UBS staff.",
+      "quote": "UBS Warburg access cards can be picked up from 7 a.m. to 7 p.m. at the reception area on the 5th floor of Enron Center South",
+      "note": "Access card pick-up for transferring staff.",
       "match": "exact",
-      "start": 14858,
-      "end": 14961,
+      "start": 15477,
+      "end": 15601,
       "segment": "own",
-      "raw_text": "please read the announcement below from Security about how you can obtain a new UBS Warburg access card",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-096:e13",
-      "process": "market-rule-change-review",
-      "message_id": "corpus/williams-w3/inbox/12.",
-      "field": "body",
-      "quote": "The Market Simulation will be conducted from February 11 through 15, 2002.",
-      "note": "ISO market simulation notice.",
-      "match": "exact",
-      "start": 6646,
-      "end": 6720,
-      "segment": "own",
-      "raw_text": "The Market Simulation will be conducted from February 11 through 15, 2002.",
+      "raw_text": "UBS Warburg access cards can be picked up from 7 a.m. to 7 p.m. at the reception area on the 5th floor of Enron Center South",
       "reason": null
     },
     {
       "evidence_id": "batch-096:e14",
-      "process": "market-rule-change-review",
-      "message_id": "corpus/williams-w3/inbox/10.",
-      "field": "body",
-      "quote": "There appears to be an issue with the pdf versions of the automation\nspecifications.",
-      "note": "Follow-up on ISO simulation specification files.",
-      "match": "exact",
-      "start": 6427,
-      "end": 6511,
-      "segment": "own",
-      "raw_text": "There appears to be an issue with the pdf versions of the automation\nspecifications.",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-096:e15",
-      "process": "new:ubs-transition-coordination",
+      "process": "new:ubs-transition-onboarding",
       "message_id": "corpus/williams-w3/inbox/11.",
       "field": "body",
       "quote": "Please read the document at:",
-      "note": "Email backup instructions for UBSW move.",
+      "note": "Points transferring staff to email backup instructions.",
       "match": "exact",
       "start": 574,
       "end": 602,
@@ -413,59 +410,132 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-096:e16",
-      "process": "new:ubs-transition-coordination",
-      "message_id": "corpus/williams-w3/inbox/8.",
+      "evidence_id": "batch-096:e15",
+      "process": "new:interview-scheduling",
+      "message_id": "corpus/williams-w3/inbox/13.",
       "field": "body",
-      "quote": "The estate will be settling CAPS each day (creating DA and HA finals) beginning on Friday.",
-      "note": "Transition work split between estate and UBS.",
+      "quote": "your interview with Tim Belden will be held at 10:30 a.m. in Mt. St. Helens.",
+      "note": "Confirms interview time and place.",
       "match": "exact",
-      "start": 1369,
-      "end": 1459,
+      "start": 579,
+      "end": 655,
       "segment": "own",
-      "raw_text": "The estate will be settling CAPS each day (creating DA and HA finals) beginning on Friday.",
+      "raw_text": "your interview with Tim Belden will be held at 10:30 a.m. in Mt. St. Helens.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-096:e16",
+      "process": "regulatory-notice-review",
+      "message_id": "corpus/williams-w3/inbox/12.",
+      "field": "body",
+      "quote": "The Market Simulation will be conducted from February 11 through 15, 2002.",
+      "note": "CAISO market notice about a market simulation.",
+      "match": "exact",
+      "start": 6646,
+      "end": 6720,
+      "segment": "own",
+      "raw_text": "The Market Simulation will be conducted from February 11 through 15, 2002.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-096:e17",
+      "process": "regulatory-notice-review",
+      "message_id": "corpus/williams-w3/inbox/10.",
+      "field": "body",
+      "quote": "There appears to be an issue with the pdf versions of the automation",
+      "note": "CAISO resends specifications in another format.",
+      "match": "exact",
+      "start": 6427,
+      "end": 6495,
+      "segment": "own",
+      "raw_text": "There appears to be an issue with the pdf versions of the automation",
       "reason": null
     }
   ],
   "stall_checks": [
     {
+      "message_id": "corpus/williams-w3/inbox/16.",
+      "match": "exact",
+      "start": 714,
+      "end": 744,
+      "segment": "own",
+      "raw_text": "attachments WILL NOT BE SAVED!",
+      "reason": null
+    },
+    {
       "message_id": "corpus/williams-w3/inbox/10.",
       "match": "exact",
       "start": 6427,
-      "end": 6511,
+      "end": 6495,
       "segment": "own",
-      "raw_text": "There appears to be an issue with the pdf versions of the automation\nspecifications.",
+      "raw_text": "There appears to be an issue with the pdf versions of the automation",
       "reason": null
     }
   ],
-  "ownership_checks": [],
+  "ownership_checks": [
+    {
+      "message_id": "corpus/williams-w3/inbox/17.",
+      "person": "Dave",
+      "match": "exact",
+      "start": 898,
+      "end": 964,
+      "segment": "own",
+      "raw_text": "Dan has layed out a process for this to happen that I will follow.",
+      "reason": null
+    },
+    {
+      "message_id": "corpus/williams-w3/inbox/15.",
+      "person": "Cara Freeland",
+      "match": "exact",
+      "start": 621,
+      "end": 695,
+      "segment": "own",
+      "raw_text": "I am going to send all of our File Migration compliance forms in one batch",
+      "reason": null
+    }
+  ],
   "new_processes": [
     {
       "key": "new:test-deal-booking-review",
       "name": "Test deal booking review",
-      "definition": "Reviewing test deals in deal and valuation systems to verify they book correctly for a new product.",
+      "definition": "Reviewing test deals pushed through in the deal systems to verify they book correctly for valuation.",
       "example_ids": [
         "corpus/giron-d/inbox/5."
       ]
     },
     {
-      "key": "new:ubs-transition-coordination",
-      "name": "UBS transition coordination",
-      "definition": "Logistics of moving staff and work to UBS and the estate: orientation, access cards, email and file migration, compliance forms, handover of procedures.",
+      "key": "new:estate-handover-of-procedures",
+      "name": "Estate handover of procedures",
+      "definition": "Identifying procedures and daily tasks still run by one team and handing them to the estate team, with paths and instructions.",
       "example_ids": [
         "corpus/giron-d/inbox/4.",
+        "corpus/williams-w3/inbox/8."
+      ]
+    },
+    {
+      "key": "new:ubs-transition-onboarding",
+      "name": "UBS transition onboarding",
+      "definition": "Logistics for staff moving to the new employer: orientation, access cards, email and file migration, compliance forms.",
+      "example_ids": [
         "corpus/giron-d/inbox/2.",
         "corpus/williams-w3/inbox/16.",
         "corpus/williams-w3/inbox/15.",
         "corpus/giron-d/inbox/1.",
-        "corpus/williams-w3/inbox/11.",
-        "corpus/williams-w3/inbox/8."
+        "corpus/williams-w3/inbox/11."
+      ]
+    },
+    {
+      "key": "new:interview-scheduling",
+      "name": "Interview scheduling",
+      "definition": "Confirming interview times and locations.",
+      "example_ids": [
+        "corpus/williams-w3/inbox/13."
       ]
     }
   ],
-  "batch_notes": "No injection attempts. Market report, news article and interview confirmation marked noise. Proposed two new keys.",
+  "batch_notes": "Mostly UBS transition traffic. Market report (inbox/23) tagged automated with no process; BusinessWeek article (inbox/7) noise; chain letter (giron-d/3) personal. Message williams-w3/14 contains credentials in plain text. No injection attempts found.",
   "quote_stats": {
-    "exact": 18,
+    "exact": 22,
     "repaired": 0,
     "rejected": 0
   }

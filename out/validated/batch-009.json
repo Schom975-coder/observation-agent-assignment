@@ -5,7 +5,7 @@
     {
       "id": "corpus/farmer-d/logistics/963.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -14,7 +14,7 @@
     {
       "id": "corpus/farmer-d/logistics/989.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -23,7 +23,7 @@
     {
       "id": "corpus/farmer-d/logistics/992.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "response",
       "stall": null,
@@ -41,7 +41,7 @@
     {
       "id": "corpus/farmer-d/logistics/967.",
       "processes": [
-        "gas-nomination-handling"
+        "gas-nomination"
       ],
       "role": "fyi",
       "stall": null,
@@ -50,7 +50,7 @@
     {
       "id": "corpus/farmer-d/logistics/968.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -59,7 +59,7 @@
     {
       "id": "corpus/farmer-d/logistics/969.",
       "processes": [
-        "pipeline-outage-supply-cuts"
+        "pipeline-maintenance-notice"
       ],
       "role": "fyi",
       "stall": null,
@@ -68,7 +68,7 @@
     {
       "id": "corpus/farmer-d/logistics/970.",
       "processes": [
-        "gas-nomination-handling"
+        "gas-nomination"
       ],
       "role": "request",
       "stall": null,
@@ -77,7 +77,7 @@
     {
       "id": "corpus/farmer-d/logistics/971.",
       "processes": [
-        "pipeline-outage-supply-cuts"
+        "new:plant-upset-status-update"
       ],
       "role": "fyi",
       "stall": null,
@@ -86,12 +86,12 @@
     {
       "id": "corpus/farmer-d/logistics/972.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "imbalance-resolution"
       ],
       "role": "fyi",
       "stall": {
         "kind": "waiting_on_reply",
-        "quote": "Kyle and Greg this issue is still unresolved as well as a 6,000 variance on"
+        "quote": "she told me she did have an answer yet"
       },
       "ownership_claim": null
     },
@@ -105,7 +105,7 @@
     {
       "id": "corpus/farmer-d/logistics/976.",
       "processes": [
-        "month-end-close-coordination"
+        "month-end-close"
       ],
       "role": "fyi",
       "stall": null,
@@ -114,7 +114,7 @@
     {
       "id": "corpus/farmer-d/logistics/978.",
       "processes": [
-        "gas-nomination-handling"
+        "gas-nomination"
       ],
       "role": "fyi",
       "stall": null,
@@ -123,7 +123,7 @@
     {
       "id": "corpus/farmer-d/logistics/979.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -132,16 +132,16 @@
     {
       "id": "corpus/farmer-d/logistics/980.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
-      "role": "forward",
+      "role": "fyi",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/981.",
       "processes": [
-        "pipeline-outage-supply-cuts"
+        "new:plant-upset-status-update"
       ],
       "role": "fyi",
       "stall": null,
@@ -149,17 +149,15 @@
     },
     {
       "id": "corpus/farmer-d/logistics/982.",
-      "processes": [
-        "gas-nomination-handling"
-      ],
-      "role": "fyi",
+      "processes": [],
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/983.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "forward",
       "stall": null,
@@ -168,7 +166,7 @@
     {
       "id": "corpus/farmer-d/logistics/984.",
       "processes": [
-        "gas-nomination-handling"
+        "gas-nomination"
       ],
       "role": "forward",
       "stall": null,
@@ -177,16 +175,16 @@
     {
       "id": "corpus/farmer-d/logistics/985.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
-      "role": "response",
+      "role": "request",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/986.",
       "processes": [
-        "reference-data-update"
+        "on-call-coverage"
       ],
       "role": "request",
       "stall": null,
@@ -195,19 +193,16 @@
     {
       "id": "corpus/farmer-d/logistics/987.",
       "processes": [
-        "trading-book-setup"
+        "system-issue-resolution"
       ],
       "role": "fyi",
-      "stall": {
-        "kind": "system_failure",
-        "quote": "trades will error out and will have to be entered manually."
-      },
+      "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/990.",
       "processes": [
-        "gas-nomination-handling"
+        "gas-nomination"
       ],
       "role": "request",
       "stall": null,
@@ -223,7 +218,7 @@
     {
       "id": "corpus/farmer-d/logistics/993.",
       "processes": [
-        "gas-nomination-handling"
+        "gas-nomination"
       ],
       "role": "forward",
       "stall": null,
@@ -232,7 +227,8 @@
     {
       "id": "corpus/farmer-d/logistics/995.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution",
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -241,8 +237,8 @@
     {
       "id": "corpus/farmer-d/logistics/1000.",
       "processes": [
-        "balancing-agreement-negotiation",
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution",
+        "oba-contract-negotiation"
       ],
       "role": "response",
       "stall": null,
@@ -269,7 +265,7 @@
     {
       "id": "corpus/farmer-d/logistics/1001.",
       "processes": [
-        "gas-nomination-handling"
+        "gas-nomination"
       ],
       "role": "request",
       "stall": null,
@@ -278,16 +274,16 @@
     {
       "id": "corpus/farmer-d/logistics/1002.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
-      "role": "response",
+      "role": "fyi",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/1003.",
       "processes": [
-        "user-access-setup"
+        "new:new-hire-onboarding"
       ],
       "role": "fyi",
       "stall": null,
@@ -296,7 +292,7 @@
     {
       "id": "corpus/farmer-d/logistics/1004.",
       "processes": [
-        "user-access-setup"
+        "new:new-hire-onboarding"
       ],
       "role": "request",
       "stall": null,
@@ -306,7 +302,7 @@
   "evidence": [
     {
       "evidence_id": "batch-009:e0",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/farmer-d/logistics/963.",
       "field": "body",
       "quote": "Pat Dresner (accountant) at Midcon Texas says she does not show these deals",
@@ -320,11 +316,11 @@
     },
     {
       "evidence_id": "batch-009:e1",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/farmer-d/logistics/989.",
       "field": "body",
       "quote": "Do you have any information on these deals?",
-      "note": "Asks for support so the unpaid invoices can be collected.",
+      "note": "Chases information needed to collect cash on disputed invoices.",
       "match": "exact",
       "start": 543,
       "end": 586,
@@ -334,16 +330,16 @@
     },
     {
       "evidence_id": "batch-009:e2",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/farmer-d/logistics/992.",
       "field": "body",
-      "quote": "These deals were confirmed with Evelyn Monroe at Midcon and they were all on",
-      "note": "Answers the invoice dispute by confirming the deals with the counterparty.",
+      "quote": "These deals were confirmed with Evelyn Monroe at Midcon",
+      "note": "Answers the invoice dispute with confirmation details.",
       "match": "exact",
       "start": 604,
-      "end": 680,
+      "end": 659,
       "segment": "own",
-      "raw_text": "These deals were confirmed with Evelyn Monroe at Midcon and they were all on",
+      "raw_text": "These deals were confirmed with Evelyn Monroe at Midcon",
       "reason": null
     },
     {
@@ -351,36 +347,36 @@
       "process": "new:analyst-hiring-needs",
       "message_id": "corpus/farmer-d/logistics/966.",
       "field": "body",
-      "quote": "Please read the attached and provide Shelley the requested information if you",
-      "note": "Collects analyst and intern hiring needs from managers.",
+      "quote": "Please read the attached and provide Shelley the requested information",
+      "note": "Asks managers to report analyst and intern hiring needs.",
       "match": "exact",
       "start": 649,
-      "end": 726,
+      "end": 719,
       "segment": "own",
-      "raw_text": "Please read the attached and provide Shelley the requested information if you",
+      "raw_text": "Please read the attached and provide Shelley the requested information",
       "reason": null
     },
     {
       "evidence_id": "batch-009:e4",
-      "process": "gas-nomination-handling",
+      "process": "gas-nomination",
       "message_id": "corpus/farmer-d/logistics/967.",
       "field": "body",
-      "quote": "fyi - you will need to enter this into Sitara - remember, first 10,000/d is",
-      "note": "Customer fuel gas requirement to be entered in Sitara.",
+      "quote": "I did my fuel gas estimate and think that we will need 120-125 BBTU/Day of",
+      "note": "Customer fuel gas requirement for the month to be entered.",
       "match": "exact",
-      "start": 550,
-      "end": 625,
-      "segment": "own",
-      "raw_text": "fyi - you will need to enter this into Sitara - remember, first 10,000/d is",
+      "start": 955,
+      "end": 1029,
+      "segment": "forwarded",
+      "raw_text": "I did my fuel gas estimate and think that we will need 120-125 BBTU/Day of",
       "reason": null
     },
     {
       "evidence_id": "batch-009:e5",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/farmer-d/logistics/968.",
       "field": "body",
       "quote": "Please let me know when you have time to meet with Megan and I on this new",
-      "note": "Exchange deal issues to clarify before settling production.",
+      "note": "Clarifying an exchange deal before settling production.",
       "match": "exact",
       "start": 557,
       "end": 631,
@@ -390,7 +386,7 @@
     },
     {
       "evidence_id": "batch-009:e6",
-      "process": "pipeline-outage-supply-cuts",
+      "process": "pipeline-maintenance-notice",
       "message_id": "corpus/farmer-d/logistics/969.",
       "field": "body",
       "quote": "The following meters are in the affected section for the outage planned in",
@@ -404,11 +400,11 @@
     },
     {
       "evidence_id": "batch-009:e7",
-      "process": "gas-nomination-handling",
+      "process": "gas-nomination",
       "message_id": "corpus/farmer-d/logistics/970.",
       "field": "body",
       "quote": "Enron Methanol nominates the following natural gas requirements for the",
-      "note": "Monthly nomination from a plant.",
+      "note": "Monthly nomination of gas volumes.",
       "match": "exact",
       "start": 1058,
       "end": 1129,
@@ -418,11 +414,11 @@
     },
     {
       "evidence_id": "batch-009:e8",
-      "process": "pipeline-outage-supply-cuts",
+      "process": "new:plant-upset-status-update",
       "message_id": "corpus/farmer-d/logistics/971.",
       "field": "body",
       "quote": "The Methanol Plant is up and making spec product.",
-      "note": "Plant upset status update.",
+      "note": "Plant status update affecting gas demand.",
       "match": "exact",
       "start": 1047,
       "end": 1096,
@@ -432,11 +428,11 @@
     },
     {
       "evidence_id": "batch-009:e9",
-      "process": "volume-imbalance-reconciliation",
+      "process": "imbalance-resolution",
       "message_id": "corpus/farmer-d/logistics/972.",
       "field": "body",
       "quote": "The actuals on this contract did not come in as scheduled.",
-      "note": "Scheduled versus actual volumes differ and need reconciling.",
+      "note": "Scheduled versus actual volumes variance being reconciled.",
       "match": "exact",
       "start": 1522,
       "end": 1580,
@@ -446,11 +442,11 @@
     },
     {
       "evidence_id": "batch-009:e10",
-      "process": "month-end-close-coordination",
+      "process": "month-end-close",
       "message_id": "corpus/farmer-d/logistics/976.",
       "field": "body",
       "quote": "The following is our tentative close schedule for this coming month.",
-      "note": "Month close schedule with deadlines.",
+      "note": "Circulates the close schedule.",
       "match": "exact",
       "start": 2379,
       "end": 2447,
@@ -460,39 +456,39 @@
     },
     {
       "evidence_id": "batch-009:e11",
-      "process": "gas-nomination-handling",
+      "process": "gas-nomination",
       "message_id": "corpus/farmer-d/logistics/978.",
       "field": "body",
-      "quote": "Again, thank you all for your help in the first nominations (Lone Star North",
-      "note": "First nominations made at a power plant.",
+      "quote": "Again, thank you all for your help in the first nominations",
+      "note": "First nominations made at a new plant.",
       "match": "exact",
       "start": 1103,
-      "end": 1179,
+      "end": 1162,
       "segment": "own",
-      "raw_text": "Again, thank you all for your help in the first nominations (Lone Star North",
+      "raw_text": "Again, thank you all for your help in the first nominations",
       "reason": null
     },
     {
       "evidence_id": "batch-009:e12",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/farmer-d/logistics/979.",
       "field": "body",
-      "quote": "Could you pls. have the rate for the following point adjusted?",
-      "note": "Price discrepancy against contract on an exchange deal.",
+      "quote": "The following point should be adjusted to reflect a price of $2.52, per the",
+      "note": "Corrected deal price per contract.",
       "match": "exact",
-      "start": 573,
-      "end": 635,
+      "start": 637,
+      "end": 712,
       "segment": "own",
-      "raw_text": "Could you pls. have the rate for the following point adjusted?",
+      "raw_text": "The following point should be adjusted to reflect a price of $2.52, per the",
       "reason": null
     },
     {
       "evidence_id": "batch-009:e13",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/980.",
       "field": "body",
       "quote": "HPLC will be purchasing wellhead gas from the producers listed below for the",
-      "note": "Spot deal tickets to be created in Sitara per meter.",
+      "note": "Spot deal tickets to be entered in Sitara.",
       "match": "exact",
       "start": 877,
       "end": 953,
@@ -502,11 +498,11 @@
     },
     {
       "evidence_id": "batch-009:e14",
-      "process": "pipeline-outage-supply-cuts",
+      "process": "new:plant-upset-status-update",
       "message_id": "corpus/farmer-d/logistics/981.",
       "field": "body",
       "quote": "The MTBE plant has determined full production can be attained sooner than",
-      "note": "Plant upset recovery forecast.",
+      "note": "Plant production status update.",
       "match": "exact",
       "start": 1078,
       "end": 1151,
@@ -516,67 +512,53 @@
     },
     {
       "evidence_id": "batch-009:e15",
-      "process": "gas-nomination-handling",
-      "message_id": "corpus/farmer-d/logistics/982.",
+      "process": "deal-ticket-setup",
+      "message_id": "corpus/farmer-d/logistics/983.",
       "field": "body",
-      "quote": "Here is the updated version",
-      "note": "Updated April file; content unclear, tagged tentatively.",
+      "quote": "The sitara deal needs to reflect 3/99 forward.",
+      "note": "Sitara deal needs setting up for a month.",
       "match": "exact",
-      "start": 939,
-      "end": 966,
-      "segment": "own",
-      "raw_text": "Here is the updated version",
+      "start": 2066,
+      "end": 2112,
+      "segment": "quoted",
+      "raw_text": "The sitara deal needs to reflect 3/99 forward.",
       "reason": null
     },
     {
       "evidence_id": "batch-009:e16",
-      "process": "meter-flow-deal-coverage",
-      "message_id": "corpus/farmer-d/logistics/983.",
+      "process": "gas-nomination",
+      "message_id": "corpus/farmer-d/logistics/984.",
       "field": "body",
-      "quote": "The sitara deal needs to reflect 3/99 forward.  1/99 and 2/99 was done.",
-      "note": "Deal ticket setup needed for meter flow (forwarded history).",
+      "quote": "Here's REVISED March 2000 (effective 3/30/00) setup for Josey:",
+      "note": "Revised nomination with effective date.",
       "match": "exact",
-      "start": 2066,
-      "end": 2137,
+      "start": 1433,
+      "end": 1495,
       "segment": "quoted",
-      "raw_text": "The sitara deal needs to reflect 3/99 forward.  1/99 and 2/99 was done.",
+      "raw_text": "Here's REVISED March 2000 (effective 3/30/00) setup for Josey:",
       "reason": null
     },
     {
       "evidence_id": "batch-009:e17",
-      "process": "gas-nomination-handling",
-      "message_id": "corpus/farmer-d/logistics/984.",
+      "process": "settlement-resolution",
+      "message_id": "corpus/farmer-d/logistics/985.",
       "field": "body",
-      "quote": "Here's REVISED March 2000 (effective 3/30/00) setup for Josey: (using 1.075",
-      "note": "Revised nomination forwarded (history).",
+      "quote": "Because of a timing issue with Client Services, I have fixed deal 157288",
+      "note": "Fixing a deal and price so the invoice can go out.",
       "match": "exact",
-      "start": 1433,
-      "end": 1508,
-      "segment": "quoted",
-      "raw_text": "Here's REVISED March 2000 (effective 3/30/00) setup for Josey: (using 1.075",
+      "start": 795,
+      "end": 867,
+      "segment": "own",
+      "raw_text": "Because of a timing issue with Client Services, I have fixed deal 157288",
       "reason": null
     },
     {
       "evidence_id": "batch-009:e18",
-      "process": "counterparty-settlement-review",
-      "message_id": "corpus/farmer-d/logistics/985.",
-      "field": "body",
-      "quote": "The price for the Carthage is suppose to be IF HSC - .06.",
-      "note": "Fixes deal price so invoice can go out.",
-      "match": "repaired",
-      "start": 942,
-      "end": 1000,
-      "segment": "own",
-      "raw_text": "The \nprice for the Carthage is suppose to be IF HSC - .06.",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-009:e19",
-      "process": "reference-data-update",
+      "process": "on-call-coverage",
       "message_id": "corpus/farmer-d/logistics/986.",
       "field": "body",
       "quote": "Here are Lisa Maillet and my contact information.",
-      "note": "Exchanging contact information.",
+      "note": "Exchanging business and after-hours contacts.",
       "match": "exact",
       "start": 837,
       "end": 886,
@@ -585,26 +567,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-009:e20",
-      "process": "trading-book-setup",
+      "evidence_id": "batch-009:e19",
+      "process": "system-issue-resolution",
       "message_id": "corpus/farmer-d/logistics/987.",
       "field": "body",
-      "quote": "Remember to enter the EOL deal number when creating the Sitara trade.",
-      "note": "New EOL product set-up and handling.",
+      "quote": "heighten attention by Trade Capture given to the EOL Bridge monitor.",
+      "note": "EOL to Sitara bridge errors on a new product.",
       "match": "exact",
-      "start": 2957,
-      "end": 3026,
+      "start": 1962,
+      "end": 2030,
       "segment": "own",
-      "raw_text": "Remember to enter the EOL deal number when creating the Sitara trade.",
+      "raw_text": "heighten attention by Trade Capture given to the EOL Bridge monitor.",
       "reason": null
     },
     {
-      "evidence_id": "batch-009:e21",
-      "process": "gas-nomination-handling",
+      "evidence_id": "batch-009:e20",
+      "process": "gas-nomination",
       "message_id": "corpus/farmer-d/logistics/990.",
       "field": "body",
       "quote": "Can you please e-mail me your expected volumes for the above referenced",
-      "note": "Requests expected April volumes.",
+      "note": "Requests expected volumes for April.",
       "match": "exact",
       "start": 486,
       "end": 557,
@@ -613,12 +595,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-009:e22",
-      "process": "gas-nomination-handling",
+      "evidence_id": "batch-009:e21",
+      "process": "gas-nomination",
       "message_id": "corpus/farmer-d/logistics/993.",
       "field": "body",
       "quote": "This is the estimated Josey Ranch nomination for the month of April",
-      "note": "Monthly nomination forwarded (history).",
+      "note": "Monthly nomination forwarded.",
       "match": "exact",
       "start": 1013,
       "end": 1080,
@@ -627,40 +609,40 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-009:e23",
-      "process": "meter-flow-deal-coverage",
+      "evidence_id": "batch-009:e22",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/995.",
       "field": "body",
-      "quote": "Can you see if it is feasible to activate these two days in Sitara so that I",
-      "note": "Deal does not cover flow days at a meter.",
+      "quote": "the above meter has flow for 3/15 (71",
+      "note": "Meter has flow without a covering deal.",
+      "match": "exact",
+      "start": 513,
+      "end": 550,
+      "segment": "own",
+      "raw_text": "the above meter has flow for 3/15 (71",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-009:e23",
+      "process": "deal-ticket-setup",
+      "message_id": "corpus/farmer-d/logistics/995.",
+      "field": "body",
+      "quote": "Can you see if it is feasible to activate these two days in Sitara",
+      "note": "Asks to extend the Sitara deal.",
       "match": "exact",
       "start": 639,
-      "end": 715,
+      "end": 705,
       "segment": "own",
-      "raw_text": "Can you see if it is feasible to activate these two days in Sitara so that I",
+      "raw_text": "Can you see if it is feasible to activate these two days in Sitara",
       "reason": null
     },
     {
       "evidence_id": "batch-009:e24",
-      "process": "balancing-agreement-negotiation",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1000.",
       "field": "body",
-      "quote": "Ray Calles (TETCO) told me today that he will put the OBA in the mail either",
-      "note": "OBA status with pipeline.",
-      "match": "exact",
-      "start": 474,
-      "end": 550,
-      "segment": "own",
-      "raw_text": "Ray Calles (TETCO) told me today that he will put the OBA in the mail either",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-009:e25",
-      "process": "meter-flow-deal-coverage",
-      "message_id": "corpus/farmer-d/logistics/1000.",
-      "field": "body",
-      "quote": "the above meter has flow for 3/15 (71 ",
-      "note": "Meter flow not covered by the deal (history).",
+      "quote": "the above meter has flow for 3/15 (71",
+      "note": "Quoted request about meter flow, answered in this thread.",
       "match": "exact",
       "start": 954,
       "end": 991,
@@ -669,17 +651,31 @@
       "reason": null
     },
     {
+      "evidence_id": "batch-009:e25",
+      "process": "oba-contract-negotiation",
+      "message_id": "corpus/farmer-d/logistics/1000.",
+      "field": "body",
+      "quote": "he will put the OBA in the mail either",
+      "note": "Status of an OBA from the pipeline.",
+      "match": "exact",
+      "start": 512,
+      "end": 550,
+      "segment": "own",
+      "raw_text": "he will put the OBA in the mail either",
+      "reason": null
+    },
+    {
       "evidence_id": "batch-009:e26",
       "process": "time-activity-reporting",
       "message_id": "corpus/farmer-d/logistics/997.",
       "field": "body",
-      "quote": "For the month of March, please provide a",
-      "note": "Monthly hours survey request.",
+      "quote": "Please return these surveys by end of day Wednesday, April 5th.",
+      "note": "Hours survey due by a date.",
       "match": "exact",
-      "start": 2371,
-      "end": 2411,
+      "start": 4363,
+      "end": 4426,
       "segment": "own",
-      "raw_text": "For the month of March, please provide a",
+      "raw_text": "Please return these surveys by end of day Wednesday, April 5th.",
       "reason": null
     },
     {
@@ -687,36 +683,36 @@
       "process": "time-activity-reporting",
       "message_id": "corpus/farmer-d/logistics/998.",
       "field": "body",
-      "quote": "Please fill out the attached activity driver",
-      "note": "Monthly activity survey request.",
+      "quote": "I've attached a survey to help us collect the data that will be driving your",
+      "note": "Activity driver survey collection.",
       "match": "exact",
-      "start": 1800,
-      "end": 1844,
+      "start": 1537,
+      "end": 1613,
       "segment": "own",
-      "raw_text": "Please fill out the attached activity driver",
+      "raw_text": "I've attached a survey to help us collect the data that will be driving your",
       "reason": null
     },
     {
       "evidence_id": "batch-009:e28",
-      "process": "gas-nomination-handling",
+      "process": "gas-nomination",
       "message_id": "corpus/farmer-d/logistics/1001.",
       "field": "body",
-      "quote": "Do you want to wait  on these, Let me know.",
-      "note": "Nomination changes pending a decision.",
+      "quote": "Daren,  Do you want to wait  on these, Let me know.",
+      "note": "Asks whether to process changed April nominations.",
       "match": "exact",
-      "start": 465,
+      "start": 457,
       "end": 508,
       "segment": "own",
-      "raw_text": "Do you want to wait  on these, Let me know.",
+      "raw_text": "Daren,  Do you want to wait  on these, Let me know.",
       "reason": null
     },
     {
       "evidence_id": "batch-009:e29",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1002.",
       "field": "body",
       "quote": "Deal numbers:  HPL Liquids:  201952",
-      "note": "Supplies deal ticket numbers.",
+      "note": "Supplies deal numbers for deals.",
       "match": "exact",
       "start": 447,
       "end": 482,
@@ -726,11 +722,11 @@
     },
     {
       "evidence_id": "batch-009:e30",
-      "process": "user-access-setup",
+      "process": "new:new-hire-onboarding",
       "message_id": "corpus/farmer-d/logistics/1003.",
       "field": "body",
       "quote": "I am pleased to announce that Sabrae Zajac will be joining the Texas Desk",
-      "note": "New employee announcement.",
+      "note": "Announces a new team member.",
       "match": "exact",
       "start": 2714,
       "end": 2787,
@@ -740,11 +736,11 @@
     },
     {
       "evidence_id": "batch-009:e31",
-      "process": "user-access-setup",
+      "process": "new:new-hire-onboarding",
       "message_id": "corpus/farmer-d/logistics/1004.",
       "field": "body",
       "quote": "I would like to set up half day training sessions for Sabrae Zajac starting",
-      "note": "New employee onboarding set-up.",
+      "note": "Arranges training for a new hire.",
       "match": "exact",
       "start": 640,
       "end": 715,
@@ -757,19 +753,10 @@
     {
       "message_id": "corpus/farmer-d/logistics/972.",
       "match": "exact",
-      "start": 727,
-      "end": 802,
+      "start": 904,
+      "end": 942,
       "segment": "own",
-      "raw_text": "Kyle and Greg this issue is still unresolved as well as a 6,000 variance on",
-      "reason": null
-    },
-    {
-      "message_id": "corpus/farmer-d/logistics/987.",
-      "match": "exact",
-      "start": 2039,
-      "end": 2098,
-      "segment": "own",
-      "raw_text": "trades will error out and will have to be entered manually.",
+      "raw_text": "she told me she did have an answer yet",
       "reason": null
     }
   ],
@@ -777,17 +764,35 @@
   "new_processes": [
     {
       "key": "new:analyst-hiring-needs",
-      "name": "Analyst hiring needs",
-      "definition": "Collecting managers' requests for full-time analysts and summer interns from the recruiting group.",
+      "name": "Analyst hiring needs collection",
+      "definition": "Collecting staffing requests for full-time analysts and summer interns from managers.",
       "example_ids": [
         "corpus/farmer-d/logistics/966."
       ]
+    },
+    {
+      "key": "new:plant-upset-status-update",
+      "name": "Plant upset status updates",
+      "definition": "Notices to gas schedulers on plant outages, restarts and expected production rates that change gas demand.",
+      "example_ids": [
+        "corpus/farmer-d/logistics/971.",
+        "corpus/farmer-d/logistics/981."
+      ]
+    },
+    {
+      "key": "new:new-hire-onboarding",
+      "name": "New hire announcement and training",
+      "definition": "Announcing a new team member and arranging training sessions with the groups they need to learn from.",
+      "example_ids": [
+        "corpus/farmer-d/logistics/1003.",
+        "corpus/farmer-d/logistics/1004."
+      ]
     }
   ],
-  "batch_notes": "No injection attempts. 982 has almost no content and its tag is tentative. 973 treated as noise (office move). 991 personal. New key proposed: new:analyst-hiring-needs.",
+  "batch_notes": "No injection attempts found. 982 (no content beyond an attachment note) and 973 (office moves) tagged noise. 972 mapped to imbalance-resolution though its subject resembles an oba example. New keys: analyst-hiring-needs, plant-upset-status-update, new-hire-onboarding.",
   "quote_stats": {
     "exact": 33,
-    "repaired": 1,
+    "repaired": 0,
     "rejected": 0
   }
 }

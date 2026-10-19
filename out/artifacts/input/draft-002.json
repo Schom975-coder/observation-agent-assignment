@@ -1,0 +1,441 @@
+{
+ "version": 1,
+ "job_id": "draft-002",
+ "key": "settlement-resolution",
+ "name": "Settlement and invoice resolution",
+ "slug": "settlement-resolution",
+ "artifact_type": "email_template",
+ "definition": "Resolving invoices, payments, penalty charges and price disputes with counterparties for gas and power deals.",
+ "synthesis": {
+  "description": "Settlements and accounting staff find a mismatch between a counterparty invoice or payment and the deal as booked in Sitara: a different price, an unpriced or wrong index, unactualized volumes, a deal that should be netted, or an invoice for gas never paid. They ask the scheduler or trader to verify the deal, correct the ticket or say what to bill, sometimes pulling trader tape recordings or checking published market prices for power disputes. Once the deal is corrected, the invoice is paid or rebilled before the payment date.",
+  "steps": [
+   "Settlements notices an invoice, payment or price that does not match the deal in Sitara.",
+   "They email the scheduler or trader with the deal number and the two figures.",
+   "The trader or scheduler checks the deal terms, volumes or published price, sometimes pulling tapes.",
+   "The ticket is corrected in Sitara or the counterparty is told the correct price.",
+   "Settlements reruns the invoice or payment and confirms before the due date.",
+   "Unresolved items are chased or escalated to the counterparty."
+  ],
+  "stalls": [
+   "Settlements waits on the scheduler or trader to verify deals, chasing with follow-ups while payment dates approach.",
+   "Counterparties do not return calls about outstanding payments or disputed deals.",
+   "Confusion over who handles a deal: requests go to the wrong desk or person and are redirected.",
+   "Sitara itself blocks fixes: a ticket could not be opened to correct swing pricing, and the system held two prices for one day.",
+   "Volumes not yet actualized leave nothing in volume management to settle against.",
+   "Staff departures leave items open, with a handler trying to finish what they can before leaving."
+  ],
+  "contradictions": [
+   "Invoice and system prices disagree for the same deal: a counterparty billed one price while Sitara showed another, and Sitara held two prices for the same day.",
+   "A price change believed final was not the final price for the deal, and a counterparty changed its price mid-dispute.",
+   "Ownership of disputed deals is stated differently: one sender was told another person handled the deal, another says a deal belongs to a different desk, and a third asks that all monetized questions go through one person.",
+   "Practice conflicts on contacting customers: staff emailed counterparties about disputes while a manager told them not to send dispute emails to customers."
+  ],
+  "approach": "Run a daily match of counterparty invoices against Sitara deal prices and volumes, listing each variance with deal number, both figures, the responsible desk and the payment due date, and send it to the owning scheduler or trader with a standard query. Track each variance to closure so follow-ups and escalations come from the list rather than ad hoc chasing.",
+  "rationale": "Most rounds are the same question asked in different words: this invoice says one price, Sitara says another, which is right. A standard variance query with the deal number, both figures, due date and owner cuts the clarification loops and misrouting, and a matching report finds the mismatches before they become payment-day emergencies."
+ },
+ "counted": {
+  "label": "facts counted by the pipeline",
+  "occurrences": 127,
+  "active_months": 27,
+  "first_day": "1999-12-21",
+  "last_day": "2002-03-05",
+  "messages": 170,
+  "staff_participants": 132,
+  "actions": {
+   "short": 60,
+   "medium": 59,
+   "long": 1,
+   "forwards": 27,
+   "chasers": 23,
+   "reads": 314
+  },
+  "stalls": {
+   "waiting_on_reply": 17,
+   "rework": 2,
+   "handoff_confusion": 9,
+   "ownership_conflict": 0,
+   "avoidance": 0,
+   "system_failure": 2,
+   "other": 0
+  }
+ },
+ "participants": [
+  {
+   "name": "Daren J Farmer",
+   "kind": "person",
+   "staff": true,
+   "authored": 0,
+   "forwards": 0,
+   "chasers": 0,
+   "reads": 88
+  },
+  {
+   "name": "Williams III, Bill",
+   "kind": "person",
+   "staff": true,
+   "authored": 29,
+   "forwards": 0,
+   "chasers": 6,
+   "reads": 2
+  },
+  {
+   "name": "Darron C Giron",
+   "kind": "person",
+   "staff": true,
+   "authored": 15,
+   "forwards": 5,
+   "chasers": 2,
+   "reads": 2
+  },
+  {
+   "name": "Parker, Megan",
+   "kind": "person",
+   "staff": true,
+   "authored": 13,
+   "forwards": 1,
+   "chasers": 2,
+   "reads": 5
+  },
+  {
+   "name": "Katherine Herrera",
+   "kind": "person",
+   "staff": true,
+   "authored": 10,
+   "forwards": 4,
+   "chasers": 2,
+   "reads": 2
+  },
+  {
+   "name": "Julie Meyers",
+   "kind": "person",
+   "staff": true,
+   "authored": 2,
+   "forwards": 4,
+   "chasers": 1,
+   "reads": 8
+  },
+  {
+   "name": "Lisa Csikos",
+   "kind": "person",
+   "staff": true,
+   "authored": 2,
+   "forwards": 1,
+   "chasers": 0,
+   "reads": 8
+  },
+  {
+   "name": null,
+   "kind": "person",
+   "staff": true,
+   "authored": 0,
+   "forwards": 0,
+   "chasers": 0,
+   "reads": 9
+  }
+ ],
+ "ownership": {
+  "claims": [
+   {
+    "person": "Daren",
+    "date": "2000-06-26",
+    "status": "several",
+    "name": null
+   },
+   {
+    "person": "Megan Parker",
+    "date": "2000-09-22",
+    "status": "matched",
+    "name": "Parker, Megan"
+   },
+   {
+    "person": "Tom Acton",
+    "date": "2000-11-17",
+    "status": "matched",
+    "name": "Tom Acton"
+   },
+   {
+    "person": "Kim Vaughn",
+    "date": "2001-01-09",
+    "status": "unmatched",
+    "name": null
+   },
+   {
+    "person": "Darron",
+    "date": "2001-01-24",
+    "status": "matched",
+    "name": "Darron C Giron"
+   },
+   {
+    "person": "Melissa K Ratnala",
+    "date": "2000-09-19",
+    "status": "matched",
+    "name": "Melissa K Ratnala"
+   },
+   {
+    "person": "volume management group",
+    "date": "2001-08-08",
+    "status": "group",
+    "name": null
+   }
+  ],
+  "conflicts": 3
+ },
+ "estimate": {
+  "label": "estimate, not a count",
+  "minutes_per_occurrence": {
+   "low": 20,
+   "mid": 45,
+   "high": 120
+  },
+  "automatable_pct": 40,
+  "basis": "observed",
+  "rationale": "Each round involves finding the deal in Sitara, comparing invoice and booked price or volume, checking the index or published price, correcting the ticket and rerunning the invoice; power disputes add checking risk records or pulling tapes. Around 45 minutes for a single-deal price fix, up to two hours where tapes or several deals are involved. Matching and variance listing are repeatable; the judgement on the right price stays with people.",
+  "source": "model"
+ },
+ "evidence": [
+  {
+   "id": "batch-033:e0",
+   "message_id": "corpus/farmer-d/logistics/1528.",
+   "date": "2000-11-17",
+   "sender": "Katherine Herrera",
+   "role": "request",
+   "quote": "Are these deals suppose to be a washout and netted together?"
+  },
+  {
+   "id": "batch-052:e19",
+   "message_id": "corpus/farmer-d/logistics/147.",
+   "date": "2001-05-07",
+   "sender": "Cynthia Hakemack",
+   "role": "request",
+   "quote": "BP invoiced HPL at $4.955 for the deal below, and Sitara shows $4.95."
+  },
+  {
+   "id": "batch-065:e3",
+   "message_id": "corpus/williams-w3/sent_items/266.",
+   "date": "2001-09-05",
+   "sender": "Williams III, Bill",
+   "role": "response",
+   "quote": "Per your request I have double checked Risk's daily record on ISO revenue/expenses for WHOURLY book in August and everything checked out."
+  },
+  {
+   "id": "batch-073:e11",
+   "message_id": "corpus/williams-w3/sent_items/131.",
+   "date": "2001-10-31",
+   "sender": "Williams III, Bill",
+   "role": "response",
+   "quote": "Please do NOT send emails regarding our disputes to our customers--El Paso or others."
+  },
+  {
+   "id": "batch-081:e6",
+   "message_id": "corpus/giron-d/inbox/280.",
+   "date": "2001-11-30",
+   "sender": "Carl Sulzer GRE/ER Fuel/Plant",
+   "role": "request",
+   "quote": "I am open to a settlement based on the change in the market price"
+  },
+  {
+   "id": "batch-053:e19",
+   "message_id": "corpus/farmer-d/logistics/124.",
+   "date": "2001-05-24",
+   "sender": "Ray, Tess",
+   "role": "request",
+   "quote": "Can you confirm if 04/01 sales price for SA-745578, IF - $.06 per entry in Sitara"
+  },
+  {
+   "id": "batch-022:e2",
+   "message_id": "corpus/giron-d/sent/680.",
+   "date": "2000-08-28",
+   "sender": "Darron C Giron",
+   "role": "forward",
+   "quote": "Enron Canada purchase deal # 121397  Was 4.18427 should be 4.10185"
+  },
+  {
+   "id": "batch-039:e24",
+   "message_id": "corpus/farmer-d/logistics/2048.",
+   "date": "2001-01-22",
+   "sender": "Parker, Megan",
+   "role": "fyi",
+   "quote": "Never mind.  They are now changing their price to 6.23."
+  },
+  {
+   "id": "batch-062:e15",
+   "message_id": "corpus/farmer-d/logistics/74.",
+   "date": "2001-08-17",
+   "sender": "Vela, Valerie",
+   "role": "request",
+   "quote": "Deal 819594 - the commodity price needs to be WAHA.HUB.GDP.D.A+.02"
+  },
+  {
+   "id": "batch-037:e1",
+   "message_id": "corpus/farmer-d/logistics/1998.",
+   "date": "2000-12-20",
+   "sender": "Julie Meyers",
+   "role": "request",
+   "quote": "Can you please validate if this is his gas or if this deal ticket should have"
+  },
+  {
+   "id": "batch-000:e28",
+   "message_id": "corpus/farmer-d/logistics/604.",
+   "date": "1999-12-21",
+   "sender": "Julie Meyers",
+   "role": "fyi",
+   "quote": "I wanted to update you on those Phillips deals that the counterparty is"
+  },
+  {
+   "id": "batch-011:e9",
+   "message_id": "corpus/farmer-d/logistics/1058.",
+   "date": "2000-04-19",
+   "sender": "Katherine Herrera",
+   "role": "request",
+   "quote": "Would you like for me to confirm the conference call that Duke has requested"
+  },
+  {
+   "id": "batch-064:e12",
+   "message_id": "corpus/williams-w3/sent_items/278.",
+   "date": "2001-08-29",
+   "sender": "Williams III, Bill",
+   "role": "forward",
+   "quote": "In an effort to curb El Paso settlements issues, I've requested several sets of tapes over the past few days."
+  },
+  {
+   "id": "batch-061:e9",
+   "message_id": "corpus/williams-w3/sent_items/322.",
+   "date": "2001-08-07",
+   "sender": "Williams III, Bill",
+   "role": "fyi",
+   "quote": "It looks like 28 mws at $198 and 75 mws at $223.00."
+  },
+  {
+   "id": "batch-010:e26",
+   "message_id": "corpus/farmer-d/logistics/1039.",
+   "date": "2000-04-13",
+   "sender": "Sherlyn Schumack",
+   "role": "fyi",
+   "quote": "Recap of PG&E Texas meeting 4/12/00."
+  },
+  {
+   "id": "batch-052:e24",
+   "message_id": "corpus/giron-d/sent/12.",
+   "date": "2001-05-09",
+   "sender": "Darron C Giron",
+   "role": "forward",
+   "quote": "Can you please update the 04/01 price for deal # 27253 in Sitara?"
+  },
+  {
+   "id": "batch-007:e21",
+   "message_id": "corpus/farmer-d/logistics/922.",
+   "date": "2000-03-20",
+   "sender": "Julie Meyers",
+   "role": "request",
+   "quote": "We have a price difference with Mitchell Gas Services for 2/00 production,"
+  },
+  {
+   "id": "batch-073:e15",
+   "message_id": "corpus/farmer-d/logistics/29.",
+   "date": "2001-10-31",
+   "sender": "Parker, Megan",
+   "role": "request",
+   "quote": "I received an invoice from Four Square Gas Company today for May 2001 gas that was never paid."
+  },
+  {
+   "id": "batch-053:e15",
+   "message_id": "corpus/farmer-d/logistics/132.",
+   "date": "2001-05-22",
+   "sender": "Charlene Richmond",
+   "role": "request",
+   "quote": "Could you fix asap because payment is due on 25th."
+  },
+  {
+   "id": "batch-062:e3",
+   "message_id": "corpus/farmer-d/logistics/78.",
+   "date": "2001-08-14",
+   "sender": "Vela, Valerie",
+   "role": "request",
+   "quote": "On day 18, did you intentionally enter 50,000 days or was it a slip of the fingers?"
+  }
+ ],
+ "stall_quotes": [
+  {
+   "id": "batch-055:s6",
+   "message_id": "corpus/farmer-d/logistics/106.",
+   "date": "2001-06-25",
+   "sender": "aep.com",
+   "kind": "system_failure",
+   "quote": "I tried to get into the Sitara ticket # 373590 to correct the swing pricing"
+  },
+  {
+   "id": "batch-011:s2",
+   "message_id": "corpus/farmer-d/logistics/1200.",
+   "date": "2000-06-12",
+   "sender": "Katherine Herrera",
+   "kind": "waiting_on_reply",
+   "quote": "Have you had a chance to change the pricing in the system?"
+  },
+  {
+   "id": "batch-050:s2",
+   "message_id": "corpus/farmer-d/logistics/174.",
+   "date": "2001-04-17",
+   "sender": "Rebecca Griffin",
+   "kind": "handoff_confusion",
+   "quote": "Let me know if this should go to someone else."
+  },
+  {
+   "id": "batch-000:s3",
+   "message_id": "corpus/farmer-d/logistics/604.",
+   "date": "1999-12-21",
+   "sender": "Julie Meyers",
+   "kind": "waiting_on_reply",
+   "quote": "I have left Gary L. a voice mail, but I have a"
+  },
+  {
+   "id": "batch-055:s0",
+   "message_id": "corpus/farmer-d/logistics/99.",
+   "date": "2001-07-09",
+   "sender": "Elizabeth L Hernandez",
+   "kind": "waiting_on_reply",
+   "quote": "I have not received a response from you regarding the pricing discrepancies on these deals."
+  },
+  {
+   "id": "batch-024:s0",
+   "message_id": "corpus/giron-d/sent/643.",
+   "date": "2000-09-19",
+   "sender": "Darron C Giron",
+   "kind": "waiting_on_reply",
+   "quote": "Any word?  I am going to send in the water fall today so please let me know."
+  }
+ ],
+ "ownership_quotes": [
+  {
+   "id": "batch-015:o0",
+   "message_id": "corpus/farmer-d/logistics/1241.",
+   "date": "2000-06-26",
+   "sender": "Rita Wynne",
+   "person": "Daren",
+   "quote": "This is the piece that we need Daren's help on."
+  },
+  {
+   "id": "batch-025:o0",
+   "message_id": "corpus/farmer-d/logistics/1420.",
+   "date": "2000-09-22",
+   "sender": "Kristen J Hanson",
+   "person": "Megan Parker",
+   "quote": "Megan Parker is handling this"
+  },
+  {
+   "id": "batch-038:o0",
+   "message_id": "corpus/farmer-d/logistics/2037.",
+   "date": "2001-01-09",
+   "sender": "Fred Boas",
+   "person": "Kim Vaughn",
+   "quote": "Kim Vaughn has taken over all of Kathy's meters."
+  },
+  {
+   "id": "batch-024:o1",
+   "message_id": "corpus/giron-d/sent/643.",
+   "date": "2000-09-19",
+   "sender": "Darron C Giron",
+   "person": "Melissa K Ratnala",
+   "quote": "Please field all monetized questions/requests through me."
+  }
+ ]
+}

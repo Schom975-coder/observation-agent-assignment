@@ -32,12 +32,12 @@
     {
       "id": "corpus/farmer-d/logistics/1497.",
       "processes": [
-        "deal-record-correction"
+        "new:deal-counterparty-correction"
       ],
       "role": "request",
       "stall": {
         "kind": "system_failure",
-        "quote": "I have tried to change the \ncounterparty, but I am not able."
+        "quote": "I have tried to change the counterparty, but I am not able."
       },
       "ownership_claim": null
     },
@@ -85,7 +85,7 @@
       "processes": [
         "new:audit-pnl-support-request"
       ],
-      "role": "request",
+      "role": "forward",
       "stall": null,
       "ownership_claim": null
     },
@@ -101,7 +101,7 @@
     {
       "id": "corpus/farmer-d/logistics/1499.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -110,7 +110,7 @@
     {
       "id": "corpus/giron-d/sent/513.",
       "processes": [
-        "counterparty-settlement-review"
+        "new:liquidation-reconciliation"
       ],
       "role": "forward",
       "stall": null,
@@ -126,7 +126,7 @@
     {
       "id": "corpus/giron-d/sent/511.",
       "processes": [
-        "new:employee-supervisor-change"
+        "new:hr-supervisor-record-update"
       ],
       "role": "request",
       "stall": null,
@@ -135,31 +135,31 @@
     {
       "id": "corpus/farmer-d/logistics/1501.",
       "processes": [
-        "desk-coverage-on-call"
+        "on-call-coverage"
       ],
       "role": "fyi",
       "stall": null,
       "ownership_claim": {
         "person": "Aimee",
-        "quote": "Aimee 3-0506 will be the point person for any questions"
+        "quote": "Aimee 3-0506 will be the point person for any questions but the"
       }
     },
     {
       "id": "corpus/farmer-d/logistics/1547.",
       "processes": [
-        "desk-coverage-on-call"
+        "on-call-coverage"
       ],
       "role": "fyi",
       "stall": null,
       "ownership_claim": {
         "person": "Aimee",
-        "quote": "Aimee 3-0506 will be the point person for any questions"
+        "quote": "Aimee 3-0506 will be the point person for any questions but the"
       }
     },
     {
       "id": "corpus/giron-d/sent/510.",
       "processes": [
-        "new:training-class-organization"
+        "new:risk-team-training-classes"
       ],
       "role": "response",
       "stall": null,
@@ -168,7 +168,8 @@
     {
       "id": "corpus/farmer-d/logistics/1502.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution",
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -177,16 +178,19 @@
     {
       "id": "corpus/farmer-d/logistics/1503.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "new:teco-indian-spring-residue-volumes"
       ],
       "role": "forward",
       "stall": null,
-      "ownership_claim": null
+      "ownership_claim": {
+        "person": "Mary Poorman",
+        "quote": "The HPL Logistics dept. (Mary Poorman) will inform Assets Group (Jack"
+      }
     },
     {
       "id": "corpus/farmer-d/logistics/1504.",
       "processes": [
-        "gas-nomination-handling"
+        "gas-nomination"
       ],
       "role": "response",
       "stall": null,
@@ -195,19 +199,22 @@
     {
       "id": "corpus/farmer-d/logistics/1508.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution"
       ],
-      "role": "request",
+      "role": "fyi",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/sent/508.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "response",
-      "stall": null,
+      "stall": {
+        "kind": "waiting_on_reply",
+        "quote": "Darron - have you had a chance to take a look at this yet?"
+      },
       "ownership_claim": null
     },
     {
@@ -220,7 +227,7 @@
     {
       "id": "corpus/farmer-d/logistics/1509.",
       "processes": [
-        "gas-nomination-handling"
+        "gas-nomination"
       ],
       "role": "request",
       "stall": null,
@@ -250,7 +257,7 @@
     {
       "id": "corpus/farmer-d/logistics/1511.",
       "processes": [
-        "new:customer-sales-review"
+        "customer-volume-confirmation"
       ],
       "role": "fyi",
       "stall": null,
@@ -259,7 +266,7 @@
     {
       "id": "corpus/giron-d/sent/503.",
       "processes": [
-        "new:training-class-organization"
+        "new:risk-team-training-classes"
       ],
       "role": "response",
       "stall": null,
@@ -268,7 +275,7 @@
     {
       "id": "corpus/giron-d/sent/499.",
       "processes": [
-        "new:training-class-organization"
+        "new:risk-team-training-classes"
       ],
       "role": "fyi",
       "stall": null,
@@ -277,7 +284,8 @@
     {
       "id": "corpus/farmer-d/logistics/1512.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution",
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -286,7 +294,7 @@
     {
       "id": "corpus/giron-d/sent/502.",
       "processes": [
-        "new:book-admin-list"
+        "new:book-admin-list-update"
       ],
       "role": "response",
       "stall": null,
@@ -302,7 +310,7 @@
     {
       "id": "corpus/giron-d/sent/500.",
       "processes": [
-        "new:book-admin-list"
+        "new:book-admin-list-update"
       ],
       "role": "response",
       "stall": {
@@ -333,7 +341,7 @@
       "message_id": "corpus/giron-d/sent/526.",
       "field": "body",
       "quote": "This book is set up.  Please contact me if you have any questions.",
-      "note": "Confirmation that the requested book was set up.",
+      "note": "Forwarded confirmation that the requested book was created.",
       "match": "exact",
       "start": 1742,
       "end": 1808,
@@ -347,7 +355,7 @@
       "message_id": "corpus/giron-d/sent/524.",
       "field": "body",
       "quote": "This book is set up.  Please contact me if you have any questions.",
-      "note": "Forwarded confirmation that book request was completed.",
+      "note": "Forwarded confirmation that book request 593 was set up.",
       "match": "exact",
       "start": 1612,
       "end": 1678,
@@ -360,27 +368,27 @@
       "process": "new:job-survey-matching",
       "message_id": "corpus/farmer-d/logistics/1496.",
       "field": "body",
-      "quote": "Heather -- Darren and Donna were left off of Bob's e:mail, can you set up",
-      "note": "Asks that interview times be set for the HR job survey and matching.",
+      "quote": "Darren and Donna were left off of Bob's e:mail, can you set up",
+      "note": "Asks for times to be set up for the job survey and matching exercise.",
       "match": "exact",
-      "start": 540,
+      "start": 551,
       "end": 613,
       "segment": "own",
-      "raw_text": "Heather -- Darren and Donna were left off of Bob's e:mail, can you set up",
+      "raw_text": "Darren and Donna were left off of Bob's e:mail, can you set up",
       "reason": null
     },
     {
       "evidence_id": "batch-031:e3",
-      "process": "deal-record-correction",
+      "process": "new:deal-counterparty-correction",
       "message_id": "corpus/farmer-d/logistics/1497.",
       "field": "body",
-      "quote": "I need some assistance getting these deals corrected in the system for the",
-      "note": "Asks for deal records with wrong counterparty to be corrected.",
+      "quote": "Deal ticket 468688 P-MGI is in system as HPLC purch.",
+      "note": "Deal ticket sits under the wrong counterparty and needs correcting.",
       "match": "exact",
-      "start": 619,
-      "end": 693,
+      "start": 940,
+      "end": 992,
       "segment": "own",
-      "raw_text": "I need some assistance getting these deals corrected in the system for the",
+      "raw_text": "Deal ticket 468688 P-MGI is in system as HPLC purch.",
       "reason": null
     },
     {
@@ -389,7 +397,7 @@
       "message_id": "corpus/giron-d/sent/521.",
       "field": "body",
       "quote": "I missplaced the info we were speaking about yesterday.",
-      "note": "Asks to be resent supporting information for follow-up with the audit contact.",
+      "note": "Asks Sharon Smith to resend the information needed for follow-up.",
       "match": "exact",
       "start": 444,
       "end": 499,
@@ -403,7 +411,7 @@
       "message_id": "corpus/giron-d/sent/517.",
       "field": "body",
       "quote": "We Schedule C'd the $50M difference.",
-      "note": "Gives explanation and backup offer to the auditing contact.",
+      "note": "Answers a P&L difference query with explanation.",
       "match": "exact",
       "start": 447,
       "end": 483,
@@ -416,13 +424,13 @@
       "process": "new:audit-pnl-support-request",
       "message_id": "corpus/giron-d/sent/516.",
       "field": "body",
-      "quote": "Please get this info to me and I will pass it on to AA.  Thanks.",
-      "note": "Collects P&L support from team for monthly gas testing by auditors.",
+      "quote": "Please get this info to me and I will pass it on to AA.",
+      "note": "Collects P&L support from the team for the monthly gas testing.",
       "match": "exact",
       "start": 568,
-      "end": 632,
+      "end": 623,
       "segment": "own",
-      "raw_text": "Please get this info to me and I will pass it on to AA.  Thanks.",
+      "raw_text": "Please get this info to me and I will pass it on to AA.",
       "reason": null
     },
     {
@@ -430,22 +438,22 @@
       "process": "new:audit-pnl-support-request",
       "message_id": "corpus/giron-d/sent/515.",
       "field": "body",
-      "quote": "Please provide us with the P&L top sheet as of October 31",
-      "note": "Forwarded request for P&L top sheets and curve shift reports.",
+      "quote": "Please provide us with the P&L top sheet as of October 31 for the following",
+      "note": "Request for P&L top sheets and curve shift reports passed to an analyst.",
       "match": "exact",
       "start": 826,
-      "end": 883,
+      "end": 901,
       "segment": "forwarded",
-      "raw_text": "Please provide us with the P&L top sheet as of October 31",
+      "raw_text": "Please provide us with the P&L top sheet as of October 31 for the following",
       "reason": null
     },
     {
       "evidence_id": "batch-031:e8",
-      "process": "volume-imbalance-reconciliation",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1499.",
       "field": "body",
       "quote": "On 1/5/99, the above meter recorded flow 1,703 Mmbtus.",
-      "note": "Seeks approval to write off meter volume to unaccounted for gas loss.",
+      "note": "Meter flow booked to a contract needs write-off approval to unaccounted gas loss.",
       "match": "exact",
       "start": 668,
       "end": 722,
@@ -455,11 +463,11 @@
     },
     {
       "evidence_id": "batch-031:e9",
-      "process": "counterparty-settlement-review",
+      "process": "new:liquidation-reconciliation",
       "message_id": "corpus/giron-d/sent/513.",
       "field": "body",
       "quote": "Yet, I show no transactions for them in that region.",
-      "note": "Questions a liquidation amount booked against a counterparty.",
+      "note": "Questions a liquidation amount that has no matching transactions.",
       "match": "exact",
       "start": 860,
       "end": 912,
@@ -469,11 +477,11 @@
     },
     {
       "evidence_id": "batch-031:e10",
-      "process": "new:employee-supervisor-change",
+      "process": "new:hr-supervisor-record-update",
       "message_id": "corpus/giron-d/sent/511.",
       "field": "body",
       "quote": "I see Jennifer Bagwell in the system, but not Christopher Walker.",
-      "note": "Follow-up on HR supervisor record changes for analysts.",
+      "note": "Follow-up on changing supervisor records in the HR system.",
       "match": "exact",
       "start": 573,
       "end": 638,
@@ -483,53 +491,67 @@
     },
     {
       "evidence_id": "batch-031:e11",
-      "process": "desk-coverage-on-call",
+      "process": "on-call-coverage",
       "message_id": "corpus/farmer-d/logistics/1501.",
       "field": "body",
-      "quote": "Aimee 3-0506 will be the point person for any questions",
-      "note": "Desk coverage assignments while out of office.",
+      "quote": "Aimee 3-0506 will be the point person for any questions but the",
+      "note": "Names who covers the desk during an absence.",
       "match": "exact",
       "start": 1331,
-      "end": 1386,
+      "end": 1394,
       "segment": "own",
-      "raw_text": "Aimee 3-0506 will be the point person for any questions",
+      "raw_text": "Aimee 3-0506 will be the point person for any questions but the",
       "reason": null
     },
     {
       "evidence_id": "batch-031:e12",
-      "process": "desk-coverage-on-call",
+      "process": "on-call-coverage",
       "message_id": "corpus/farmer-d/logistics/1547.",
       "field": "body",
-      "quote": "Aimee 3-0506 will be the point person for any questions",
-      "note": "Desk coverage assignments for planned absence.",
+      "quote": "Aimee 3-0506 will be the point person for any questions but the",
+      "note": "Names desk coverage assignments for an upcoming absence.",
       "match": "exact",
       "start": 1690,
-      "end": 1745,
+      "end": 1753,
       "segment": "own",
-      "raw_text": "Aimee 3-0506 will be the point person for any questions",
+      "raw_text": "Aimee 3-0506 will be the point person for any questions but the",
       "reason": null
     },
     {
       "evidence_id": "batch-031:e13",
-      "process": "new:training-class-organization",
+      "process": "new:risk-team-training-classes",
       "message_id": "corpus/giron-d/sent/510.",
       "field": "body",
-      "quote": "We want to develop rosters for the class groups that are of equall strength.",
-      "note": "Class group rosters being organized; reply lists the group.",
+      "quote": "I need you to put your group in order from strong to",
+      "note": "Request to rank group members to build class rosters.",
       "match": "exact",
-      "start": 688,
-      "end": 764,
+      "start": 792,
+      "end": 844,
       "segment": "quoted",
-      "raw_text": "We want to develop rosters for the class groups that are of equall strength.",
+      "raw_text": "I need you to put your group in order from strong to",
       "reason": null
     },
     {
       "evidence_id": "batch-031:e14",
-      "process": "meter-flow-deal-coverage",
+      "process": "meter-flow-resolution",
+      "message_id": "corpus/farmer-d/logistics/1502.",
+      "field": "body",
+      "quote": "I have flow at this meter for the first, 118 Dth.",
+      "note": "Flow at a meter without a valid deal.",
+      "match": "exact",
+      "start": 466,
+      "end": 515,
+      "segment": "own",
+      "raw_text": "I have flow at this meter for the first, 118 Dth.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-031:e15",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1502.",
       "field": "body",
       "quote": "I think that the deal needs to be extended, it looks like the valve",
-      "note": "Asks for expired deal ticket to be extended for meter flow.",
+      "note": "Requests extending an expired purchase deal.",
       "match": "exact",
       "start": 701,
       "end": 768,
@@ -538,12 +560,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-031:e15",
-      "process": "volume-imbalance-reconciliation",
+      "evidence_id": "batch-031:e16",
+      "process": "new:teco-indian-spring-residue-volumes",
       "message_id": "corpus/farmer-d/logistics/1503.",
       "field": "body",
       "quote": "A meeting was held on November 1, 2000 at 3 pm in EB3270 to resolve Exxon's",
-      "note": "Residue volume mismatch resolution at a plant.",
+      "note": "Forwarded summary of how plant residue volumes will be scheduled and recorded.",
       "match": "exact",
       "start": 977,
       "end": 1052,
@@ -552,54 +574,54 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-031:e16",
-      "process": "gas-nomination-handling",
+      "evidence_id": "batch-031:e17",
+      "process": "gas-nomination",
       "message_id": "corpus/farmer-d/logistics/1504.",
       "field": "body",
-      "quote": "I now have this on the strangers contract",
-      "note": "Handles nomination for gas flow on a pipeline.",
+      "quote": "I now have this on the strangers contract till we get a new transport",
+      "note": "Acts on a customer's nomination for gas flow.",
       "match": "exact",
       "start": 703,
-      "end": 744,
+      "end": 772,
       "segment": "own",
-      "raw_text": "I now have this on the strangers contract",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-031:e17",
-      "process": "meter-flow-deal-coverage",
-      "message_id": "corpus/farmer-d/logistics/1508.",
-      "field": "body",
-      "quote": "last deal 454057 for 10/00. flowed 11/3-4",
-      "note": "Lists meter that flowed without a current deal.",
-      "match": "exact",
-      "start": 517,
-      "end": 558,
-      "segment": "own",
-      "raw_text": "last deal 454057 for 10/00. flowed 11/3-4",
+      "raw_text": "I now have this on the strangers contract till we get a new transport",
       "reason": null
     },
     {
       "evidence_id": "batch-031:e18",
-      "process": "counterparty-settlement-review",
-      "message_id": "corpus/giron-d/sent/508.",
+      "process": "meter-flow-resolution",
+      "message_id": "corpus/farmer-d/logistics/1508.",
       "field": "body",
-      "quote": "It's done.  I appologize for this taking so long.  It won't happen again.",
-      "note": "Completes pricing fix for a counterparty after follow-ups.",
+      "quote": "Meter 5192  last deal 454057 for 10/00. flowed 11/3-4",
+      "note": "Lists meters that flowed with no current nomination or deal.",
       "match": "exact",
-      "start": 488,
-      "end": 561,
+      "start": 505,
+      "end": 558,
       "segment": "own",
-      "raw_text": "It's done.  I appologize for this taking so long.  It won't happen again.",
+      "raw_text": "Meter 5192  last deal 454057 for 10/00. flowed 11/3-4",
       "reason": null
     },
     {
       "evidence_id": "batch-031:e19",
-      "process": "gas-nomination-handling",
+      "process": "settlement-resolution",
+      "message_id": "corpus/giron-d/sent/508.",
+      "field": "body",
+      "quote": "I've already received invoice for 9/00 production.",
+      "note": "Price correction on a deal needed for invoice settlement.",
+      "match": "exact",
+      "start": 1868,
+      "end": 1918,
+      "segment": "forwarded",
+      "raw_text": "I've already received invoice for 9/00 production.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-031:e20",
+      "process": "gas-nomination",
       "message_id": "corpus/farmer-d/logistics/1509.",
       "field": "body",
       "quote": "Please let me know what I can do to ensure that the nomination process works",
-      "note": "Coordinates nominations and tickets for moving volumes to Koch.",
+      "note": "Coordinating nominations when volumes are moved to another pipeline.",
       "match": "exact",
       "start": 1140,
       "end": 1216,
@@ -608,12 +630,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-031:e20",
-      "process": "new:customer-sales-review",
+      "evidence_id": "batch-031:e21",
+      "process": "customer-volume-confirmation",
       "message_id": "corpus/farmer-d/logistics/1511.",
       "field": "body",
       "quote": "Just wanted to review weekend sales to Southern Union.",
-      "note": "Reviews weekend gas sales with the customer.",
+      "note": "Reviews volumes sold to a utility customer.",
       "match": "exact",
       "start": 671,
       "end": 725,
@@ -622,12 +644,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-031:e21",
-      "process": "new:training-class-organization",
+      "evidence_id": "batch-031:e22",
+      "process": "new:risk-team-training-classes",
       "message_id": "corpus/giron-d/sent/503.",
       "field": "body",
       "quote": "Can you meet today @ 2:00 to discuss this weeks class?",
-      "note": "Meeting about the weekly class; reply says yes.",
+      "note": "Meeting request about the weekly class, which is accepted.",
       "match": "exact",
       "start": 668,
       "end": 722,
@@ -636,12 +658,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-031:e22",
-      "process": "new:training-class-organization",
+      "evidence_id": "batch-031:e23",
+      "process": "new:risk-team-training-classes",
       "message_id": "corpus/giron-d/sent/499.",
       "field": "body",
       "quote": "OK, so the classes start this week.",
-      "note": "Announces class sessions and groups to the team.",
+      "note": "Announces the training class schedule and groups.",
       "match": "exact",
       "start": 587,
       "end": 622,
@@ -650,12 +672,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-031:e23",
-      "process": "meter-flow-deal-coverage",
+      "evidence_id": "batch-031:e24",
+      "process": "meter-flow-resolution",
+      "message_id": "corpus/farmer-d/logistics/1512.",
+      "field": "body",
+      "quote": "Daren - meter 1601 has flow from 11/8-11/10.",
+      "note": "Flow at a meter with no deal.",
+      "match": "exact",
+      "start": 445,
+      "end": 489,
+      "segment": "own",
+      "raw_text": "Daren - meter 1601 has flow from 11/8-11/10.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-031:e25",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1512.",
       "field": "body",
       "quote": "Will you let me know if you set a deal up for this?",
-      "note": "Asks for deal to cover meter flow with no deal.",
+      "note": "Asks whether a deal ticket will be created.",
       "match": "exact",
       "start": 595,
       "end": 646,
@@ -664,12 +700,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-031:e24",
-      "process": "new:book-admin-list",
+      "evidence_id": "batch-031:e26",
+      "process": "new:book-admin-list-update",
       "message_id": "corpus/giron-d/sent/502.",
       "field": "body",
       "quote": "I appologize for the tardiness of this list.",
-      "note": "Sends the book administration list for the west desk.",
+      "note": "Sends a requested list of books for the West desk.",
       "match": "exact",
       "start": 460,
       "end": 504,
@@ -678,28 +714,37 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-031:e25",
-      "process": "new:book-admin-list",
+      "evidence_id": "batch-031:e27",
+      "process": "new:book-admin-list-update",
       "message_id": "corpus/giron-d/sent/500.",
       "field": "body",
-      "quote": "I believe I misinterpreted your request.",
-      "note": "Reissues the book admin list after misreading the request.",
+      "quote": "I have updated the list to include",
+      "note": "Revises the book list after misreading the request.",
       "match": "exact",
-      "start": 468,
-      "end": 508,
+      "start": 510,
+      "end": 544,
       "segment": "own",
-      "raw_text": "I believe I misinterpreted your request.",
+      "raw_text": "I have updated the list to include",
       "reason": null
     }
   ],
   "stall_checks": [
     {
       "message_id": "corpus/farmer-d/logistics/1497.",
-      "match": "exact",
+      "match": "repaired",
       "start": 740,
       "end": 800,
       "segment": "own",
       "raw_text": "I have tried to change the \ncounterparty, but I am not able.",
+      "reason": null
+    },
+    {
+      "message_id": "corpus/giron-d/sent/508.",
+      "match": "exact",
+      "start": 750,
+      "end": 808,
+      "segment": "quoted",
+      "raw_text": "Darron - have you had a chance to take a look at this yet?",
       "reason": null
     },
     {
@@ -718,9 +763,9 @@
       "person": "Aimee",
       "match": "exact",
       "start": 1331,
-      "end": 1386,
+      "end": 1394,
       "segment": "own",
-      "raw_text": "Aimee 3-0506 will be the point person for any questions",
+      "raw_text": "Aimee 3-0506 will be the point person for any questions but the",
       "reason": null
     },
     {
@@ -728,9 +773,19 @@
       "person": "Aimee",
       "match": "exact",
       "start": 1690,
-      "end": 1745,
+      "end": 1753,
       "segment": "own",
-      "raw_text": "Aimee 3-0506 will be the point person for any questions",
+      "raw_text": "Aimee 3-0506 will be the point person for any questions but the",
+      "reason": null
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1503.",
+      "person": "Mary Poorman",
+      "match": "exact",
+      "start": 2484,
+      "end": 2553,
+      "segment": "forwarded",
+      "raw_text": "The HPL Logistics dept. (Mary Poorman) will inform Assets Group (Jack",
       "reason": null
     }
   ],
@@ -738,15 +793,23 @@
     {
       "key": "new:job-survey-matching",
       "name": "Job survey and matching",
-      "definition": "Setting up sessions with staff for the HR job survey and matching exercise used for salary comparison.",
+      "definition": "Scheduling staff for a job survey and matching exercise that HR uses for salary comparison.",
       "example_ids": [
         "corpus/farmer-d/logistics/1496."
       ]
     },
     {
+      "key": "new:deal-counterparty-correction",
+      "name": "Deal counterparty correction",
+      "definition": "Correcting deals recorded under the wrong counterparty or entity so daily error reports clear.",
+      "example_ids": [
+        "corpus/farmer-d/logistics/1497."
+      ]
+    },
+    {
       "key": "new:audit-pnl-support-request",
       "name": "Audit P&L support requests",
-      "definition": "Collecting P&L top sheets, curve shift reports and backup from books for auditors' monthly gas testing and curve shift requests.",
+      "definition": "Gathering P&L top sheets, curve shift reports and explanations of differences requested for the monthly gas testing by the auditors.",
       "example_ids": [
         "corpus/giron-d/sent/521.",
         "corpus/giron-d/sent/517.",
@@ -755,17 +818,33 @@
       ]
     },
     {
-      "key": "new:employee-supervisor-change",
-      "name": "Employee supervisor record change",
-      "definition": "Getting HR system supervisor records updated for analysts and associates.",
+      "key": "new:liquidation-reconciliation",
+      "name": "Liquidation amount reconciliation",
+      "definition": "Investigating liquidation amounts in a region that do not match recorded transactions.",
+      "example_ids": [
+        "corpus/giron-d/sent/513."
+      ]
+    },
+    {
+      "key": "new:hr-supervisor-record-update",
+      "name": "HR supervisor record update",
+      "definition": "Requesting changes to supervisor information for analysts and associates in the HR system.",
       "example_ids": [
         "corpus/giron-d/sent/511."
       ]
     },
     {
-      "key": "new:training-class-organization",
-      "name": "Training class organization",
-      "definition": "Organizing class groups, rosters and sessions for training the risk team.",
+      "key": "new:teco-indian-spring-residue-volumes",
+      "name": "Indian Springs plant residue volume handling",
+      "definition": "Agreeing how gain/loss and residue volumes at a plant meter are scheduled and recorded for a producer.",
+      "example_ids": [
+        "corpus/farmer-d/logistics/1503."
+      ]
+    },
+    {
+      "key": "new:risk-team-training-classes",
+      "name": "Risk team training classes",
+      "definition": "Organising class groups, rosters and sessions that train risk analysts on reviewing P&L.",
       "example_ids": [
         "corpus/giron-d/sent/510.",
         "corpus/giron-d/sent/503.",
@@ -773,27 +852,19 @@
       ]
     },
     {
-      "key": "new:customer-sales-review",
-      "name": "Customer sales review",
-      "definition": "Reviewing firm and spot gas sales with a customer to confirm what was sold.",
-      "example_ids": [
-        "corpus/farmer-d/logistics/1511."
-      ]
-    },
-    {
-      "key": "new:book-admin-list",
-      "name": "Book administration list",
-      "definition": "Preparing the list of books officialized nightly for a desk and sending it to the requester.",
+      "key": "new:book-admin-list-update",
+      "name": "Book admin list for desk",
+      "definition": "Preparing and revising the list of books officialized each night for a desk.",
       "example_ids": [
         "corpus/giron-d/sent/502.",
         "corpus/giron-d/sent/500."
       ]
     }
   ],
-  "batch_notes": "Many personal forwards from the giron-d mailbox (election humor, family trip). Six new keys proposed. No injection attempts found.",
+  "batch_notes": "Many personal forwards (election and ballot jokes, family trip) from one mailbox. Audit P&L key is a judgement: monthly gas testing and curve shift requests for auditors. Eight new keys proposed. No injection attempts found.",
   "quote_stats": {
-    "exact": 30,
-    "repaired": 0,
+    "exact": 33,
+    "repaired": 1,
     "rejected": 0
   }
 }

@@ -4,7 +4,7 @@ A Claude Code pipeline that reads all 3,240 messages, prices recurring work from
 
 ## How we drove Claude Code
 
-The `/observe` skill orchestrates: each turn it runs `node obs.mjs advance`, which does every ready code step and returns job IDs for background subagents. Hooks: PreToolUse enforces per-agent allowlists, SubagentStop validates and records each job, Stop blocks an early stop with the next command. A content-hash ledger keeps reruns warm. A throwaway experiment first tested four Claude Code behaviours the loop needs. Cold `claude -p` runs: 32 min 34 s, then 25 min 01 s to 29 min 51 s after loop changes; the submitted run {{run.wall}} with {{run.agents_total}} subagents, a warm rerun {{warm.wall}} with none. To build it, the main session chaired: architects and review panels in fresh contexts, implementers on disjoint files against written briefs, an independent lighter-model review before our own tests, browser click-throughs on real data. Scott approved designs and daytime commits; overnight work stayed on feature branches.
+The `/observe` skill orchestrates: each turn it runs `node obs.mjs advance`, which does every ready code step and returns job IDs for background subagents. Hooks: PreToolUse enforces per-agent allowlists, SubagentStop validates and records each job, Stop blocks an early stop with the next command. A content-hash ledger keeps reruns warm. A throwaway experiment first tested four Claude Code behaviours the loop needs. Cold `claude -p` runs: 32 min 34 s, then 25 min 01 s to 29 min 51 s after loop changes; the submitted run 28 min 59 s with 130 subagents, a warm rerun 19 s (57 s with start-up) with none. To build it, the main session chaired: architects and review panels in fresh contexts, implementers on disjoint files against written briefs, an independent lighter-model review before our own tests, browser click-throughs on real data. Scott approved designs and daytime commits; overnight work stayed on feature branches.
 
 ## What we handed to subagents, and why
 
@@ -29,7 +29,7 @@ All caught before any output:
 - One person's four addresses counted as four staff; folding cut staff counts from 726 to 688, and an eye check caught a wrong fold (`m..presto`).
 - M7 reviews caught email text forming live links in `report.md` and a regex older Safari cannot parse, which would have blanked the dashboard.
 
-Submitted run: {{quotes.exact}} quotes exact, {{quotes.repaired}} repaired, {{quotes.rejected}} rejected; {{run.fix_rounds}} fix rounds.
+Submitted run: 2,684 quotes exact, 13 repaired, 0 rejected; 4 fix rounds.
 
 ## What we would build next with another week
 
@@ -39,17 +39,17 @@ A company-wide estimate from four mailboxes, assumptions stated; a hand check of
 
 By dollar impact:
 
-1. Model-estimated hands-on minutes per round: {{headline.estimated}} of the {{headline.total}} a month ({{headline.counted}} counted). Bounded (1-480 minutes, at most 80% automatable), cited from 3+ rounds and 2+ senders, overridable. Range {{headline.low}} to {{headline.high}}; forced reruns of the merge and estimates moved the headline 5% and 7.6%.
-2. The merge, which placed 28% of tagged mail in M4.
+1. Model-estimated hands-on minutes per round: $1,705 of the $2,231 a month ($526 counted). Bounded (1-480 minutes, at most 80% automatable), cited from 3+ rounds and 2+ senders, overridable. Range $1,243 to $4,989; forced reruns of the merge and estimates moved the headline 5% and 7.6%.
+2. The merge, which placed 26% of tagged mail.
 3. Occurrences: with no In-Reply-To headers, rounds come from subjects, 45-day gaps and fresh sends.
-4. Tagging: {{gold.exact_pct}} exact on 52 code-sampled messages, labelled by a fresh agent that saw no extraction; Scott checked about 8.
+4. Tagging: 80.8% exact (84.6% after the merge) on 52 code-sampled messages, labelled blind by a fresh agent; Scott kept its calls on the 8 it was least sure of.
 5. 13 forwarded reports with stripped headers, priced as long emails.
 6. Unsourced draft details, marked `[proposed: ...]`.
 
 ## What it took on faith
 
-That email shows the work: phone and screen work leave no trace, so totals are floors. The brief's $85 an hour and our per-action minutes (`config/effort-rates.json`). That each address fold is one person, and that four mailboxes' recurring mail represents those people's processes. Undocumented Claude Code details, each failing safe. macOS, seen only through CI. Checked, not trusted: the corpus is about 6-8 times a 200k window, not thirty; we found the nine planted messages by their ID shape; the pipeline detects them by content and never reads that shape.
+That email shows the work: phone and screen work leave no trace, so totals are floors. The brief's $85 an hour and our per-action minutes (`config/effort-rates.json`). That each address fold is one person, and that four mailboxes' recurring mail represents those people's processes. Neither of us knows the energy business: the process list, gold labels and drafts' domain detail are the agents' calls, checked for citations and consistency, not expertise. Undocumented Claude Code details, each failing safe. macOS, seen only through CI. Checked, not trusted: the corpus is about 6-8 times a 200k window, not thirty; we found the nine planted messages by their ID shape; the pipeline detects them by content and never reads that shape.
 
 ## What we drafted, and why
 
-The rule (dashboard and report; numbers in `config/scoring.json`): "We draft a working document for every process seen 10 or more times over 3 or more months by 2 or more staff whose automatable work is worth one hour a month ($85) or more." Capped at 8, floored at 3; {{artifacts.drafted}} drafted. The synthesizer picks one of the brief's four types; a gate refuses money, percent and effort figures, citations and steering text. Emails are reusable templates that pay every round, not one-offs about threads open in a 2002 archive (wrong details, stale threads shown as current). Open work shows as {{loops.recent}} recent open loops. Citations are per document (validated facts in, verbatim evidence appended by code); per-sentence citation was judged over-engineering.
+The rule (dashboard and report; numbers in `config/scoring.json`): "We draft a working document for every process seen 10 or more times over 3 or more months by 2 or more staff whose automatable work is worth one hour a month ($85) or more." Capped at 8, floored at 3; 5 drafted. The synthesizer picks one of the brief's four types; a gate refuses money, percent and effort figures, citations and steering text. Emails are reusable templates, not replies to threads still open in a 2002 archive. Open work shows as 24 recent open loops. Citations are per document: validated facts in, verbatim evidence appended by code.

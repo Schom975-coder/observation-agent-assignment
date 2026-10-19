@@ -3,123 +3,114 @@
   "processes": [
     {
       "key": "annual-budget-preparation",
-      "description": "A budget coordinator opens the next year's budget round by announcing the due date for the first draft and sending managers a budget questionnaire to fill in and return by a deadline, including a list of their staff positions. Managers reply with their staffing (a one-person region offers its salary if needed) and with revised forecasts, sometimes reworked after checking headcount with HR. Separately, final monthly budget numbers and regional budget versus actual comparison reports are sent out to managers.",
+      "description": "A budget coordinator opens the round by sending managers a budget questionnaire with a return deadline (the first draft of the 2001 budget was due on September 18th). Managers fill in salary, staffing and training figures, sometimes after checking headcount and pay with HR, and send back revised forecasts. The coordinator loads each return into the budget spreadsheets to build the draft; small regions answer briefly, offering a single salary on request.",
       "steps": [
-        "The budget coordinator announces the due date for the first draft of next year's budget.",
-        "She sends managers a budget questionnaire to fill in and return by a deadline.",
-        "Managers list their staff positions, and salaries where asked.",
-        "Managers revise their budget forecasts, checking headcount with HR, and send a revised forecast.",
-        "Final budget numbers are forwarded once settled.",
-        "Budget versus actual comparison reports for a region are distributed to managers."
+        "The coordinator sends the budget questionnaire to managers with a due date for the first draft.",
+        "Each manager gathers salary, staffing and training figures for their group, checking with HR where needed.",
+        "Managers return the completed questionnaire or a revised budget forecast as an attachment.",
+        "Managers send further revisions after reviewing the numbers again.",
+        "The coordinator enters every return into the budget spreadsheets to assemble the draft."
       ],
       "stalls": [
         {
-          "summary": "A submitted budget is reworked after a session with HR and a revised forecast follows the next day, so the draft goes round twice.",
+          "summary": "Returns are revised after first submission: a manager reworked the budget after sitting down with HR and then sent a second revised forecast, so the coordinator re-enters figures.",
           "evidence_ids": ["batch-066:e1", "batch-066:e2"]
-        },
-        {
-          "summary": "The coordinator sets firm return deadlines for drafts and questionnaires, one written in capitals, which points to inputs coming back late.",
-          "evidence_ids": ["batch-023:e12", "batch-022:e25"]
         }
       ],
       "contradictions": [],
       "automation": {
-        "approach": "A standard budget questionnaire layout prefilled with each manager's current staff positions from HR and last year's figures, with the due date stated once, so managers only confirm or change lines. Budget versus actual comparison reports generated from the ledger on a fixed monthly schedule and sent to the same distribution list.",
+        "approach": "Replace the free-form questionnaire with a fixed budget input form per manager, prefilled from HR headcount and current salaries, that feeds directly into the consolidation spreadsheet so the coordinator no longer retypes returns and revisions overwrite cleanly.",
         "artifact_type": "template",
-        "rationale": "The repetitive part is collecting the same staffing and expense lines from each manager and producing the same comparison report each month. A prefilled form cuts the questionnaire work and the rework after HR checks, and a generated report removes manual assembly. Headcount and forecast judgments stay with managers."
+        "rationale": "The work centres on collecting the same salary, staffing and training fields from many managers and keying them into spreadsheets; a standard prefilled input layout removes the retyping and the back-and-forth with HR, while managers still judge the forecast."
       },
       "work_estimate": {
-        "minutes_per_occurrence": { "low": 20, "mid": 60, "high": 180 },
+        "minutes_per_occurrence": { "low": 30, "mid": 60, "high": 120 },
         "automatable_pct": 40,
         "basis": "inferred",
-        "rationale": "Minutes go to listing staff positions and salaries for the questionnaire, revising a forecast after checking headcount with HR, and preparing a monthly budget versus actual comparison report. A one-person region's staff list takes about 20 minutes; a forecast revision with HR input can reach about 180; mid 60. Pulling actuals and laying out the report are repetitive; staffing and forecast choices are not.",
-        "evidence_ids": ["batch-022:e25", "batch-023:e12", "batch-023:e18", "batch-023:e23", "batch-066:e1", "batch-072:e16"]
+        "rationale": "Each round involves a manager pulling salary and staffing figures, sometimes checking with HR, and filling a questionnaire or forecast, plus the coordinator entering the return into the budget spreadsheets. Roughly 60 minutes per return; small regions take far less, revised forecasts after HR review take more. Prefilled HR data and direct spreadsheet loading could take over the lookup and re-entry.",
+        "evidence_ids": ["batch-023:e12", "batch-023:e18", "batch-066:e1", "batch-066:e2", "batch-023:e23", "batch-022:e23"]
       }
     },
     {
-      "key": "audit-request-support",
-      "description": "External auditors (Arthur Andersen) test the gas trading books monthly and send requests for deal tickets, P&L top sheets as of a month end, MTM valuation mini-books, the index used to price a deal, and descriptions of where a deal's value comes from. One desk coordinator receives these, forwards them to the traders, schedulers or risk staff who hold the data, collects their answers and passes them back to the auditors, and tracks the requests in a quarterly matrix. Requests for the West desk are routed to other staff.",
+      "key": "meeting-scheduling",
+      "description": "An organiser, often a manager or assistant, announces a group, staff or management meeting or asks recipients to hold a date, and asks them to reply if they cannot attend or which of several dates suits them. Attendees confirm or sign up, the organiser collects head counts for catering, books a conference room or sends a calendar invitation, and sometimes chases more detail about the meeting from whoever requested it.",
       "steps": [
-        "Auditors send a testing request for deal tickets, a P&L top sheet, valuations or deal support.",
-        "The desk coordinator forwards the request to the staff who hold the data, sending West desk items to Pat Ryder.",
-        "Staff pull the deal tickets, confirmations, top sheet or MTM valuation mini-book.",
-        "Staff explain valuation sources or the pricing index where the auditors ask.",
-        "The coordinator collects the material and passes it on to the auditors.",
-        "Requests are logged in a matrix of all requests for the quarter."
+        "Someone requests a meeting or the organiser plans a regular group meeting.",
+        "The organiser emails the date, time and room, or asks recipients to hold or choose between dates.",
+        "Recipients reply with availability or sign up for a date.",
+        "The organiser tallies attendance and finalises numbers for food or space.",
+        "The organiser books the room or sends a calendar invitation and confirms the arrangement."
       ],
       "stalls": [
         {
-          "summary": "Requests pass through one coordinator who forwards them to desk staff and waits for the material while the auditors press him, and he concedes some requested information may not come back.",
-          "evidence_ids": ["batch-031:e6", "batch-039:e15", "batch-049:e17"]
+          "summary": "Organisers sometimes lack details of the meeting they are arranging and have to call the requester for more information before confirming.",
+          "evidence_ids": ["batch-012:e12"]
         },
         {
-          "summary": "Information discussed the day before was misplaced and had to be asked for again.",
-          "evidence_ids": ["batch-031:e4"]
+          "summary": "Final head counts are still being collected close to the event, so the organiser keeps chasing confirmations to finalise numbers.",
+          "evidence_ids": ["batch-054:e9", "batch-072:e6"]
+        }
+      ],
+      "contradictions": [],
+      "automation": {
+        "approach": "Use shared calendar invitations with built-in accept or decline and date polling instead of reply-to-email availability requests, with a standard announcement template carrying date, time, room and an RSVP deadline so head counts come from the calendar responses.",
+        "artifact_type": "email_template",
+        "rationale": "Most rounds are a short announcement or a request to hold or choose a date; a consistent invitation with RSVP built in cuts the manual tallying and the chasing, while organisers still pick dates and rooms."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": { "low": 5, "mid": 10, "high": 25 },
+        "automatable_pct": 50,
+        "basis": "observed",
+        "rationale": "Hands-on work beyond the emails is small: checking calendars, booking a conference room, tallying replies and finalising numbers for food. Around 10 minutes per meeting, more for offsites or events needing catering counts. Calendar polling and RSVP tracking could take over the tallying.",
+        "evidence_ids": ["batch-054:e8", "batch-054:e9", "batch-005:e21", "batch-072:e6", "batch-075:e7", "batch-032:e6"]
+      }
+    },
+    {
+      "key": "pnl-reporting",
+      "description": "Desk controllers produce the daily position report and P&L for each desk, post the files to shared folders, and answer traders' and managers' questions about moves in the results. Rounds include explaining month-to-date swings, booking prior-period adjustments and liquidations, gathering support documentation for accounting, correcting understated or overstated figures, and restating P&L files. Spreadsheet macros and booklists need refreshing, and system outages delay the report.",
+      "steps": [
+        "The controller runs the desk's positions and P&L from the trading systems.",
+        "The P&L file is saved to the shared regional folder and sent to traders and management.",
+        "Traders or managers question an unexpected figure or change in month-to-date P&L.",
+        "The controller researches the move, checks positions, volumes and liquidation values, and gathers support.",
+        "Adjustments or corrections are booked and the P&L is restated where needed.",
+        "The explanation and corrected file go back to the requester."
+      ],
+      "stalls": [
+        {
+          "summary": "Spreadsheet tooling breaks: users must edit a copy macro in saved P&L files and refresh the booklist before the reports work.",
+          "evidence_ids": ["batch-090:s3", "batch-090:e15"]
         },
         {
-          "summary": "Requests reach people who do not cover that desk and are redirected, to Pat Ryder for West desk items and to the real time coordinator for West Hourly deals.",
-          "evidence_ids": ["batch-042:e27", "batch-042:o1", "batch-056:o0"]
+          "summary": "A system outage stopped the controller from producing the report on time.",
+          "evidence_ids": ["batch-020:s2"]
         },
         {
-          "summary": "A desk responder says staff were told by risk management never to question the auditors, so requests are worked as asked rather than challenged.",
-          "evidence_ids": ["batch-056:e0"]
+          "summary": "Reported figures need rework: a controller caused confusion that had to be cleared up, P&L was understated and later restated, and booking errors needed corrective transactions.",
+          "evidence_ids": ["batch-018:s1", "batch-042:e24", "batch-093:e16", "batch-093:e8"]
+        },
+        {
+          "summary": "Fixes wait on individuals being back in the office.",
+          "evidence_ids": ["batch-030:e25", "batch-037:o1"]
         }
       ],
       "contradictions": [
         {
-          "summary": "The mail names two different people for West desk audit follow-up: the coordinator sends West desk requests to Pat Ryder, while a desk reply says the West Hourly deals in question can be researched by Kate Symes.",
-          "evidence_ids": ["batch-042:o1", "batch-056:o0"]
+          "summary": "The P&L figures disagree with themselves: one trader's reported P&L was understated, a reviewer called a result way too high, and a day's P&L was restated with a new final file.",
+          "evidence_ids": ["batch-042:e24", "batch-087:e25", "batch-093:e16", "batch-093:e11"]
         }
       ],
       "automation": {
-        "approach": "A shared request log extending the quarterly matrix, recording each auditor request, the desk owner it is routed to and its status; a routing table by desk naming who answers West desk and real time hourly requests; and standard pulls from the trading and risk systems for the recurring items, such as month-end P&L top sheets, deal tickets with confirmations and MTM mini-books.",
-        "artifact_type": "sop",
-        "rationale": "Most rounds ask for the same few document types through one coordinator, and the mail shows requests misrouted, misplaced and pressed for. A written procedure naming who answers for each desk and which standard pull answers each request type cuts the forwarding and re-asking. Valuation explanations still need people."
+        "approach": "Generate each region's P&L and position files on a schedule into a common posting location, with automated checks that flag large day-over-day month-to-date changes and unbooked liquidations, and a standard explanation template listing adjustments with their support.",
+        "artifact_type": "checklist",
+        "rationale": "Much of the effort goes to explaining swings and correcting bookings after the fact; a daily close checklist covering saving to the shared folder, refreshing macros and booklists, checking rolled-off positions and liquidation values catches the recurring errors before traders query them."
       },
       "work_estimate": {
         "minutes_per_occurrence": { "low": 20, "mid": 45, "high": 120 },
-        "automatable_pct": 45,
-        "basis": "inferred",
-        "rationale": "Each round means locating and pulling deal tickets or a month-end P&L top sheet, preparing an MTM valuation mini-book, identifying the index used, or writing a short description of where a deal's value comes from, plus keeping the request matrix. A single document pull is about 20 minutes; a multi-deal list or valuation write-up can reach 120; mid 45. Document pulls and logging are repetitive; explanations are not.",
-        "evidence_ids": ["batch-039:e9", "batch-048:e12", "batch-031:e7", "batch-052:e28", "batch-042:e26", "batch-042:e25", "batch-049:e15", "batch-056:o0"]
-      }
-    },
-    {
-      "key": "balancing-agreement-negotiation",
-      "description": "Pipeline marketing staff negotiate operational balancing agreements (OBAs) with connecting pipelines and producers. A round circulates draft contract language, such as the tolerance-level paragraph, for internal review; works through the counterparty's conditions for signing, such as changing the party name on the contract; and waits for the counterparty to sign and mail back the agreement. Old imbalances under a prior OBA may be cashed out by the other pipeline.",
-      "steps": [
-        "Draft or revise OBA language, such as the tolerance-level paragraph, and circulate it internally for review.",
-        "Send the draft agreement to the connecting pipeline or producer.",
-        "Resolve the counterparty's conditions for signing, such as changing the name on the contract.",
-        "Wait for the counterparty to execute and mail back the agreement.",
-        "Settle any old imbalance under the prior agreement, for example by cash-out."
-      ],
-      "stalls": [
-        {
-          "summary": "An OBA stays outstanding until the counterparty's condition is met: the producer will only execute once the name on the contract is changed.",
-          "evidence_ids": ["batch-098:e13"]
-        },
-        {
-          "summary": "Execution waits on the counterparty mailing the signed agreement back on its own timing.",
-          "evidence_ids": ["batch-009:e24"]
-        },
-        {
-          "summary": "An imbalance under an old OBA was carried open until the connecting pipeline moved to cash it out.",
-          "evidence_ids": ["batch-082:e16"]
-        }
-      ],
-      "contradictions": [],
-      "automation": {
-        "approach": "A standard OBA form with pre-approved clause options for tolerance levels and imbalance cash-out, and a status tracker listing each outstanding agreement, the counterparty condition holding it, when it was sent and any open imbalance, so follow-ups and contract name changes are visible without searching mail.",
-        "artifact_type": "template",
-        "rationale": "The work is contract drafting and counterparty follow-up. A form with pre-approved clauses shortens drafting and internal review, and a tracker addresses the main delays, which are agreements left unsigned on the counterparty's side. Negotiated terms and imbalance settlement still need people."
-      },
-      "work_estimate": {
-        "minutes_per_occurrence": { "low": 20, "mid": 60, "high": 180 },
-        "automatable_pct": 25,
-        "basis": "inferred",
-        "rationale": "Minutes go to drafting or revising clause language such as the tolerance paragraph, amending the contract party name before execution, and checking the old imbalance before a cash-out. A name change is about 20 minutes; drafting negotiated clause language with review can reach 180; mid 60. Only the boilerplate and tracking are repetitive; negotiated terms are not.",
-        "evidence_ids": ["batch-098:e4", "batch-098:e13", "batch-009:e24", "batch-082:e16"]
+        "automatable_pct": 35,
+        "basis": "observed",
+        "rationale": "A round means researching a P&L move or adjustment: checking positions and net open contracts, reconciling liquidation volumes, gathering support documentation, booking corrections and restating files. About 45 minutes per round, short for a file posting, long for a booking error needing restatement. Automated variance flags and file generation could take over part of the lookup; judgement on corrections stays manual.",
+        "evidence_ids": ["batch-032:e13", "batch-034:e6", "batch-046:e15", "batch-049:e0", "batch-093:e8", "batch-019:e11", "batch-091:e15", "batch-028:e13"]
       }
     }
   ]

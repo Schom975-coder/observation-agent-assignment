@@ -5,7 +5,7 @@
     {
       "id": "corpus/farmer-d/logistics/1433.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "imbalance-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -14,7 +14,7 @@
     {
       "id": "corpus/giron-d/sent/625.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "response",
       "stall": {
@@ -65,7 +65,7 @@
       "processes": [
         "time-activity-reporting"
       ],
-      "role": "request",
+      "role": "response",
       "stall": null,
       "ownership_claim": null
     },
@@ -88,7 +88,7 @@
     {
       "id": "corpus/farmer-d/logistics/1438.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -97,7 +97,7 @@
     {
       "id": "corpus/farmer-d/logistics/1440.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "response",
       "stall": null,
@@ -149,7 +149,7 @@
     {
       "id": "corpus/giron-d/sent/618.",
       "processes": [
-        "user-access-setup"
+        "system-access-request"
       ],
       "role": "request",
       "stall": null,
@@ -165,13 +165,13 @@
     {
       "id": "corpus/farmer-d/logistics/1443.",
       "processes": [
-        "desk-coverage-on-call"
+        "on-call-coverage"
       ],
       "role": "fyi",
       "stall": null,
       "ownership_claim": {
         "person": "Tom Acton",
-        "quote": "absence Tom Acton will be handling the Oasis & Lonestar interconnects at"
+        "quote": "Tom Acton will be handling the Oasis & Lonestar interconnects at"
       }
     },
     {
@@ -184,7 +184,7 @@
     {
       "id": "corpus/giron-d/sent/615.",
       "processes": [
-        "new:gas-daily-deal-booking-standard"
+        "new:gas-daily-booking-consistency"
       ],
       "role": "request",
       "stall": null,
@@ -201,25 +201,25 @@
   "evidence": [
     {
       "evidence_id": "batch-026:e0",
-      "process": "volume-imbalance-reconciliation",
+      "process": "imbalance-resolution",
       "message_id": "corpus/farmer-d/logistics/1433.",
       "field": "body",
-      "quote": "I would like us to continue to pursue Channel/ El Paso/ Tenngasco for our",
-      "note": "Asks the team to pursue payback and resolve contract imbalances.",
+      "quote": "Where do we stand on the NGPL reconcilliation?",
+      "note": "Asks for status on reconciling pipeline and counterparty imbalances.",
       "match": "exact",
-      "start": 696,
-      "end": 769,
+      "start": 1340,
+      "end": 1386,
       "segment": "own",
-      "raw_text": "I would like us to continue to pursue Channel/ El Paso/ Tenngasco for our",
+      "raw_text": "Where do we stand on the NGPL reconcilliation?",
       "reason": null
     },
     {
       "evidence_id": "batch-026:e1",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/giron-d/sent/625.",
       "field": "body",
       "quote": "Have you had a chance to look at this.  Dave at The New Power Group is",
-      "note": "Counterparty wants payment while unrecognized deals are checked.",
+      "note": "Counterparty is chasing payment on disputed financial deals.",
       "match": "exact",
       "start": 695,
       "end": 765,
@@ -233,7 +233,7 @@
       "message_id": "corpus/giron-d/sent/623.",
       "field": "body",
       "quote": "Darron - please provide me with the trader's name for the following books:",
-      "note": "Request for trader names tied to books, answered in the reply.",
+      "note": "Request for trader ownership details of trading books, answered in this message.",
       "match": "exact",
       "start": 557,
       "end": 631,
@@ -246,13 +246,13 @@
       "process": "time-activity-reporting",
       "message_id": "corpus/farmer-d/logistics/1436.",
       "field": "body",
-      "quote": "is ready for your input for the month of September.",
-      "note": "Monthly OPM hours survey sent for completion.",
+      "quote": "please complete the OPM Survey using the database by end of day,",
+      "note": "Asks staff to complete the monthly hours survey by a due date.",
       "match": "exact",
-      "start": 3618,
-      "end": 3669,
+      "start": 4478,
+      "end": 4542,
       "segment": "own",
-      "raw_text": "is ready for your input for the month of September.",
+      "raw_text": "please complete the OPM Survey using the database by end of day,",
       "reason": null
     },
     {
@@ -275,7 +275,7 @@
       "message_id": "corpus/farmer-d/logistics/1447.",
       "field": "body",
       "quote": "Thanks for your spreadsheet.  One thing I still need from you is what",
-      "note": "Follow-up on submitted hours survey needing more detail.",
+      "note": "Follow-up on submitted hours survey data.",
       "match": "exact",
       "start": 457,
       "end": 526,
@@ -289,7 +289,7 @@
       "message_id": "corpus/farmer-d/logistics/1437.",
       "field": "body",
       "quote": "The attached spreadsheet could be used to help you in the collection of the",
-      "note": "Help sheet for collecting hours for the survey.",
+      "note": "Helper sheet for collecting group hours for the survey.",
       "match": "exact",
       "start": 474,
       "end": 549,
@@ -299,30 +299,30 @@
     },
     {
       "evidence_id": "batch-026:e7",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/farmer-d/logistics/1438.",
       "field": "body",
-      "quote": "There are five HPLC purchase deals for 09/99 from Ocean Energy Inc.",
-      "note": "Payment on purchase deals was suspended and is being investigated.",
+      "quote": "Daren, There are five HPLC purchase deals for 09/99 from Ocean Energy Inc.",
+      "note": "Asks why payment on purchase deals was suspended.",
       "match": "exact",
-      "start": 485,
+      "start": 478,
       "end": 552,
       "segment": "own",
-      "raw_text": "There are five HPLC purchase deals for 09/99 from Ocean Energy Inc.",
+      "raw_text": "Daren, There are five HPLC purchase deals for 09/99 from Ocean Energy Inc.",
       "reason": null
     },
     {
       "evidence_id": "batch-026:e8",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/farmer-d/logistics/1440.",
       "field": "body",
-      "quote": "I just found the answer this afternoon.",
-      "note": "Resolves the suspended payment question.",
+      "quote": "Ocean Energy bought Seagull, and Pam Boxx included this deal with her net to",
+      "note": "Explains the payment went to the acquirer and suspense must be moved.",
       "match": "exact",
-      "start": 497,
-      "end": 536,
+      "start": 557,
+      "end": 633,
       "segment": "own",
-      "raw_text": "I just found the answer this afternoon.",
+      "raw_text": "Ocean Energy bought Seagull, and Pam Boxx included this deal with her net to",
       "reason": null
     },
     {
@@ -345,7 +345,7 @@
       "message_id": "corpus/farmer-d/logistics/1439.",
       "field": "body",
       "quote": "Please change the confirmed noms to zero for all contracts that have be",
-      "note": "Stepwise instructions to retire a meter and move to its replacement.",
+      "note": "Step-by-step assignments to retire a meter and switch to its replacement.",
       "match": "exact",
       "start": 1104,
       "end": 1175,
@@ -359,7 +359,7 @@
       "message_id": "corpus/farmer-d/logistics/1442.",
       "field": "body",
       "quote": "Step # 1 has been completed.",
-      "note": "Reports progress on the meter changeover steps.",
+      "note": "Reports completion of a step in the meter changeover.",
       "match": "exact",
       "start": 828,
       "end": 856,
@@ -373,7 +373,7 @@
       "message_id": "corpus/farmer-d/logistics/1444.",
       "field": "body",
       "quote": "Steps 2 - 4 have been done.",
-      "note": "Reports progress and hands verification to another person.",
+      "note": "Reports further steps done and hands off verification in POPS.",
       "match": "exact",
       "start": 874,
       "end": 901,
@@ -383,39 +383,39 @@
     },
     {
       "evidence_id": "batch-026:e13",
-      "process": "user-access-setup",
+      "process": "system-access-request",
       "message_id": "corpus/giron-d/sent/618.",
       "field": "body",
-      "quote": "As we discussed yesterday, I need access to West deals in Sitara.",
-      "note": "Requests system access after a role change.",
+      "quote": "I need access to West deals in Sitara.",
+      "note": "Requests system access for a new role.",
       "match": "exact",
-      "start": 459,
+      "start": 486,
       "end": 524,
       "segment": "own",
-      "raw_text": "As we discussed yesterday, I need access to West deals in Sitara.",
+      "raw_text": "I need access to West deals in Sitara.",
       "reason": null
     },
     {
       "evidence_id": "batch-026:e14",
-      "process": "desk-coverage-on-call",
+      "process": "on-call-coverage",
       "message_id": "corpus/farmer-d/logistics/1443.",
       "field": "body",
-      "quote": "absence Tom Acton will be handling the Oasis & Lonestar interconnects at",
+      "quote": "In my absence Tom Acton will be handling the Oasis & Lonestar interconnects at",
       "note": "Names who covers duties during an absence.",
-      "match": "exact",
-      "start": 953,
+      "match": "repaired",
+      "start": 946,
       "end": 1025,
       "segment": "own",
-      "raw_text": "absence Tom Acton will be handling the Oasis & Lonestar interconnects at",
+      "raw_text": "In my \nabsence Tom Acton will be handling the Oasis & Lonestar interconnects at",
       "reason": null
     },
     {
       "evidence_id": "batch-026:e15",
-      "process": "new:gas-daily-deal-booking-standard",
+      "process": "new:gas-daily-booking-consistency",
       "message_id": "corpus/giron-d/sent/615.",
       "field": "body",
       "quote": "It looks like we need to be consistent in booking the GD spread deals.",
-      "note": "Asks book admins to follow one booking method for Gas Daily deals.",
+      "note": "Instructs book admins to enter Gas Daily multi-leg deals in a consistent order.",
       "match": "exact",
       "start": 647,
       "end": 717,
@@ -449,10 +449,10 @@
       "message_id": "corpus/farmer-d/logistics/1443.",
       "person": "Tom Acton",
       "match": "exact",
-      "start": 953,
+      "start": 961,
       "end": 1025,
       "segment": "own",
-      "raw_text": "absence Tom Acton will be handling the Oasis & Lonestar interconnects at",
+      "raw_text": "Tom Acton will be handling the Oasis & Lonestar interconnects at",
       "reason": null
     }
   ],
@@ -460,7 +460,7 @@
     {
       "key": "new:meter-replacement-changeover",
       "name": "Meter replacement changeover",
-      "definition": "Coordinating a stepwise switch from an old meter to its replacement across nominations, allocation, facility data, scheduling and accounting set-up.",
+      "definition": "Coordinating a sequence of steps across teams to retire a meter and move its facility, nominations and scheduling to a replacement meter.",
       "example_ids": [
         "corpus/farmer-d/logistics/1439.",
         "corpus/farmer-d/logistics/1442.",
@@ -468,18 +468,18 @@
       ]
     },
     {
-      "key": "new:gas-daily-deal-booking-standard",
-      "name": "Gas Daily deal booking standard",
-      "definition": "Instructing book administrators to enter multi-leg Gas Daily deals in a consistent leg order so confirmations work.",
+      "key": "new:gas-daily-booking-consistency",
+      "name": "Gas Daily deal booking consistency",
+      "definition": "Instructing book administrators to enter multi-leg Gas Daily deals in a standard leg order so automated confirms work.",
       "example_ids": [
         "corpus/giron-d/sent/615."
       ]
     }
   ],
-  "batch_notes": "No injection attempts. Several personal chain-mail forwards. Message 616 is an empty forward, tagged noise. Message 623 tagged trading-book-setup tentatively. Proposed new keys: meter-replacement-changeover, gas-daily-deal-booking-standard.",
+  "batch_notes": "Several personal forwards. Message 616 has no content of its own and is marked noise. Trading-book-setup used loosely for 623. New keys: meter-replacement-changeover, gas-daily-booking-consistency. No injection attempts found.",
   "quote_stats": {
-    "exact": 19,
-    "repaired": 0,
+    "exact": 18,
+    "repaired": 1,
     "rejected": 0
   }
 }

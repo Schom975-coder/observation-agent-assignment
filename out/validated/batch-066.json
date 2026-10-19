@@ -5,16 +5,16 @@
     {
       "id": "corpus/williams-w3/sent_items/255.",
       "processes": [],
-      "role": "noise",
+      "role": "personal",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/sent_items/254.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
-      "role": "fyi",
+      "role": "forward",
       "stall": null,
       "ownership_claim": null
     },
@@ -32,14 +32,14 @@
       "processes": [
         "new:annual-budget-preparation"
       ],
-      "role": "fyi",
+      "role": "response",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/sent_items/252.",
       "processes": [
-        "desk-coverage-on-call"
+        "real-time-power-scheduling"
       ],
       "role": "request",
       "stall": null,
@@ -48,7 +48,7 @@
     {
       "id": "corpus/williams-w3/sent_items/251.",
       "processes": [
-        "new:trading-desk-feedback"
+        "real-time-power-scheduling"
       ],
       "role": "fyi",
       "stall": null,
@@ -57,9 +57,9 @@
     {
       "id": "corpus/williams-w3/sent_items/250.",
       "processes": [
-        "new:adjustment-bid-tiering"
+        "real-time-power-scheduling"
       ],
-      "role": "fyi",
+      "role": "request",
       "stall": null,
       "ownership_claim": null
     },
@@ -80,7 +80,7 @@
     {
       "id": "corpus/williams-w3/sent_items/249.",
       "processes": [
-        "new:cell-phone-billing"
+        "new:cell-phone-cost-management"
       ],
       "role": "request",
       "stall": null,
@@ -89,7 +89,7 @@
     {
       "id": "corpus/williams-w3/sent_items/247.",
       "processes": [
-        "new:cell-phone-billing"
+        "new:cell-phone-cost-management"
       ],
       "role": "response",
       "stall": null,
@@ -98,7 +98,7 @@
     {
       "id": "corpus/williams-w3/sent_items/248.",
       "processes": [
-        "new:cell-phone-billing"
+        "new:cell-phone-cost-management"
       ],
       "role": "request",
       "stall": null,
@@ -107,16 +107,16 @@
     {
       "id": "corpus/williams-w3/sent_items/246.",
       "processes": [
-        "new:cell-phone-billing"
+        "new:cell-phone-cost-management"
       ],
-      "role": "response",
+      "role": "request",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/sent_items/245.",
       "processes": [
-        "new:cell-phone-billing"
+        "new:cell-phone-cost-management"
       ],
       "role": "response",
       "stall": null,
@@ -125,7 +125,7 @@
     {
       "id": "corpus/williams-w3/sent_items/244.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "request",
       "stall": null,
@@ -134,31 +134,25 @@
     {
       "id": "corpus/williams-w3/sent_items/243.",
       "processes": [
-        "user-access-setup"
+        "system-access-request"
       ],
       "role": "response",
-      "stall": {
-        "kind": "handoff_confusion",
-        "quote": "I work in Portland and am not involved with security clearance or security access."
-      },
+      "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/sent_items/241.",
       "processes": [
-        "user-access-setup"
+        "system-access-request"
       ],
       "role": "response",
-      "stall": {
-        "kind": "handoff_confusion",
-        "quote": "I am not involved with security, in Houston or otherwise, and can not help you obtain a security badge."
-      },
+      "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/sent_items/240.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "request",
       "stall": null,
@@ -174,7 +168,7 @@
     {
       "id": "corpus/williams-w3/sent_items/239.",
       "processes": [
-        "new:enpower-deal-entry-procedure"
+        "new:deal-entry-procedure"
       ],
       "role": "fyi",
       "stall": null,
@@ -183,7 +177,7 @@
     {
       "id": "corpus/williams-w3/sent_items/238.",
       "processes": [
-        "new:enpower-deal-entry-procedure"
+        "new:deal-entry-procedure"
       ],
       "role": "forward",
       "stall": null,
@@ -199,7 +193,7 @@
     {
       "id": "corpus/williams-w3/sent_items/237.",
       "processes": [
-        "desk-coverage-on-call"
+        "real-time-power-scheduling"
       ],
       "role": "request",
       "stall": null,
@@ -208,7 +202,7 @@
     {
       "id": "corpus/williams-w3/sent_items/236.",
       "processes": [
-        "market-rule-change-review"
+        "regulatory-notice-review"
       ],
       "role": "forward",
       "stall": null,
@@ -238,7 +232,7 @@
     {
       "id": "corpus/williams-w3/sent_items/235.",
       "processes": [
-        "new:adjustment-bid-tiering"
+        "real-time-power-scheduling"
       ],
       "role": "fyi",
       "stall": null,
@@ -254,7 +248,7 @@
     {
       "id": "corpus/williams-w3/sent_items/234.",
       "processes": [
-        "new:iso-dispatch-decline-inquiry"
+        "real-time-power-scheduling"
       ],
       "role": "forward",
       "stall": null,
@@ -263,9 +257,9 @@
     {
       "id": "corpus/williams-w3/sent_items/233.",
       "processes": [
-        "desk-coverage-on-call"
+        "on-call-coverage"
       ],
-      "role": "fyi",
+      "role": "request",
       "stall": null,
       "ownership_claim": null
     }
@@ -273,11 +267,11 @@
   "evidence": [
     {
       "evidence_id": "batch-066:e0",
-      "process": "realtime-schedule-checkout",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/254.",
       "field": "body",
       "quote": "The night shift will average the sales price and make one strip for the on-peak piece.",
-      "note": "Instructs how surplus on-peak length is sold and stripped for the real-time book.",
+      "note": "Instructs how real-time length is sold and booked.",
       "match": "exact",
       "start": 1670,
       "end": 1756,
@@ -291,7 +285,7 @@
       "message_id": "corpus/williams-w3/sent_items/253.",
       "field": "body",
       "quote": "I have made some revisions to the budget after spending some time with Amy Fitzpatrick in our HR department.",
-      "note": "Returns a revised 2002 budget plan to finance.",
+      "note": "Returns a revised 2002 budget plan.",
       "match": "exact",
       "start": 534,
       "end": 642,
@@ -305,7 +299,7 @@
       "message_id": "corpus/williams-w3/sent_items/242.",
       "field": "body",
       "quote": "I have attached a revised budget forecast for 2002.",
-      "note": "Sends a further revised 2002 budget forecast.",
+      "note": "Sends revised yearly budget forecast.",
       "match": "exact",
       "start": 529,
       "end": 580,
@@ -315,25 +309,25 @@
     },
     {
       "evidence_id": "batch-066:e3",
-      "process": "desk-coverage-on-call",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/252.",
       "field": "body",
-      "quote": "I liked the services portion of the night discussion note that you wrote on the 13th",
-      "note": "Feedback on the night shift discussion note content.",
+      "quote": "you need more information on sales on behalf of EPE for both HE 6 and HE 7",
+      "note": "Feedback on night shift sales notes for real-time hours.",
       "match": "exact",
-      "start": 531,
-      "end": 615,
+      "start": 621,
+      "end": 695,
       "segment": "own",
-      "raw_text": "I liked the services portion of the night discussion note that you wrote on the 13th",
+      "raw_text": "you need more information on sales on behalf of EPE for both HE 6 and HE 7",
       "reason": null
     },
     {
       "evidence_id": "batch-066:e4",
-      "process": "new:trading-desk-feedback",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/251.",
       "field": "body",
       "quote": "SMUD used enron online today and sold ust a total of 125 mws.",
-      "note": "Manager passes on a trader's sales result as feedback.",
+      "note": "Reports real-time power sales activity.",
       "match": "exact",
       "start": 559,
       "end": 620,
@@ -343,11 +337,11 @@
     },
     {
       "evidence_id": "batch-066:e5",
-      "process": "new:adjustment-bid-tiering",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/250.",
       "field": "body",
       "quote": "We have developed a process for tiering our bids and should do so going forward.",
-      "note": "Sets the procedure for tiered adjustment bids.",
+      "note": "Sets how adjustment bids are entered for the CAISO.",
       "match": "exact",
       "start": 1651,
       "end": 1731,
@@ -357,11 +351,11 @@
     },
     {
       "evidence_id": "batch-066:e6",
-      "process": "new:cell-phone-billing",
+      "process": "new:cell-phone-cost-management",
       "message_id": "corpus/williams-w3/sent_items/249.",
       "field": "body",
       "quote": "I would like to cap per employee costs at $50 per month on the group calling plan.",
-      "note": "Requests cell phone cost information and a billing cap.",
+      "note": "Requests cell phone cost data and a cap policy.",
       "match": "exact",
       "start": 606,
       "end": 688,
@@ -371,11 +365,11 @@
     },
     {
       "evidence_id": "batch-066:e7",
-      "process": "new:cell-phone-billing",
+      "process": "new:cell-phone-cost-management",
       "message_id": "corpus/williams-w3/sent_items/247.",
       "field": "body",
       "quote": "Please send an email to the group explaining to them that they will be billed if they go over $55 a month.",
-      "note": "Instructs notice of over-limit billing.",
+      "note": "Directs notice of overage billing.",
       "match": "exact",
       "start": 556,
       "end": 662,
@@ -385,11 +379,11 @@
     },
     {
       "evidence_id": "batch-066:e8",
-      "process": "new:cell-phone-billing",
+      "process": "new:cell-phone-cost-management",
       "message_id": "corpus/williams-w3/sent_items/248.",
       "field": "body",
       "quote": "Could you also cancel my monthly PalmNet service.",
-      "note": "Asks for a wireless service to be cancelled.",
+      "note": "Service cancellation request to the phone administrator.",
       "match": "exact",
       "start": 540,
       "end": 589,
@@ -399,39 +393,39 @@
     },
     {
       "evidence_id": "batch-066:e9",
-      "process": "new:cell-phone-billing",
+      "process": "new:cell-phone-cost-management",
       "message_id": "corpus/williams-w3/sent_items/246.",
       "field": "body",
-      "quote": "Could you send an email to each group member giving them their average usage",
-      "note": "Requests usage reports for group members' phones.",
+      "quote": "Could you send an email to each group member giving them their average usage since you started or the last 3 months",
+      "note": "Asks for per-person usage reporting.",
       "match": "exact",
       "start": 579,
-      "end": 655,
+      "end": 694,
       "segment": "own",
-      "raw_text": "Could you send an email to each group member giving them their average usage",
+      "raw_text": "Could you send an email to each group member giving them their average usage since you started or the last 3 months",
       "reason": null
     },
     {
       "evidence_id": "batch-066:e10",
-      "process": "new:cell-phone-billing",
+      "process": "new:cell-phone-cost-management",
       "message_id": "corpus/williams-w3/sent_items/245.",
       "field": "body",
-      "quote": "Ryan Slinger previously had a plan set up.",
-      "note": "Answers a question about an individual phone plan.",
+      "quote": "It looks like our AT&T rep switched him back to the group calling plan.",
+      "note": "Sorts out one employee's phone plan.",
       "match": "exact",
-      "start": 548,
-      "end": 590,
+      "start": 591,
+      "end": 662,
       "segment": "own",
-      "raw_text": "Ryan Slinger previously had a plan set up.",
+      "raw_text": "It looks like our AT&T rep switched him back to the group calling plan.",
       "reason": null
     },
     {
       "evidence_id": "batch-066:e11",
-      "process": "realtime-schedule-checkout",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/244.",
       "field": "body",
       "quote": "Please remember to put the Tag # in the inc sheet.",
-      "note": "Reminds desk to record schedule tag numbers to reduce settlement disputes.",
+      "note": "Instruction on tagging real-time schedules.",
       "match": "exact",
       "start": 1642,
       "end": 1692,
@@ -441,25 +435,25 @@
     },
     {
       "evidence_id": "batch-066:e12",
-      "process": "user-access-setup",
+      "process": "system-access-request",
       "message_id": "corpus/williams-w3/sent_items/243.",
       "field": "body",
-      "quote": "I work in Portland and am not involved with security clearance or security access.",
-      "note": "Badge access request wrongly sent to him; declines.",
+      "quote": "Please remove my name from whatever list you might have. I work in Portland and am not involved with security clearance or security access.",
+      "note": "Declines a badge access activation request sent to him.",
       "match": "exact",
-      "start": 738,
+      "start": 681,
       "end": 820,
       "segment": "own",
-      "raw_text": "I work in Portland and am not involved with security clearance or security access.",
+      "raw_text": "Please remove my name from whatever list you might have. I work in Portland and am not involved with security clearance or security access.",
       "reason": null
     },
     {
       "evidence_id": "batch-066:e13",
-      "process": "user-access-setup",
+      "process": "system-access-request",
       "message_id": "corpus/williams-w3/sent_items/241.",
       "field": "body",
       "quote": "I am not involved with security, in Houston or otherwise, and can not help you obtain a security badge.",
-      "note": "Badge access request wrongly sent to him; declines.",
+      "note": "Declines a badge access approval request.",
       "match": "exact",
       "start": 709,
       "end": 812,
@@ -469,25 +463,25 @@
     },
     {
       "evidence_id": "batch-066:e14",
-      "process": "realtime-schedule-checkout",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/240.",
       "field": "body",
-      "quote": "You should recieve an email from Sean Crandall detailing a short position for tomorrow",
-      "note": "Passes on a short position for upcoming days to the group.",
+      "quote": "Please give this information to the group including Enpower information...etc.",
+      "note": "Passes on a short position for upcoming days.",
       "match": "exact",
-      "start": 520,
-      "end": 606,
+      "start": 634,
+      "end": 712,
       "segment": "own",
-      "raw_text": "You should recieve an email from Sean Crandall detailing a short position for tomorrow",
+      "raw_text": "Please give this information to the group including Enpower information...etc.",
       "reason": null
     },
     {
       "evidence_id": "batch-066:e15",
-      "process": "new:enpower-deal-entry-procedure",
+      "process": "new:deal-entry-procedure",
       "message_id": "corpus/williams-w3/sent_items/239.",
       "field": "body",
       "quote": "It details how we will be entering our Enpower and CAPS 99% of the time.",
-      "note": "Distributes the deal entry procedure.",
+      "note": "Circulates the standard way to enter deals.",
       "match": "exact",
       "start": 1707,
       "end": 1779,
@@ -497,25 +491,25 @@
     },
     {
       "evidence_id": "batch-066:e16",
-      "process": "new:enpower-deal-entry-procedure",
+      "process": "new:deal-entry-procedure",
       "message_id": "corpus/williams-w3/sent_items/238.",
       "field": "body",
-      "quote": "Please take a look at the following attachment.",
-      "note": "Re-sends the Enpower and CAPS entry attachment.",
+      "quote": "And here is the attachment",
+      "note": "Resends the missing deal entry attachment.",
       "match": "exact",
-      "start": 2067,
-      "end": 2114,
-      "segment": "quoted",
-      "raw_text": "Please take a look at the following attachment.",
+      "start": 1655,
+      "end": 1681,
+      "segment": "own",
+      "raw_text": "And here is the attachment",
       "reason": null
     },
     {
       "evidence_id": "batch-066:e17",
-      "process": "desk-coverage-on-call",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/237.",
       "field": "body",
       "quote": "There is a new schedule out for October.",
-      "note": "Announces new shift schedule and swap notification rule.",
+      "note": "Staffing schedule for the real-time group.",
       "match": "exact",
       "start": 1639,
       "end": 1679,
@@ -525,11 +519,11 @@
     },
     {
       "evidence_id": "batch-066:e18",
-      "process": "market-rule-change-review",
+      "process": "regulatory-notice-review",
       "message_id": "corpus/williams-w3/sent_items/236.",
       "field": "body",
       "quote": "What do you guys think?",
-      "note": "Forwards an ISO contact's link on a policy item asking for the group's view.",
+      "note": "Circulates a legislative press release from the CAISO contact for comment.",
       "match": "exact",
       "start": 1643,
       "end": 1666,
@@ -539,39 +533,39 @@
     },
     {
       "evidence_id": "batch-066:e19",
-      "process": "new:adjustment-bid-tiering",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/235.",
       "field": "body",
-      "quote": "When tiering adjustment bids, the CAISO system will not read more than 10 bids.",
-      "note": "Further rule for tiered adjustment bids.",
+      "quote": "the CAISO system will not read more than 10 bids",
+      "note": "Rule for entering tiered adjustment bids.",
       "match": "exact",
-      "start": 1642,
-      "end": 1721,
+      "start": 1672,
+      "end": 1720,
       "segment": "own",
-      "raw_text": "When tiering adjustment bids, the CAISO system will not read more than 10 bids.",
+      "raw_text": "the CAISO system will not read more than 10 bids",
       "reason": null
     },
     {
       "evidence_id": "batch-066:e20",
-      "process": "new:iso-dispatch-decline-inquiry",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/234.",
       "field": "body",
-      "quote": "Here is the original email from Keoni, and the follow-up from Chris Foster.",
-      "note": "Forwards ISO inquiry about ADS dispatch declines.",
+      "quote": "Your spreadsheet is showing a dispatch of 7.92 MW.",
+      "note": "CAISO dispatch discrepancy being traced.",
       "match": "exact",
-      "start": 617,
-      "end": 692,
-      "segment": "own",
-      "raw_text": "Here is the original email from Keoni, and the follow-up from Chris Foster.",
+      "start": 1900,
+      "end": 1950,
+      "segment": "quoted",
+      "raw_text": "Your spreadsheet is showing a dispatch of 7.92 MW.",
       "reason": null
     },
     {
       "evidence_id": "batch-066:e21",
-      "process": "desk-coverage-on-call",
+      "process": "on-call-coverage",
       "message_id": "corpus/williams-w3/sent_items/233.",
       "field": "body",
       "quote": "We will be covering for Enron Canada Corp as stated below.",
-      "note": "Arranges real-time desk coverage for specific days.",
+      "note": "Arranges weekend coverage for another entity.",
       "match": "exact",
       "start": 1671,
       "end": 1729,
@@ -580,58 +574,22 @@
       "reason": null
     }
   ],
-  "stall_checks": [
-    {
-      "message_id": "corpus/williams-w3/sent_items/243.",
-      "match": "exact",
-      "start": 738,
-      "end": 820,
-      "segment": "own",
-      "raw_text": "I work in Portland and am not involved with security clearance or security access.",
-      "reason": null
-    },
-    {
-      "message_id": "corpus/williams-w3/sent_items/241.",
-      "match": "exact",
-      "start": 709,
-      "end": 812,
-      "segment": "own",
-      "raw_text": "I am not involved with security, in Houston or otherwise, and can not help you obtain a security badge.",
-      "reason": null
-    }
-  ],
+  "stall_checks": [],
   "ownership_checks": [],
   "new_processes": [
     {
       "key": "new:annual-budget-preparation",
       "name": "Annual budget preparation",
-      "definition": "Completing and revising the yearly G&A expense budget worksheet for a group, with headcount and assumptions, and sending it to finance.",
+      "definition": "Completing and revising the yearly G&A expense budget worksheet for a group, with headcount and assumptions.",
       "example_ids": [
         "corpus/williams-w3/sent_items/253.",
         "corpus/williams-w3/sent_items/242."
       ]
     },
     {
-      "key": "new:trading-desk-feedback",
-      "name": "Trading desk feedback",
-      "definition": "A manager passing on results or coaching to individual traders.",
-      "example_ids": [
-        "corpus/williams-w3/sent_items/251."
-      ]
-    },
-    {
-      "key": "new:adjustment-bid-tiering",
-      "name": "Adjustment bid tiering rules",
-      "definition": "Instructing the real-time group how to enter tiered adjustment bids in the ISO system.",
-      "example_ids": [
-        "corpus/williams-w3/sent_items/250.",
-        "corpus/williams-w3/sent_items/235."
-      ]
-    },
-    {
-      "key": "new:cell-phone-billing",
-      "name": "Cell phone plan and billing administration",
-      "definition": "Setting limits, notifying staff, and tracking mobile phone plans and costs for a group with the administrator.",
+      "key": "new:cell-phone-cost-management",
+      "name": "Cell phone cost management",
+      "definition": "Managing group cell phone plans, caps, billing of overage and service changes with the phone administrator.",
       "example_ids": [
         "corpus/williams-w3/sent_items/249.",
         "corpus/williams-w3/sent_items/247.",
@@ -641,26 +599,18 @@
       ]
     },
     {
-      "key": "new:enpower-deal-entry-procedure",
-      "name": "Enpower and CAPS entry procedure",
-      "definition": "Distributing instructions for how the group enters deals in Enpower and CAPS.",
+      "key": "new:deal-entry-procedure",
+      "name": "Deal entry procedure",
+      "definition": "Instructing the group on how deals are entered into Enpower and CAPS.",
       "example_ids": [
         "corpus/williams-w3/sent_items/239.",
         "corpus/williams-w3/sent_items/238."
       ]
-    },
-    {
-      "key": "new:iso-dispatch-decline-inquiry",
-      "name": "ISO dispatch decline inquiry",
-      "definition": "Investigating ISO inquiries about declined dispatch instructions and unit maximum output mismatches.",
-      "example_ids": [
-        "corpus/williams-w3/sent_items/234."
-      ]
     }
   ],
-  "batch_notes": "No injection attempts found. New keys proposed: annual-budget-preparation, trading-desk-feedback, adjustment-bid-tiering, cell-phone-billing, enpower-deal-entry-procedure, iso-dispatch-decline-inquiry. Message 236 mapping to market-rule-change-review is tentative.",
+  "batch_notes": "No injection attempts found. New keys: annual-budget-preparation, cell-phone-cost-management, deal-entry-procedure. Mostly one manager's sent items to the Portland real-time group; several personal or company-wide announcements tagged with no process.",
   "quote_stats": {
-    "exact": 24,
+    "exact": 22,
     "repaired": 0,
     "rejected": 0
   }

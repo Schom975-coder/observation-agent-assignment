@@ -26,7 +26,7 @@
     {
       "id": "corpus/farmer-d/logistics/2060.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -49,19 +49,19 @@
     {
       "id": "corpus/farmer-d/logistics/2061.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "fyi",
       "stall": {
         "kind": "waiting_on_reply",
-        "quote": "we are waiting for Brian Riley to return to the"
+        "quote": "the Strangers IT agmt., we are waiting for Brian Riley to return to the"
       },
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/2062.",
       "processes": [
-        "deal-record-correction"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -70,7 +70,7 @@
     {
       "id": "corpus/giron-d/sent/274.",
       "processes": [
-        "curve-postid-mapping"
+        "curve-postid-maintenance"
       ],
       "role": "forward",
       "stall": null,
@@ -86,7 +86,7 @@
     {
       "id": "corpus/farmer-d/logistics/2063.",
       "processes": [
-        "gas-nomination-handling"
+        "gas-nomination"
       ],
       "role": "request",
       "stall": null,
@@ -102,7 +102,7 @@
     {
       "id": "corpus/giron-d/sent/236.",
       "processes": [],
-      "role": "noise",
+      "role": "personal",
       "stall": null,
       "ownership_claim": null
     },
@@ -118,7 +118,7 @@
     {
       "id": "corpus/farmer-d/logistics/2064.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -127,7 +127,7 @@
     {
       "id": "corpus/farmer-d/logistics/2065.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "response",
       "stall": null,
@@ -136,7 +136,7 @@
     {
       "id": "corpus/farmer-d/logistics/2066.",
       "processes": [
-        "pipeline-outage-supply-cuts"
+        "pipeline-maintenance-notice"
       ],
       "role": "fyi",
       "stall": null,
@@ -145,7 +145,7 @@
     {
       "id": "corpus/farmer-d/logistics/2067.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -154,7 +154,7 @@
     {
       "id": "corpus/farmer-d/logistics/2068.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -163,7 +163,7 @@
     {
       "id": "corpus/farmer-d/logistics/2069.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "response",
       "stall": null,
@@ -172,7 +172,7 @@
     {
       "id": "corpus/farmer-d/logistics/2070.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "response",
       "stall": null,
@@ -190,7 +190,7 @@
     {
       "id": "corpus/farmer-d/logistics/2071.",
       "processes": [
-        "deal-record-correction"
+        "deal-ticket-setup"
       ],
       "role": "fyi",
       "stall": null,
@@ -199,7 +199,7 @@
     {
       "id": "corpus/farmer-d/logistics/2072.",
       "processes": [
-        "deal-record-correction"
+        "deal-ticket-setup"
       ],
       "role": "fyi",
       "stall": null,
@@ -208,16 +208,19 @@
     {
       "id": "corpus/farmer-d/logistics/2073.",
       "processes": [
-        "deal-record-correction"
+        "deal-ticket-setup"
       ],
       "role": "fyi",
-      "stall": null,
+      "stall": {
+        "kind": "rework",
+        "quote": "OOOPS!   This is effective the 1st."
+      },
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/2074.",
       "processes": [
-        "deal-record-correction"
+        "deal-ticket-setup"
       ],
       "role": "fyi",
       "stall": null,
@@ -226,7 +229,7 @@
     {
       "id": "corpus/farmer-d/logistics/2075.",
       "processes": [
-        "deal-record-correction"
+        "deal-ticket-setup"
       ],
       "role": "fyi",
       "stall": null,
@@ -249,7 +252,7 @@
     {
       "id": "corpus/giron-d/sent/267.",
       "processes": [
-        "credit-exposure-reporting"
+        "credit-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -267,7 +270,7 @@
     {
       "id": "corpus/giron-d/sent/264.",
       "processes": [
-        "credit-exposure-reporting"
+        "credit-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -276,7 +279,7 @@
     {
       "id": "corpus/giron-d/sent/265.",
       "processes": [
-        "curve-postid-mapping"
+        "curve-postid-maintenance"
       ],
       "role": "response",
       "stall": null,
@@ -286,11 +289,11 @@
   "evidence": [
     {
       "evidence_id": "batch-041:e0",
-      "process": "volume-imbalance-reconciliation",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/2060.",
       "field": "body",
       "quote": "Please let me know if you intended to have volume on this deal for Jan 00",
-      "note": "Asks whether a deal should have carried volume given flow versus scheduled volume.",
+      "note": "Asks whether a deal that received unscheduled flow should have had volume.",
       "match": "exact",
       "start": 822,
       "end": 895,
@@ -300,11 +303,11 @@
     },
     {
       "evidence_id": "batch-041:e1",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/2061.",
       "field": "body",
       "quote": "Coastal plans to bring up the Monte Cristo (meter 9873) today.",
-      "note": "New production at a meter needing transport agreement and deal coverage.",
+      "note": "New production needing a transport agreement or deal at a meter.",
       "match": "exact",
       "start": 719,
       "end": 781,
@@ -314,11 +317,11 @@
     },
     {
       "evidence_id": "batch-041:e2",
-      "process": "deal-record-correction",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/2062.",
       "field": "body",
       "quote": "Should we keep rolling this deal?",
-      "note": "Asks whether a deal record should continue to be rolled.",
+      "note": "Asks whether a deal should continue being extended.",
       "match": "exact",
       "start": 522,
       "end": 555,
@@ -328,11 +331,11 @@
     },
     {
       "evidence_id": "batch-041:e3",
-      "process": "curve-postid-mapping",
+      "process": "curve-postid-maintenance",
       "message_id": "corpus/giron-d/sent/274.",
       "field": "subject",
       "quote": "1/30 Curves",
-      "note": "Curve file sent under a dated curves subject.",
+      "note": "Curves file for a date forwarded to a recipient.",
       "match": "exact",
       "start": 174,
       "end": 185,
@@ -342,16 +345,16 @@
     },
     {
       "evidence_id": "batch-041:e4",
-      "process": "gas-nomination-handling",
+      "process": "gas-nomination",
       "message_id": "corpus/farmer-d/logistics/2063.",
       "field": "body",
-      "quote": "Rohm & Haas, meter 1506, is looking for 24.000 for Feb. instead of",
-      "note": "Customer revised monthly nomination; asks whether to change the deal.",
+      "quote": "Also, Rohm & Haas, meter 1506, is looking for 24.000 for Feb. instead of",
+      "note": "Customer revised February nominated volume, asking whether to change the deal.",
       "match": "exact",
-      "start": 489,
+      "start": 483,
       "end": 555,
       "segment": "own",
-      "raw_text": "Rohm & Haas, meter 1506, is looking for 24.000 for Feb. instead of",
+      "raw_text": "Also, Rohm & Haas, meter 1506, is looking for 24.000 for Feb. instead of",
       "reason": null
     },
     {
@@ -359,22 +362,22 @@
       "process": "performance-review",
       "message_id": "corpus/giron-d/sent/271.",
       "field": "body",
-      "quote": "Any word on her review?  Let me know.  Thanks.",
-      "note": "Chases status of an employee review.",
+      "quote": "Any word on her review?",
+      "note": "Asks for status of a staff review.",
       "match": "exact",
       "start": 445,
-      "end": 491,
+      "end": 468,
       "segment": "own",
-      "raw_text": "Any word on her review?  Let me know.  Thanks.",
+      "raw_text": "Any word on her review?",
       "reason": null
     },
     {
       "evidence_id": "batch-041:e6",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/2064.",
       "field": "body",
       "quote": "Should we put a new deal in with Cleco?",
-      "note": "Asks whether a new deal is needed at a meter for a past month.",
+      "note": "Asks whether a new deal is needed at a meter.",
       "match": "exact",
       "start": 547,
       "end": 586,
@@ -384,11 +387,11 @@
     },
     {
       "evidence_id": "batch-041:e7",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/2065.",
       "field": "body",
       "quote": "According to Charlene, Cleco is invoicing us for this deal.",
-      "note": "Explains missing deal at the meter and who is invoicing.",
+      "note": "Explains missing deal in the system for the meter.",
       "match": "exact",
       "start": 535,
       "end": 594,
@@ -398,25 +401,25 @@
     },
     {
       "evidence_id": "batch-041:e8",
-      "process": "pipeline-outage-supply-cuts",
+      "process": "pipeline-maintenance-notice",
       "message_id": "corpus/farmer-d/logistics/2066.",
       "field": "body",
-      "quote": "per gas control, meter 1394 will have their valves shut for the next",
-      "note": "Notice that a meter will be shut in for several days.",
+      "quote": "Daren - per gas control, meter 1394 will have their valves shut for the next",
+      "note": "Notice of valve shut-in at a meter.",
       "match": "exact",
-      "start": 453,
+      "start": 445,
       "end": 521,
       "segment": "own",
-      "raw_text": "per gas control, meter 1394 will have their valves shut for the next",
+      "raw_text": "Daren - per gas control, meter 1394 will have their valves shut for the next",
       "reason": null
     },
     {
       "evidence_id": "batch-041:e9",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/farmer-d/logistics/2067.",
       "field": "body",
       "quote": "we have a purchase booked here, we need to reverse?",
-      "note": "Questions whether a booked purchase must be reversed after counterparty allocation.",
+      "note": "Booking question on a disputed purchase and offsetting sale.",
       "match": "exact",
       "start": 471,
       "end": 522,
@@ -426,11 +429,11 @@
     },
     {
       "evidence_id": "batch-041:e10",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/farmer-d/logistics/2068.",
       "field": "body",
       "quote": "Can either of you verify this?",
-      "note": "Asks to verify a requested buy-back for a counterparty deal.",
+      "note": "Asks to verify a requested buy-back and pricing for a deal.",
       "match": "exact",
       "start": 506,
       "end": 536,
@@ -440,30 +443,30 @@
     },
     {
       "evidence_id": "batch-041:e11",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/farmer-d/logistics/2069.",
       "field": "body",
-      "quote": "How are you determining that we should have a buyback for this deal?",
-      "note": "Questions basis of a buyback settlement request.",
+      "quote": "Janet Wallis told me so.",
+      "note": "Answers why a buy-back is needed for the deal.",
       "match": "exact",
-      "start": 640,
-      "end": 708,
-      "segment": "quoted",
-      "raw_text": "How are you determining that we should have a buyback for this deal?",
+      "start": 473,
+      "end": 497,
+      "segment": "own",
+      "raw_text": "Janet Wallis told me so.",
       "reason": null
     },
     {
       "evidence_id": "batch-041:e12",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/farmer-d/logistics/2070.",
       "field": "body",
-      "quote": "she told me that a buy back needs to be put into place..",
-      "note": "Justifies the buyback request with the counterparty.",
+      "quote": "I spoke to her over the phone and told her that we were short of the nom and",
+      "note": "Justifies the buy-back being requested.",
       "match": "exact",
-      "start": 551,
-      "end": 607,
+      "start": 473,
+      "end": 549,
       "segment": "own",
-      "raw_text": "she told me that a buy back needs to be put into place..",
+      "raw_text": "I spoke to her over the phone and told her that we were short of the nom and",
       "reason": null
     },
     {
@@ -471,22 +474,22 @@
       "process": "deal-book-transfer",
       "message_id": "corpus/giron-d/sent/270.",
       "field": "body",
-      "quote": "please go into your books and flip all the ECC deals",
-      "note": "Forwarded request to flip deals to another book.",
+      "quote": "Just a quick reminder to please go into your books and flip all the ECC deals",
+      "note": "Reminder to flip deals to another book.",
       "match": "exact",
-      "start": 1090,
+      "start": 1065,
       "end": 1142,
       "segment": "forwarded",
-      "raw_text": "please go into your books and flip all the ECC deals",
+      "raw_text": "Just a quick reminder to please go into your books and flip all the ECC deals",
       "reason": null
     },
     {
       "evidence_id": "batch-041:e14",
-      "process": "deal-record-correction",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/2071.",
       "field": "body",
       "quote": "I changed the volume of the Tenaska IV deal 384258 to reflect the correct",
-      "note": "Reports a change made to a deal record.",
+      "note": "Notice that a deal was changed.",
       "match": "exact",
       "start": 468,
       "end": 541,
@@ -496,39 +499,39 @@
     },
     {
       "evidence_id": "batch-041:e15",
-      "process": "deal-record-correction",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/2072.",
       "field": "body",
-      "quote": "I changed points on this deal from PGTT-TECO Waha 18002800 to PGTT-TECO",
-      "note": "Reports a point change on a deal.",
+      "quote": "FYI---I changed points on this deal from PGTT-TECO Waha 18002800",
+      "note": "Notice of a deal point change.",
       "match": "exact",
-      "start": 502,
-      "end": 573,
+      "start": 496,
+      "end": 560,
       "segment": "own",
-      "raw_text": "I changed points on this deal from PGTT-TECO Waha 18002800 to PGTT-TECO",
+      "raw_text": "FYI---I changed points on this deal from PGTT-TECO Waha 18002800",
       "reason": null
     },
     {
       "evidence_id": "batch-041:e16",
-      "process": "deal-record-correction",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/2073.",
       "field": "body",
-      "quote": "OOOPS!   This is effective the 1st.",
-      "note": "Corrects the effective date of the earlier deal point change.",
+      "quote": "this deal #589257 was also changed to meter 20606100.",
+      "note": "Repeats the deal meter change with a corrected effective date.",
       "match": "exact",
-      "start": 496,
-      "end": 531,
-      "segment": "own",
-      "raw_text": "OOOPS!   This is effective the 1st.",
+      "start": 1009,
+      "end": 1062,
+      "segment": "forwarded",
+      "raw_text": "this deal #589257 was also changed to meter 20606100.",
       "reason": null
     },
     {
       "evidence_id": "batch-041:e17",
-      "process": "deal-record-correction",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/2074.",
       "field": "body",
       "quote": "Oh yeah, and that goes for deal 594596 Crosstex , also.",
-      "note": "Extends the point change to another deal.",
+      "note": "Extends the point change to a further deal.",
       "match": "exact",
       "start": 495,
       "end": 550,
@@ -538,11 +541,11 @@
     },
     {
       "evidence_id": "batch-041:e18",
-      "process": "deal-record-correction",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/2075.",
       "field": "body",
       "quote": "I changed the meter point on deal 589257 Duke F.S. from 18002800 to",
-      "note": "Reports a meter point change on a deal.",
+      "note": "Notice of a changed meter on a deal.",
       "match": "exact",
       "start": 514,
       "end": 581,
@@ -552,11 +555,11 @@
     },
     {
       "evidence_id": "batch-041:e19",
-      "process": "credit-exposure-reporting",
+      "process": "credit-reporting",
       "message_id": "corpus/giron-d/sent/267.",
       "field": "subject",
       "quote": "Credit Report--2/2/01",
-      "note": "Dated credit report forwarded on.",
+      "note": "Dated credit report passed on.",
       "match": "exact",
       "start": 170,
       "end": 191,
@@ -569,22 +572,22 @@
       "process": "trading-book-setup",
       "message_id": "corpus/giron-d/sent/266.",
       "field": "body",
-      "quote": "Please review the list and let us know which ones are no longer valid books.",
-      "note": "List of risk books on file to review for removal.",
-      "match": "repaired",
-      "start": 1159,
-      "end": 1236,
-      "segment": "forwarded",
-      "raw_text": "Please \nreview the list and let us know which ones are no longer valid books.",
+      "quote": "Please look over the following and call Dawn with any books that need to be",
+      "note": "List of risk books to review and delete from EOL.",
+      "match": "exact",
+      "start": 689,
+      "end": 764,
+      "segment": "quoted",
+      "raw_text": "Please look over the following and call Dawn with any books that need to be",
       "reason": null
     },
     {
       "evidence_id": "batch-041:e21",
-      "process": "credit-exposure-reporting",
+      "process": "credit-reporting",
       "message_id": "corpus/giron-d/sent/264.",
       "field": "subject",
       "quote": "Credit Report--1/31/01",
-      "note": "Dated credit report forwarded on.",
+      "note": "Dated credit report passed on.",
       "match": "exact",
       "start": 168,
       "end": 190,
@@ -594,16 +597,16 @@
     },
     {
       "evidence_id": "batch-041:e22",
-      "process": "curve-postid-mapping",
+      "process": "curve-postid-maintenance",
       "message_id": "corpus/giron-d/sent/265.",
-      "field": "subject",
-      "quote": "Dec-00 PostId's",
-      "note": "List of post IDs for a month sent to a colleague.",
+      "field": "body",
+      "quote": "Call me if you have any questions.",
+      "note": "Sends a list of post IDs for December.",
       "match": "exact",
-      "start": 172,
-      "end": 187,
-      "segment": "subject",
-      "raw_text": "Dec-00 PostId's",
+      "start": 609,
+      "end": 643,
+      "segment": "own",
+      "raw_text": "Call me if you have any questions.",
       "reason": null
     }
   ],
@@ -611,19 +614,28 @@
     {
       "message_id": "corpus/farmer-d/logistics/2061.",
       "match": "exact",
-      "start": 1051,
+      "start": 1027,
       "end": 1098,
       "segment": "own",
-      "raw_text": "we are waiting for Brian Riley to return to the",
+      "raw_text": "the Strangers IT agmt., we are waiting for Brian Riley to return to the",
+      "reason": null
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2073.",
+      "match": "exact",
+      "start": 496,
+      "end": 531,
+      "segment": "own",
+      "raw_text": "OOOPS!   This is effective the 1st.",
       "reason": null
     }
   ],
   "ownership_checks": [],
   "new_processes": [],
-  "batch_notes": "No injection attempts found. Several giron-d messages are jokes, promotion congratulations or family mail. Deal 70422, credit report forwards and the EOL risk books list were mapped to nearest taxonomy keys with moderate confidence.",
+  "batch_notes": "No injection attempts. Many personal or chain-joke messages in the giron-d mailbox tagged personal or noise. No new keys proposed; deal-ticket-setup used broadly for deal and meter changes.",
   "quote_stats": {
-    "exact": 23,
-    "repaired": 1,
+    "exact": 25,
+    "repaired": 0,
     "rejected": 0
   }
 }

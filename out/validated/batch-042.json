@@ -5,7 +5,7 @@
     {
       "id": "corpus/giron-d/sent/260.",
       "processes": [
-        "credit-exposure-reporting"
+        "credit-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -14,7 +14,7 @@
     {
       "id": "corpus/giron-d/sent/261.",
       "processes": [
-        "credit-exposure-reporting"
+        "credit-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -23,7 +23,7 @@
     {
       "id": "corpus/giron-d/sent/262.",
       "processes": [
-        "credit-exposure-reporting"
+        "credit-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -32,7 +32,7 @@
     {
       "id": "corpus/giron-d/sent/263.",
       "processes": [
-        "credit-exposure-reporting"
+        "credit-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -41,7 +41,7 @@
     {
       "id": "corpus/giron-d/sent/259.",
       "processes": [
-        "credit-exposure-reporting"
+        "credit-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -50,7 +50,7 @@
     {
       "id": "corpus/giron-d/sent/258.",
       "processes": [
-        "month-end-close-coordination"
+        "month-end-close"
       ],
       "role": "response",
       "stall": null,
@@ -66,7 +66,8 @@
     {
       "id": "corpus/farmer-d/logistics/2077.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution",
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -75,7 +76,7 @@
     {
       "id": "corpus/giron-d/sent/257.",
       "processes": [
-        "credit-exposure-reporting"
+        "credit-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -84,7 +85,8 @@
     {
       "id": "corpus/farmer-d/logistics/2078.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution",
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -100,7 +102,7 @@
     {
       "id": "corpus/giron-d/sent/255.",
       "processes": [
-        "credit-exposure-reporting"
+        "credit-reporting"
       ],
       "role": "forward",
       "stall": {
@@ -112,7 +114,7 @@
     {
       "id": "corpus/farmer-d/logistics/2079.",
       "processes": [
-        "gas-nomination-handling"
+        "on-call-coverage"
       ],
       "role": "fyi",
       "stall": null,
@@ -131,7 +133,7 @@
     {
       "id": "corpus/giron-d/sent/253.",
       "processes": [
-        "credit-exposure-reporting"
+        "credit-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -140,7 +142,7 @@
     {
       "id": "corpus/giron-d/sent/252.",
       "processes": [
-        "new:purchase-receipt-confirmation"
+        "new:equipment-purchase-receipt-check"
       ],
       "role": "response",
       "stall": null,
@@ -149,7 +151,7 @@
     {
       "id": "corpus/giron-d/sent/251.",
       "processes": [
-        "credit-exposure-reporting"
+        "credit-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -176,18 +178,18 @@
     {
       "id": "corpus/giron-d/sent/248.",
       "processes": [
-        "pnl-position-reporting"
+        "pnl-reporting"
       ],
-      "role": "fyi",
+      "role": "response",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/sent/247.",
       "processes": [
-        "reference-data-update"
+        "new:counterparty-list-distribution"
       ],
-      "role": "request",
+      "role": "forward",
       "stall": null,
       "ownership_claim": null
     },
@@ -230,7 +232,7 @@
     {
       "id": "corpus/farmer-d/logistics/2081.",
       "processes": [
-        "deal-record-correction"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -239,7 +241,7 @@
     {
       "id": "corpus/giron-d/sent/243.",
       "processes": [
-        "credit-exposure-reporting"
+        "credit-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -248,7 +250,7 @@
     {
       "id": "corpus/giron-d/sent/242.",
       "processes": [
-        "credit-exposure-reporting"
+        "credit-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -301,7 +303,7 @@
     {
       "id": "corpus/giron-d/sent/237.",
       "processes": [
-        "new:purchase-receipt-confirmation"
+        "new:equipment-purchase-receipt-check"
       ],
       "role": "response",
       "stall": null,
@@ -318,7 +320,7 @@
   "evidence": [
     {
       "evidence_id": "batch-042:e0",
-      "process": "credit-exposure-reporting",
+      "process": "credit-reporting",
       "message_id": "corpus/giron-d/sent/260.",
       "field": "subject",
       "quote": "Credit Report--1/25/01",
@@ -332,7 +334,7 @@
     },
     {
       "evidence_id": "batch-042:e1",
-      "process": "credit-exposure-reporting",
+      "process": "credit-reporting",
       "message_id": "corpus/giron-d/sent/261.",
       "field": "subject",
       "quote": "Credit Report--1/26/01",
@@ -346,7 +348,7 @@
     },
     {
       "evidence_id": "batch-042:e2",
-      "process": "credit-exposure-reporting",
+      "process": "credit-reporting",
       "message_id": "corpus/giron-d/sent/262.",
       "field": "subject",
       "quote": "Credit Report--1/29/01",
@@ -360,11 +362,11 @@
     },
     {
       "evidence_id": "batch-042:e3",
-      "process": "credit-exposure-reporting",
+      "process": "credit-reporting",
       "message_id": "corpus/giron-d/sent/263.",
       "field": "subject",
       "quote": "Credit Report - 1/30/01",
-      "note": "Dated credit report forwarded with counterparty rebook comments.",
+      "note": "Dated credit report with counterparty rebook comments forwarded.",
       "match": "exact",
       "start": 170,
       "end": 193,
@@ -374,7 +376,7 @@
     },
     {
       "evidence_id": "batch-042:e4",
-      "process": "credit-exposure-reporting",
+      "process": "credit-reporting",
       "message_id": "corpus/giron-d/sent/259.",
       "field": "subject",
       "quote": "Credit Report--1/24/01",
@@ -388,7 +390,7 @@
     },
     {
       "evidence_id": "batch-042:e5",
-      "process": "credit-exposure-reporting",
+      "process": "credit-reporting",
       "message_id": "corpus/giron-d/sent/257.",
       "field": "subject",
       "quote": "Credit Report--2/5/01",
@@ -402,21 +404,21 @@
     },
     {
       "evidence_id": "batch-042:e6",
-      "process": "credit-exposure-reporting",
+      "process": "credit-reporting",
       "message_id": "corpus/giron-d/sent/255.",
-      "field": "subject",
-      "quote": "Credit Report--2/1/01",
-      "note": "Dated credit report forwarded.",
+      "field": "body",
+      "quote": "I apologize for the delay on the distribution, as we had systems issues.",
+      "note": "Credit report distribution delayed by system problems.",
       "match": "exact",
-      "start": 170,
-      "end": 191,
-      "segment": "subject",
-      "raw_text": "Credit Report--2/1/01",
+      "start": 1699,
+      "end": 1771,
+      "segment": "forwarded",
+      "raw_text": "I apologize for the delay on the distribution, as we had systems issues.",
       "reason": null
     },
     {
       "evidence_id": "batch-042:e7",
-      "process": "credit-exposure-reporting",
+      "process": "credit-reporting",
       "message_id": "corpus/giron-d/sent/253.",
       "field": "subject",
       "quote": "Credit Report--2/6/01",
@@ -430,7 +432,7 @@
     },
     {
       "evidence_id": "batch-042:e8",
-      "process": "credit-exposure-reporting",
+      "process": "credit-reporting",
       "message_id": "corpus/giron-d/sent/251.",
       "field": "subject",
       "quote": "Credit Report--2/7/01",
@@ -444,7 +446,7 @@
     },
     {
       "evidence_id": "batch-042:e9",
-      "process": "credit-exposure-reporting",
+      "process": "credit-reporting",
       "message_id": "corpus/giron-d/sent/243.",
       "field": "subject",
       "quote": "Credit Report--2/8/01",
@@ -458,7 +460,7 @@
     },
     {
       "evidence_id": "batch-042:e10",
-      "process": "credit-exposure-reporting",
+      "process": "credit-reporting",
       "message_id": "corpus/giron-d/sent/242.",
       "field": "subject",
       "quote": "Credit Report--2/9/01",
@@ -472,25 +474,25 @@
     },
     {
       "evidence_id": "batch-042:e11",
-      "process": "month-end-close-coordination",
+      "process": "month-end-close",
       "message_id": "corpus/giron-d/sent/258.",
       "field": "body",
-      "quote": "Please reply when your last day file is complete",
-      "note": "Month-end request for last day files, answered with West is done.",
+      "quote": "Please reply when your last day file is complete and don't forget to provide",
+      "note": "Month-end completion check of last day files and reports.",
       "match": "exact",
       "start": 760,
-      "end": 808,
+      "end": 836,
       "segment": "quoted",
-      "raw_text": "Please reply when your last day file is complete",
+      "raw_text": "Please reply when your last day file is complete and don't forget to provide",
       "reason": null
     },
     {
       "evidence_id": "batch-042:e12",
-      "process": "meter-flow-deal-coverage",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/2077.",
       "field": "body",
       "quote": "The meter shows flow the first two day, the deal to sell to San Jac is",
-      "note": "Meter flow with an expired deal; asks to extend.",
+      "note": "Meter flow with an expired deal.",
       "match": "exact",
       "start": 454,
       "end": 524,
@@ -500,11 +502,25 @@
     },
     {
       "evidence_id": "batch-042:e13",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
+      "message_id": "corpus/farmer-d/logistics/2077.",
+      "field": "body",
+      "quote": "Do you want me to extend the deal to cover the volume?",
+      "note": "Asks whether to extend an expired deal.",
+      "match": "exact",
+      "start": 536,
+      "end": 590,
+      "segment": "own",
+      "raw_text": "Do you want me to extend the deal to cover the volume?",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-042:e14",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/2078.",
       "field": "body",
       "quote": "For Dec. and Jan. production there are flow volumes without a deal.",
-      "note": "Meter flow with no deal; asks to extend or add counterparty.",
+      "note": "Flow volumes at a meter without a deal.",
       "match": "exact",
       "start": 447,
       "end": 514,
@@ -513,40 +529,54 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-042:e14",
-      "process": "gas-nomination-handling",
-      "message_id": "corpus/farmer-d/logistics/2079.",
-      "field": "body",
-      "quote": "Mary will handle off system nominations (Oasis, Lonestar & Cornshucker,",
-      "note": "Backup coverage assigned for off system nominations during absence.",
-      "match": "exact",
-      "start": 1095,
-      "end": 1166,
-      "segment": "own",
-      "raw_text": "Mary will handle off system nominations (Oasis, Lonestar & Cornshucker,",
-      "reason": null
-    },
-    {
       "evidence_id": "batch-042:e15",
-      "process": "new:purchase-receipt-confirmation",
-      "message_id": "corpus/giron-d/sent/252.",
+      "process": "deal-ticket-setup",
+      "message_id": "corpus/farmer-d/logistics/2078.",
       "field": "body",
-      "quote": "I received an invoice from Eagan Enterprises for Maintenance Kit for HP",
-      "note": "Asks whether merchandise on an invoice was received.",
+      "quote": "Do you want to extend this deal or should",
+      "note": "Asks whether to extend a deal or add a counterparty.",
       "match": "exact",
-      "start": 616,
-      "end": 687,
-      "segment": "quoted",
-      "raw_text": "I received an invoice from Eagan Enterprises for Maintenance Kit for HP",
+      "start": 553,
+      "end": 594,
+      "segment": "own",
+      "raw_text": "Do you want to extend this deal or should",
       "reason": null
     },
     {
       "evidence_id": "batch-042:e16",
-      "process": "new:purchase-receipt-confirmation",
+      "process": "on-call-coverage",
+      "message_id": "corpus/farmer-d/logistics/2079.",
+      "field": "body",
+      "quote": "Mary Poorman and Tom Acton will be backing me up.",
+      "note": "Names backup coverage during an absence.",
+      "match": "exact",
+      "start": 1044,
+      "end": 1093,
+      "segment": "own",
+      "raw_text": "Mary Poorman and Tom Acton will be backing me up.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-042:e17",
+      "process": "new:equipment-purchase-receipt-check",
+      "message_id": "corpus/giron-d/sent/252.",
+      "field": "body",
+      "quote": "Have you received this merchandise?",
+      "note": "Invoice checked against receipt of goods.",
+      "match": "exact",
+      "start": 705,
+      "end": 740,
+      "segment": "quoted",
+      "raw_text": "Have you received this merchandise?",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-042:e18",
+      "process": "new:equipment-purchase-receipt-check",
       "message_id": "corpus/giron-d/sent/237.",
       "field": "body",
       "quote": "Could you please check to see if you have received this item(s)",
-      "note": "Open purchase order cleanup needing receipt confirmation.",
+      "note": "Open purchase order checked for receipt.",
       "match": "exact",
       "start": 748,
       "end": 811,
@@ -555,26 +585,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-042:e17",
+      "evidence_id": "batch-042:e19",
       "process": "deal-book-transfer",
       "message_id": "corpus/giron-d/sent/250.",
       "field": "body",
-      "quote": "Just wanted to let you know that this deal needs to be flipped to the",
-      "note": "Deal must be flipped to another book.",
+      "quote": "this deal needs to be flipped to the",
+      "note": "Deal to be moved to another book.",
       "match": "exact",
-      "start": 703,
+      "start": 736,
       "end": 772,
       "segment": "forwarded",
-      "raw_text": "Just wanted to let you know that this deal needs to be flipped to the",
+      "raw_text": "this deal needs to be flipped to the",
       "reason": null
     },
     {
-      "evidence_id": "batch-042:e18",
+      "evidence_id": "batch-042:e20",
       "process": "deal-book-transfer",
       "message_id": "corpus/giron-d/sent/246.",
       "field": "body",
       "quote": "Here's a spreadsheet with the list of Aquila Canada Corp. and Engage Energy",
-      "note": "List of deals to flip to another book.",
+      "note": "List of deals to be flipped to another book.",
       "match": "exact",
       "start": 976,
       "end": 1051,
@@ -583,40 +613,40 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-042:e19",
+      "evidence_id": "batch-042:e21",
       "process": "new:analyst-interview-scheduling",
       "message_id": "corpus/giron-d/sent/249.",
       "field": "body",
-      "quote": "Unfortunately, I am out of the office this morning with a sick kid.",
+      "quote": "not be able to make the 10:30am interview.",
       "note": "Declines a scheduled candidate interview.",
       "match": "exact",
-      "start": 469,
-      "end": 536,
+      "start": 546,
+      "end": 588,
       "segment": "own",
-      "raw_text": "Unfortunately, I am out of the office this morning with a sick kid.",
+      "raw_text": "not be able to make the 10:30am interview.",
       "reason": null
     },
     {
-      "evidence_id": "batch-042:e20",
+      "evidence_id": "batch-042:e22",
       "process": "new:analyst-interview-scheduling",
       "message_id": "corpus/giron-d/sent/245.",
       "field": "body",
-      "quote": "Unfortunately, I had to cancel.",
-      "note": "Cancels a candidate interview.",
+      "quote": "Unfortunately, I had to cancel.  I had a sick kid",
+      "note": "Cancels an interview slot.",
       "match": "exact",
       "start": 444,
-      "end": 475,
+      "end": 493,
       "segment": "own",
-      "raw_text": "Unfortunately, I had to cancel.",
+      "raw_text": "Unfortunately, I had to cancel.  I had a sick kid",
       "reason": null
     },
     {
-      "evidence_id": "batch-042:e21",
+      "evidence_id": "batch-042:e23",
       "process": "new:analyst-interview-scheduling",
       "message_id": "corpus/giron-d/sent/239.",
       "field": "body",
       "quote": "I will be able to interview at either time.",
-      "note": "Gives availability for analyst interviews.",
+      "note": "Gives interview availability.",
       "match": "exact",
       "start": 466,
       "end": 509,
@@ -625,12 +655,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-042:e22",
-      "process": "pnl-position-reporting",
+      "evidence_id": "batch-042:e24",
+      "process": "pnl-reporting",
       "message_id": "corpus/giron-d/sent/248.",
       "field": "body",
       "quote": "Kevin's reported P&L was understated by the",
-      "note": "Explains a P&L variance on the monthly flash.",
+      "note": "Explains an error in reported P&L.",
       "match": "exact",
       "start": 555,
       "end": 598,
@@ -639,26 +669,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-042:e23",
-      "process": "reference-data-update",
+      "evidence_id": "batch-042:e25",
+      "process": "new:counterparty-list-distribution",
       "message_id": "corpus/giron-d/sent/247.",
       "field": "body",
-      "quote": "Make sure we are using it.",
-      "note": "Distributes the new counterparty list and asks that it be used.",
+      "quote": "I think everyone got the list.  Make sure we are using it.",
+      "note": "Circulates the new counterparty list and asks for its use.",
       "match": "exact",
-      "start": 628,
+      "start": 596,
       "end": 654,
       "segment": "own",
-      "raw_text": "Make sure we are using it.",
+      "raw_text": "I think everyone got the list.  Make sure we are using it.",
       "reason": null
     },
     {
-      "evidence_id": "batch-042:e24",
+      "evidence_id": "batch-042:e26",
       "process": "time-activity-reporting",
       "message_id": "corpus/farmer-d/logistics/2080.",
       "field": "body",
       "quote": "This is just a friendly reminder that the OPM Hours survey is due today.",
-      "note": "Reminder for monthly hours survey.",
+      "note": "Reminder that the hours survey is due.",
       "match": "exact",
       "start": 2487,
       "end": 2559,
@@ -667,26 +697,40 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-042:e25",
+      "evidence_id": "batch-042:e27",
       "process": "new:audit-valuation-request",
       "message_id": "corpus/giron-d/sent/244.",
       "field": "body",
-      "quote": "please advise as to what GD index Enron would use to",
-      "note": "Valuation index question needed for auditors.",
+      "quote": "Per our conversation, please advise as to what GD index Enron would use to",
+      "note": "Valuation input requested for auditors.",
       "match": "exact",
-      "start": 819,
+      "start": 797,
       "end": 871,
       "segment": "forwarded",
-      "raw_text": "please advise as to what GD index Enron would use to",
+      "raw_text": "Per our conversation, please advise as to what GD index Enron would use to",
       "reason": null
     },
     {
-      "evidence_id": "batch-042:e26",
+      "evidence_id": "batch-042:e28",
+      "process": "deal-ticket-setup",
+      "message_id": "corpus/farmer-d/logistics/2081.",
+      "field": "body",
+      "quote": "Check these deals:\n70422\n92754",
+      "note": "Asks to check listed deal numbers.",
+      "match": "exact",
+      "start": 437,
+      "end": 467,
+      "segment": "own",
+      "raw_text": "Check these deals:\n70422\n92754",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-042:e29",
       "process": "new:audit-valuation-request",
       "message_id": "corpus/giron-d/sent/240.",
       "field": "body",
       "quote": "Please forward to Ellen Wallumrod the MTM valuation(mini-book) for all",
-      "note": "Request for MTM valuation for auditors.",
+      "note": "MTM valuation requested for an audit.",
       "match": "exact",
       "start": 895,
       "end": 965,
@@ -695,7 +739,7 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-042:e27",
+      "evidence_id": "batch-042:e30",
       "process": "new:audit-valuation-request",
       "message_id": "corpus/giron-d/sent/241.",
       "field": "body",
@@ -706,20 +750,6 @@
       "end": 617,
       "segment": "own",
       "raw_text": "Call Pat Ryder for West desk requests.",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-042:e28",
-      "process": "deal-record-correction",
-      "message_id": "corpus/farmer-d/logistics/2081.",
-      "field": "body",
-      "quote": "Check these deals:\n70422\n92754",
-      "note": "Asks to check specific deal numbers.",
-      "match": "exact",
-      "start": 437,
-      "end": 467,
-      "segment": "own",
-      "raw_text": "Check these deals:\n70422\n92754",
       "reason": null
     }
   ],
@@ -758,9 +788,9 @@
   ],
   "new_processes": [
     {
-      "key": "new:purchase-receipt-confirmation",
-      "name": "Purchase receipt confirmation",
-      "definition": "Confirming to purchasing or accounts whether ordered hardware or merchandise was received so invoices and open purchase orders can be cleared.",
+      "key": "new:equipment-purchase-receipt-check",
+      "name": "Equipment purchase receipt check",
+      "definition": "Confirming with the requester that ordered equipment was received so invoices can be paid and purchase orders closed.",
       "example_ids": [
         "corpus/giron-d/sent/252.",
         "corpus/giron-d/sent/237."
@@ -769,7 +799,7 @@
     {
       "key": "new:analyst-interview-scheduling",
       "name": "Analyst interview scheduling",
-      "definition": "Responding to recruiting requests for interviewer availability and notifying organisers of confirmed or cancelled candidate interviews.",
+      "definition": "Responding to recruiting requests for interviewer availability and cancelling or confirming candidate interview slots.",
       "example_ids": [
         "corpus/giron-d/sent/249.",
         "corpus/giron-d/sent/245.",
@@ -777,9 +807,17 @@
       ]
     },
     {
+      "key": "new:counterparty-list-distribution",
+      "name": "Counterparty list distribution",
+      "definition": "Circulating the updated approved counterparty list to desks and asking staff to use it.",
+      "example_ids": [
+        "corpus/giron-d/sent/247."
+      ]
+    },
+    {
       "key": "new:audit-valuation-request",
       "name": "Audit valuation request",
-      "definition": "Providing mark-to-market valuations, mini-book exports and valuation indices for counterparties so they can show third-party values to their auditors, and routing those requests to the right desk.",
+      "definition": "Supplying mark-to-market valuations and pricing inputs to the confirmations group or auditors, and routing such requests to the right desk contact.",
       "example_ids": [
         "corpus/giron-d/sent/244.",
         "corpus/giron-d/sent/240.",
@@ -787,9 +825,9 @@
       ]
     }
   ],
-  "batch_notes": "No injection attempts found. Proposed new keys: purchase-receipt-confirmation, analyst-interview-scheduling, audit-valuation-request. Logistics 2079 is an out-of-office notice with backup assignments, tagged to nominations. Several personal jokes and family mail.",
+  "batch_notes": "No injection attempts found. New keys proposed: equipment-purchase-receipt-check, analyst-interview-scheduling, counterparty-list-distribution, audit-valuation-request. Message 2081 (bare deal numbers) is tagged deal-ticket-setup with low confidence. Several personal messages carry no process.",
   "quote_stats": {
-    "exact": 32,
+    "exact": 34,
     "repaired": 0,
     "rejected": 0
   }

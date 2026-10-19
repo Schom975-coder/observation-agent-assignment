@@ -1,179 +1,159 @@
 {
   "group_id": "synth-016",
-  "content_sha": "972041cb16e319b58d99970d73779dbe67401b17175e2d271727f4c48ab426c2",
+  "content_sha": "b9364dd0ed8ca7d3c7e582c3b6ec63120aef0f828286abc306fff8e0a1ae65c0",
   "processes": [
     {
-      "key": "price-index-evaluation",
-      "description": "Outside groups approach the West desk with proposed hourly-ahead or real-time power price indexes. The desk lead forwards each proposal, with the index definition and its template, to colleagues and asks for their feedback, then says which index he would take part in, provided it works. A round is the review of a proposal rather than a routine transaction.",
+      "key": "imbalance-resolution",
+      "description": "Schedulers and pipeline account staff compare measured against scheduled or confirmed volumes at meters and interconnects, find where actuals did not come in as scheduled, and agree with the pipeline or counterparty how the imbalance is cleared: lending or parking gas, shifting nominations, paying back volumes in kind, or making manual book entries when the system cannot clear it. Rounds trade spreadsheets, OBA imbalance reports and volume statements, and ask the other side to verify or update contract and meter lists.",
       "steps": [
-        "An outside group approaches the desk with a proposed hourly-ahead or real-time index for the West, with its definition and template.",
-        "The desk lead forwards the proposal to colleagues and asks them to review it and the template.",
-        "Colleagues review the definition and template and send their feedback.",
-        "The desk lead decides which index to participate in, provided it works."
+        "A scheduler or the pipeline notices that actual volumes at a meter or contract differ from scheduled or confirmed volumes.",
+        "Staff pull measured versus scheduled volumes and prepare a spreadsheet or imbalance report by contract.",
+        "The report or a list of meters and contracts goes to the counterparty or pipeline to verify, add or update.",
+        "Both sides compare their numbers and request statements to support any volume differences by month.",
+        "The parties agree how to clear the imbalance: lend or park gas, adjust nominations, or pay back volumes.",
+        "Where the system cannot clear it, accounting makes manual entries to clear the imbalance from the books."
       ],
-      "stalls": [],
+      "stalls": [
+        {
+          "summary": "Rounds wait on the other party: the Hub sends park and loan information late, a counterparty has no answer yet on why actuals differed, and an expected wire transfer is chased for over a week.",
+          "evidence_ids": [
+            "batch-053:s0",
+            "batch-009:s0",
+            "batch-083:s0"
+          ]
+        },
+        {
+          "summary": "Requests arrive without a clear owner: a responder is unsure why Settlements is asking about imbalance deals, and another notes nobody with sign-off authority sits on the work, so papers are walked over by hand.",
+          "evidence_ids": [
+            "batch-055:s7",
+            "batch-078:s0"
+          ]
+        },
+        {
+          "summary": "The scheduling system cannot clear some imbalances, so they recur monthly on the parking and lending contract and need manual book entries.",
+          "evidence_ids": [
+            "batch-051:e14",
+            "batch-075:e3"
+          ]
+        },
+        {
+          "summary": "Reconciliations with pipelines run long and get chased, with reports rerun for older months after the other side reconciles.",
+          "evidence_ids": [
+            "batch-026:e0",
+            "batch-097:e8",
+            "batch-097:e20"
+          ]
+        }
+      ],
+      "contradictions": [
+        {
+          "summary": "Two people name different owners of the daily imbalance check: one says it has been Bill's since the reorg, while Bill says Darron has owned it since March.",
+          "evidence_ids": [
+            "batch-078:o1",
+            "batch-077:o0",
+            "batch-078:e3",
+            "batch-077:e1"
+          ]
+        }
+      ],
+      "automation": {
+        "approach": "A scheduled report that pulls measured and scheduled volumes per meter, contract and interconnect, flags differences beyond a tolerance, and produces the reconciliation spreadsheet and supporting statements by month, plus a written procedure naming the owner of the daily imbalance check and the steps for clearing imbalances the system cannot clear.",
+        "artifact_type": "sop",
+        "rationale": "The mail shows the same reconciliation spreadsheets rebuilt by hand and confusion over who owns the daily check and who signs off. A written procedure that fixes ownership, sign-off and the manual-entry path addresses the stalls directly, while the comparison report takes over the volume pulling."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": {
+          "low": 20,
+          "mid": 45,
+          "high": 120
+        },
+        "automatable_pct": 45,
+        "basis": "inferred",
+        "rationale": "Most of a round goes to pulling measured versus scheduled volumes, comparing them with the counterparty's figures, building the reconciliation spreadsheet and adjusting nominations or making manual entries. Simple meter shortfalls take little time; multi-month OBA reconciliations with statements take far longer, hence the wide range. Volume pulling and comparison is the automatable part; agreeing the payback stays manual.",
+        "evidence_ids": [
+          "batch-007:e24",
+          "batch-013:e4",
+          "batch-091:e17",
+          "batch-088:e13",
+          "batch-075:e3",
+          "batch-047:e18",
+          "batch-051:e4"
+        ]
+      },
+      "estimate_check": {
+        "occurrences_cited": 7,
+        "senders_cited": 5
+      }
+    },
+    {
+      "key": "origination-tracking",
+      "description": "A desk coordinator records the origination recognized on deals each night, checks it against what was granted to each originating group, and follows up when amounts are missing from the schedule or a group claims more than it was granted. New groups are added to the origination file and given a daily report, and the coordinator asks who should grant origination on a given deal.",
+      "steps": [
+        "Origination recognized on the night's deals is totalled.",
+        "The total is compared with what each originating group was granted.",
+        "Missing or over-claimed amounts are raised with the group or the person granting origination.",
+        "New groups' deals are added to the origination file and set up for a daily report.",
+        "The schedule and report are corrected once the amounts are confirmed."
+      ],
+      "stalls": [
+        {
+          "summary": "An origination amount expected from another party does not appear, leaving the schedule incomplete until it is chased.",
+          "evidence_ids": [
+            "batch-022:s1",
+            "batch-016:e1"
+          ]
+        }
+      ],
+      "contradictions": [
+        {
+          "summary": "A group's claimed origination does not match what was granted to it, so the two records disagree until reconciled.",
+          "evidence_ids": [
+            "batch-022:e7"
+          ]
+        }
+      ],
+      "automation": {
+        "approach": "A template origination schedule that lists each deal, the group granted origination, the amount granted and the amount claimed or recognized, with a check column flagging differences and missing grants for follow-up.",
+        "artifact_type": "template",
+        "rationale": "The work is matching recognized and claimed origination against grants deal by deal; a shared schedule layout with a difference check makes gaps and over-claims visible without rebuilding the comparison each night."
+      },
+      "work_estimate": null,
+      "estimate_check": null
+    },
+    {
+      "key": "pipeline-maintenance-notice",
+      "description": "Gas control or a connected pipeline announces planned maintenance, pigging, tie-ins, turbine work or an unplanned leak repair. Logistics staff identify the meters in the affected section, notify the desk and producers or customers whose meters will be shut in or curtailed, and arrange how the gas is handled: holding it and batching it later, rescheduling, or deciding what to do when an outage is postponed. Some rounds need a notification letter to shippers.",
+      "steps": [
+        "Gas control or a connected pipeline announces planned or emergency work on a section, plant or station.",
+        "Staff identify the meters in the affected section, checking the list against the pipeline's records.",
+        "The desk and affected producers or customers are notified of the shut-in or reduced capacity and its dates.",
+        "Counterparties agree how volumes are handled, such as holding gas and batching it later.",
+        "Notification letters are drafted where shippers must be formally informed.",
+        "Updates on postponements or extended outages are passed along until the work is complete."
+      ],
+      "stalls": [
+        {
+          "summary": "Rounds wait on replies from counterparties or colleagues: a call about a notification letter goes unanswered, and the desk presses for a quick response on how line work will affect deliveries.",
+          "evidence_ids": [
+            "batch-051:s0",
+            "batch-001:s0",
+            "batch-051:e0"
+          ]
+        },
+        {
+          "summary": "Outages shift after notice goes out, so planned outages are postponed or extended and the desk has to decide again what to do with the affected days.",
+          "evidence_ids": [
+            "batch-052:e16",
+            "batch-052:e11",
+            "batch-023:e16"
+          ]
+        }
+      ],
       "contradictions": [],
       "automation": {
-        "approach": "A short evaluation checklist for each proposed index could record its definition, the delivery points and periods it covers, what the desk would submit and when, the template's format, who reviewed it and the participation decision, so competing proposals are compared on the same terms.",
-        "artifact_type": "checklist",
-        "rationale": "The work is occasional and rests on judgement about whether an index will work; the mail shows several groups proposing similar indexes and the desk lead asking colleagues for feedback. A checklist keeps those reviews consistent and records why the desk joins a particular index and not another."
-      },
-      "work_estimate": null,
-      "estimate_check": null
-    },
-    {
-      "key": "realtime-desk-briefing",
-      "description": "The real-time desk lead briefs the desk by email on what it needs on shift: links to transmission maps and the proposed OASIS, new and updated pages for the desk's information packet, BPA transmission prices from the start of October, handling rules such as logging out of the IPC website and not filling EnMax sales with MPC energy, how to report outages, market changes heading into winter, and forwarded counterparty feedback on the desk's performance.",
-      "steps": [
-        "The desk lead collects new information: transmission links and prices, rule changes, outage procedures or counterparty feedback.",
-        "He sends a briefing to the real-time desk, sometimes asking staff to print material such as a colour transmission map.",
-        "New and updated pages are added to the desk's information packet.",
-        "Staff apply the rules on shift, such as logging out of the IPC website and filling sales only with the right energy.",
-        "Outages are written up in an outage report sent to the Generation Outage Desk, with the Services Desk liaising with the outage desks."
-      ],
-      "stalls": [
-        {
-          "summary": "A new screen shown to the desk is only partly working: the ticker works and little else does.",
-          "evidence_ids": [
-            "batch-056:s2",
-            "batch-056:e22"
-          ]
-        },
-        {
-          "summary": "The IPC website locks the desk out when a session times out, so staff have to remember to log out after each use.",
-          "evidence_ids": [
-            "batch-056:e15"
-          ]
-        }
-      ],
-      "contradictions": [
-        {
-          "summary": "The same reply has the real-time desk filling out an outage report and sending it to the Generation Outage Desk, while naming the Services Desk as responsible for communicating with both the Generation and Real Time Outage Desks, leaving unclear who contacts the Generation Outage Desk.",
-          "evidence_ids": [
-            "batch-057:e13",
-            "batch-057:o0"
-          ]
-        }
-      ],
-      "automation": {
-        "approach": "Keep the desk information packet as a single maintained document organised by topic (transmission paths and prices, outage reporting, counterparty handling rules, system access and log-out rules, seasonal market notes), with each entry dated from when it takes effect, so a briefing becomes an update to the packet plus a short notice pointing to it.",
-        "artifact_type": "sop",
-        "rationale": "The briefings are standing rules the desk must follow on every shift, but they arrive as separate emails that staff must find and sometimes print. A single written procedure keeps the current rule in a known place, makes superseded prices and rules visible, and gives new staff a single document to read."
-      },
-      "work_estimate": null,
-      "estimate_check": null
-    },
-    {
-      "key": "realtime-schedule-checkout",
-      "description": "The real-time desk keeps each day's power schedules, imports and exports matched to the booked deals and to what the ISO and counterparties show. A round starts when the desk lead or a scheduler finds the desk long or short in a zone, a wrong schedule or import ID, a derated or cut path, or a counterparty limit. The email says what to buy or sell and for which book, which Enpower deals to enter, reprice or zero out, which tags and inc-sheet entries to complete, and whom to call, such as the CAISO, El Paso Electric or the preschedulers.",
-      "steps": [
-        "The desk lead or a scheduler spots a long or short position, a wrong import or export, or a transmission derate or cut.",
-        "The position is checked against the schedule sheets, the Enpower deal entries and the ISO's records such as CAPS.",
-        "Traders buy or sell to fill the position, or arrange lending with El Paso Electric, for the book and price the email names.",
-        "Deals are entered, repriced or zeroed out in Enpower and deal scheduling, including cut schedules and the value of cut deals.",
-        "Tags and tag numbers go into the inc sheet and the EPE schedule sheet, tagged for both light and heavy load.",
-        "The desk calls the CAISO or the counterparty to confirm or change the schedule and summarises each deal in Pacific time.",
-        "Revenue from corrected deals is routed to the group that captures it, such as volume management.",
-        "The previous day's printed dispatch and prescheduling sheet are filed in the agreed folder for follow-up."
-      ],
-      "stalls": [
-        {
-          "summary": "The CAISO's systems fail during checkout: its computers go down and it again has difficulty reading the desk's bids, so schedules wait or have to be confirmed another way.",
-          "evidence_ids": [
-            "batch-071:s0",
-            "batch-057:s1"
-          ]
-        },
-        {
-          "summary": "Schedule sheets carry errors that send rounds back for correction: a duplicate schedule in a sheet prepared ahead of the weekend, a wrong SPS volume, a wrong import ID, a period missing from the inc sheet, and an EPE schedule sheet that for yet another day leaves out schedules.",
-          "evidence_ids": [
-            "batch-059:s3",
-            "batch-090:s1",
-            "batch-084:e12",
-            "batch-071:e6",
-            "batch-093:s1"
-          ]
-        },
-        {
-          "summary": "Deal entries are corrected after the fact: an El Paso Electric deal price is changed, a deal is zeroed out for part of the day, and a new deal summary shows revenue its writer says he should not receive.",
-          "evidence_ids": [
-            "batch-059:e27",
-            "batch-059:s5",
-            "batch-061:e25"
-          ]
-        },
-        {
-          "summary": "Records that are lost or out of step have to be rebuilt: staff on shift must coordinate which deals were done and reconstruct a sheet, and a mismatch has to be squared away with the preschedulers.",
-          "evidence_ids": [
-            "batch-084:s1",
-            "batch-059:s2"
-          ]
-        },
-        {
-          "summary": "Cut deals stay in the systems: the instruction to zero out cut deals in Enpower and value them is repeated later in capitals for deal scheduling.",
-          "evidence_ids": [
-            "batch-081:e3",
-            "batch-081:e11"
-          ]
-        },
-        {
-          "summary": "The same procedures are restated in reminders, such as putting the tag number in the inc sheet, tagging both light and heavy load including the Southwest, and stating the Pacific time zone in deal summaries, which suggests these steps are often missed.",
-          "evidence_ids": [
-            "batch-066:e11",
-            "batch-076:e3",
-            "batch-072:e11"
-          ]
-        },
-        {
-          "summary": "Short positions can be hard to fill: the desk reports asking every counterparty in the Northwest to sell it energy.",
-          "evidence_ids": [
-            "batch-055:e6"
-          ]
-        },
-        {
-          "summary": "Follow-up work is put off to the next day when the desk lead has no time for it.",
-          "evidence_ids": [
-            "batch-059:s0"
-          ]
-        }
-      ],
-      "contradictions": [
-        {
-          "summary": "For the same schedule the desk expected a non-firm export, while CAPS showed a final firm import of the same size.",
-          "evidence_ids": [
-            "batch-053:e30",
-            "batch-053:s2"
-          ]
-        },
-        {
-          "summary": "Volumes in the schedule records disagree with what was agreed: the SPS schedule shows a larger figure than it should for a delivery period, and an import ID carries the wrong on-peak and off-peak volumes.",
-          "evidence_ids": [
-            "batch-090:s1",
-            "batch-084:e12"
-          ]
-        },
-        {
-          "summary": "After a deal price was changed, the new deal summary credits its writer with revenue he says he should not receive, while elsewhere revenue from a CAISO sale is said to go to the volume management group with no access for the real-time desk.",
-          "evidence_ids": [
-            "batch-059:e27",
-            "batch-059:s5",
-            "batch-061:o0",
-            "batch-061:e13"
-          ]
-        },
-        {
-          "summary": "Different people are named for El Paso Electric schedule details: Kate as the source of prices and deal numbers for EPE lending, later Diane Cutsforth as working on the EPE schedule, while the previous day's EPE sheets still go to Kate Symes' old desk.",
-          "evidence_ids": [
-            "batch-059:o0",
-            "batch-090:o0",
-            "batch-091:e4"
-          ]
-        }
-      ],
-      "automation": {
-        "approach": "A checkout report could compare Enpower deal entries, the inc and EPE schedule sheets, the tags and the ISO's final schedules for each delivery period, flagging long or short positions, wrong import IDs or volumes, missing tag numbers and cut schedules not yet zeroed out. Traders would still decide what to buy or sell, call the ISO and counterparties, and value cut deals. A shift checklist would carry the recurring rules the desk lead keeps restating.",
-        "artifact_type": "checklist",
-        "rationale": "The mail repeats the same reminders (tag numbers in the inc sheet, light and heavy load tags, Pacific time in deal summaries, zeroing out cut deals, filing the previous day's sheets) and shows errors that a routine check would catch before the ISO or a scheduler does. A shift checklist can be used straight away; the reconciliation report removes the manual comparison over time."
+        "approach": "A reusable maintenance notice that takes the section, dates and affected meter list from the pipeline's records and goes to a standing distribution of the desk and affected producers and customers, with fields for expected volume impact, the handling arrangement and any postponement update.",
+        "artifact_type": "email_template",
+        "rationale": "Most rounds are the same announcement re-sent with a new meter list and dates; a standard notice with the meter list drawn from the system cuts the retyping and makes postponements easy to reissue, while staff still agree how volumes are handled."
       },
       "work_estimate": {
         "minutes_per_occurrence": {
@@ -182,24 +162,20 @@
           "high": 60
         },
         "automatable_pct": 40,
-        "basis": "observed",
-        "rationale": "Most rounds centre on a single position or schedule: checking it against the schedule sheets, Enpower and the ISO's records, buying or selling to fill it, entering, repricing or zeroing the deal, updating the inc or EPE sheet and tags, and calling the ISO or counterparty. That is about 20 minutes; a plain notice of a position is nearer 10, while valuing cut deals or reconstructing a lost sheet runs toward 60. A reconciliation check could take over comparing deal entries, sheets, tags and ISO finals; buying, calling and judging cuts stay with people.",
+        "basis": "inferred",
+        "rationale": "A round mainly involves looking up the meters in the affected section, checking them against the pipeline's records, and arranging how the gas is handled with producers or customers. Most notices are short and routine; rounds needing a shipper notification letter or rearranged deliveries take longer. The meter lookup and notice are the automatable part.",
         "evidence_ids": [
-          "batch-084:e12",
-          "batch-090:s1",
-          "batch-081:e3",
-          "batch-060:e14",
-          "batch-061:e25",
-          "batch-084:s1",
-          "batch-053:s2",
-          "batch-069:e11",
-          "batch-066:e11",
-          "batch-093:s1"
+          "batch-009:e6",
+          "batch-015:e27",
+          "batch-001:e7",
+          "batch-001:e9",
+          "batch-051:e0",
+          "batch-052:e11"
         ]
       },
       "estimate_check": {
-        "occurrences_cited": 10,
-        "senders_cited": 2
+        "occurrences_cited": 6,
+        "senders_cited": 5
       }
     }
   ]

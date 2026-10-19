@@ -19,7 +19,7 @@
     {
       "id": "corpus/farmer-d/logistics/2088.",
       "processes": [
-        "system-enhancement-request"
+        "system-issue-resolution"
       ],
       "role": "forward",
       "stall": null,
@@ -28,7 +28,7 @@
     {
       "id": "corpus/giron-d/sent/206.",
       "processes": [
-        "credit-exposure-reporting"
+        "credit-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -39,14 +39,14 @@
       "processes": [
         "new:storage-deal-booking"
       ],
-      "role": "fyi",
+      "role": "response",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/2089.",
       "processes": [
-        "counterparty-settlement-review"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -55,7 +55,7 @@
     {
       "id": "corpus/farmer-d/logistics/2091.",
       "processes": [
-        "counterparty-settlement-review"
+        "meter-flow-resolution"
       ],
       "role": "response",
       "stall": null,
@@ -64,7 +64,7 @@
     {
       "id": "corpus/farmer-d/logistics/2094.",
       "processes": [
-        "counterparty-settlement-review"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": {
@@ -76,32 +76,28 @@
     {
       "id": "corpus/farmer-d/logistics/2100.",
       "processes": [
-        "counterparty-settlement-review",
-        "volume-imbalance-reconciliation"
+        "meter-flow-resolution"
       ],
       "role": "response",
       "stall": null,
       "ownership_claim": {
         "person": "Karen Lindley",
-        "quote": "Karen Lindley allocates this point but I feel the need to help her"
+        "quote": "Karen Lindley allocates this point"
       }
     },
     {
       "id": "corpus/farmer-d/logistics/2107.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "meter-flow-resolution"
       ],
       "role": "response",
-      "stall": {
-        "kind": "waiting_on_reply",
-        "quote": "I have asked Jackie Birch to retrieve December 2000 & January 2001"
-      },
+      "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/2090.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -117,7 +113,7 @@
     {
       "id": "corpus/giron-d/sent/202.",
       "processes": [
-        "credit-exposure-reporting"
+        "credit-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -126,7 +122,7 @@
     {
       "id": "corpus/farmer-d/logistics/2092.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -135,7 +131,7 @@
     {
       "id": "corpus/farmer-d/logistics/2093.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -144,7 +140,7 @@
     {
       "id": "corpus/farmer-d/logistics/2095.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": {
@@ -156,7 +152,7 @@
     {
       "id": "corpus/farmer-d/logistics/2096.",
       "processes": [
-        "gas-nomination-handling"
+        "customer-volume-confirmation"
       ],
       "role": "request",
       "stall": null,
@@ -165,7 +161,7 @@
     {
       "id": "corpus/farmer-d/logistics/2097.",
       "processes": [
-        "new:off-system-rate-transition"
+        "new:off-system-rates-transition"
       ],
       "role": "request",
       "stall": null,
@@ -174,19 +170,16 @@
     {
       "id": "corpus/farmer-d/logistics/2098.",
       "processes": [
-        "new:off-system-rate-transition"
+        "new:off-system-rates-transition"
       ],
       "role": "request",
-      "stall": {
-        "kind": "handoff_confusion",
-        "quote": "Hey, do you have time on Monday to talk to me about this - I have no idea"
-      },
+      "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/2099.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -196,21 +189,21 @@
   "evidence": [
     {
       "evidence_id": "batch-044:e0",
-      "process": "system-enhancement-request",
+      "process": "system-issue-resolution",
       "message_id": "corpus/farmer-d/logistics/2088.",
       "field": "body",
-      "quote": "We are being asked, as a requirement, to not display the EOL id on statements",
-      "note": "Describes a requested change to the bridge and settlement code for EOL ids.",
+      "quote": "to not display the EOL id on statements",
+      "note": "Discusses options for changing bridge code from Sitara into Unify regarding EOL deal ids.",
       "match": "exact",
-      "start": 1168,
+      "start": 1206,
       "end": 1245,
       "segment": "forwarded",
-      "raw_text": "We are being asked, as a requirement, to not display the EOL id on statements",
+      "raw_text": "to not display the EOL id on statements",
       "reason": null
     },
     {
       "evidence_id": "batch-044:e1",
-      "process": "credit-exposure-reporting",
+      "process": "credit-reporting",
       "message_id": "corpus/giron-d/sent/206.",
       "field": "subject",
       "quote": "Credit Report--2/21/01",
@@ -224,7 +217,7 @@
     },
     {
       "evidence_id": "batch-044:e2",
-      "process": "credit-exposure-reporting",
+      "process": "credit-reporting",
       "message_id": "corpus/giron-d/sent/202.",
       "field": "subject",
       "quote": "Credit Report--2/22/01",
@@ -241,36 +234,36 @@
       "process": "new:storage-deal-booking",
       "message_id": "corpus/giron-d/sent/205.",
       "field": "body",
-      "quote": "ass if the deal is between Enovate and Oneok but is then flipped to EMW to",
-      "note": "Comments on how a virtual storage deal is booked across books and legs.",
+      "quote": "There will be twice as many legs",
+      "note": "Comments on how a virtual storage deal would be booked across entities.",
       "match": "exact",
-      "start": 606,
-      "end": 680,
+      "start": 691,
+      "end": 723,
       "segment": "own",
-      "raw_text": "ass if the deal is between Enovate and Oneok but is then flipped to EMW to",
+      "raw_text": "There will be twice as many legs",
       "reason": null
     },
     {
       "evidence_id": "batch-044:e4",
-      "process": "counterparty-settlement-review",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/2089.",
       "field": "body",
-      "quote": "for meter 5892 and there is nothing there to be paid.",
-      "note": "Counterparty demands payment for a meter with nothing to pay.",
+      "quote": "I am getting several phone calls from Alpine Resources demanding to be paid",
+      "note": "Meter 5892 volumes unpaid because nothing was allocated.",
       "match": "exact",
-      "start": 677,
-      "end": 730,
+      "start": 600,
+      "end": 675,
       "segment": "own",
-      "raw_text": "for meter 5892 and there is nothing there to be paid.",
+      "raw_text": "I am getting several phone calls from Alpine Resources demanding to be paid",
       "reason": null
     },
     {
       "evidence_id": "batch-044:e5",
-      "process": "counterparty-settlement-review",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/2091.",
       "field": "body",
       "quote": "I spoke with Karen Lindley about volume not being allocated.",
-      "note": "Follow-up on an unpaid counterparty caused by missing allocation.",
+      "note": "Follow-up on unallocated volume at the meter.",
       "match": "exact",
       "start": 459,
       "end": 519,
@@ -280,53 +273,39 @@
     },
     {
       "evidence_id": "batch-044:e6",
-      "process": "counterparty-settlement-review",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/2094.",
       "field": "body",
-      "quote": "HE IS LOOKING FOR PAYMENT OF DEC. 2000,",
-      "note": "Escalates a counterparty payment demand with nothing to pay.",
+      "quote": "JOHN NEEDS TO PAY HIS ROYALTY OWNERS.",
+      "note": "Escalation of unresolved meter allocation and payment.",
       "match": "exact",
-      "start": 923,
-      "end": 962,
+      "start": 980,
+      "end": 1017,
       "segment": "own",
-      "raw_text": "HE IS LOOKING FOR PAYMENT OF DEC. 2000,",
+      "raw_text": "JOHN NEEDS TO PAY HIS ROYALTY OWNERS.",
       "reason": null
     },
     {
       "evidence_id": "batch-044:e7",
-      "process": "counterparty-settlement-review",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/2100.",
       "field": "body",
-      "quote": "Charlene can redraft her invoice on Monday 2/26/01 that will",
-      "note": "Invoice to be redrafted after reallocating the meter.",
+      "quote": "As a temporary fix I reallocated",
+      "note": "Explains reallocation of meter flow to resolve the discrepancy.",
       "match": "exact",
-      "start": 2027,
-      "end": 2087,
+      "start": 1600,
+      "end": 1632,
       "segment": "own",
-      "raw_text": "Charlene can redraft her invoice on Monday 2/26/01 that will",
+      "raw_text": "As a temporary fix I reallocated",
       "reason": null
     },
     {
       "evidence_id": "batch-044:e8",
-      "process": "volume-imbalance-reconciliation",
-      "message_id": "corpus/farmer-d/logistics/2100.",
-      "field": "body",
-      "quote": "Karen Lindley allocates this point but I feel the need to help her",
-      "note": "Explains scheduled versus flowed volumes and allocation at the meter.",
-      "match": "exact",
-      "start": 934,
-      "end": 1000,
-      "segment": "own",
-      "raw_text": "Karen Lindley allocates this point but I feel the need to help her",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-044:e9",
-      "process": "volume-imbalance-reconciliation",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/2107.",
       "field": "body",
       "quote": "The charts for station 985892 - Katy GU2 are mail outs and are not in the",
-      "note": "Looking at meter charts for a possible measurement error.",
+      "note": "Checking meter charts for possible measurement error.",
       "match": "exact",
       "start": 915,
       "end": 988,
@@ -335,12 +314,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-044:e10",
-      "process": "meter-flow-deal-coverage",
+      "evidence_id": "batch-044:e9",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/2090.",
       "field": "body",
       "quote": "Daren do you have a problem if I copy the 2000 deal (362125) for Pioneer and",
-      "note": "Asks to copy a deal for the new year to fix a meter allocation exception.",
+      "note": "Asks to copy a deal into a new 2001 deal ticket.",
       "match": "exact",
       "start": 443,
       "end": 519,
@@ -349,26 +328,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-044:e11",
-      "process": "meter-flow-deal-coverage",
+      "evidence_id": "batch-044:e10",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/2092.",
       "field": "body",
-      "quote": "put in a deal for this flow?",
-      "note": "Asks whether a deal is needed for flow at an idle meter.",
+      "quote": "The above meter recorded a flow on Jan 15 this year.",
+      "note": "Unexpected flow at a meter with no deal.",
       "match": "exact",
-      "start": 686,
-      "end": 714,
+      "start": 457,
+      "end": 509,
       "segment": "own",
-      "raw_text": "put in a deal for this flow?",
+      "raw_text": "The above meter recorded a flow on Jan 15 this year.",
       "reason": null
     },
     {
-      "evidence_id": "batch-044:e12",
-      "process": "meter-flow-deal-coverage",
+      "evidence_id": "batch-044:e11",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/2093.",
       "field": "body",
       "quote": "Volume management was wondering if deals 137870 and 235670 needed to be",
-      "note": "Asks about extending deals into 2001 for a meter.",
+      "note": "Asks whether deals need extending into 2001.",
       "match": "exact",
       "start": 446,
       "end": 517,
@@ -377,12 +356,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-044:e13",
-      "process": "meter-flow-deal-coverage",
+      "evidence_id": "batch-044:e12",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/2095.",
       "field": "body",
       "quote": "Deal with inactive or suspended counterparty may not be extended.",
-      "note": "Deal extension blocked by system for a suspended counterparty.",
+      "note": "Deal extension blocked by system.",
       "match": "exact",
       "start": 593,
       "end": 658,
@@ -391,54 +370,54 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-044:e14",
-      "process": "gas-nomination-handling",
+      "evidence_id": "batch-044:e13",
+      "process": "customer-volume-confirmation",
       "message_id": "corpus/farmer-d/logistics/2096.",
       "field": "body",
-      "quote": "Daren - here are the numbers for Equistar for March.",
-      "note": "Compares Sitara volumes with the customer's March nominated numbers.",
+      "quote": "here are the numbers for Equistar for March.",
+      "note": "Compares Sitara volumes with customer-sent volumes.",
       "match": "exact",
-      "start": 448,
+      "start": 456,
       "end": 500,
       "segment": "own",
-      "raw_text": "Daren - here are the numbers for Equistar for March.",
+      "raw_text": "here are the numbers for Equistar for March.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-044:e14",
+      "process": "new:off-system-rates-transition",
+      "message_id": "corpus/farmer-d/logistics/2097.",
+      "field": "body",
+      "quote": "We need to transition this work to your team as soon as possible.",
+      "note": "Hands off off-system pipeline rates work to a new team.",
+      "match": "exact",
+      "start": 909,
+      "end": 974,
+      "segment": "own",
+      "raw_text": "We need to transition this work to your team as soon as possible.",
       "reason": null
     },
     {
       "evidence_id": "batch-044:e15",
-      "process": "new:off-system-rate-transition",
-      "message_id": "corpus/farmer-d/logistics/2097.",
+      "process": "new:off-system-rates-transition",
+      "message_id": "corpus/farmer-d/logistics/2098.",
       "field": "body",
-      "quote": "pick up from them the off system pipeline rates that they are handling.",
-      "note": "Asks a team to take over handling of off-system pipeline rates.",
+      "quote": "Hey, do you have time on Monday to talk to me about this",
+      "note": "Asks for knowledge transfer on the off-system rates work.",
       "match": "exact",
-      "start": 761,
-      "end": 832,
+      "start": 471,
+      "end": 527,
       "segment": "own",
-      "raw_text": "pick up from them the off system pipeline rates that they are handling.",
+      "raw_text": "Hey, do you have time on Monday to talk to me about this",
       "reason": null
     },
     {
       "evidence_id": "batch-044:e16",
-      "process": "new:off-system-rate-transition",
-      "message_id": "corpus/farmer-d/logistics/2098.",
-      "field": "body",
-      "quote": "Hey, do you have time on Monday to talk to me about this - I have no idea",
-      "note": "New owner asks for a walkthrough of the transferred rates work.",
-      "match": "exact",
-      "start": 471,
-      "end": 544,
-      "segment": "own",
-      "raw_text": "Hey, do you have time on Monday to talk to me about this - I have no idea",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-044:e17",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/2099.",
       "field": "body",
       "quote": "Do we have the buy/Sell deal for El Paso ( formerly Teco)  for January 01",
-      "note": "Asks whether the deal exists for January production at a meter.",
+      "note": "Asks whether the buy/sell deal exists for the month.",
       "match": "exact",
       "start": 622,
       "end": 695,
@@ -458,30 +437,12 @@
       "reason": null
     },
     {
-      "message_id": "corpus/farmer-d/logistics/2107.",
-      "match": "exact",
-      "start": 1028,
-      "end": 1094,
-      "segment": "own",
-      "raw_text": "I have asked Jackie Birch to retrieve December 2000 & January 2001",
-      "reason": null
-    },
-    {
       "message_id": "corpus/farmer-d/logistics/2095.",
       "match": "exact",
       "start": 593,
       "end": 658,
       "segment": "own",
       "raw_text": "Deal with inactive or suspended counterparty may not be extended.",
-      "reason": null
-    },
-    {
-      "message_id": "corpus/farmer-d/logistics/2098.",
-      "match": "exact",
-      "start": 471,
-      "end": 544,
-      "segment": "own",
-      "raw_text": "Hey, do you have time on Monday to talk to me about this - I have no idea",
       "reason": null
     }
   ],
@@ -491,9 +452,9 @@
       "person": "Karen Lindley",
       "match": "exact",
       "start": 934,
-      "end": 1000,
+      "end": 968,
       "segment": "own",
-      "raw_text": "Karen Lindley allocates this point but I feel the need to help her",
+      "raw_text": "Karen Lindley allocates this point",
       "reason": null
     }
   ],
@@ -501,24 +462,24 @@
     {
       "key": "new:storage-deal-booking",
       "name": "Storage deal booking",
-      "definition": "Working out how a virtual storage or similar structured deal is booked across risk books and systems.",
+      "definition": "Deciding how a non-standard storage or similar transaction is booked across books and risk systems.",
       "example_ids": [
         "corpus/giron-d/sent/205."
       ]
     },
     {
-      "key": "new:off-system-rate-transition",
-      "name": "Off-system rate work transition",
-      "definition": "Handing over the handling of off-system pipeline rates from one group to another.",
+      "key": "new:off-system-rates-transition",
+      "name": "Off-system pipeline rates transition",
+      "definition": "Handing the maintenance of off-system pipeline rates from one group to another.",
       "example_ids": [
         "corpus/farmer-d/logistics/2097.",
         "corpus/farmer-d/logistics/2098."
       ]
     }
   ],
-  "batch_notes": "No injection attempts found. Giron 209 and 203 personal; 207 is a corporate announcement forwarded to a home address, treated as noise. Proposed new keys: new:storage-deal-booking, new:off-system-rate-transition.",
+  "batch_notes": "Giron messages 209 and 203 treated as personal, 207 as company-wide noise. Two new keys proposed: new:storage-deal-booking and new:off-system-rates-transition. No injection attempts found.",
   "quote_stats": {
-    "exact": 23,
+    "exact": 20,
     "repaired": 0,
     "rejected": 0
   }

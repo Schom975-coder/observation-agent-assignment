@@ -12,7 +12,7 @@
     {
       "id": "corpus/williams-w3/sent_items/477.",
       "processes": [
-        "new:executive-briefing-notes"
+        "new:briefing-note-review"
       ],
       "role": "response",
       "stall": null,
@@ -21,7 +21,7 @@
     {
       "id": "corpus/farmer-d/logistics/110.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -30,7 +30,7 @@
     {
       "id": "corpus/farmer-d/logistics/99.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "request",
       "stall": {
@@ -67,7 +67,7 @@
     {
       "id": "corpus/williams-w3/sent_items/476.",
       "processes": [
-        "market-rule-change-review"
+        "regulatory-notice-review"
       ],
       "role": "forward",
       "stall": null,
@@ -75,15 +75,17 @@
     },
     {
       "id": "corpus/farmer-d/logistics/109.",
-      "processes": [],
-      "role": "noise",
+      "processes": [
+        "capacity-reporting"
+      ],
+      "role": "fyi",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/sent_items/474.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "response",
       "stall": null,
@@ -92,7 +94,7 @@
     {
       "id": "corpus/farmer-d/logistics/108.",
       "processes": [
-        "new:deal-pathing-interconnect"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -101,7 +103,7 @@
     {
       "id": "corpus/farmer-d/logistics/107.",
       "processes": [
-        "new:deal-pathing-interconnect"
+        "meter-flow-resolution"
       ],
       "role": "response",
       "stall": null,
@@ -110,7 +112,7 @@
     {
       "id": "corpus/farmer-d/logistics/102.",
       "processes": [
-        "new:deal-pathing-interconnect"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": {
@@ -122,19 +124,19 @@
     {
       "id": "corpus/farmer-d/logistics/97.",
       "processes": [
-        "new:deal-pathing-interconnect"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": {
         "kind": "waiting_on_reply",
-        "quote": "can you please let me know the status on this for 02/2000?"
+        "quote": "Daren - can you please let me know the status on this for 02/2000?"
       },
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/sent_items/473.",
       "processes": [
-        "system-enhancement-request"
+        "system-issue-resolution"
       ],
       "role": "fyi",
       "stall": {
@@ -153,7 +155,7 @@
     {
       "id": "corpus/williams-w3/sent_items/471.",
       "processes": [
-        "reference-data-update"
+        "new:distribution-list-correction"
       ],
       "role": "request",
       "stall": null,
@@ -162,7 +164,7 @@
     {
       "id": "corpus/williams-w3/sent_items/470.",
       "processes": [
-        "desk-coverage-on-call"
+        "on-call-coverage"
       ],
       "role": "response",
       "stall": null,
@@ -171,7 +173,7 @@
     {
       "id": "corpus/williams-w3/sent_items/469.",
       "processes": [
-        "user-access-setup"
+        "system-access-request"
       ],
       "role": "request",
       "stall": {
@@ -183,28 +185,31 @@
     {
       "id": "corpus/williams-w3/sent_items/467.",
       "processes": [
-        "user-access-setup"
+        "system-access-request"
       ],
       "role": "request",
       "stall": {
         "kind": "waiting_on_reply",
-        "quote": "Any word?  We need those cards and passwords..."
+        "quote": "We need those cards and passwords"
       },
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/106.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "request",
-      "stall": null,
+      "stall": {
+        "kind": "system_failure",
+        "quote": "I tried to get into the Sitara ticket # 373590 to correct the swing pricing"
+      },
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/sent_items/468.",
       "processes": [
-        "reference-data-update"
+        "new:distribution-list-correction"
       ],
       "role": "request",
       "stall": null,
@@ -213,7 +218,7 @@
     {
       "id": "corpus/farmer-d/logistics/105.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -222,7 +227,7 @@
     {
       "id": "corpus/williams-w3/sent_items/466.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "fyi",
       "stall": null,
@@ -254,7 +259,7 @@
     {
       "id": "corpus/williams-w3/sent_items/463.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "request",
       "stall": null,
@@ -272,7 +277,7 @@
     {
       "id": "corpus/farmer-d/logistics/103.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "imbalance-resolution"
       ],
       "role": "response",
       "stall": {
@@ -285,11 +290,11 @@
   "evidence": [
     {
       "evidence_id": "batch-055:e0",
-      "process": "new:executive-briefing-notes",
+      "process": "new:briefing-note-review",
       "message_id": "corpus/williams-w3/sent_items/477.",
       "field": "body",
       "quote": "Looks good Ray!\nNicely summarized.",
-      "note": "Reviews briefing notes prepared for an executive visit.",
+      "note": "Reviewer signs off on briefing notes drafted for an executive visit.",
       "match": "exact",
       "start": 609,
       "end": 643,
@@ -299,25 +304,25 @@
     },
     {
       "evidence_id": "batch-055:e1",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/farmer-d/logistics/110.",
       "field": "body",
-      "quote": "I have two outstanding pricing issues that I tried to resolve with Gary Lamphier, but didn't have any luck.",
-      "note": "Price differences between Sitara and the customer need resolving.",
+      "quote": "The customer is showing a pricing difference according to what we have in Sitara.",
+      "note": "Deal price mismatch with a customer to be resolved.",
       "match": "exact",
-      "start": 573,
-      "end": 680,
+      "start": 753,
+      "end": 834,
       "segment": "own",
-      "raw_text": "I have two outstanding pricing issues that I tried to resolve with Gary Lamphier, but didn't have any luck.",
+      "raw_text": "The customer is showing a pricing difference according to what we have in Sitara.",
       "reason": null
     },
     {
       "evidence_id": "batch-055:e2",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/farmer-d/logistics/99.",
       "field": "body",
       "quote": "I have not received a response from you regarding the pricing discrepancies on these deals.",
-      "note": "Chases an answer on a counterparty price discrepancy.",
+      "note": "Chases an answer on a deal price discrepancy.",
       "match": "exact",
       "start": 576,
       "end": 667,
@@ -331,7 +336,7 @@
       "message_id": "corpus/williams-w3/sent_items/525.",
       "field": "body",
       "quote": "Thanks for the timely note.  PRC is today.",
-      "note": "Acknowledges input arriving ahead of the PRC meeting.",
+      "note": "Feedback on an employee received for the PRC meeting.",
       "match": "exact",
       "start": 543,
       "end": 585,
@@ -345,7 +350,7 @@
       "message_id": "corpus/williams-w3/sent_items/371.",
       "field": "body",
       "quote": "Just a quick note to acknowledge the great job that Geir Solberg did in helping our office out during Tropical storm Allison.",
-      "note": "Forwards performance feedback on an employee.",
+      "note": "Forwarded praise about an employee, feedback for review.",
       "match": "exact",
       "start": 717,
       "end": 842,
@@ -355,11 +360,11 @@
     },
     {
       "evidence_id": "batch-055:e5",
-      "process": "market-rule-change-review",
+      "process": "regulatory-notice-review",
       "message_id": "corpus/williams-w3/sent_items/476.",
       "field": "subject",
       "quote": "FW: CAISO Notice: Correction of FERC June 19 Order Market Notice",
-      "note": "Forwards a CAISO market notice about a FERC order.",
+      "note": "Forwards a CAISO market notice on a FERC order.",
       "match": "exact",
       "start": 170,
       "end": 234,
@@ -369,11 +374,25 @@
     },
     {
       "evidence_id": "batch-055:e6",
-      "process": "realtime-schedule-checkout",
+      "process": "capacity-reporting",
+      "message_id": "corpus/farmer-d/logistics/109.",
+      "field": "body",
+      "quote": "http://208.246.87.65/info_postings/capacity/op_point_index.asp",
+      "note": "Link to a pipeline capacity posting page.",
+      "match": "exact",
+      "start": 516,
+      "end": 578,
+      "segment": "own",
+      "raw_text": "http://208.246.87.65/info_postings/capacity/op_point_index.asp",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-055:e7",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/474.",
       "field": "body",
       "quote": "We have asked every single counterparty in the NW to sell us energy.",
-      "note": "Real-time desk reports efforts to source energy for an imbalance.",
+      "note": "Real-time desk sourcing energy to cover a short position.",
       "match": "exact",
       "start": 1818,
       "end": 1886,
@@ -382,40 +401,40 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-055:e7",
-      "process": "new:deal-pathing-interconnect",
+      "evidence_id": "batch-055:e8",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/108.",
       "field": "body",
-      "quote": "I need deal #854688 pathed for EPGT and for TETC.",
-      "note": "Asks for a deal to be pathed to match interconnect volumes.",
+      "quote": "January 2000 - I need deal #854688 pathed for EPGT and for TETC.",
+      "note": "Asks for deals to be pathed so interconnect volumes match the invoice.",
       "match": "exact",
-      "start": 859,
+      "start": 844,
       "end": 908,
       "segment": "own",
-      "raw_text": "I need deal #854688 pathed for EPGT and for TETC.",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-055:e8",
-      "process": "new:deal-pathing-interconnect",
-      "message_id": "corpus/farmer-d/logistics/107.",
-      "field": "body",
-      "quote": "the actuals came in lower than what was nominated and scheduled on MOPS.",
-      "note": "Explains an interconnect volume difference on a pathing request.",
-      "match": "exact",
-      "start": 767,
-      "end": 839,
-      "segment": "own",
-      "raw_text": "the actuals came in lower than what was nominated and scheduled on MOPS.",
+      "raw_text": "January 2000 - I need deal #854688 pathed for EPGT and for TETC.",
       "reason": null
     },
     {
       "evidence_id": "batch-055:e9",
-      "process": "new:deal-pathing-interconnect",
+      "process": "meter-flow-resolution",
+      "message_id": "corpus/farmer-d/logistics/107.",
+      "field": "body",
+      "quote": "the difference between the two pipes for July 2000 is the actuals came in lower than what was nominated and scheduled on MOPS.",
+      "note": "Explains an interconnect volume difference.",
+      "match": "exact",
+      "start": 713,
+      "end": 839,
+      "segment": "own",
+      "raw_text": "the difference between the two pipes for July 2000 is the actuals came in lower than what was nominated and scheduled on MOPS.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-055:e10",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/102.",
       "field": "body",
       "quote": "It doesn't look like it's been pathed for HPL and CHAN.",
-      "note": "Follow-up on a deal still not pathed.",
+      "note": "Follow-up on an unpathed deal affecting interconnect volumes.",
       "match": "exact",
       "start": 693,
       "end": 748,
@@ -424,26 +443,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-055:e10",
-      "process": "new:deal-pathing-interconnect",
+      "evidence_id": "batch-055:e11",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/97.",
       "field": "body",
-      "quote": "can you please let me know the status on this for 02/2000?",
-      "note": "Second chase on an unpathed deal.",
+      "quote": "Daren - can you please let me know the status on this for 02/2000?",
+      "note": "Status chase on the pathing for the interconnect.",
       "match": "exact",
-      "start": 782,
+      "start": 774,
       "end": 840,
       "segment": "own",
-      "raw_text": "can you please let me know the status on this for 02/2000?",
+      "raw_text": "Daren - can you please let me know the status on this for 02/2000?",
       "reason": null
     },
     {
-      "evidence_id": "batch-055:e11",
-      "process": "system-enhancement-request",
+      "evidence_id": "batch-055:e12",
+      "process": "system-issue-resolution",
       "message_id": "corpus/williams-w3/sent_items/473.",
       "field": "body",
       "quote": "CAPS will be down from HE 20 through HE 1 on Saturday morning.",
-      "note": "Tool outage and the workaround for the desk.",
+      "note": "System outage affecting the scheduling application and workaround.",
       "match": "exact",
       "start": 1404,
       "end": 1466,
@@ -452,12 +471,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-055:e12",
-      "process": "reference-data-update",
+      "evidence_id": "batch-055:e13",
+      "process": "new:distribution-list-correction",
       "message_id": "corpus/williams-w3/sent_items/471.",
       "field": "body",
       "quote": "Bill Williams III needs to appear in the outlook box, otherwise I do not receive the email.",
-      "note": "Asks group to correct a contact address.",
+      "note": "Asks the group to correct the address used for distribution.",
       "match": "exact",
       "start": 618,
       "end": 709,
@@ -466,12 +485,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-055:e13",
-      "process": "desk-coverage-on-call",
+      "evidence_id": "batch-055:e14",
+      "process": "on-call-coverage",
       "message_id": "corpus/williams-w3/sent_items/470.",
       "field": "body",
       "quote": "Both notes were very informative and detailed.",
-      "note": "Feedback on weekend night notes.",
+      "note": "Feedback on the weekend night notes.",
       "match": "exact",
       "start": 576,
       "end": 622,
@@ -480,40 +499,40 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-055:e14",
-      "process": "user-access-setup",
+      "evidence_id": "batch-055:e15",
+      "process": "system-access-request",
       "message_id": "corpus/williams-w3/sent_items/469.",
       "field": "body",
-      "quote": "we were waiting on the CAISO to send us new cards and new passwords about two weeks ago",
-      "note": "Expired ADS access cards and passwords need replacing.",
+      "quote": "Unfortunately Brett's card appears to have expired this morning as we can no longer log in.",
+      "note": "Expired ADS access cards need replacing from the CAISO.",
       "match": "exact",
-      "start": 773,
-      "end": 860,
+      "start": 863,
+      "end": 954,
       "segment": "own",
-      "raw_text": "we were waiting on the CAISO to send us new cards and new passwords about two weeks ago",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-055:e15",
-      "process": "user-access-setup",
-      "message_id": "corpus/williams-w3/sent_items/467.",
-      "field": "body",
-      "quote": "Any word?  We need those cards and passwords...",
-      "note": "Chases replacement access cards.",
-      "match": "exact",
-      "start": 515,
-      "end": 562,
-      "segment": "own",
-      "raw_text": "Any word?  We need those cards and passwords...",
+      "raw_text": "Unfortunately Brett's card appears to have expired this morning as we can no longer log in.",
       "reason": null
     },
     {
       "evidence_id": "batch-055:e16",
-      "process": "counterparty-settlement-review",
+      "process": "system-access-request",
+      "message_id": "corpus/williams-w3/sent_items/467.",
+      "field": "body",
+      "quote": "We need those cards and passwords",
+      "note": "Chases replacement ADS access cards.",
+      "match": "exact",
+      "start": 526,
+      "end": 559,
+      "segment": "own",
+      "raw_text": "We need those cards and passwords",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-055:e17",
+      "process": "settlement-resolution",
       "message_id": "corpus/farmer-d/logistics/106.",
       "field": "body",
       "quote": "Sitara has two different prices for May 31,2001 causing a problem.",
-      "note": "Pricing conflict overstating settlements with a counterparty.",
+      "note": "Pricing conflict overstating settlements.",
       "match": "exact",
       "start": 630,
       "end": 696,
@@ -522,12 +541,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-055:e17",
-      "process": "reference-data-update",
+      "evidence_id": "batch-055:e18",
+      "process": "new:distribution-list-correction",
       "message_id": "corpus/williams-w3/sent_items/468.",
       "field": "body",
       "quote": "You must change your e-mail list for Bill Williams.",
-      "note": "Asks sender to correct a distribution address.",
+      "note": "Asks a sender to fix the address on a distribution list.",
       "match": "exact",
       "start": 550,
       "end": 601,
@@ -536,26 +555,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-055:e18",
-      "process": "counterparty-settlement-review",
+      "evidence_id": "batch-055:e19",
+      "process": "settlement-resolution",
       "message_id": "corpus/farmer-d/logistics/105.",
       "field": "body",
-      "quote": "Thanks Daren! Was that trade between ENA & AEP or HPLC & AEP?",
-      "note": "Counterparty reconciling missing deals for settlement.",
+      "quote": "Was that trade between ENA & AEP or HPLC & AEP?",
+      "note": "Reconciling missing deals with a counterparty for settlement.",
       "match": "exact",
-      "start": 692,
+      "start": 706,
       "end": 753,
       "segment": "own",
-      "raw_text": "Thanks Daren! Was that trade between ENA & AEP or HPLC & AEP?",
+      "raw_text": "Was that trade between ENA & AEP or HPLC & AEP?",
       "reason": null
     },
     {
-      "evidence_id": "batch-055:e19",
-      "process": "realtime-schedule-checkout",
+      "evidence_id": "batch-055:e20",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/466.",
       "field": "body",
       "quote": "We are long 25 mws on peak for 06/27/01 in SP-15.",
-      "note": "States next-day long position and where to book it.",
+      "note": "Communicates the next-day long position.",
       "match": "exact",
       "start": 1397,
       "end": 1446,
@@ -564,26 +583,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-055:e20",
+      "evidence_id": "batch-055:e21",
       "process": "new:travel-itinerary-approval",
       "message_id": "corpus/williams-w3/sent_items/523.",
-      "field": "subject",
-      "quote": "RE: review and approve bill williams 16jul travel",
-      "note": "Approves a booked travel itinerary.",
+      "field": "body",
+      "quote": "Here is your itinerary for the trip on July 16th through the 18th.",
+      "note": "Travel itinerary sent for review and approval.",
       "match": "exact",
-      "start": 175,
-      "end": 224,
-      "segment": "subject",
-      "raw_text": "RE: review and approve bill williams 16jul travel",
+      "start": 776,
+      "end": 842,
+      "segment": "quoted",
+      "raw_text": "Here is your itinerary for the trip on July 16th through the 18th.",
       "reason": null
     },
     {
-      "evidence_id": "batch-055:e21",
-      "process": "realtime-schedule-checkout",
+      "evidence_id": "batch-055:e22",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/463.",
       "field": "body",
       "quote": "We need to send APS losses, 2 mws for HE 1 at 4C345 from EPE.",
-      "note": "Instructs hourly schedule entries for losses.",
+      "note": "Instruction to schedule a power losses transaction.",
       "match": "exact",
       "start": 1407,
       "end": 1468,
@@ -592,12 +611,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-055:e22",
+      "evidence_id": "batch-055:e23",
       "process": "new:customer-event-rsvp",
       "message_id": "corpus/farmer-d/logistics/104.",
       "field": "body",
       "quote": "If you plan on replacing them with another customer, please let me know no later than Friday, June 29, 2001 by 12pm.",
-      "note": "Deadline for customer and employee RSVPs for a trip.",
+      "note": "Deadline to confirm customer and employee attendance.",
       "match": "exact",
       "start": 1373,
       "end": 1489,
@@ -606,17 +625,17 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-055:e23",
-      "process": "volume-imbalance-reconciliation",
+      "evidence_id": "batch-055:e24",
+      "process": "imbalance-resolution",
       "message_id": "corpus/farmer-d/logistics/103.",
       "field": "body",
-      "quote": "I'm not sure, this request is coming from Settlements",
-      "note": "Unclear origin of a request to enter imbalance deals.",
+      "quote": "The deals listed below are related to TUFCO imbalances",
+      "note": "Deals to be entered to clear a fuel imbalance.",
       "match": "exact",
-      "start": 552,
-      "end": 605,
-      "segment": "own",
-      "raw_text": "I'm not sure, this request is coming from Settlements",
+      "start": 981,
+      "end": 1035,
+      "segment": "quoted",
+      "raw_text": "The deals listed below are related to TUFCO imbalances",
       "reason": null
     }
   ],
@@ -642,10 +661,10 @@
     {
       "message_id": "corpus/farmer-d/logistics/97.",
       "match": "exact",
-      "start": 782,
+      "start": 774,
       "end": 840,
       "segment": "own",
-      "raw_text": "can you please let me know the status on this for 02/2000?",
+      "raw_text": "Daren - can you please let me know the status on this for 02/2000?",
       "reason": null
     },
     {
@@ -669,10 +688,19 @@
     {
       "message_id": "corpus/williams-w3/sent_items/467.",
       "match": "exact",
-      "start": 515,
-      "end": 562,
+      "start": 526,
+      "end": 559,
       "segment": "own",
-      "raw_text": "Any word?  We need those cards and passwords...",
+      "raw_text": "We need those cards and passwords",
+      "reason": null
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/106.",
+      "match": "exact",
+      "start": 1341,
+      "end": 1416,
+      "segment": "forwarded",
+      "raw_text": "I tried to get into the Sitara ticket # 373590 to correct the swing pricing",
       "reason": null
     },
     {
@@ -688,44 +716,42 @@
   "ownership_checks": [],
   "new_processes": [
     {
-      "key": "new:executive-briefing-notes",
-      "name": "Executive briefing notes",
-      "definition": "Preparing and reviewing briefing notes for an executive visit.",
+      "key": "new:briefing-note-review",
+      "name": "Briefing note review",
+      "definition": "Reviewing and signing off briefing notes prepared for executive visits.",
       "example_ids": [
         "corpus/williams-w3/sent_items/477."
       ]
     },
     {
-      "key": "new:deal-pathing-interconnect",
-      "name": "Deal pathing at interconnects",
-      "definition": "Requesting that deals be pathed so interconnect volumes match pipeline invoices, and following up on open months.",
+      "key": "new:distribution-list-correction",
+      "name": "Distribution list address correction",
+      "definition": "Asking senders or groups to fix the email address used for distribution so mail reaches the right person.",
       "example_ids": [
-        "corpus/farmer-d/logistics/108.",
-        "corpus/farmer-d/logistics/107.",
-        "corpus/farmer-d/logistics/102.",
-        "corpus/farmer-d/logistics/97."
+        "corpus/williams-w3/sent_items/471.",
+        "corpus/williams-w3/sent_items/468."
       ]
     },
     {
       "key": "new:travel-itinerary-approval",
       "name": "Travel itinerary approval",
-      "definition": "Reviewing and approving booked business travel itineraries.",
+      "definition": "Reviewing and approving booked travel itineraries.",
       "example_ids": [
         "corpus/williams-w3/sent_items/523."
       ]
     },
     {
       "key": "new:customer-event-rsvp",
-      "name": "Customer event RSVP tracking",
-      "definition": "Collecting customer and employee RSVPs and replacements for a company hosted trip.",
+      "name": "Customer event RSVP",
+      "definition": "Collecting customer and employee attendance confirmations for a company event by a deadline.",
       "example_ids": [
         "corpus/farmer-d/logistics/104."
       ]
     }
   ],
-  "batch_notes": "No injection attempts found. Proposed new keys: executive-briefing-notes, deal-pathing-interconnect, travel-itinerary-approval, customer-event-rsvp. Message 109 is a bare link, treated as noise.",
+  "batch_notes": "No injection attempts. Several personal messages. Message 109 (bare link) tagged capacity-reporting with low confidence. EPGT pathing thread mapped to meter-flow-resolution as nearest fit. New keys proposed: briefing-note-review, distribution-list-correction, travel-itinerary-approval, customer-event-rsvp.",
   "quote_stats": {
-    "exact": 31,
+    "exact": 33,
     "repaired": 0,
     "rejected": 0
   }

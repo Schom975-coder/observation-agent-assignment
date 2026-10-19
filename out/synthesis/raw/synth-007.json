@@ -2,128 +2,128 @@
   "group_id": "synth-007",
   "processes": [
     {
-      "key": "deal-record-correction",
-      "description": "A round starts when a scheduler, volume analyst or settlements clerk finds a deal record that is wrong: a bridge-back error on a meter, zero or wrong volumes, wrong end dates, points, price, fuel or demand charge, the wrong counterparty or Enron entity, or a deal still not released. They email the deal owner, often a logistics scheduler, with the deal and meter numbers. The owner checks the deal in Sitara, TAGG or POPS, then changes, rebooks, rolls or zeroes it out and replies with any new deal numbers; protected tickets go to someone with rights.",
+      "key": "counterparty-credit-controls",
+      "description": "Credit and desk leads tell the real-time traders when a counterparty is cut off or cleared to trade again, in short all-desk notices, and the risk side asks for or confirms credit reserves on named transactions. A reserve request is forwarded with the deal details below it, and the reply states how origination was split between the trader and the credit reserve, with any balance taken from the trader's origination that night.",
       "steps": [
-        "A scheduler, volume analyst or settlements clerk finds a deal that fails to bridge or shows the wrong volume, date, price, point or counterparty.",
-        "They email the deal owner with the deal, meter and month and say what the record should show.",
-        "The owner looks the deal up in Sitara, TAGG or POPS and checks it against the meter, the trade or the contract.",
-        "The owner changes the field, rebooks the deal to the right entity or counterparty, rolls it forward or zeroes it out.",
-        "When the ticket is protected or the change is refused, the request is passed to whoever has rights to the deal.",
-        "The owner replies that it is done, with any new deal numbers, and the requester checks the deal is released downstream."
+        "Credit decides a counterparty is restricted or cleared, or a transaction needs a reserve.",
+        "The desk lead sends a notice to the real-time group naming the counterparty and whether trading is allowed.",
+        "Risk forwards the transaction details and asks for a credit reserve to be taken.",
+        "The reserve and origination split is booked and confirmed back to the trader.",
+        "Any shortfall in the split is corrected by moving origination from the trader's book."
       ],
       "stalls": [
         {
-          "summary": "Requests sit unanswered and are chased with reminders, and a deal reported as handled is found still not released in Sitara.",
-          "evidence_ids": ["batch-080:s0", "batch-065:s0", "batch-039:s0", "batch-057:s0", "batch-057:e11"]
-        },
-        {
-          "summary": "Senders do not know who corrects a given deal: requests land on the wrong desk, and people ask who is going to do the work or say they are not sure who takes care of it.",
-          "evidence_ids": ["batch-008:s2", "batch-030:s1", "batch-020:s1", "batch-002:s3", "batch-040:e0"]
-        },
-        {
-          "summary": "The systems block the fix: deal tickets are protected, counterparty changes are refused, and when a deal cannot be fixed a fixed price is put on it as a workaround.",
-          "evidence_ids": ["batch-015:s0", "batch-031:s0", "batch-018:e16"]
-        },
-        {
-          "summary": "Corrections are undone or create more work: deals are unwound in TAGG, and copying volumes onto a new deal ticket means the volumes must be repathed and renominated.",
-          "evidence_ids": ["batch-040:e3", "batch-049:e29", "batch-049:o0"]
-        }
-      ],
-      "contradictions": [
-        {
-          "summary": "Deal records disagree with what the trade or contract says: end dates that likely should fall on the leap day, a counterparty booked differently from what the scheduler was told, and an evergreen flag still active on a deal meant to end.",
-          "evidence_ids": ["batch-005:e3", "batch-038:e29", "batch-025:e9", "batch-022:e3"]
-        },
-        {
-          "summary": "Responsibility for corrections is placed differently from mail to mail: one scheduler is told colleagues will handle the older months, another says a Central deal is not his because he works the West Desk, and a settlements clerk is unsure who takes care of it.",
-          "evidence_ids": ["batch-020:o0", "batch-040:o0", "batch-008:s2"]
-        }
-      ],
-      "automation": {
-        "approach": "A daily exception report from the deal and scheduling systems listing bridge-back failures, unreleased deals, zero-volume deals and deals booked to the wrong entity, each routed to the desk that owns the deal, paired with a standard correction request that records deal number, system, meter, month, field, current and correct value, and who confirmed the fix.",
-        "artifact_type": "template",
-        "rationale": "Rounds stall mostly on not knowing who owns a deal and on requests that lack the detail needed to act. A fixed request layout with an owner lookup by desk sends each correction to the right person with everything needed to make the change, while the edits themselves still need a person with rights to the deal."
-      },
-      "work_estimate": {
-        "minutes_per_occurrence": { "low": 10, "mid": 20, "high": 45 },
-        "automatable_pct": 35,
-        "basis": "observed",
-        "rationale": "The work is finding the deal in Sitara, TAGG or POPS, checking it against the meter, trade or contract, and changing volumes, points, price or counterparty, often for several deals at once, then checking it bridges. About 20 minutes for a typical round; 10 for a single field change, 45 when several deals are rebooked or volumes are manually re-entered and reallocated. Detection and routing could be automated; the edits and judgement stay manual.",
-        "evidence_ids": ["batch-053:e22", "batch-045:e22", "batch-041:e14", "batch-001:e25", "batch-033:e9", "batch-053:e21", "batch-047:e28", "batch-031:e3"]
-      }
-    },
-    {
-      "key": "deal-ticket-lookup",
-      "description": "A colleague asks for the number of a deal or ticket, a Meta ID, or the counterparty name behind a trade or a TAGG entry. The person asked searches Sitara, Unify or the comments on a deal and replies with the Sitara deal number, ticket or name. When the deal belongs to a region they cannot see, such as Denver, they forward the request to someone with access; sometimes the asker finds the answer first.",
-      "steps": [
-        "A colleague emails asking for a deal, ticket or TAGG number, a Meta ID or a counterparty name.",
-        "The person asked searches Sitara, Unify or the comments on the deal for the number or name.",
-        "When the deal belongs to a region they cannot see, they forward the request to someone with access.",
-        "They reply with the deal number, ticket or counterparty name."
-      ],
-      "stalls": [
-        {
-          "summary": "Lookups depend on system access by region: a scheduler without access to Denver deals forwards the request on and asks a colleague to help.",
-          "evidence_ids": ["batch-035:o1", "batch-035:e21"]
+          "summary": "A reserve allocation had to be redone after the original split, with extra origination pulled from the trader the same night.",
+          "evidence_ids": ["batch-049:s1", "batch-049:e22"]
         }
       ],
       "contradictions": [],
       "automation": {
-        "approach": "A cross-reference report joining Sitara deal numbers, TAGG numbers, ticket numbers and counterparty names, searchable by any one of them, with a note of which desk can see each region's deals.",
-        "artifact_type": "sop",
-        "rationale": "The lookups are short searches across several systems by someone who knows where to look. Writing down which system and field holds each number, and who has access to which region, lets the asker find it unaided, and a joined report would remove most of the searching."
+        "approach": "Keep a single counterparty credit status list that the deal-entry system checks before a trade is booked, and have a reserve request form that captures the deal numbers and the split between trader origination and credit reserve, so the booking and confirmation come from one record instead of free-text email.",
+        "artifact_type": "email_template",
+        "rationale": "The rounds are short notices and reserve requests; a standard notice and reserve-request message with fixed fields (counterparty, status, effective time, deal numbers, reserve amount, split) would remove ambiguity and the rework seen when a split is corrected afterwards."
       },
       "work_estimate": {
-        "minutes_per_occurrence": { "low": 2, "mid": 5, "high": 15 },
-        "automatable_pct": 50,
+        "minutes_per_occurrence": { "low": 5, "mid": 10, "high": 25 },
+        "automatable_pct": 40,
         "basis": "inferred",
-        "rationale": "Each round is one search: finding the deal in Sitara or Unify, or reading the deal comments, to pull a number or name. About 5 minutes; 2 when the number is at hand, 15 when it has to be traced across systems or regions.",
-        "evidence_ids": ["batch-039:e2", "batch-020:e13", "batch-028:e13", "batch-022:e9"]
+        "rationale": "A round is either a status notice, which needs only a quick check of the credit decision and updating the desk's counterparty list, or a reserve request, which needs the deal looked up, the reserve calculated and booked and the split confirmed. Both are small, bounded tasks, so the mid sits near ten minutes, with the high end covering a reserve that must be rebooked.",
+        "evidence_ids": ["batch-073:e21", "batch-049:e22", "batch-047:e5", "batch-069:e20", "batch-049:s1"]
       }
     },
     {
-      "key": "desk-coverage-on-call",
-      "description": "Rounds are notices sent before an absence, holiday or weekend naming who covers which desk, pipeline or meters and who is the point person, along with weekend and monthly on-call schedules, and the notes the on-call scheduler writes afterward about calls and pages from gas control, cuts, confirms changed and nominations moved. Some rounds arrange cover for another company's units or a holiday skeleton staff; managers collect vacation plans and ask that schedule swaps be emailed and written on the schedule.",
+      "key": "pipeline-project-evaluation",
+      "description": "Marketing and facility planning work up proposed pipeline interconnects and expansions. A request for an interconnect arrives and is handed to a marketing contact with a planning counterpart; facility planning engineers then produce cost estimates, listing the work needed to make an interconnect bi-directional, pressure ranges and spreadsheets of build costs, sometimes split out for interest, overheads and AFUDC at marketing's request. Maps and facility data are gathered from field staff, and meetings are set to discuss pressure scenarios and facility modifications with the customer.",
       "steps": [
-        "A manager collects vacation and holiday plans and sets the weekend or monthly on-call schedule.",
-        "Before an absence, the scheduler names who covers each desk, pipeline or meter and the point person for questions.",
-        "The schedule or coverage notice goes out to the desk, with any planned outages or extra duties for the shift.",
-        "The on-call person handles calls and pages from gas control and pipelines, changing confirms, cuts and nominations.",
-        "After the shift they write on-call notes of what happened and send them to the desk.",
-        "Changes to the schedule are emailed to the manager and written on the schedule."
+        "A customer or marketing raises a proposed interconnect or expansion project.",
+        "A marketing contact and a facility planning counterpart are named for the request.",
+        "Planning gathers facility information and maps from field offices.",
+        "Engineers prepare a cost estimate and the list of work required, with pressure ranges.",
+        "The estimate spreadsheet is reworked to marketing's requested layout and sent on.",
+        "Marketing schedules a meeting with the customer to review pressures, modifications and costs."
       ],
       "stalls": [
         {
-          "summary": "Weekend changes have to be rechecked and redone after the shift: meters are flagged for weekend scheduling changes and a cut is moved to another point.",
-          "evidence_ids": ["batch-014:s0", "batch-014:e4"]
+          "summary": "Cost estimates wait on facility information from field staff before they can be finished.",
+          "evidence_ids": ["batch-097:s1", "batch-097:e25"]
         },
         {
-          "summary": "Swaps between on-call staff are not always recorded, so the manager asks that every change be emailed and written on the schedule.",
-          "evidence_ids": ["batch-088:e18"]
+          "summary": "Getting a map that shows the power plant location took longer than expected.",
+          "evidence_ids": ["batch-070:e3"]
         },
         {
-          "summary": "Coverage arrangements are left open while each manager discusses with the group what would work best.",
-          "evidence_ids": ["batch-004:e6"]
+          "summary": "Who is the marketing contact for a new interconnect is settled by email each time, with planning asking who its counterpart will be.",
+          "evidence_ids": ["batch-078:e0", "batch-078:o0"]
+        }
+      ],
+      "contradictions": [],
+      "automation": {
+        "approach": "Use a standard interconnect request intake that names the marketing and planning owners at the start, and a cost estimate spreadsheet layout that already breaks out interest, overheads and AFUDC by line item along with pressure ranges, so estimates arrive in the form marketing needs without a second pass.",
+        "artifact_type": "template",
+        "rationale": "The repeated effort is assembling cost estimates and reformatting them for marketing; a fixed estimate layout and intake form addresses both the reformatting request and the owner confusion, while the engineering judgement stays with planning."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": { "low": 30, "mid": 90, "high": 240 },
+        "automatable_pct": 25,
+        "basis": "observed",
+        "rationale": "Most rounds carry an engineering cost estimate: listing the work to make an interconnect bi-directional, pricing it, adding pressure ranges and building the spreadsheet, plus gathering maps and field facility data. Some rounds are only scheduling a meeting or assigning a contact, which keeps the low end small; a full level A estimate pushes the high end. Only the spreadsheet assembly and formatting are readily automated.",
+        "evidence_ids": ["batch-097:e13", "batch-098:e3", "batch-097:e25", "batch-097:e17", "batch-072:e2", "batch-070:e3", "batch-097:s1"]
+      }
+    },
+    {
+      "key": "real-time-power-scheduling",
+      "description": "The real-time desk lead sends the shift traders a steady stream of instructions and position updates: open longs and shorts by hub and hour, purchases and sales to enter in Enpower under named books, deal numbers to use for transmission, checkout calls with marketers and utilities each night, and the monthly shift schedule. Traders keep preschedule and EPE schedule sheets, submit schedules and tags to the CISO, and correct mistakes found afterwards, such as wrong import IDs, duplicate schedules, wrong lending amounts or schedules misentered by the CISO.",
+      "steps": [
+        "The desk lead or preschedulers report the day's positions and deals by hub and hour.",
+        "Shift traders enter purchases and sales in Enpower under the right books and deal numbers.",
+        "Schedules and tags are submitted to the CISO and counterparties, with hourly calls where required.",
+        "Traders check out with major marketers and utilities each night.",
+        "Errors in the schedule sheets, tags or CISO entries are found and corrected.",
+        "Shift coverage and rule changes are circulated to the group."
+      ],
+      "stalls": [
+        {
+          "summary": "Schedule sheets repeatedly carry errors that have to be reworked: duplicate schedules, wrong lending positions and missing schedules in the EPE sheet.",
+          "evidence_ids": ["batch-059:s3", "batch-059:s2", "batch-090:s1", "batch-093:s1"]
+        },
+        {
+          "summary": "Wrong import IDs and schedules misentered at the CISO force corrections after submission.",
+          "evidence_ids": ["batch-084:s1", "batch-053:s2", "batch-058:e10"]
+        },
+        {
+          "summary": "Systems fail during the shift: the CISO cannot read submitted bids, trading screens stop working and Enpower is taken down for maintenance.",
+          "evidence_ids": ["batch-071:s0", "batch-056:s4", "batch-071:e3"]
+        },
+        {
+          "summary": "When deals are not recorded during a shift, traders on that shift have to reconstruct the sheet afterwards.",
+          "evidence_ids": ["batch-084:s2"]
+        },
+        {
+          "summary": "A requested task was put off to another day for lack of time.",
+          "evidence_ids": ["batch-059:s0"]
         }
       ],
       "contradictions": [
         {
-          "summary": "Cover for the same desk is named differently across notices in one thread and beyond: meter confirmation is assigned to Robert, a later notice gives Bob Cotten the entire desk, and another absence notice for the same desk points to Jackie Young.",
-          "evidence_ids": ["batch-013:o1", "batch-013:o3", "batch-008:e13"]
+          "summary": "The EPE schedule sheets disagree with the actual lending deals: the sheet showed a lending position the desk had to correct, and later the lending in the EPE schedules was recorded at a different volume from the deal with PSCO.",
+          "evidence_ids": ["batch-059:e12", "batch-059:s2", "batch-090:s1", "batch-090:e9"]
+        },
+        {
+          "summary": "A trader's spreadsheet showed a dispatch figure that the desk lead questioned against what was actually scheduled.",
+          "evidence_ids": ["batch-066:e20", "batch-059:e20"]
         }
       ],
       "automation": {
-        "approach": "A shared on-call calendar that holds the weekend, holiday and monthly rotations, logs every swap and generates the coverage notice with point persons and extensions, plus a fixed on-call notes layout with date, caller, pipeline or meter, action taken and follow-up owner.",
-        "artifact_type": "template",
-        "rationale": "Much of the work is restating who covers what and writing up the shift. A schedule kept in one place with a swap log ends the requests to record changes, and a fixed notes layout makes handover notes quicker to write and easier to act on, while choosing who covers and handling the calls stays with people."
+        "approach": "Generate the preschedule and EPE schedule sheets from the deals booked in Enpower, with checks that flag duplicate schedules, lending volumes that differ from the deal, and import IDs or tags that do not match the CISO submission. A nightly checkout report listing positions by counterparty and hour would replace manual reconciliation, and a written shift procedure would hold the standing rules now repeated by email.",
+        "artifact_type": "sop",
+        "rationale": "Much of the email restates standing rules (hourly calls, deal numbers for transmission, nightly checkout, where to book real-time purchases) and corrects sheet errors. A desk procedure gives every shift the same rules, and the generated sheets with checks attack the rework that recurs most."
       },
       "work_estimate": {
-        "minutes_per_occurrence": { "low": 5, "mid": 15, "high": 40 },
-        "automatable_pct": 30,
-        "basis": "inferred",
-        "rationale": "Hands-on work is drawing up or updating the on-call or coverage schedule and compiling the shift's on-call notes for the attachment: around 15 minutes; 5 for a simple coverage notice, 40 when a monthly schedule is rebuilt or a busy weekend's calls and changes are written up. The calls handled during the shift are outside this estimate.",
-        "evidence_ids": ["batch-020:e8", "batch-098:e23", "batch-052:e26", "batch-088:e18", "batch-046:e22", "batch-046:e4", "batch-036:e20", "batch-082:e1"]
+        "minutes_per_occurrence": { "low": 10, "mid": 30, "high": 90 },
+        "automatable_pct": 40,
+        "basis": "observed",
+        "rationale": "A round usually means entering or adjusting deals in Enpower, updating the preschedule or EPE sheet, and checking positions or tags against the CISO and counterparties; correction rounds add finding and fixing a wrong import ID, lending volume or duplicate schedule, and occasionally reconstructing a shift's sheet. Simple position notices take little; reconstruction drives the high end. Sheet building and mismatch checks are the automatable part.",
+        "evidence_ids": ["batch-058:e11", "batch-057:e19", "batch-078:e8", "batch-059:s3", "batch-084:s1", "batch-090:s1", "batch-084:s2", "batch-070:e20"]
       }
     }
   ]

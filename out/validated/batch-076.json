@@ -26,7 +26,7 @@
     {
       "id": "corpus/giron-d/inbox/449.",
       "processes": [
-        "commercial-strategy-planning"
+        "new:group-meeting-logistics"
       ],
       "role": "request",
       "stall": null,
@@ -35,7 +35,7 @@
     {
       "id": "corpus/williams-w3/sent_items/74.",
       "processes": [
-        "new:meeting-room-booking"
+        "new:group-meeting-logistics"
       ],
       "role": "response",
       "stall": null,
@@ -44,7 +44,7 @@
     {
       "id": "corpus/williams-w3/sent_items/101.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "fyi",
       "stall": null,
@@ -53,7 +53,7 @@
     {
       "id": "corpus/williams-w3/sent_items/100.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "fyi",
       "stall": null,
@@ -92,7 +92,7 @@
     {
       "id": "corpus/williams-w3/sent_items/97.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "fyi",
       "stall": null,
@@ -101,7 +101,7 @@
     {
       "id": "corpus/williams-w3/sent_items/96.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -110,7 +110,7 @@
     {
       "id": "corpus/williams-w3/sent_items/94.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "response",
       "stall": null,
@@ -119,16 +119,19 @@
     {
       "id": "corpus/williams-w3/sent_items/90.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "response",
-      "stall": null,
+      "stall": {
+        "kind": "system_failure",
+        "quote": "their server went down"
+      },
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/sent_items/89.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "response",
       "stall": null,
@@ -137,7 +140,7 @@
     {
       "id": "corpus/williams-w3/sent_items/95.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "fyi",
       "stall": null,
@@ -153,7 +156,7 @@
     {
       "id": "corpus/williams-w3/sent_items/92.",
       "processes": [
-        "reference-data-update"
+        "real-time-power-scheduling"
       ],
       "role": "forward",
       "stall": null,
@@ -206,7 +209,7 @@
     {
       "id": "corpus/williams-w3/sent_items/91.",
       "processes": [
-        "expense-report-approval"
+        "expense-approval"
       ],
       "role": "request",
       "stall": {
@@ -218,7 +221,7 @@
     {
       "id": "corpus/giron-d/inbox/482.",
       "processes": [
-        "volume-imbalance-reconciliation",
+        "new:allocation-figure-requests",
         "new:purchase-requisition-processing"
       ],
       "role": "response",
@@ -232,25 +235,25 @@
   "evidence": [
     {
       "evidence_id": "batch-076:e0",
-      "process": "commercial-strategy-planning",
+      "process": "new:group-meeting-logistics",
       "message_id": "corpus/giron-d/inbox/449.",
       "field": "body",
-      "quote": "Frank, would like to meet with the group tomorrow at 2:00. Please let me know if you can not attend.",
-      "note": "Arranges a group meeting and asks for attendance replies.",
+      "quote": "would like to meet with the group tomorrow at 2:00. Please let me know if you can not attend.",
+      "note": "Group meeting call with attendance reply requested.",
       "match": "exact",
-      "start": 2026,
+      "start": 2033,
       "end": 2126,
       "segment": "own",
-      "raw_text": "Frank, would like to meet with the group tomorrow at 2:00. Please let me know if you can not attend.",
+      "raw_text": "would like to meet with the group tomorrow at 2:00. Please let me know if you can not attend.",
       "reason": null
     },
     {
       "evidence_id": "batch-076:e1",
-      "process": "new:meeting-room-booking",
+      "process": "new:group-meeting-logistics",
       "message_id": "corpus/williams-w3/sent_items/74.",
       "field": "body",
       "quote": "Thanks for reserving the room.",
-      "note": "Acknowledges a meeting room reservation and declines catering.",
+      "note": "Acknowledges room reservation and catering decision for a group meeting.",
       "match": "exact",
       "start": 530,
       "end": 560,
@@ -260,30 +263,30 @@
     },
     {
       "evidence_id": "batch-076:e2",
-      "process": "realtime-schedule-checkout",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/101.",
       "field": "body",
-      "quote": "ST-WBOM is importing 20 mws for HE 2 and 3, and 10 mws for HE 4 and 5 at MEAD 230.",
-      "note": "Reports hourly import schedules entered for the desk.",
+      "quote": "I have made the Enpower deals (868223, 868224, 868234) to buy from PinWest and sell to the imbalance in SP-15.",
+      "note": "Enters import deals and schedule for a real-time import.",
       "match": "exact",
-      "start": 621,
-      "end": 703,
+      "start": 704,
+      "end": 814,
       "segment": "own",
-      "raw_text": "ST-WBOM is importing 20 mws for HE 2 and 3, and 10 mws for HE 4 and 5 at MEAD 230.",
+      "raw_text": "I have made the Enpower deals (868223, 868224, 868234) to buy from PinWest and sell to the imbalance in SP-15.",
       "reason": null
     },
     {
       "evidence_id": "batch-076:e3",
-      "process": "realtime-schedule-checkout",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/100.",
       "field": "body",
-      "quote": "Everything must be tagged both light load and heavy load. THIS INCLUDES SCHEDULES IN THE SOUTHWEST.",
-      "note": "Instructs the group on tagging schedules for compliance.",
+      "quote": "Everything must be tagged both light load and heavy load.",
+      "note": "Tagging rules for schedules, NERC compliance survey.",
       "match": "exact",
       "start": 1709,
-      "end": 1808,
+      "end": 1766,
       "segment": "own",
-      "raw_text": "Everything must be tagged both light load and heavy load. THIS INCLUDES SCHEDULES IN THE SOUTHWEST.",
+      "raw_text": "Everything must be tagged both light load and heavy load.",
       "reason": null
     },
     {
@@ -292,7 +295,7 @@
       "message_id": "corpus/lokay-m/inbox/43.",
       "field": "body",
       "quote": "Please complete your list of accomplishments by the end of November.",
-      "note": "Requests year-end accomplishment lists.",
+      "note": "Requests year-end accomplishments.",
       "match": "exact",
       "start": 1046,
       "end": 1114,
@@ -302,11 +305,11 @@
     },
     {
       "evidence_id": "batch-076:e5",
-      "process": "realtime-schedule-checkout",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/97.",
       "field": "body",
       "quote": "We are long 20 mws in SDG1 for HE 2 and HE 3. We are long 10 mws in SDG1 for HE 4 and HE 5.",
-      "note": "Daily position summary for the real-time group.",
+      "note": "Reports daily long positions to the real-time group.",
       "match": "exact",
       "start": 1647,
       "end": 1738,
@@ -316,11 +319,11 @@
     },
     {
       "evidence_id": "batch-076:e6",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/williams-w3/sent_items/96.",
       "field": "body",
       "quote": "Please use the inc sheet or CAPS to settle in the morning.",
-      "note": "Asks settlements staff to settle ISO congestion revenue.",
+      "note": "Asks settlements to settle congestion revenue.",
       "match": "exact",
       "start": 680,
       "end": 738,
@@ -330,25 +333,25 @@
     },
     {
       "evidence_id": "batch-076:e7",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/williams-w3/sent_items/94.",
       "field": "body",
-      "quote": "We have recieved significant amounts of congestion revenue on real-time for 11/13.",
-      "note": "Quoted notice about congestion revenue being settled; reply acknowledges it.",
+      "quote": "I know Jim. You guys are doing well.",
+      "note": "Reply in the congestion revenue settlement thread.",
       "match": "exact",
-      "start": 1044,
-      "end": 1126,
-      "segment": "quoted",
-      "raw_text": "We have recieved significant amounts of congestion revenue on real-time for 11/13.",
+      "start": 551,
+      "end": 587,
+      "segment": "own",
+      "raw_text": "I know Jim. You guys are doing well.",
       "reason": null
     },
     {
       "evidence_id": "batch-076:e8",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/williams-w3/sent_items/90.",
       "field": "body",
       "quote": "We also received congestion revenue for HE 10 through HE 18.",
-      "note": "Corrects settlement staff on additional congestion revenue hours.",
+      "note": "Adds further congestion revenue hours to settle.",
       "match": "exact",
       "start": 555,
       "end": 615,
@@ -358,11 +361,11 @@
     },
     {
       "evidence_id": "batch-076:e9",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/williams-w3/sent_items/89.",
       "field": "body",
       "quote": "You can find HE 10 through 18 at the bottom of the November Service Sheet.",
-      "note": "Points settlements to where congestion revenue figures are.",
+      "note": "Points settlements to where congestion revenue is recorded.",
       "match": "exact",
       "start": 556,
       "end": 630,
@@ -372,11 +375,11 @@
     },
     {
       "evidence_id": "batch-076:e10",
-      "process": "realtime-schedule-checkout",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/95.",
       "field": "body",
       "quote": "Extra ST-SW transmission can be viewed in the Available Transmission Sheet.",
-      "note": "Tells the shift desk where to find spare transmission.",
+      "note": "Tells shift where extra transmission for schedules is listed.",
       "match": "exact",
       "start": 566,
       "end": 641,
@@ -386,11 +389,11 @@
     },
     {
       "evidence_id": "batch-076:e11",
-      "process": "reference-data-update",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/92.",
       "field": "body",
       "quote": "Our old BPA contract # was 96104 our new BPA Contract # is 10728.",
-      "note": "Forwards notice of a changed counterparty contract identifier.",
+      "note": "Contract number change passed to the real-time shift.",
       "match": "exact",
       "start": 713,
       "end": 778,
@@ -403,36 +406,36 @@
       "process": "new:office-move-coordination",
       "message_id": "corpus/giron-d/inbox/454.",
       "field": "body",
-      "quote": "As you all know, our move is scheduled for this weekend.",
-      "note": "Forwarded building-move instructions to group coordinators.",
+      "quote": "Chairs:  Must be labeled for the move---use the wire tags included in your move packets.",
+      "note": "Move instructions forwarded to staff for the office move.",
       "match": "exact",
-      "start": 4361,
-      "end": 4417,
+      "start": 3024,
+      "end": 3112,
       "segment": "quoted",
-      "raw_text": "As you all know, our move is scheduled for this weekend.",
+      "raw_text": "Chairs:  Must be labeled for the move---use the wire tags included in your move packets.",
       "reason": null
     },
     {
       "evidence_id": "batch-076:e13",
-      "process": "expense-report-approval",
+      "process": "expense-approval",
       "message_id": "corpus/williams-w3/sent_items/91.",
       "field": "body",
-      "quote": "Could you look into my concur expense login/password.",
-      "note": "Needs access to approve pending expense reports.",
+      "quote": "I am at a class today and need to approve these expense reports in the system.",
+      "note": "Needs to approve pending expense reports.",
       "match": "exact",
-      "start": 567,
-      "end": 620,
+      "start": 621,
+      "end": 699,
       "segment": "own",
-      "raw_text": "Could you look into my concur expense login/password.",
+      "raw_text": "I am at a class today and need to approve these expense reports in the system.",
       "reason": null
     },
     {
       "evidence_id": "batch-076:e14",
-      "process": "volume-imbalance-reconciliation",
+      "process": "new:allocation-figure-requests",
       "message_id": "corpus/giron-d/inbox/482.",
       "field": "body",
       "quote": "Number you wanted is 4,412 for the month, I'll send the backup separately.",
-      "note": "Supplies a monthly allocation figure with backup.",
+      "note": "Supplies a requested monthly allocation figure.",
       "match": "exact",
       "start": 490,
       "end": 564,
@@ -445,17 +448,26 @@
       "process": "new:purchase-requisition-processing",
       "message_id": "corpus/giron-d/inbox/482.",
       "field": "body",
-      "quote": "between you and me the purchase requisition process eats half my week,",
-      "note": "Describes handling the purchase requisition process as her recurring task.",
+      "quote": "the purchase requisition process eats half my week, every\nsingle week.",
+      "note": "Describes purchase requisition handling as a recurring task owned by one person.",
       "match": "exact",
-      "start": 570,
-      "end": 640,
+      "start": 589,
+      "end": 659,
       "segment": "own",
-      "raw_text": "between you and me the purchase requisition process eats half my week,",
+      "raw_text": "the purchase requisition process eats half my week, every\nsingle week.",
       "reason": null
     }
   ],
   "stall_checks": [
+    {
+      "message_id": "corpus/williams-w3/sent_items/90.",
+      "match": "exact",
+      "start": 677,
+      "end": 699,
+      "segment": "own",
+      "raw_text": "their server went down",
+      "reason": null
+    },
     {
       "message_id": "corpus/williams-w3/sent_items/91.",
       "match": "exact",
@@ -480,33 +492,42 @@
   ],
   "new_processes": [
     {
-      "key": "new:meeting-room-booking",
-      "name": "Meeting room booking",
-      "definition": "Reserving meeting rooms and catering for group meetings.",
+      "key": "new:group-meeting-logistics",
+      "name": "Group meeting logistics",
+      "definition": "Calling group meetings, collecting attendance and arranging rooms and catering.",
       "example_ids": [
+        "corpus/giron-d/inbox/449.",
         "corpus/williams-w3/sent_items/74."
       ]
     },
     {
       "key": "new:office-move-coordination",
       "name": "Office move coordination",
-      "definition": "Passing on instructions and reminders to group coordinators for a relocation of staff to a new building.",
+      "definition": "Passing on instructions and reminders to staff for a building move, such as labeling and packing.",
       "example_ids": [
         "corpus/giron-d/inbox/454."
       ]
     },
     {
+      "key": "new:allocation-figure-requests",
+      "name": "Allocation figure requests",
+      "definition": "Supplying a requested monthly allocation figure and its backup to a colleague.",
+      "example_ids": [
+        "corpus/giron-d/inbox/482."
+      ]
+    },
+    {
       "key": "new:purchase-requisition-processing",
       "name": "Purchase requisition processing",
-      "definition": "Handling purchase requisitions on a recurring basis, noted as sitting with one person.",
+      "definition": "Handling purchase requisitions, a recurring task that sits with one person.",
       "example_ids": [
         "corpus/giron-d/inbox/482."
       ]
     }
   ],
-  "batch_notes": "Mostly Portland real-time desk mail and personal or company-wide noise. No injection attempts found. New keys proposed: meeting-room-booking, office-move-coordination, purchase-requisition-processing.",
+  "batch_notes": "Many personal, vendor and company-wide messages left untagged. No injection attempts found. Message 482 mentions purchase requisition work sitting with one person. New keys: group-meeting-logistics, office-move-coordination, allocation-figure-requests, purchase-requisition-processing.",
   "quote_stats": {
-    "exact": 18,
+    "exact": 19,
     "repaired": 0,
     "rejected": 0
   }

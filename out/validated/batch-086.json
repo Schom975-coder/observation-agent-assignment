@@ -12,7 +12,7 @@
     {
       "id": "corpus/giron-d/inbox/144.",
       "processes": [
-        "pnl-position-reporting"
+        "pnl-reporting"
       ],
       "role": "request",
       "stall": null,
@@ -21,7 +21,7 @@
     {
       "id": "corpus/giron-d/inbox/143.",
       "processes": [],
-      "role": "personal",
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
@@ -34,17 +34,15 @@
     },
     {
       "id": "corpus/giron-d/inbox/141.",
-      "processes": [
-        "system-enhancement-request"
-      ],
-      "role": "fyi",
+      "processes": [],
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/inbox/140.",
       "processes": [
-        "curve-postid-mapping"
+        "curve-postid-maintenance"
       ],
       "role": "fyi",
       "stall": null,
@@ -60,7 +58,7 @@
     {
       "id": "corpus/giron-d/inbox/138.",
       "processes": [
-        "new:gl-writeoff-resolution"
+        "new:gl-writeoff-reconciliation"
       ],
       "role": "request",
       "stall": null,
@@ -69,7 +67,7 @@
     {
       "id": "corpus/giron-d/inbox/137.",
       "processes": [
-        "new:gl-writeoff-resolution"
+        "new:gl-writeoff-reconciliation"
       ],
       "role": "forward",
       "stall": null,
@@ -113,7 +111,7 @@
     {
       "id": "corpus/williams-w3/sent_items/24.",
       "processes": [
-        "system-enhancement-request"
+        "new:netco-split-testing"
       ],
       "role": "forward",
       "stall": null,
@@ -136,7 +134,7 @@
     {
       "id": "corpus/giron-d/inbox/132.",
       "processes": [
-        "trading-book-setup"
+        "new:eol-product-book-mapping"
       ],
       "role": "request",
       "stall": null,
@@ -145,7 +143,7 @@
     {
       "id": "corpus/giron-d/inbox/63.",
       "processes": [
-        "trading-book-setup"
+        "new:eol-product-book-mapping"
       ],
       "role": "request",
       "stall": null,
@@ -154,7 +152,7 @@
     {
       "id": "corpus/giron-d/inbox/62.",
       "processes": [
-        "trading-book-setup"
+        "new:eol-product-book-mapping"
       ],
       "role": "response",
       "stall": null,
@@ -163,7 +161,7 @@
     {
       "id": "corpus/giron-d/inbox/60.",
       "processes": [
-        "trading-book-setup"
+        "new:eol-product-book-mapping"
       ],
       "role": "response",
       "stall": null,
@@ -172,7 +170,7 @@
     {
       "id": "corpus/williams-w3/inbox/107.",
       "processes": [
-        "new:epe-model-delivery"
+        "new:epe-model-distribution"
       ],
       "role": "fyi",
       "stall": null,
@@ -181,19 +179,22 @@
     {
       "id": "corpus/giron-d/inbox/131.",
       "processes": [
-        "user-access-setup"
+        "new:eol-product-book-mapping"
       ],
-      "role": "fyi",
+      "role": "forward",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/lokay-m/sent_items/46.",
       "processes": [
-        "weekly-commercial-reporting"
+        "capacity-reporting"
       ],
       "role": "fyi",
-      "stall": null,
+      "stall": {
+        "kind": "rework",
+        "quote": "Sorry, the effective date for this new report is 01/07-01/11."
+      },
       "ownership_claim": null
     },
     {
@@ -205,10 +206,8 @@
     },
     {
       "id": "corpus/giron-d/inbox/128.",
-      "processes": [
-        "new:weapon-x-distribution"
-      ],
-      "role": "request",
+      "processes": [],
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
@@ -242,7 +241,7 @@
     {
       "id": "corpus/giron-d/inbox/125.",
       "processes": [],
-      "role": "personal",
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
@@ -262,17 +261,15 @@
     },
     {
       "id": "corpus/williams-w3/sent_items/21.",
-      "processes": [
-        "new:floor-presentation-filing"
-      ],
-      "role": "response",
+      "processes": [],
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/sent_items/20.",
       "processes": [
-        "new:bus-pass-signup"
+        "new:bus-pass-parking-request"
       ],
       "role": "request",
       "stall": null,
@@ -326,39 +323,25 @@
   "evidence": [
     {
       "evidence_id": "batch-086:e0",
-      "process": "pnl-position-reporting",
+      "process": "pnl-reporting",
       "message_id": "corpus/giron-d/inbox/144.",
       "field": "body",
-      "quote": "Thomas is setting up a new NGP&L file and would like us to save a copy of each P&L",
-      "note": "Asks desks to save each book's P&L file so it can be linked into a new P&L file.",
+      "quote": "save a copy of each P&L to Netco\\2002\\0102\\region#0102",
+      "note": "Asks desks to save each P&L file to a shared location for linking.",
       "match": "exact",
-      "start": 1002,
-      "end": 1084,
+      "start": 1061,
+      "end": 1115,
       "segment": "own",
-      "raw_text": "Thomas is setting up a new NGP&L file and would like us to save a copy of each P&L",
+      "raw_text": "save a copy of each P&L to Netco\\2002\\0102\\region#0102",
       "reason": null
     },
     {
       "evidence_id": "batch-086:e1",
-      "process": "system-enhancement-request",
-      "message_id": "corpus/giron-d/inbox/141.",
-      "field": "body",
-      "quote": "If you or your group have trouble printing, it may be that they moved a bunch a printers",
-      "note": "Reports a tool problem (printing) and its fix.",
-      "match": "exact",
-      "start": 766,
-      "end": 854,
-      "segment": "own",
-      "raw_text": "If you or your group have trouble printing, it may be that they moved a bunch a printers",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-086:e2",
-      "process": "curve-postid-mapping",
+      "process": "curve-postid-maintenance",
       "message_id": "corpus/giron-d/inbox/140.",
       "field": "body",
       "quote": "Attached are the Central Curve files and their status (old/new).",
-      "note": "Sends central curve files with their status.",
+      "note": "Circulates curve files with status.",
       "match": "exact",
       "start": 862,
       "end": 926,
@@ -367,40 +350,40 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-086:e3",
-      "process": "new:gl-writeoff-resolution",
+      "evidence_id": "batch-086:e2",
+      "process": "new:gl-writeoff-reconciliation",
       "message_id": "corpus/giron-d/inbox/138.",
       "field": "body",
-      "quote": "Can you guys help try to resolve these differences?",
-      "note": "Asks colleagues to resolve differences before potential general ledger write offs.",
+      "quote": "Can you guys help try to resolve these differences?  We may have to write them off anyways, but we need to know what they relate to.",
+      "note": "Asks colleagues to resolve general ledger differences before writing them off.",
       "match": "exact",
       "start": 814,
-      "end": 865,
+      "end": 946,
       "segment": "own",
-      "raw_text": "Can you guys help try to resolve these differences?",
+      "raw_text": "Can you guys help try to resolve these differences?  We may have to write them off anyways, but we need to know what they relate to.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-086:e3",
+      "process": "new:gl-writeoff-reconciliation",
+      "message_id": "corpus/giron-d/inbox/137.",
+      "field": "body",
+      "quote": "Attached is a spreadsheet with the potential write offs in 12/01 general ledger.",
+      "note": "Forwarded spreadsheet of potential general ledger write offs.",
+      "match": "exact",
+      "start": 1247,
+      "end": 1327,
+      "segment": "quoted",
+      "raw_text": "Attached is a spreadsheet with the potential write offs in 12/01 general ledger.",
       "reason": null
     },
     {
       "evidence_id": "batch-086:e4",
-      "process": "new:gl-writeoff-resolution",
-      "message_id": "corpus/giron-d/inbox/137.",
-      "field": "body",
-      "quote": "robin thinks it would be easier if I forwarded the attachment.",
-      "note": "Forwards the write-off spreadsheet context to the same group.",
-      "match": "exact",
-      "start": 813,
-      "end": 875,
-      "segment": "own",
-      "raw_text": "robin thinks it would be easier if I forwarded the attachment.",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-086:e5",
-      "process": "system-enhancement-request",
+      "process": "new:netco-split-testing",
       "message_id": "corpus/williams-w3/sent_items/24.",
       "field": "body",
       "quote": "Please enter a few test deals on Saturday after the databases are brought back up.",
-      "note": "Test session request for a system split.",
+      "note": "Asks for test deals to verify the estate/NETCO system split.",
       "match": "exact",
       "start": 725,
       "end": 807,
@@ -409,8 +392,8 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-086:e6",
-      "process": "trading-book-setup",
+      "evidence_id": "batch-086:e5",
+      "process": "new:eol-product-book-mapping",
       "message_id": "corpus/giron-d/inbox/132.",
       "field": "body",
       "quote": "We need to assign EOL products to traders.",
@@ -423,12 +406,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-086:e7",
-      "process": "trading-book-setup",
+      "evidence_id": "batch-086:e6",
+      "process": "new:eol-product-book-mapping",
       "message_id": "corpus/giron-d/inbox/63.",
       "field": "body",
       "quote": "we need to make a second pass at the EOL product list.",
-      "note": "Second pass on EOL product to trader mappings.",
+      "note": "Second pass on EOL product to trader mapping.",
       "match": "exact",
       "start": 838,
       "end": 892,
@@ -437,26 +420,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-086:e8",
-      "process": "trading-book-setup",
+      "evidence_id": "batch-086:e7",
+      "process": "new:eol-product-book-mapping",
       "message_id": "corpus/giron-d/inbox/62.",
       "field": "body",
-      "quote": "Can you confirm with your desk heads that the list of names we have is correct",
-      "note": "Quoted request being answered with 'Texas is good'.",
+      "quote": "update the product mappings by tomorrow afternoon?",
+      "note": "Reply to request to update EOL product mappings; Texas confirmed.",
       "match": "exact",
-      "start": 1109,
-      "end": 1187,
+      "start": 1198,
+      "end": 1248,
       "segment": "quoted",
-      "raw_text": "Can you confirm with your desk heads that the list of names we have is correct",
+      "raw_text": "update the product mappings by tomorrow afternoon?",
       "reason": null
     },
     {
-      "evidence_id": "batch-086:e9",
-      "process": "trading-book-setup",
+      "evidence_id": "batch-086:e8",
+      "process": "new:eol-product-book-mapping",
       "message_id": "corpus/giron-d/inbox/60.",
       "field": "body",
       "quote": "Per Grigsby, all ten traders have signed on and the products are fixed.",
-      "note": "Confirms EOL product assignments are finalized.",
+      "note": "Confirms product mapping is final.",
       "match": "exact",
       "start": 776,
       "end": 847,
@@ -465,12 +448,26 @@
       "reason": null
     },
     {
+      "evidence_id": "batch-086:e9",
+      "process": "new:eol-product-book-mapping",
+      "message_id": "corpus/giron-d/inbox/131.",
+      "field": "body",
+      "quote": "all of the traders, except the financial group, will use their physical books to log in for EOL",
+      "note": "Decides which books traders use for EOL.",
+      "match": "exact",
+      "start": 905,
+      "end": 1000,
+      "segment": "own",
+      "raw_text": "all of the traders, except the financial group, will use their physical books to log in for EOL",
+      "reason": null
+    },
+    {
       "evidence_id": "batch-086:e10",
-      "process": "new:epe-model-delivery",
+      "process": "new:epe-model-distribution",
       "message_id": "corpus/williams-w3/inbox/107.",
       "field": "subject",
       "quote": "EPE model for 01/10/02",
-      "note": "Dated model file sent to an external contact.",
+      "note": "Dated model file sent to the external party.",
       "match": "exact",
       "start": 173,
       "end": 195,
@@ -480,25 +477,11 @@
     },
     {
       "evidence_id": "batch-086:e11",
-      "process": "user-access-setup",
-      "message_id": "corpus/giron-d/inbox/131.",
-      "field": "body",
-      "quote": "To keep things consistent all of the traders, except the financial group, will use their physical books to log in for EOL.",
-      "note": "Sets how traders log in to EOL.",
-      "match": "exact",
-      "start": 879,
-      "end": 1001,
-      "segment": "own",
-      "raw_text": "To keep things consistent all of the traders, except the financial group, will use their physical books to log in for EOL.",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-086:e12",
-      "process": "weekly-commercial-reporting",
+      "process": "capacity-reporting",
       "message_id": "corpus/lokay-m/sent_items/46.",
       "field": "body",
       "quote": "Sorry, the effective date for this new report is 01/07-01/11.",
-      "note": "Corrects the week date on the California capacity report.",
+      "note": "Correction to the weekly California capacity report.",
       "match": "exact",
       "start": 1231,
       "end": 1292,
@@ -507,26 +490,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-086:e13",
-      "process": "new:weapon-x-distribution",
-      "message_id": "corpus/giron-d/inbox/128.",
-      "field": "body",
-      "quote": "A healthy, functional Weapon X has been saved out in the",
-      "note": "Asks recipients to save and distribute a working Weapon X file.",
-      "match": "exact",
-      "start": 851,
-      "end": 907,
-      "segment": "own",
-      "raw_text": "A healthy, functional Weapon X has been saved out in the",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-086:e14",
+      "evidence_id": "batch-086:e12",
       "process": "new:emw-liquidation",
       "message_id": "corpus/giron-d/inbox/127.",
       "field": "body",
       "quote": "Here is my recommendation for the liquidation of EMW.",
-      "note": "Proposes liquidation steps for EMW.",
+      "note": "Proposes the steps to liquidate EMW.",
       "match": "exact",
       "start": 1410,
       "end": 1463,
@@ -535,12 +504,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-086:e15",
+      "evidence_id": "batch-086:e13",
       "process": "new:emw-liquidation",
       "message_id": "corpus/giron-d/inbox/124.",
       "field": "body",
       "quote": "Upon conversation with Jeff Hodge the intercompany AR/AP with ENA can be offset.",
-      "note": "Accounting feedback on the EMW liquidation.",
+      "note": "Accounting guidance on the EMW liquidation.",
       "match": "exact",
       "start": 1420,
       "end": 1500,
@@ -549,7 +518,7 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-086:e16",
+      "evidence_id": "batch-086:e14",
       "process": "new:emw-liquidation",
       "message_id": "corpus/giron-d/inbox/123.",
       "field": "body",
@@ -563,64 +532,88 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-086:e17",
-      "process": "new:floor-presentation-filing",
-      "message_id": "corpus/williams-w3/sent_items/21.",
-      "field": "body",
-      "quote": "The Short Term West Hourly presentation is now in the",
-      "note": "Confirms a floor presentation was saved to the shared drive.",
-      "match": "exact",
-      "start": 533,
-      "end": 586,
-      "segment": "own",
-      "raw_text": "The Short Term West Hourly presentation is now in the",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-086:e18",
-      "process": "new:bus-pass-signup",
+      "evidence_id": "batch-086:e15",
+      "process": "new:bus-pass-parking-request",
       "message_id": "corpus/williams-w3/sent_items/20.",
       "field": "body",
-      "quote": "Could you sign me up for the bus pass.",
-      "note": "Requests a bus pass sign-up.",
+      "quote": "Could you sign me up for the bus pass. I am selling my car and no longer need the parking.",
+      "note": "Requests a bus pass in place of parking.",
       "match": "exact",
       "start": 535,
-      "end": 573,
+      "end": 625,
       "segment": "own",
-      "raw_text": "Could you sign me up for the bus pass.",
+      "raw_text": "Could you sign me up for the bus pass. I am selling my car and no longer need the parking.",
       "reason": null
     },
     {
-      "evidence_id": "batch-086:e19",
+      "evidence_id": "batch-086:e16",
       "process": "commercial-strategy-planning",
       "message_id": "corpus/williams-w3/sent_items/19.",
       "field": "body",
-      "quote": "We will have a meeting on Thursday of next week at 4 PM",
-      "note": "Schedules a group planning meeting about the year ahead.",
+      "quote": "we will be discussing what we hope to achieve this year and the look of the floor going forward",
+      "note": "Arranges a group planning meeting on the year's goals.",
       "match": "exact",
-      "start": 1152,
-      "end": 1207,
+      "start": 1338,
+      "end": 1433,
       "segment": "own",
-      "raw_text": "We will have a meeting on Thursday of next week at 4 PM",
+      "raw_text": "we will be discussing what we hope to achieve this year and the look of the floor going forward",
       "reason": null
     }
   ],
-  "stall_checks": [],
+  "stall_checks": [
+    {
+      "message_id": "corpus/lokay-m/sent_items/46.",
+      "match": "exact",
+      "start": 1231,
+      "end": 1292,
+      "segment": "own",
+      "raw_text": "Sorry, the effective date for this new report is 01/07-01/11.",
+      "reason": null
+    }
+  ],
   "ownership_checks": [],
   "new_processes": [
     {
-      "key": "new:gl-writeoff-resolution",
-      "name": "General ledger write-off resolution",
-      "definition": "Researching and resolving differences behind potential write offs in a monthly general ledger close.",
+      "key": "new:gl-writeoff-reconciliation",
+      "name": "General ledger write-off reconciliation",
+      "definition": "Investigating differences flagged as potential write offs in the month's general ledger and deciding what they relate to.",
       "example_ids": [
         "corpus/giron-d/inbox/138.",
         "corpus/giron-d/inbox/137."
       ]
     },
     {
+      "key": "new:netco-split-testing",
+      "name": "Estate/NETCO system split testing",
+      "definition": "Testing deal entry in the separated estate and NETCO system environments after database changes.",
+      "example_ids": [
+        "corpus/williams-w3/sent_items/24."
+      ]
+    },
+    {
+      "key": "new:eol-product-book-mapping",
+      "name": "EOL product to trader book mapping",
+      "definition": "Assigning EOL products to traders and books, confirming the mapping with desks, and deciding which books traders log in with.",
+      "example_ids": [
+        "corpus/giron-d/inbox/132.",
+        "corpus/giron-d/inbox/63.",
+        "corpus/giron-d/inbox/62.",
+        "corpus/giron-d/inbox/60.",
+        "corpus/giron-d/inbox/131."
+      ]
+    },
+    {
+      "key": "new:epe-model-distribution",
+      "name": "EPE model distribution",
+      "definition": "Sending the dated EPE model file to the external counterparty.",
+      "example_ids": [
+        "corpus/williams-w3/inbox/107."
+      ]
+    },
+    {
       "key": "new:emw-liquidation",
-      "name": "EMW liquidation",
-      "definition": "Planning, getting accounting sign-off on and executing the termination of deals, inventory sale and intercompany settlement to liquidate EMW.",
+      "name": "EMW entity liquidation",
+      "definition": "Planning and executing the termination of deals, inventory sale and intercompany settlement to liquidate the EMW entity.",
       "example_ids": [
         "corpus/giron-d/inbox/127.",
         "corpus/giron-d/inbox/124.",
@@ -628,41 +621,17 @@
       ]
     },
     {
-      "key": "new:epe-model-delivery",
-      "name": "EPE model delivery",
-      "definition": "Sending the dated model file to the external El Paso Electric contact.",
-      "example_ids": [
-        "corpus/williams-w3/inbox/107."
-      ]
-    },
-    {
-      "key": "new:weapon-x-distribution",
-      "name": "Weapon X file distribution",
-      "definition": "Saving a working copy of the Weapon X file to a shared folder and asking desks to copy and distribute it.",
-      "example_ids": [
-        "corpus/giron-d/inbox/128."
-      ]
-    },
-    {
-      "key": "new:floor-presentation-filing",
-      "name": "Floor presentation filing",
-      "definition": "Saving floor presentations to the shared drive location and confirming it.",
-      "example_ids": [
-        "corpus/williams-w3/sent_items/21."
-      ]
-    },
-    {
-      "key": "new:bus-pass-signup",
-      "name": "Bus pass sign-up",
-      "definition": "Employees asking to be signed up for the monthly bus pass in place of parking.",
+      "key": "new:bus-pass-parking-request",
+      "name": "Bus pass and parking requests",
+      "definition": "Employee requests to sign up for or change bus pass and parking arrangements.",
       "example_ids": [
         "corpus/williams-w3/sent_items/20."
       ]
     }
   ],
-  "batch_notes": "Mostly personal and announcement mail. No injection attempts found. New keys proposed: gl-writeoff-resolution, emw-liquidation, epe-model-delivery, weapon-x-distribution, floor-presentation-filing, bus-pass-signup. Several fits (printer, estate/netco test, EOL trader log-in) are loose.",
+  "batch_notes": "Mostly personal and announcement mail in two mailboxes. Proposed new keys: gl-writeoff-reconciliation, netco-split-testing, eol-product-book-mapping, epe-model-distribution, emw-liquidation, bus-pass-parking-request. No injection attempts found.",
   "quote_stats": {
-    "exact": 20,
+    "exact": 18,
     "repaired": 0,
     "rejected": 0
   }

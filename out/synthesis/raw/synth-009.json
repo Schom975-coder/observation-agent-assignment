@@ -2,126 +2,121 @@
   "group_id": "synth-009",
   "processes": [
     {
-      "key": "expense-report-approval",
-      "description": "Employees file expense reports through Concur (one request names Enron's XMS system). Concur emails the approver that a report is ready for approval and later that its approval status has changed; the approver reviews the items and approves or rejects them. Assistants also ask colleagues for outstanding items to be expensed, and during the bankruptcy announcements push approvers to clear reports waiting in their inboxes and explain which bills fall under pre-petition.",
+      "key": "credit-reporting",
+      "description": "A dated credit report on counterparty exposure is produced and Darron Giron forwards it, usually the same day, under a subject such as \"Credit Report--2/22/01\", with occasional pendings lists. Recipients mostly read it. Sometimes reports go out late or in a catch-up batch after an absence. Later rounds raise questions about content: a list missing the transport positions, and whether figures are quantities at price or calculations.",
       "steps": [
-        "An employee or assistant gathers outstanding invoices and receipts to be expensed.",
-        "The expense report is filed in the Concur expense system.",
-        "Concur notifies the approver that the report is ready for approval.",
-        "The approver reviews the items and approves or rejects the report.",
-        "Concur notifies the submitter that the approval status has changed.",
-        "The expenses are reimbursed, with bills treated according to whether they were submitted before the pre-petition cutoff."
+        "The credit report for the business day is generated with its date in the title.",
+        "The distributor checks the report arrived and is the right date.",
+        "The report is forwarded to the standing recipient list.",
+        "Recipients review exposure and raise questions on missing positions or how figures are derived.",
+        "Missed days are resent together when the distributor returns or systems recover."
       ],
       "stalls": [
         {
-          "summary": "A submitter cannot get into the expense system and asks for help with the Concur login and password, so the report waits until access is restored.",
-          "evidence_ids": ["batch-076:s0", "batch-076:e13"]
+          "summary": "Distribution was delayed by systems issues on the day the report should have gone out.",
+          "evidence_ids": ["batch-042:s0"]
         },
         {
-          "summary": "Reports sit unprocessed: an announcement asks approvers to either approve or reject the outstanding business expenses in their inboxes, and staff are asked to file the outstanding employee expenses they hold as soon as possible.",
-          "evidence_ids": ["batch-081:e9", "batch-094:e12"]
-        }
-      ],
-      "contradictions": [
+          "summary": "Reports pile up during the distributor's absence and are resent days later in a batch, so readers get stale exposure figures, for example the 3/13, 3/14 and 3/16 reports all forwarded on 3/19.",
+          "evidence_ids": ["batch-046:e31", "batch-046:e32", "batch-046:e33", "batch-046:e35"]
+        },
         {
-          "summary": "One announcement says expenses will be reimbursed promptly upon submission, while another sorts bills by whether they were submitted before a mid-December date and treats those as covered under pre-petition, so the treatment of an item depends on when it was submitted.",
-          "evidence_ids": ["batch-083:e5", "batch-084:e15"]
+          "summary": "Report content is incomplete or unclear to readers: a position list leaves out transport positions, and a reader has to ask whether figures are quantities at price or calculations.",
+          "evidence_ids": ["batch-088:e0", "batch-094:e2"]
         }
       ],
+      "contradictions": [],
       "automation": {
-        "approach": "A daily report from the expense system listing reports awaiting approval by approver and age, with automatic reminders, plus rule checks that flag items missing receipts, outside policy, or on the wrong side of the pre-petition cutoff so approvers look closely only at flagged items. Self-service password reset would remove the login stall.",
+        "approach": "Schedule the credit report to publish and email itself to the distribution list once the daily run completes, with a check that the report date matches the business day and an alert when the run fails, so nothing waits on one person forwarding it. Add a short legend stating which position types are included and how figures are calculated.",
         "artifact_type": "checklist",
-        "rationale": "The system already routes reports, so the remaining hands-on work is the approver's review and the submitter's gathering of invoices. A short checklist covering what to attach, the bankruptcy cutoff rules and how to regain system access would reduce rejected and stuck reports soonest; the queue report addresses reports left sitting in inboxes."
+        "rationale": "The manual part is a daily check-and-forward that one person carries; a short checklist (confirm date, confirm all position types including transport, send, log late days) keeps it consistent when someone covers and reduces the content questions that follow."
       },
       "work_estimate": {
-        "minutes_per_occurrence": { "low": 3, "mid": 8, "high": 20 },
-        "automatable_pct": 35,
+        "minutes_per_occurrence": { "low": 2, "mid": 5, "high": 15 },
+        "automatable_pct": 70,
         "basis": "inferred",
-        "rationale": "Most rounds are one report: the approver opens it in Concur, checks the line items and receipts against policy and approves or rejects it, a few minutes for a routine report, so mid 8 minutes. Some rounds instead have a submitter collect outstanding invoices or bills and file them, which takes longer and sets the upper end near 20 minutes. Routing is already automated; rule checks could take over part of the item review.",
-        "evidence_ids": ["batch-092:e0", "batch-098:e26", "batch-081:e9", "batch-094:e12", "batch-001:e31", "batch-084:e15"]
+        "rationale": "The trail shows a dated report forwarded with little beyond the email itself; hands-on work is confirming the report ran and carries the right date, opening it, and on some days checking position coverage or answering a figures question. That is a few minutes per round, more when systems fail or positions are missing.",
+        "evidence_ids": ["batch-044:e2", "batch-042:s0", "batch-088:e0", "batch-094:e2", "batch-046:e31", "batch-049:e26"]
       }
     },
     {
-      "key": "gas-nomination-handling",
-      "description": "Customers and suppliers such as Calpine, Enron Methanol and TXU send daily or monthly gas nominations, often as attached forms or spreadsheets. Schedulers enter the volumes in Sitara, set them up on the right contract and pipeline, and confirm. Revised nominations follow whenever volumes change, including retroactive changes that are checked against the contracts and corrected; traders and plant contacts forward changes such as plant swings or buybacks to be renominated, and the gas is then tracked and balanced.",
+      "key": "eol-product-setup",
+      "description": "Traders or desk heads ask for new EnronOnline products (a Super Peak 5x8 product, hourly products for hours ending 12-20), and operations and EOL staff define the product wording, availability hours, the index each product maps to, and the books traders log in with. Draft product content is circulated for approval or comment, schedulers are briefed on how the new products are ticketed, and product lists are assigned to traders and later revisited in a second pass.",
       "steps": [
-        "A customer or supplier sends a daily or monthly nomination, often as an attached form or spreadsheet.",
-        "The scheduler checks the request against the contract and the transport arrangements.",
-        "Estimated or nominated volumes are entered in Sitara on the right contract and meter.",
-        "The nomination is placed with the pipeline and confirmed back to the requester.",
-        "When volumes change, a revised nomination arrives and is forwarded to the scheduler responsible.",
-        "The scheduler updates the volumes, including retroactive corrections, and settles how any buyback is priced.",
-        "The gas is tracked and balanced against the nominated volumes."
+        "A desk requests a new EOL product and a target launch, such as by bid week.",
+        "EOL staff draft the product description, hours and terms.",
+        "Operations is asked to approve or comment on the product wording.",
+        "The index for the product is mapped to the EOL indexes and books are set for trader log-in.",
+        "Products are assigned to traders and the list is reviewed again.",
+        "Schedulers and Sitara users are briefed on how the new deals flow and are ticketed."
       ],
       "stalls": [
         {
-          "summary": "Schedulers wait on counterparties and colleagues: a supplier is still waiting on a transport number, a request goes unanswered until a follow-up asks whether it was checked, and an update waits on a returned phone call.",
-          "evidence_ids": ["batch-033:s2", "batch-033:e16", "batch-011:s3", "batch-006:s2"]
+          "summary": "Product set-up waits on missing mapping detail: EOL staff have to ask which index should map to the EOL indexes.",
+          "evidence_ids": ["batch-046:e9"]
         },
         {
-          "summary": "Volumes are changed repeatedly: a customer drops the volume again, another asks for a nomination to show zero, a supplier revises its nom for a span of days, and a scheduler corrects noms entered wrongly at the start of the month.",
-          "evidence_ids": ["batch-006:e6", "batch-011:e15", "batch-016:e23", "batch-003:s2"]
+          "summary": "The product-to-trader assignment needs rework, with a second pass on the EOL product list weeks after the first.",
+          "evidence_ids": ["batch-086:e5", "batch-086:e6"]
         },
         {
-          "summary": "Customers request nomination changes retroactive to earlier dates, and management warns that retroactive deals affect daily operations and that contracts must be reviewed and understood.",
-          "evidence_ids": ["batch-003:e8", "batch-010:e21", "batch-010:e4"]
+          "summary": "Downstream deal capture is not set up cleanly at launch: Sitara and EOL staff had to be pressed to add comments, and schedulers needed separate briefing on the new products.",
+          "evidence_ids": ["batch-017:e0", "batch-013:e0"]
+        }
+      ],
+      "contradictions": [],
+      "automation": {
+        "approach": "Use a standard product request form that captures product wording, delivery hours, index mapping, book and trader assignment and the approver before set-up starts, and route it through a fixed approval sequence that notifies schedulers and Sitara users on launch.",
+        "artifact_type": "template",
+        "rationale": "Delays and rework come from details that surface late (index mapping, books, trader lists, ticketing comments); a request template gathers them up front, while product design and approval remain judgement calls."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": { "low": 20, "mid": 60, "high": 180 },
+        "automatable_pct": 30,
+        "basis": "inferred",
+        "rationale": "Each round involves drafting or reviewing product wording and hours, working out the index mapping, setting books and assigning products to traders, and briefing schedulers. Those are reasoning and set-up tasks taking up to an hour typically, longer for multi-product launches; only the collection and notification parts lend themselves to tooling.",
+        "evidence_ids": ["batch-023:e24", "batch-046:e9", "batch-086:e5", "batch-063:e1", "batch-000:e33", "batch-013:e0", "batch-086:e9"]
+      }
+    },
+    {
+      "key": "time-activity-reporting",
+      "description": "Each month a coordinator (Shari Mao, James Scribner, Suzanne Nicholie) sends the Hours Survey or activity driver survey with instructions, asking managers to record hours and activities for the month, often in a database or attached spreadsheet, by a stated deadline such as end of day Wednesday, April 5th. Reminders follow on the due date. Separately, team members report absences and vacation to whoever keeps their time, and staff are asked which commercial team they supported and in what share.",
+      "steps": [
+        "The coordinator sends the monthly hours or activity survey with instructions and a due date.",
+        "Managers collect hours and activities from their team, sometimes using a provided spreadsheet.",
+        "Staff report absences, vacation and travel to the time keeper.",
+        "Survey responses or the completed file are entered or returned.",
+        "The coordinator chases late responses on and after the deadline.",
+        "Figures such as ATEs are checked and corrections returned before the data feeds the cost model."
+      ],
+      "stalls": [
+        {
+          "summary": "Responses come in late: after the deadline passed very few had returned the survey, and reminders go out on the due date itself.",
+          "evidence_ids": ["batch-013:s1", "batch-026:s1", "batch-042:e26"]
         },
         {
-          "summary": "An attachment with the full month position keeps bouncing off the mail gateway, so the position is pasted into the message body instead.",
-          "evidence_ids": ["batch-079:s0"]
-        },
-        {
-          "summary": "Nomination work is spread across several people, prompting a suggestion to centralize transport nominations and a later assignment of off-system nominations to one scheduler.",
-          "evidence_ids": ["batch-039:e5", "batch-042:o0"]
+          "summary": "Time entry is blocked by missing system access, so a manager has to go back later to enter his group's time.",
+          "evidence_ids": ["batch-059:e25"]
         }
       ],
       "contradictions": [
         {
-          "summary": "Volumes on the books disagree with what counterparties want: a customer is looking for a different February volume at a meter than nominated, another asks for a nomination to show zero instead, and a scheduler finds the noms entered at the start of the month were a mistake.",
-          "evidence_ids": ["batch-041:e4", "batch-011:e15", "batch-003:s2"]
+          "summary": "Suzanne Nicholie is named the primary Hours Survey contact, yet survey requests and instructions come from Shari Mao and James Scribner as well, leaving it unclear who owns collection.",
+          "evidence_ids": ["batch-024:o0", "batch-016:e27", "batch-013:e17"]
         }
       ],
       "automation": {
-        "approach": "Standard nomination intake: counterparties submit a fixed spreadsheet layout that a tool reads into Sitara, compares with the previous nomination and the contract, and flags changed volumes, retroactive dates and missing transport numbers for the scheduler before the confirmation goes out. A shared list of nomination owners by pipeline routes each change to one person.",
+        "approach": "Replace the emailed survey attachments with one standing time and activity form per month, pre-filled with each person's team and prior month's split, with automatic reminders before the deadline and a completion report for the coordinator. Absence and vacation notes go into the same form instead of free-text emails.",
         "artifact_type": "template",
-        "rationale": "Nominations arrive as Word forms, spreadsheets and pasted text, and much of the hands-on work is re-keying and comparing volumes. One nomination template that every counterparty fills in makes entry and comparison mechanical, leaving schedulers the judgement on retroactive changes, pricing and contract fit."
+        "rationale": "Each round restates the same instructions and collects the same fields; a fixed template with prefilled data reduces entry and chasing, while managers still confirm their team's allocation."
       },
       "work_estimate": {
-        "minutes_per_occurrence": { "low": 10, "mid": 20, "high": 60 },
-        "automatable_pct": 45,
+        "minutes_per_occurrence": { "low": 15, "mid": 40, "high": 120 },
+        "automatable_pct": 50,
         "basis": "inferred",
-        "rationale": "Minutes go to reading the nomination form, checking it against the contract and transport, entering or changing volumes in Sitara and confirming with the pipeline. A routine daily nom sits near the low end of 10 minutes; revised or retroactive changes that need contract review, correction of earlier entries and rebalancing push toward 60 minutes. Mid 20 minutes reflects the mix of routine noms and revisions.",
-        "evidence_ids": ["batch-002:e32", "batch-031:e16", "batch-048:e20", "batch-006:e19", "batch-016:e23", "batch-003:s2", "batch-010:e21", "batch-000:e29"]
+        "rationale": "A round involves preparing and attaching the survey and instructions, managers compiling hours and activities for their team, entering them in the database or spreadsheet, and the coordinator checking figures such as ATEs. Simple absence notices take little; full team surveys take much longer.",
+        "evidence_ids": ["batch-016:e27", "batch-026:e3", "batch-026:e6", "batch-014:e19", "batch-007:e23", "batch-084:e18", "batch-061:e7"]
       }
-    },
-    {
-      "key": "internal-annuity-booking",
-      "description": "Staff on the trading side explain, enter and revise internal annuities that move revenue between books, such as profit sharing on a deal split between two desks. A round starts with a request to revise an annuity, a question about an unexplained beginning-of-month charge before month-end, or a note listing annuities entered to reconcile counterparty records with Enpower; the reply names the books involved and attaches a supporting spreadsheet.",
-      "steps": [
-        "A request arrives to explain or revise an internal annuity, or a prior-month charge is queried.",
-        "The deal and the books the revenue moves between are looked up.",
-        "The split and its basis are explained, with a supporting spreadsheet attached.",
-        "The annuity is entered or revised.",
-        "Annuities are entered to reconcile counterparty records with Enpower before month-end."
-      ],
-      "stalls": [
-        {
-          "summary": "Annuities already booked have to be revised, and unexplained beginning-of-month charges are queried before month-end, so the same deals come round again.",
-          "evidence_ids": ["batch-059:e2", "batch-073:e6"]
-        }
-      ],
-      "contradictions": [
-        {
-          "summary": "Counterparty records and Enpower disagree for a past year, and annuities are entered specifically to bring the two into line.",
-          "evidence_ids": ["batch-073:e8"]
-        }
-      ],
-      "automation": {
-        "approach": "A standard annuity record kept with each deal: the books moved from and to, the split, the reason and the period, plus a month-end check that compares Enpower with counterparty records and lists differences and unexplained charges before P&L closes.",
-        "artifact_type": "template",
-        "rationale": "Explanations are rebuilt from memory and an older spreadsheet, so one layout per annuity would let anyone answer revision questions and reconcile records without depending on the person who first booked it."
-      },
-      "work_estimate": null
     }
   ]
 }

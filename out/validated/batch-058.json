@@ -12,7 +12,7 @@
     {
       "id": "corpus/williams-w3/sent_items/406.",
       "processes": [
-        "deal-record-correction"
+        "real-time-power-scheduling"
       ],
       "role": "response",
       "stall": null,
@@ -21,7 +21,7 @@
     {
       "id": "corpus/giron-d/inbox/181.",
       "processes": [
-        "user-access-setup"
+        "system-access-request"
       ],
       "role": "fyi",
       "stall": null,
@@ -30,7 +30,7 @@
     {
       "id": "corpus/williams-w3/sent_items/405.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "request",
       "stall": null,
@@ -39,7 +39,7 @@
     {
       "id": "corpus/williams-w3/sent_items/404.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "fyi",
       "stall": null,
@@ -48,7 +48,7 @@
     {
       "id": "corpus/williams-w3/sent_items/403.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "fyi",
       "stall": null,
@@ -57,7 +57,7 @@
     {
       "id": "corpus/williams-w3/sent_items/402.",
       "processes": [
-        "market-rule-change-review"
+        "regulatory-notice-review"
       ],
       "role": "forward",
       "stall": null,
@@ -66,7 +66,7 @@
     {
       "id": "corpus/williams-w3/sent_items/399.",
       "processes": [
-        "market-rule-change-review"
+        "regulatory-notice-review"
       ],
       "role": "forward",
       "stall": null,
@@ -75,7 +75,7 @@
     {
       "id": "corpus/williams-w3/sent_items/400.",
       "processes": [
-        "market-rule-change-review"
+        "regulatory-notice-review"
       ],
       "role": "forward",
       "stall": null,
@@ -91,7 +91,7 @@
     {
       "id": "corpus/farmer-d/logistics/98.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -100,7 +100,7 @@
     {
       "id": "corpus/williams-w3/sent_items/397.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "request",
       "stall": null,
@@ -123,8 +123,7 @@
     {
       "id": "corpus/williams-w3/sent_items/395.",
       "processes": [
-        "counterparty-settlement-review",
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "request",
       "stall": null,
@@ -140,7 +139,7 @@
     {
       "id": "corpus/williams-w3/sent_items/392.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "request",
       "stall": null,
@@ -149,8 +148,8 @@
     {
       "id": "corpus/williams-w3/sent_items/391.",
       "processes": [
-        "realtime-schedule-checkout",
-        "user-access-setup"
+        "real-time-power-scheduling",
+        "system-access-request"
       ],
       "role": "request",
       "stall": null,
@@ -159,7 +158,7 @@
     {
       "id": "corpus/williams-w3/sent_items/390.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "request",
       "stall": null,
@@ -168,9 +167,9 @@
     {
       "id": "corpus/giron-d/inbox/182.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
-      "role": "fyi",
+      "role": "forward",
       "stall": null,
       "ownership_claim": null
     },
@@ -184,9 +183,9 @@
     {
       "id": "corpus/williams-w3/sent_items/389.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
-      "role": "request",
+      "role": "fyi",
       "stall": null,
       "ownership_claim": null
     }
@@ -194,25 +193,25 @@
   "evidence": [
     {
       "evidence_id": "batch-058:e0",
-      "process": "deal-record-correction",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/406.",
       "field": "body",
-      "quote": "I think we're all aware of the changes made to account for the Wheelabrator outage on 6/17 and 6/18, but here's a recap just in case:",
-      "note": "Recap of deals killed, changed and added after an outage, approved with a short reply.",
+      "quote": "Annuities killed - 679980/679973/679991/679995/678497/678498/678495/678496",
+      "note": "Deal corrections made to power schedules after an outage.",
       "match": "exact",
-      "start": 776,
-      "end": 909,
+      "start": 911,
+      "end": 985,
       "segment": "quoted",
-      "raw_text": "I think we're all aware of the changes made to account for the Wheelabrator outage on 6/17 and 6/18, but here's a recap just in case:",
+      "raw_text": "Annuities killed - 679980/679973/679991/679995/678497/678498/678495/678496",
       "reason": null
     },
     {
       "evidence_id": "batch-058:e1",
-      "process": "user-access-setup",
+      "process": "system-access-request",
       "message_id": "corpus/giron-d/inbox/181.",
       "field": "body",
       "quote": "Your EnronOnline user ID and password is noted below.",
-      "note": "Provides a user ID and password for system access.",
+      "note": "Grants a user account for the EnronOnline system.",
       "match": "exact",
       "start": 559,
       "end": 612,
@@ -222,11 +221,11 @@
     },
     {
       "evidence_id": "batch-058:e2",
-      "process": "realtime-schedule-checkout",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/405.",
       "field": "body",
       "quote": "We are short 50 mws in ST-WBOM at $42.88 for HE 7-22 Friday and Saturday in SP-15.",
-      "note": "Reports a short power position and asks for scheduling of purchases.",
+      "note": "Reports a short position for next days to be scheduled.",
       "match": "exact",
       "start": 1409,
       "end": 1491,
@@ -236,11 +235,11 @@
     },
     {
       "evidence_id": "batch-058:e3",
-      "process": "realtime-schedule-checkout",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/404.",
       "field": "body",
       "quote": "We have also bought HE 10 and HE 11 from the APX.",
-      "note": "Follow-up on hourly purchases to cover the short position.",
+      "note": "Adds purchases covering a short position.",
       "match": "exact",
       "start": 1406,
       "end": 1455,
@@ -250,11 +249,11 @@
     },
     {
       "evidence_id": "batch-058:e4",
-      "process": "realtime-schedule-checkout",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/403.",
       "field": "body",
       "quote": "We have also bought HE 21 and HE 22 from the APX.",
-      "note": "Further hourly purchases to cover the short position.",
+      "note": "Adds purchases covering a short position.",
       "match": "exact",
       "start": 1422,
       "end": 1471,
@@ -264,11 +263,11 @@
     },
     {
       "evidence_id": "batch-058:e5",
-      "process": "market-rule-change-review",
+      "process": "regulatory-notice-review",
       "message_id": "corpus/williams-w3/sent_items/402.",
       "field": "subject",
       "quote": "FW: Summary- Judge's Recommendation re Retroactive Refunds",
-      "note": "Forwards a summary of a FERC judge's recommendation on market refunds.",
+      "note": "Circulates a regulatory summary of a judge's refund recommendation.",
       "match": "exact",
       "start": 170,
       "end": 228,
@@ -278,11 +277,11 @@
     },
     {
       "evidence_id": "batch-058:e6",
-      "process": "market-rule-change-review",
+      "process": "regulatory-notice-review",
       "message_id": "corpus/williams-w3/sent_items/399.",
       "field": "subject",
       "quote": "FW: Summary- Judge's Recommendation re Retroactive Refunds",
-      "note": "Forwards a summary of a FERC judge's recommendation on market refunds.",
+      "note": "Passes on the regulatory refund summary.",
       "match": "exact",
       "start": 172,
       "end": 230,
@@ -292,11 +291,11 @@
     },
     {
       "evidence_id": "batch-058:e7",
-      "process": "market-rule-change-review",
+      "process": "regulatory-notice-review",
       "message_id": "corpus/williams-w3/sent_items/400.",
       "field": "subject",
       "quote": "FW: CAISO Notice - FAQ on June 19 FERC Order",
-      "note": "Forwards an ISO notice about implementing a FERC order.",
+      "note": "Passes on a CAISO market notice.",
       "match": "exact",
       "start": 172,
       "end": 216,
@@ -306,25 +305,25 @@
     },
     {
       "evidence_id": "batch-058:e8",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/98.",
       "field": "body",
-      "quote": "there is no sales draft in Unify for this sale.",
-      "note": "Gas flowed at a meter with no deal; asks how to get the deal into Sitara.",
+      "quote": "I received a fax from D&H for 06/01 deliveries (HPLC sales to D&H), however\nthere is no sales draft in Unify for this sale.",
+      "note": "Asks for a missing sale deal to be put in Sitara.",
       "match": "exact",
-      "start": 673,
+      "start": 597,
       "end": 720,
       "segment": "own",
-      "raw_text": "there is no sales draft in Unify for this sale.",
+      "raw_text": "I received a fax from D&H for 06/01 deliveries (HPLC sales to D&H), however\nthere is no sales draft in Unify for this sale.",
       "reason": null
     },
     {
       "evidence_id": "batch-058:e9",
-      "process": "realtime-schedule-checkout",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/397.",
       "field": "body",
       "quote": "I would like you to find this information and distill the relevant information from it.",
-      "note": "Asks a colleague to track transfer capability information used for real-time work.",
+      "note": "Assigns transfer capability monitoring for real-time scheduling.",
       "match": "exact",
       "start": 615,
       "end": 702,
@@ -334,39 +333,25 @@
     },
     {
       "evidence_id": "batch-058:e10",
-      "process": "counterparty-settlement-review",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/395.",
       "field": "body",
-      "quote": "We have recently paid PACE $57,000 for transmission in May that we reserved but did not flow.",
-      "note": "Questions a transmission charge paid to a counterparty.",
+      "quote": "One: Submit our transactions correctly the first time.",
+      "note": "Sets transmission reservation handling rules for schedulers.",
       "match": "exact",
-      "start": 1488,
-      "end": 1581,
+      "start": 1975,
+      "end": 2029,
       "segment": "own",
-      "raw_text": "We have recently paid PACE $57,000 for transmission in May that we reserved but did not flow.",
+      "raw_text": "One: Submit our transactions correctly the first time.",
       "reason": null
     },
     {
       "evidence_id": "batch-058:e11",
-      "process": "realtime-schedule-checkout",
-      "message_id": "corpus/williams-w3/sent_items/395.",
-      "field": "body",
-      "quote": "Submit our transactions correctly the first time.  Then withdraw them immediately through the Pacificorp Oasis system if there is a problem.",
-      "note": "Instruction on correct handling of transmission reservations.",
-      "match": "exact",
-      "start": 1980,
-      "end": 2120,
-      "segment": "own",
-      "raw_text": "Submit our transactions correctly the first time.  Then withdraw them immediately through the Pacificorp Oasis system if there is a problem.",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-058:e12",
-      "process": "realtime-schedule-checkout",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/392.",
       "field": "body",
       "quote": "Please make real-time purchases from the Calimbalance and corresponding sales under ST-WBOM in Enpower during real time.",
-      "note": "Instructs the group on real-time schedule entries for a long position.",
+      "note": "Instructs real-time purchases for a long position.",
       "match": "exact",
       "start": 2356,
       "end": 2476,
@@ -375,12 +360,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-058:e13",
-      "process": "realtime-schedule-checkout",
+      "evidence_id": "batch-058:e12",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/391.",
       "field": "body",
       "quote": "I have run the SAR for Friday's West-BOM piece.",
-      "note": "Reconciling schedules against the SAR after an RT cut.",
+      "note": "Reconciles real-time schedules against settlement sheets.",
       "match": "exact",
       "start": 593,
       "end": 640,
@@ -389,12 +374,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-058:e14",
-      "process": "user-access-setup",
+      "evidence_id": "batch-058:e13",
+      "process": "system-access-request",
       "message_id": "corpus/williams-w3/sent_items/391.",
       "field": "body",
       "quote": "Could you also look into getting him set up with his access to our systems.",
-      "note": "Asks for system access to be set up for a new person.",
+      "note": "Requests system access for a new person.",
       "match": "exact",
       "start": 1175,
       "end": 1250,
@@ -403,12 +388,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-058:e15",
-      "process": "realtime-schedule-checkout",
+      "evidence_id": "batch-058:e14",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/390.",
       "field": "body",
       "quote": "We are missing an ID-S from ST-WBOM to ST-CALI for Saturday.",
-      "note": "Missing inter-SC schedule deal that must be added or carried over.",
+      "note": "Requests a missing inter-SC schedule deal.",
       "match": "exact",
       "start": 622,
       "end": 682,
@@ -417,12 +402,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-058:e16",
-      "process": "counterparty-settlement-review",
+      "evidence_id": "batch-058:e15",
+      "process": "settlement-resolution",
       "message_id": "corpus/giron-d/inbox/182.",
       "field": "body",
       "quote": "The attached spreadsheet indicates proper billing for Citizens for June for the Griffith deal.",
-      "note": "Checks billing for a counterparty deal.",
+      "note": "Billing check for a counterparty deal.",
       "match": "exact",
       "start": 914,
       "end": 1008,
@@ -431,12 +416,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-058:e17",
-      "process": "realtime-schedule-checkout",
+      "evidence_id": "batch-058:e16",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/389.",
       "field": "body",
       "quote": "Please continue our policy of NOT buying energy from or selling energy to the California Imbalance.",
-      "note": "Standing instruction on real-time imbalance trades.",
+      "note": "Sets a rule for real-time power trading.",
       "match": "exact",
       "start": 1398,
       "end": 1497,
@@ -448,9 +433,9 @@
   "stall_checks": [],
   "ownership_checks": [],
   "new_processes": [],
-  "batch_notes": "No injection attempts found. Personal messages: baseball, Lupe, soccer. Out-of-office and trading-org announcement treated as noise. Forwards 402, 399, 400 have no own text, so subject quotes used.",
+  "batch_notes": "No injection attempts found. Several personal messages (baseball, soccer, friend note). Out-of-office and organization announcement tagged noise with no process.",
   "quote_stats": {
-    "exact": 18,
+    "exact": 17,
     "repaired": 0,
     "rejected": 0
   }

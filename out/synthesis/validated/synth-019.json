@@ -1,153 +1,219 @@
 {
   "group_id": "synth-019",
-  "content_sha": "6da24f1831c15174739b74231328ddb698d3404b9392a5e6191838950abbcd45",
+  "content_sha": "94ab1dbc6c7ce5756851213c0f8c242b2b9865d71ead104d42c3e4b48fc2e2e9",
   "processes": [
     {
-      "key": "time-activity-reporting",
-      "description": "Each month a cost-allocation coordinator (Shari Mao, James Scribner, Suzanne Nicholie) sends the Hours Survey and Activity Survey with instructions, asking staff to enter hours and activities for the month just ended so the data can feed the cost and price model. A helper spreadsheet is offered; respondents fill in, resave and return the file by a stated deadline, and the coordinator checks returns against ATEs staffing and follows up. Separately, an assistant collects time reports and staff reply with the vacation, sick or holiday days they took.",
+      "key": "month-end-close",
+      "description": "Volume and accounting staff circulate a tentative close schedule for the coming month, then revise and reissue it after discussion with the people involved. During the close, requests go out to clear intercompany items, resolve Sitara volume variances, set up missing deals, report outstanding expenses and confirm last-day files are complete. Treasury-style notices report amounts moved to or released from Schedule C each night, and late differences are investigated before they are written off.",
       "steps": [
-        "Coordinator sends the monthly Hours Survey and Activity Survey with instructions, or opens the survey for input.",
-        "Respondents gather their hours and the share of time spent per activity or commercial team, optionally in the helper spreadsheet.",
-        "Respondents fill in, resave and return the survey file by the stated deadline.",
-        "Coordinator sends deadline-day reminders and chases those who have not responded.",
-        "Coordinator checks returns against ATEs staffing records and queries discrepancies with the team.",
-        "Coordinator loads the collected data into the cost allocation model.",
-        "For timesheets, the assistant asks for time reports and staff reply with the vacation, sick or holiday days taken."
+        "Circulate the tentative close schedule for the coming month.",
+        "Revise and reissue the schedule after discussion, including the cut-off after which no changes can be made.",
+        "Send lists of deals with volume variances or one-sided entries to schedulers and logistics for correction.",
+        "Ask for missing deals to be set up and intercompany balances to be cleared.",
+        "Collect outstanding expense items and confirmation that last-day files are complete.",
+        "Report nightly amounts moved to or released from Schedule C.",
+        "Investigate remaining differences and decide whether to write them off."
       ],
       "stalls": [
         {
-          "summary": "Many respondents miss the survey deadline, so coordinators send reminders on the due date and after it has passed.",
+          "summary": "A distributed schedule was unreadable and had to be sent again.",
           "evidence_ids": [
-            "batch-013:s3",
-            "batch-026:s1",
-            "batch-042:e24"
+            "batch-010:s2",
+            "batch-010:e11"
           ]
         },
         {
-          "summary": "Surveys fall behind and are requested for several months at once, with later follow-ups asking staff which commercial team they supported and in what share.",
+          "summary": "Schedulers were confused about when changes could still be made, so the cut-off had to be restated in a later round.",
           "evidence_ids": [
-            "batch-019:e17",
-            "batch-061:e7"
+            "batch-064:s1",
+            "batch-064:e16"
           ]
         },
         {
-          "summary": "Staffing reported for a team does not line up with the ATEs records, so the coordinator has to query the team before the data can be used.",
+          "summary": "A request to clear intercompany items went unanswered and needed a follow-up asking whether anyone had looked into it.",
           "evidence_ids": [
-            "batch-007:e24"
+            "batch-006:s0",
+            "batch-006:e15"
+          ]
+        },
+        {
+          "summary": "Unexplained differences remained open late enough that a write-off was being considered before anyone knew what they related to.",
+          "evidence_ids": [
+            "batch-086:e2"
           ]
         }
       ],
-      "contradictions": [],
+      "contradictions": [
+        {
+          "summary": "An amount announced as taken to Schedule C one night was removed again the next business day, and a different amount was added a month later, so the nightly notices reverse one another.",
+          "evidence_ids": [
+            "batch-045:e0",
+            "batch-045:e2",
+            "batch-045:e3"
+          ]
+        },
+        {
+          "summary": "In the same round, deal setup is assigned to Ami while resolution with Transco is assigned to Charlotte, who is not among the process's participants, leaving the follow-through split.",
+          "evidence_ids": [
+            "batch-014:e13",
+            "batch-014:o0"
+          ]
+        }
+      ],
       "automation": {
-        "approach": "Pre-fill each person's survey from timekeeping (ATEs) and the staff roster, collect it through one standard form that checks hours and allocations add up, send automatic reminders ahead of the deadline, and flag returns that disagree with ATEs before they are loaded into the model. Timesheet absences could be entered by staff directly rather than relayed to the assistant.",
-        "artifact_type": "template",
-        "rationale": "The recurring effort is re-sending, filling in and reconciling the same survey layout every month. A single pre-filled survey template with built-in totals checks cuts the entry and reconciliation work and reduces late or inconsistent returns, while people still judge how their time splits across activities."
+        "approach": "Publish the close calendar from one shared template with fixed cut-off times, and generate the variance and unmatched-deal list automatically from the deal and volume systems so each scheduler receives only their exceptions. A tracker of open close items (intercompany, expenses, last-day files) would show who has confirmed completion.",
+        "artifact_type": "checklist",
+        "rationale": "The rounds repeat the same items every month: schedule, cut-off, variances, intercompany, expenses, last-day file. A close checklist with owners and cut-offs addresses the confusion over when changes are allowed and the follow-ups on unanswered items."
       },
       "work_estimate": {
         "minutes_per_occurrence": {
-          "low": 10,
-          "mid": 25,
-          "high": 60
+          "low": 20,
+          "mid": 45,
+          "high": 120
         },
-        "automatable_pct": 50,
+        "automatable_pct": 40,
         "basis": "inferred",
-        "rationale": "A round involves preparing the survey attachment and instructions, respondents looking up their hours and splitting them across activities or teams, filling in and resaving the file, and the coordinator checking returns against ATEs and loading them into the model. About 25 minutes mid; 10 when a round is only a timesheet absence entry, up to 60 when it includes reconciling staffing against ATEs. Pre-filling from timekeeping and automatic totals checks could take over much of the lookup and entry; the allocation judgement stays manual.",
+        "rationale": "Most rounds involve building or revising a schedule, pulling a list of variance deals or a counterparty breakdown by day, or tracing unexplained differences. Around 45 minutes covers compiling and checking one such list or schedule; the range runs to 120 for rounds that reconcile many deals. Listing variances and building the calendar are largely mechanical; the investigation is judgement.",
         "evidence_ids": [
-          "batch-016:e27",
-          "batch-013:e14",
-          "batch-007:e24",
-          "batch-014:e18",
-          "batch-026:e6",
-          "batch-084:e20",
-          "batch-061:e7",
-          "batch-005:e30"
+          "batch-000:e10",
+          "batch-068:e4",
+          "batch-006:e8",
+          "batch-016:e2",
+          "batch-086:e2",
+          "batch-042:e11"
         ]
       },
       "estimate_check": {
-        "occurrences_cited": 8,
+        "occurrences_cited": 6,
         "senders_cited": 6
       }
     },
     {
-      "key": "time-off-approval",
-      "description": "Employees ask their manager (Bill Williams) for particular days off or a longer vacation. The manager replies approving the dates, telling staff to take the days and to give notice of longer vacations in advance as everyone else in the group does. The approved days are put down on the group's vacation calendar, and staff ask to be put down for further dates as needed.",
+      "key": "prior-month-adjustment-review",
+      "description": "Prior month adjustment sheets are distributed to the scheduling and trading desks, who are asked to help clear them. Reviewers question individual items, such as why a counterparty change cut revenue or why a reduction in purchased energy produced a charge, and price revisions are explained back. Items needing deeper investigation are forwarded on, and the reviewer reports when most of the sheet is resolved while flagging items still open.",
       "steps": [
-        "Employee emails the manager asking for particular days off or a vacation.",
-        "Manager checks the dates against the group's coverage and other planned absences.",
-        "Manager replies approving the days, asking for advance notice of longer vacations.",
-        "The approved dates are entered on the vacation calendar, and further dates are added on request."
-      ],
-      "stalls": [],
-      "contradictions": [],
-      "automation": {
-        "approach": "A shared leave calendar with a short request form: the employee enters the dates, the manager sees overlapping absences and approves in one step, and approved dates land on the calendar without being re-keyed.",
-        "artifact_type": "template",
-        "rationale": "The work is small and repetitive: checking overlap and recording dates. A standard request and calendar layout keeps approvals and the calendar in step, while the coverage decision stays with the manager."
-      },
-      "work_estimate": {
-        "minutes_per_occurrence": {
-          "low": 1,
-          "mid": 3,
-          "high": 10
-        },
-        "automatable_pct": 40,
-        "basis": "inferred",
-        "rationale": "Hands-on work is checking the requested dates against the group's coverage and recording them on the vacation calendar: about 3 minutes, as the approvals shown are brief; up to 10 when a longer vacation has to be fitted around others' plans. A shared request form feeding the calendar could take over the recording; the approval decision stays manual.",
-        "evidence_ids": [
-          "batch-071:e18",
-          "batch-071:e19",
-          "batch-071:e20",
-          "batch-032:e6"
-        ]
-      },
-      "estimate_check": {
-        "occurrences_cited": 4,
-        "senders_cited": 2
-      }
-    },
-    {
-      "key": "trade-tape-retrieval",
-      "description": "When a trade has to be verified or a question with a counterparty is being worked through, someone on the trading or risk side asks for the recorded phone lines to be pulled for a named trader on a given date and time window, such as Geir's conversations in a late-afternoon window or Ryan Slinger's calls at two specific times. The tapes are retrieved and reviewed so the terms of the trade can be confirmed.",
-      "steps": [
-        "A trade needing verification or in dispute is identified.",
-        "The requester pins down the trader, date and time window of the relevant calls.",
-        "The requester emails a request to have the tapes pulled for that trader and window.",
-        "The recordings are located and retrieved.",
-        "The calls are reviewed to confirm what was agreed and the finding is used to settle the trade."
+        "Distribute the prior month adjustment sheet and ask the desk to help clear it.",
+        "Review each adjustment and question items that do not make sense.",
+        "Explain price or volume revisions behind specific adjustments.",
+        "Forward unclear items to the person best placed to investigate.",
+        "Report the sheet as largely resolved and flag remaining open items."
       ],
       "stalls": [
         {
-          "summary": "The same tape pull for Geir's conversations is first raised as probably needed and then restated in a separate message as still needed, so the request is carried across threads before it is acted on.",
+          "summary": "A large item on the sheet stayed unresolved after the rest was cleared and was still being raised as a problem.",
           "evidence_ids": [
-            "batch-083:e3",
-            "batch-083:e4"
+            "batch-056:s3",
+            "batch-056:e19"
+          ]
+        },
+        {
+          "summary": "Some adjustments could not be explained at review and were passed on for further investigation.",
+          "evidence_ids": [
+            "batch-045:e15",
+            "batch-056:e17",
+            "batch-056:e21"
           ]
         }
       ],
       "contradictions": [],
       "automation": {
-        "approach": "A standard tape request capturing trader, phone line, date, time window, deal reference and reason, sent to the recording group, together with a recording index searchable by trader and timestamp so the right calls can be found quickly.",
-        "artifact_type": "email_template",
-        "rationale": "Requests are free-text and vary in how precisely they name the calls. A fixed request message makes every pull complete the first time and avoids restating the same request; listening to the calls and judging the trade remain manual."
+        "approach": "Produce the adjustment sheet with a reason code and the underlying price or volume change attached to each line, so reviewers see why an item moved without asking. Track each line's status and owner until it is cleared.",
+        "artifact_type": "template",
+        "rationale": "Most of the mail is reviewers asking why an adjustment exists. A sheet layout with the cause and owner per line answers those questions up front and keeps open items visible."
       },
       "work_estimate": {
         "minutes_per_occurrence": {
-          "low": 10,
-          "mid": 30,
-          "high": 90
+          "low": 20,
+          "mid": 45,
+          "high": 120
         },
-        "automatable_pct": 25,
+        "automatable_pct": 35,
         "basis": "inferred",
-        "rationale": "Minutes go to identifying the trader and call times from the deal record, having the recordings located and retrieved, and listening through them to confirm the terms. About 30 minutes mid; 10 for a call at a known time, up to 90 when a window covering much of a late afternoon has to be reviewed. A request template and a searchable recording index could take over locating the calls; listening and judging stay manual.",
+        "rationale": "A round means going through the adjustment sheet line by line, tracing price or volume revisions for the items that look wrong, and investigating unexplained charges. About 45 minutes for a sheet with a handful of questioned items; longer when a large disputed item needs tracing. Pulling the underlying changes is mechanical; deciding whether an adjustment is right is not.",
         "evidence_ids": [
-          "batch-083:e3",
-          "batch-083:e4",
-          "batch-057:e7"
+          "batch-006:e13",
+          "batch-056:e17",
+          "batch-014:e3",
+          "batch-045:e15",
+          "batch-056:s3"
         ]
       },
       "estimate_check": {
-        "occurrences_cited": 3,
-        "senders_cited": 2
+        "occurrences_cited": 5,
+        "senders_cited": 4
+      }
+    },
+    {
+      "key": "staff-recruiting",
+      "description": "Managers announce openings for analysts, associates, trading assistants and logistics staff, ask the analyst programme for candidates or refer internal candidates, and forward resumes to the hiring group. Interview panels and times are arranged, candidates receive schedules, and interviewers send feedback. Hiring managers request specific analysts be brought into their group, add justification when replacing staff, and decline or keep applicants on file when no opening exists.",
+      "steps": [
+        "Identify an opening and write or revise the job posting.",
+        "Request candidates from the analyst programme, HR or internal referrals.",
+        "Forward resumes and internal candidates to the hiring manager for review.",
+        "Agree the interview panel and schedule interviews with candidates.",
+        "Hold interviews and send feedback to the hiring manager.",
+        "Request the selected analyst or candidate be placed in the group, with justification where needed.",
+        "Reply to unsuccessful or unsolicited applicants."
+      ],
+      "stalls": [
+        {
+          "summary": "Interviews were missed or cancelled by interviewers and had to be rearranged.",
+          "evidence_ids": [
+            "batch-042:e21",
+            "batch-042:e22"
+          ]
+        },
+        {
+          "summary": "A manager resisted releasing an analyst another group wanted, holding up the placement.",
+          "evidence_ids": [
+            "batch-038:s0",
+            "batch-038:e18"
+          ]
+        },
+        {
+          "summary": "Feedback waited on interviews not yet held, and replacement hires required written justification before going ahead.",
+          "evidence_ids": [
+            "batch-072:e4",
+            "batch-071:e16"
+          ]
+        }
+      ],
+      "contradictions": [
+        {
+          "summary": "Two groups pulled in opposite directions over the same analyst: one side pressed to move him while his current manager refused to give him up unless forced.",
+          "evidence_ids": [
+            "batch-038:e18",
+            "batch-038:s0"
+          ]
+        }
+      ],
+      "automation": {
+        "approach": "Use a standard opening request form and posting template, a shared interview scheduler that collects interviewer availability once, and a candidate tracker that records resumes, panel, feedback and decision for each opening.",
+        "artifact_type": "template",
+        "rationale": "Rounds repeat the same pieces: posting text, candidate lists, panel availability, schedules and feedback. A request and tracking template cuts the back-and-forth over availability and keeps feedback and justification with the opening."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": {
+          "low": 15,
+          "mid": 40,
+          "high": 120
+        },
+        "automatable_pct": 25,
+        "basis": "inferred",
+        "rationale": "A round typically involves writing or revising a posting, reviewing resumes or an internal candidate, and arranging a panel and interview schedule; some rounds include the interview itself. About 40 minutes for reviewing candidates and building a schedule; up to 120 when interviews are held. Scheduling and posting are templatable; assessing candidates is not.",
+        "evidence_ids": [
+          "batch-039:e7",
+          "batch-060:e21",
+          "batch-038:e20",
+          "batch-068:e0",
+          "batch-059:e5",
+          "batch-096:e15",
+          "batch-034:e9"
+        ]
+      },
+      "estimate_check": {
+        "occurrences_cited": 7,
+        "senders_cited": 3
       }
     }
   ]

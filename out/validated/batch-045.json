@@ -5,7 +5,7 @@
     {
       "id": "corpus/giron-d/sent/200.",
       "processes": [
-        "new:schedule-c-funding-notice"
+        "month-end-close"
       ],
       "role": "fyi",
       "stall": null,
@@ -14,7 +14,7 @@
     {
       "id": "corpus/giron-d/sent/197.",
       "processes": [
-        "new:schedule-c-funding-notice"
+        "month-end-close"
       ],
       "role": "forward",
       "stall": null,
@@ -23,7 +23,7 @@
     {
       "id": "corpus/giron-d/sent/191.",
       "processes": [
-        "new:schedule-c-funding-notice"
+        "month-end-close"
       ],
       "role": "fyi",
       "stall": null,
@@ -32,7 +32,7 @@
     {
       "id": "corpus/giron-d/sent/109.",
       "processes": [
-        "new:schedule-c-funding-notice"
+        "month-end-close"
       ],
       "role": "fyi",
       "stall": null,
@@ -57,7 +57,7 @@
     {
       "id": "corpus/giron-d/sent/196.",
       "processes": [
-        "credit-exposure-reporting"
+        "credit-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -68,7 +68,7 @@
       "processes": [
         "deal-book-transfer"
       ],
-      "role": "forward",
+      "role": "request",
       "stall": null,
       "ownership_claim": null
     },
@@ -82,7 +82,7 @@
     {
       "id": "corpus/giron-d/sent/193.",
       "processes": [
-        "new:physical-template-revision"
+        "new:deal-template-distribution"
       ],
       "role": "forward",
       "stall": null,
@@ -100,7 +100,7 @@
     {
       "id": "corpus/farmer-d/logistics/2101.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -109,7 +109,7 @@
     {
       "id": "corpus/farmer-d/logistics/2102.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -118,7 +118,7 @@
     {
       "id": "corpus/farmer-d/logistics/2103.",
       "processes": [
-        "deal-record-correction"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -127,7 +127,7 @@
     {
       "id": "corpus/farmer-d/logistics/2104.",
       "processes": [
-        "new:hpl-sale-deal-lists"
+        "new:hpl-sale-deal-data"
       ],
       "role": "forward",
       "stall": null,
@@ -150,7 +150,7 @@
     {
       "id": "corpus/giron-d/sent/189.",
       "processes": [
-        "credit-exposure-reporting"
+        "credit-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -175,7 +175,7 @@
     {
       "id": "corpus/giron-d/sent/185.",
       "processes": [
-        "new:pma-report-review"
+        "new:pma-review"
       ],
       "role": "forward",
       "stall": null,
@@ -184,7 +184,7 @@
     {
       "id": "corpus/farmer-d/logistics/2108.",
       "processes": [
-        "gas-nomination-handling"
+        "gas-nomination"
       ],
       "role": "fyi",
       "stall": null,
@@ -193,7 +193,7 @@
     {
       "id": "corpus/giron-d/sent/182.",
       "processes": [
-        "credit-exposure-reporting"
+        "credit-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -216,16 +216,16 @@
     {
       "id": "corpus/giron-d/sent/179.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
-      "role": "forward",
+      "role": "response",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/sent/178.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -234,7 +234,7 @@
     {
       "id": "corpus/giron-d/sent/176.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "response",
       "stall": null,
@@ -257,7 +257,7 @@
     {
       "id": "corpus/giron-d/sent/174.",
       "processes": [
-        "credit-exposure-reporting"
+        "credit-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -266,7 +266,7 @@
     {
       "id": "corpus/giron-d/sent/173.",
       "processes": [
-        "deal-record-correction"
+        "new:tagg-counterparty-correction"
       ],
       "role": "forward",
       "stall": null,
@@ -283,11 +283,11 @@
   "evidence": [
     {
       "evidence_id": "batch-045:e0",
-      "process": "new:schedule-c-funding-notice",
+      "process": "month-end-close",
       "message_id": "corpus/giron-d/sent/200.",
       "field": "body",
       "quote": "We are taking $100M to Schedule C tonight.",
-      "note": "Tells a colleague an amount is being moved to Schedule C.",
+      "note": "Reports an amount placed on Schedule C.",
       "match": "exact",
       "start": 440,
       "end": 482,
@@ -297,11 +297,11 @@
     },
     {
       "evidence_id": "batch-045:e1",
-      "process": "new:schedule-c-funding-notice",
+      "process": "month-end-close",
       "message_id": "corpus/giron-d/sent/197.",
       "field": "body",
       "quote": "We are taking $100M to Schedule C tonight.",
-      "note": "Forwarded notice of an amount moved to Schedule C.",
+      "note": "Forwarded Schedule C notice.",
       "match": "exact",
       "start": 726,
       "end": 768,
@@ -311,11 +311,11 @@
     },
     {
       "evidence_id": "batch-045:e2",
-      "process": "new:schedule-c-funding-notice",
+      "process": "month-end-close",
       "message_id": "corpus/giron-d/sent/191.",
       "field": "body",
       "quote": "We are removing the $100M from Schedule C that was put there on Friday.",
-      "note": "Notice that the Schedule C amount is being removed.",
+      "note": "Reverses the Schedule C amount.",
       "match": "exact",
       "start": 482,
       "end": 553,
@@ -325,11 +325,11 @@
     },
     {
       "evidence_id": "batch-045:e3",
-      "process": "new:schedule-c-funding-notice",
+      "process": "month-end-close",
       "message_id": "corpus/giron-d/sent/109.",
       "field": "body",
       "quote": "We added $75M so Schedule C tonight.",
-      "note": "Notice of an amount added to Schedule C.",
+      "note": "Reports an amount added to Schedule C.",
       "match": "exact",
       "start": 433,
       "end": 469,
@@ -342,22 +342,22 @@
       "process": "new:deal-booking-classification",
       "message_id": "corpus/giron-d/sent/199.",
       "field": "body",
-      "quote": "This deal is related to the long term transportation that was sold to",
-      "note": "Explains how a deal is booked (physical forward vs transportation).",
+      "quote": "it is correctly booked as a physical forward sale at Malin.",
+      "note": "Answers how a deal should be booked (forward vs transportation).",
       "match": "exact",
-      "start": 474,
-      "end": 543,
+      "start": 558,
+      "end": 617,
       "segment": "own",
-      "raw_text": "This deal is related to the long term transportation that was sold to",
+      "raw_text": "it is correctly booked as a physical forward sale at Malin.",
       "reason": null
     },
     {
       "evidence_id": "batch-045:e5",
-      "process": "credit-exposure-reporting",
+      "process": "credit-reporting",
       "message_id": "corpus/giron-d/sent/196.",
       "field": "subject",
       "quote": "Credit Report--2/26/01",
-      "note": "Dated credit report passed on to a colleague.",
+      "note": "Dated credit report passed on.",
       "match": "exact",
       "start": 171,
       "end": 193,
@@ -370,22 +370,22 @@
       "process": "deal-book-transfer",
       "message_id": "corpus/giron-d/sent/195.",
       "field": "body",
-      "quote": "Please take care of this if you have any to be flipped.",
+      "quote": "Please take care of this if you have any to be flipped.  Thanks.",
       "note": "Asks team to flip deals to another book.",
       "match": "exact",
       "start": 680,
-      "end": 735,
+      "end": 744,
       "segment": "own",
-      "raw_text": "Please take care of this if you have any to be flipped.",
+      "raw_text": "Please take care of this if you have any to be flipped.  Thanks.",
       "reason": null
     },
     {
       "evidence_id": "batch-045:e7",
-      "process": "new:physical-template-revision",
+      "process": "new:deal-template-distribution",
       "message_id": "corpus/giron-d/sent/193.",
       "field": "body",
       "quote": "Revision that unprotects \"Top Level\" cells.",
-      "note": "Forwards a revised physical template spreadsheet.",
+      "note": "Circulates a revised physical deal template.",
       "match": "exact",
       "start": 855,
       "end": 898,
@@ -398,36 +398,36 @@
       "process": "deal-book-transfer",
       "message_id": "corpus/giron-d/sent/192.",
       "field": "body",
-      "quote": "FT-US/CAND-ERMS book for all deals in Houston books.",
-      "note": "Forwarded instruction to flip counterparty deals to another book.",
+      "quote": "I just came across a counterparty that needs to be flipped to the",
+      "note": "Counterparty deals must be flipped to the ERMS book.",
       "match": "exact",
-      "start": 1204,
-      "end": 1256,
+      "start": 1137,
+      "end": 1202,
       "segment": "forwarded",
-      "raw_text": "FT-US/CAND-ERMS book for all deals in Houston books.",
+      "raw_text": "I just came across a counterparty that needs to be flipped to the",
       "reason": null
     },
     {
       "evidence_id": "batch-045:e9",
-      "process": "meter-flow-deal-coverage",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/2101.",
       "field": "body",
-      "quote": "Earl - I have a meter with flow and no nom.",
-      "note": "Flags meter flow with no nomination or deal behind it.",
+      "quote": "I have a meter with flow and no nom",
+      "note": "Asks if flow at a meter is valid.",
       "match": "exact",
-      "start": 593,
-      "end": 636,
+      "start": 600,
+      "end": 635,
       "segment": "own",
-      "raw_text": "Earl - I have a meter with flow and no nom.",
+      "raw_text": "I have a meter with flow and no nom",
       "reason": null
     },
     {
       "evidence_id": "batch-045:e10",
-      "process": "meter-flow-deal-coverage",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/2102.",
       "field": "body",
       "quote": "meter 1558 has flow and no nom for day 1 and day 6.",
-      "note": "Asks for days to be added to the deal to cover meter flow.",
+      "note": "Meter flow without nomination.",
       "match": "exact",
       "start": 454,
       "end": 505,
@@ -437,11 +437,11 @@
     },
     {
       "evidence_id": "batch-045:e11",
-      "process": "deal-record-correction",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/2103.",
       "field": "body",
       "quote": "Julie Meyers needs a price to be added to the deal.",
-      "note": "Asks which price to add to a deal record.",
+      "note": "Replacement deal needs completing.",
       "match": "exact",
       "start": 539,
       "end": 590,
@@ -451,21 +451,21 @@
     },
     {
       "evidence_id": "batch-045:e12",
-      "process": "new:hpl-sale-deal-lists",
+      "process": "new:hpl-sale-deal-data",
       "message_id": "corpus/farmer-d/logistics/2104.",
       "field": "body",
-      "quote": "I've attached two files with HPL deal information.",
-      "note": "Deal lists compiled for the HPL sale and sent for review.",
+      "quote": "this file to AEP by Tueday morning unless I hear of any objection.",
+      "note": "Deal lists prepared for the HPL sale.",
       "match": "exact",
-      "start": 842,
-      "end": 892,
+      "start": 999,
+      "end": 1065,
       "segment": "forwarded",
-      "raw_text": "I've attached two files with HPL deal information.",
+      "raw_text": "this file to AEP by Tueday morning unless I hear of any objection.",
       "reason": null
     },
     {
       "evidence_id": "batch-045:e13",
-      "process": "credit-exposure-reporting",
+      "process": "credit-reporting",
       "message_id": "corpus/giron-d/sent/189.",
       "field": "subject",
       "quote": "Credit Report--2/27/01",
@@ -483,7 +483,7 @@
       "message_id": "corpus/giron-d/sent/187.",
       "field": "body",
       "quote": "Please let me know when this may be available.",
-      "note": "Request for support behind liquidation flash values.",
+      "note": "Support requested for liquidation flash values.",
       "match": "exact",
       "start": 903,
       "end": 949,
@@ -493,35 +493,35 @@
     },
     {
       "evidence_id": "batch-045:e15",
-      "process": "new:pma-report-review",
+      "process": "new:pma-review",
       "message_id": "corpus/giron-d/sent/185.",
       "field": "body",
-      "quote": "Here are the PMA's for January and the remaining PMA's for 2000.",
-      "note": "PMA files circulated and passed on for investigation.",
+      "quote": "Darron,  you might want to investigate this one further.",
+      "note": "PMAs forwarded for investigation.",
       "match": "exact",
-      "start": 1225,
-      "end": 1289,
+      "start": 656,
+      "end": 712,
       "segment": "forwarded",
-      "raw_text": "Here are the PMA's for January and the remaining PMA's for 2000.",
+      "raw_text": "Darron,  you might want to investigate this one further.",
       "reason": null
     },
     {
       "evidence_id": "batch-045:e16",
-      "process": "gas-nomination-handling",
+      "process": "gas-nomination",
       "message_id": "corpus/farmer-d/logistics/2108.",
       "field": "body",
-      "quote": "Guadalupe had a plant go down today 2/27, and therefore had to get",
-      "note": "Deals moved to reflect changed gas volumes at a plant.",
+      "quote": "Guadalupe had a plant go down today 2/27",
+      "note": "Deals moved to reflect changed volumes.",
       "match": "exact",
       "start": 516,
-      "end": 582,
+      "end": 556,
       "segment": "own",
-      "raw_text": "Guadalupe had a plant go down today 2/27, and therefore had to get",
+      "raw_text": "Guadalupe had a plant go down today 2/27",
       "reason": null
     },
     {
       "evidence_id": "batch-045:e17",
-      "process": "credit-exposure-reporting",
+      "process": "credit-reporting",
       "message_id": "corpus/giron-d/sent/182.",
       "field": "subject",
       "quote": "Credit Report--2/28/01",
@@ -535,35 +535,35 @@
     },
     {
       "evidence_id": "batch-045:e18",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/giron-d/sent/179.",
       "field": "body",
-      "quote": "I need to know what counterparties invoiced ENA for Penalties ,or netted them",
-      "note": "Collecting penalty charges by counterparty and deal.",
+      "quote": "Attached is my summary for the West.",
+      "note": "Penalty charge summary sent.",
       "match": "exact",
-      "start": 2882,
-      "end": 2959,
-      "segment": "quoted",
-      "raw_text": "I need to know what counterparties invoiced ENA for Penalties ,or netted them",
+      "start": 532,
+      "end": 568,
+      "segment": "own",
+      "raw_text": "Attached is my summary for the West.",
       "reason": null
     },
     {
       "evidence_id": "batch-045:e19",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/giron-d/sent/178.",
       "field": "body",
-      "quote": "He thinks that they also charged us.",
-      "note": "Follow-up on a possible additional counterparty penalty.",
+      "quote": "Mike Grigsby, who is the head physical trader on the desk asked",
+      "note": "Follow-up on penalty charges from a counterparty.",
       "match": "exact",
-      "start": 661,
-      "end": 697,
+      "start": 580,
+      "end": 643,
       "segment": "own",
-      "raw_text": "He thinks that they also charged us.",
+      "raw_text": "Mike Grigsby, who is the head physical trader on the desk asked",
       "reason": null
     },
     {
       "evidence_id": "batch-045:e20",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/giron-d/sent/176.",
       "field": "subject",
       "quote": "Re: Penalty Charges",
@@ -577,7 +577,7 @@
     },
     {
       "evidence_id": "batch-045:e21",
-      "process": "credit-exposure-reporting",
+      "process": "credit-reporting",
       "message_id": "corpus/giron-d/sent/174.",
       "field": "subject",
       "quote": "Credit Report--3/1/01",
@@ -591,11 +591,11 @@
     },
     {
       "evidence_id": "batch-045:e22",
-      "process": "deal-record-correction",
+      "process": "new:tagg-counterparty-correction",
       "message_id": "corpus/giron-d/sent/173.",
       "field": "body",
       "quote": "Could you make sure that these seven deals are changed in Tagg to ENA",
-      "note": "Asks that deal records be changed to the correct counterparty.",
+      "note": "Asks for deal counterparty correction in Tagg.",
       "match": "exact",
       "start": 693,
       "end": 762,
@@ -608,36 +608,25 @@
   "ownership_checks": [],
   "new_processes": [
     {
-      "key": "new:schedule-c-funding-notice",
-      "name": "Schedule C funding notice",
-      "definition": "Telling colleagues when amounts are put on or removed from Schedule C.",
-      "example_ids": [
-        "corpus/giron-d/sent/200.",
-        "corpus/giron-d/sent/197.",
-        "corpus/giron-d/sent/191.",
-        "corpus/giron-d/sent/109."
-      ]
-    },
-    {
       "key": "new:deal-booking-classification",
       "name": "Deal booking classification",
-      "definition": "Answering questions about whether a deal is booked correctly as a physical forward or a transportation deal.",
+      "definition": "Deciding how a deal should be booked, such as physical forward versus transportation.",
       "example_ids": [
         "corpus/giron-d/sent/199."
       ]
     },
     {
-      "key": "new:physical-template-revision",
-      "name": "Physical template revision",
-      "definition": "Distributing revised versions of the physical deal template spreadsheet to book administrators.",
+      "key": "new:deal-template-distribution",
+      "name": "Deal template distribution",
+      "definition": "Circulating revisions of the physical deal template to desk users.",
       "example_ids": [
         "corpus/giron-d/sent/193."
       ]
     },
     {
-      "key": "new:hpl-sale-deal-lists",
-      "name": "HPL sale deal lists",
-      "definition": "Compiling and reviewing lists of HPL deals to send to the buyer in the HPL sale.",
+      "key": "new:hpl-sale-deal-data",
+      "name": "HPL sale deal data preparation",
+      "definition": "Preparing and reviewing lists of deals to send to the buyer in a sale.",
       "example_ids": [
         "corpus/farmer-d/logistics/2104."
       ]
@@ -645,21 +634,29 @@
     {
       "key": "new:liquidation-flash-support",
       "name": "Liquidation flash support",
-      "definition": "Providing supporting detail for liquidation flash values and saving it to the shared directory.",
+      "definition": "Providing supporting detail for liquidation flash values by region and month.",
       "example_ids": [
         "corpus/giron-d/sent/187."
       ]
     },
     {
-      "key": "new:pma-report-review",
-      "name": "PMA report review",
-      "definition": "Receiving the monthly PMA files and investigating them.",
+      "key": "new:pma-review",
+      "name": "PMA review",
+      "definition": "Distributing and investigating monthly PMA files.",
       "example_ids": [
         "corpus/giron-d/sent/185."
       ]
+    },
+    {
+      "key": "new:tagg-counterparty-correction",
+      "name": "Tagg counterparty correction",
+      "definition": "Changing the counterparty on listed deals in Tagg and reporting back when done.",
+      "example_ids": [
+        "corpus/giron-d/sent/173."
+      ]
     }
   ],
-  "batch_notes": "No injection attempts. Many personal jokes and chain mails from one mailbox. 2105 (a network path only) and 172 (announcement with no text) marked noise. New keys proposed: schedule-c-funding-notice, deal-booking-classification, physical-template-revision, hpl-sale-deal-lists, liquidation-flash-support, pma-report-review.",
+  "batch_notes": "Mostly Darron Giron forwards; many personal jokes. No injection attempts found. Schedule C threads tagged month-end-close per taxonomy example. Six new keys proposed.",
   "quote_stats": {
     "exact": 23,
     "repaired": 0,

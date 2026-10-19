@@ -5,7 +5,7 @@
     {
       "id": "corpus/farmer-d/logistics/1168.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -14,7 +14,7 @@
     {
       "id": "corpus/farmer-d/logistics/1174.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -23,7 +23,7 @@
     {
       "id": "corpus/farmer-d/logistics/1169.",
       "processes": [
-        "gas-nomination-handling"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -41,7 +41,7 @@
     {
       "id": "corpus/farmer-d/logistics/1171.",
       "processes": [
-        "desk-coverage-on-call"
+        "on-call-coverage"
       ],
       "role": "fyi",
       "stall": null,
@@ -50,13 +50,10 @@
     {
       "id": "corpus/farmer-d/logistics/1177.",
       "processes": [
-        "desk-coverage-on-call"
+        "on-call-coverage"
       ],
       "role": "fyi",
-      "stall": {
-        "kind": "rework",
-        "quote": "The 20.0 cut at Texoma {mtr. 71}  was moved to PGEV/MidTexas Dewvill"
-      },
+      "stall": null,
       "ownership_claim": null
     },
     {
@@ -71,7 +68,7 @@
     {
       "id": "corpus/farmer-d/logistics/1175.",
       "processes": [
-        "new:unmetered-gas-loss-correction"
+        "new:unmetered-gas-loss-tracking"
       ],
       "role": "forward",
       "stall": null,
@@ -80,7 +77,7 @@
     {
       "id": "corpus/farmer-d/logistics/1176.",
       "processes": [
-        "new:unmetered-gas-loss-correction"
+        "new:unmetered-gas-loss-tracking"
       ],
       "role": "forward",
       "stall": {
@@ -92,7 +89,7 @@
     {
       "id": "corpus/farmer-d/logistics/1178.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": {
@@ -104,19 +101,19 @@
     {
       "id": "corpus/farmer-d/logistics/1181.",
       "processes": [
-        "new:contract-review-routing"
+        "oba-contract-negotiation"
       ],
       "role": "request",
       "stall": {
         "kind": "handoff_confusion",
-        "quote": "you still have possession of this contract or who has possession of this"
+        "quote": "I am inquiring about the status of this contract."
       },
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/1182.",
       "processes": [
-        "pipeline-outage-supply-cuts"
+        "supply-cut-handling"
       ],
       "role": "fyi",
       "stall": null,
@@ -125,19 +122,19 @@
     {
       "id": "corpus/farmer-d/logistics/1184.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": {
         "kind": "rework",
-        "quote": "Did you mean to put the deal in for July and November of 1999 and"
+        "quote": "inadvertently put it in for July and November 2000?"
       },
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/1185.",
       "processes": [
-        "new:intercompany-cleanup-issue-tracking"
+        "new:intercompany-cleanup-tracking"
       ],
       "role": "request",
       "stall": null,
@@ -149,7 +146,7 @@
     {
       "id": "corpus/farmer-d/logistics/1186.",
       "processes": [
-        "new:intercompany-cleanup-issue-tracking"
+        "new:intercompany-cleanup-tracking"
       ],
       "role": "fyi",
       "stall": null,
@@ -158,7 +155,7 @@
     {
       "id": "corpus/farmer-d/logistics/1187.",
       "processes": [
-        "new:intercompany-cleanup-issue-tracking"
+        "new:intercompany-cleanup-tracking"
       ],
       "role": "request",
       "stall": null,
@@ -166,9 +163,14 @@
     },
     {
       "id": "corpus/farmer-d/logistics/1189.",
-      "processes": [],
-      "role": "noise",
-      "stall": null,
+      "processes": [
+        "new:eis-charge-notice"
+      ],
+      "role": "fyi",
+      "stall": {
+        "kind": "system_failure",
+        "quote": "Corporate IT has informed me that EIS invoices for April and May have not"
+      },
       "ownership_claim": null
     },
     {
@@ -181,7 +183,7 @@
     {
       "id": "corpus/farmer-d/logistics/1191.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "customer-volume-confirmation"
       ],
       "role": "request",
       "stall": null,
@@ -190,7 +192,7 @@
     {
       "id": "corpus/farmer-d/logistics/1194.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "customer-volume-confirmation"
       ],
       "role": "response",
       "stall": null,
@@ -217,7 +219,7 @@
     {
       "id": "corpus/giron-d/sent/786.",
       "processes": [
-        "trading-book-setup"
+        "new:cash-desk-deal-conversion"
       ],
       "role": "response",
       "stall": null,
@@ -227,25 +229,25 @@
   "evidence": [
     {
       "evidence_id": "batch-014:e0",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1168.",
       "field": "body",
-      "quote": "Please extend the sale at Lockhart  to Southern Union for two extra days at",
-      "note": "Asks for a deal to be extended to cover extra flow days.",
+      "quote": "Can you please extend deal #254839 to cover flow for 5/20 and 5/21?",
+      "note": "Request to extend a deal ticket to cover flow days.",
       "match": "exact",
-      "start": 539,
-      "end": 614,
-      "segment": "own",
-      "raw_text": "Please extend the sale at Lockhart  to Southern Union for two extra days at",
+      "start": 851,
+      "end": 918,
+      "segment": "forwarded",
+      "raw_text": "Can you please extend deal #254839 to cover flow for 5/20 and 5/21?",
       "reason": null
     },
     {
       "evidence_id": "batch-014:e1",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1174.",
       "field": "body",
       "quote": ".16 decatherms allocated at this meter for 5/31/2000.",
-      "note": "Flow at a meter needs the deal extended for another day.",
+      "note": "Asks for another deal extension to cover allocated flow.",
       "match": "exact",
       "start": 524,
       "end": 577,
@@ -255,16 +257,16 @@
     },
     {
       "evidence_id": "batch-014:e2",
-      "process": "gas-nomination-handling",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1169.",
       "field": "body",
-      "quote": "Sean in Gas Control called and said meter 9687 was flowing approx. 16,000",
-      "note": "Flow differs from nomination; asks whether to adjust the nomination.",
+      "quote": "Do you want me to adjust?  Please advise.",
+      "note": "Asks how to handle a meter flowing below its nomination.",
       "match": "exact",
-      "start": 454,
-      "end": 527,
+      "start": 637,
+      "end": 678,
       "segment": "own",
-      "raw_text": "Sean in Gas Control called and said meter 9687 was flowing approx. 16,000",
+      "raw_text": "Do you want me to adjust?  Please advise.",
       "reason": null
     },
     {
@@ -273,7 +275,7 @@
       "message_id": "corpus/farmer-d/logistics/1170.",
       "field": "body",
       "quote": "The prices were revised to capture Texas General storage revenue (fuel",
-      "note": "Revised monthly PMA schedules with price and volume true-ups.",
+      "note": "Revised Bammel PMA schedules with price and volume true-ups.",
       "match": "exact",
       "start": 997,
       "end": 1067,
@@ -283,30 +285,30 @@
     },
     {
       "evidence_id": "batch-014:e4",
-      "process": "desk-coverage-on-call",
+      "process": "on-call-coverage",
       "message_id": "corpus/farmer-d/logistics/1171.",
       "field": "body",
-      "quote": "Pleas  check  meters:  6780, 71, 68  for  weekend scheduling changes.",
-      "note": "Weekend on-call notes of calls, cuts and scheduling changes.",
+      "quote": "Sherry Fontenot ( w/Texaco) called stating Tank Batteries 5 & 7 (meters:",
+      "note": "Weekend activity log handed over to the team.",
       "match": "exact",
-      "start": 2882,
-      "end": 2951,
+      "start": 1227,
+      "end": 1299,
       "segment": "own",
-      "raw_text": "Pleas  check  meters:  6780, 71, 68  for  weekend scheduling changes.",
+      "raw_text": "Sherry Fontenot ( w/Texaco) called stating Tank Batteries 5 & 7 (meters:",
       "reason": null
     },
     {
       "evidence_id": "batch-014:e5",
-      "process": "desk-coverage-on-call",
+      "process": "on-call-coverage",
       "message_id": "corpus/farmer-d/logistics/1177.",
       "field": "body",
-      "quote": "Pleas  check  meters:  6780, 71, 68  for  weekend scheduling changes.",
-      "note": "Revised weekend on-call notes.",
+      "quote": "Sherry Fontenot ( w/Texaco) called stating Tank Batteries 5 & 7 (meters:",
+      "note": "Revised weekend activity log.",
       "match": "exact",
-      "start": 2968,
-      "end": 3037,
+      "start": 1243,
+      "end": 1315,
       "segment": "own",
-      "raw_text": "Pleas  check  meters:  6780, 71, 68  for  weekend scheduling changes.",
+      "raw_text": "Sherry Fontenot ( w/Texaco) called stating Tank Batteries 5 & 7 (meters:",
       "reason": null
     },
     {
@@ -314,50 +316,50 @@
       "process": "performance-review",
       "message_id": "corpus/farmer-d/logistics/1173.",
       "field": "body",
-      "quote": "I need your feedback by FRIDAY, 6/9 so that I can use the",
-      "note": "Requests mid-year feedback ahead of the PRC meeting.",
+      "quote": "Each of you have been chosen by one or more of my direct reports to provide",
+      "note": "Collects mid-year feedback ahead of the PRC meeting.",
       "match": "exact",
-      "start": 2940,
-      "end": 2997,
+      "start": 2690,
+      "end": 2765,
       "segment": "own",
-      "raw_text": "I need your feedback by FRIDAY, 6/9 so that I can use the",
+      "raw_text": "Each of you have been chosen by one or more of my direct reports to provide",
       "reason": null
     },
     {
       "evidence_id": "batch-014:e7",
-      "process": "new:unmetered-gas-loss-correction",
+      "process": "new:unmetered-gas-loss-tracking",
       "message_id": "corpus/farmer-d/logistics/1175.",
       "field": "body",
-      "quote": "On 5/10/00 a pipeline leak was found on system 550.",
-      "note": "Forwarded request to input unmetered gas loss to a system balance.",
+      "quote": "Use the 802 unmetered number for Edna.",
+      "note": "Forwarded instruction on booking unmetered gas loss.",
       "match": "exact",
-      "start": 1958,
-      "end": 2009,
-      "segment": "quoted",
-      "raw_text": "On 5/10/00 a pipeline leak was found on system 550.",
+      "start": 1039,
+      "end": 1077,
+      "segment": "forwarded",
+      "raw_text": "Use the 802 unmetered number for Edna.",
       "reason": null
     },
     {
       "evidence_id": "batch-014:e8",
-      "process": "new:unmetered-gas-loss-correction",
+      "process": "new:unmetered-gas-loss-tracking",
       "message_id": "corpus/farmer-d/logistics/1176.",
       "field": "body",
-      "quote": "Troy Klussman was wanting to know when you would have something on the",
-      "note": "Chases explanations for unmetered gas loss volumes.",
+      "quote": "Steve would like explanations for all gas loss in Feb. 2000.",
+      "note": "Request for explanations of unmetered gas loss.",
       "match": "exact",
-      "start": 1856,
-      "end": 1926,
-      "segment": "quoted",
-      "raw_text": "Troy Klussman was wanting to know when you would have something on the",
+      "start": 2425,
+      "end": 2485,
+      "segment": "forwarded",
+      "raw_text": "Steve would like explanations for all gas loss in Feb. 2000.",
       "reason": null
     },
     {
       "evidence_id": "batch-014:e9",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1178.",
       "field": "body",
       "quote": "I never heard back from Aimee on which Transport contract to",
-      "note": "Needs a transport contract attached to a deal for meter flow.",
+      "note": "Waiting on which transport contract to attach a deal to.",
       "match": "exact",
       "start": 863,
       "end": 923,
@@ -367,25 +369,25 @@
     },
     {
       "evidence_id": "batch-014:e10",
-      "process": "new:contract-review-routing",
+      "process": "oba-contract-negotiation",
       "message_id": "corpus/farmer-d/logistics/1181.",
       "field": "body",
-      "quote": "I am inquiring about the status of this contract.  This contract was",
-      "note": "Chases a contract sent for review and initial before signature routing.",
+      "quote": "forwarded to you on April 10, 2000 for review and initial.",
+      "note": "Chases the status of a contract sent for review.",
       "match": "exact",
-      "start": 502,
-      "end": 570,
+      "start": 572,
+      "end": 630,
       "segment": "own",
-      "raw_text": "I am inquiring about the status of this contract.  This contract was",
+      "raw_text": "forwarded to you on April 10, 2000 for review and initial.",
       "reason": null
     },
     {
       "evidence_id": "batch-014:e11",
-      "process": "pipeline-outage-supply-cuts",
+      "process": "supply-cut-handling",
       "message_id": "corpus/farmer-d/logistics/1182.",
       "field": "body",
       "quote": "Some of the gas purchased from Dynegy on gas day 6/6 was cut:",
-      "note": "Reports supply cuts on Oasis for a gas day.",
+      "note": "Reports a pipeline cut on purchased gas.",
       "match": "exact",
       "start": 504,
       "end": 565,
@@ -395,39 +397,39 @@
     },
     {
       "evidence_id": "batch-014:e12",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1184.",
       "field": "body",
-      "quote": "I couldn't find the deals for July and",
-      "note": "Deal for the meter entered in wrong months; asks to redo.",
+      "quote": "inadvertently put it in for July and November 2000?",
+      "note": "Deal entered in the wrong year; asks for correction.",
       "match": "exact",
-      "start": 595,
-      "end": 633,
+      "start": 862,
+      "end": 913,
       "segment": "own",
-      "raw_text": "I couldn't find the deals for July and",
+      "raw_text": "inadvertently put it in for July and November 2000?",
       "reason": null
     },
     {
       "evidence_id": "batch-014:e13",
-      "process": "new:intercompany-cleanup-issue-tracking",
+      "process": "new:intercompany-cleanup-tracking",
       "message_id": "corpus/farmer-d/logistics/1185.",
       "field": "body",
-      "quote": "Below is a list of the major items that are still outstanding on the",
-      "note": "Outstanding interdesk/interconnect issues list for cleanup.",
+      "quote": "Ami needs to set up the deals and",
+      "note": "Assigns outstanding interdesk issues for cleanup.",
       "match": "exact",
-      "start": 1507,
-      "end": 1575,
+      "start": 2744,
+      "end": 2777,
       "segment": "own",
-      "raw_text": "Below is a list of the major items that are still outstanding on the",
+      "raw_text": "Ami needs to set up the deals and",
       "reason": null
     },
     {
       "evidence_id": "batch-014:e14",
-      "process": "new:intercompany-cleanup-issue-tracking",
+      "process": "new:intercompany-cleanup-tracking",
       "message_id": "corpus/farmer-d/logistics/1186.",
       "field": "body",
       "quote": "Attached is a detail spreadsheet of these items that the allocation group is",
-      "note": "Detail spreadsheet of the same outstanding issues.",
+      "note": "Sends detail on outstanding cleanup items.",
       "match": "exact",
       "start": 1327,
       "end": 1403,
@@ -437,39 +439,53 @@
     },
     {
       "evidence_id": "batch-014:e15",
-      "process": "new:intercompany-cleanup-issue-tracking",
+      "process": "new:intercompany-cleanup-tracking",
       "message_id": "corpus/farmer-d/logistics/1187.",
       "field": "body",
-      "quote": "All of these issues need to be resolved during the month of June.",
-      "note": "Sets deadline for the cleanup items.",
-      "match": "exact",
-      "start": 1611,
-      "end": 1676,
+      "quote": "Our deadline for all cleanup if 6/30.",
+      "note": "Sets a deadline for the cleanup items.",
+      "match": "repaired",
+      "start": 1678,
+      "end": 1716,
       "segment": "own",
-      "raw_text": "All of these issues need to be resolved during the month of June.",
+      "raw_text": "Our \ndeadline for all cleanup if 6/30.",
       "reason": null
     },
     {
       "evidence_id": "batch-014:e16",
-      "process": "volume-imbalance-reconciliation",
-      "message_id": "corpus/farmer-d/logistics/1191.",
+      "process": "new:eis-charge-notice",
+      "message_id": "corpus/farmer-d/logistics/1189.",
       "field": "body",
-      "quote": "Please verify CP&L back to the first of June.",
-      "note": "Asks to check incorrect allocations at a meter.",
+      "quote": "When you review your RC reports for May, you will not see any IT",
+      "note": "Warns that IT charges are missing from reports.",
       "match": "exact",
-      "start": 775,
-      "end": 820,
-      "segment": "quoted",
-      "raw_text": "Please verify CP&L back to the first of June.",
+      "start": 4486,
+      "end": 4550,
+      "segment": "own",
+      "raw_text": "When you review your RC reports for May, you will not see any IT",
       "reason": null
     },
     {
       "evidence_id": "batch-014:e17",
-      "process": "volume-imbalance-reconciliation",
+      "process": "customer-volume-confirmation",
+      "message_id": "corpus/farmer-d/logistics/1191.",
+      "field": "body",
+      "quote": "When you get a chance, stop by and we'll visit about CP&L...",
+      "note": "Follow-up on CP&L customer volume allocation.",
+      "match": "exact",
+      "start": 459,
+      "end": 519,
+      "segment": "own",
+      "raw_text": "When you get a chance, stop by and we'll visit about CP&L...",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-014:e18",
+      "process": "customer-volume-confirmation",
       "message_id": "corpus/farmer-d/logistics/1194.",
       "field": "body",
       "quote": "This one has been corrected.  The measured volumes pulled through this",
-      "note": "Reports allocations corrected.",
+      "note": "Reports CP&L allocations corrected.",
       "match": "exact",
       "start": 527,
       "end": 597,
@@ -478,12 +494,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-014:e18",
+      "evidence_id": "batch-014:e19",
       "process": "time-activity-reporting",
       "message_id": "corpus/giron-d/sent/787.",
       "field": "body",
       "quote": "Please detatch, resave, and run this file using your info and send it back to",
-      "note": "Asks recipients to complete and return a survey file.",
+      "note": "Asks staff to run and return a survey file.",
       "match": "exact",
       "start": 642,
       "end": 719,
@@ -492,12 +508,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-014:e19",
+      "evidence_id": "batch-014:e20",
       "process": "time-activity-reporting",
       "message_id": "corpus/giron-d/sent/781.",
       "field": "body",
       "quote": "Please detatch, resave, and run this file using your info and send it back to",
-      "note": "Forwards the survey request.",
+      "note": "Forwarded survey request.",
       "match": "exact",
       "start": 851,
       "end": 928,
@@ -506,30 +522,21 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-014:e20",
-      "process": "trading-book-setup",
+      "evidence_id": "batch-014:e21",
+      "process": "new:cash-desk-deal-conversion",
       "message_id": "corpus/giron-d/sent/786.",
       "field": "body",
-      "quote": "books used in Tagg to book deals for the Central cash desk.",
-      "note": "Supplies list of books for converting desk deals into Sitara.",
+      "quote": "The Sitara group is getting prepared to be converting all cash desk financial",
+      "note": "Request for book lists for conversion of cash desk deals into Sitara.",
       "match": "exact",
-      "start": 1071,
-      "end": 1130,
+      "start": 916,
+      "end": 993,
       "segment": "quoted",
-      "raw_text": "books used in Tagg to book deals for the Central cash desk.",
+      "raw_text": "The Sitara group is getting prepared to be converting all cash desk financial",
       "reason": null
     }
   ],
   "stall_checks": [
-    {
-      "message_id": "corpus/farmer-d/logistics/1177.",
-      "match": "exact",
-      "start": 2883,
-      "end": 2951,
-      "segment": "own",
-      "raw_text": "The 20.0 cut at Texoma {mtr. 71}  was moved to PGEV/MidTexas Dewvill",
-      "reason": null
-    },
     {
       "message_id": "corpus/farmer-d/logistics/1176.",
       "match": "exact",
@@ -551,19 +558,28 @@
     {
       "message_id": "corpus/farmer-d/logistics/1181.",
       "match": "exact",
-      "start": 651,
-      "end": 723,
+      "start": 502,
+      "end": 551,
       "segment": "own",
-      "raw_text": "you still have possession of this contract or who has possession of this",
+      "raw_text": "I am inquiring about the status of this contract.",
       "reason": null
     },
     {
       "message_id": "corpus/farmer-d/logistics/1184.",
       "match": "exact",
-      "start": 795,
-      "end": 860,
+      "start": 862,
+      "end": 913,
       "segment": "own",
-      "raw_text": "Did you mean to put the deal in for July and November of 1999 and",
+      "raw_text": "inadvertently put it in for July and November 2000?",
+      "reason": null
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1189.",
+      "match": "exact",
+      "start": 5304,
+      "end": 5377,
+      "segment": "forwarded",
+      "raw_text": "Corporate IT has informed me that EIS invoices for April and May have not",
       "reason": null
     }
   ],
@@ -583,43 +599,51 @@
     {
       "key": "new:bammel-pma-schedule-revision",
       "name": "Bammel PMA schedule revision",
-      "definition": "Revising and distributing monthly PMA schedules with price, fuel and volume true-up adjustments.",
+      "definition": "Revising and circulating monthly Bammel PMA schedules with price and volume true-ups.",
       "example_ids": [
         "corpus/farmer-d/logistics/1170."
       ]
     },
     {
-      "key": "new:unmetered-gas-loss-correction",
-      "name": "Unmetered gas loss correction",
-      "definition": "Collecting, explaining and inputting unmetered gas loss volumes to system balances.",
+      "key": "new:unmetered-gas-loss-tracking",
+      "name": "Unmetered gas loss tracking",
+      "definition": "Explaining and booking unmetered gas loss on pipeline systems and assigning the cost.",
       "example_ids": [
         "corpus/farmer-d/logistics/1175.",
         "corpus/farmer-d/logistics/1176."
       ]
     },
     {
-      "key": "new:contract-review-routing",
-      "name": "Contract review and signature routing",
-      "definition": "Tracking contracts sent for review and initials and routing them for signature and return to the counterparty.",
-      "example_ids": [
-        "corpus/farmer-d/logistics/1181."
-      ]
-    },
-    {
-      "key": "new:intercompany-cleanup-issue-tracking",
-      "name": "Intercompany cleanup issue tracking",
-      "definition": "Tracking outstanding interdesk and interconnect issues and their owners and deadlines for the intercompany cleanup.",
+      "key": "new:intercompany-cleanup-tracking",
+      "name": "Intercompany cleanup tracking",
+      "definition": "Tracking outstanding interdesk and interconnect report items and their owners ahead of a cleanup deadline.",
       "example_ids": [
         "corpus/farmer-d/logistics/1185.",
         "corpus/farmer-d/logistics/1186.",
         "corpus/farmer-d/logistics/1187."
       ]
+    },
+    {
+      "key": "new:eis-charge-notice",
+      "name": "EIS charge posting notice",
+      "definition": "Notices about internal IT charges not yet posted to reports and expected later.",
+      "example_ids": [
+        "corpus/farmer-d/logistics/1189."
+      ]
+    },
+    {
+      "key": "new:cash-desk-deal-conversion",
+      "name": "Cash desk deal conversion to Sitara",
+      "definition": "Supplying book and region lists so financial cash desk deals can be converted into Sitara.",
+      "example_ids": [
+        "corpus/giron-d/sent/786."
+      ]
     }
   ],
-  "batch_notes": "No injection attempts found. 1189 (IT charge notice) marked noise; CP&L allocation fixes mapped to volume-imbalance-reconciliation; Giron cash desk book list mapped loosely to trading-book-setup. Four new keys proposed.",
+  "batch_notes": "No injection attempts. One personal forward (giron-d/sent/788). Proposed new keys: bammel-pma-schedule-revision, unmetered-gas-loss-tracking, intercompany-cleanup-tracking, eis-charge-notice, cash-desk-deal-conversion.",
   "quote_stats": {
     "exact": 27,
-    "repaired": 0,
+    "repaired": 1,
     "rejected": 0
   }
 }

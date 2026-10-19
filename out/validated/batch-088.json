@@ -19,7 +19,7 @@
     {
       "id": "corpus/giron-d/inbox/100.",
       "processes": [
-        "pnl-position-reporting"
+        "new:counterparty-deal-valuation"
       ],
       "role": "response",
       "stall": null,
@@ -28,7 +28,7 @@
     {
       "id": "corpus/giron-d/inbox/96.",
       "processes": [
-        "pnl-position-reporting"
+        "new:counterparty-deal-valuation"
       ],
       "role": "request",
       "stall": null,
@@ -37,7 +37,7 @@
     {
       "id": "corpus/lokay-m/sent_items/31.",
       "processes": [
-        "new:contract-amendment-routing"
+        "oba-contract-negotiation"
       ],
       "role": "response",
       "stall": null,
@@ -46,21 +46,21 @@
     {
       "id": "corpus/giron-d/inbox/99.",
       "processes": [],
-      "role": "automated",
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/inbox/98.",
       "processes": [],
-      "role": "automated",
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/inbox/97.",
       "processes": [],
-      "role": "personal",
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
@@ -103,14 +103,14 @@
     {
       "id": "corpus/giron-d/inbox/90.",
       "processes": [],
-      "role": "automated",
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/inbox/98.",
       "processes": [
-        "new:el-paso-scrape-data"
+        "real-time-power-scheduling"
       ],
       "role": "fyi",
       "stall": null,
@@ -119,14 +119,14 @@
     {
       "id": "corpus/giron-d/inbox/89.",
       "processes": [],
-      "role": "automated",
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/lokay-m/sent_items/30.",
       "processes": [
-        "weekly-commercial-reporting"
+        "capacity-reporting"
       ],
       "role": "fyi",
       "stall": null,
@@ -178,23 +178,23 @@
     {
       "id": "corpus/lokay-m/sent_items/29.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "imbalance-resolution"
       ],
-      "role": "request",
+      "role": "fyi",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/inbox/81.",
       "processes": [],
-      "role": "personal",
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/sent_items/16.",
       "processes": [
-        "new:enpower-deal-entry-guidance"
+        "new:enpower-deal-entry"
       ],
       "role": "forward",
       "stall": null,
@@ -203,7 +203,7 @@
     {
       "id": "corpus/williams-w3/sent_items/15.",
       "processes": [
-        "reference-data-update"
+        "on-call-coverage"
       ],
       "role": "request",
       "stall": null,
@@ -212,7 +212,7 @@
     {
       "id": "corpus/williams-w3/sent_items/14.",
       "processes": [
-        "reference-data-update"
+        "on-call-coverage"
       ],
       "role": "request",
       "stall": null,
@@ -221,7 +221,7 @@
     {
       "id": "corpus/giron-d/inbox/80.",
       "processes": [
-        "system-enhancement-request"
+        "system-issue-resolution"
       ],
       "role": "forward",
       "stall": null,
@@ -230,7 +230,7 @@
     {
       "id": "corpus/williams-w3/sent_items/13.",
       "processes": [
-        "desk-coverage-on-call"
+        "real-time-power-scheduling"
       ],
       "role": "forward",
       "stall": null,
@@ -239,7 +239,7 @@
     {
       "id": "corpus/williams-w3/inbox/95.",
       "processes": [
-        "desk-coverage-on-call"
+        "real-time-power-scheduling"
       ],
       "role": "response",
       "stall": null,
@@ -280,7 +280,7 @@
     {
       "id": "corpus/giron-d/inbox/75.",
       "processes": [],
-      "role": "automated",
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
@@ -294,7 +294,7 @@
     {
       "id": "corpus/giron-d/inbox/73.",
       "processes": [],
-      "role": "automated",
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
@@ -312,14 +312,14 @@
       "processes": [
         "deal-book-transfer"
       ],
-      "role": "request",
+      "role": "fyi",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/inbox/96.",
       "processes": [
-        "expense-report-approval"
+        "expense-approval"
       ],
       "role": "automated",
       "stall": null,
@@ -328,7 +328,7 @@
     {
       "id": "corpus/williams-w3/inbox/94.",
       "processes": [
-        "new:epe-model-delivery"
+        "new:epe-model-distribution"
       ],
       "role": "fyi",
       "stall": null,
@@ -337,19 +337,19 @@
     {
       "id": "corpus/williams-w3/inbox/93.",
       "processes": [
-        "system-enhancement-request"
+        "system-issue-resolution"
       ],
       "role": "fyi",
       "stall": {
         "kind": "system_failure",
-        "quote": "When importing DA finals I received a \"Can't find Netscape Navigator\" error."
+        "quote": "I received a \"Can't find Netscape Navigator\" error."
       },
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/inbox/71.",
       "processes": [],
-      "role": "personal",
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
@@ -359,15 +359,16 @@
         "trading-book-setup"
       ],
       "role": "forward",
-      "stall": null,
+      "stall": {
+        "kind": "handoff_confusion",
+        "quote": "No idea why it is coming to me."
+      },
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/inbox/69.",
-      "processes": [
-        "new:office-desk-cleanout"
-      ],
-      "role": "request",
+      "processes": [],
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     }
@@ -375,39 +376,39 @@
   "evidence": [
     {
       "evidence_id": "batch-088:e0",
-      "process": "pnl-position-reporting",
+      "process": "new:counterparty-deal-valuation",
       "message_id": "corpus/giron-d/inbox/100.",
       "field": "body",
-      "quote": "It also includes some deals with the Chicago office that should not be included in the deal value.",
-      "note": "Explains a deal value list for a cash flow valuation file.",
+      "quote": "His list does not include any of the transport positions.",
+      "note": "Explains what the counterparty deal valuation list leaves out.",
       "match": "exact",
-      "start": 844,
-      "end": 942,
+      "start": 785,
+      "end": 842,
       "segment": "quoted",
-      "raw_text": "It also includes some deals with the Chicago office that should not be included in the deal value.",
+      "raw_text": "His list does not include any of the transport positions.",
       "reason": null
     },
     {
       "evidence_id": "batch-088:e1",
-      "process": "pnl-position-reporting",
+      "process": "new:counterparty-deal-valuation",
       "message_id": "corpus/giron-d/inbox/96.",
       "field": "body",
-      "quote": "could we get the supply deal valued as of 1/16/01.",
-      "note": "Asks for a deal valuation as of a given date.",
+      "quote": "could we get the supply deal valued as of 1/16/01",
+      "note": "Asks for a deal to be valued as of a specific date.",
       "match": "exact",
       "start": 609,
-      "end": 659,
+      "end": 658,
       "segment": "own",
-      "raw_text": "could we get the supply deal valued as of 1/16/01.",
+      "raw_text": "could we get the supply deal valued as of 1/16/01",
       "reason": null
     },
     {
       "evidence_id": "batch-088:e2",
-      "process": "new:contract-amendment-routing",
+      "process": "oba-contract-negotiation",
       "message_id": "corpus/lokay-m/sent_items/31.",
       "field": "body",
       "quote": "Amendments # 3 & 4 to Cr 27641 (PPL EnergyPlus) are being routed.",
-      "note": "Contract amendments being routed for execution.",
+      "note": "Contract amendments in approval routing.",
       "match": "exact",
       "start": 720,
       "end": 785,
@@ -420,13 +421,13 @@
       "process": "deal-book-transfer",
       "message_id": "corpus/giron-d/inbox/93.",
       "field": "body",
-      "quote": "need to be moved into the bankruptcy books per the counterparty's termination",
-      "note": "List of deals to move to bankruptcy books.",
+      "quote": "updated list with deals I have added today that need to be moved into the bankruptcy books",
+      "note": "List of deals to move into bankruptcy books.",
       "match": "exact",
-      "start": 1334,
-      "end": 1411,
+      "start": 1286,
+      "end": 1376,
       "segment": "own",
-      "raw_text": "need to be moved into the bankruptcy books per the counterparty's termination",
+      "raw_text": "updated list with deals I have added today that need to be moved into the bankruptcy books",
       "reason": null
     },
     {
@@ -435,7 +436,7 @@
       "message_id": "corpus/giron-d/inbox/92.",
       "field": "body",
       "quote": "Orientation will be split into two sessions and divided by alpha-order.",
-      "note": "UBS orientation logistics for staff.",
+      "note": "Staff orientation logistics for the move to UBS.",
       "match": "exact",
       "start": 7191,
       "end": 7262,
@@ -449,7 +450,7 @@
       "message_id": "corpus/giron-d/inbox/91.",
       "field": "body",
       "quote": "the following contracts are terminated effective 12/30/01.",
-      "note": "Termination notice listing contracts and deals to move.",
+      "note": "Terminated contracts and deal listing for moving to bankruptcy books.",
       "match": "exact",
       "start": 1509,
       "end": 1567,
@@ -463,7 +464,7 @@
       "message_id": "corpus/giron-d/inbox/88.",
       "field": "body",
       "quote": "These deals have been moved previously.",
-      "note": "Confirms deals already moved to bankruptcy books.",
+      "note": "Confirms deals already moved.",
       "match": "exact",
       "start": 1476,
       "end": 1515,
@@ -473,11 +474,11 @@
     },
     {
       "evidence_id": "batch-088:e7",
-      "process": "new:el-paso-scrape-data",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/inbox/98.",
       "field": "body",
       "quote": "http://172.17.172.22/elpaso/!current.txt",
-      "note": "Shares the URL for the El Paso data scrape.",
+      "note": "Data source link shared with the real-time shift group.",
       "match": "exact",
       "start": 572,
       "end": 612,
@@ -487,11 +488,11 @@
     },
     {
       "evidence_id": "batch-088:e8",
-      "process": "weekly-commercial-reporting",
+      "process": "capacity-reporting",
       "message_id": "corpus/lokay-m/sent_items/30.",
       "field": "body",
       "quote": "Transwestern's average deliveries to California were 933 MMBtu/d (86%)",
-      "note": "Weekly California capacity report.",
+      "note": "Weekly California deliveries report.",
       "match": "exact",
       "start": 1337,
       "end": 1407,
@@ -504,13 +505,13 @@
       "process": "deal-book-transfer",
       "message_id": "corpus/giron-d/inbox/85.",
       "field": "body",
-      "quote": "Attached is a file with the CP's that are terminated per Kim's list",
-      "note": "Terminated counterparties to move to bankruptcy book.",
+      "quote": "I will send the legal names to Cecilia to get these moved today",
+      "note": "Terminated counterparties being moved to the bankruptcy book.",
       "match": "exact",
-      "start": 922,
-      "end": 989,
+      "start": 1081,
+      "end": 1144,
       "segment": "own",
-      "raw_text": "Attached is a file with the CP's that are terminated per Kim's list",
+      "raw_text": "I will send the legal names to Cecilia to get these moved today",
       "reason": null
     },
     {
@@ -519,7 +520,7 @@
       "message_id": "corpus/giron-d/inbox/84.",
       "field": "body",
       "quote": "Please move the following six counterparties from NG-Price to Bankruptcy.",
-      "note": "Request to move counterparties between books.",
+      "note": "Request to move counterparties' deals between books.",
       "match": "exact",
       "start": 840,
       "end": 913,
@@ -533,7 +534,7 @@
       "message_id": "corpus/giron-d/inbox/83.",
       "field": "body",
       "quote": "I just got back from UBS orientation and will start work on it now.",
-      "note": "Acknowledges the book move request and starts it.",
+      "note": "Acknowledges the book move request and timing.",
       "match": "exact",
       "start": 844,
       "end": 911,
@@ -547,7 +548,7 @@
       "message_id": "corpus/giron-d/inbox/82.",
       "field": "body",
       "quote": "have been moved to the Bankruptcy bookand retranslated successfully.",
-      "note": "Reports the book move complete.",
+      "note": "Confirms deals were moved to the bankruptcy book.",
       "match": "exact",
       "start": 883,
       "end": 951,
@@ -557,11 +558,11 @@
     },
     {
       "evidence_id": "batch-088:e13",
-      "process": "volume-imbalance-reconciliation",
+      "process": "imbalance-resolution",
       "message_id": "corpus/lokay-m/sent_items/29.",
       "field": "body",
       "quote": "Here is a spreadsheet that will hopefully help with reconciling the Mojave interconnect.",
-      "note": "Supports reconciling Mojave imbalances with the other pipeline.",
+      "note": "Supports reconciling a pipeline imbalance.",
       "match": "exact",
       "start": 538,
       "end": 626,
@@ -571,11 +572,11 @@
     },
     {
       "evidence_id": "batch-088:e14",
-      "process": "new:enpower-deal-entry-guidance",
+      "process": "new:enpower-deal-entry",
       "message_id": "corpus/williams-w3/sent_items/16.",
       "field": "body",
       "quote": "please use EPMI-WEST-PERFORMANCE for the trading desk.",
-      "note": "Instruction on which desk to use for deal entry in Enpower.",
+      "note": "Instruction on which desk to use when entering deals.",
       "match": "exact",
       "start": 1586,
       "end": 1640,
@@ -585,25 +586,25 @@
     },
     {
       "evidence_id": "batch-088:e15",
-      "process": "reference-data-update",
+      "process": "on-call-coverage",
       "message_id": "corpus/williams-w3/sent_items/15.",
       "field": "body",
-      "quote": "Please update me with your contact information as soon as possible.",
-      "note": "Requests a staff member's contact details.",
+      "quote": "Your cell phone is not working or has been disconnected and I have no way to reach you.",
+      "note": "Collecting working contact details for shift staff.",
       "match": "exact",
-      "start": 617,
-      "end": 684,
+      "start": 529,
+      "end": 616,
       "segment": "own",
-      "raw_text": "Please update me with your contact information as soon as possible.",
+      "raw_text": "Your cell phone is not working or has been disconnected and I have no way to reach you.",
       "reason": null
     },
     {
       "evidence_id": "batch-088:e16",
-      "process": "reference-data-update",
+      "process": "on-call-coverage",
       "message_id": "corpus/williams-w3/sent_items/14.",
       "field": "body",
       "quote": "I need to get a working cell phone number for you.",
-      "note": "Requests a contact number for the contact list.",
+      "note": "Collecting working contact details for shift staff.",
       "match": "exact",
       "start": 530,
       "end": 580,
@@ -613,11 +614,11 @@
     },
     {
       "evidence_id": "batch-088:e17",
-      "process": "system-enhancement-request",
+      "process": "system-issue-resolution",
       "message_id": "corpus/giron-d/inbox/80.",
       "field": "body",
       "quote": "I'll change the Tagg bridge program to read OLT instead of EOL today.",
-      "note": "System change so downstream systems use OLT instead of EOL.",
+      "note": "Change to a bridge program and downstream system naming.",
       "match": "exact",
       "start": 1655,
       "end": 1724,
@@ -627,11 +628,11 @@
     },
     {
       "evidence_id": "batch-088:e18",
-      "process": "desk-coverage-on-call",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/13.",
       "field": "body",
       "quote": "Please be sure to send me an email regarding changes, and write them on the schedule.",
-      "note": "Real-time shift schedule changes must be reported.",
+      "note": "Rule for changes to the real-time shift schedule.",
       "match": "exact",
       "start": 1118,
       "end": 1203,
@@ -641,16 +642,16 @@
     },
     {
       "evidence_id": "batch-088:e19",
-      "process": "desk-coverage-on-call",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/inbox/95.",
       "field": "body",
-      "quote": "Traded 1/29 day shift for 2/1 night shift.",
-      "note": "Reports a shift trade on the real-time schedule.",
+      "quote": "Traded 1/29 day shift for 2/1 night shift.  See schedule for details.",
+      "note": "Shift trade reported against the real-time schedule.",
       "match": "exact",
       "start": 578,
-      "end": 620,
+      "end": 647,
       "segment": "own",
-      "raw_text": "Traded 1/29 day shift for 2/1 night shift.",
+      "raw_text": "Traded 1/29 day shift for 2/1 night shift.  See schedule for details.",
       "reason": null
     },
     {
@@ -658,13 +659,13 @@
       "process": "deal-book-transfer",
       "message_id": "corpus/giron-d/inbox/77.",
       "field": "body",
-      "quote": "could you please refine it a bit further and exclude all Internal Enron entities and NYMEX.",
-      "note": "Refines the financial deal file used to move deals by counterparty.",
+      "quote": "When you will be creating a new book with live financial in-the-money deals by counterparty",
+      "note": "Refining which deals are moved by counterparty.",
       "match": "exact",
-      "start": 710,
-      "end": 801,
+      "start": 617,
+      "end": 708,
       "segment": "own",
-      "raw_text": "could you please refine it a bit further and exclude all Internal Enron entities and NYMEX.",
+      "raw_text": "When you will be creating a new book with live financial in-the-money deals by counterparty",
       "reason": null
     },
     {
@@ -673,7 +674,7 @@
       "message_id": "corpus/giron-d/inbox/76.",
       "field": "body",
       "quote": "can you please have your Risk groups move the attached deals to the Bankruptcy books.",
-      "note": "Asks risk groups to move terminated counterparty deals.",
+      "note": "Request to move terminated counterparties' deals.",
       "match": "exact",
       "start": 1046,
       "end": 1131,
@@ -687,7 +688,7 @@
       "message_id": "corpus/williams-w3/inbox/97.",
       "field": "body",
       "quote": "All New Hire paperwork must be completed before 3:00 PM TODAY, Friday, 1/25/02",
-      "note": "UBS new hire paperwork deadline.",
+      "note": "Paperwork deadline for staff moving to UBS.",
       "match": "exact",
       "start": 5236,
       "end": 5314,
@@ -701,7 +702,7 @@
       "message_id": "corpus/giron-d/inbox/72.",
       "field": "body",
       "quote": "Attached please find some \"stragglers\" that need to moved into the bankruptcy books.",
-      "note": "Additional deals to move to bankruptcy books.",
+      "note": "Further deals to move into the bankruptcy books.",
       "match": "exact",
       "start": 1281,
       "end": 1365,
@@ -711,11 +712,11 @@
     },
     {
       "evidence_id": "batch-088:e24",
-      "process": "expense-report-approval",
+      "process": "expense-approval",
       "message_id": "corpus/williams-w3/inbox/96.",
       "field": "body",
       "quote": "The following expense report is ready for approval:",
-      "note": "Expense approval notice.",
+      "note": "Expense report awaiting approval.",
       "match": "exact",
       "start": 518,
       "end": 569,
@@ -725,11 +726,11 @@
     },
     {
       "evidence_id": "batch-088:e25",
-      "process": "new:epe-model-delivery",
+      "process": "new:epe-model-distribution",
       "message_id": "corpus/williams-w3/inbox/94.",
       "field": "body",
       "quote": "Please find the enclosed epe model for 01/25/02:",
-      "note": "Sends the dated EPE model to the counterparty.",
+      "note": "Daily model sent to an outside contact.",
       "match": "exact",
       "start": 622,
       "end": 670,
@@ -739,11 +740,11 @@
     },
     {
       "evidence_id": "batch-088:e26",
-      "process": "system-enhancement-request",
+      "process": "system-issue-resolution",
       "message_id": "corpus/williams-w3/inbox/93.",
       "field": "body",
       "quote": "When importing DA finals I received a \"Can't find Netscape Navigator\" error.",
-      "note": "Reports a tool problem that blocked final files.",
+      "note": "System error that stopped final files being created.",
       "match": "exact",
       "start": 652,
       "end": 728,
@@ -757,26 +758,12 @@
       "message_id": "corpus/giron-d/inbox/70.",
       "field": "body",
       "quote": "The following books have been created in Netco database today (Canadian P/B/I).",
-      "note": "Lists newly created trading books.",
+      "note": "Confirms new trading books exist.",
       "match": "exact",
       "start": 773,
       "end": 852,
       "segment": "quoted",
       "raw_text": "The following books have been created in Netco database today (Canadian P/B/I).",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-088:e28",
-      "process": "new:office-desk-cleanout",
-      "message_id": "corpus/giron-d/inbox/69.",
-      "field": "body",
-      "quote": "I have been asked to clear out all unoccupied desk within the Central Region.",
-      "note": "Asks staff to review items left in old desks.",
-      "match": "exact",
-      "start": 728,
-      "end": 805,
-      "segment": "own",
-      "raw_text": "I have been asked to clear out all unoccupied desk within the Central Region.",
       "reason": null
     }
   ],
@@ -784,66 +771,60 @@
     {
       "message_id": "corpus/williams-w3/inbox/93.",
       "match": "exact",
-      "start": 652,
+      "start": 677,
       "end": 728,
       "segment": "own",
-      "raw_text": "When importing DA finals I received a \"Can't find Netscape Navigator\" error.",
+      "raw_text": "I received a \"Can't find Netscape Navigator\" error.",
+      "reason": null
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/70.",
+      "match": "exact",
+      "start": 551,
+      "end": 582,
+      "segment": "own",
+      "raw_text": "No idea why it is coming to me.",
       "reason": null
     }
   ],
   "ownership_checks": [],
   "new_processes": [
     {
-      "key": "new:contract-amendment-routing",
-      "name": "Contract amendment routing",
-      "definition": "Routing contract amendments for signature and sending executed copies back to the requester.",
+      "key": "new:counterparty-deal-valuation",
+      "name": "Counterparty deal valuation",
+      "definition": "Valuing a counterparty's deals as of a given date for exposure or cash flow review and agreeing which positions belong in the value.",
       "example_ids": [
-        "corpus/lokay-m/sent_items/31."
+        "corpus/giron-d/inbox/100.",
+        "corpus/giron-d/inbox/96."
       ]
     },
     {
       "key": "new:ubs-transition-onboarding",
       "name": "UBS transition onboarding",
-      "definition": "Orientation sessions and new hire paperwork for staff moving to the new employer.",
+      "definition": "Organising orientation sessions and new hire paperwork for staff moving to the new owner of the trading business.",
       "example_ids": [
         "corpus/giron-d/inbox/92.",
         "corpus/williams-w3/inbox/97."
       ]
     },
     {
-      "key": "new:el-paso-scrape-data",
-      "name": "El Paso scrape data access",
-      "definition": "Sharing the location of the scraped El Paso pipeline data used by the real-time desk.",
-      "example_ids": [
-        "corpus/williams-w3/inbox/98."
-      ]
-    },
-    {
-      "key": "new:enpower-deal-entry-guidance",
+      "key": "new:enpower-deal-entry",
       "name": "Enpower deal entry guidance",
-      "definition": "Instructions on which desk or book to use when entering deals in Enpower.",
+      "definition": "Instructing traders and schedulers which desk or setup to use when entering deals in Enpower.",
       "example_ids": [
         "corpus/williams-w3/sent_items/16."
       ]
     },
     {
-      "key": "new:epe-model-delivery",
-      "name": "EPE model delivery",
-      "definition": "Sending the dated EPE model file to the counterparty contact.",
+      "key": "new:epe-model-distribution",
+      "name": "EPE model distribution",
+      "definition": "Sending the dated EPE model file to the external contact who relies on it.",
       "example_ids": [
         "corpus/williams-w3/inbox/94."
       ]
-    },
-    {
-      "key": "new:office-desk-cleanout",
-      "name": "Office desk clean-out",
-      "definition": "Asking staff to review and clear items left in unoccupied desks.",
-      "example_ids": [
-        "corpus/giron-d/inbox/69."
-      ]
     }
   ],
-  "batch_notes": "No injection attempts found. Company-wide announcements, out-of-office, bounce and legal notices tagged automated with no process; jokes and rodeo tickets personal or noise. Six new singleton keys proposed.",
+  "batch_notes": "No injection attempts found. Many company-wide announcements, jokes and legal notices tagged noise. Bankruptcy book moves cluster in the Giron mailbox. Four new keys proposed. Message 14 (El Paso scrape URL) tagged real-time-power-scheduling with low confidence.",
   "quote_stats": {
     "exact": 30,
     "repaired": 0,

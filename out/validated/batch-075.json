@@ -19,7 +19,7 @@
     {
       "id": "corpus/giron-d/inbox/373.",
       "processes": [
-        "new:customer-list-building"
+        "new:customer-list-build"
       ],
       "role": "request",
       "stall": null,
@@ -28,7 +28,7 @@
     {
       "id": "corpus/farmer-d/logistics/22.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -36,17 +36,15 @@
     },
     {
       "id": "corpus/williams-w3/sent_items/106.",
-      "processes": [
-        "new:recruiting-event-coordination"
-      ],
-      "role": "response",
+      "processes": [],
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/sent_items/105.",
       "processes": [
-        "new:index-methodology-review"
+        "new:market-index-review"
       ],
       "role": "forward",
       "stall": null,
@@ -55,7 +53,7 @@
     {
       "id": "corpus/farmer-d/logistics/21.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "imbalance-resolution"
       ],
       "role": "response",
       "stall": null,
@@ -64,33 +62,30 @@
     {
       "id": "corpus/williams-w3/sent_items/104.",
       "processes": [
-        "system-enhancement-request"
+        "new:enpower-caps-report"
       ],
       "role": "fyi",
-      "stall": {
-        "kind": "system_failure",
-        "quote": "This will give us a chance to work the performance bugs out of FSP"
-      },
+      "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/inbox/430.",
       "processes": [],
-      "role": "personal",
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/inbox/431.",
       "processes": [],
-      "role": "personal",
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/inbox/374.",
       "processes": [
-        "new:customer-conference-call-scheduling"
+        "commercial-strategy-planning"
       ],
       "role": "request",
       "stall": null,
@@ -99,7 +94,7 @@
     {
       "id": "corpus/giron-d/inbox/375.",
       "processes": [
-        "new:customer-conference-call-scheduling"
+        "commercial-strategy-planning"
       ],
       "role": "fyi",
       "stall": null,
@@ -157,16 +152,16 @@
     {
       "id": "corpus/giron-d/inbox/439.",
       "processes": [
-        "new:team-meeting-scheduling"
+        "new:staff-meeting-scheduling"
       ],
-      "role": "fyi",
+      "role": "request",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/inbox/378.",
       "processes": [
-        "new:market-intelligence-briefing"
+        "new:analyst-call-summary"
       ],
       "role": "fyi",
       "stall": null,
@@ -175,7 +170,7 @@
     {
       "id": "corpus/farmer-d/logistics/20.",
       "processes": [
-        "new:pipeline-ebb-access-survey"
+        "gas-nomination"
       ],
       "role": "fyi",
       "stall": null,
@@ -184,7 +179,7 @@
     {
       "id": "corpus/giron-d/inbox/379.",
       "processes": [
-        "new:customer-conference-call-scheduling"
+        "commercial-strategy-planning"
       ],
       "role": "response",
       "stall": null,
@@ -223,7 +218,7 @@
     {
       "id": "corpus/giron-d/inbox/481.",
       "processes": [
-        "new:process-write-up-review"
+        "new:process-writeup-list"
       ],
       "role": "request",
       "stall": {
@@ -236,11 +231,11 @@
   "evidence": [
     {
       "evidence_id": "batch-075:e0",
-      "process": "new:customer-list-building",
+      "process": "new:customer-list-build",
       "message_id": "corpus/giron-d/inbox/373.",
       "field": "body",
       "quote": "I would like each of you to forward your \"working\" customer list to Lindsay.",
-      "note": "Asks team members to send working customer lists to build a master list for the Central group.",
+      "note": "Asks team members to send customer lists so a Central master list can be built.",
       "match": "exact",
       "start": 1000,
       "end": 1076,
@@ -250,11 +245,11 @@
     },
     {
       "evidence_id": "batch-075:e1",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/22.",
       "field": "body",
       "quote": "Can you back date deals 83347 and 83905  to start 6/1/99 through  12/31/99 for the Black Marlin meter.",
-      "note": "Asks to extend deals backward so the meter is covered for earlier months.",
+      "note": "Requests extending deal tickets back to cover a meter.",
       "match": "exact",
       "start": 644,
       "end": 746,
@@ -264,67 +259,53 @@
     },
     {
       "evidence_id": "batch-075:e2",
-      "process": "new:recruiting-event-coordination",
-      "message_id": "corpus/williams-w3/sent_items/106.",
+      "process": "new:market-index-review",
+      "message_id": "corpus/williams-w3/sent_items/105.",
       "field": "body",
-      "quote": "I appreciate your effort and do not envy your task of informing the candidates of our change in plans.",
-      "note": "Reply about cancelled recruiting events and informing candidates.",
+      "quote": "This is the one I would like to participate in",
+      "note": "Forwards a proposed hourly index methodology for review and participation.",
       "match": "exact",
-      "start": 575,
-      "end": 677,
+      "start": 561,
+      "end": 607,
       "segment": "own",
-      "raw_text": "I appreciate your effort and do not envy your task of informing the candidates of our change in plans.",
+      "raw_text": "This is the one I would like to participate in",
       "reason": null
     },
     {
       "evidence_id": "batch-075:e3",
-      "process": "new:index-methodology-review",
-      "message_id": "corpus/williams-w3/sent_items/105.",
+      "process": "imbalance-resolution",
+      "message_id": "corpus/farmer-d/logistics/21.",
       "field": "body",
-      "quote": "This is the one I would like to participate in...if it works.",
-      "note": "Forwards an external index methodology for review and comment.",
+      "quote": "we can't do it in POPS so we will have to make manual entries to clear the imbalance from the books",
+      "note": "Explains how the Lobo imbalance will be cleared from the books.",
       "match": "exact",
-      "start": 561,
-      "end": 622,
+      "start": 832,
+      "end": 931,
       "segment": "own",
-      "raw_text": "This is the one I would like to participate in...if it works.",
+      "raw_text": "we can't do it in POPS so we will have to make manual entries to clear the imbalance from the books",
       "reason": null
     },
     {
       "evidence_id": "batch-075:e4",
-      "process": "volume-imbalance-reconciliation",
-      "message_id": "corpus/farmer-d/logistics/21.",
+      "process": "new:enpower-caps-report",
+      "message_id": "corpus/williams-w3/sent_items/104.",
       "field": "body",
-      "quote": "Because the payback was done for October 2001, we can't do it in POPS so we will have to make manual entries to clear the imbalance from the books",
-      "note": "Explains how an imbalance payback will be cleared from the books.",
+      "quote": "We will return to running the Enpower to CAPS report as usual.",
+      "note": "Group resumes the recurring Enpower to CAPS reconciliation report.",
       "match": "exact",
-      "start": 785,
-      "end": 931,
+      "start": 1678,
+      "end": 1740,
       "segment": "own",
-      "raw_text": "Because the payback was done for October 2001, we can't do it in POPS so we will have to make manual entries to clear the imbalance from the books",
+      "raw_text": "We will return to running the Enpower to CAPS report as usual.",
       "reason": null
     },
     {
       "evidence_id": "batch-075:e5",
-      "process": "system-enhancement-request",
-      "message_id": "corpus/williams-w3/sent_items/104.",
-      "field": "body",
-      "quote": "This will give us a chance to work the performance bugs out of FSP",
-      "note": "Reports return to CAPS because of performance problems in the FSP tool.",
-      "match": "exact",
-      "start": 1741,
-      "end": 1807,
-      "segment": "own",
-      "raw_text": "This will give us a chance to work the performance bugs out of FSP",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-075:e6",
-      "process": "new:customer-conference-call-scheduling",
+      "process": "commercial-strategy-planning",
       "message_id": "corpus/giron-d/inbox/374.",
       "field": "body",
       "quote": "Mary Jo and I cancelled the Houston meeting due to the high level of",
-      "note": "Replaces a cancelled meeting with a proposed conference call on gas operations.",
+      "note": "Rearranges a customer discussion of gas operation items into a conference call.",
       "match": "exact",
       "start": 702,
       "end": 770,
@@ -333,12 +314,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-075:e7",
-      "process": "new:customer-conference-call-scheduling",
+      "evidence_id": "batch-075:e6",
+      "process": "commercial-strategy-planning",
       "message_id": "corpus/giron-d/inbox/375.",
       "field": "subject",
       "quote": "ENA Only Discussion",
-      "note": "Attachment-only note for the planned call discussion.",
+      "note": "Subject of a follow-up to the customer discussion; body is only an attachment name.",
       "match": "exact",
       "start": 186,
       "end": 205,
@@ -347,82 +328,82 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-075:e8",
-      "process": "new:customer-conference-call-scheduling",
-      "message_id": "corpus/giron-d/inbox/379.",
-      "field": "subject",
-      "quote": "RE: Conference Call",
-      "note": "Reply confirming the number for the conference call.",
+      "evidence_id": "batch-075:e7",
+      "process": "new:staff-meeting-scheduling",
+      "message_id": "corpus/giron-d/inbox/439.",
+      "field": "body",
+      "quote": "Please accept this invitation, as it will automatically populate onto your schedule.",
+      "note": "Staff meeting invitation for the team.",
       "match": "exact",
-      "start": 165,
-      "end": 184,
-      "segment": "subject",
-      "raw_text": "RE: Conference Call",
+      "start": 1558,
+      "end": 1642,
+      "segment": "own",
+      "raw_text": "Please accept this invitation, as it will automatically populate onto your schedule.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-075:e8",
+      "process": "new:analyst-call-summary",
+      "message_id": "corpus/giron-d/inbox/378.",
+      "field": "body",
+      "quote": "Listened in on the analyst call this morning.  Here are my notes.",
+      "note": "Circulates notes from an analyst conference call.",
+      "match": "exact",
+      "start": 4207,
+      "end": 4272,
+      "segment": "own",
+      "raw_text": "Listened in on the analyst call this morning.  Here are my notes.",
       "reason": null
     },
     {
       "evidence_id": "batch-075:e9",
-      "process": "new:team-meeting-scheduling",
-      "message_id": "corpus/giron-d/inbox/439.",
+      "process": "gas-nomination",
+      "message_id": "corpus/farmer-d/logistics/20.",
       "field": "body",
-      "quote": "There will be a staff meeting for the Central Origination Team today @ 10:30 AM in EB 3259.",
-      "note": "Staff meeting invitation for the team.",
+      "quote": "Please ask your schedulers to e-mail me which pipelines still maintain the ability to do Nominations via a dial up connection to their EBB",
+      "note": "Collects which pipelines still allow dial-up nominations.",
       "match": "exact",
-      "start": 1465,
-      "end": 1556,
+      "start": 1165,
+      "end": 1303,
       "segment": "own",
-      "raw_text": "There will be a staff meeting for the Central Origination Team today @ 10:30 AM in EB 3259.",
+      "raw_text": "Please ask your schedulers to e-mail me which pipelines still maintain the ability to do Nominations via a dial up connection to their EBB",
       "reason": null
     },
     {
       "evidence_id": "batch-075:e10",
-      "process": "new:market-intelligence-briefing",
-      "message_id": "corpus/giron-d/inbox/378.",
+      "process": "commercial-strategy-planning",
+      "message_id": "corpus/giron-d/inbox/379.",
       "field": "body",
-      "quote": "Listened in on the analyst call this morning.",
-      "note": "Shares notes from an analyst call with the wider group.",
+      "quote": "I will be I my office.  (763)241-2490",
+      "note": "Confirms the number for the customer conference call.",
       "match": "exact",
-      "start": 4207,
-      "end": 4252,
+      "start": 553,
+      "end": 590,
       "segment": "own",
-      "raw_text": "Listened in on the analyst call this morning.",
+      "raw_text": "I will be I my office.  (763)241-2490",
       "reason": null
     },
     {
       "evidence_id": "batch-075:e11",
-      "process": "new:pipeline-ebb-access-survey",
-      "message_id": "corpus/farmer-d/logistics/20.",
+      "process": "new:travel-booking-confirmation",
+      "message_id": "corpus/giron-d/inbox/444.",
       "field": "body",
-      "quote": "Pipelines that require or can use dial up for EBB access",
-      "note": "Compiled survey results of pipelines allowing dial-up nominations.",
+      "quote": "SOUTHWEST TICKETLESS CONFIRMATION: M9GO7V",
+      "note": "Forwarded business travel booking confirmation.",
       "match": "exact",
-      "start": 1389,
-      "end": 1445,
-      "segment": "own",
-      "raw_text": "Pipelines that require or can use dial up for EBB access",
+      "start": 2169,
+      "end": 2210,
+      "segment": "quoted",
+      "raw_text": "SOUTHWEST TICKETLESS CONFIRMATION: M9GO7V",
       "reason": null
     },
     {
       "evidence_id": "batch-075:e12",
-      "process": "new:travel-booking-confirmation",
-      "message_id": "corpus/giron-d/inbox/444.",
-      "field": "body",
-      "quote": "AGENT CM/HM BOOKING REF YBB9FH",
-      "note": "Forwarded travel agency booking confirmation for a business trip.",
-      "match": "exact",
-      "start": 800,
-      "end": 830,
-      "segment": "quoted",
-      "raw_text": "AGENT CM/HM BOOKING REF YBB9FH",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-075:e13",
-      "process": "new:process-write-up-review",
+      "process": "new:process-writeup-list",
       "message_id": "corpus/giron-d/inbox/481.",
       "field": "body",
       "quote": "When you do the write up for Sally, put down that the invoice approval piece is",
-      "note": "Instructs how to prepare a process write-up and what to leave off the list.",
+      "note": "Instructs how items are listed in a process write-up.",
       "match": "exact",
       "start": 494,
       "end": 573,
@@ -432,15 +413,6 @@
     }
   ],
   "stall_checks": [
-    {
-      "message_id": "corpus/williams-w3/sent_items/104.",
-      "match": "exact",
-      "start": 1741,
-      "end": 1807,
-      "segment": "own",
-      "raw_text": "This will give us a chance to work the performance bugs out of FSP",
-      "reason": null
-    },
     {
       "message_id": "corpus/giron-d/inbox/481.",
       "match": "repaired",
@@ -454,83 +426,65 @@
   "ownership_checks": [],
   "new_processes": [
     {
-      "key": "new:customer-list-building",
-      "name": "Customer list building",
-      "definition": "Collecting working customer lists from team members to build a master customer list for a regional origination group.",
+      "key": "new:customer-list-build",
+      "name": "Customer list compilation",
+      "definition": "Collecting working customer lists from team members to build a master customer list for a group.",
       "example_ids": [
         "corpus/giron-d/inbox/373."
       ]
     },
     {
-      "key": "new:recruiting-event-coordination",
-      "name": "Recruiting event coordination",
-      "definition": "Organizing and cancelling associate and analyst recruiting events and informing candidates.",
-      "example_ids": [
-        "corpus/williams-w3/sent_items/106."
-      ]
-    },
-    {
-      "key": "new:index-methodology-review",
-      "name": "Index methodology review",
-      "definition": "Reviewing and commenting on external price index definitions and methodology before launch.",
+      "key": "new:market-index-review",
+      "name": "Market index methodology review",
+      "definition": "Reviewing proposed price index definitions from outside publishers and deciding whether to participate.",
       "example_ids": [
         "corpus/williams-w3/sent_items/105."
       ]
     },
     {
-      "key": "new:customer-conference-call-scheduling",
-      "name": "Customer conference call scheduling",
-      "definition": "Arranging conference calls with a customer or counterparty about gas operations, including agendas and dial-in numbers.",
+      "key": "new:enpower-caps-report",
+      "name": "Enpower to CAPS reconciliation report",
+      "definition": "Running the report that reconciles Enpower with CAPS, and deciding which system is used.",
       "example_ids": [
-        "corpus/giron-d/inbox/374.",
-        "corpus/giron-d/inbox/375.",
-        "corpus/giron-d/inbox/379."
+        "corpus/williams-w3/sent_items/104."
       ]
     },
     {
-      "key": "new:team-meeting-scheduling",
-      "name": "Team meeting scheduling",
-      "definition": "Sending invitations and updates for internal team staff meetings.",
+      "key": "new:staff-meeting-scheduling",
+      "name": "Staff meeting scheduling",
+      "definition": "Scheduling team staff meetings and asking members to accept the invitation.",
       "example_ids": [
         "corpus/giron-d/inbox/439."
       ]
     },
     {
-      "key": "new:market-intelligence-briefing",
-      "name": "Market intelligence briefing",
-      "definition": "Passing on notes and summaries of external analyst calls and market events to colleagues.",
+      "key": "new:analyst-call-summary",
+      "name": "Analyst call summary circulation",
+      "definition": "Circulating notes from market or analyst calls to colleagues.",
       "example_ids": [
         "corpus/giron-d/inbox/378."
       ]
     },
     {
-      "key": "new:pipeline-ebb-access-survey",
-      "name": "Pipeline EBB access survey",
-      "definition": "Surveying schedulers on which pipelines still allow dial-up nominations to their electronic bulletin boards and circulating the results.",
-      "example_ids": [
-        "corpus/farmer-d/logistics/20."
-      ]
-    },
-    {
       "key": "new:travel-booking-confirmation",
-      "name": "Travel booking confirmation",
-      "definition": "Receiving and forwarding travel agency itinerary confirmations for business trips.",
+      "name": "Business travel booking confirmation",
+      "definition": "Receiving and passing on travel agency itinerary confirmations for business trips.",
       "example_ids": [
         "corpus/giron-d/inbox/444."
       ]
     },
     {
-      "key": "new:process-write-up-review",
-      "name": "Process write-up review",
-      "definition": "Preparing a written list of process items for a manager, including deciding which items to include or leave off.",
+      "key": "new:process-writeup-list",
+      "name": "Process write-up issue list",
+      "definition": "Preparing a write-up of process issues for a manager and deciding which items are listed.",
       "example_ids": [
         "corpus/giron-d/inbox/481."
       ]
     }
   ],
-  "batch_notes": "Many personal and company-wide announcement messages tagged noise or personal. Message giron-d/inbox/481 asks to leave an item off a list until an audit closes (avoidance stall, ordinary mail). No injection attempts found. Nine new keys proposed.",
+  "batch_notes": "No injection attempts found. Message 481 is a colleague asking to leave an item off a list (avoidance stall). Mostly Enron merger announcements and personal mail. Seven new keys proposed, each with one message.",
   "quote_stats": {
-    "exact": 15,
+    "exact": 13,
     "repaired": 1,
     "rejected": 0
   }

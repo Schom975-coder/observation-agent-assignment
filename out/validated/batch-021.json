@@ -5,14 +5,14 @@
     {
       "id": "corpus/giron-d/sent/700.",
       "processes": [],
-      "role": "personal",
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/sent/698.",
       "processes": [],
-      "role": "personal",
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
@@ -26,14 +26,14 @@
     {
       "id": "corpus/giron-d/sent/696.",
       "processes": [],
-      "role": "personal",
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/1351.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -42,19 +42,19 @@
     {
       "id": "corpus/farmer-d/logistics/1357.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution"
       ],
-      "role": "forward",
+      "role": "fyi",
       "stall": {
         "kind": "waiting_on_reply",
-        "quote": "I'm now awaiting on an e-mail from Gary as to the direction that he is going"
+        "quote": "I'm now awaiting on an e-mail from Gary"
       },
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/1359.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution"
       ],
       "role": "response",
       "stall": null,
@@ -63,19 +63,19 @@
     {
       "id": "corpus/farmer-d/logistics/1362.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution"
       ],
       "role": "forward",
-      "stall": null,
-      "ownership_claim": {
-        "person": "Daren",
+      "stall": {
+        "kind": "handoff_confusion",
         "quote": "Gary has placed this in Daren's lap."
-      }
+      },
+      "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/1377.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": {
@@ -87,7 +87,7 @@
     {
       "id": "corpus/farmer-d/logistics/1387.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution"
       ],
       "role": "response",
       "stall": null,
@@ -96,7 +96,7 @@
     {
       "id": "corpus/farmer-d/logistics/1352.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution"
       ],
       "role": "forward",
       "stall": null,
@@ -105,7 +105,7 @@
     {
       "id": "corpus/farmer-d/logistics/1353.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution"
       ],
       "role": "forward",
       "stall": null,
@@ -114,7 +114,7 @@
     {
       "id": "corpus/farmer-d/logistics/1354.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution"
       ],
       "role": "forward",
       "stall": null,
@@ -123,7 +123,7 @@
     {
       "id": "corpus/farmer-d/logistics/1356.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution"
       ],
       "role": "forward",
       "stall": {
@@ -135,7 +135,7 @@
     {
       "id": "corpus/giron-d/sent/695.",
       "processes": [
-        "pnl-position-reporting"
+        "pnl-reporting"
       ],
       "role": "request",
       "stall": null,
@@ -158,7 +158,7 @@
     {
       "id": "corpus/farmer-d/logistics/1358.",
       "processes": [
-        "new:hpl-expense-contract-list"
+        "new:expense-contract-review"
       ],
       "role": "fyi",
       "stall": null,
@@ -167,7 +167,7 @@
     {
       "id": "corpus/giron-d/sent/691.",
       "processes": [
-        "pnl-position-reporting"
+        "new:enovate-dpr-distribution"
       ],
       "role": "request",
       "stall": null,
@@ -176,7 +176,7 @@
     {
       "id": "corpus/giron-d/sent/666.",
       "processes": [
-        "pnl-position-reporting"
+        "new:enovate-dpr-distribution"
       ],
       "role": "request",
       "stall": null,
@@ -185,7 +185,7 @@
     {
       "id": "corpus/farmer-d/logistics/1360.",
       "processes": [
-        "new:hpl-expense-contract-list"
+        "new:expense-contract-review"
       ],
       "role": "forward",
       "stall": null,
@@ -194,7 +194,7 @@
     {
       "id": "corpus/farmer-d/logistics/1361.",
       "processes": [
-        "user-access-setup"
+        "system-access-request"
       ],
       "role": "automated",
       "stall": null,
@@ -217,7 +217,7 @@
     {
       "id": "corpus/giron-d/sent/688.",
       "processes": [
-        "pnl-position-reporting"
+        "new:enovate-dpr-distribution"
       ],
       "role": "response",
       "stall": null,
@@ -226,7 +226,7 @@
     {
       "id": "corpus/farmer-d/logistics/1364.",
       "processes": [
-        "new:supply-deal-continuation-notice"
+        "deal-ticket-setup"
       ],
       "role": "fyi",
       "stall": null,
@@ -270,7 +270,7 @@
     {
       "id": "corpus/giron-d/sent/686.",
       "processes": [
-        "pnl-position-reporting"
+        "new:enovate-dpr-distribution"
       ],
       "role": "forward",
       "stall": null,
@@ -279,7 +279,7 @@
     {
       "id": "corpus/farmer-d/logistics/1366.",
       "processes": [
-        "new:ethane-election-notice"
+        "new:plant-ethane-election-notice"
       ],
       "role": "forward",
       "stall": null,
@@ -288,7 +288,7 @@
     {
       "id": "corpus/farmer-d/logistics/1367.",
       "processes": [
-        "gas-nomination-handling"
+        "gas-nomination"
       ],
       "role": "request",
       "stall": null,
@@ -297,7 +297,7 @@
     {
       "id": "corpus/farmer-d/logistics/1368.",
       "processes": [
-        "gas-nomination-handling"
+        "gas-nomination"
       ],
       "role": "response",
       "stall": null,
@@ -306,7 +306,7 @@
     {
       "id": "corpus/farmer-d/logistics/1370.",
       "processes": [
-        "gas-nomination-handling"
+        "gas-nomination"
       ],
       "role": "fyi",
       "stall": null,
@@ -315,7 +315,7 @@
     {
       "id": "corpus/giron-d/sent/683.",
       "processes": [
-        "pnl-position-reporting"
+        "new:flash-to-actual-review"
       ],
       "role": "response",
       "stall": null,
@@ -324,7 +324,7 @@
     {
       "id": "corpus/giron-d/sent/682.",
       "processes": [
-        "pnl-position-reporting"
+        "new:flash-to-actual-review"
       ],
       "role": "response",
       "stall": null,
@@ -334,25 +334,25 @@
   "evidence": [
     {
       "evidence_id": "batch-021:e0",
-      "process": "meter-flow-deal-coverage",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1351.",
       "field": "body",
-      "quote": "Should the whole 10,000 be allocated to the 5th or should 5,000 be allocated",
-      "note": "Asks how meter volume should be allocated and whether day 16 must be added to the deal.",
+      "quote": "Day 16 is not valid for deal 51862 (track id 6155)",
+      "note": "Flow confirmed at a meter on a day the deal does not cover.",
       "match": "exact",
-      "start": 1356,
-      "end": 1432,
+      "start": 924,
+      "end": 974,
       "segment": "forwarded",
-      "raw_text": "Should the whole 10,000 be allocated to the 5th or should 5,000 be allocated",
+      "raw_text": "Day 16 is not valid for deal 51862 (track id 6155)",
       "reason": null
     },
     {
       "evidence_id": "batch-021:e1",
-      "process": "meter-flow-deal-coverage",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1357.",
       "field": "body",
       "quote": "Below is Volume Management's answers to Gary's questions.",
-      "note": "Passes on the volume management answer about the meter and deal coverage.",
+      "note": "Passes on answers about the unbooked meter volume.",
       "match": "exact",
       "start": 467,
       "end": 524,
@@ -362,11 +362,11 @@
     },
     {
       "evidence_id": "batch-021:e2",
-      "process": "meter-flow-deal-coverage",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1359.",
       "field": "body",
       "quote": "On day 5 in MOPS (HPL/ENA) there is a delivery nom of 10.0 pathed to the ENA",
-      "note": "Reports what the scheduling system shows for the days flowing at the meter.",
+      "note": "Checks how the meter flow is booked in MOPS.",
       "match": "exact",
       "start": 463,
       "end": 539,
@@ -376,25 +376,25 @@
     },
     {
       "evidence_id": "batch-021:e3",
-      "process": "meter-flow-deal-coverage",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1362.",
       "field": "body",
-      "quote": "Gary has placed this in Daren's lap.  Please read the below information that",
-      "note": "Hands the meter allocation and deal issue to Daren and relays the latest.",
+      "quote": "Gary has placed this in Daren's lap.",
+      "note": "Hands the meter allocation question to Daren.",
       "match": "exact",
       "start": 596,
-      "end": 672,
+      "end": 632,
       "segment": "own",
-      "raw_text": "Gary has placed this in Daren's lap.  Please read the below information that",
+      "raw_text": "Gary has placed this in Daren's lap.",
       "reason": null
     },
     {
       "evidence_id": "batch-021:e4",
-      "process": "meter-flow-deal-coverage",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1377.",
       "field": "body",
       "quote": "Can you give us a status on this request?",
-      "note": "Chases a status on the open meter deal request.",
+      "note": "Chases a decision on the meter allocation.",
       "match": "exact",
       "start": 616,
       "end": 657,
@@ -404,11 +404,11 @@
     },
     {
       "evidence_id": "batch-021:e5",
-      "process": "meter-flow-deal-coverage",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1387.",
       "field": "body",
       "quote": "10,000 should be allocated to Adonis #51862 on the 5th only.",
-      "note": "Gives the decision on which day the meter volume belongs to under the deal.",
+      "note": "Decides how the meter volume is booked and cleared.",
       "match": "exact",
       "start": 462,
       "end": 522,
@@ -418,39 +418,39 @@
     },
     {
       "evidence_id": "batch-021:e6",
-      "process": "meter-flow-deal-coverage",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1352.",
       "field": "body",
-      "quote": "Volume is allocating to deal number 51862 on 1/16/99 on meter 984132, however",
-      "note": "Original request: volume allocates to a deal that lacks the day.",
+      "quote": "What I am saying is that in POPS volume is allocated to deal number 51862",
+      "note": "Volume allocated at the meter without a matching deal day.",
       "match": "exact",
-      "start": 2187,
-      "end": 2264,
+      "start": 1237,
+      "end": 1310,
       "segment": "quoted",
-      "raw_text": "Volume is allocating to deal number 51862 on 1/16/99 on meter 984132, however",
+      "raw_text": "What I am saying is that in POPS volume is allocated to deal number 51862",
       "reason": null
     },
     {
       "evidence_id": "batch-021:e7",
-      "process": "meter-flow-deal-coverage",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1353.",
       "field": "body",
-      "quote": "I've looked in POPS and on day 16 of January 1999, I see a total confirmed",
-      "note": "Reply in the feedback monitor error chain about volume on a day with no deal.",
+      "quote": "I've looked in POPS and on day 16 of January 1999",
+      "note": "Investigates unmatched flow for a past date.",
       "match": "exact",
       "start": 770,
-      "end": 844,
+      "end": 819,
       "segment": "forwarded",
-      "raw_text": "I've looked in POPS and on day 16 of January 1999, I see a total confirmed",
+      "raw_text": "I've looked in POPS and on day 16 of January 1999",
       "reason": null
     },
     {
       "evidence_id": "batch-021:e8",
-      "process": "meter-flow-deal-coverage",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1354.",
       "field": "body",
       "quote": "Can you assist Karen with the below request to cover the day in question?",
-      "note": "Asks for help getting the missing day covered on the deal.",
+      "note": "Asks for help clearing the feedback error on a meter day.",
       "match": "exact",
       "start": 760,
       "end": 833,
@@ -460,11 +460,11 @@
     },
     {
       "evidence_id": "batch-021:e9",
-      "process": "meter-flow-deal-coverage",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1356.",
       "field": "body",
       "quote": "Sorry that I didn't include you on Gary's e-mail.",
-      "note": "Admits Daren was left off the thread about the meter deal day.",
+      "note": "Routing of the meter error question to the right person.",
       "match": "exact",
       "start": 566,
       "end": 615,
@@ -474,25 +474,25 @@
     },
     {
       "evidence_id": "batch-021:e10",
-      "process": "pnl-position-reporting",
+      "process": "pnl-reporting",
       "message_id": "corpus/giron-d/sent/695.",
       "field": "body",
-      "quote": "Intracentral recognized $11,812 origination on their P&L that was not granted",
-      "note": "P&L origination discrepancy passed on for follow-up.",
+      "quote": "Intracentral recognized $11,812 origination on their P&L",
+      "note": "Questions a P&L entry not matching the origination schedule.",
       "match": "exact",
       "start": 885,
-      "end": 962,
+      "end": 941,
       "segment": "forwarded",
-      "raw_text": "Intracentral recognized $11,812 origination on their P&L that was not granted",
+      "raw_text": "Intracentral recognized $11,812 origination on their P&L",
       "reason": null
     },
     {
       "evidence_id": "batch-021:e11",
-      "process": "new:hpl-expense-contract-list",
+      "process": "new:expense-contract-review",
       "message_id": "corpus/farmer-d/logistics/1358.",
       "field": "subject",
       "quote": "3rd Party Expense Contracts",
-      "note": "Subject shows the expense contracts list being circulated.",
+      "note": "Subject shows the expense contract list being circulated.",
       "match": "exact",
       "start": 196,
       "end": 223,
@@ -502,39 +502,11 @@
     },
     {
       "evidence_id": "batch-021:e12",
-      "process": "pnl-position-reporting",
-      "message_id": "corpus/giron-d/sent/691.",
-      "field": "body",
-      "quote": "Laura Luce would like to send the latest Enovate DPR to the chairman of",
-      "note": "Asks for an unprotected copy of the daily Enovate DPR.",
-      "match": "exact",
-      "start": 450,
-      "end": 521,
-      "segment": "own",
-      "raw_text": "Laura Luce would like to send the latest Enovate DPR to the chairman of",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-021:e13",
-      "process": "pnl-position-reporting",
-      "message_id": "corpus/giron-d/sent/666.",
-      "field": "body",
-      "quote": "Will you please send Richard Tomaski a version of yesterday's DPR that can be",
-      "note": "Requests a printable copy of the daily DPR.",
-      "match": "exact",
-      "start": 441,
-      "end": 518,
-      "segment": "own",
-      "raw_text": "Will you please send Richard Tomaski a version of yesterday's DPR that can be",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-021:e14",
-      "process": "new:hpl-expense-contract-list",
+      "process": "new:expense-contract-review",
       "message_id": "corpus/farmer-d/logistics/1360.",
       "field": "body",
       "quote": "This list has been pulled from Global Contracts but has",
-      "note": "Circulates a list of HPL expense contracts pulled for review.",
+      "note": "Contract list pulled for review and sent on.",
       "match": "exact",
       "start": 879,
       "end": 934,
@@ -543,26 +515,40 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-021:e15",
-      "process": "user-access-setup",
-      "message_id": "corpus/farmer-d/logistics/1361.",
+      "evidence_id": "batch-021:e13",
+      "process": "new:enovate-dpr-distribution",
+      "message_id": "corpus/giron-d/sent/691.",
       "field": "body",
-      "quote": "Additional Information for Security Resource Request  DJFR-4NGPA6 has been",
-      "note": "Automated notice on an access request.",
+      "quote": "Laura Luce would like to send the latest Enovate DPR to the chairman of",
+      "note": "Asks for an unprotected copy of the DPR to forward.",
       "match": "exact",
-      "start": 513,
-      "end": 587,
+      "start": 450,
+      "end": 521,
       "segment": "own",
-      "raw_text": "Additional Information for Security Resource Request  DJFR-4NGPA6 has been",
+      "raw_text": "Laura Luce would like to send the latest Enovate DPR to the chairman of",
       "reason": null
     },
     {
-      "evidence_id": "batch-021:e16",
-      "process": "pnl-position-reporting",
+      "evidence_id": "batch-021:e14",
+      "process": "new:enovate-dpr-distribution",
+      "message_id": "corpus/giron-d/sent/666.",
+      "field": "body",
+      "quote": "Will you please send Richard Tomaski a version of yesterday's DPR that can be",
+      "note": "Requests a printable DPR for a recipient.",
+      "match": "exact",
+      "start": 441,
+      "end": 518,
+      "segment": "own",
+      "raw_text": "Will you please send Richard Tomaski a version of yesterday's DPR that can be",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-021:e15",
+      "process": "new:enovate-dpr-distribution",
       "message_id": "corpus/giron-d/sent/688.",
       "field": "subject",
       "quote": "Re: 8/23/2000 Enovate DPR",
-      "note": "Approval reply to the daily Enovate DPR.",
+      "note": "Approval reply on the daily DPR.",
       "match": "exact",
       "start": 173,
       "end": 198,
@@ -571,12 +557,40 @@
       "reason": null
     },
     {
+      "evidence_id": "batch-021:e16",
+      "process": "new:enovate-dpr-distribution",
+      "message_id": "corpus/giron-d/sent/686.",
+      "field": "body",
+      "quote": "As requested, here is an unprotected copy.",
+      "note": "Forwards the unprotected DPR copy.",
+      "match": "exact",
+      "start": 700,
+      "end": 742,
+      "segment": "forwarded",
+      "raw_text": "As requested, here is an unprotected copy.",
+      "reason": null
+    },
+    {
       "evidence_id": "batch-021:e17",
-      "process": "new:supply-deal-continuation-notice",
+      "process": "system-access-request",
+      "message_id": "corpus/farmer-d/logistics/1361.",
+      "field": "body",
+      "quote": "Additional Information for Security Resource Request  DJFR-4NGPA6",
+      "note": "System notice on an access request.",
+      "match": "exact",
+      "start": 513,
+      "end": 578,
+      "segment": "own",
+      "raw_text": "Additional Information for Security Resource Request  DJFR-4NGPA6",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-021:e18",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1364.",
       "field": "body",
       "quote": "I have continued the Hilcorp Old Ocean deal.",
-      "note": "Announces continuation of a supply deal with terms for the teams.",
+      "note": "Deal continued with terms and contracts being drafted.",
       "match": "exact",
       "start": 914,
       "end": 958,
@@ -585,26 +599,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-021:e18",
-      "process": "pnl-position-reporting",
-      "message_id": "corpus/giron-d/sent/686.",
-      "field": "body",
-      "quote": "As requested, here is an unprotected copy.  If anything else is needed,",
-      "note": "Forwards the unprotected daily DPR copy.",
-      "match": "exact",
-      "start": 700,
-      "end": 771,
-      "segment": "forwarded",
-      "raw_text": "As requested, here is an unprotected copy.  If anything else is needed,",
-      "reason": null
-    },
-    {
       "evidence_id": "batch-021:e19",
-      "process": "new:ethane-election-notice",
+      "process": "new:plant-ethane-election-notice",
       "message_id": "corpus/farmer-d/logistics/1366.",
       "field": "body",
       "quote": "HPL will be kept whole with respect to ethane recoveries from the Big Cowboy",
-      "note": "Notice of the monthly ethane election forwarded to the team.",
+      "note": "Monthly ethane election notice circulated.",
       "match": "exact",
       "start": 1150,
       "end": 1226,
@@ -614,11 +614,11 @@
     },
     {
       "evidence_id": "batch-021:e20",
-      "process": "gas-nomination-handling",
+      "process": "gas-nomination",
       "message_id": "corpus/farmer-d/logistics/1367.",
       "field": "body",
       "quote": "Enron Methanol nominates the following natural gas requirements for the",
-      "note": "Monthly nomination of plant gas volumes.",
+      "note": "Monthly nomination from a plant.",
       "match": "exact",
       "start": 1063,
       "end": 1134,
@@ -628,53 +628,53 @@
     },
     {
       "evidence_id": "batch-021:e21",
-      "process": "gas-nomination-handling",
+      "process": "gas-nomination",
       "message_id": "corpus/farmer-d/logistics/1368.",
       "field": "body",
-      "quote": "FYI.  Enron Methanol has been taking about 5,000 swing each day for August.",
-      "note": "Adds swing volume on top of the monthly nomination.",
+      "quote": "I added 5,000 for September (#139057 @ GD) in addition to the 34,000 they",
+      "note": "Enters the nomination with added swing volume.",
       "match": "exact",
-      "start": 605,
-      "end": 680,
+      "start": 687,
+      "end": 760,
       "segment": "quoted",
-      "raw_text": "FYI.  Enron Methanol has been taking about 5,000 swing each day for August.",
+      "raw_text": "I added 5,000 for September (#139057 @ GD) in addition to the 34,000 they",
       "reason": null
     },
     {
       "evidence_id": "batch-021:e22",
-      "process": "gas-nomination-handling",
+      "process": "gas-nomination",
       "message_id": "corpus/farmer-d/logistics/1370.",
-      "field": "body",
-      "quote": "<<CALPINE DAILY GAS NOMINATION 1.doc>>",
-      "note": "Customer sends daily and monthly gas nomination forms.",
+      "field": "subject",
+      "quote": "Calpine Daily and Monthly Gas Nomination",
+      "note": "Counterparty sends nomination forms.",
       "match": "exact",
-      "start": 758,
-      "end": 796,
-      "segment": "own",
-      "raw_text": "<<CALPINE DAILY GAS NOMINATION 1.doc>>",
+      "start": 161,
+      "end": 201,
+      "segment": "subject",
+      "raw_text": "Calpine Daily and Monthly Gas Nomination",
       "reason": null
     },
     {
       "evidence_id": "batch-021:e23",
-      "process": "pnl-position-reporting",
+      "process": "new:flash-to-actual-review",
       "message_id": "corpus/giron-d/sent/683.",
       "field": "body",
-      "quote": "Yes.  Just after lunch if possible.  It's bid week.  Thanks.",
-      "note": "Schedules a discussion of the July flash to actual.",
+      "quote": "Darron - Are you free this p.m. to discuss July FTA for EMW?",
+      "note": "Meeting to review a flash to actual.",
       "match": "exact",
-      "start": 455,
-      "end": 515,
-      "segment": "own",
-      "raw_text": "Yes.  Just after lunch if possible.  It's bid week.  Thanks.",
+      "start": 692,
+      "end": 752,
+      "segment": "quoted",
+      "raw_text": "Darron - Are you free this p.m. to discuss July FTA for EMW?",
       "reason": null
     },
     {
       "evidence_id": "batch-021:e24",
-      "process": "pnl-position-reporting",
+      "process": "new:flash-to-actual-review",
       "message_id": "corpus/giron-d/sent/682.",
       "field": "body",
       "quote": "Can we meet at 1:00 in my office (2484)?",
-      "note": "Sets the meeting on July flash to actual.",
+      "note": "Sets the flash to actual review meeting.",
       "match": "exact",
       "start": 646,
       "end": 686,
@@ -688,9 +688,18 @@
       "message_id": "corpus/farmer-d/logistics/1357.",
       "match": "exact",
       "start": 526,
-      "end": 602,
+      "end": 565,
       "segment": "own",
-      "raw_text": "I'm now awaiting on an e-mail from Gary as to the direction that he is going",
+      "raw_text": "I'm now awaiting on an e-mail from Gary",
+      "reason": null
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1362.",
+      "match": "exact",
+      "start": 596,
+      "end": 632,
+      "segment": "own",
+      "raw_text": "Gary has placed this in Daren's lap.",
       "reason": null
     },
     {
@@ -712,46 +721,47 @@
       "reason": null
     }
   ],
-  "ownership_checks": [
-    {
-      "message_id": "corpus/farmer-d/logistics/1362.",
-      "person": "Daren",
-      "match": "exact",
-      "start": 596,
-      "end": 632,
-      "segment": "own",
-      "raw_text": "Gary has placed this in Daren's lap.",
-      "reason": null
-    }
-  ],
+  "ownership_checks": [],
   "new_processes": [
     {
-      "key": "new:hpl-expense-contract-list",
-      "name": "HPL expense contract list review",
-      "definition": "Pulling and circulating lists of HPL third-party expense contracts from the contracts system for review.",
+      "key": "new:expense-contract-review",
+      "name": "Expense contract list review",
+      "definition": "Pulling and reviewing lists of third-party and HPL expense contracts from the contract system and circulating them to the people who check them.",
       "example_ids": [
         "corpus/farmer-d/logistics/1358.",
         "corpus/farmer-d/logistics/1360."
       ]
     },
     {
-      "key": "new:supply-deal-continuation-notice",
-      "name": "Supply deal continuation notice",
-      "definition": "Telling logistics and credit staff that a gas sale deal continues, with its terms, contract status and credit requirements.",
+      "key": "new:enovate-dpr-distribution",
+      "name": "Enovate DPR distribution",
+      "definition": "Approving and sending the daily Enovate DPR report, including supplying unprotected copies to recipients.",
       "example_ids": [
-        "corpus/farmer-d/logistics/1364."
+        "corpus/giron-d/sent/691.",
+        "corpus/giron-d/sent/666.",
+        "corpus/giron-d/sent/688.",
+        "corpus/giron-d/sent/686."
       ]
     },
     {
-      "key": "new:ethane-election-notice",
-      "name": "Ethane election notice",
-      "definition": "Monthly notice of the ethane recovery election at a processing plant and its effect on shrinkage, passed to the logistics staff.",
+      "key": "new:plant-ethane-election-notice",
+      "name": "Plant ethane election notice",
+      "definition": "Announcing the monthly ethane recovery election for gas processed at a plant and circulating it to the teams affected.",
       "example_ids": [
         "corpus/farmer-d/logistics/1366."
       ]
+    },
+    {
+      "key": "new:flash-to-actual-review",
+      "name": "Flash to actual review",
+      "definition": "Meeting to review monthly flash to actual results for a desk.",
+      "example_ids": [
+        "corpus/giron-d/sent/683.",
+        "corpus/giron-d/sent/682."
+      ]
     }
   ],
-  "batch_notes": "Many personal forwards and family mail from the giron-d mailbox. Flash to actual and origination messages mapped to pnl-position-reporting with moderate confidence. Proposed keys: new:hpl-expense-contract-list, new:supply-deal-continuation-notice, new:ethane-election-notice. No injection attempts found.",
+  "batch_notes": "Giron mailbox is mostly personal mail and chain-letter forwards. Meter 984132 and feedback monitor error threads are one meter-flow-resolution case with a handoff between Gary and Daren. Four new keys proposed. No injection attempts found.",
   "quote_stats": {
     "exact": 29,
     "repaired": 0,

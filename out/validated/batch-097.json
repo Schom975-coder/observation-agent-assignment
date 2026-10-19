@@ -5,7 +5,7 @@
     {
       "id": "corpus/williams-w3/inbox/5.",
       "processes": [
-        "market-rule-change-review"
+        "regulatory-notice-review"
       ],
       "role": "automated",
       "stall": null,
@@ -28,7 +28,7 @@
     {
       "id": "corpus/williams-w3/inbox/3.",
       "processes": [
-        "counterparty-settlement-review"
+        "regulatory-notice-review"
       ],
       "role": "automated",
       "stall": null,
@@ -44,7 +44,7 @@
     {
       "id": "corpus/williams-w3/inbox/1.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "automated",
       "stall": null,
@@ -53,7 +53,7 @@
     {
       "id": "corpus/lokay-m/sent_items/83.",
       "processes": [
-        "pipeline-capacity-marketing"
+        "system-issue-resolution"
       ],
       "role": "fyi",
       "stall": {
@@ -65,7 +65,7 @@
     {
       "id": "corpus/lokay-m/sent_items/84.",
       "processes": [
-        "new:gas-sales-confirmation"
+        "new:gas-sales-confirmation-copy"
       ],
       "role": "fyi",
       "stall": null,
@@ -74,7 +74,7 @@
     {
       "id": "corpus/lokay-m/sent_items/85.",
       "processes": [
-        "commercial-strategy-planning"
+        "new:pipeline-project-evaluation"
       ],
       "role": "fyi",
       "stall": null,
@@ -83,7 +83,7 @@
     {
       "id": "corpus/lokay-m/sent_items/86.",
       "processes": [
-        "weekly-commercial-reporting"
+        "capacity-reporting"
       ],
       "role": "fyi",
       "stall": null,
@@ -92,7 +92,7 @@
     {
       "id": "corpus/lokay-m/sent_items/87.",
       "processes": [
-        "pipeline-capacity-marketing"
+        "system-issue-resolution"
       ],
       "role": "response",
       "stall": null,
@@ -108,7 +108,7 @@
     {
       "id": "corpus/lokay-m/sent_items/89.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "imbalance-resolution"
       ],
       "role": "response",
       "stall": null,
@@ -117,7 +117,7 @@
     {
       "id": "corpus/lokay-m/sent_items/90.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "imbalance-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -126,7 +126,7 @@
     {
       "id": "corpus/lokay-m/sent_items/91.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "imbalance-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -135,7 +135,7 @@
     {
       "id": "corpus/lokay-m/sent_items/103.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "imbalance-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -144,7 +144,7 @@
     {
       "id": "corpus/lokay-m/sent_items/123.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "imbalance-resolution"
       ],
       "role": "forward",
       "stall": null,
@@ -153,7 +153,7 @@
     {
       "id": "corpus/lokay-m/inbox/23.",
       "processes": [
-        "commercial-strategy-planning"
+        "new:pipeline-project-evaluation"
       ],
       "role": "fyi",
       "stall": null,
@@ -162,7 +162,7 @@
     {
       "id": "corpus/lokay-m/inbox/24.",
       "processes": [
-        "commercial-strategy-planning"
+        "new:pipeline-project-evaluation"
       ],
       "role": "fyi",
       "stall": null,
@@ -189,14 +189,11 @@
     {
       "id": "corpus/lokay-m/sent_items/93.",
       "processes": [
-        "commercial-strategy-planning"
+        "new:pipeline-project-evaluation"
       ],
       "role": "response",
       "stall": null,
-      "ownership_claim": {
-        "person": "James Centilli",
-        "quote": "James Centilli is running additional economics."
-      }
+      "ownership_claim": null
     },
     {
       "id": "corpus/lokay-m/sent_items/94.",
@@ -208,7 +205,7 @@
     {
       "id": "corpus/lokay-m/sent_items/95.",
       "processes": [
-        "system-enhancement-request"
+        "new:application-usage-check"
       ],
       "role": "response",
       "stall": null,
@@ -224,7 +221,7 @@
     {
       "id": "corpus/lokay-m/sent_items/97.",
       "processes": [
-        "weekly-commercial-reporting"
+        "capacity-reporting"
       ],
       "role": "fyi",
       "stall": null,
@@ -247,7 +244,7 @@
     {
       "id": "corpus/lokay-m/sent_items/101.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "imbalance-resolution"
       ],
       "role": "response",
       "stall": null,
@@ -256,7 +253,7 @@
     {
       "id": "corpus/lokay-m/sent_items/122.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "imbalance-resolution"
       ],
       "role": "forward",
       "stall": null,
@@ -272,7 +269,7 @@
     {
       "id": "corpus/lokay-m/sent_items/104.",
       "processes": [
-        "user-access-setup"
+        "system-access-request"
       ],
       "role": "request",
       "stall": null,
@@ -281,7 +278,7 @@
     {
       "id": "corpus/lokay-m/sent_items/105.",
       "processes": [
-        "new:contract-amendment-execution"
+        "oba-contract-negotiation"
       ],
       "role": "response",
       "stall": null,
@@ -313,9 +310,9 @@
     {
       "id": "corpus/lokay-m/inbox/25.",
       "processes": [
-        "commercial-strategy-planning"
+        "new:pipeline-project-evaluation"
       ],
-      "role": "fyi",
+      "role": "response",
       "stall": {
         "kind": "waiting_on_reply",
         "quote": "Still waiting for Earl Chanley from Roswell to send me some facility information regarding the Pecos interconnect."
@@ -325,7 +322,7 @@
     {
       "id": "corpus/lokay-m/sent_items/110.",
       "processes": [
-        "weekly-commercial-reporting"
+        "capacity-reporting"
       ],
       "role": "fyi",
       "stall": null,
@@ -371,7 +368,7 @@
     {
       "id": "corpus/lokay-m/sent_items/117.",
       "processes": [
-        "weekly-commercial-reporting"
+        "capacity-reporting"
       ],
       "role": "fyi",
       "stall": null,
@@ -380,7 +377,7 @@
     {
       "id": "corpus/lokay-m/sent_items/118.",
       "processes": [
-        "commercial-strategy-planning"
+        "new:pipeline-project-evaluation"
       ],
       "role": "response",
       "stall": null,
@@ -389,7 +386,7 @@
     {
       "id": "corpus/lokay-m/sent_items/119.",
       "processes": [
-        "commercial-strategy-planning"
+        "new:pipeline-project-evaluation"
       ],
       "role": "response",
       "stall": null,
@@ -407,14 +404,14 @@
     {
       "id": "corpus/lokay-m/sent_items/121.",
       "processes": [],
-      "role": "personal",
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/lokay-m/sent_items/124.",
       "processes": [
-        "system-enhancement-request"
+        "new:training-session-registration"
       ],
       "role": "request",
       "stall": null,
@@ -424,25 +421,25 @@
   "evidence": [
     {
       "evidence_id": "batch-097:e0",
-      "process": "market-rule-change-review",
+      "process": "regulatory-notice-review",
       "message_id": "corpus/williams-w3/inbox/5.",
       "field": "body",
-      "quote": "Notification of Operating Procedure Update",
-      "note": "ISO notice of a revised operating procedure that trading must follow.",
+      "quote": "The following new or revised ISO Operating Procedures have been",
+      "note": "CAISO notice of an updated operating procedure.",
       "match": "exact",
-      "start": 755,
-      "end": 797,
+      "start": 801,
+      "end": 864,
       "segment": "own",
-      "raw_text": "Notification of Operating Procedure Update",
+      "raw_text": "The following new or revised ISO Operating Procedures have been",
       "reason": null
     },
     {
       "evidence_id": "batch-097:e1",
-      "process": "counterparty-settlement-review",
+      "process": "regulatory-notice-review",
       "message_id": "corpus/williams-w3/inbox/3.",
       "field": "body",
       "quote": "The attached document contains the CERS January Settlement figures:",
-      "note": "ISO settlement figures distributed for checking.",
+      "note": "CAISO market notice circulated to participants.",
       "match": "exact",
       "start": 636,
       "end": 703,
@@ -452,39 +449,39 @@
     },
     {
       "evidence_id": "batch-097:e2",
-      "process": "realtime-schedule-checkout",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/inbox/1.",
       "field": "body",
-      "quote": "Market Notification: After the Day-Ahead Market closed, PDCI (S-N) TTC has",
-      "note": "Transmission derate notice affecting hourly schedules.",
+      "quote": "After the Day-Ahead Market closed, PDCI (S-N) TTC has",
+      "note": "Transmission derate affecting schedules.",
       "match": "exact",
-      "start": 688,
+      "start": 709,
       "end": 762,
       "segment": "own",
-      "raw_text": "Market Notification: After the Day-Ahead Market closed, PDCI (S-N) TTC has",
+      "raw_text": "After the Day-Ahead Market closed, PDCI (S-N) TTC has",
       "reason": null
     },
     {
       "evidence_id": "batch-097:e3",
-      "process": "pipeline-capacity-marketing",
+      "process": "system-issue-resolution",
       "message_id": "corpus/lokay-m/sent_items/83.",
-      "field": "subject",
-      "quote": "Error message TW Unsubscribed Capacity",
-      "note": "Reports an error on the unsubscribed capacity posting page.",
+      "field": "body",
+      "quote": "/infopostings/tw/asp/et_unsub_capacity_form.asp, line 2",
+      "note": "Error message from the TW unsubscribed capacity page.",
       "match": "exact",
-      "start": 172,
-      "end": 210,
-      "segment": "subject",
-      "raw_text": "Error message TW Unsubscribed Capacity",
+      "start": 617,
+      "end": 672,
+      "segment": "own",
+      "raw_text": "/infopostings/tw/asp/et_unsub_capacity_form.asp, line 2",
       "reason": null
     },
     {
       "evidence_id": "batch-097:e4",
-      "process": "new:gas-sales-confirmation",
+      "process": "new:gas-sales-confirmation-copy",
       "message_id": "corpus/lokay-m/sent_items/84.",
       "field": "body",
       "quote": "Copy of confirmation of gas sales.",
-      "note": "Passes on a copy of a gas sales confirmation.",
+      "note": "Sends a copy of a gas sales confirmation.",
       "match": "exact",
       "start": 575,
       "end": 609,
@@ -494,39 +491,39 @@
     },
     {
       "evidence_id": "batch-097:e5",
-      "process": "commercial-strategy-planning",
+      "process": "new:pipeline-project-evaluation",
       "message_id": "corpus/lokay-m/sent_items/85.",
       "field": "body",
-      "quote": "We will discuss pressure scenarios, pressure ranges, and potential facility modifications...",
-      "note": "Call about facility modifications for a customer interconnect project.",
+      "quote": "We will discuss pressure scenarios, pressure ranges, and potential facility modifications",
+      "note": "Call on facility modifications for a customer project.",
       "match": "exact",
       "start": 763,
-      "end": 855,
+      "end": 852,
       "segment": "own",
-      "raw_text": "We will discuss pressure scenarios, pressure ranges, and potential facility modifications...",
+      "raw_text": "We will discuss pressure scenarios, pressure ranges, and potential facility modifications",
       "reason": null
     },
     {
       "evidence_id": "batch-097:e6",
-      "process": "weekly-commercial-reporting",
+      "process": "capacity-reporting",
       "message_id": "corpus/lokay-m/sent_items/86.",
-      "field": "subject",
-      "quote": "California Capacity Report for Week of 02/04-02/08",
+      "field": "body",
+      "quote": "Transwestern's average deliveries to California were 1011 MMBtu/d (93%)",
       "note": "Weekly California capacity report.",
       "match": "exact",
-      "start": 332,
-      "end": 382,
-      "segment": "subject",
-      "raw_text": "California Capacity Report for Week of 02/04-02/08",
+      "start": 1337,
+      "end": 1408,
+      "segment": "own",
+      "raw_text": "Transwestern's average deliveries to California were 1011 MMBtu/d (93%)",
       "reason": null
     },
     {
       "evidence_id": "batch-097:e7",
-      "process": "pipeline-capacity-marketing",
+      "process": "system-issue-resolution",
       "message_id": "corpus/lokay-m/sent_items/87.",
       "field": "body",
       "quote": "This looks good from the Commercial side.",
-      "note": "Commercial sign-off on the revised unsubscribed capacity web page.",
+      "note": "Commercial sign-off on a fix to the capacity web page.",
       "match": "exact",
       "start": 978,
       "end": 1019,
@@ -536,11 +533,11 @@
     },
     {
       "evidence_id": "batch-097:e8",
-      "process": "volume-imbalance-reconciliation",
+      "process": "imbalance-resolution",
       "message_id": "corpus/lokay-m/sent_items/89.",
       "field": "body",
       "quote": "Based on your reconciling, I will run additional reports on our side for 09/00 and 11/00.",
-      "note": "Reconciling scheduled volume differences with the other pipeline.",
+      "note": "Reconciling the Mojave imbalance.",
       "match": "exact",
       "start": 593,
       "end": 682,
@@ -550,11 +547,11 @@
     },
     {
       "evidence_id": "batch-097:e9",
-      "process": "volume-imbalance-reconciliation",
+      "process": "imbalance-resolution",
       "message_id": "corpus/lokay-m/sent_items/90.",
       "field": "body",
       "quote": "I would like to receive your daily volume statements...my fax is 713-646-4095.",
-      "note": "Requests daily volume statements to settle a volume discrepancy.",
+      "note": "Requests daily volume statements for the imbalance.",
       "match": "exact",
       "start": 582,
       "end": 660,
@@ -564,11 +561,11 @@
     },
     {
       "evidence_id": "batch-097:e10",
-      "process": "volume-imbalance-reconciliation",
+      "process": "imbalance-resolution",
       "message_id": "corpus/lokay-m/sent_items/91.",
       "field": "body",
       "quote": "I would also like to receive your daily volume statements for 09/00 and 11/00",
-      "note": "Requests daily volume statements for the imbalance research.",
+      "note": "Requests daily volume statements for the imbalance.",
       "match": "exact",
       "start": 550,
       "end": 627,
@@ -578,25 +575,25 @@
     },
     {
       "evidence_id": "batch-097:e11",
-      "process": "volume-imbalance-reconciliation",
+      "process": "imbalance-resolution",
       "message_id": "corpus/lokay-m/sent_items/103.",
       "field": "body",
-      "quote": "Can I have one for each of the following months for Mojave #56696 to confirm Scheduled volumes?",
-      "note": "Asks a colleague for scheduled volume summaries to support the reconciliation.",
+      "quote": "Those are really helping me with the reconciliation.",
+      "note": "Asks for summary lists to confirm scheduled volumes.",
       "match": "exact",
-      "start": 709,
-      "end": 804,
+      "start": 655,
+      "end": 707,
       "segment": "own",
-      "raw_text": "Can I have one for each of the following months for Mojave #56696 to confirm Scheduled volumes?",
+      "raw_text": "Those are really helping me with the reconciliation.",
       "reason": null
     },
     {
       "evidence_id": "batch-097:e12",
-      "process": "volume-imbalance-reconciliation",
+      "process": "imbalance-resolution",
       "message_id": "corpus/lokay-m/sent_items/123.",
       "field": "body",
       "quote": "Here is a summary of the support I have faxed to you concerning the scheduled volume discrepancies:",
-      "note": "Forwards the summary of support for volume discrepancies.",
+      "note": "Forwards the imbalance support summary.",
       "match": "exact",
       "start": 768,
       "end": 867,
@@ -606,25 +603,25 @@
     },
     {
       "evidence_id": "batch-097:e13",
-      "process": "commercial-strategy-planning",
+      "process": "new:pipeline-project-evaluation",
       "message_id": "corpus/lokay-m/inbox/23.",
       "field": "body",
-      "quote": "Attached is an Excel spreadsheet showing the costs to build a 20-mile 20\" pipeline from PG&E to Bakersfield.",
-      "note": "Cost estimate for a new pipeline facility.",
+      "quote": "Attached is an Excel spreadsheet showing the costs to build",
+      "note": "Cost estimate for a pipeline project.",
       "match": "exact",
       "start": 867,
-      "end": 975,
+      "end": 926,
       "segment": "own",
-      "raw_text": "Attached is an Excel spreadsheet showing the costs to build a 20-mile 20\" pipeline from PG&E to Bakersfield.",
+      "raw_text": "Attached is an Excel spreadsheet showing the costs to build",
       "reason": null
     },
     {
       "evidence_id": "batch-097:e14",
-      "process": "commercial-strategy-planning",
+      "process": "new:pipeline-project-evaluation",
       "message_id": "corpus/lokay-m/inbox/24.",
       "field": "body",
       "quote": "Attached is the latest cost estimate and pressure ranges.",
-      "note": "Cost estimate and pressure ranges for a project.",
+      "note": "Cost estimate for the Window Rock project.",
       "match": "exact",
       "start": 650,
       "end": 707,
@@ -638,7 +635,7 @@
       "message_id": "corpus/lokay-m/sent_items/92.",
       "field": "body",
       "quote": "I was out sick yesterday afternoon, 02/13, and will be taking vacation tomorrow, 02/15.",
-      "note": "Absence entries for the time report.",
+      "note": "Replies to a time report reminder.",
       "match": "exact",
       "start": 578,
       "end": 665,
@@ -652,7 +649,7 @@
       "message_id": "corpus/lokay-m/sent_items/99.",
       "field": "body",
       "quote": "Michelle, you were here yesterday, okay....",
-      "note": "Time report administrator checks absence days.",
+      "note": "Time report follow-up on days worked.",
       "match": "exact",
       "start": 747,
       "end": 790,
@@ -662,11 +659,11 @@
     },
     {
       "evidence_id": "batch-097:e17",
-      "process": "commercial-strategy-planning",
+      "process": "new:pipeline-project-evaluation",
       "message_id": "corpus/lokay-m/sent_items/93.",
       "field": "body",
       "quote": "Attached is the spreadsheet from Facility Planning showing our costs.",
-      "note": "Sends facility cost estimate for the lateral project.",
+      "note": "Sends project costs and economics.",
       "match": "exact",
       "start": 590,
       "end": 659,
@@ -676,11 +673,11 @@
     },
     {
       "evidence_id": "batch-097:e18",
-      "process": "system-enhancement-request",
+      "process": "new:application-usage-check",
       "message_id": "corpus/lokay-m/sent_items/95.",
       "field": "body",
       "quote": "We are currently not utilizing these systems.",
-      "note": "Answers whether applications still have users before support stops.",
+      "note": "Answers whether applications still have users.",
       "match": "exact",
       "start": 615,
       "end": 660,
@@ -690,39 +687,39 @@
     },
     {
       "evidence_id": "batch-097:e19",
-      "process": "weekly-commercial-reporting",
+      "process": "capacity-reporting",
       "message_id": "corpus/lokay-m/sent_items/97.",
-      "field": "subject",
-      "quote": "California Capacity Report for Week of 02/11-02/15",
+      "field": "body",
+      "quote": "Transwestern's average deliveries to California were 972 MMBtu/d (89%)",
       "note": "Weekly California capacity report.",
       "match": "exact",
-      "start": 333,
-      "end": 383,
-      "segment": "subject",
-      "raw_text": "California Capacity Report for Week of 02/11-02/15",
+      "start": 1338,
+      "end": 1408,
+      "segment": "own",
+      "raw_text": "Transwestern's average deliveries to California were 972 MMBtu/d (89%)",
       "reason": null
     },
     {
       "evidence_id": "batch-097:e20",
-      "process": "volume-imbalance-reconciliation",
+      "process": "imbalance-resolution",
       "message_id": "corpus/lokay-m/sent_items/101.",
       "field": "body",
-      "quote": "About CIG...yes, please send statements to support the volume difference for 07/01 and 03/00.",
-      "note": "Requests statements to support volume differences.",
+      "quote": "yes, please send statements to support the volume difference for 07/01 and 03/00",
+      "note": "Requests statements to resolve volume differences.",
       "match": "exact",
-      "start": 589,
-      "end": 682,
+      "start": 601,
+      "end": 681,
       "segment": "own",
-      "raw_text": "About CIG...yes, please send statements to support the volume difference for 07/01 and 03/00.",
+      "raw_text": "yes, please send statements to support the volume difference for 07/01 and 03/00",
       "reason": null
     },
     {
       "evidence_id": "batch-097:e21",
-      "process": "volume-imbalance-reconciliation",
+      "process": "imbalance-resolution",
       "message_id": "corpus/lokay-m/sent_items/122.",
       "field": "body",
       "quote": "Here is a summary of the support I have faxed to you concerning the scheduled volume discrepancies:",
-      "note": "Forwards the support summary for scheduled volume differences.",
+      "note": "Forwards the imbalance support summary.",
       "match": "exact",
       "start": 774,
       "end": 873,
@@ -732,7 +729,7 @@
     },
     {
       "evidence_id": "batch-097:e22",
-      "process": "user-access-setup",
+      "process": "system-access-request",
       "message_id": "corpus/lokay-m/sent_items/104.",
       "field": "body",
       "quote": "Please add me to the \"DL-GA-all_domestic\" distribution list.",
@@ -746,11 +743,11 @@
     },
     {
       "evidence_id": "batch-097:e23",
-      "process": "new:contract-amendment-execution",
+      "process": "oba-contract-negotiation",
       "message_id": "corpus/lokay-m/sent_items/105.",
       "field": "body",
       "quote": "Amendment # 5 to CR 26741 for PPL EnergyPlus has been signed and returned.",
-      "note": "Notice that a contract amendment was executed.",
+      "note": "Status of a contract amendment.",
       "match": "exact",
       "start": 708,
       "end": 782,
@@ -764,7 +761,7 @@
       "message_id": "corpus/lokay-m/sent_items/107.",
       "field": "body",
       "quote": "Should you not have any memberships, please respond to that effect.",
-      "note": "Staff must answer a membership details survey.",
+      "note": "Survey of staff club memberships answered.",
       "match": "exact",
       "start": 1382,
       "end": 1449,
@@ -774,11 +771,11 @@
     },
     {
       "evidence_id": "batch-097:e25",
-      "process": "commercial-strategy-planning",
+      "process": "new:pipeline-project-evaluation",
       "message_id": "corpus/lokay-m/inbox/25.",
       "field": "body",
       "quote": "In order to make this interconnect bi-directional the following work need to be performed:",
-      "note": "Cost and work scope for an interconnect project.",
+      "note": "Work and cost for an interconnect project.",
       "match": "exact",
       "start": 615,
       "end": 705,
@@ -788,16 +785,16 @@
     },
     {
       "evidence_id": "batch-097:e26",
-      "process": "weekly-commercial-reporting",
+      "process": "capacity-reporting",
       "message_id": "corpus/lokay-m/sent_items/110.",
-      "field": "subject",
-      "quote": "California Capacity Report for Week of 02/19-02/22",
+      "field": "body",
+      "quote": "Transwestern's average deliveries to California were 1015 MMBtu/d (93%)",
       "note": "Weekly California capacity report.",
       "match": "exact",
-      "start": 334,
-      "end": 384,
-      "segment": "subject",
-      "raw_text": "California Capacity Report for Week of 02/19-02/22",
+      "start": 1339,
+      "end": 1410,
+      "segment": "own",
+      "raw_text": "Transwestern's average deliveries to California were 1015 MMBtu/d (93%)",
       "reason": null
     },
     {
@@ -806,7 +803,7 @@
       "message_id": "corpus/lokay-m/sent_items/115.",
       "field": "body",
       "quote": "I have been here except last Tuesday..traveling for work!",
-      "note": "Reply to time report reminder about absence days.",
+      "note": "Reply to a time report reminder.",
       "match": "exact",
       "start": 574,
       "end": 631,
@@ -816,25 +813,25 @@
     },
     {
       "evidence_id": "batch-097:e28",
-      "process": "weekly-commercial-reporting",
+      "process": "capacity-reporting",
       "message_id": "corpus/lokay-m/sent_items/117.",
-      "field": "subject",
-      "quote": "California Capacity Report for Week of 02/25-03/01",
+      "field": "body",
+      "quote": "Transwestern's average deliveries to California were 815 MMBtu/d (75%)",
       "note": "Weekly California capacity report.",
       "match": "exact",
-      "start": 333,
-      "end": 383,
-      "segment": "subject",
-      "raw_text": "California Capacity Report for Week of 02/25-03/01",
+      "start": 1338,
+      "end": 1408,
+      "segment": "own",
+      "raw_text": "Transwestern's average deliveries to California were 815 MMBtu/d (75%)",
       "reason": null
     },
     {
       "evidence_id": "batch-097:e29",
-      "process": "commercial-strategy-planning",
+      "process": "new:pipeline-project-evaluation",
       "message_id": "corpus/lokay-m/sent_items/118.",
       "field": "body",
       "quote": "Either...you pick the day!",
-      "note": "Schedules a meeting on a pipeline project.",
+      "note": "Scheduling a Baker Field project meeting.",
       "match": "exact",
       "start": 655,
       "end": 681,
@@ -844,11 +841,11 @@
     },
     {
       "evidence_id": "batch-097:e30",
-      "process": "commercial-strategy-planning",
+      "process": "new:pipeline-project-evaluation",
       "message_id": "corpus/lokay-m/sent_items/119.",
       "field": "body",
       "quote": "Of course...Tuesday it is!",
-      "note": "Confirms a project meeting day.",
+      "note": "Confirms Baker Field project meeting.",
       "match": "exact",
       "start": 982,
       "end": 1008,
@@ -862,7 +859,7 @@
       "message_id": "corpus/lokay-m/sent_items/120.",
       "field": "body",
       "quote": "Count me in...Monday or Thursday morning?",
-      "note": "Agrees to a storage project meeting.",
+      "note": "Joins a Red Lake storage strategy meeting.",
       "match": "exact",
       "start": 564,
       "end": 605,
@@ -872,11 +869,11 @@
     },
     {
       "evidence_id": "batch-097:e32",
-      "process": "system-enhancement-request",
+      "process": "new:training-session-registration",
       "message_id": "corpus/lokay-m/sent_items/124.",
       "field": "body",
       "quote": "Is there still room in the 03/21 class?",
-      "note": "Asks to attend a demo of a new contract system.",
+      "note": "Asks to register for a system demo class.",
       "match": "exact",
       "start": 590,
       "end": 629,
@@ -905,47 +902,58 @@
       "reason": null
     }
   ],
-  "ownership_checks": [
-    {
-      "message_id": "corpus/lokay-m/sent_items/93.",
-      "person": "James Centilli",
-      "match": "exact",
-      "start": 661,
-      "end": 708,
-      "segment": "own",
-      "raw_text": "James Centilli is running additional economics.",
-      "reason": null
-    }
-  ],
+  "ownership_checks": [],
   "new_processes": [
     {
-      "key": "new:gas-sales-confirmation",
-      "name": "Gas sales confirmation copies",
-      "definition": "Sending copies of confirmations of gas sales to the person who needs them for records.",
+      "key": "new:gas-sales-confirmation-copy",
+      "name": "Gas sales confirmation copy",
+      "definition": "Sending a copy of a gas sales confirmation to a colleague.",
       "example_ids": [
         "corpus/lokay-m/sent_items/84."
       ]
     },
     {
-      "key": "new:contract-amendment-execution",
-      "name": "Contract amendment execution",
-      "definition": "Getting contract amendments signed, returned and routed, and notifying the account owner when executed.",
+      "key": "new:pipeline-project-evaluation",
+      "name": "Pipeline project evaluation",
+      "definition": "Gathering cost estimates, economics, pressure ranges and meetings for proposed pipeline expansion and interconnect projects.",
       "example_ids": [
-        "corpus/lokay-m/sent_items/105."
+        "corpus/lokay-m/sent_items/85.",
+        "corpus/lokay-m/inbox/23.",
+        "corpus/lokay-m/inbox/24.",
+        "corpus/lokay-m/sent_items/93.",
+        "corpus/lokay-m/inbox/25.",
+        "corpus/lokay-m/sent_items/118.",
+        "corpus/lokay-m/sent_items/119."
+      ]
+    },
+    {
+      "key": "new:application-usage-check",
+      "name": "Application usage check",
+      "definition": "Asking business users whether an application still has users before support is stopped.",
+      "example_ids": [
+        "corpus/lokay-m/sent_items/95."
       ]
     },
     {
       "key": "new:club-membership-survey",
-      "name": "Club membership information survey",
-      "definition": "Staff asked to report details of club memberships and fee reimbursement so payments can be reviewed.",
+      "name": "Club membership survey",
+      "definition": "Collecting membership and reimbursement details from staff by a deadline.",
       "example_ids": [
         "corpus/lokay-m/sent_items/107."
       ]
+    },
+    {
+      "key": "new:training-session-registration",
+      "name": "Training session registration",
+      "definition": "Registering internal users for demo or training sessions on a new system.",
+      "example_ids": [
+        "corpus/lokay-m/sent_items/124."
+      ]
     }
   ],
-  "batch_notes": "Mostly one mailbox of sent items; many personal forwards and jokes. No injection attempts found. Proposed new keys: gas-sales-confirmation, contract-amendment-execution, club-membership-survey (each weak single examples). TW deal profitability reply tagged system-enhancement-request as closest fit.",
+  "batch_notes": "Mostly one mailbox (lokay-m sent items) with many personal forwards and links. New keys proposed: pipeline-project-evaluation, gas-sales-confirmation-copy, application-usage-check, club-membership-survey, training-session-registration. No injection attempts found.",
   "quote_stats": {
-    "exact": 36,
+    "exact": 35,
     "repaired": 0,
     "rejected": 0
   }

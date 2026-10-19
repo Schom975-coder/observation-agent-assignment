@@ -33,7 +33,7 @@
     {
       "id": "corpus/farmer-d/logistics/57.",
       "processes": [
-        "expense-report-approval"
+        "expense-approval"
       ],
       "role": "automated",
       "stall": null,
@@ -56,7 +56,7 @@
     {
       "id": "corpus/williams-w3/sent_items/228.",
       "processes": [
-        "new:real-time-training-scheduling"
+        "new:real-time-desk-training"
       ],
       "role": "response",
       "stall": null,
@@ -75,13 +75,16 @@
         "new:deal-change-documentation"
       ],
       "role": "response",
-      "stall": null,
+      "stall": {
+        "kind": "waiting_on_reply",
+        "quote": "So does no response mean I have approval?"
+      },
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/sent_items/225.",
       "processes": [
-        "desk-coverage-on-call"
+        "on-call-coverage"
       ],
       "role": "forward",
       "stall": null,
@@ -96,17 +99,15 @@
     },
     {
       "id": "corpus/giron-d/inbox/236.",
-      "processes": [
-        "new:analyst-program-recommendation"
-      ],
-      "role": "request",
+      "processes": [],
+      "role": "personal",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/sent_items/224.",
       "processes": [
-        "user-access-setup"
+        "system-access-request"
       ],
       "role": "fyi",
       "stall": null,
@@ -115,7 +116,7 @@
     {
       "id": "corpus/farmer-d/logistics/56.",
       "processes": [
-        "new:market-fundamentals-analysis"
+        "new:origination-market-analysis"
       ],
       "role": "fyi",
       "stall": null,
@@ -127,14 +128,14 @@
     {
       "id": "corpus/giron-d/inbox/237.",
       "processes": [],
-      "role": "automated",
+      "role": "personal",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/sent_items/223.",
       "processes": [
-        "new:power-contract-language-review"
+        "oba-contract-negotiation"
       ],
       "role": "response",
       "stall": null,
@@ -143,7 +144,7 @@
     {
       "id": "corpus/williams-w3/sent_items/222.",
       "processes": [
-        "new:real-time-training-scheduling"
+        "new:real-time-desk-training"
       ],
       "role": "request",
       "stall": null,
@@ -174,7 +175,7 @@
   "evidence": [
     {
       "evidence_id": "batch-067:e0",
-      "process": "expense-report-approval",
+      "process": "expense-approval",
       "message_id": "corpus/farmer-d/logistics/57.",
       "field": "body",
       "quote": "The following expense report is ready for approval:",
@@ -188,11 +189,11 @@
     },
     {
       "evidence_id": "batch-067:e1",
-      "process": "new:real-time-training-scheduling",
+      "process": "new:real-time-desk-training",
       "message_id": "corpus/williams-w3/sent_items/228.",
       "field": "body",
       "quote": "Just let me know when you have time and we will set it up.",
-      "note": "Arranges for a colleague to sit in on the real-time desk to learn.",
+      "note": "Agrees to arrange a trainee sitting in on the real time desk.",
       "match": "exact",
       "start": 538,
       "end": 596,
@@ -202,16 +203,16 @@
     },
     {
       "evidence_id": "batch-067:e2",
-      "process": "new:real-time-training-scheduling",
+      "process": "new:real-time-desk-training",
       "message_id": "corpus/williams-w3/sent_items/222.",
       "field": "body",
-      "quote": "I would like some of these folks to attend the Energy Math class on the 8th of November.",
-      "note": "Asks for real-time staff to be scheduled into a training class.",
+      "quote": "Please schedule 4 or 5 of them to go if possible.",
+      "note": "Asks for real time staff to be scheduled into the Energy Math class.",
       "match": "exact",
-      "start": 568,
-      "end": 656,
+      "start": 657,
+      "end": 706,
       "segment": "own",
-      "raw_text": "I would like some of these folks to attend the Energy Math class on the 8th of November.",
+      "raw_text": "Please schedule 4 or 5 of them to go if possible.",
       "reason": null
     },
     {
@@ -219,22 +220,22 @@
       "process": "new:deal-change-documentation",
       "message_id": "corpus/williams-w3/sent_items/226.",
       "field": "body",
-      "quote": "Yes...sorry about implying that you did not have approval...",
-      "note": "Approval reply on a request about documenting changed or zeroed deals.",
+      "quote": "Type a short note into the Scheduling Comments section of deals you zero out or change",
+      "note": "Instruction to document altered or zeroed deals, so disputes can be settled.",
       "match": "exact",
-      "start": 534,
-      "end": 594,
-      "segment": "own",
-      "raw_text": "Yes...sorry about implying that you did not have approval...",
+      "start": 1982,
+      "end": 2068,
+      "segment": "quoted",
+      "raw_text": "Type a short note into the Scheduling Comments section of deals you zero out or change",
       "reason": null
     },
     {
       "evidence_id": "batch-067:e4",
-      "process": "desk-coverage-on-call",
+      "process": "on-call-coverage",
       "message_id": "corpus/williams-w3/sent_items/225.",
       "field": "body",
       "quote": "Here is some more inforation regarding taking care of Canada this weekend.",
-      "note": "Passes on dispatch instructions for weekend coverage of the Alberta desk.",
+      "note": "Passes on weekend coverage instructions for the Alberta desk.",
       "match": "exact",
       "start": 1665,
       "end": 1739,
@@ -244,21 +245,7 @@
     },
     {
       "evidence_id": "batch-067:e5",
-      "process": "new:analyst-program-recommendation",
-      "message_id": "corpus/giron-d/inbox/236.",
-      "field": "body",
-      "quote": "Thank you for agreeing to write a letter of recommending me for the Analyst Program.",
-      "note": "Request to supply recommendation letters for an internal program.",
-      "match": "exact",
-      "start": 918,
-      "end": 1002,
-      "segment": "own",
-      "raw_text": "Thank you for agreeing to write a letter of recommending me for the Analyst Program.",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-067:e6",
-      "process": "user-access-setup",
+      "process": "system-access-request",
       "message_id": "corpus/williams-w3/sent_items/224.",
       "field": "body",
       "quote": "You should be receiving an email regarding access to EOL.",
@@ -271,35 +258,45 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-067:e7",
-      "process": "new:market-fundamentals-analysis",
+      "evidence_id": "batch-067:e6",
+      "process": "new:origination-market-analysis",
       "message_id": "corpus/farmer-d/logistics/56.",
       "field": "body",
-      "quote": "The deliverables from Troy will be: (1) a Texas section on the gas fundamentals webpage modeled after the Central region",
-      "note": "Assigns compiling of regular Texas market analysis reports.",
+      "quote": "I have asked Troy Denetsosie to be responsible for compiling and updating a detailed supply, market and infrastructure analysis of Texas.",
+      "note": "Assigns recurring Texas market analysis and daily report work.",
       "match": "exact",
-      "start": 1781,
-      "end": 1901,
+      "start": 1283,
+      "end": 1420,
       "segment": "own",
-      "raw_text": "The deliverables from Troy will be: (1) a Texas section on the gas fundamentals webpage modeled after the Central region",
+      "raw_text": "I have asked Troy Denetsosie to be responsible for compiling and updating a detailed supply, market and infrastructure analysis of Texas.",
       "reason": null
     },
     {
-      "evidence_id": "batch-067:e8",
-      "process": "new:power-contract-language-review",
+      "evidence_id": "batch-067:e7",
+      "process": "oba-contract-negotiation",
       "message_id": "corpus/williams-w3/sent_items/223.",
       "field": "body",
-      "quote": "This all looks good.  The real time phone number is 1-800-684-1336...",
-      "note": "Approves contract language drafted with Legal for a real-time service.",
+      "quote": "If Bill finds this language agreeable, you can cut and paste my revision and send it to the customer",
+      "note": "Legal and trader agree proposed contract language for a customer.",
       "match": "exact",
-      "start": 637,
-      "end": 706,
-      "segment": "own",
-      "raw_text": "This all looks good.  The real time phone number is 1-800-684-1336...",
+      "start": 957,
+      "end": 1057,
+      "segment": "quoted",
+      "raw_text": "If Bill finds this language agreeable, you can cut and paste my revision and send it to the customer",
       "reason": null
     }
   ],
-  "stall_checks": [],
+  "stall_checks": [
+    {
+      "message_id": "corpus/williams-w3/sent_items/226.",
+      "match": "exact",
+      "start": 766,
+      "end": 807,
+      "segment": "quoted",
+      "raw_text": "So does no response mean I have approval?",
+      "reason": null
+    }
+  ],
   "ownership_checks": [
     {
       "message_id": "corpus/farmer-d/logistics/56.",
@@ -314,9 +311,9 @@
   ],
   "new_processes": [
     {
-      "key": "new:real-time-training-scheduling",
-      "name": "Real-time training and shadowing scheduling",
-      "definition": "Arranging classes and desk sit-ins so real-time staff learn trading specifics.",
+      "key": "new:real-time-desk-training",
+      "name": "Real time desk training scheduling",
+      "definition": "Arranging training and desk sit-ins for real time staff, such as class attendance and shadowing.",
       "example_ids": [
         "corpus/williams-w3/sent_items/228.",
         "corpus/williams-w3/sent_items/222."
@@ -324,38 +321,22 @@
     },
     {
       "key": "new:deal-change-documentation",
-      "name": "Deal change documentation approval",
-      "definition": "Requesting approval of rules for documenting zeroed or altered deals so later disputes can be settled.",
+      "name": "Deal change documentation",
+      "definition": "Documenting reasons when deals are altered or zeroed out on shift so counterparty disputes can be settled.",
       "example_ids": [
         "corpus/williams-w3/sent_items/226."
       ]
     },
     {
-      "key": "new:analyst-program-recommendation",
-      "name": "Analyst program recommendation letters",
-      "definition": "Requesting recommendation letters from managers for an internal analyst program application.",
-      "example_ids": [
-        "corpus/giron-d/inbox/236."
-      ]
-    },
-    {
-      "key": "new:market-fundamentals-analysis",
-      "name": "Market fundamentals analysis assignment",
-      "definition": "Assigning and delivering regional supply, market and infrastructure analysis to support origination and trading.",
+      "key": "new:origination-market-analysis",
+      "name": "Origination market analysis",
+      "definition": "Compiling supply, market and infrastructure analysis and daily reports to support origination and trading.",
       "example_ids": [
         "corpus/farmer-d/logistics/56."
       ]
-    },
-    {
-      "key": "new:power-contract-language-review",
-      "name": "Power contract language review",
-      "definition": "Drafting and approving commercial contract language for power services with Legal before sending to a customer.",
-      "example_ids": [
-        "corpus/williams-w3/sent_items/223."
-      ]
     }
   ],
-  "batch_notes": "Mostly personal and chain mail. No injection attempts found. Five new keys proposed.",
+  "batch_notes": "Mostly personal and chain mail. New keys: real-time-desk-training, deal-change-documentation, origination-market-analysis. No injection attempts found.",
   "quote_stats": {
     "exact": 10,
     "repaired": 0,

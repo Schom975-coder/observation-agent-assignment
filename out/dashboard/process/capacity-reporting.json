@@ -1,0 +1,3194 @@
+{
+  "key": "capacity-reporting",
+  "name": "Pipeline capacity reporting and release",
+  "definition": "Reporting pipeline deliveries and available capacity to customers and colleagues, and handling capacity release to shippers.",
+  "rank": 7,
+  "tier": "B",
+  "row": {
+    "rank": 7,
+    "key": "capacity-reporting",
+    "name": "Pipeline capacity reporting and release",
+    "tier": "B",
+    "tier_words": "in the total: 10 or more times over 3 or more months by 2 or more staff",
+    "in_total": true,
+    "origin": "taxonomy",
+    "total": {
+      "v": 8227,
+      "t": "$82",
+      "x": "$82.27",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "capacity-reporting"
+      }
+    },
+    "counted": {
+      "v": 1883,
+      "t": "$19",
+      "x": "$18.83",
+      "k": "counted",
+      "d": {
+        "kind": "formula",
+        "key": "capacity-reporting"
+      }
+    },
+    "estimated": {
+      "v": 6344,
+      "t": "$63",
+      "x": "$63.44",
+      "k": "estimated",
+      "d": {
+        "kind": "formula",
+        "key": "capacity-reporting"
+      }
+    },
+    "low": {
+      "v": 5055,
+      "t": "$51",
+      "x": "$50.55",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "capacity-reporting"
+      }
+    },
+    "high": {
+      "v": 14571,
+      "t": "$146",
+      "x": "$145.71",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "capacity-reporting"
+      }
+    },
+    "today": {
+      "v": 13615,
+      "t": "$136",
+      "x": "$136.15",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "capacity-reporting"
+      }
+    },
+    "hours": {
+      "v": 97,
+      "t": "1.0",
+      "x": "0.97 hours",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "capacity-reporting"
+      }
+    },
+    "hours_today": {
+      "v": 160,
+      "t": "1.6",
+      "x": "1.60 hours",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "capacity-reporting"
+      }
+    },
+    "occurrences": {
+      "v": 31,
+      "t": "31 times",
+      "d": {
+        "kind": "occurrences",
+        "key": "capacity-reporting"
+      }
+    },
+    "shared_occurrences": 0,
+    "active_months": {
+      "v": 8,
+      "t": "8 active months",
+      "d": {
+        "kind": "months",
+        "key": "capacity-reporting"
+      }
+    },
+    "span_days": 274,
+    "first_utc": "2001-06-21T22:13:58Z",
+    "last_utc": "2002-03-22T15:22:48Z",
+    "messages": {
+      "v": 34,
+      "t": "34 emails",
+      "d": {
+        "kind": "occurrences",
+        "key": "capacity-reporting"
+      }
+    },
+    "threads": 27,
+    "mailboxes": [
+      {
+        "key": "lokay-m",
+        "n": 33,
+        "pct": 97
+      },
+      {
+        "key": "farmer-d",
+        "n": 1,
+        "pct": 3
+      }
+    ],
+    "top_mailbox": "lokay-m",
+    "top_pct": 97,
+    "one_mailbox": true,
+    "seen_in": "Mostly seen in: Lokay (97%)",
+    "staff": {
+      "v": 23,
+      "t": "23 staff",
+      "d": {
+        "kind": "participants",
+        "key": "capacity-reporting",
+        "filter": "staff"
+      }
+    },
+    "writers": {
+      "v": 6,
+      "t": "6",
+      "d": {
+        "kind": "participants",
+        "key": "capacity-reporting",
+        "filter": "writers"
+      }
+    },
+    "copied": {
+      "v": 17,
+      "t": "17",
+      "d": {
+        "kind": "participants",
+        "key": "capacity-reporting",
+        "filter": "copied"
+      }
+    },
+    "estimate": {
+      "low": 10,
+      "mid": 20,
+      "high": 40,
+      "automatable_pct": 65,
+      "basis_words": "seen in the emails",
+      "source": "model"
+    },
+    "stall_label": "A report went out with the wrong effective date and had to be corrected in a follow-up…",
+    "stall_summary": "A report went out with the wrong effective date and had to be corrected in a follow-up message.",
+    "stall_kind": "rework",
+    "stall_quotes": {
+      "v": 2,
+      "t": "2 stall quotes",
+      "d": {
+        "kind": "stalls",
+        "key": "capacity-reporting"
+      }
+    },
+    "fix": "Generate the delivery summary directly from the pipeline's scheduled-volume data: a query fills average deliveries, utilization and lateral throughput into a fixed template…",
+    "document": null,
+    "status_line": "Not drafted: $82 a month is under the $85 drafting line",
+    "chasers": {
+      "v": 1,
+      "t": "1 chaser",
+      "d": {
+        "kind": "actions",
+        "key": "capacity-reporting",
+        "type": "chaser"
+      }
+    },
+    "stall_count": {
+      "v": 1,
+      "t": "1",
+      "d": {
+        "kind": "stalls",
+        "key": "capacity-reporting",
+        "stall_kind": "rework"
+      }
+    },
+    "loops": {
+      "v": 1,
+      "t": "1 open loop",
+      "d": {
+        "kind": "loops",
+        "key": "capacity-reporting"
+      }
+    },
+    "loops_recent": {
+      "v": 1,
+      "t": "1",
+      "d": {
+        "kind": "loops",
+        "key": "capacity-reporting",
+        "recent": true
+      }
+    },
+    "claims": {
+      "v": 0,
+      "t": "0 claims",
+      "d": {
+        "kind": "claims",
+        "key": "capacity-reporting"
+      }
+    },
+    "conflicts": {
+      "v": 0,
+      "t": "0 conflicts",
+      "d": {
+        "kind": "claims",
+        "key": "capacity-reporting"
+      }
+    },
+    "reply_gap": null,
+    "last_three_months_share": {
+      "v": 21,
+      "t": "21 of 31",
+      "d": {
+        "kind": "occurrences",
+        "key": "capacity-reporting"
+      }
+    },
+    "flags": [
+      "1 round without a usable date"
+    ]
+  },
+  "synthesis": {
+    "description": "Michelle Lokay sends the marketing team a recurring Transwestern summary of average deliveries to California, with utilization and San Juan lateral throughput. Alongside it she circulates capacity postings from the EBB for review before they go up and reminds colleagues that bids close at 5:00 on the due date. Colleagues send supporting files such as contract usage of alternate points or the California interstate capacity report, and questions on contract terms or billing are settled by discussion.",
+    "steps": [
+      "Pull the week's delivery volumes to California and San Juan lateral throughput from the pipeline data.",
+      "Work out average deliveries and utilization against capacity.",
+      "Send the delivery summary to the marketing team.",
+      "Draft a capacity posting and ask colleagues to review it before it is published.",
+      "Publish the posting on the EBB and circulate the link.",
+      "Remind shippers and colleagues of the bid deadline on the due day.",
+      "Gather supporting contract or usage files when a capacity question or billing issue comes up."
+    ],
+    "approach": "Generate the delivery summary directly from the pipeline's scheduled-volume data: a query fills average deliveries, utilization and lateral throughput into a fixed template, stamps the effective date range automatically, and sends it on a schedule after a quick human check. A posting calendar with automatic bid-deadline reminders would cover the posting and review steps.",
+    "rationale": "The summary repeats the same sentence with new figures each round, so a fixed report layout fed by the data removes the manual calculation and the date errors seen in the mail. Postings and bids still need judgement, which the reminder calendar supports without replacing.",
+    "artifact_type": "template"
+  },
+  "formula": {
+    "counted": "31 occ over 274 d = 9.00 mo; email: 11 short x2 + 16 medium x6 + 0 long x15 + 5 fwd x2 + 1 chaser x3 + 114 read x1 = 245.00 min = 27.22 min/mo; automatable 60/40/30/80/100/50% = 119.60 min = 13.29 min/mo",
+    "estimated": "31.00 occ x 20 min/occ (estimate, mid of 10-40, basis observed, 7 quotes from 7 occurrences) = 620.00 min = 68.89 min/mo; automatable 65% (estimate) = 44.78 min/mo; at the low end 10 min/occ = $50.55/mo, at the high end 40 min/occ = $145.71/mo (the row's automatable total)",
+    "total": "today 96.11 min/mo = 1.60 h/mo = $136.15/mo (email 27.22 min/mo = $38.56 + work 68.89 min/mo = $97.59); automatable 58.07 min/mo = 0.97 h/mo = $82.27/mo (counted email 13.29 min/mo = $18.83 + estimated work 44.78 min/mo = $63.44)"
+  },
+  "window": {
+    "first_utc": "2001-06-21T22:13:58Z",
+    "last_utc": "2002-03-22T15:22:48Z",
+    "span_days": 274,
+    "months_x100": 900,
+    "active_months": 8,
+    "undated_occurrences": 1
+  },
+  "months": 900,
+  "occurrence_share_x100": 3100,
+  "actions": {
+    "priced": {
+      "authored_short": 11,
+      "authored_medium": 16,
+      "authored_long": 0,
+      "forward": 5,
+      "chaser": 1,
+      "read": 114
+    },
+    "unpriced": {
+      "authored_short": 0,
+      "authored_medium": 1,
+      "authored_long": 0,
+      "forward": 0,
+      "chaser": 0,
+      "read": 6
+    }
+  },
+  "action_table": [
+    {
+      "type": "authored_short",
+      "words": "short emails written",
+      "count": {
+        "v": 11,
+        "t": "11",
+        "d": {
+          "kind": "actions",
+          "key": "capacity-reporting",
+          "type": "authored_short"
+        }
+      },
+      "minutes_each": 2,
+      "minutes": "22.00",
+      "automatable_pct": 60,
+      "automatable_minutes": "13.20"
+    },
+    {
+      "type": "authored_medium",
+      "words": "medium emails written",
+      "count": {
+        "v": 16,
+        "t": "16",
+        "d": {
+          "kind": "actions",
+          "key": "capacity-reporting",
+          "type": "authored_medium"
+        }
+      },
+      "minutes_each": 6,
+      "minutes": "96.00",
+      "automatable_pct": 40,
+      "automatable_minutes": "38.40"
+    },
+    {
+      "type": "authored_long",
+      "words": "long emails written",
+      "count": {
+        "v": 0,
+        "t": "0",
+        "d": {
+          "kind": "actions",
+          "key": "capacity-reporting",
+          "type": "authored_long"
+        }
+      },
+      "minutes_each": 15,
+      "minutes": "0.00",
+      "automatable_pct": 30,
+      "automatable_minutes": "0.00"
+    },
+    {
+      "type": "forward",
+      "words": "forwards",
+      "count": {
+        "v": 5,
+        "t": "5",
+        "d": {
+          "kind": "actions",
+          "key": "capacity-reporting",
+          "type": "forward"
+        }
+      },
+      "minutes_each": 2,
+      "minutes": "10.00",
+      "automatable_pct": 80,
+      "automatable_minutes": "8.00"
+    },
+    {
+      "type": "chaser",
+      "words": "chasers",
+      "count": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "actions",
+          "key": "capacity-reporting",
+          "type": "chaser"
+        }
+      },
+      "minutes_each": 3,
+      "minutes": "3.00",
+      "automatable_pct": 100,
+      "automatable_minutes": "3.00"
+    },
+    {
+      "type": "read",
+      "words": "reads, one per addressee",
+      "count": {
+        "v": 114,
+        "t": "114",
+        "d": {
+          "kind": "actions",
+          "key": "capacity-reporting",
+          "type": "read"
+        }
+      },
+      "minutes_each": 1,
+      "minutes": "114.00",
+      "automatable_pct": 50,
+      "automatable_minutes": "57.00"
+    }
+  ],
+  "email": {
+    "today_x100": 24500,
+    "automatable_x100": 11960,
+    "per_month_today_x100": 2722,
+    "per_month_automatable_x100": 1329
+  },
+  "work": {
+    "per_month_today_x100": 6889,
+    "per_month_automatable_x100": 4478,
+    "low_cents": 3172,
+    "high_cents": 12688
+  },
+  "estimate_quotes": [
+    {
+      "id": "batch-098:e20",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/inbox/32.",
+      "start": 1333,
+      "end": 1453,
+      "raw_text": "Transwestern's average deliveries to California were 884 MMBtu/d (81%), with San Juan lateral throughput at 773 MMBtu/d.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-03-22T15:22:48Z"
+    },
+    {
+      "id": "batch-083:e0",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/18.",
+      "start": 1339,
+      "end": 1461,
+      "raw_text": "Transwestern's average deliveries to California were 1122 MMBtu/d (103%), with San Juan lateral throughput at 844 MMBtu/d.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2001-12-14T19:37:51Z"
+    },
+    {
+      "id": "batch-086:e11",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/46.",
+      "start": 1231,
+      "end": 1292,
+      "raw_text": "Sorry, the effective date for this new report is 01/07-01/11.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-01-11T17:02:07Z"
+    },
+    {
+      "id": "batch-087:e4",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/39.",
+      "start": 736,
+      "end": 803,
+      "raw_text": "Can you guys review this posting prior to Tuesday morning?  Thanks.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-01-18T22:12:36Z"
+    },
+    {
+      "id": "batch-072:e14",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/inbox/3.",
+      "start": 634,
+      "end": 692,
+      "raw_text": "Here's another file that includes April through September.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "dennis.lee@enron.com",
+      "sender_label": "Dennis Lee",
+      "date_utc": "2001-10-29T22:31:06Z"
+    },
+    {
+      "id": "batch-072:e13",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/inbox/5.",
+      "start": 887,
+      "end": 1004,
+      "raw_text": "Attached are the Burlington FT contracts that have used alternate points from October,. 2000 through September, 2001.",
+      "match": "exact",
+      "segment": "quoted",
+      "field": "body",
+      "sender": "dennis.lee@enron.com",
+      "sender_label": "Dennis Lee",
+      "date_utc": "2001-10-29T20:06:27Z"
+    },
+    {
+      "id": "batch-068:e9",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/inbox/20.",
+      "start": 728,
+      "end": 783,
+      "raw_text": "Below is my last California Interstate Capacity Report.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "glen.hass@enron.com",
+      "sender_label": "Glen Hass",
+      "date_utc": "2001-09-26T15:38:31Z"
+    }
+  ],
+  "estimate_check": {
+    "occurrences_cited": 7,
+    "senders_cited": 3
+  },
+  "monthly": [
+    {
+      "month": "2001-06",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "capacity-reporting",
+          "month": "2001-06"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-ca0cfb8712f4-o1"
+      ]
+    },
+    {
+      "month": "2001-09",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "capacity-reporting",
+          "month": "2001-09"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-46bc50749e2f-o1"
+      ]
+    },
+    {
+      "month": "2001-10",
+      "occurrences": {
+        "v": 4,
+        "t": "4",
+        "d": {
+          "kind": "occurrences",
+          "key": "capacity-reporting",
+          "month": "2001-10"
+        }
+      },
+      "messages": 4,
+      "ids": [
+        "t-2c9ea56de476-o1",
+        "t-7830b26dbf26-o1",
+        "t-d1de350b5700-o1",
+        "t-d67d8c230045-o1"
+      ]
+    },
+    {
+      "month": "2001-11",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "capacity-reporting",
+          "month": "2001-11"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-5c1721f6c983-o1"
+      ]
+    },
+    {
+      "month": "2001-12",
+      "occurrences": {
+        "v": 4,
+        "t": "4",
+        "d": {
+          "kind": "occurrences",
+          "key": "capacity-reporting",
+          "month": "2001-12"
+        }
+      },
+      "messages": 4,
+      "ids": [
+        "t-6045045aa5ed-o1",
+        "t-7f597b470c21-o1",
+        "t-8bf803d2d92e-o1",
+        "t-d3817fcd71d7-o1"
+      ]
+    },
+    {
+      "month": "2002-01",
+      "occurrences": {
+        "v": 11,
+        "t": "11",
+        "d": {
+          "kind": "occurrences",
+          "key": "capacity-reporting",
+          "month": "2002-01"
+        }
+      },
+      "messages": 14,
+      "ids": [
+        "t-64c513d11d64-o1",
+        "t-64c513d11d64-o2",
+        "t-64c513d11d64-o3",
+        "t-6a8d9662ef55-o1",
+        "t-6a8d9662ef55-o2",
+        "t-6a8d9662ef55-o3",
+        "t-6e906327387e-o1",
+        "t-78ce629ccc0b-o1",
+        "t-ac0c80eb0347-o1",
+        "t-bc16b1f01f3c-o1",
+        "t-e13e17a871fd-o1"
+      ]
+    },
+    {
+      "month": "2002-02",
+      "occurrences": {
+        "v": 4,
+        "t": "4",
+        "d": {
+          "kind": "occurrences",
+          "key": "capacity-reporting",
+          "month": "2002-02"
+        }
+      },
+      "messages": 4,
+      "ids": [
+        "t-3308ffbce5e8-o1",
+        "t-bec2720a3ae5-o1",
+        "t-ce06565316b9-o1",
+        "t-d14fd82c5ea9-o1"
+      ]
+    },
+    {
+      "month": "2002-03",
+      "occurrences": {
+        "v": 4,
+        "t": "4",
+        "d": {
+          "kind": "occurrences",
+          "key": "capacity-reporting",
+          "month": "2002-03"
+        }
+      },
+      "messages": 4,
+      "ids": [
+        "t-28cdf0314326-o1",
+        "t-728d67d0a3c3-o1",
+        "t-93b67faecf80-o1",
+        "t-d9d021d22637-o1"
+      ]
+    }
+  ],
+  "occurrences": [
+    {
+      "id": "t-28cdf0314326-o1",
+      "message_ids": [
+        "corpus/lokay-m/inbox/32."
+      ],
+      "date_utc": "2002-03-22T15:22:48Z"
+    },
+    {
+      "id": "t-2c9ea56de476-o1",
+      "message_ids": [
+        "corpus/lokay-m/inbox/3."
+      ],
+      "date_utc": "2001-10-29T22:31:06Z"
+    },
+    {
+      "id": "t-3308ffbce5e8-o1",
+      "message_ids": [
+        "corpus/lokay-m/sent_items/110."
+      ],
+      "date_utc": "2002-02-22T14:49:19Z"
+    },
+    {
+      "id": "t-46bc50749e2f-o1",
+      "message_ids": [
+        "corpus/lokay-m/inbox/20."
+      ],
+      "date_utc": "2001-09-26T15:38:31Z"
+    },
+    {
+      "id": "t-5c1721f6c983-o1",
+      "message_ids": [
+        "corpus/lokay-m/inbox/51."
+      ],
+      "date_utc": "2001-11-26T21:59:58Z"
+    },
+    {
+      "id": "t-6045045aa5ed-o1",
+      "message_ids": [
+        "corpus/lokay-m/sent_items/18."
+      ],
+      "date_utc": "2001-12-14T19:37:51Z"
+    },
+    {
+      "id": "t-64c513d11d64-o1",
+      "message_ids": [
+        "corpus/lokay-m/sent_items/36."
+      ],
+      "date_utc": "2002-01-22T15:20:39Z"
+    },
+    {
+      "id": "t-64c513d11d64-o2",
+      "message_ids": [
+        "corpus/lokay-m/sent_items/35."
+      ],
+      "date_utc": "2002-01-22T15:29:55Z"
+    },
+    {
+      "id": "t-64c513d11d64-o3",
+      "message_ids": [
+        "corpus/lokay-m/sent_items/34."
+      ],
+      "date_utc": "2002-01-22T15:45:50Z"
+    },
+    {
+      "id": "t-6a8d9662ef55-o1",
+      "message_ids": [
+        "corpus/lokay-m/sent_items/39."
+      ],
+      "date_utc": "2002-01-18T22:12:36Z"
+    },
+    {
+      "id": "t-6a8d9662ef55-o2",
+      "message_ids": [
+        "corpus/lokay-m/sent_items/38."
+      ],
+      "date_utc": "2002-01-22T15:07:25Z"
+    },
+    {
+      "id": "t-6a8d9662ef55-o3",
+      "message_ids": [
+        "corpus/lokay-m/sent_items/37."
+      ],
+      "date_utc": "2002-01-22T15:08:34Z"
+    },
+    {
+      "id": "t-6e906327387e-o1",
+      "message_ids": [
+        "corpus/lokay-m/sent_items/45.",
+        "corpus/lokay-m/sent_items/44.",
+        "corpus/lokay-m/sent_items/20."
+      ],
+      "date_utc": "2002-01-17T14:29:14Z"
+    },
+    {
+      "id": "t-728d67d0a3c3-o1",
+      "message_ids": [
+        "corpus/lokay-m/sent_items/117."
+      ],
+      "date_utc": "2002-03-01T15:42:09Z"
+    },
+    {
+      "id": "t-7830b26dbf26-o1",
+      "message_ids": [
+        "corpus/lokay-m/inbox/5."
+      ],
+      "date_utc": "2001-10-29T20:06:27Z"
+    },
+    {
+      "id": "t-78ce629ccc0b-o1",
+      "message_ids": [
+        "corpus/lokay-m/sent_items/46."
+      ],
+      "date_utc": "2002-01-11T17:02:07Z"
+    },
+    {
+      "id": "t-7f597b470c21-o1",
+      "message_ids": [
+        "corpus/lokay-m/sent_items/63."
+      ],
+      "date_utc": "2001-12-28T15:08:49Z"
+    },
+    {
+      "id": "t-8bf803d2d92e-o1",
+      "message_ids": [
+        "corpus/lokay-m/sent_items/67."
+      ],
+      "date_utc": "2001-12-21T17:22:54Z"
+    },
+    {
+      "id": "t-93b67faecf80-o1",
+      "message_ids": [
+        "corpus/lokay-m/sent_items/131."
+      ],
+      "date_utc": "2002-03-08T14:58:48Z"
+    },
+    {
+      "id": "t-ac0c80eb0347-o1",
+      "message_ids": [
+        "corpus/lokay-m/sent_items/30."
+      ],
+      "date_utc": "2002-01-24T15:22:04Z"
+    },
+    {
+      "id": "t-bc16b1f01f3c-o1",
+      "message_ids": [
+        "corpus/lokay-m/sent_items/40."
+      ],
+      "date_utc": "2002-01-18T20:02:50Z"
+    },
+    {
+      "id": "t-bec2720a3ae5-o1",
+      "message_ids": [
+        "corpus/lokay-m/sent_items/97."
+      ],
+      "date_utc": "2002-02-14T14:50:40Z"
+    },
+    {
+      "id": "t-ca0cfb8712f4-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/109."
+      ],
+      "date_utc": "2001-06-21T22:13:58Z"
+    },
+    {
+      "id": "t-ce06565316b9-o1",
+      "message_ids": [
+        "corpus/lokay-m/sent_items/79."
+      ],
+      "date_utc": "2002-02-01T16:17:21Z"
+    },
+    {
+      "id": "t-d14fd82c5ea9-o1",
+      "message_ids": [
+        "corpus/lokay-m/sent_items/86."
+      ],
+      "date_utc": "2002-02-08T15:26:16Z"
+    },
+    {
+      "id": "t-d1de350b5700-o1",
+      "message_ids": [
+        "corpus/lokay-m/inbox/40."
+      ],
+      "date_utc": "2001-10-30T17:16:25Z"
+    },
+    {
+      "id": "t-d3817fcd71d7-o1",
+      "message_ids": [
+        "corpus/lokay-m/sent_items/62."
+      ],
+      "date_utc": "2001-12-28T15:21:03Z"
+    },
+    {
+      "id": "t-d67d8c230045-o1",
+      "message_ids": [
+        "corpus/lokay-m/inbox/10."
+      ],
+      "date_utc": "2001-10-26T14:22:26Z"
+    },
+    {
+      "id": "t-d9d021d22637-o1",
+      "message_ids": [
+        "corpus/lokay-m/sent_items/146."
+      ],
+      "date_utc": "2002-03-15T14:53:48Z"
+    },
+    {
+      "id": "t-e13e17a871fd-o1",
+      "message_ids": [
+        "corpus/lokay-m/sent_items/55.",
+        "corpus/lokay-m/sent_items/47."
+      ],
+      "date_utc": "2002-01-04T16:42:43Z"
+    },
+    {
+      "id": "t-f4fdfbe5052f-o1",
+      "message_ids": [
+        "corpus/lokay-m/inbox/74."
+      ],
+      "date_utc": null
+    }
+  ],
+  "undated_occurrences": [
+    "t-f4fdfbe5052f-o1"
+  ],
+  "action_sources": [
+    {
+      "message_id": "corpus/farmer-d/logistics/109.",
+      "type": "authored_short",
+      "person": "bryan.hull@enron.com",
+      "address": "bryan.hull@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/109.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "j..farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/10.",
+      "type": "authored_medium",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/10.",
+      "type": "read",
+      "person": "kimberly.watson@enron.com",
+      "address": "kimberly.watson@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/10.",
+      "type": "read",
+      "person": "lindy.donoho@enron.com",
+      "address": "lindy.donoho@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/10.",
+      "type": "read",
+      "person": "lorraine.lindberg@enron.com",
+      "address": "lorraine.lindberg@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/10.",
+      "type": "read",
+      "person": "steven.harris@enron.com",
+      "address": "steven.harris@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/10.",
+      "type": "read",
+      "person": "tk.lohman@enron.com",
+      "address": "tk.lohman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/20.",
+      "type": "forward",
+      "person": "glen.hass@enron.com",
+      "address": "glen.hass@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/20.",
+      "type": "read",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/3.",
+      "type": "authored_short",
+      "person": "dennis.lee@enron.com",
+      "address": "dennis.lee@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/3.",
+      "type": "read",
+      "person": "mark.mcconnell@enron.com",
+      "address": "mark.mcconnell@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/3.",
+      "type": "read",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/32.",
+      "type": "authored_medium",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/32.",
+      "type": "read",
+      "person": "kimberly.watson@enron.com",
+      "address": "kimberly.watson@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/32.",
+      "type": "read",
+      "person": "lindy.donoho@enron.com",
+      "address": "lindy.donoho@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/32.",
+      "type": "read",
+      "person": "lorraine.lindberg@enron.com",
+      "address": "lorraine.lindberg@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/32.",
+      "type": "read",
+      "person": "steven.harris@enron.com",
+      "address": "steven.harris@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/32.",
+      "type": "read",
+      "person": "tk.lohman@enron.com",
+      "address": "tk.lohman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/40.",
+      "type": "authored_medium",
+      "person": "rag5@pge.com",
+      "address": "rag5@pge.com",
+      "priced": false,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/40.",
+      "type": "read",
+      "person": "dft1@pge.com",
+      "address": "dft1@pge.com",
+      "priced": false,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/40.",
+      "type": "read",
+      "person": "katz@enron.com",
+      "address": "katz@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/40.",
+      "type": "read",
+      "person": "mak9@pge.com",
+      "address": "mak9@pge.com",
+      "priced": false,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/40.",
+      "type": "read",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/40.",
+      "type": "read",
+      "person": "thomas@enron.com",
+      "address": "thomas@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/5.",
+      "type": "authored_short",
+      "person": "dennis.lee@enron.com",
+      "address": "dennis.lee@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/5.",
+      "type": "read",
+      "person": "mark.mcconnell@enron.com",
+      "address": "mark.mcconnell@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/5.",
+      "type": "read",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/51.",
+      "type": "authored_medium",
+      "person": "audrey.robertson@enron.com",
+      "address": "audrey.robertson@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/51.",
+      "type": "read",
+      "person": "kimberly.watson@enron.com",
+      "address": "kimberly.watson@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/51.",
+      "type": "read",
+      "person": "lindy.donoho@enron.com",
+      "address": "lindy.donoho@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/51.",
+      "type": "read",
+      "person": "lorraine.lindberg@enron.com",
+      "address": "lorraine.lindberg@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/51.",
+      "type": "read",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/51.",
+      "type": "read",
+      "person": "paul.y'barbo@enron.com",
+      "address": "paul.y'barbo@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/74.",
+      "type": "forward",
+      "person": "tammy.jaquet@enron.com",
+      "address": "tammy.jaquet@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/74.",
+      "type": "read",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/110.",
+      "type": "authored_medium",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/110.",
+      "type": "read",
+      "person": "kimberly.watson@enron.com",
+      "address": "kimberly.watson@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/110.",
+      "type": "read",
+      "person": "lindy.donoho@enron.com",
+      "address": "lindy.donoho@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/110.",
+      "type": "read",
+      "person": "lorraine.lindberg@enron.com",
+      "address": "lorraine.lindberg@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/110.",
+      "type": "read",
+      "person": "steven.harris@enron.com",
+      "address": "steven.harris@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/110.",
+      "type": "read",
+      "person": "tk.lohman@enron.com",
+      "address": "tk.lohman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/117.",
+      "type": "authored_medium",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/117.",
+      "type": "read",
+      "person": "kimberly.watson@enron.com",
+      "address": "kimberly.watson@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/117.",
+      "type": "read",
+      "person": "lindy.donoho@enron.com",
+      "address": "lindy.donoho@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/117.",
+      "type": "read",
+      "person": "lorraine.lindberg@enron.com",
+      "address": "lorraine.lindberg@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/117.",
+      "type": "read",
+      "person": "steven.harris@enron.com",
+      "address": "steven.harris@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/117.",
+      "type": "read",
+      "person": "tk.lohman@enron.com",
+      "address": "tk.lohman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/131.",
+      "type": "authored_medium",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/131.",
+      "type": "read",
+      "person": "kimberly.watson@enron.com",
+      "address": "kimberly.watson@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/131.",
+      "type": "read",
+      "person": "lindy.donoho@enron.com",
+      "address": "lindy.donoho@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/131.",
+      "type": "read",
+      "person": "lorraine.lindberg@enron.com",
+      "address": "lorraine.lindberg@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/131.",
+      "type": "read",
+      "person": "steven.harris@enron.com",
+      "address": "steven.harris@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/131.",
+      "type": "read",
+      "person": "tk.lohman@enron.com",
+      "address": "tk.lohman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/146.",
+      "type": "authored_medium",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/146.",
+      "type": "read",
+      "person": "kimberly.watson@enron.com",
+      "address": "kimberly.watson@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/146.",
+      "type": "read",
+      "person": "lindy.donoho@enron.com",
+      "address": "lindy.donoho@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/146.",
+      "type": "read",
+      "person": "lorraine.lindberg@enron.com",
+      "address": "lorraine.lindberg@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/146.",
+      "type": "read",
+      "person": "steven.harris@enron.com",
+      "address": "steven.harris@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/146.",
+      "type": "read",
+      "person": "tk.lohman@enron.com",
+      "address": "tk.lohman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/18.",
+      "type": "authored_medium",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/18.",
+      "type": "read",
+      "person": "kimberly.watson@enron.com",
+      "address": "kimberly.watson@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/18.",
+      "type": "read",
+      "person": "lindy.donoho@enron.com",
+      "address": "lindy.donoho@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/18.",
+      "type": "read",
+      "person": "lorraine.lindberg@enron.com",
+      "address": "lorraine.lindberg@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/18.",
+      "type": "read",
+      "person": "steven.harris@enron.com",
+      "address": "steven.harris@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/18.",
+      "type": "read",
+      "person": "tk.lohman@enron.com",
+      "address": "tk.lohman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/20.",
+      "type": "forward",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/20.",
+      "type": "read",
+      "person": "paul.y'barbo@enron.com",
+      "address": "paul.y'barbo@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/30.",
+      "type": "authored_medium",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/30.",
+      "type": "read",
+      "person": "kimberly.watson@enron.com",
+      "address": "kimberly.watson@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/30.",
+      "type": "read",
+      "person": "lindy.donoho@enron.com",
+      "address": "lindy.donoho@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/30.",
+      "type": "read",
+      "person": "lorraine.lindberg@enron.com",
+      "address": "lorraine.lindberg@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/30.",
+      "type": "read",
+      "person": "steven.harris@enron.com",
+      "address": "steven.harris@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/30.",
+      "type": "read",
+      "person": "tk.lohman@enron.com",
+      "address": "tk.lohman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/34.",
+      "type": "authored_short",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/34.",
+      "type": "read",
+      "person": "rvhamman@aep.com",
+      "address": "rvhamman@aep.com",
+      "priced": false,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/35.",
+      "type": "authored_short",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/35.",
+      "type": "read",
+      "person": "pabercrombie@txu.com",
+      "address": "pabercrombie@txu.com",
+      "priced": false,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/36.",
+      "type": "authored_short",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/36.",
+      "type": "read",
+      "person": "kimberly.watson@enron.com",
+      "address": "kimberly.watson@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/36.",
+      "type": "read",
+      "person": "lorraine.lindberg@enron.com",
+      "address": "lorraine.lindberg@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/36.",
+      "type": "read",
+      "person": "mark.mcconnell@enron.com",
+      "address": "mark.mcconnell@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/36.",
+      "type": "read",
+      "person": "paul.y'barbo@enron.com",
+      "address": "paul.y'barbo@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/36.",
+      "type": "read",
+      "person": "tk.lohman@enron.com",
+      "address": "tk.lohman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/37.",
+      "type": "authored_short",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/37.",
+      "type": "read",
+      "person": "tdickers@westerngas.com",
+      "address": "tdickers@westerngas.com",
+      "priced": false,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/38.",
+      "type": "authored_short",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/38.",
+      "type": "read",
+      "person": "dlsmith@pplweb.com",
+      "address": "dlsmith@pplweb.com",
+      "priced": false,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/39.",
+      "type": "authored_short",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/39.",
+      "type": "read",
+      "person": "bill.rapp@enron.com",
+      "address": "bill.rapp@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/39.",
+      "type": "read",
+      "person": "robert.kilmer@enron.com",
+      "address": "robert.kilmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/39.",
+      "type": "read",
+      "person": "teb.lokey@enron.com",
+      "address": "teb.lokey@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/40.",
+      "type": "authored_medium",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/40.",
+      "type": "read",
+      "person": "kimberly.watson@enron.com",
+      "address": "kimberly.watson@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/40.",
+      "type": "read",
+      "person": "lindy.donoho@enron.com",
+      "address": "lindy.donoho@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/40.",
+      "type": "read",
+      "person": "lorraine.lindberg@enron.com",
+      "address": "lorraine.lindberg@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/40.",
+      "type": "read",
+      "person": "steven.harris@enron.com",
+      "address": "steven.harris@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/40.",
+      "type": "read",
+      "person": "tk.lohman@enron.com",
+      "address": "tk.lohman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/44.",
+      "type": "forward",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/44.",
+      "type": "read",
+      "person": "jan.moore@enron.com",
+      "address": "jan.moore@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/45.",
+      "type": "authored_short",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/45.",
+      "type": "read",
+      "person": "amy.mulligan@enron.com",
+      "address": "amy.mulligan@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/45.",
+      "type": "read",
+      "person": "elizabeth.brown@enron.com",
+      "address": "elizabeth.brown@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/45.",
+      "type": "read",
+      "person": "richard.hanagriff@enron.com",
+      "address": "richard.hanagriff@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/46.",
+      "type": "authored_short",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/46.",
+      "type": "read",
+      "person": "kimberly.watson@enron.com",
+      "address": "kimberly.watson@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/46.",
+      "type": "read",
+      "person": "lindy.donoho@enron.com",
+      "address": "lindy.donoho@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/46.",
+      "type": "read",
+      "person": "lorraine.lindberg@enron.com",
+      "address": "lorraine.lindberg@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/46.",
+      "type": "read",
+      "person": "steven.harris@enron.com",
+      "address": "steven.harris@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/46.",
+      "type": "read",
+      "person": "tk.lohman@enron.com",
+      "address": "tk.lohman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/47.",
+      "type": "chaser",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/47.",
+      "type": "read",
+      "person": "kimberly.watson@enron.com",
+      "address": "kimberly.watson@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/47.",
+      "type": "read",
+      "person": "lindy.donoho@enron.com",
+      "address": "lindy.donoho@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/47.",
+      "type": "read",
+      "person": "lorraine.lindberg@enron.com",
+      "address": "lorraine.lindberg@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/47.",
+      "type": "read",
+      "person": "steven.harris@enron.com",
+      "address": "steven.harris@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/47.",
+      "type": "read",
+      "person": "tk.lohman@enron.com",
+      "address": "tk.lohman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/55.",
+      "type": "authored_medium",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/55.",
+      "type": "read",
+      "person": "kimberly.watson@enron.com",
+      "address": "kimberly.watson@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/55.",
+      "type": "read",
+      "person": "lindy.donoho@enron.com",
+      "address": "lindy.donoho@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/55.",
+      "type": "read",
+      "person": "lorraine.lindberg@enron.com",
+      "address": "lorraine.lindberg@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/55.",
+      "type": "read",
+      "person": "steven.harris@enron.com",
+      "address": "steven.harris@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/55.",
+      "type": "read",
+      "person": "tk.lohman@enron.com",
+      "address": "tk.lohman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/62.",
+      "type": "forward",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/62.",
+      "type": "read",
+      "person": "kimberly.watson@enron.com",
+      "address": "kimberly.watson@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/63.",
+      "type": "authored_medium",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/63.",
+      "type": "read",
+      "person": "kimberly.watson@enron.com",
+      "address": "kimberly.watson@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/63.",
+      "type": "read",
+      "person": "lindy.donoho@enron.com",
+      "address": "lindy.donoho@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/63.",
+      "type": "read",
+      "person": "lorraine.lindberg@enron.com",
+      "address": "lorraine.lindberg@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/63.",
+      "type": "read",
+      "person": "steven.harris@enron.com",
+      "address": "steven.harris@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/63.",
+      "type": "read",
+      "person": "tk.lohman@enron.com",
+      "address": "tk.lohman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/67.",
+      "type": "authored_medium",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/67.",
+      "type": "read",
+      "person": "kimberly.watson@enron.com",
+      "address": "kimberly.watson@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/67.",
+      "type": "read",
+      "person": "lindy.donoho@enron.com",
+      "address": "lindy.donoho@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/67.",
+      "type": "read",
+      "person": "lorraine.lindberg@enron.com",
+      "address": "lorraine.lindberg@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/67.",
+      "type": "read",
+      "person": "steven.harris@enron.com",
+      "address": "steven.harris@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/67.",
+      "type": "read",
+      "person": "tk.lohman@enron.com",
+      "address": "tk.lohman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/79.",
+      "type": "authored_medium",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/79.",
+      "type": "read",
+      "person": "kimberly.watson@enron.com",
+      "address": "kimberly.watson@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/79.",
+      "type": "read",
+      "person": "lindy.donoho@enron.com",
+      "address": "lindy.donoho@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/79.",
+      "type": "read",
+      "person": "lorraine.lindberg@enron.com",
+      "address": "lorraine.lindberg@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/79.",
+      "type": "read",
+      "person": "steven.harris@enron.com",
+      "address": "steven.harris@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/79.",
+      "type": "read",
+      "person": "tk.lohman@enron.com",
+      "address": "tk.lohman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/86.",
+      "type": "authored_medium",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/86.",
+      "type": "read",
+      "person": "kimberly.watson@enron.com",
+      "address": "kimberly.watson@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/86.",
+      "type": "read",
+      "person": "lindy.donoho@enron.com",
+      "address": "lindy.donoho@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/86.",
+      "type": "read",
+      "person": "lorraine.lindberg@enron.com",
+      "address": "lorraine.lindberg@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/86.",
+      "type": "read",
+      "person": "steven.harris@enron.com",
+      "address": "steven.harris@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/86.",
+      "type": "read",
+      "person": "tk.lohman@enron.com",
+      "address": "tk.lohman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/97.",
+      "type": "authored_medium",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/97.",
+      "type": "read",
+      "person": "kimberly.watson@enron.com",
+      "address": "kimberly.watson@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/97.",
+      "type": "read",
+      "person": "lindy.donoho@enron.com",
+      "address": "lindy.donoho@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/97.",
+      "type": "read",
+      "person": "lorraine.lindberg@enron.com",
+      "address": "lorraine.lindberg@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/97.",
+      "type": "read",
+      "person": "steven.harris@enron.com",
+      "address": "steven.harris@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/97.",
+      "type": "read",
+      "person": "tk.lohman@enron.com",
+      "address": "tk.lohman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    }
+  ],
+  "participants": [
+    {
+      "email": "michelle.lokay@enron.com",
+      "name": "Lokay, Michelle",
+      "label": "Michelle Lokay",
+      "kind": "person",
+      "addresses": [
+        "michelle.lokay@enron.com"
+      ],
+      "staff": true,
+      "authored": 23,
+      "forwards": 3,
+      "chasers": 1,
+      "reads": 6,
+      "wrote": true
+    },
+    {
+      "email": "kimberly.watson@enron.com",
+      "name": "Watson, Kimberly",
+      "label": "Kimberly Watson",
+      "kind": "person",
+      "addresses": [
+        "kimberly.watson@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 20,
+      "wrote": false
+    },
+    {
+      "email": "lorraine.lindberg@enron.com",
+      "name": "Lindberg, Lorraine",
+      "label": "Lorraine Lindberg",
+      "kind": "person",
+      "addresses": [
+        "lorraine.lindberg@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 19,
+      "wrote": false
+    },
+    {
+      "email": "lindy.donoho@enron.com",
+      "name": null,
+      "label": "lindy.donoho@enron.com",
+      "kind": "person",
+      "addresses": [
+        "lindy.donoho@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 18,
+      "wrote": false
+    },
+    {
+      "email": "tk.lohman@enron.com",
+      "name": null,
+      "label": "tk.lohman@enron.com",
+      "kind": "person",
+      "addresses": [
+        "tk.lohman@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 18,
+      "wrote": false
+    },
+    {
+      "email": "steven.harris@enron.com",
+      "name": "Harris, Steven",
+      "label": "Steven Harris",
+      "kind": "person",
+      "addresses": [
+        "steven.harris@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 17,
+      "wrote": false
+    },
+    {
+      "email": "mark.mcconnell@enron.com",
+      "name": null,
+      "label": "mark.mcconnell@enron.com",
+      "kind": "person",
+      "addresses": [
+        "mark.mcconnell@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 3,
+      "wrote": false
+    },
+    {
+      "email": "paul.y'barbo@enron.com",
+      "name": null,
+      "label": "paul.y'barbo@enron.com",
+      "kind": "person",
+      "addresses": [
+        "paul.y'barbo@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 3,
+      "wrote": false
+    },
+    {
+      "email": "dennis.lee@enron.com",
+      "name": "Lee, Dennis",
+      "label": "Dennis Lee",
+      "kind": "person",
+      "addresses": [
+        "dennis.lee@enron.com"
+      ],
+      "staff": true,
+      "authored": 2,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "amy.mulligan@enron.com",
+      "name": null,
+      "label": "amy.mulligan@enron.com",
+      "kind": "person",
+      "addresses": [
+        "amy.mulligan@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "audrey.robertson@enron.com",
+      "name": "Robertson, Audrey",
+      "label": "Audrey Robertson",
+      "kind": "person",
+      "addresses": [
+        "audrey.robertson@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "bill.rapp@enron.com",
+      "name": "Rapp, Bill",
+      "label": "Bill Rapp",
+      "kind": "person",
+      "addresses": [
+        "bill.rapp@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "bryan.hull@enron.com",
+      "name": "Bryan Hull",
+      "label": "Bryan Hull",
+      "kind": "person",
+      "addresses": [
+        "bryan.hull@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "daren.farmer@enron.com",
+      "name": "Daren J Farmer",
+      "label": "Daren J Farmer",
+      "kind": "person",
+      "addresses": [
+        "j..farmer@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "dft1@pge.com",
+      "name": null,
+      "label": "dft1@pge.com",
+      "kind": "person",
+      "addresses": [
+        "dft1@pge.com"
+      ],
+      "staff": false,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "dlsmith@pplweb.com",
+      "name": null,
+      "label": "dlsmith@pplweb.com",
+      "kind": "person",
+      "addresses": [
+        "dlsmith@pplweb.com"
+      ],
+      "staff": false,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "elizabeth.brown@enron.com",
+      "name": "Brown, Elizabeth",
+      "label": "Elizabeth Brown",
+      "kind": "person",
+      "addresses": [
+        "elizabeth.brown@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "glen.hass@enron.com",
+      "name": "Hass, Glen",
+      "label": "Glen Hass",
+      "kind": "person",
+      "addresses": [
+        "glen.hass@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 1,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "jan.moore@enron.com",
+      "name": null,
+      "label": "jan.moore@enron.com",
+      "kind": "person",
+      "addresses": [
+        "jan.moore@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "katz@enron.com",
+      "name": null,
+      "label": "katz@enron.com",
+      "kind": "person",
+      "addresses": [
+        "katz@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "mak9@pge.com",
+      "name": null,
+      "label": "mak9@pge.com",
+      "kind": "person",
+      "addresses": [
+        "mak9@pge.com"
+      ],
+      "staff": false,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "pabercrombie@txu.com",
+      "name": null,
+      "label": "pabercrombie@txu.com",
+      "kind": "person",
+      "addresses": [
+        "pabercrombie@txu.com"
+      ],
+      "staff": false,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "rag5@pge.com",
+      "name": "Graham, Roger",
+      "label": "Roger Graham",
+      "kind": "person",
+      "addresses": [
+        "rag5@pge.com"
+      ],
+      "staff": false,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "richard.hanagriff@enron.com",
+      "name": "Hanagriff, Richard",
+      "label": "Richard Hanagriff",
+      "kind": "person",
+      "addresses": [
+        "richard.hanagriff@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "robert.kilmer@enron.com",
+      "name": null,
+      "label": "robert.kilmer@enron.com",
+      "kind": "person",
+      "addresses": [
+        "robert.kilmer@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "rvhamman@aep.com",
+      "name": null,
+      "label": "rvhamman@aep.com",
+      "kind": "person",
+      "addresses": [
+        "rvhamman@aep.com"
+      ],
+      "staff": false,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "tammy.jaquet@enron.com",
+      "name": "Jaquet, Tammy",
+      "label": "Tammy Jaquet",
+      "kind": "person",
+      "addresses": [
+        "tammy.jaquet@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 1,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "tdickers@westerngas.com",
+      "name": null,
+      "label": "tdickers@westerngas.com",
+      "kind": "person",
+      "addresses": [
+        "tdickers@westerngas.com"
+      ],
+      "staff": false,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "teb.lokey@enron.com",
+      "name": null,
+      "label": "teb.lokey@enron.com",
+      "kind": "person",
+      "addresses": [
+        "teb.lokey@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "thomas@enron.com",
+      "name": null,
+      "label": "thomas@enron.com",
+      "kind": "person",
+      "addresses": [
+        "thomas@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    }
+  ],
+  "stalls_by_kind": [
+    {
+      "kind": "rework",
+      "words": "1 rework",
+      "count": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "stalls",
+          "key": "capacity-reporting",
+          "stall_kind": "rework"
+        }
+      }
+    },
+    {
+      "kind": "other",
+      "words": "1 other",
+      "count": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "stalls",
+          "key": "capacity-reporting",
+          "stall_kind": "other"
+        }
+      }
+    }
+  ],
+  "stall_groups": [
+    {
+      "summary": "A report went out with the wrong effective date and had to be corrected in a follow-up message.",
+      "quotes": [
+        {
+          "id": "batch-086:e11",
+          "kind": "evidence",
+          "message_id": "corpus/lokay-m/sent_items/46.",
+          "start": 1231,
+          "end": 1292,
+          "raw_text": "Sorry, the effective date for this new report is 01/07-01/11.",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "michelle.lokay@enron.com",
+          "sender_label": "Michelle Lokay",
+          "date_utc": "2002-01-11T17:02:07Z"
+        }
+      ]
+    },
+    {
+      "summary": "A capacity posting was published late, and the remark that it happened again suggests a repeated timing problem.",
+      "quotes": [
+        {
+          "id": "batch-098:s0",
+          "kind": "stall",
+          "message_id": "corpus/lokay-m/inbox/74.",
+          "start": 554,
+          "end": 584,
+          "raw_text": "The posting went up late again",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "tammy.jaquet@enron.com",
+          "sender_label": "Tammy Jaquet",
+          "date_utc": null,
+          "stall_kind": "other"
+        }
+      ]
+    }
+  ],
+  "stall_quotes": [
+    {
+      "id": "batch-098:s0",
+      "kind": "stall",
+      "message_id": "corpus/lokay-m/inbox/74.",
+      "start": 554,
+      "end": 584,
+      "raw_text": "The posting went up late again",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "tammy.jaquet@enron.com",
+      "sender_label": "Tammy Jaquet",
+      "date_utc": null,
+      "stall_kind": "other"
+    },
+    {
+      "id": "batch-086:s0",
+      "kind": "stall",
+      "message_id": "corpus/lokay-m/sent_items/46.",
+      "start": 1231,
+      "end": 1292,
+      "raw_text": "Sorry, the effective date for this new report is 01/07-01/11.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-01-11T17:02:07Z",
+      "stall_kind": "rework"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "batch-055:e6",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/109.",
+      "start": 516,
+      "end": 578,
+      "raw_text": "http://208.246.87.65/info_postings/capacity/op_point_index.asp",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "bryan.hull@enron.com",
+      "sender_label": "Bryan Hull",
+      "date_utc": "2001-06-21T22:13:58Z"
+    },
+    {
+      "id": "batch-068:e9",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/inbox/20.",
+      "start": 728,
+      "end": 783,
+      "raw_text": "Below is my last California Interstate Capacity Report.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "glen.hass@enron.com",
+      "sender_label": "Glen Hass",
+      "date_utc": "2001-09-26T15:38:31Z"
+    },
+    {
+      "id": "batch-072:e3",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/inbox/10.",
+      "start": 1318,
+      "end": 1438,
+      "raw_text": "Transwestern's average deliveries to California were 945 MMBtu/d (87%), with San Juan lateral throughput at 865 MMBtu/d.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2001-10-26T14:22:26Z"
+    },
+    {
+      "id": "batch-072:e13",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/inbox/5.",
+      "start": 887,
+      "end": 1004,
+      "raw_text": "Attached are the Burlington FT contracts that have used alternate points from October,. 2000 through September, 2001.",
+      "match": "exact",
+      "segment": "quoted",
+      "field": "body",
+      "sender": "dennis.lee@enron.com",
+      "sender_label": "Dennis Lee",
+      "date_utc": "2001-10-29T20:06:27Z"
+    },
+    {
+      "id": "batch-072:e14",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/inbox/3.",
+      "start": 634,
+      "end": 692,
+      "raw_text": "Here's another file that includes April through September.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "dennis.lee@enron.com",
+      "sender_label": "Dennis Lee",
+      "date_utc": "2001-10-29T22:31:06Z"
+    },
+    {
+      "id": "batch-073:e3",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/inbox/40.",
+      "start": 1388,
+      "end": 1463,
+      "raw_text": "50,000 dth/day of firm capacity on the Transwestern system from PG&E Topock",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "rag5@pge.com",
+      "sender_label": "Roger Graham",
+      "date_utc": "2001-10-30T17:16:25Z"
+    },
+    {
+      "id": "batch-079:e13",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/inbox/51.",
+      "start": 1195,
+      "end": 1280,
+      "raw_text": "Please note, Paul has scheduled a meeting to discuss \"Available Capacity\" on tomorrow",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "audrey.robertson@enron.com",
+      "sender_label": "Audrey Robertson",
+      "date_utc": "2001-11-26T21:59:58Z"
+    },
+    {
+      "id": "batch-083:e0",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/18.",
+      "start": 1339,
+      "end": 1461,
+      "raw_text": "Transwestern's average deliveries to California were 1122 MMBtu/d (103%), with San Juan lateral throughput at 844 MMBtu/d.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2001-12-14T19:37:51Z"
+    },
+    {
+      "id": "batch-083:e1",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/67.",
+      "start": 1340,
+      "end": 1461,
+      "raw_text": "Transwestern's average deliveries to California were 1059 MMBtu/d (97%), with San Juan lateral throughput at 839 MMBtu/d.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2001-12-21T17:22:54Z"
+    },
+    {
+      "id": "batch-084:e0",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/63.",
+      "start": 1338,
+      "end": 1458,
+      "raw_text": "Transwestern's average deliveries to California were 959 MMBtu/d (88%), with San Juan lateral throughput at 827 MMBtu/d.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2001-12-28T15:08:49Z"
+    },
+    {
+      "id": "batch-084:e1",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/62.",
+      "start": 570,
+      "end": 623,
+      "raw_text": "Section 13(h) does state 3 months prior to expiration",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2001-12-28T15:21:03Z"
+    },
+    {
+      "id": "batch-084:e2",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/55.",
+      "start": 1336,
+      "end": 1456,
+      "raw_text": "Transwestern's average deliveries to California were 840 MMBtu/d (77%), with San Juan lateral throughput at 829 MMBtu/d.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-01-04T16:42:43Z"
+    },
+    {
+      "id": "batch-084:e3",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/47.",
+      "start": 1343,
+      "end": 1463,
+      "raw_text": "Transwestern's average deliveries to California were 855 MMBtu/d (79%), with San Juan lateral throughput at 839 MMBtu/d.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-01-11T14:30:39Z"
+    },
+    {
+      "id": "batch-086:e11",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/46.",
+      "start": 1231,
+      "end": 1292,
+      "raw_text": "Sorry, the effective date for this new report is 01/07-01/11.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-01-11T17:02:07Z"
+    },
+    {
+      "id": "batch-087:e0",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/45.",
+      "start": 771,
+      "end": 839,
+      "raw_text": "Let's discuss this prior to billing.  I agree that ENA owes us money",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-01-17T14:29:14Z"
+    },
+    {
+      "id": "batch-087:e1",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/44.",
+      "start": 1485,
+      "end": 1594,
+      "raw_text": "ENA demand invoice will need to be adjusted so that they only receive a capacity release credit of $32,812.50",
+      "match": "exact",
+      "segment": "quoted",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-01-17T16:09:43Z"
+    },
+    {
+      "id": "batch-087:e2",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/20.",
+      "start": 972,
+      "end": 1045,
+      "raw_text": "Here is how I see the February release, with the 50/50 sharing mechanism:",
+      "match": "exact",
+      "segment": "quoted",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-01-30T21:05:16Z"
+    },
+    {
+      "id": "batch-087:e3",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/40.",
+      "start": 1339,
+      "end": 1459,
+      "raw_text": "Transwestern's average deliveries to California were 854 MMBtu/d (78%), with San Juan lateral throughput at 844 MMBtu/d.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-01-18T20:02:50Z"
+    },
+    {
+      "id": "batch-087:e4",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/39.",
+      "start": 736,
+      "end": 803,
+      "raw_text": "Can you guys review this posting prior to Tuesday morning?  Thanks.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-01-18T22:12:36Z"
+    },
+    {
+      "id": "batch-087:e5",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/38.",
+      "start": 543,
+      "end": 585,
+      "raw_text": "Due today at 5:00 CST...hope you guys bid!",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-01-22T15:07:25Z"
+    },
+    {
+      "id": "batch-087:e6",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/37.",
+      "start": 552,
+      "end": 590,
+      "raw_text": "Due today at 5:00...hope you guys bid!",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-01-22T15:08:34Z"
+    },
+    {
+      "id": "batch-087:e7",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/36.",
+      "start": 908,
+      "end": 948,
+      "raw_text": "Here is the internet link from TW's EBB.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-01-22T15:20:39Z"
+    },
+    {
+      "id": "batch-087:e8",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/35.",
+      "start": 531,
+      "end": 569,
+      "raw_text": "Due today at 5:00...hope you guys bid!",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-01-22T15:29:55Z"
+    },
+    {
+      "id": "batch-087:e9",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/34.",
+      "start": 523,
+      "end": 570,
+      "raw_text": "Bids are due today at 5:00...hope you guys bid!",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-01-22T15:45:50Z"
+    },
+    {
+      "id": "batch-088:e8",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/30.",
+      "start": 1337,
+      "end": 1407,
+      "raw_text": "Transwestern's average deliveries to California were 933 MMBtu/d (86%)",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-01-24T15:22:04Z"
+    },
+    {
+      "id": "batch-092:e8",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/79.",
+      "start": 1337,
+      "end": 1408,
+      "raw_text": "Transwestern's average deliveries to California were 1058 MMBtu/d (97%)",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-02-01T16:17:21Z"
+    },
+    {
+      "id": "batch-097:e6",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/86.",
+      "start": 1337,
+      "end": 1408,
+      "raw_text": "Transwestern's average deliveries to California were 1011 MMBtu/d (93%)",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-02-08T15:26:16Z"
+    },
+    {
+      "id": "batch-097:e19",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/97.",
+      "start": 1338,
+      "end": 1408,
+      "raw_text": "Transwestern's average deliveries to California were 972 MMBtu/d (89%)",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-02-14T14:50:40Z"
+    },
+    {
+      "id": "batch-097:e26",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/110.",
+      "start": 1339,
+      "end": 1410,
+      "raw_text": "Transwestern's average deliveries to California were 1015 MMBtu/d (93%)",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-02-22T14:49:19Z"
+    },
+    {
+      "id": "batch-097:e28",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/117.",
+      "start": 1338,
+      "end": 1408,
+      "raw_text": "Transwestern's average deliveries to California were 815 MMBtu/d (75%)",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-03-01T15:42:09Z"
+    },
+    {
+      "id": "batch-098:e5",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/131.",
+      "start": 1338,
+      "end": 1458,
+      "raw_text": "Transwestern's average deliveries to California were 874 MMBtu/d (80%), with San Juan lateral throughput at 862 MMBtu/d.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-03-08T14:58:48Z"
+    },
+    {
+      "id": "batch-098:e10",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/146.",
+      "start": 1339,
+      "end": 1459,
+      "raw_text": "Transwestern's average deliveries to California were 989 MMBtu/d (91%), with San Juan lateral throughput at 877 MMBtu/d.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-03-15T14:53:48Z"
+    },
+    {
+      "id": "batch-098:e20",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/inbox/32.",
+      "start": 1333,
+      "end": 1453,
+      "raw_text": "Transwestern's average deliveries to California were 884 MMBtu/d (81%), with San Juan lateral throughput at 773 MMBtu/d.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-03-22T15:22:48Z"
+    },
+    {
+      "id": "batch-098:e27",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/inbox/74.",
+      "start": 554,
+      "end": 584,
+      "raw_text": "The posting went up late again",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "tammy.jaquet@enron.com",
+      "sender_label": "Tammy Jaquet",
+      "date_utc": null
+    }
+  ],
+  "chasers": [
+    "corpus/lokay-m/sent_items/47."
+  ],
+  "reply_gaps": [],
+  "reply_gap_n": 0,
+  "median_reply_gap_h": null,
+  "claims": [],
+  "conflicts": [],
+  "contradictions": [],
+  "contradictions_dropped": 0,
+  "loops": [
+    {
+      "thread_id": "t-e13e17a871fd",
+      "message_id": "corpus/lokay-m/sent_items/47.",
+      "why": "chase",
+      "date_utc": "2002-01-11T14:30:39Z",
+      "mailbox": "lokay-m",
+      "mailbox_end_utc": "2002-03-25T23:13:29Z",
+      "days_before_end": 73,
+      "recent": true,
+      "subject": "FW: California Capacity Report for Week of 12/31-01/04",
+      "from": "michelle.lokay@enron.com",
+      "from_label": "Michelle Lokay",
+      "thread_length": 2,
+      "processes": [
+        "capacity-reporting"
+      ],
+      "quote": null
+    }
+  ],
+  "document": null
+}

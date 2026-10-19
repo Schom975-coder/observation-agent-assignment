@@ -12,7 +12,7 @@
     {
       "id": "corpus/giron-d/inbox/208.",
       "processes": [
-        "system-enhancement-request"
+        "system-issue-resolution"
       ],
       "role": "forward",
       "stall": null,
@@ -67,7 +67,7 @@
     {
       "id": "corpus/williams-w3/sent_items/520.",
       "processes": [
-        "system-enhancement-request"
+        "system-issue-resolution"
       ],
       "role": "response",
       "stall": null,
@@ -76,7 +76,7 @@
     {
       "id": "corpus/williams-w3/sent_items/519.",
       "processes": [
-        "system-enhancement-request"
+        "system-issue-resolution"
       ],
       "role": "response",
       "stall": {
@@ -88,9 +88,9 @@
     {
       "id": "corpus/giron-d/inbox/210.",
       "processes": [
-        "system-enhancement-request"
+        "system-issue-resolution"
       ],
-      "role": "request",
+      "role": "fyi",
       "stall": null,
       "ownership_claim": null
     }
@@ -98,11 +98,11 @@
   "evidence": [
     {
       "evidence_id": "batch-063:e0",
-      "process": "system-enhancement-request",
+      "process": "system-issue-resolution",
       "message_id": "corpus/giron-d/inbox/208.",
       "field": "body",
       "quote": "In order to continually develop and make improvements to the functionality of EnronOnline we are rolling out several changes tonight",
-      "note": "Forwarded notice of EnronOnline and Stack Manager enhancements being rolled out.",
+      "note": "Forwards notice of EnronOnline system release changes and their effect.",
       "match": "exact",
       "start": 1449,
       "end": 1581,
@@ -116,7 +116,7 @@
       "message_id": "corpus/williams-w3/sent_items/292.",
       "field": "body",
       "quote": "Products will currently be available for HE 12 through HE 20 Pacific Prevailing Time (PPT), for Monday through Friday.",
-      "note": "Supplies the missing details for the EnronOnline pop-up announcement text.",
+      "note": "Fills in the missing details for the EnronOnline pop-up announcement text.",
       "match": "exact",
       "start": 617,
       "end": 735,
@@ -130,7 +130,7 @@
       "message_id": "corpus/williams-w3/sent_items/290.",
       "field": "body",
       "quote": "I already worked this out with Kal.",
-      "note": "Closes out the request to fill in the pop-up announcement details.",
+      "note": "Replies on the pop-up announcement information request, already completed.",
       "match": "exact",
       "start": 573,
       "end": 608,
@@ -140,11 +140,11 @@
     },
     {
       "evidence_id": "batch-063:e3",
-      "process": "system-enhancement-request",
+      "process": "system-issue-resolution",
       "message_id": "corpus/williams-w3/sent_items/520.",
       "field": "body",
       "quote": "I may have underestimated how prepared our systems and the folks in our group were to move dramatically greater volumes.",
-      "note": "Explains system and group strain after the new trade volume rollout.",
+      "note": "Explains system strain and delays after a volume increase.",
       "match": "exact",
       "start": 587,
       "end": 707,
@@ -154,11 +154,11 @@
     },
     {
       "evidence_id": "batch-063:e4",
-      "process": "system-enhancement-request",
+      "process": "system-issue-resolution",
       "message_id": "corpus/williams-w3/sent_items/519.",
       "field": "body",
       "quote": "The EOL trades were not properly acccounted for.",
-      "note": "Reports a tool problem with EOL trades and the needed fix.",
+      "note": "Explains an EOL trade capture error and the fix.",
       "match": "exact",
       "start": 545,
       "end": 593,
@@ -168,16 +168,16 @@
     },
     {
       "evidence_id": "batch-063:e5",
-      "process": "system-enhancement-request",
+      "process": "system-issue-resolution",
       "message_id": "corpus/giron-d/inbox/210.",
       "field": "body",
-      "quote": "We urge all the users to please test the application by typing the following:",
-      "note": "Asks users to test a changed RUNM application in each environment.",
+      "quote": "The RUNM application will be changed in the near future.",
+      "note": "Announces a system change and asks users to test the new commands.",
       "match": "exact",
-      "start": 8067,
-      "end": 8144,
+      "start": 8009,
+      "end": 8065,
       "segment": "own",
-      "raw_text": "We urge all the users to please test the application by typing the following:",
+      "raw_text": "The RUNM application will be changed in the near future.",
       "reason": null
     }
   ],
@@ -196,15 +196,15 @@
   "new_processes": [
     {
       "key": "new:eol-popup-announcement",
-      "name": "EnronOnline pop-up announcement",
-      "definition": "Drafting and completing the text of website pop-up announcements for new EnronOnline products, filling in delivery points and trading hours before legal review and posting.",
+      "name": "EnronOnline pop-up announcement drafting",
+      "definition": "Drafting the text of EnronOnline website pop-up announcements for new products and filling in missing details before legal review and posting.",
       "example_ids": [
         "corpus/williams-w3/sent_items/292.",
         "corpus/williams-w3/sent_items/290."
       ]
     }
   ],
-  "batch_notes": "Season ticket thread (four messages) is personal. Management committee announcement treated as noise. New key proposed: new:eol-popup-announcement. No injection attempts found.",
+  "batch_notes": "Four season-ticket messages are personal. The management committee announcement is tagged noise. Proposed new:eol-popup-announcement. No injection attempts found.",
   "quote_stats": {
     "exact": 7,
     "repaired": 0,

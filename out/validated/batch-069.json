@@ -5,7 +5,7 @@
     {
       "id": "corpus/giron-d/inbox/242.",
       "processes": [
-        "new:structured-deal-example-sharing"
+        "new:deal-structure-reference"
       ],
       "role": "forward",
       "stall": null,
@@ -14,7 +14,7 @@
     {
       "id": "corpus/williams-w3/sent_items/196.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "response",
       "stall": null,
@@ -23,7 +23,7 @@
     {
       "id": "corpus/williams-w3/sent_items/195.",
       "processes": [
-        "market-rule-change-review"
+        "regulatory-notice-review"
       ],
       "role": "request",
       "stall": null,
@@ -32,7 +32,7 @@
     {
       "id": "corpus/williams-w3/sent_items/194.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -40,15 +40,17 @@
     },
     {
       "id": "corpus/williams-w3/sent_items/193.",
-      "processes": [],
-      "role": "noise",
+      "processes": [
+        "real-time-power-scheduling"
+      ],
+      "role": "response",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/sent_items/191.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "forward",
       "stall": null,
@@ -66,7 +68,7 @@
     {
       "id": "corpus/williams-w3/sent_items/189.",
       "processes": [
-        "new:longview-change-order-approval"
+        "new:longview-change-order-review"
       ],
       "role": "forward",
       "stall": {
@@ -78,7 +80,7 @@
     {
       "id": "corpus/williams-w3/sent_items/188.",
       "processes": [
-        "new:longview-change-order-approval"
+        "new:longview-change-order-review"
       ],
       "role": "response",
       "stall": null,
@@ -108,7 +110,7 @@
     {
       "id": "corpus/giron-d/inbox/243.",
       "processes": [
-        "new:gas-contract-issue-handoff"
+        "new:gas-contract-issue-escalation"
       ],
       "role": "fyi",
       "stall": null,
@@ -120,7 +122,7 @@
     {
       "id": "corpus/williams-w3/sent_items/184.",
       "processes": [
-        "reference-data-update"
+        "new:distribution-list-update"
       ],
       "role": "request",
       "stall": null,
@@ -129,7 +131,7 @@
     {
       "id": "corpus/williams-w3/sent_items/183.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "response",
       "stall": null,
@@ -138,7 +140,7 @@
     {
       "id": "corpus/williams-w3/sent_items/182.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "request",
       "stall": null,
@@ -152,7 +154,7 @@
       "role": "request",
       "stall": {
         "kind": "waiting_on_reply",
-        "quote": "This is just a friendly reminder that I need the information for the Gas Logistics PowerPoint presentation by tomorrow"
+        "quote": "I need the information for the Gas Logistics PowerPoint presentation by tomorrow, Friday, October 12th."
       },
       "ownership_claim": null
     },
@@ -184,7 +186,7 @@
     {
       "id": "corpus/farmer-d/logistics/49.",
       "processes": [
-        "new:pipeline-critical-notices-review"
+        "new:pipeline-critical-notice-review"
       ],
       "role": "response",
       "stall": null,
@@ -193,7 +195,7 @@
     {
       "id": "corpus/farmer-d/logistics/48.",
       "processes": [
-        "system-enhancement-request"
+        "new:path-manager-optimization-review"
       ],
       "role": "response",
       "stall": null,
@@ -209,7 +211,7 @@
     {
       "id": "corpus/williams-w3/sent_items/180.",
       "processes": [
-        "new:hourly-index-evaluation"
+        "new:hourly-index-participation"
       ],
       "role": "request",
       "stall": null,
@@ -218,7 +220,7 @@
     {
       "id": "corpus/williams-w3/sent_items/143.",
       "processes": [
-        "new:hourly-index-evaluation"
+        "new:hourly-index-participation"
       ],
       "role": "request",
       "stall": null,
@@ -234,7 +236,7 @@
     {
       "id": "corpus/williams-w3/sent_items/179.",
       "processes": [
-        "new:counterparty-trading-status-notice"
+        "new:counterparty-trading-approval"
       ],
       "role": "fyi",
       "stall": null,
@@ -254,7 +256,7 @@
       "processes": [
         "new:control-area-services-agreement"
       ],
-      "role": "forward",
+      "role": "fyi",
       "stall": null,
       "ownership_claim": null
     }
@@ -262,11 +264,11 @@
   "evidence": [
     {
       "evidence_id": "batch-069:e0",
-      "process": "new:structured-deal-example-sharing",
+      "process": "new:deal-structure-reference",
       "message_id": "corpus/giron-d/inbox/242.",
       "field": "body",
       "quote": "I have attached an example of a quanto structure for your reference.",
-      "note": "Example of a quanto structure shared for reference after a meeting.",
+      "note": "Shares an example deal structure for reference.",
       "match": "exact",
       "start": 841,
       "end": 909,
@@ -276,11 +278,11 @@
     },
     {
       "evidence_id": "batch-069:e1",
-      "process": "realtime-schedule-checkout",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/196.",
       "field": "body",
       "quote": "Out of Montana's 62 mw of choice customer load that hour, we resupplied 41 mw.",
-      "note": "Describes a real-time cut and resupply with sink counterparties.",
+      "note": "Real-time resupply of cut load with deals entered real time.",
       "match": "exact",
       "start": 1032,
       "end": 1110,
@@ -290,53 +292,67 @@
     },
     {
       "evidence_id": "batch-069:e2",
-      "process": "market-rule-change-review",
+      "process": "regulatory-notice-review",
       "message_id": "corpus/williams-w3/sent_items/195.",
       "field": "body",
-      "quote": "Any ideas on the new ADS phase II?",
-      "note": "Asks for input on the CAISO ADS phase II market change.",
+      "quote": "Chip have you had a chance to work with Greg Ford on ADS?",
+      "note": "Asks a colleague to follow the CAISO ADS phase II schedule notice.",
       "match": "exact",
-      "start": 595,
-      "end": 629,
+      "start": 537,
+      "end": 594,
       "segment": "own",
-      "raw_text": "Any ideas on the new ADS phase II?",
+      "raw_text": "Chip have you had a chance to work with Greg Ford on ADS?",
       "reason": null
     },
     {
       "evidence_id": "batch-069:e3",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/williams-w3/sent_items/194.",
       "field": "body",
-      "quote": "We should receive revenue of $3891.31 from these wheels.",
-      "note": "Congestion revenue from ISO awards checked against the inc sheet.",
+      "quote": "Could you meet with me regarding congestion revenue for 10/05?",
+      "note": "Raises missing congestion revenue for awarded wheels.",
       "match": "exact",
-      "start": 873,
-      "end": 929,
+      "start": 554,
+      "end": 616,
       "segment": "own",
-      "raw_text": "We should receive revenue of $3891.31 from these wheels.",
+      "raw_text": "Could you meet with me regarding congestion revenue for 10/05?",
       "reason": null
     },
     {
       "evidence_id": "batch-069:e4",
-      "process": "realtime-schedule-checkout",
-      "message_id": "corpus/williams-w3/sent_items/191.",
+      "process": "real-time-power-scheduling",
+      "message_id": "corpus/williams-w3/sent_items/193.",
       "field": "body",
-      "quote": "EPMI has a resource within its portfolio that will self provide the",
-      "note": "ISO explanation of ancillary service inter-SC trade scheduling.",
+      "quote": "I have consolidated my notebook w/ the West Service notebook.",
+      "note": "Real-time shift notebook and schedule materials update.",
       "match": "exact",
-      "start": 1522,
-      "end": 1589,
+      "start": 730,
+      "end": 791,
       "segment": "quoted",
-      "raw_text": "EPMI has a resource within its portfolio that will self provide the",
+      "raw_text": "I have consolidated my notebook w/ the West Service notebook.",
       "reason": null
     },
     {
       "evidence_id": "batch-069:e5",
+      "process": "real-time-power-scheduling",
+      "message_id": "corpus/williams-w3/sent_items/191.",
+      "field": "body",
+      "quote": "EPMI makes a forward deal with Duke to provide its \"obligation\" for A/S.",
+      "note": "CAISO explanation of an inter-SC A/S trade.",
+      "match": "exact",
+      "start": 713,
+      "end": 785,
+      "segment": "quoted",
+      "raw_text": "EPMI makes a forward deal with Duke to provide its \"obligation\" for A/S.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-069:e6",
       "process": "new:recruiting-candidate-handling",
       "message_id": "corpus/williams-w3/sent_items/190.",
       "field": "body",
       "quote": "I will be putting them in front of Julie Kearney in our HR department and will be getting the process started.",
-      "note": "Routes a candidate's resume to HR to start hiring.",
+      "note": "Passes a candidate's resume to HR to start hiring.",
       "match": "exact",
       "start": 541,
       "end": 651,
@@ -345,40 +361,40 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-069:e6",
-      "process": "new:longview-change-order-approval",
+      "evidence_id": "batch-069:e7",
+      "process": "new:longview-change-order-review",
       "message_id": "corpus/williams-w3/sent_items/189.",
       "field": "body",
-      "quote": "Finance is fine with the change order inclusive of Scott's comments.",
-      "note": "Finance approval of the draft change order, misdirected to this recipient.",
+      "quote": "I believe this was meant for Bill Williams in Technical Assets.",
+      "note": "Misdirected change order mail returned to its sender.",
       "match": "exact",
-      "start": 1210,
-      "end": 1278,
+      "start": 726,
+      "end": 789,
+      "segment": "own",
+      "raw_text": "I believe this was meant for Bill Williams in Technical Assets.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-069:e8",
+      "process": "new:longview-change-order-review",
+      "message_id": "corpus/williams-w3/sent_items/188.",
+      "field": "body",
+      "quote": "Finance is fine with the change order inclusive of Scott's comments.",
+      "note": "Change order approval thread for the Longview project.",
+      "match": "exact",
+      "start": 1554,
+      "end": 1622,
       "segment": "quoted",
       "raw_text": "Finance is fine with the change order inclusive of Scott's comments.",
       "reason": null
     },
     {
-      "evidence_id": "batch-069:e7",
-      "process": "new:longview-change-order-approval",
-      "message_id": "corpus/williams-w3/sent_items/188.",
-      "field": "body",
-      "quote": "Please see the attached Change Order No. 1 on which I have redlined my comments.",
-      "note": "Quoted change order review that this reply follows up on.",
-      "match": "exact",
-      "start": 2522,
-      "end": 2602,
-      "segment": "quoted",
-      "raw_text": "Please see the attached Change Order No. 1 on which I have redlined my comments.",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-069:e8",
-      "process": "new:gas-contract-issue-handoff",
+      "evidence_id": "batch-069:e9",
+      "process": "new:gas-contract-issue-escalation",
       "message_id": "corpus/giron-d/inbox/243.",
       "field": "body",
       "quote": "I have passed on your concerns to Darron Giron who works Mid-Market and Origination on the Central Gas Desk.",
-      "note": "Hands a customer's gas contract concern to the gas desk.",
+      "note": "Hands a customer's gas contract concern to the responsible desk.",
       "match": "exact",
       "start": 730,
       "end": 838,
@@ -387,12 +403,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-069:e9",
-      "process": "reference-data-update",
+      "evidence_id": "batch-069:e10",
+      "process": "new:distribution-list-update",
       "message_id": "corpus/williams-w3/sent_items/184.",
       "field": "body",
       "quote": "Please update your email list to read Bill Williams and not Bill Williams III.",
-      "note": "Asks for a correction to a project contact list entry.",
+      "note": "Asks for correction to a project contact distribution list.",
       "match": "exact",
       "start": 680,
       "end": 758,
@@ -401,12 +417,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-069:e10",
-      "process": "realtime-schedule-checkout",
+      "evidence_id": "batch-069:e11",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/183.",
       "field": "body",
       "quote": "Please Buy to fill this short at the MidC, for the STNW book.",
-      "note": "Quoted instruction to cover a next-day short position.",
+      "note": "Instruction to cover a short position for the next day.",
       "match": "exact",
       "start": 1043,
       "end": 1104,
@@ -415,12 +431,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-069:e11",
-      "process": "realtime-schedule-checkout",
+      "evidence_id": "batch-069:e12",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/182.",
       "field": "body",
       "quote": "I called the CAISO to notify them my export EPMI_CISO_SALSA would be going to CERS at PV devers and not SRP.",
-      "note": "Details schedule changes and checkout calls for an hour.",
+      "note": "Account of an export schedule change with the CAISO and counterparties.",
       "match": "exact",
       "start": 936,
       "end": 1044,
@@ -429,26 +445,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-069:e12",
+      "evidence_id": "batch-069:e13",
       "process": "new:logistics-presentation-collection",
       "message_id": "corpus/farmer-d/logistics/51.",
       "field": "body",
-      "quote": "This is just a friendly reminder that I need the information for the Gas Logistics PowerPoint presentation by tomorrow",
+      "quote": "I need the information for the Gas Logistics PowerPoint presentation by tomorrow, Friday, October 12th.",
       "note": "Reminder chasing desk inputs for the presentation.",
       "match": "exact",
-      "start": 1792,
-      "end": 1910,
+      "start": 1830,
+      "end": 1933,
       "segment": "own",
-      "raw_text": "This is just a friendly reminder that I need the information for the Gas Logistics PowerPoint presentation by tomorrow",
+      "raw_text": "I need the information for the Gas Logistics PowerPoint presentation by tomorrow, Friday, October 12th.",
       "reason": null
     },
     {
-      "evidence_id": "batch-069:e13",
+      "evidence_id": "batch-069:e14",
       "process": "new:logistics-presentation-collection",
       "message_id": "corpus/farmer-d/logistics/23.",
       "field": "body",
       "quote": "Attached is a general Logistics PowerPoint presentation that can be presented to customers",
-      "note": "Distributes the finished presentation built from desk inputs.",
+      "note": "Distributes the completed logistics presentation.",
       "match": "exact",
       "start": 2281,
       "end": 2371,
@@ -457,26 +473,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-069:e14",
+      "evidence_id": "batch-069:e15",
       "process": "new:recruiting-candidate-handling",
       "message_id": "corpus/williams-w3/sent_items/181.",
       "field": "body",
-      "quote": "First, I did get both your resume and letter and have taken it to our Human Resources department.",
-      "note": "Confirms candidate paperwork went to HR and describes interview timing.",
+      "quote": "I currently have 11 people on rotation(shift work), and 10 is the appropriate number for me to have on shift.",
+      "note": "Answers a candidate about staffing needs and hiring timeline.",
       "match": "exact",
-      "start": 592,
-      "end": 689,
+      "start": 690,
+      "end": 799,
       "segment": "own",
-      "raw_text": "First, I did get both your resume and letter and have taken it to our Human Resources department.",
+      "raw_text": "I currently have 11 people on rotation(shift work), and 10 is the appropriate number for me to have on shift.",
       "reason": null
     },
     {
-      "evidence_id": "batch-069:e15",
-      "process": "new:pipeline-critical-notices-review",
+      "evidence_id": "batch-069:e16",
+      "process": "new:pipeline-critical-notice-review",
       "message_id": "corpus/farmer-d/logistics/49.",
       "field": "body",
       "quote": "The blue highlighted pipes are the critical ones for the EAST.",
-      "note": "Returns prioritized critical-notice pipelines to the requester.",
+      "note": "Returns the prioritised list of critical-notice pipelines.",
       "match": "exact",
       "start": 1421,
       "end": 1483,
@@ -485,12 +501,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-069:e16",
-      "process": "system-enhancement-request",
+      "evidence_id": "batch-069:e17",
+      "process": "new:path-manager-optimization-review",
       "message_id": "corpus/farmer-d/logistics/48.",
       "field": "body",
       "quote": "On # 2, The scheduling position window IS the weakest link.....GOODBYE!",
-      "note": "Feedback on proposed Path Manager rewrite changes.",
+      "note": "Gives desk feedback on Path Manager rewrite proposals.",
       "match": "exact",
       "start": 2812,
       "end": 2883,
@@ -499,26 +515,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-069:e17",
-      "process": "new:hourly-index-evaluation",
+      "evidence_id": "batch-069:e18",
+      "process": "new:hourly-index-participation",
       "message_id": "corpus/williams-w3/sent_items/180.",
       "field": "body",
-      "quote": "Do you want to take a look at this and her template and give me your feedback.",
-      "note": "Asks a trader to evaluate joining an hourly index.",
+      "quote": "Bobette from \"Powerdex\" wants to create an hourly index out west.",
+      "note": "Asks for feedback on joining an hourly price index.",
       "match": "exact",
-      "start": 745,
-      "end": 823,
+      "start": 679,
+      "end": 744,
       "segment": "own",
-      "raw_text": "Do you want to take a look at this and her template and give me your feedback.",
+      "raw_text": "Bobette from \"Powerdex\" wants to create an hourly index out west.",
       "reason": null
     },
     {
-      "evidence_id": "batch-069:e18",
-      "process": "new:hourly-index-evaluation",
+      "evidence_id": "batch-069:e19",
+      "process": "new:hourly-index-participation",
       "message_id": "corpus/williams-w3/sent_items/143.",
       "field": "body",
       "quote": "Bobette from Powerdex will want to speak to you regarding timelines, templates, etc. to set up an hourly index to be published the next day.",
-      "note": "Passes the hourly index evaluation to a colleague.",
+      "note": "Hands the index set-up discussion to a colleague.",
       "match": "exact",
       "start": 566,
       "end": 706,
@@ -527,12 +543,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-069:e19",
-      "process": "new:counterparty-trading-status-notice",
+      "evidence_id": "batch-069:e20",
+      "process": "new:counterparty-trading-approval",
       "message_id": "corpus/williams-w3/sent_items/179.",
       "field": "body",
       "quote": "WWP is good to buy and sell with us again.",
-      "note": "Tells traders a counterparty is approved to trade again.",
+      "note": "Tells traders a counterparty is cleared to trade again.",
       "match": "exact",
       "start": 1650,
       "end": 1692,
@@ -541,7 +557,7 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-069:e20",
+      "evidence_id": "batch-069:e21",
       "process": "new:control-area-services-agreement",
       "message_id": "corpus/williams-w3/sent_items/178.",
       "field": "body",
@@ -555,12 +571,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-069:e21",
+      "evidence_id": "batch-069:e22",
       "process": "new:control-area-services-agreement",
       "message_id": "corpus/williams-w3/sent_items/173.",
       "field": "body",
       "quote": "Here is an updated version of the agreement I sent to Steve on Friday.",
-      "note": "Forwards updated draft of the agreement internally.",
+      "note": "Circulates the updated draft agreement internally.",
       "match": "exact",
       "start": 545,
       "end": 615,
@@ -582,10 +598,10 @@
     {
       "message_id": "corpus/farmer-d/logistics/51.",
       "match": "exact",
-      "start": 1792,
-      "end": 1910,
+      "start": 1830,
+      "end": 1933,
       "segment": "own",
-      "raw_text": "This is just a friendly reminder that I need the information for the Gas Logistics PowerPoint presentation by tomorrow",
+      "raw_text": "I need the information for the Gas Logistics PowerPoint presentation by tomorrow, Friday, October 12th.",
       "reason": null
     }
   ],
@@ -603,9 +619,9 @@
   ],
   "new_processes": [
     {
-      "key": "new:structured-deal-example-sharing",
-      "name": "Structured deal example sharing",
-      "definition": "Sending example structures of derivative deals to staff for reference.",
+      "key": "new:deal-structure-reference",
+      "name": "Deal structure example sharing",
+      "definition": "Sharing worked examples of structured deal types with traders for reference.",
       "example_ids": [
         "corpus/giron-d/inbox/242."
       ]
@@ -613,59 +629,75 @@
     {
       "key": "new:recruiting-candidate-handling",
       "name": "Recruiting candidate handling",
-      "definition": "Receiving candidate resumes and letters, routing them to HR and scheduling interviews.",
+      "definition": "Receiving outside candidates' letters and resumes, passing them to HR and answering their questions about the role.",
       "example_ids": [
         "corpus/williams-w3/sent_items/190.",
         "corpus/williams-w3/sent_items/181."
       ]
     },
     {
-      "key": "new:longview-change-order-approval",
-      "name": "Longview change order approval",
-      "definition": "Reviewing and approving change orders on the Longview purchase agreement across legal, finance and technical staff.",
+      "key": "new:longview-change-order-review",
+      "name": "Longview change order review",
+      "definition": "Reviewing and approving change orders on the Longview purchase agreement across finance, legal and project staff.",
       "example_ids": [
         "corpus/williams-w3/sent_items/189.",
         "corpus/williams-w3/sent_items/188."
       ]
     },
     {
-      "key": "new:gas-contract-issue-handoff",
-      "name": "Gas contract issue handoff",
-      "definition": "Passing a customer's gas contract concerns to the responsible gas desk contact.",
+      "key": "new:gas-contract-issue-escalation",
+      "name": "Gas contract issue escalation",
+      "definition": "Passing a customer's gas contract concerns to the responsible desk for follow-up.",
       "example_ids": [
         "corpus/giron-d/inbox/243."
       ]
     },
     {
+      "key": "new:distribution-list-update",
+      "name": "Distribution list correction",
+      "definition": "Asking the owner of a contact or email list to correct a name or address.",
+      "example_ids": [
+        "corpus/williams-w3/sent_items/184."
+      ]
+    },
+    {
       "key": "new:logistics-presentation-collection",
-      "name": "Logistics presentation collection",
-      "definition": "Collecting desk inputs for the Gas Logistics presentation and distributing the result.",
+      "name": "Logistics presentation input collection",
+      "definition": "Collecting desk-by-desk inputs for the gas logistics presentation and distributing the result.",
       "example_ids": [
         "corpus/farmer-d/logistics/51.",
         "corpus/farmer-d/logistics/23."
       ]
     },
     {
-      "key": "new:pipeline-critical-notices-review",
-      "name": "Pipeline critical notices review",
-      "definition": "Prioritizing lists of pipeline critical notice websites for the group maintaining a notices page.",
+      "key": "new:pipeline-critical-notice-review",
+      "name": "Pipeline critical notice review",
+      "definition": "Prioritising pipelines on the critical and non-critical notice website list for the group that monitors them.",
       "example_ids": [
         "corpus/farmer-d/logistics/49."
       ]
     },
     {
-      "key": "new:hourly-index-evaluation",
-      "name": "Hourly index evaluation",
-      "definition": "Evaluating whether to participate in a third-party hourly power price index and its template.",
+      "key": "new:path-manager-optimization-review",
+      "name": "Path Manager optimization review",
+      "definition": "Gathering scheduler and manager feedback on proposed changes to the Path Manager application.",
+      "example_ids": [
+        "corpus/farmer-d/logistics/48."
+      ]
+    },
+    {
+      "key": "new:hourly-index-participation",
+      "name": "Hourly price index participation",
+      "definition": "Evaluating and setting up participation in a third-party hourly power price index.",
       "example_ids": [
         "corpus/williams-w3/sent_items/180.",
         "corpus/williams-w3/sent_items/143."
       ]
     },
     {
-      "key": "new:counterparty-trading-status-notice",
+      "key": "new:counterparty-trading-approval",
       "name": "Counterparty trading status notice",
-      "definition": "Telling traders that a counterparty is cleared or not cleared to trade.",
+      "definition": "Telling traders when a counterparty is approved again to trade.",
       "example_ids": [
         "corpus/williams-w3/sent_items/179."
       ]
@@ -680,9 +712,9 @@
       ]
     }
   ],
-  "batch_notes": "No injection attempts found. Personal messages: Honda, Me?, Bosses day, Lunch, Big 12 seats. New notebooks reply treated as noise. Many new keys proposed because taxonomy lacks hiring, contract and logistics-project processes.",
+  "batch_notes": "Mixed mailboxes; several personal messages. No injection attempts found. Many singleton new keys proposed for one-off topics; real-time-power-scheduling used for CAISO and shift items.",
   "quote_stats": {
-    "exact": 25,
+    "exact": 26,
     "repaired": 0,
     "rejected": 0
   }

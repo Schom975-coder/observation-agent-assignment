@@ -54,7 +54,8 @@
     {
       "id": "corpus/farmer-d/logistics/1448.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup",
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -63,22 +64,19 @@
     {
       "id": "corpus/giron-d/sent/605.",
       "processes": [
-        "new:demand-charge-deal-entry"
+        "new:deal-demand-charge-entry"
       ],
       "role": "response",
-      "stall": {
-        "kind": "handoff_confusion",
-        "quote": "In the future you can send these"
-      },
+      "stall": null,
       "ownership_claim": {
         "person": "Scott",
-        "quote": "In the future you can send these"
+        "quote": "In the future you can send these \nrequests to Scott."
       }
     },
     {
       "id": "corpus/farmer-d/logistics/1450.",
       "processes": [
-        "deal-record-correction"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -136,7 +134,7 @@
     {
       "id": "corpus/giron-d/sent/596.",
       "processes": [
-        "new:weaponx-database-compaction"
+        "new:weaponx-database-maintenance"
       ],
       "role": "forward",
       "stall": null,
@@ -145,9 +143,9 @@
     {
       "id": "corpus/giron-d/sent/585.",
       "processes": [
-        "new:weaponx-database-compaction"
+        "new:weaponx-database-maintenance"
       ],
-      "role": "request",
+      "role": "forward",
       "stall": null,
       "ownership_claim": null
     },
@@ -235,11 +233,25 @@
   "evidence": [
     {
       "evidence_id": "batch-027:e0",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
+      "message_id": "corpus/farmer-d/logistics/1448.",
+      "field": "body",
+      "quote": "this meter (400289) did not start until 9/15.",
+      "note": "Deal for the meter started after flow; asks for the deal to be extended.",
+      "match": "exact",
+      "start": 687,
+      "end": 732,
+      "segment": "own",
+      "raw_text": "this meter (400289) did not start until 9/15.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-027:e1",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1448.",
       "field": "body",
       "quote": "There is flow at meter 74 on 9/14 (499 dth).",
-      "note": "Flow at a meter before the deal start; asks for the deal to be extended.",
+      "note": "Flow at a meter for a past date with no matching deal.",
       "match": "exact",
       "start": 627,
       "end": 671,
@@ -248,26 +260,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-027:e1",
-      "process": "new:demand-charge-deal-entry",
-      "message_id": "corpus/giron-d/sent/605.",
-      "field": "body",
-      "quote": "Can you input that on that deal #157584 and let me know",
-      "note": "Asks that a monthly demand charge be entered on a deal.",
-      "match": "exact",
-      "start": 996,
-      "end": 1051,
-      "segment": "forwarded",
-      "raw_text": "Can you input that on that deal #157584 and let me know",
-      "reason": null
-    },
-    {
       "evidence_id": "batch-027:e2",
-      "process": "deal-record-correction",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1450.",
       "field": "body",
       "quote": "Please verify if Duke deal #387571 should be on HPL meter #1040.",
-      "note": "Asks to verify and correct the meter on a deal record.",
+      "note": "Asks to verify and correct the meter on a deal ticket.",
       "match": "exact",
       "start": 670,
       "end": 734,
@@ -277,25 +275,39 @@
     },
     {
       "evidence_id": "batch-027:e3",
-      "process": "new:weaponx-database-compaction",
-      "message_id": "corpus/giron-d/sent/596.",
+      "process": "new:deal-demand-charge-entry",
+      "message_id": "corpus/giron-d/sent/605.",
       "field": "body",
-      "quote": "Open the database while holding down on the shift key.",
-      "note": "Procedure for book admins to compact the WeaponX database regularly.",
+      "quote": "I just got the demand charge for Eastman Chemical for September.",
+      "note": "Forwarded request to input a monthly demand charge on a deal.",
       "match": "exact",
-      "start": 902,
-      "end": 956,
+      "start": 911,
+      "end": 975,
       "segment": "forwarded",
-      "raw_text": "Open the database while holding down on the shift key.",
+      "raw_text": "I just got the demand charge for Eastman Chemical for September.",
       "reason": null
     },
     {
       "evidence_id": "batch-027:e4",
-      "process": "new:weaponx-database-compaction",
+      "process": "new:weaponx-database-maintenance",
+      "message_id": "corpus/giron-d/sent/596.",
+      "field": "body",
+      "quote": "I would like each of your book admins using WeaponX to begin using the",
+      "note": "Procedure for book admins to compact the WeaponX database regularly.",
+      "match": "exact",
+      "start": 763,
+      "end": 833,
+      "segment": "forwarded",
+      "raw_text": "I would like each of your book admins using WeaponX to begin using the",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-027:e5",
+      "process": "new:weaponx-database-maintenance",
       "message_id": "corpus/giron-d/sent/585.",
       "field": "body",
       "quote": "Try this and see if it does any good.",
-      "note": "Passes the WeaponX compaction procedure to a colleague to try.",
+      "note": "Passes the WeaponX compacting procedure on to a desk colleague.",
       "match": "exact",
       "start": 428,
       "end": 465,
@@ -304,26 +316,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-027:e5",
+      "evidence_id": "batch-027:e6",
       "process": "new:book-officialization",
       "message_id": "corpus/giron-d/sent/595.",
       "field": "body",
-      "quote": "officializing postid's, as does the entire West desk.",
-      "note": "Explains an officialization miss and the control that checks books.",
+      "quote": "The reason my mistake was not caught on the benchmark signoff procedure is",
+      "note": "Explains a missed nightly book officialization and the control that checks it.",
       "match": "exact",
-      "start": 986,
-      "end": 1039,
+      "start": 536,
+      "end": 610,
       "segment": "own",
-      "raw_text": "officializing postid's, as does the entire West desk.",
+      "raw_text": "The reason my mistake was not caught on the benchmark signoff procedure is",
       "reason": null
     },
     {
-      "evidence_id": "batch-027:e6",
+      "evidence_id": "batch-027:e7",
       "process": "new:book-officialization",
       "message_id": "corpus/giron-d/sent/590.",
       "field": "body",
       "quote": "We are currently looking into a query which will allow us to see all of our",
-      "note": "Reports a planned query to check officialized books each night.",
+      "note": "Reports a planned control to check officialized books each night.",
       "match": "exact",
       "start": 457,
       "end": 532,
@@ -332,12 +344,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-027:e7",
+      "evidence_id": "batch-027:e8",
       "process": "new:book-officialization",
       "message_id": "corpus/giron-d/sent/586.",
       "field": "body",
       "quote": "Please make sure we stay off the \"list\".",
-      "note": "Tells the desk to officialize books so they stay off the missed list.",
+      "note": "Asks the desk to avoid the not-officialized books list.",
       "match": "exact",
       "start": 596,
       "end": 636,
@@ -346,12 +358,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-027:e8",
+      "evidence_id": "batch-027:e9",
       "process": "new:deal-system-linking",
       "message_id": "corpus/giron-d/sent/592.",
       "field": "body",
       "quote": "It should reference the EOL number.",
-      "note": "Answers whether the manually entered deal must carry the EOL number.",
+      "note": "Answers whether manually entered deals in tagg reference the EOL number.",
       "match": "exact",
       "start": 443,
       "end": 478,
@@ -360,12 +372,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-027:e9",
+      "evidence_id": "batch-027:e10",
       "process": "new:deal-system-linking",
       "message_id": "corpus/giron-d/sent/591.",
       "field": "body",
       "quote": "Please remember to link up all deals.",
-      "note": "Reminds a colleague to cross-reference deal numbers between systems.",
+      "note": "Reminds a colleague to cross-link deal numbers across systems.",
       "match": "exact",
       "start": 445,
       "end": 482,
@@ -374,42 +386,32 @@
       "reason": null
     }
   ],
-  "stall_checks": [
-    {
-      "message_id": "corpus/giron-d/sent/605.",
-      "match": "exact",
-      "start": 568,
-      "end": 600,
-      "segment": "own",
-      "raw_text": "In the future you can send these",
-      "reason": null
-    }
-  ],
+  "stall_checks": [],
   "ownership_checks": [
     {
       "message_id": "corpus/giron-d/sent/605.",
       "person": "Scott",
       "match": "exact",
       "start": 568,
-      "end": 600,
+      "end": 620,
       "segment": "own",
-      "raw_text": "In the future you can send these",
+      "raw_text": "In the future you can send these \nrequests to Scott.",
       "reason": null
     }
   ],
   "new_processes": [
     {
-      "key": "new:demand-charge-deal-entry",
-      "name": "Demand charge deal entry",
+      "key": "new:deal-demand-charge-entry",
+      "name": "Deal demand charge entry",
       "definition": "Entering a monthly demand charge received from a customer or pipeline onto the matching deal and confirming when done.",
       "example_ids": [
         "corpus/giron-d/sent/605."
       ]
     },
     {
-      "key": "new:weaponx-database-compaction",
-      "name": "WeaponX database compaction",
-      "definition": "Book admins periodically compacting the WeaponX Access database to keep file size down, with instructions passed along the desk.",
+      "key": "new:weaponx-database-maintenance",
+      "name": "WeaponX database maintenance",
+      "definition": "Routine upkeep of the desks' WeaponX Access database, such as periodic compacting by book admins.",
       "example_ids": [
         "corpus/giron-d/sent/596.",
         "corpus/giron-d/sent/585."
@@ -417,8 +419,8 @@
     },
     {
       "key": "new:book-officialization",
-      "name": "Book officialization control",
-      "definition": "Marking trading books official each night, tracking books missed, and putting controls in place to avoid them.",
+      "name": "Nightly book officialization",
+      "definition": "Marking trading books official each night and controlling for books that are missed, including tracking lists and corrective follow-up.",
       "example_ids": [
         "corpus/giron-d/sent/595.",
         "corpus/giron-d/sent/590.",
@@ -428,14 +430,14 @@
     {
       "key": "new:deal-system-linking",
       "name": "Deal cross-system linking",
-      "definition": "Linking deal numbers across Sitara, Tagg, SCI and EOL so each system references the others.",
+      "definition": "Linking deal numbers between Sitara, Tagg, SCI and EOL so each deal references its counterparts.",
       "example_ids": [
         "corpus/giron-d/sent/592.",
         "corpus/giron-d/sent/591."
       ]
     }
   ],
-  "batch_notes": "Most giron-d messages are personal forwards, jokes and social plans. Paintball team event treated as personal. HR benefits forward treated as noise. New keys: demand-charge-deal-entry, weaponx-database-compaction, book-officialization, deal-system-linking. No injection attempts found.",
+  "batch_notes": "Mostly one mailbox with many personal forwards, jokes and social plans (lunch, paintball). Four new keys proposed. No injection attempts found.",
   "quote_stats": {
     "exact": 12,
     "repaired": 0,

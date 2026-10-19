@@ -5,7 +5,7 @@
     {
       "id": "corpus/giron-d/sent/234.",
       "processes": [
-        "credit-exposure-reporting"
+        "credit-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -14,7 +14,7 @@
     {
       "id": "corpus/giron-d/sent/231.",
       "processes": [
-        "new:origination-booking-correction"
+        "pnl-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -23,7 +23,7 @@
     {
       "id": "corpus/giron-d/sent/232.",
       "processes": [
-        "new:origination-booking-correction"
+        "pnl-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -46,7 +46,7 @@
     {
       "id": "corpus/giron-d/sent/228.",
       "processes": [
-        "credit-exposure-reporting"
+        "credit-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -55,14 +55,14 @@
     {
       "id": "corpus/giron-d/sent/227.",
       "processes": [],
-      "role": "noise",
+      "role": "personal",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/sent/226.",
       "processes": [
-        "credit-exposure-reporting"
+        "credit-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -87,7 +87,7 @@
     {
       "id": "corpus/farmer-d/logistics/2082.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -96,7 +96,7 @@
     {
       "id": "corpus/giron-d/sent/221.",
       "processes": [
-        "pnl-position-reporting"
+        "pnl-reporting"
       ],
       "role": "response",
       "stall": null,
@@ -105,7 +105,7 @@
     {
       "id": "corpus/giron-d/sent/220.",
       "processes": [
-        "credit-exposure-reporting"
+        "credit-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -114,7 +114,7 @@
     {
       "id": "corpus/giron-d/sent/219.",
       "processes": [
-        "pnl-position-reporting"
+        "pnl-reporting"
       ],
       "role": "fyi",
       "stall": null,
@@ -123,7 +123,7 @@
     {
       "id": "corpus/farmer-d/logistics/2083.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -132,7 +132,7 @@
     {
       "id": "corpus/farmer-d/logistics/2087.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -141,7 +141,7 @@
     {
       "id": "corpus/giron-d/sent/218.",
       "processes": [
-        "credit-exposure-reporting"
+        "credit-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -192,7 +192,7 @@
     {
       "id": "corpus/giron-d/sent/215.",
       "processes": [
-        "curve-postid-mapping"
+        "curve-postid-maintenance"
       ],
       "role": "forward",
       "stall": null,
@@ -201,7 +201,7 @@
     {
       "id": "corpus/giron-d/sent/213.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "response",
       "stall": null,
@@ -210,7 +210,7 @@
     {
       "id": "corpus/giron-d/sent/214.",
       "processes": [
-        "pnl-position-reporting"
+        "pnl-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -219,7 +219,7 @@
     {
       "id": "corpus/farmer-d/logistics/2084.",
       "processes": [
-        "new:deal-ticket-adjustment-notice"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -228,7 +228,7 @@
     {
       "id": "corpus/giron-d/sent/212.",
       "processes": [
-        "system-enhancement-request"
+        "system-issue-resolution"
       ],
       "role": "forward",
       "stall": null,
@@ -237,7 +237,7 @@
     {
       "id": "corpus/farmer-d/logistics/2085.",
       "processes": [
-        "new:deal-ticket-adjustment-notice"
+        "meter-flow-resolution"
       ],
       "role": "fyi",
       "stall": null,
@@ -255,7 +255,7 @@
     {
       "id": "corpus/farmer-d/logistics/2086.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -264,7 +264,7 @@
     {
       "id": "corpus/giron-d/sent/210.",
       "processes": [
-        "credit-exposure-reporting"
+        "credit-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -274,11 +274,11 @@
   "evidence": [
     {
       "evidence_id": "batch-043:e0",
-      "process": "credit-exposure-reporting",
+      "process": "credit-reporting",
       "message_id": "corpus/giron-d/sent/234.",
       "field": "subject",
       "quote": "Credit Report--2/12/01",
-      "note": "Dated credit report forwarded to the credit group.",
+      "note": "Dated credit report forwarded on.",
       "match": "exact",
       "start": 170,
       "end": 192,
@@ -288,11 +288,11 @@
     },
     {
       "evidence_id": "batch-043:e1",
-      "process": "credit-exposure-reporting",
+      "process": "credit-reporting",
       "message_id": "corpus/giron-d/sent/228.",
       "field": "subject",
       "quote": "Credit Report--2/13/01",
-      "note": "Dated credit report forwarded to the credit group.",
+      "note": "Dated credit report forwarded on.",
       "match": "exact",
       "start": 171,
       "end": 193,
@@ -302,11 +302,11 @@
     },
     {
       "evidence_id": "batch-043:e2",
-      "process": "credit-exposure-reporting",
+      "process": "credit-reporting",
       "message_id": "corpus/giron-d/sent/226.",
       "field": "subject",
       "quote": "Credit Report--2/14/01",
-      "note": "Dated credit report forwarded to the credit group.",
+      "note": "Dated credit report forwarded on.",
       "match": "exact",
       "start": 170,
       "end": 192,
@@ -316,11 +316,11 @@
     },
     {
       "evidence_id": "batch-043:e3",
-      "process": "credit-exposure-reporting",
+      "process": "credit-reporting",
       "message_id": "corpus/giron-d/sent/220.",
       "field": "subject",
       "quote": "Credit Report--2/15/01",
-      "note": "Dated credit report forwarded to the credit group.",
+      "note": "Dated credit report forwarded on.",
       "match": "exact",
       "start": 171,
       "end": 193,
@@ -330,11 +330,11 @@
     },
     {
       "evidence_id": "batch-043:e4",
-      "process": "credit-exposure-reporting",
+      "process": "credit-reporting",
       "message_id": "corpus/giron-d/sent/218.",
       "field": "subject",
       "quote": "Credit Report--2/16/01",
-      "note": "Dated credit report forwarded to the credit group.",
+      "note": "Dated credit report forwarded on.",
       "match": "exact",
       "start": 170,
       "end": 192,
@@ -344,11 +344,11 @@
     },
     {
       "evidence_id": "batch-043:e5",
-      "process": "credit-exposure-reporting",
+      "process": "credit-reporting",
       "message_id": "corpus/giron-d/sent/210.",
       "field": "subject",
       "quote": "Credit Report--2/20/01",
-      "note": "Dated credit report forwarded to the credit group.",
+      "note": "Dated credit report forwarded on.",
       "match": "exact",
       "start": 170,
       "end": 192,
@@ -358,25 +358,25 @@
     },
     {
       "evidence_id": "batch-043:e6",
-      "process": "new:origination-booking-correction",
+      "process": "pnl-reporting",
       "message_id": "corpus/giron-d/sent/231.",
       "field": "body",
-      "quote": "All orig ( even Denver ) is coded to 107321.",
-      "note": "Explains how origination income is coded and asks to avoid double counting.",
+      "quote": "Edie, please ensure that on a go forward basis that the actualized income",
+      "note": "Asks that income be coded correctly for P&L reporting without double counting.",
       "match": "exact",
-      "start": 880,
-      "end": 924,
+      "start": 1133,
+      "end": 1206,
       "segment": "forwarded",
-      "raw_text": "All orig ( even Denver ) is coded to 107321.",
+      "raw_text": "Edie, please ensure that on a go forward basis that the actualized income",
       "reason": null
     },
     {
       "evidence_id": "batch-043:e7",
-      "process": "new:origination-booking-correction",
+      "process": "pnl-reporting",
       "message_id": "corpus/giron-d/sent/232.",
       "field": "body",
       "quote": "corrections in February in order to correct the NG P&L for the quarter.",
-      "note": "Asks for origination grants to be corrected to the right book.",
+      "note": "Requests origination corrections to fix the desk P&L.",
       "match": "exact",
       "start": 1024,
       "end": 1095,
@@ -390,7 +390,7 @@
       "message_id": "corpus/giron-d/sent/225.",
       "field": "body",
       "quote": "I'm sure there are some I missed.",
-      "note": "Supplies a list of books; uncertain fit.",
+      "note": "Replies with a list of books; list may be incomplete.",
       "match": "exact",
       "start": 439,
       "end": 472,
@@ -400,25 +400,25 @@
     },
     {
       "evidence_id": "batch-043:e9",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/2082.",
       "field": "body",
-      "quote": "Do you know if there should be a deal in place for Midcoast on this meter for",
-      "note": "Asks whether a deal should exist for a meter and month.",
+      "quote": "Do you know if there should be a deal in place for Midcoast",
+      "note": "Asks whether a deal should exist at a meter for the month.",
       "match": "exact",
       "start": 455,
-      "end": 532,
+      "end": 514,
       "segment": "own",
-      "raw_text": "Do you know if there should be a deal in place for Midcoast on this meter for",
+      "raw_text": "Do you know if there should be a deal in place for Midcoast",
       "reason": null
     },
     {
       "evidence_id": "batch-043:e10",
-      "process": "pnl-position-reporting",
+      "process": "pnl-reporting",
       "message_id": "corpus/giron-d/sent/221.",
       "field": "body",
       "quote": "I just approved the 13th and 14th.",
-      "note": "Answers about approval of daily DPR reports.",
+      "note": "Approves daily P&L reports (DPR) for two dates.",
       "match": "exact",
       "start": 469,
       "end": 503,
@@ -428,11 +428,11 @@
     },
     {
       "evidence_id": "batch-043:e11",
-      "process": "pnl-position-reporting",
+      "process": "pnl-reporting",
       "message_id": "corpus/giron-d/sent/219.",
       "field": "body",
       "quote": "We are taking a hit of $28,900,000 on tonight's P&L for Dec-00 production.",
-      "note": "Reports an expected P&L impact.",
+      "note": "Explains a P&L change.",
       "match": "exact",
       "start": 427,
       "end": 501,
@@ -442,7 +442,7 @@
     },
     {
       "evidence_id": "batch-043:e12",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/farmer-d/logistics/2083.",
       "field": "body",
       "quote": "Texas General Land office has called and is disputing that this sale is a",
@@ -456,11 +456,11 @@
     },
     {
       "evidence_id": "batch-043:e13",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/farmer-d/logistics/2087.",
       "field": "body",
       "quote": "Do you have a Crude Oil payable to offset this sales invoice?",
-      "note": "Asks about netting a receivable against a payable.",
+      "note": "Asks about netting an invoice against a payable.",
       "match": "exact",
       "start": 710,
       "end": 771,
@@ -470,25 +470,25 @@
     },
     {
       "evidence_id": "batch-043:e14",
-      "process": "curve-postid-mapping",
+      "process": "curve-postid-maintenance",
       "message_id": "corpus/giron-d/sent/215.",
-      "field": "subject",
-      "quote": "Curve Fetch",
-      "note": "Forwarded curve fetch note; weak fit.",
+      "field": "body",
+      "quote": "Let me know if either of you have questions.",
+      "note": "Forwarded curve fetch instruction; subject Curve Fetch.",
       "match": "exact",
-      "start": 171,
-      "end": 182,
-      "segment": "subject",
-      "raw_text": "Curve Fetch",
+      "start": 667,
+      "end": 711,
+      "segment": "forwarded",
+      "raw_text": "Let me know if either of you have questions.",
       "reason": null
     },
     {
       "evidence_id": "batch-043:e15",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/giron-d/sent/213.",
       "field": "body",
       "quote": "liquidations on the buy side that equal the variance on the sales side for",
-      "note": "Counterparty variance question answered with Yes.",
+      "note": "Reconciling a counterparty variance; Darron confirms.",
       "match": "exact",
       "start": 644,
       "end": 718,
@@ -498,25 +498,25 @@
     },
     {
       "evidence_id": "batch-043:e16",
-      "process": "pnl-position-reporting",
+      "process": "pnl-reporting",
       "message_id": "corpus/giron-d/sent/214.",
       "field": "body",
-      "quote": "Can you provide MTM values as of Dec 29, 2000, for the short name of CROSS",
+      "quote": "Can you provide MTM values as of Dec 29, 2000",
       "note": "Request for mark-to-market values.",
       "match": "exact",
       "start": 945,
-      "end": 1019,
+      "end": 990,
       "segment": "forwarded",
-      "raw_text": "Can you provide MTM values as of Dec 29, 2000, for the short name of CROSS",
+      "raw_text": "Can you provide MTM values as of Dec 29, 2000",
       "reason": null
     },
     {
       "evidence_id": "batch-043:e17",
-      "process": "new:deal-ticket-adjustment-notice",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/2084.",
       "field": "body",
       "quote": "Please make a note that on 2/15 at Aquila Header (WGR pipe in system) meter",
-      "note": "Asks to note a net out of purchase and sale deals.",
+      "note": "Records a net out of deals at specific meters.",
       "match": "exact",
       "start": 580,
       "end": 655,
@@ -526,11 +526,11 @@
     },
     {
       "evidence_id": "batch-043:e18",
-      "process": "system-enhancement-request",
+      "process": "system-issue-resolution",
       "message_id": "corpus/giron-d/sent/212.",
       "field": "body",
       "quote": "This evening, the new improved bridge monitor will be migrated to the EOL",
-      "note": "Notice of a new system tool release.",
+      "note": "Notice of bridge monitor system change.",
       "match": "exact",
       "start": 1156,
       "end": 1229,
@@ -540,16 +540,16 @@
     },
     {
       "evidence_id": "batch-043:e19",
-      "process": "new:deal-ticket-adjustment-notice",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/2085.",
       "field": "body",
-      "quote": "So I went ahead and changed the AEC ticket to match up",
-      "note": "Reports a ticket changed to match a deal.",
+      "quote": "I went ahead and changed the AEC ticket to match up",
+      "note": "Adjusts how flow at a meter is booked.",
       "match": "exact",
-      "start": 788,
+      "start": 791,
       "end": 842,
       "segment": "own",
-      "raw_text": "So I went ahead and changed the AEC ticket to match up",
+      "raw_text": "I went ahead and changed the AEC ticket to match up",
       "reason": null
     },
     {
@@ -558,7 +558,7 @@
       "message_id": "corpus/giron-d/sent/211.",
       "field": "body",
       "quote": "I have 3 new employees and they are working on the first unit.",
-      "note": "Gives feedback on training program progress.",
+      "note": "Gives feedback on staff training modules.",
       "match": "exact",
       "start": 503,
       "end": 565,
@@ -568,11 +568,11 @@
     },
     {
       "evidence_id": "batch-043:e21",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/2086.",
       "field": "body",
       "quote": "Do you know if this deal was supposed to run through 12/00 and 1/01?",
-      "note": "Asks whether a deal ticket should be extended.",
+      "note": "Asks whether a deal term needs extending.",
       "match": "exact",
       "start": 456,
       "end": 524,
@@ -585,33 +585,15 @@
   "ownership_checks": [],
   "new_processes": [
     {
-      "key": "new:origination-booking-correction",
-      "name": "Origination booking correction",
-      "definition": "Correcting how origination income is granted and coded to books or groups so reported P&L is right.",
-      "example_ids": [
-        "corpus/giron-d/sent/231.",
-        "corpus/giron-d/sent/232."
-      ]
-    },
-    {
-      "key": "new:deal-ticket-adjustment-notice",
-      "name": "Deal ticket adjustment notice",
-      "definition": "Notifying the logistics owner of net-outs or ticket changes made on deals at a meter or header.",
-      "example_ids": [
-        "corpus/farmer-d/logistics/2084.",
-        "corpus/farmer-d/logistics/2085."
-      ]
-    },
-    {
       "key": "new:training-program-feedback",
       "name": "Training program feedback",
-      "definition": "Reporting back on progress of staff through the monthly training program modules.",
+      "definition": "Managers reporting on how staff are progressing through the monthly training modules when asked.",
       "example_ids": [
         "corpus/giron-d/sent/211."
       ]
     }
   ],
-  "batch_notes": "Unsure: sent/225 (Book List) tagged trading-book-setup; sent/215 (Curve Fetch) weak fit for curve-postid-mapping. Many personal messages. No injection attempts found. New keys: origination-booking-correction, deal-ticket-adjustment-notice, training-program-feedback.",
+  "batch_notes": "No injection attempts. Several personal and joke messages. Tags for book list (225), Petro-Canada reply (213) and meter 2084/2085 were judgement calls. New key proposed: new:training-program-feedback.",
   "quote_stats": {
     "exact": 22,
     "repaired": 0,

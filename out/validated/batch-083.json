@@ -5,7 +5,7 @@
     {
       "id": "corpus/lokay-m/sent_items/18.",
       "processes": [
-        "weekly-commercial-reporting"
+        "capacity-reporting"
       ],
       "role": "fyi",
       "stall": null,
@@ -32,14 +32,14 @@
       "processes": [
         "performance-review"
       ],
-      "role": "fyi",
+      "role": "response",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/inbox/131.",
       "processes": [
-        "new:power-trade-dispute-tape-pull"
+        "new:trade-dispute-tape-review"
       ],
       "role": "request",
       "stall": null,
@@ -48,7 +48,7 @@
     {
       "id": "corpus/williams-w3/inbox/130.",
       "processes": [
-        "new:power-trade-dispute-tape-pull"
+        "new:trade-dispute-tape-review"
       ],
       "role": "request",
       "stall": null,
@@ -57,7 +57,7 @@
     {
       "id": "corpus/giron-d/inbox/172.",
       "processes": [
-        "expense-report-approval"
+        "expense-approval"
       ],
       "role": "fyi",
       "stall": null,
@@ -66,7 +66,7 @@
     {
       "id": "corpus/lokay-m/sent_items/73.",
       "processes": [
-        "new:transport-contract-extension"
+        "oba-contract-negotiation"
       ],
       "role": "response",
       "stall": null,
@@ -81,22 +81,26 @@
     },
     {
       "id": "corpus/giron-d/inbox/171.",
-      "processes": [],
-      "role": "automated",
+      "processes": [
+        "system-access-request"
+      ],
+      "role": "fyi",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/sent_items/45.",
-      "processes": [],
-      "role": "noise",
+      "processes": [
+        "system-access-request"
+      ],
+      "role": "forward",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/inbox/170.",
       "processes": [],
-      "role": "automated",
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
@@ -110,7 +114,7 @@
     {
       "id": "corpus/giron-d/inbox/304.",
       "processes": [],
-      "role": "personal",
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
@@ -131,7 +135,7 @@
     {
       "id": "corpus/lokay-m/sent_items/69.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "imbalance-resolution"
       ],
       "role": "response",
       "stall": null,
@@ -140,10 +144,13 @@
     {
       "id": "corpus/lokay-m/sent_items/68.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "imbalance-resolution"
       ],
       "role": "forward",
-      "stall": null,
+      "stall": {
+        "kind": "waiting_on_reply",
+        "quote": "This is the wire transfer that I have been looking for since last week."
+      },
       "ownership_claim": null
     },
     {
@@ -158,14 +165,14 @@
     {
       "id": "corpus/giron-d/inbox/168.",
       "processes": [],
-      "role": "automated",
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/inbox/129.",
       "processes": [
-        "market-rule-change-review"
+        "regulatory-notice-review"
       ],
       "role": "fyi",
       "stall": null,
@@ -181,7 +188,7 @@
     {
       "id": "corpus/lokay-m/sent_items/67.",
       "processes": [
-        "weekly-commercial-reporting"
+        "capacity-reporting"
       ],
       "role": "fyi",
       "stall": null,
@@ -232,7 +239,7 @@
     {
       "id": "corpus/williams-w3/sent_items/39.",
       "processes": [],
-      "role": "personal",
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
@@ -247,11 +254,11 @@
   "evidence": [
     {
       "evidence_id": "batch-083:e0",
-      "process": "weekly-commercial-reporting",
+      "process": "capacity-reporting",
       "message_id": "corpus/lokay-m/sent_items/18.",
       "field": "body",
       "quote": "Transwestern's average deliveries to California were 1122 MMBtu/d (103%), with San Juan lateral throughput at 844 MMBtu/d.",
-      "note": "Weekly California capacity and deliveries report.",
+      "note": "Weekly California deliveries report sent to the commercial group.",
       "match": "exact",
       "start": 1339,
       "end": 1461,
@@ -261,6 +268,20 @@
     },
     {
       "evidence_id": "batch-083:e1",
+      "process": "capacity-reporting",
+      "message_id": "corpus/lokay-m/sent_items/67.",
+      "field": "body",
+      "quote": "Transwestern's average deliveries to California were 1059 MMBtu/d (97%), with San Juan lateral throughput at 839 MMBtu/d.",
+      "note": "Weekly California deliveries report for the following week.",
+      "match": "exact",
+      "start": 1340,
+      "end": 1461,
+      "segment": "own",
+      "raw_text": "Transwestern's average deliveries to California were 1059 MMBtu/d (97%), with San Juan lateral throughput at 839 MMBtu/d.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-083:e2",
       "process": "new:capacity-credit-approval",
       "message_id": "corpus/lokay-m/sent_items/19.",
       "field": "body",
@@ -274,12 +295,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-083:e2",
+      "evidence_id": "batch-083:e3",
       "process": "performance-review",
       "message_id": "corpus/lokay-m/sent_items/74.",
       "field": "body",
       "quote": "I updated additional accomplishments...hope it's not too late!",
-      "note": "Sends updated year-end accomplishments.",
+      "note": "Supplies year-end accomplishments to the manager.",
       "match": "exact",
       "start": 578,
       "end": 640,
@@ -288,26 +309,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-083:e3",
-      "process": "new:power-trade-dispute-tape-pull",
+      "evidence_id": "batch-083:e4",
+      "process": "new:trade-dispute-tape-review",
       "message_id": "corpus/williams-w3/inbox/131.",
       "field": "body",
-      "quote": "Anyway we will probably need to pull tapes for Giers conversations with =",
-      "note": "Asks for recorded calls to be pulled to settle a disputed power purchase.",
+      "quote": "Anyway we will probably need to pull tapes for Giers conversations with",
+      "note": "Disputed power purchase needs recorded calls pulled to resolve it.",
       "match": "exact",
       "start": 1394,
-      "end": 1467,
+      "end": 1465,
       "segment": "own",
-      "raw_text": "Anyway we will probably need to pull tapes for Giers conversations with =",
+      "raw_text": "Anyway we will probably need to pull tapes for Giers conversations with",
       "reason": null
     },
     {
-      "evidence_id": "batch-083:e4",
-      "process": "new:power-trade-dispute-tape-pull",
+      "evidence_id": "batch-083:e5",
+      "process": "new:trade-dispute-tape-review",
       "message_id": "corpus/williams-w3/inbox/130.",
       "field": "body",
       "quote": "However you will need to still pull the tapes for Geirs conversation which occured somewhere between 16:00 and 17:30.",
-      "note": "Follow-up on which call tapes still need pulling for the dispute.",
+      "note": "Follow-up confirming which recorded calls still need pulling for the dispute.",
       "match": "exact",
       "start": 948,
       "end": 1065,
@@ -316,12 +337,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-083:e5",
-      "process": "expense-report-approval",
+      "evidence_id": "batch-083:e6",
+      "process": "expense-approval",
       "message_id": "corpus/giron-d/inbox/172.",
       "field": "body",
       "quote": "Expenses will be reimbursed promptly upon submission.",
-      "note": "Announcement on employee expense reimbursement processing.",
+      "note": "Announcement on how employee expense reimbursement is processed.",
       "match": "exact",
       "start": 994,
       "end": 1047,
@@ -330,12 +351,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-083:e6",
-      "process": "new:transport-contract-extension",
+      "evidence_id": "batch-083:e7",
+      "process": "oba-contract-negotiation",
       "message_id": "corpus/lokay-m/sent_items/73.",
       "field": "body",
       "quote": "Approved.  The contract number will remain the same, #27785.",
-      "note": "Approves a one-day extension of a transportation agreement.",
+      "note": "Approves a one-day transport contract extension and confirms the contract number.",
       "match": "exact",
       "start": 651,
       "end": 711,
@@ -344,12 +365,40 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-083:e7",
-      "process": "volume-imbalance-reconciliation",
+      "evidence_id": "batch-083:e8",
+      "process": "system-access-request",
+      "message_id": "corpus/giron-d/inbox/171.",
+      "field": "body",
+      "quote": "Authorization to use eConnect may be requested via the eRequest system",
+      "note": "Explains how remote access is requested.",
+      "match": "exact",
+      "start": 660,
+      "end": 730,
+      "segment": "own",
+      "raw_text": "Authorization to use eConnect may be requested via the eRequest system",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-083:e9",
+      "process": "system-access-request",
+      "message_id": "corpus/williams-w3/sent_items/45.",
+      "field": "body",
+      "quote": "Authorization to use eConnect may be requested via the eRequest system",
+      "note": "Forwarded notice on requesting remote access.",
+      "match": "exact",
+      "start": 950,
+      "end": 1020,
+      "segment": "quoted",
+      "raw_text": "Authorization to use eConnect may be requested via the eRequest system",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-083:e10",
+      "process": "imbalance-resolution",
       "message_id": "corpus/lokay-m/sent_items/69.",
       "field": "body",
       "quote": "Yes.  Kim Richards with Williams confirmed this morning.",
-      "note": "Confirms the cash receipt for a cumulative imbalance payment.",
+      "note": "Confirms the pipeline imbalance payment from the counterparty.",
       "match": "exact",
       "start": 558,
       "end": 614,
@@ -358,12 +407,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-083:e8",
-      "process": "volume-imbalance-reconciliation",
+      "evidence_id": "batch-083:e11",
+      "process": "imbalance-resolution",
       "message_id": "corpus/lokay-m/sent_items/68.",
       "field": "body",
       "quote": "This is the wire transfer that I have been looking for since last week.",
-      "note": "Forwards the imbalance payment notice to accounting.",
+      "note": "Forwards the cumulative imbalance payment notice to accounting.",
       "match": "exact",
       "start": 739,
       "end": 810,
@@ -372,12 +421,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-083:e9",
+      "evidence_id": "batch-083:e12",
       "process": "new:real-time-customer-retention",
       "message_id": "corpus/williams-w3/sent_items/43.",
       "field": "body",
       "quote": "Has anyone contacted MPC to discuss continuing or renewing our relationship with them in the future.",
-      "note": "Asks whether real-time service customers are being approached to retain them.",
+      "note": "Asks colleagues to follow up on retaining real-time service customers.",
       "match": "exact",
       "start": 733,
       "end": 833,
@@ -386,74 +435,62 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-083:e10",
-      "process": "market-rule-change-review",
+      "evidence_id": "batch-083:e13",
+      "process": "regulatory-notice-review",
       "message_id": "corpus/williams-w3/inbox/129.",
       "field": "body",
       "quote": "The FERC's west-wide price cap has been raised to at least $108/MWh beginning today through 30 April 02.",
-      "note": "Informs the desk of a FERC price cap rule change.",
+      "note": "Circulates a FERC order on the West-wide price cap.",
       "match": "exact",
       "start": 4155,
       "end": 4259,
       "segment": "own",
       "raw_text": "The FERC's west-wide price cap has been raised to at least $108/MWh beginning today through 30 April 02.",
       "reason": null
-    },
+    }
+  ],
+  "stall_checks": [
     {
-      "evidence_id": "batch-083:e11",
-      "process": "weekly-commercial-reporting",
-      "message_id": "corpus/lokay-m/sent_items/67.",
-      "field": "body",
-      "quote": "Transwestern's average deliveries to California were 1059 MMBtu/d (97%), with San Juan lateral throughput at 839 MMBtu/d.",
-      "note": "Weekly California capacity and deliveries report.",
+      "message_id": "corpus/lokay-m/sent_items/68.",
       "match": "exact",
-      "start": 1340,
-      "end": 1461,
+      "start": 739,
+      "end": 810,
       "segment": "own",
-      "raw_text": "Transwestern's average deliveries to California were 1059 MMBtu/d (97%), with San Juan lateral throughput at 839 MMBtu/d.",
+      "raw_text": "This is the wire transfer that I have been looking for since last week.",
       "reason": null
     }
   ],
-  "stall_checks": [],
   "ownership_checks": [],
   "new_processes": [
     {
       "key": "new:capacity-credit-approval",
-      "name": "Capacity credit approval",
-      "definition": "Credit group approval requests for shippers' new or amended firm transport capacity contracts, circulated to the commercial team.",
+      "name": "Capacity credit approval request",
+      "definition": "Requesting and circulating credit approval from the credit group for a shipper's capacity or amended firm transport contract.",
       "example_ids": [
         "corpus/lokay-m/sent_items/19."
       ]
     },
     {
-      "key": "new:power-trade-dispute-tape-pull",
-      "name": "Power trade dispute tape pull",
-      "definition": "Pulling recorded trader calls to resolve disputes with power counterparties about what was bought.",
+      "key": "new:trade-dispute-tape-review",
+      "name": "Trade dispute tape review",
+      "definition": "Pulling recorded trader calls to settle a disputed power purchase with a counterparty.",
       "example_ids": [
         "corpus/williams-w3/inbox/131.",
         "corpus/williams-w3/inbox/130."
       ]
     },
     {
-      "key": "new:transport-contract-extension",
-      "name": "Transport contract extension",
-      "definition": "Approving short extensions of an existing transportation contract on the same terms and confirming contract numbers.",
-      "example_ids": [
-        "corpus/lokay-m/sent_items/73."
-      ]
-    },
-    {
       "key": "new:real-time-customer-retention",
-      "name": "Real-time customer retention",
-      "definition": "Following up with real-time service customers to keep or win back their business.",
+      "name": "Real-time service customer retention",
+      "definition": "Following up with real-time load balancing service customers to keep or win back their business.",
       "example_ids": [
         "corpus/williams-w3/sent_items/43."
       ]
     }
   ],
-  "batch_notes": "Mostly personal mail and company-wide announcements. No injection attempts found. Proposed four new keys. Message w3/sent_items/39 has a work-looking subject but a social body, tagged personal.",
+  "batch_notes": "Mostly personal and company-wide announcement mail from three mailboxes. Proposed keys: new:capacity-credit-approval, new:trade-dispute-tape-review, new:real-time-customer-retention. No injection attempts found.",
   "quote_stats": {
-    "exact": 12,
+    "exact": 15,
     "repaired": 0,
     "rejected": 0
   }

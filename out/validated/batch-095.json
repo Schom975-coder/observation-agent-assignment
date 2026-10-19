@@ -4,8 +4,10 @@
   "messages": [
     {
       "id": "corpus/williams-w3/inbox/35.",
-      "processes": [],
-      "role": "automated",
+      "processes": [
+        "new:energy-market-report-distribution"
+      ],
+      "role": "forward",
       "stall": null,
       "ownership_claim": null
     },
@@ -26,7 +28,7 @@
     {
       "id": "corpus/williams-w3/inbox/32.",
       "processes": [
-        "market-rule-change-review"
+        "regulatory-notice-review"
       ],
       "role": "automated",
       "stall": null,
@@ -44,7 +46,7 @@
     {
       "id": "corpus/williams-w3/inbox/28.",
       "processes": [
-        "expense-report-approval"
+        "expense-approval"
       ],
       "role": "automated",
       "stall": null,
@@ -71,7 +73,7 @@
     {
       "id": "corpus/williams-w3/inbox/30.",
       "processes": [
-        "new:ubsw-onboarding-admin"
+        "new:ubs-onboarding"
       ],
       "role": "request",
       "stall": null,
@@ -80,7 +82,7 @@
     {
       "id": "corpus/williams-w3/inbox/29.",
       "processes": [
-        "new:ubsw-onboarding-admin"
+        "new:ubs-onboarding"
       ],
       "role": "request",
       "stall": null,
@@ -89,7 +91,7 @@
     {
       "id": "corpus/williams-w3/inbox/27.",
       "processes": [
-        "new:ubsw-onboarding-admin"
+        "new:ubs-onboarding"
       ],
       "role": "request",
       "stall": null,
@@ -107,9 +109,9 @@
     {
       "id": "corpus/williams-w3/inbox/26.",
       "processes": [
-        "system-enhancement-request"
+        "new:online-trading-simulation"
       ],
-      "role": "fyi",
+      "role": "request",
       "stall": null,
       "ownership_claim": null
     },
@@ -130,7 +132,7 @@
     {
       "id": "corpus/giron-d/inbox/12.",
       "processes": [
-        "curve-postid-mapping"
+        "curve-postid-maintenance"
       ],
       "role": "request",
       "stall": null,
@@ -139,19 +141,19 @@
     {
       "id": "corpus/giron-d/inbox/11.",
       "processes": [
-        "system-enhancement-request"
+        "system-issue-resolution"
       ],
       "role": "fyi",
       "stall": {
         "kind": "system_failure",
-        "quote": "the latest version does not include information for the 'Y' curve"
+        "quote": "however the latest version does not include information for the 'Y' curve."
       },
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/inbox/10.",
       "processes": [
-        "user-access-setup"
+        "system-access-request"
       ],
       "role": "fyi",
       "stall": null,
@@ -160,7 +162,7 @@
     {
       "id": "corpus/giron-d/inbox/9.",
       "processes": [
-        "system-enhancement-request"
+        "system-issue-resolution"
       ],
       "role": "forward",
       "stall": {
@@ -171,8 +173,10 @@
     },
     {
       "id": "corpus/giron-d/inbox/8.",
-      "processes": [],
-      "role": "noise",
+      "processes": [
+        "system-issue-resolution"
+      ],
+      "role": "forward",
       "stall": null,
       "ownership_claim": null
     },
@@ -188,7 +192,7 @@
     {
       "id": "corpus/williams-w3/inbox/24.",
       "processes": [
-        "new:ubsw-data-migration"
+        "system-issue-resolution"
       ],
       "role": "fyi",
       "stall": {
@@ -200,9 +204,9 @@
     {
       "id": "corpus/williams-w3/inbox/22.",
       "processes": [
-        "market-rule-change-review"
+        "regulatory-notice-review"
       ],
-      "role": "fyi",
+      "role": "automated",
       "stall": null,
       "ownership_claim": null
     }
@@ -210,11 +214,25 @@
   "evidence": [
     {
       "evidence_id": "batch-095:e0",
-      "process": "market-rule-change-review",
+      "process": "new:energy-market-report-distribution",
+      "message_id": "corpus/williams-w3/inbox/35.",
+      "field": "body",
+      "quote": "Western Pre-Scheduled Firm Electricity Prices($/MWh)",
+      "note": "Daily energy market price report forwarded to the trading team.",
+      "match": "exact",
+      "start": 1637,
+      "end": 1689,
+      "segment": "own",
+      "raw_text": "Western Pre-Scheduled Firm Electricity Prices($/MWh)",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-095:e1",
+      "process": "regulatory-notice-review",
       "message_id": "corpus/williams-w3/inbox/32.",
       "field": "body",
       "quote": "The ISO has posted on its web site four documents related to the discussion",
-      "note": "ISO market design 2002 documents posted for participants.",
+      "note": "CAISO market notice about Market Design 2002 documents.",
       "match": "exact",
       "start": 674,
       "end": 749,
@@ -223,12 +241,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-095:e1",
+      "evidence_id": "batch-095:e2",
       "process": "new:ubsw-data-migration",
       "message_id": "corpus/giron-d/inbox/14.",
       "field": "body",
       "quote": "All compliant data and email should be copied to the UBSWE environment no later than Midnight (CST), Thursday, February 7, 2002",
-      "note": "Staff told to copy data to the new environment by a deadline.",
+      "note": "Instructs staff to copy data to the new environment by a deadline.",
       "match": "exact",
       "start": 1282,
       "end": 1409,
@@ -237,12 +255,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-095:e2",
-      "process": "expense-report-approval",
+      "evidence_id": "batch-095:e3",
+      "process": "expense-approval",
       "message_id": "corpus/williams-w3/inbox/28.",
       "field": "body",
       "quote": "The following expense report is ready for approval:",
-      "note": "Concur notice asking for approval of an expense report.",
+      "note": "Expense system notice that a report awaits approval.",
       "match": "exact",
       "start": 517,
       "end": 568,
@@ -251,36 +269,36 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-095:e3",
+      "evidence_id": "batch-095:e4",
       "process": "new:trading-assistant-hiring",
       "message_id": "corpus/williams-w3/inbox/31.",
       "field": "body",
-      "quote": "Based on the criteria listed below, you have been selected to be interviewed for this role.",
-      "note": "Candidates selected and asked for availability for interviews.",
+      "quote": "Please send me an e-mail to let me know when you WON'T be available during the next few days.",
+      "note": "Interview scheduling for assistant trader candidates.",
       "match": "exact",
-      "start": 1331,
-      "end": 1422,
+      "start": 1795,
+      "end": 1888,
       "segment": "own",
-      "raw_text": "Based on the criteria listed below, you have been selected to be interviewed for this role.",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-095:e4",
-      "process": "new:trading-assistant-hiring",
-      "message_id": "corpus/williams-w3/sent_items/1.",
-      "field": "body",
-      "quote": "I will be available all week.",
-      "note": "Candidate replies with interview availability.",
-      "match": "exact",
-      "start": 544,
-      "end": 573,
-      "segment": "own",
-      "raw_text": "I will be available all week.",
+      "raw_text": "Please send me an e-mail to let me know when you WON'T be available during the next few days.",
       "reason": null
     },
     {
       "evidence_id": "batch-095:e5",
-      "process": "new:ubsw-onboarding-admin",
+      "process": "new:trading-assistant-hiring",
+      "message_id": "corpus/williams-w3/sent_items/1.",
+      "field": "body",
+      "quote": "I will be available all week.\nThank you for the opportunity,",
+      "note": "Candidate replies with interview availability.",
+      "match": "exact",
+      "start": 544,
+      "end": 604,
+      "segment": "own",
+      "raw_text": "I will be available all week.\nThank you for the opportunity,",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-095:e6",
+      "process": "new:ubs-onboarding",
       "message_id": "corpus/williams-w3/inbox/30.",
       "field": "body",
       "quote": "Our records indicate that you have not taken your pre-employment drug test for UBS.",
@@ -293,12 +311,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-095:e6",
-      "process": "new:ubsw-onboarding-admin",
+      "evidence_id": "batch-095:e7",
+      "process": "new:ubs-onboarding",
       "message_id": "corpus/williams-w3/inbox/29.",
       "field": "body",
       "quote": "Our records indicate that you have not taken your pre-employment drug test for UBS.",
-      "note": "Same pre-employment drug test chase for another employee.",
+      "note": "Same onboarding drug test follow-up to another employee.",
       "match": "exact",
       "start": 650,
       "end": 733,
@@ -307,21 +325,21 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-095:e7",
-      "process": "new:ubsw-onboarding-admin",
+      "evidence_id": "batch-095:e8",
+      "process": "new:ubs-onboarding",
       "message_id": "corpus/williams-w3/inbox/27.",
       "field": "body",
-      "quote": "Please try to attend this additional session as valuable information will be presented",
-      "note": "UBS benefits orientation session with forms to complete.",
+      "quote": "Gabrielle Hagele, UBS Warburg, will be in Portland on Friday, February 8, 2002 to present information on UBS benefits",
+      "note": "Benefits orientation session for staff transferring to UBS.",
       "match": "exact",
-      "start": 2463,
-      "end": 2549,
+      "start": 2203,
+      "end": 2320,
       "segment": "own",
-      "raw_text": "Please try to attend this additional session as valuable information will be presented",
+      "raw_text": "Gabrielle Hagele, UBS Warburg, will be in Portland on Friday, February 8, 2002 to present information on UBS benefits",
       "reason": null
     },
     {
-      "evidence_id": "batch-095:e8",
+      "evidence_id": "batch-095:e9",
       "process": "new:ubsw-data-migration",
       "message_id": "corpus/williams-w3/inbox/140.",
       "field": "body",
@@ -335,26 +353,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-095:e9",
-      "process": "system-enhancement-request",
+      "evidence_id": "batch-095:e10",
+      "process": "new:online-trading-simulation",
       "message_id": "corpus/williams-w3/inbox/26.",
       "field": "body",
-      "quote": "Log into the stack manager on Wednesday afternoon and ensure that your products are ready to be activated on Thursday morning.",
-      "note": "Traders asked to take part in a trading system test simulation.",
+      "quote": "Preparations are continuing for our simulation on Thursday, Feb. 7 from 9-11 am.",
+      "note": "Preparing traders for an online trading simulation.",
       "match": "exact",
-      "start": 2015,
-      "end": 2141,
+      "start": 1346,
+      "end": 1426,
       "segment": "own",
-      "raw_text": "Log into the stack manager on Wednesday afternoon and ensure that your products are ready to be activated on Thursday morning.",
+      "raw_text": "Preparations are continuing for our simulation on Thursday, Feb. 7 from 9-11 am.",
       "reason": null
     },
     {
-      "evidence_id": "batch-095:e10",
-      "process": "curve-postid-mapping",
+      "evidence_id": "batch-095:e11",
+      "process": "curve-postid-maintenance",
       "message_id": "corpus/giron-d/inbox/12.",
       "field": "body",
       "quote": "There is a new directory for the curve files.",
-      "note": "Curve files moved to a new directory; owners asked to move them.",
+      "note": "Asks staff to move curve files to a new directory.",
       "match": "exact",
       "start": 898,
       "end": 943,
@@ -363,26 +381,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-095:e11",
-      "process": "system-enhancement-request",
+      "evidence_id": "batch-095:e12",
+      "process": "system-issue-resolution",
       "message_id": "corpus/giron-d/inbox/11.",
       "field": "body",
-      "quote": "the latest version does not include information for the 'Y' curve",
-      "note": "Reports a tool issue in the TDS Curve Manager.",
+      "quote": "This will be fixed after the code freeze that is now in place is released.",
+      "note": "Warns of a Curve Manager code defect and its pending fix.",
       "match": "exact",
-      "start": 1034,
-      "end": 1099,
+      "start": 1101,
+      "end": 1175,
       "segment": "own",
-      "raw_text": "the latest version does not include information for the 'Y' curve",
+      "raw_text": "This will be fixed after the code freeze that is now in place is released.",
       "reason": null
     },
     {
-      "evidence_id": "batch-095:e12",
-      "process": "user-access-setup",
+      "evidence_id": "batch-095:e13",
+      "process": "system-access-request",
       "message_id": "corpus/giron-d/inbox/10.",
       "field": "body",
       "quote": "I am attaching the application that you can use to grant access to the books in your regions.",
-      "note": "Application provided to grant system access to books.",
+      "note": "Provides a tool and grants access to TDS books.",
       "match": "exact",
       "start": 858,
       "end": 951,
@@ -391,12 +409,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-095:e13",
-      "process": "system-enhancement-request",
+      "evidence_id": "batch-095:e14",
+      "process": "system-issue-resolution",
       "message_id": "corpus/giron-d/inbox/9.",
       "field": "body",
       "quote": "Please use new URL for NETCO Sitara Reporting Production system.",
-      "note": "Sitara reporting system issue and new URL for users.",
+      "note": "System change affecting Sitara reports and its access problems.",
       "match": "exact",
       "start": 1136,
       "end": 1200,
@@ -405,12 +423,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-095:e14",
+      "evidence_id": "batch-095:e15",
+      "process": "system-issue-resolution",
+      "message_id": "corpus/giron-d/inbox/8.",
+      "field": "body",
+      "quote": "this is code for RunM... Save, and I'll come by... O",
+      "note": "Shares code to get a tool running for colleagues.",
+      "match": "exact",
+      "start": 1092,
+      "end": 1144,
+      "segment": "own",
+      "raw_text": "this is code for RunM... Save, and I'll come by... O",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-095:e16",
       "process": "new:ubsw-data-migration",
       "message_id": "corpus/giron-d/inbox/7.",
       "field": "body",
       "quote": "You have to copy all documents yourself.",
-      "note": "Reminder that staff must copy their own data during migration.",
+      "note": "Reminder that each person must copy their own data before drives are removed.",
       "match": "exact",
       "start": 14628,
       "end": 14668,
@@ -419,31 +451,31 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-095:e15",
-      "process": "new:ubsw-data-migration",
+      "evidence_id": "batch-095:e17",
+      "process": "system-issue-resolution",
       "message_id": "corpus/williams-w3/inbox/24.",
       "field": "body",
-      "quote": "Due to the migration I am unable to send the EPE model to Kathy",
-      "note": "Migration problems blocking regular work.",
+      "quote": "Due to the migration I am unable to send the EPE model to Kathy (file for Feb. did not pull into the M: drive).",
+      "note": "Migration breaks file access and system log-ins for scheduling work.",
       "match": "exact",
       "start": 602,
-      "end": 665,
+      "end": 713,
       "segment": "own",
-      "raw_text": "Due to the migration I am unable to send the EPE model to Kathy",
+      "raw_text": "Due to the migration I am unable to send the EPE model to Kathy (file for Feb. did not pull into the M: drive).",
       "reason": null
     },
     {
-      "evidence_id": "batch-095:e16",
-      "process": "market-rule-change-review",
+      "evidence_id": "batch-095:e18",
+      "process": "regulatory-notice-review",
       "message_id": "corpus/williams-w3/inbox/22.",
-      "field": "body",
-      "quote": "Please call in @ 1330 Pacific Call In Number (877) 670-4111",
-      "note": "ISO working group conference call notice.",
+      "field": "subject",
+      "quote": "CAISO Notification - TSWG Conference call",
+      "note": "CAISO stakeholder working group call notice.",
       "match": "exact",
-      "start": 484,
-      "end": 543,
-      "segment": "own",
-      "raw_text": "Please call in @ 1330 Pacific Call In Number (877) 670-4111",
+      "start": 161,
+      "end": 202,
+      "segment": "subject",
+      "raw_text": "CAISO Notification - TSWG Conference call",
       "reason": null
     }
   ],
@@ -451,10 +483,10 @@
     {
       "message_id": "corpus/giron-d/inbox/11.",
       "match": "exact",
-      "start": 1034,
-      "end": 1099,
+      "start": 1026,
+      "end": 1100,
       "segment": "own",
-      "raw_text": "the latest version does not include information for the 'Y' curve",
+      "raw_text": "however the latest version does not include information for the 'Y' curve.",
       "reason": null
     },
     {
@@ -479,39 +511,54 @@
   "ownership_checks": [],
   "new_processes": [
     {
+      "key": "new:energy-market-report-distribution",
+      "name": "Energy market report distribution",
+      "definition": "Circulating the daily western and eastern power price and outage report to the trading team.",
+      "example_ids": [
+        "corpus/williams-w3/inbox/35."
+      ]
+    },
+    {
       "key": "new:ubsw-data-migration",
-      "name": "UBSW data and environment migration",
-      "definition": "Moving staff, files and systems to the UBS Warburg Energy environment, including copying data under the migration protocol and certifying compliance.",
+      "name": "UBSW environment and data migration",
+      "definition": "Moving staff and their files and email into the UBS Warburg Energy environment under a compliance protocol.",
       "example_ids": [
         "corpus/giron-d/inbox/14.",
         "corpus/williams-w3/inbox/140.",
-        "corpus/giron-d/inbox/7.",
-        "corpus/williams-w3/inbox/24."
+        "corpus/giron-d/inbox/7."
       ]
     },
     {
       "key": "new:trading-assistant-hiring",
       "name": "Trading assistant hiring",
-      "definition": "Selecting and scheduling interviews for internal candidates for assistant trader roles.",
+      "definition": "Selecting and scheduling interviews for assistant trader candidates.",
       "example_ids": [
         "corpus/williams-w3/inbox/31.",
         "corpus/williams-w3/sent_items/1."
       ]
     },
     {
-      "key": "new:ubsw-onboarding-admin",
-      "name": "UBSW onboarding administration",
-      "definition": "Chasing transferring employees for pre-employment steps and arranging benefits orientation sessions and forms for the move to UBS.",
+      "key": "new:ubs-onboarding",
+      "name": "UBS onboarding requirements",
+      "definition": "Tracking pre-employment checks, benefits sessions and forms for staff transferring to UBS.",
       "example_ids": [
         "corpus/williams-w3/inbox/30.",
         "corpus/williams-w3/inbox/29.",
         "corpus/williams-w3/inbox/27."
       ]
+    },
+    {
+      "key": "new:online-trading-simulation",
+      "name": "Online trading simulation",
+      "definition": "Preparing traders and systems for a test run of the online trading platform before launch.",
+      "example_ids": [
+        "corpus/williams-w3/inbox/26."
+      ]
     }
   ],
-  "batch_notes": "No injection attempts found. Three new keys proposed for the UBS transition. Messages 35, 34, 81, 8 and the two personal ones carry no process.",
+  "batch_notes": "Mostly UBS transition traffic (migration, onboarding, simulation). Personal: williams-w3 inbox 25, lokay-m sent 82. Toner notice and CAISO hour-ahead republish notice left without a process. No injection attempts found. Five new keys proposed.",
   "quote_stats": {
-    "exact": 20,
+    "exact": 22,
     "repaired": 0,
     "rejected": 0
   }

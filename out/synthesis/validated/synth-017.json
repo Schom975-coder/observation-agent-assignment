@@ -1,55 +1,23 @@
 {
   "group_id": "synth-017",
-  "content_sha": "98f40033df86a035da78cc26d3abc0e05f9d0a5aeb4980a3258c6babcfdb3fc4",
+  "content_sha": "9674bfa7123e823bae298fbeb8d477f5c1c187d9f32c56715dd393825a7b31ed",
   "processes": [
     {
-      "key": "reference-data-update",
-      "description": "A round starts when someone announces or asks for changed reference details: a new phone, pager or extension, a name to use on email lists, or a counterparty's new scheduling coordinator ID, contract number, meter, pooling point or DUNS number. Schedulers and the risk group also ask desks for lists such as working customer lists, org region codes or book contacts, and forward them to whoever keeps the reference. Recipients update address books, contact sheets and counterparty records; follow-ups fix a wrong attachment or confirm what was asked.",
+      "key": "market-report-circulation",
+      "description": "Staff pass market information to traders and originators: a daily Western pre-scheduled firm electricity price report forwarded by an assistant, weather comparison spreadsheets, press articles on Enron's market role, analyst call notes, and regional supply and market analyses. Some rounds also ask recipients to review circulated data and pull out what is relevant to them, or offer a feed to a colleague who may want it.",
       "steps": [
-        "A staff member or counterparty announces a changed contact detail or counterparty identifier, or a coordinator asks desks for their current contact or customer list.",
-        "The notice or compiled list is forwarded to the schedulers, risk and settlement staff who rely on it.",
-        "Recipients update their address books, contact sheets and distribution lists.",
-        "Where a counterparty ID, contract number, meter or pooling point changed, the record is corrected in the scheduling and contract systems.",
-        "A follow-up reply resends a correct file or confirms the detail when the first message was wrong or unclear."
+        "A report, article, analysis or set of call notes becomes available or is prepared.",
+        "The sender compiles or attaches the material, adding a short note on why it matters.",
+        "The material is forwarded to the trading or origination group or to named colleagues.",
+        "Recipients read it and, where asked, review it and pull the data relevant to their own work.",
+        "Ongoing analyses are assigned to a named person to keep compiling and updating."
       ],
-      "stalls": [
-        {
-          "summary": "A counterparty's contact update went out with an empty spreadsheet and had to be resent before anyone could use it.",
-          "evidence_ids": [
-            "batch-040:e9",
-            "batch-040:e7"
-          ]
-        },
-        {
-          "summary": "A requester first said the answer missed the question, then wrote back that the original answer was right after all, adding a round of mail for no change.",
-          "evidence_ids": [
-            "batch-005:e21",
-            "batch-005:e23"
-          ]
-        },
-        {
-          "summary": "Distribution lists drift out of date: mail failed to reach a person because the list carried the wrong form of his name, and others asked to be taken off lists.",
-          "evidence_ids": [
-            "batch-055:e12",
-            "batch-055:e17",
-            "batch-061:e20"
-          ]
-        }
-      ],
-      "contradictions": [
-        {
-          "summary": "Instructions on the same person's list entry conflict: one notice says 'Bill Williams III' must appear in the address box or he does not get the mail, while a later one asks lists to read 'Bill Williams' and not 'Bill Williams III'.",
-          "evidence_ids": [
-            "batch-055:e12",
-            "batch-055:e17",
-            "batch-069:e9"
-          ]
-        }
-      ],
+      "stalls": [],
+      "contradictions": [],
       "automation": {
-        "approach": "Keep one shared contact and counterparty register with a change log, fed by a standard change-notice form that records the counterparty, the field changed (scheduling coordinator ID, contract number, meter, pooling point, DUNS number, phone), old and new values, the effective date and the systems to update. A periodic check compares the register with the scheduling and contract systems and flags records still holding the old value; list requests go out from the register so desks confirm entries rather than retype them.",
-        "artifact_type": "template",
-        "rationale": "Most rounds pass a single change along by forward, and the repetitive part is each recipient retyping it while lists drift out of date. A fixed change-notice layout and one register give everyone the same values and a record of when they changed; people still confirm changes with the counterparty and decide which systems are affected."
+        "approach": "Replace the manual daily forwarding of the published price report with a scheduled distribution that posts the report to a shared location and mails a subscribed list, and keep a simple subscription list so people can opt in to feeds instead of being asked one by one.",
+        "artifact_type": "checklist",
+        "rationale": "Most rounds are the same report forwarded by hand each day, which a scheduled distribution handles well. A short checklist for the sender (which reports go to whom, where they are saved, who maintains each recurring analysis) keeps the remaining manual circulation consistent."
       },
       "work_estimate": {
         "minutes_per_occurrence": {
@@ -57,140 +25,149 @@
           "mid": 8,
           "high": 25
         },
-        "automatable_pct": 40,
+        "automatable_pct": 50,
         "basis": "inferred",
-        "rationale": "Many rounds show only a new phone number or name passing through, where the hands-on work is updating an address book or contact sheet in a few minutes. Rounds that change a scheduling coordinator ID, contract number, pooling points or DUNS number also need the counterparty record corrected in scheduling and contract systems, and list requests need a desk to compile its customers or region codes, which pushes some rounds toward 25 minutes. A typical round is about 8 minutes; the retyping and cross-checking is what a register and change form could take over.",
+        "rationale": "Most rounds are a forwarded daily price report needing only a minute or two to locate and attach. Fewer rounds involve real preparation: building a hot-days comparison spreadsheet, writing up analyst call notes, or reviewing a shared data set. The mid reflects a mix weighted toward simple forwards; the high covers rounds where a spreadsheet or notes are prepared.",
         "evidence_ids": [
-          "batch-068:e16",
-          "batch-079:e8",
-          "batch-076:e11",
-          "batch-000:e5",
-          "batch-005:e31",
-          "batch-040:e6",
-          "batch-075:e0",
-          "batch-003:e7",
-          "batch-088:e15"
+          "batch-092:e2",
+          "batch-090:e0",
+          "batch-053:e8",
+          "batch-075:e8",
+          "batch-065:e2",
+          "batch-067:e6"
         ]
       },
       "estimate_check": {
-        "occurrences_cited": 9,
-        "senders_cited": 6
+        "occurrences_cited": 6,
+        "senders_cited": 5
       }
     },
     {
-      "key": "schedule-c-notice",
-      "description": "Darron Giron tells the risk contacts, by a one-line email sent the same evening, that an amount is being taken to Schedule C, removed from it, or released. A later notice can reverse or add to an earlier one, as when an amount put on Schedule C on a Friday was removed after the weekend, or when more was released the night after a first release. Each notice states only the action and the amount; the readers send nothing back in the mail.",
+      "key": "price-data-request",
+      "description": "Colleagues and outside customers ask for specific price data, such as historical market data for past years ahead of a meeting or a monthly point price at a pipeline location. The person asked looks the figure up in the price sources, waits when a source such as Gas Daily has not been loaded yet, and replies with the price or a data file and an offer to answer questions.",
       "steps": [
-        "The risk group decides to put an amount on, remove it from, or release it from Schedule C for that night.",
-        "Darron Giron emails the risk contacts the action and the amount.",
-        "When a later decision reverses or adds to an earlier entry, a follow-up notice refers back to it."
-      ],
-      "stalls": [],
-      "contradictions": [],
-      "automation": {
-        "approach": "A fixed notice template with fields for the action (add, remove, release), the amount, the night it takes effect and a reference to any earlier entry it changes, ideally filled from the record where the Schedule C entry is made so the amount is not retyped.",
-        "artifact_type": "email_template",
-        "rationale": "The notices are short, alike and come from one person; a template keeps wording and amounts consistent and makes reversals traceable to the entry they change, while the decision to move amounts stays with risk management."
-      },
-      "work_estimate": null,
-      "estimate_check": null
-    },
-    {
-      "key": "staff-recruiting",
-      "description": "Managers in the logistics and risk groups ask for headcount or a rotating analyst, write or edit the job posting, and send it to HR or recruiting staff. Candidates come by referral, internal transfer or the analyst pool; resumes are forwarded to hiring managers, an interview panel is named and a schedule sent, and interviewers return feedback. Managers also justify replacements to their superiors, confirm buy-in before candidates are contacted, write recommendation letters, and tell candidates when plans change.",
-      "steps": [
-        "A manager requests headcount or an analyst for the group, with a justification where a superior asks for one.",
-        "The opening is described or posted, and HR or the analyst program is asked for candidates.",
-        "Resumes from referrals, internal candidates and the analyst pool are forwarded to the hiring managers.",
-        "Managers confirm which candidates to pursue and name the interview panel.",
-        "Interviews are scheduled and the schedule is sent to interviewers and candidates.",
-        "Interviewers give feedback and the group decides whom to bring in.",
-        "HR is told to start the hire, or candidates are told of a change in plans."
+        "A colleague or customer emails asking for index, point or historical price data for given periods.",
+        "The recipient checks which source holds the data and whether it has been loaded.",
+        "If the data is not yet available, the recipient checks back later.",
+        "The recipient extracts the prices and assembles them in a reply or attachment.",
+        "The reply is sent with an offer to answer follow-up questions."
       ],
       "stalls": [
         {
-          "summary": "Interviews are cancelled or moved when an interviewer is unexpectedly out of the office, so the slots have to be rearranged.",
+          "summary": "Requests wait on the price source itself: Gas Daily data was not loaded yet, so the person handling the request had to keep checking back before replying.",
           "evidence_ids": [
-            "batch-042:e19",
-            "batch-042:e20",
-            "batch-042:e21"
+            "batch-093:e13"
+          ]
+        }
+      ],
+      "contradictions": [],
+      "automation": {
+        "approach": "Give requesters self-service access to a standard price lookup or a regularly refreshed price extract covering index, basis, Gas Daily and point prices by month, so routine requests are answered without a manual lookup, and flag when a source has not loaded yet.",
+        "artifact_type": "template",
+        "rationale": "The requests ask for the same kinds of figures in the same shape. A standard price-data layout lets the person asked fill or forward it quickly, and lets customers see exactly which points and periods are available."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": {
+          "low": 5,
+          "mid": 15,
+          "high": 40
+        },
+        "automatable_pct": 60,
+        "basis": "inferred",
+        "rationale": "A single monthly point price takes a few minutes to look up; a request for historical data across past years needs pulling and arranging a larger set, and waiting on unloaded Gas Daily data adds a recheck. The mid sits between a single figure and a multi-year extract.",
+        "evidence_ids": [
+          "batch-098:e0",
+          "batch-073:e13",
+          "batch-093:e13",
+          "batch-040:e11"
+        ]
+      },
+      "estimate_check": {
+        "occurrences_cited": 4,
+        "senders_cited": 4
+      }
+    },
+    {
+      "key": "system-access-request",
+      "description": "Desk heads, schedulers and risk staff ask IT or system administrators to add, change or remove users in trading and operations systems such as Sitara, Enpower, RiskTrac, EnronOnline, schedule tools and distribution lists, or to issue trader IDs and passwords. Requests list names and NT usernames; administrators collect access criteria and lists of who should have access per desk, process the request, and confirm by email or automated notice. Around the new company launch, whole desks were set up and verified at once.",
+      "steps": [
+        "A manager or user emails a request naming the people, the system and the access or role needed.",
+        "Administrators collect access criteria or a list of who should have access for each region or desk.",
+        "The request is entered into the access request system, which notifies approvers.",
+        "The administrator creates, changes or removes the accounts, IDs or passwords.",
+        "Confirmation goes back to the requester, often with login details or setup instructions.",
+        "The requester or desk checks that users can log in and trade, and reports any accounts that failed to set up."
+      ],
+      "stalls": [
+        {
+          "summary": "Administrators wait on desks for the lists of who needs access, and send reminders when responses do not arrive.",
+          "evidence_ids": [
+            "batch-087:s1",
+            "batch-093:s0",
+            "batch-087:e23",
+            "batch-096:e3"
           ]
         },
         {
-          "summary": "Feedback on candidates waits until every panel interview is done.",
+          "summary": "Access depends on outside parties sending credentials: the desk waited on new CAISO cards and passwords well after they were expected.",
           "evidence_ids": [
-            "batch-072:e4"
+            "batch-055:s4",
+            "batch-055:s5"
           ]
         },
         {
-          "summary": "Staffing requests are routed to different HR contacts depending on the job, and managers wait for HR to call back.",
+          "summary": "Requests reach the wrong person, such as security badge requests sent to a Portland desk head with the same name, or messages whose destination was unclear.",
           "evidence_ids": [
-            "batch-028:e17",
-            "batch-039:e19"
+            "batch-065:s1",
+            "batch-066:e13",
+            "batch-066:e12",
+            "batch-080:s3"
           ]
         },
         {
-          "summary": "Approval gates add a round of back-and-forth: a superior asks for justification before replacements are hired, and buy-in is sought before candidates are contacted.",
+          "summary": "System migrations failed to carry user accounts over, leaving users unable to work until IT fixed them.",
           "evidence_ids": [
-            "batch-071:e16",
-            "batch-073:e11"
-          ]
-        },
-        {
-          "summary": "Openings shift after they are announced: a posting is edited to say the role may be temporary, and later candidates have to be told of a change in plans.",
-          "evidence_ids": [
-            "batch-059:e5",
-            "batch-065:e21",
-            "batch-075:e2"
-          ]
-        },
-        {
-          "summary": "Placement of an analyst stalls in a tug-of-war between two managers who each want him in their group.",
-          "evidence_ids": [
-            "batch-038:s3",
-            "batch-038:e31"
+            "batch-093:s2",
+            "batch-093:e7"
           ]
         }
       ],
       "contradictions": [
         {
-          "summary": "Two groups claim the same analyst: Darron Giron says he understands why the other manager wants him but will not give him up unless forced, answers the other side's push with a remark about playing hardball, and proposes meeting the candidates to see where each fits better.",
+          "summary": "IT reported confirming that all traders were set up and ready to trade at go-live, while the desk then found accounts had not been migrated over the weekend.",
           "evidence_ids": [
-            "batch-038:s3",
-            "batch-038:e31",
-            "batch-038:e32",
-            "batch-038:e30"
+            "batch-091:e9",
+            "batch-093:s2"
           ]
         }
       ],
       "automation": {
-        "approach": "A hiring checklist each round follows: justification and approval, posting text from a standard layout, the HR contact for the job type, candidate source, interview panel, a shared interview calendar, a feedback deadline and the candidate notice. A calendar tool could offer slots across the panel and rebook cancellations, and feedback could be gathered through one form per candidate.",
-        "artifact_type": "checklist",
-        "rationale": "Rounds repeat the same steps but stall on cancelled interviews, late feedback, approvals and unclear HR routing; a checklist makes each hand-off and its owner explicit. Interviewing and the hiring decision stay with managers, so only scheduling, posting text and notices lend themselves to tooling."
+        "approach": "Route every access request through one form that captures person, username, system, role and approver, keep a per-desk roster of who should have which access so administrators do not have to ask for lists each time, and run a post-migration check comparing the roster with accounts actually set up.",
+        "artifact_type": "template",
+        "rationale": "Requests arrive as free-text emails with names and usernames, and administrators repeatedly ask desks for access lists. A standard request and roster template removes the back-and-forth and gives a list to verify against after system changes."
       },
       "work_estimate": {
         "minutes_per_occurrence": {
-          "low": 20,
-          "mid": 60,
-          "high": 180
+          "low": 5,
+          "mid": 12,
+          "high": 40
         },
-        "automatable_pct": 25,
-        "basis": "inferred",
-        "rationale": "Hands-on work per round is reviewing resumes, drafting or editing a posting, arranging an interview schedule, sitting in interviews and writing feedback or a justification. Many rounds are a single referral or posting handed to HR, a short task near 20 minutes; rounds with a named panel and an interview schedule take several interviewers' time, up to 180 minutes. A typical round is about 60 minutes. Scheduling, posting text and candidate notices could be templated or tooled; interviewing and judging candidates stay with people.",
+        "automatable_pct": 45,
+        "basis": "observed",
+        "rationale": "Most rounds add or remove one or a few users: gathering names and usernames and entering the request takes a few minutes. Some rounds compile desk-wide lists of traders for IDs or access, or verify setup after a migration, which takes much longer. The mid weights toward single-user changes.",
         "evidence_ids": [
-          "batch-039:e7",
-          "batch-060:e18",
-          "batch-038:e34",
-          "batch-059:e5",
-          "batch-072:e4",
-          "batch-071:e16",
-          "batch-073:e11",
-          "batch-065:e21",
-          "batch-095:e3"
+          "batch-030:e5",
+          "batch-079:e4",
+          "batch-087:e23",
+          "batch-091:e9",
+          "batch-082:e13",
+          "batch-026:e13",
+          "batch-093:s2",
+          "batch-095:e13"
         ]
       },
       "estimate_check": {
-        "occurrences_cited": 9,
+        "occurrences_cited": 8,
         "senders_cited": 5
       }
     }

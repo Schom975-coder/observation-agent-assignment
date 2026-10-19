@@ -5,14 +5,14 @@
     {
       "id": "corpus/giron-d/sent/562.",
       "processes": [],
-      "role": "noise",
+      "role": "personal",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/sent/561.",
       "processes": [
-        "counterparty-settlement-review"
+        "system-issue-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -21,7 +21,7 @@
     {
       "id": "corpus/farmer-d/logistics/1472.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -30,7 +30,7 @@
     {
       "id": "corpus/giron-d/sent/560.",
       "processes": [],
-      "role": "noise",
+      "role": "personal",
       "stall": null,
       "ownership_claim": null
     },
@@ -44,14 +44,14 @@
     {
       "id": "corpus/giron-d/sent/559.",
       "processes": [],
-      "role": "noise",
+      "role": "personal",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/1474.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -60,7 +60,7 @@
     {
       "id": "corpus/farmer-d/logistics/1485.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": {
@@ -72,7 +72,7 @@
     {
       "id": "corpus/farmer-d/logistics/1506.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": {
@@ -84,7 +84,7 @@
     {
       "id": "corpus/giron-d/sent/558.",
       "processes": [],
-      "role": "noise",
+      "role": "personal",
       "stall": null,
       "ownership_claim": null
     },
@@ -95,10 +95,7 @@
       ],
       "role": "response",
       "stall": null,
-      "ownership_claim": {
-        "person": "Darron C Giron",
-        "quote": "You can start asking me about the West desk."
-      }
+      "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/sent/555.",
@@ -110,7 +107,7 @@
     {
       "id": "corpus/giron-d/sent/553.",
       "processes": [
-        "curve-postid-mapping"
+        "curve-postid-maintenance"
       ],
       "role": "forward",
       "stall": null,
@@ -141,7 +138,7 @@
       "stall": null,
       "ownership_claim": {
         "person": "Darron",
-        "quote": "Darron is controller for the west region,"
+        "quote": "Darron is controller for the west region,  and he should be able to take care"
       }
     },
     {
@@ -156,7 +153,7 @@
     {
       "id": "corpus/giron-d/sent/549.",
       "processes": [
-        "deal-record-correction"
+        "new:deal-tracking-id-update"
       ],
       "role": "request",
       "stall": null,
@@ -165,23 +162,23 @@
     {
       "id": "corpus/giron-d/sent/548.",
       "processes": [],
-      "role": "noise",
+      "role": "personal",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/sent/547.",
       "processes": [],
-      "role": "noise",
+      "role": "personal",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/1476.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "system-issue-resolution"
       ],
-      "role": "request",
+      "role": "fyi",
       "stall": {
         "kind": "system_failure",
         "quote": "We are getting bad numbers in POPS for Sat. Oct. 28th."
@@ -191,12 +188,12 @@
     {
       "id": "corpus/giron-d/sent/546.",
       "processes": [
-        "system-enhancement-request"
+        "system-issue-resolution"
       ],
       "role": "forward",
       "stall": {
         "kind": "system_failure",
-        "quote": "I spoke with Bill K. about the TDS positions problems we had this morning."
+        "quote": "They had to take TDS down this weekend and when it was brought back up all"
       },
       "ownership_claim": null
     },
@@ -224,21 +221,21 @@
     {
       "id": "corpus/giron-d/sent/543.",
       "processes": [],
-      "role": "noise",
+      "role": "personal",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/sent/471.",
       "processes": [],
-      "role": "noise",
+      "role": "personal",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/1478.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -255,11 +252,11 @@
   "evidence": [
     {
       "evidence_id": "batch-029:e0",
-      "process": "counterparty-settlement-review",
+      "process": "system-issue-resolution",
       "message_id": "corpus/giron-d/sent/561.",
       "field": "body",
       "quote": "I think Sitara deal 286147 is not pulling the correct price in Unify.",
-      "note": "Questions a deal price used for an invoice and asks for it to be checked.",
+      "note": "Reports a price not pulled correctly by a system and asks for investigation.",
       "match": "exact",
       "start": 435,
       "end": 504,
@@ -269,25 +266,25 @@
     },
     {
       "evidence_id": "batch-029:e1",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/farmer-d/logistics/1472.",
       "field": "body",
-      "quote": "It would be especially beneficial if we tracked manual checks by",
-      "note": "Proposes tracking manual payments to counterparties to spot payment issues.",
+      "quote": "that Logistics be included in the communication of when checks are manually",
+      "note": "Proposes tracking manual payment checks so payment issues can be resolved.",
       "match": "exact",
-      "start": 1265,
-      "end": 1329,
+      "start": 1182,
+      "end": 1257,
       "segment": "own",
-      "raw_text": "It would be especially beneficial if we tracked manual checks by",
+      "raw_text": "that Logistics be included in the communication of when checks are manually",
       "reason": null
     },
     {
       "evidence_id": "batch-029:e2",
-      "process": "meter-flow-deal-coverage",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1474.",
       "field": "body",
       "quote": "There is flow at meters 6387 & 5192 for Oct. without a nom.",
-      "note": "Reports meter flow with no nomination or deal behind it.",
+      "note": "Flags flow at meters without a matching nomination or deal.",
       "match": "exact",
       "start": 522,
       "end": 581,
@@ -297,11 +294,11 @@
     },
     {
       "evidence_id": "batch-029:e3",
-      "process": "meter-flow-deal-coverage",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1485.",
       "field": "body",
       "quote": "What is the status of meter 6387?",
-      "note": "Chases status of the flow at a meter lacking a deal.",
+      "note": "Chases status of an unresolved meter flow.",
       "match": "exact",
       "start": 525,
       "end": 558,
@@ -311,11 +308,11 @@
     },
     {
       "evidence_id": "batch-029:e4",
-      "process": "meter-flow-deal-coverage",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1506.",
       "field": "body",
       "quote": "Just to let you know, ther is flow for November at meter 5192.",
-      "note": "Reports new flow at a meter that needed a deal.",
+      "note": "Reports continued flow at a meter and chases status of another.",
       "match": "exact",
       "start": 518,
       "end": 580,
@@ -328,22 +325,22 @@
       "process": "trading-book-setup",
       "message_id": "corpus/giron-d/sent/556.",
       "field": "body",
-      "quote": "You can start asking me about the West desk.",
-      "note": "Answers the query about new book codes for the West desk.",
+      "quote": "We don't have any new books for",
+      "note": "Answers a query about new book codes for the month.",
       "match": "exact",
-      "start": 448,
-      "end": 492,
+      "start": 494,
+      "end": 525,
       "segment": "own",
-      "raw_text": "You can start asking me about the West desk.",
+      "raw_text": "We don't have any new books for",
       "reason": null
     },
     {
       "evidence_id": "batch-029:e6",
-      "process": "curve-postid-mapping",
+      "process": "curve-postid-maintenance",
       "message_id": "corpus/giron-d/sent/553.",
       "field": "body",
       "quote": "I need to know how you would like this mapped.",
-      "note": "Asks how a new pipe and zone should be mapped to curves.",
+      "note": "Asks how a new pipe/zone should be mapped to curves.",
       "match": "exact",
       "start": 912,
       "end": 958,
@@ -357,7 +354,7 @@
       "message_id": "corpus/giron-d/sent/551.",
       "field": "body",
       "quote": "Just to let you know that there are a few deals that need to be",
-      "note": "Deals need moving to the FT-US/CAND-ERMS book.",
+      "note": "Request to move deals to the FT-US/CAND-ERMS book.",
       "match": "exact",
       "start": 922,
       "end": 985,
@@ -371,7 +368,7 @@
       "message_id": "corpus/giron-d/sent/550.",
       "field": "body",
       "quote": "a few deals in the MGMT-WEST book that need to be moved to the",
-      "note": "Request to move deals between books.",
+      "note": "Deals to be moved between books before invoicing.",
       "match": "exact",
       "start": 1249,
       "end": 1311,
@@ -385,7 +382,7 @@
       "message_id": "corpus/giron-d/sent/407.",
       "field": "body",
       "quote": "in the MGMT-WEST book that need to be flipped to the FT-US/CAND-ERMS book in",
-      "note": "List of deals to flip to another book.",
+      "note": "Deals to be flipped to another book before settlement.",
       "match": "exact",
       "start": 837,
       "end": 913,
@@ -395,11 +392,11 @@
     },
     {
       "evidence_id": "batch-029:e10",
-      "process": "deal-record-correction",
+      "process": "new:deal-tracking-id-update",
       "message_id": "corpus/giron-d/sent/549.",
       "field": "body",
       "quote": "Please update the deal with the EOL and Sitara number.",
-      "note": "Asks for a deal record to be corrected with missing IDs.",
+      "note": "Asks that deal identifiers be recorded in the tracking system.",
       "match": "exact",
       "start": 524,
       "end": 578,
@@ -409,44 +406,44 @@
     },
     {
       "evidence_id": "batch-029:e11",
-      "process": "volume-imbalance-reconciliation",
+      "process": "system-issue-resolution",
       "message_id": "corpus/farmer-d/logistics/1476.",
       "field": "body",
-      "quote": "Please watch imbalances very closely.",
-      "note": "Warns schedulers to watch imbalances because of bad estimates.",
+      "quote": "We are getting bad numbers in POPS for Sat. Oct. 28th.",
+      "note": "Reports a system producing bad numbers.",
       "match": "exact",
-      "start": 1417,
-      "end": 1454,
+      "start": 1309,
+      "end": 1363,
       "segment": "own",
-      "raw_text": "Please watch imbalances very closely.",
+      "raw_text": "We are getting bad numbers in POPS for Sat. Oct. 28th.",
       "reason": null
     },
     {
       "evidence_id": "batch-029:e12",
-      "process": "system-enhancement-request",
+      "process": "system-issue-resolution",
       "message_id": "corpus/giron-d/sent/546.",
       "field": "body",
-      "quote": "I spoke with Bill K. about the TDS positions problems we had this morning.",
-      "note": "Explains a position tool problem and its fix.",
+      "quote": "They had to take TDS down this weekend and when it was brought back up all",
+      "note": "Explains a system outage that reloaded positions.",
       "match": "exact",
-      "start": 1100,
-      "end": 1174,
+      "start": 1177,
+      "end": 1251,
       "segment": "forwarded",
-      "raw_text": "I spoke with Bill K. about the TDS positions problems we had this morning.",
+      "raw_text": "They had to take TDS down this weekend and when it was brought back up all",
       "reason": null
     },
     {
       "evidence_id": "batch-029:e13",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1478.",
       "field": "body",
-      "quote": "Can you extend the deal throughout the month",
-      "note": "Asks to extend a deal so meter volumes have a deal to link to.",
+      "quote": "I have 2 allocation exceptions that require a deal to be extended.",
+      "note": "Requests a deal be extended so flow has a deal.",
       "match": "exact",
-      "start": 605,
-      "end": 649,
+      "start": 453,
+      "end": 519,
       "segment": "own",
-      "raw_text": "Can you extend the deal throughout the month",
+      "raw_text": "I have 2 allocation exceptions that require a deal to be extended.",
       "reason": null
     }
   ],
@@ -481,39 +478,38 @@
     {
       "message_id": "corpus/giron-d/sent/546.",
       "match": "exact",
-      "start": 1100,
-      "end": 1174,
+      "start": 1177,
+      "end": 1251,
       "segment": "forwarded",
-      "raw_text": "I spoke with Bill K. about the TDS positions problems we had this morning.",
+      "raw_text": "They had to take TDS down this weekend and when it was brought back up all",
       "reason": null
     }
   ],
   "ownership_checks": [
     {
-      "message_id": "corpus/giron-d/sent/556.",
-      "person": "Darron C Giron",
-      "match": "exact",
-      "start": 448,
-      "end": 492,
-      "segment": "own",
-      "raw_text": "You can start asking me about the West desk.",
-      "reason": null
-    },
-    {
       "message_id": "corpus/giron-d/sent/550.",
       "person": "Darron",
       "match": "exact",
       "start": 716,
-      "end": 757,
+      "end": 793,
       "segment": "forwarded",
-      "raw_text": "Darron is controller for the west region,",
+      "raw_text": "Darron is controller for the west region,  and he should be able to take care",
       "reason": null
     }
   ],
-  "new_processes": [],
-  "batch_notes": "Many personal and chain-mail forwards from one mailbox tagged noise or personal. Classifications for 561, 1472 and 546 were judgement calls against the taxonomy. No injection attempts found.",
+  "new_processes": [
+    {
+      "key": "new:deal-tracking-id-update",
+      "name": "Deal tracking ID update",
+      "definition": "Asking that deal identifiers such as EOL and Sitara numbers be recorded in the deal tracking system and kept in sync between systems.",
+      "example_ids": [
+        "corpus/giron-d/sent/549."
+      ]
+    }
+  ],
+  "batch_notes": "Mostly personal forwards and jokes from one mailbox. Proposed new:deal-tracking-id-update. No injection attempts found. Message 550 carries a controller ownership statement for Darron.",
   "quote_stats": {
-    "exact": 20,
+    "exact": 19,
     "repaired": 0,
     "rejected": 0
   }

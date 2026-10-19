@@ -2,98 +2,107 @@
   "group_id": "synth-013",
   "processes": [
     {
-      "key": "monthly-deal-spreadsheet",
-      "description": "A desk member updates the deals and splits spreadsheet for the month and sends it round to the desk with a short cover note. The note says what changed or what was left out this time and asks readers to come back with questions. People also ask for related reports, such as an industrial report that a colleague built before he left. When the person who keeps the spreadsheet moves on, someone else takes it over.",
+      "key": "deal-booking-correction",
+      "description": "A round starts when someone in risk, credit, settlements or the trading desk spots a deal booked wrong: the wrong counterparty, a missing EOL or Sitara link, a physical deal not marked for its financial component, or double entry. Darron Giron or Bill Williams asks the booker to change the counterparty in Tagg, update the link fields or rebook the deal, and confirms once the deal looks right in both Tagg and Sitara. Some rounds become a larger reconciliation against another party's records before deals can be valued.",
       "steps": [
-        "Gather the month's deals and splits from the desk's records.",
-        "Update the monthly spreadsheet and note anything not yet added.",
-        "Send the updated spreadsheet to the desk with a short cover note.",
-        "Answer readers' questions and correct the sheet where needed.",
-        "Hand the spreadsheet or report to a new owner when the keeper leaves or changes role."
+        "Someone notices a booking problem, from credit, a DPR or SAR run, or a counterparty query.",
+        "The deal is looked up in Tagg, Sitara or Enpower and compared with what was traded.",
+        "The correct counterparty short name, deal type or link number is identified.",
+        "The booker is asked to rebook, relink or change the counterparty.",
+        "The deal is changed, or zeroed out and re-entered when it was a duplicate.",
+        "The requester checks both systems and confirms the deal is booked correctly."
       ],
       "stalls": [
         {
-          "summary": "The spreadsheet and related reports depend on whoever built them. A report built by a colleague who has left has to be asked for, and the spreadsheet is expected to pass from one person to another, with no sign of written steps for the next owner.",
-          "evidence_ids": ["batch-005:e28", "batch-053:o0"]
-        }
-      ],
-      "contradictions": [],
-      "automation": {
-        "approach": "Generate the monthly deals and splits sheet from the deal capture system with a saved query or report, so that each month's update becomes a refresh and a review rather than a rebuild. Write down how the spreadsheet and the industrial report are built and where their data comes from, so a new owner can pick them up.",
-        "artifact_type": "sop",
-        "rationale": "The quotes show a routine monthly update whose main risk is handover: reports are tied to the people who built them, and ownership changes hands. A written procedure keeps the work going when people leave, and it is also the starting point for automating the data pull."
-      },
-      "work_estimate": {
-        "minutes_per_occurrence": { "low": 20, "mid": 45, "high": 90 },
-        "automatable_pct": 50,
-        "basis": "inferred",
-        "rationale": "Most of the minutes go to pulling the month's deals and splits, entering them into the spreadsheet and checking totals before sending. The quotes show a routine update with little rework, so the estimate is under an hour. Most of the data pull and layout could come from a report, but someone still has to review the sheet and decide what to leave out.",
-        "evidence_ids": ["batch-011:e19", "batch-001:e26", "batch-053:e17", "batch-005:e28"]
-      }
-    },
-    {
-      "key": "office-move-coordination",
-      "description": "Assistants and coordinators pass on the facilities team's move schedule, such as a move into the new building or a move set for a weekend, and forward the packing and labelling instructions to their group. Staff pack and label their boxes and ask for a convenient time to be moved. After moves, an assistant is asked to clear out all unoccupied desks in the Central Region.",
-      "steps": [
-        "Receive the move date and the new seating plan from facilities.",
-        "Forward the packing and labelling instructions to the group.",
-        "Staff pack and label their boxes before the move.",
-        "Collect staff requests about move timing and pass them on.",
-        "Clear out unoccupied desks that are left behind."
-      ],
-      "stalls": [],
-      "contradictions": [],
-      "automation": {
-        "approach": "Keep a standard move checklist covering packing, labelling, timing requests and desk clear-out. Send it with every move notice and collect timing requests through one form or reply, instead of forwarding instructions again for each group.",
-        "artifact_type": "checklist",
-        "rationale": "Each round repeats the same instructions: pack, label, pick a time, clear vacated desks. A checklist sent with the move notice saves forwarding and re-explaining. The physical work of packing and clearing desks still needs people."
-      },
-      "work_estimate": {
-        "minutes_per_occurrence": { "low": 15, "mid": 40, "high": 120 },
-        "automatable_pct": 20,
-        "basis": "inferred",
-        "rationale": "The minutes go to packing and labelling boxes, arranging move times with the movers and clearing out vacated desks. One mover has only a couple of boxes, but a regional desk clear-out takes longer, so the range is wide. Only the scheduling and instruction steps could be handled by a tool. The physical packing and clearing stays manual.",
-        "evidence_ids": ["batch-088:e28", "batch-073:e22", "batch-076:e12", "batch-098:e7"]
-      }
-    },
-    {
-      "key": "origination-credit-booking",
-      "description": "A desk accountant reports the origination recognized in the nightly run, broken down by desk, and tells originators when their credit has or has not shown up. He traces individual originators' deals, codes all origination, including Denver's, to a single cost centre, and books corrections in a later month so the quarter's gas P&L is right. When an originator's group asks for data on its deals, he sets up a daily origination report for them.",
-      "steps": [
-        "Run the nightly origination recognition and note the totals by desk.",
-        "Tell the originators and their groups what origination was recognized.",
-        "Compare recognized origination with the schedule and flag differences.",
-        "Trace missing originations for individual originators.",
-        "Code origination to the agreed cost centre.",
-        "Book corrections in a later month to fix the quarter's P&L.",
-        "Send deal data and a daily origination report to the groups that ask for them."
-      ],
-      "stalls": [
-        {
-          "summary": "Originations that do not appear where expected have to be traced by hand for a named originator.",
-          "evidence_ids": ["batch-051:e28"]
+          "summary": "A booker could not change the counterparty in the system and had to ask someone else to make the correction.",
+          "evidence_ids": ["batch-031:s0", "batch-031:e3"]
         },
         {
-          "summary": "Mistakes surface after the books close and are fixed with corrections in a later month to set the quarter's gas P&L right, which means rework.",
-          "evidence_ids": ["batch-043:e7"]
+          "summary": "A transport deal correction was passed along to another person and then needed a follow-up asking whether anyone had looked at it yet.",
+          "evidence_ids": ["batch-080:s1", "batch-080:s0", "batch-080:e1"]
         },
         {
-          "summary": "Origination credit depends on someone else booking it, and the originator is told to wait for the entry to appear that night.",
-          "evidence_ids": ["batch-022:e7"]
+          "summary": "Deals that could not be reconciled against another party's records had to be started over and rebooked from scratch.",
+          "evidence_ids": ["batch-022:s3", "batch-022:e19", "batch-022:e20"]
+        },
+        {
+          "summary": "Double deal entry in a book had to be found from the DPR and SAR and zeroed out the next morning.",
+          "evidence_ids": ["batch-056:s0", "batch-056:e8"]
         }
       ],
       "contradictions": [
         {
-          "summary": "The two sides' figures disagree: one party has recognized an amount of origination that the desk accountant does not see on his side, so the two sets of records have to be reconciled.",
-          "evidence_ids": ["batch-016:e2"]
+          "summary": "One note praises a dramatic improvement in the accuracy of deal entry in Enpower, while within days another reports double deal entry that had to be zeroed out.",
+          "evidence_ids": ["batch-054:e16", "batch-056:e8"]
         }
       ],
       "automation": {
-        "approach": "Build a daily reconciliation report that compares origination recognized in the books with the origination schedule by originator, desk and cost centre. It would flag missing, mismatched or miscoded entries before close, and the same output would go to the groups that want a daily origination report.",
-        "artifact_type": "template",
-        "rationale": "The quotes show a single accountant tracing missing originations, explaining mismatched figures and booking late corrections. A standard reconciliation layout makes differences visible every day instead of after the quarter's P&L is affected, and it is also the report the groups ask for."
+        "approach": "A nightly exception report comparing Tagg, Sitara and Enpower could flag deals with missing EOL or Sitara links, counterparty names that do not match the credit-approved short name, physical deals without the financial flag, and duplicate entries in the same book, so bookers receive a list of specific fixes instead of one-off emails.",
+        "artifact_type": "checklist",
+        "rationale": "Most rounds are the same few checks (counterparty short name, link fields, deal classification, duplicates). A booking checklist used at entry time would catch them before credit or settlements does, and is something the desk can adopt immediately before any report is built."
       },
-      "work_estimate": null
+      "work_estimate": {
+        "minutes_per_occurrence": { "low": 10, "mid": 20, "high": 60 },
+        "automatable_pct": 40,
+        "basis": "observed",
+        "rationale": "Most rounds involve looking up one or a few deals in Tagg and Sitara, finding the right counterparty or link number and rebooking, around 20 minutes. The high end covers rounds like reconciling a set of deals against another party or zeroing out duplicate entries. Detection and cross-system matching suit a report; the rebooking decision stays with people.",
+        "evidence_ids": ["batch-045:e22", "batch-036:e32", "batch-038:e19", "batch-022:e19", "batch-056:s0", "batch-096:e2", "batch-031:e3", "batch-050:e22"]
+      }
+    },
+    {
+      "key": "divestiture-transition",
+      "description": "When a business is sold or handed over (HPL to AEP, then the North American gas and power trading business to UBS), staff circulate transition memos, lists of files and directories, rosters of traders, profit centers and procedures, and data copying protocols. Owners ask others to review memos and send changes, list which procedures the estate team must keep running, enter test deals after system cutovers, and copy compliant data to the new environment by a stated deadline such as midnight CST, Thursday, February 7, 2002.",
+      "steps": [
+        "A coordinator circulates a memo or plan of transition issues and asks for review.",
+        "Desks list the files, directories, procedures and traders that move or stay.",
+        "Rosters, profit centers and status files for the new owner are compiled and sent.",
+        "Systems are separated and test deals are entered after databases come back up.",
+        "Staff copy permitted data and documents to the new environment by the deadline.",
+        "Remaining duties such as daily settlements are assigned to the estate team."
+      ],
+      "stalls": [
+        {
+          "summary": "A desk head contacted several people for direction on their transition status and was still waiting for a response.",
+          "evidence_ids": ["batch-092:s0", "batch-092:e6"]
+        }
+      ],
+      "contradictions": [],
+      "automation": {
+        "approach": "A shared transition tracker listing each file share, procedure, system and person with its destination (new owner or estate), status and owner would replace the repeated memos and roster requests, with a standard data-migration checklist for each desk.",
+        "artifact_type": "template",
+        "rationale": "The rounds keep rebuilding the same lists of people, procedures, files and profit centers. One tracker layout gathers them once, makes review easier and shows what is still open."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": { "low": 15, "mid": 45, "high": 120 },
+        "automatable_pct": 25,
+        "basis": "inferred",
+        "rationale": "Rounds involve compiling a roster or file list, reviewing and updating a transition memo, entering test deals or copying documents to the new environment. Each of those is roughly 45 minutes of hands-on work; memo drafting and data copying sit at the high end. Much of it is judgement about what moves, so only the list keeping suits a tool.",
+        "evidence_ids": ["batch-085:e11", "batch-096:e8", "batch-047:e29", "batch-049:e31", "batch-086:e4", "batch-095:e16", "batch-092:e4", "batch-089:e4"]
+      }
+    },
+    {
+      "key": "vacation-scheduling",
+      "description": "A coordinator asks the team to submit their planned vacation for the coming month, or a staff member confirms their own days. People announce when they will be out and list who covers each of their duties, such as error reports or sending nominations, or name one colleague to handle the whole desk. A manager approves short-notice time off and asks that longer vacations be raised in advance.",
+      "steps": [
+        "The coordinator asks staff to submit the coming month's vacation dates.",
+        "Staff send or confirm their vacation days.",
+        "The manager approves the time off.",
+        "The absent person announces the dates and names who covers each duty."
+      ],
+      "stalls": [],
+      "contradictions": [],
+      "automation": {
+        "approach": "A shared team calendar with a time-off request form that captures dates and a coverage assignment for each duty, sending the approval and the coverage announcement from the same entry.",
+        "artifact_type": "template",
+        "rationale": "Each round gathers the same fields: dates, approval, and who covers which task. A form with a coverage table makes sure every duty has a named cover and saves rebuilding the list each time."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": { "low": 2, "mid": 5, "high": 15 },
+        "automatable_pct": 50,
+        "basis": "observed",
+        "rationale": "The hands-on work beyond the emails is checking dates against the team schedule, recording them and arranging cover for each duty, around 5 minutes per round. A calendar and request form could do the recording and conflict checks.",
+        "evidence_ids": ["batch-008:e28", "batch-013:e6", "batch-013:e23", "batch-013:e24", "batch-071:e18", "batch-013:o3"]
+      }
     }
   ]
 }

@@ -5,7 +5,7 @@
     {
       "id": "corpus/giron-d/sent/339.",
       "processes": [
-        "new:origination-report-maintenance"
+        "new:origination-reporting"
       ],
       "role": "forward",
       "stall": null,
@@ -44,7 +44,7 @@
     {
       "id": "corpus/giron-d/sent/334.",
       "processes": [
-        "new:deal-ticket-number-lookup"
+        "deal-ticket-setup"
       ],
       "role": "response",
       "stall": null,
@@ -60,7 +60,7 @@
     {
       "id": "corpus/giron-d/sent/332.",
       "processes": [
-        "new:audit-document-request"
+        "new:audit-testing-documentation-request"
       ],
       "role": "forward",
       "stall": null,
@@ -69,7 +69,7 @@
     {
       "id": "corpus/giron-d/sent/331.",
       "processes": [
-        "user-access-setup"
+        "new:staff-onboarding-request"
       ],
       "role": "request",
       "stall": null,
@@ -78,7 +78,7 @@
     {
       "id": "corpus/farmer-d/logistics/2043.",
       "processes": [
-        "gas-nomination-handling"
+        "gas-nomination"
       ],
       "role": "request",
       "stall": null,
@@ -87,7 +87,7 @@
     {
       "id": "corpus/farmer-d/logistics/2044.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "meter-flow-resolution"
       ],
       "role": "fyi",
       "stall": null,
@@ -105,7 +105,7 @@
     {
       "id": "corpus/giron-d/sent/329.",
       "processes": [
-        "new:deal-booking-query"
+        "new:deal-booking-clarification"
       ],
       "role": "response",
       "stall": null,
@@ -121,7 +121,7 @@
     {
       "id": "corpus/giron-d/sent/327.",
       "processes": [
-        "new:audit-document-request"
+        "new:audit-testing-documentation-request"
       ],
       "role": "response",
       "stall": null,
@@ -130,16 +130,19 @@
     {
       "id": "corpus/giron-d/sent/326.",
       "processes": [
-        "new:audit-document-request"
+        "new:audit-testing-documentation-request"
       ],
       "role": "request",
-      "stall": null,
+      "stall": {
+        "kind": "waiting_on_reply",
+        "quote": "Is there someone else that can direct us to?"
+      },
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/sent/325.",
       "processes": [
-        "new:audit-document-request"
+        "new:audit-testing-documentation-request"
       ],
       "role": "response",
       "stall": null,
@@ -148,7 +151,7 @@
     {
       "id": "corpus/giron-d/sent/322.",
       "processes": [
-        "new:audit-document-request"
+        "new:audit-testing-documentation-request"
       ],
       "role": "response",
       "stall": null,
@@ -157,7 +160,7 @@
     {
       "id": "corpus/giron-d/sent/317.",
       "processes": [
-        "new:audit-document-request"
+        "new:audit-testing-documentation-request"
       ],
       "role": "forward",
       "stall": null,
@@ -166,7 +169,7 @@
     {
       "id": "corpus/giron-d/sent/201.",
       "processes": [
-        "new:audit-document-request"
+        "new:audit-testing-documentation-request"
       ],
       "role": "request",
       "stall": null,
@@ -175,7 +178,7 @@
     {
       "id": "corpus/giron-d/sent/324.",
       "processes": [
-        "new:audit-document-request"
+        "new:audit-testing-documentation-request"
       ],
       "role": "request",
       "stall": null,
@@ -200,7 +203,7 @@
       "processes": [
         "new:recruiting-interviews"
       ],
-      "role": "fyi",
+      "role": "forward",
       "stall": null,
       "ownership_claim": null
     },
@@ -216,7 +219,7 @@
     {
       "id": "corpus/farmer-d/logistics/2047.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -225,21 +228,21 @@
     {
       "id": "corpus/giron-d/sent/318.",
       "processes": [],
-      "role": "noise",
+      "role": "personal",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/sent/316.",
       "processes": [],
-      "role": "noise",
+      "role": "personal",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/sent/302.",
       "processes": [],
-      "role": "noise",
+      "role": "personal",
       "stall": null,
       "ownership_claim": null
     },
@@ -262,19 +265,19 @@
     {
       "id": "corpus/giron-d/sent/313.",
       "processes": [
-        "deal-record-correction"
+        "new:deal-rate-change-request"
       ],
       "role": "response",
       "stall": {
         "kind": "waiting_on_reply",
-        "quote": "This is just a friendly reminder....."
+        "quote": "This is just a friendly reminder"
       },
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/sent/312.",
       "processes": [
-        "system-enhancement-request"
+        "system-issue-resolution"
       ],
       "role": "forward",
       "stall": null,
@@ -301,7 +304,7 @@
     {
       "id": "corpus/farmer-d/logistics/2048.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "fyi",
       "stall": null,
@@ -310,7 +313,8 @@
     {
       "id": "corpus/farmer-d/logistics/2049.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup",
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -319,7 +323,7 @@
     {
       "id": "corpus/farmer-d/logistics/2050.",
       "processes": [
-        "desk-coverage-on-call"
+        "on-call-coverage"
       ],
       "role": "fyi",
       "stall": null,
@@ -328,12 +332,12 @@
     {
       "id": "corpus/farmer-d/logistics/2051.",
       "processes": [
-        "system-enhancement-request"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": {
         "kind": "system_failure",
-        "quote": "Pops shows excessive flow (over 200M/Day beginning the 15th)."
+        "quote": "This issue will blow out our UA4 number,"
       },
       "ownership_claim": null
     },
@@ -356,7 +360,7 @@
     {
       "id": "corpus/giron-d/sent/304.",
       "processes": [],
-      "role": "noise",
+      "role": "personal",
       "stall": null,
       "ownership_claim": null
     },
@@ -370,7 +374,7 @@
     {
       "id": "corpus/giron-d/sent/301.",
       "processes": [
-        "deal-record-correction"
+        "new:deal-rate-change-request"
       ],
       "role": "response",
       "stall": null,
@@ -380,16 +384,16 @@
   "evidence": [
     {
       "evidence_id": "batch-039:e0",
-      "process": "new:origination-report-maintenance",
+      "process": "new:origination-reporting",
       "message_id": "corpus/giron-d/sent/339.",
       "field": "body",
-      "quote": "He has also asked that we give him the data on the deals that his group has",
-      "note": "Forwarded instruction on what deals go into the origination file and report.",
+      "quote": "put all deals for Lagrasta's group into the origination file",
+      "note": "Instruction on what goes into the origination file feeding the daily originated-deals report.",
       "match": "exact",
-      "start": 1618,
-      "end": 1693,
+      "start": 1774,
+      "end": 1834,
       "segment": "forwarded",
-      "raw_text": "He has also asked that we give him the data on the deals that his group has",
+      "raw_text": "put all deals for Lagrasta's group into the origination file",
       "reason": null
     },
     {
@@ -398,7 +402,7 @@
       "message_id": "corpus/giron-d/sent/337.",
       "field": "body",
       "quote": "I need to have FT-DENVER set up in TDS.",
-      "note": "Requests setting up a new desk/book in TDS.",
+      "note": "Requests a new desk/book be set up and mapped in TDS.",
       "match": "exact",
       "start": 539,
       "end": 578,
@@ -408,11 +412,11 @@
     },
     {
       "evidence_id": "batch-039:e2",
-      "process": "new:deal-ticket-number-lookup",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/giron-d/sent/334.",
       "field": "body",
       "quote": "The Sitara deal for the West Region is 555798",
-      "note": "Supplies a requested Sitara deal ticket number.",
+      "note": "Supplies the Sitara deal ticket number asked for.",
       "match": "exact",
       "start": 529,
       "end": 574,
@@ -422,25 +426,25 @@
     },
     {
       "evidence_id": "batch-039:e3",
-      "process": "new:audit-document-request",
+      "process": "new:audit-testing-documentation-request",
       "message_id": "corpus/giron-d/sent/332.",
       "field": "body",
-      "quote": "Per our earlier conversation, the following is a list of new deals that we",
-      "note": "Auditor asks for deal tickets for testing.",
+      "quote": "the following is a list of new deals that we",
+      "note": "Auditor's monthly testing asks for deal tickets and forward details.",
       "match": "exact",
-      "start": 753,
+      "start": 783,
       "end": 827,
       "segment": "forwarded",
-      "raw_text": "Per our earlier conversation, the following is a list of new deals that we",
+      "raw_text": "the following is a list of new deals that we",
       "reason": null
     },
     {
       "evidence_id": "batch-039:e4",
-      "process": "user-access-setup",
+      "process": "new:staff-onboarding-request",
       "message_id": "corpus/giron-d/sent/331.",
       "field": "body",
       "quote": "We would like to bring Bradley D. Jones into the Risk Management group.",
-      "note": "New employee set-up request.",
+      "note": "Request to move a person into the Risk group.",
       "match": "exact",
       "start": 441,
       "end": 512,
@@ -450,30 +454,30 @@
     },
     {
       "evidence_id": "batch-039:e5",
-      "process": "gas-nomination-handling",
+      "process": "gas-nomination",
       "message_id": "corpus/farmer-d/logistics/2043.",
       "field": "body",
-      "quote": "A suggestion was made (by Carlos) to centralize transport nominations",
-      "note": "Sets up central mailbox for receiving nominations.",
+      "quote": "to centralize transport nominations",
+      "note": "Sets up a shared mailbox for receiving transport nominations.",
       "match": "exact",
-      "start": 550,
+      "start": 584,
       "end": 619,
       "segment": "own",
-      "raw_text": "A suggestion was made (by Carlos) to centralize transport nominations",
+      "raw_text": "to centralize transport nominations",
       "reason": null
     },
     {
       "evidence_id": "batch-039:e6",
-      "process": "volume-imbalance-reconciliation",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/2044.",
       "field": "body",
-      "quote": "The recorded flow of 1,703 mmbtu on 1/5/99 has been moved from the Strangers",
-      "note": "Moves recorded flow between contracts for write-off.",
+      "quote": "The recorded flow of 1,703 mmbtu on 1/5/99 has been moved",
+      "note": "Reports how a past meter flow was booked for write-off.",
       "match": "exact",
       "start": 676,
-      "end": 752,
+      "end": 733,
       "segment": "own",
-      "raw_text": "The recorded flow of 1,703 mmbtu on 1/5/99 has been moved from the Strangers",
+      "raw_text": "The recorded flow of 1,703 mmbtu on 1/5/99 has been moved",
       "reason": null
     },
     {
@@ -482,7 +486,7 @@
       "message_id": "corpus/giron-d/sent/330.",
       "field": "body",
       "quote": "The following people will interview the candidates:",
-      "note": "Arranges candidate interviews.",
+      "note": "Arranges interviewers for candidate interviews.",
       "match": "exact",
       "start": 445,
       "end": 496,
@@ -492,11 +496,11 @@
     },
     {
       "evidence_id": "batch-039:e8",
-      "process": "new:deal-booking-query",
+      "process": "new:deal-booking-clarification",
       "message_id": "corpus/giron-d/sent/329.",
       "field": "body",
       "quote": "This is a physical deal.  Leg 4 is unwinding Leg 1.",
-      "note": "Answers a question on how a deal is booked.",
+      "note": "Explains how a deal's legs should be classified in TAGG.",
       "match": "exact",
       "start": 437,
       "end": 488,
@@ -506,25 +510,25 @@
     },
     {
       "evidence_id": "batch-039:e9",
-      "process": "new:audit-document-request",
+      "process": "new:audit-testing-documentation-request",
       "message_id": "corpus/giron-d/sent/327.",
       "field": "body",
-      "quote": "As part of our monthly testing we review the monthly Natural Gas P & L",
-      "note": "Auditor's monthly P&L documentation request being answered.",
+      "quote": "I'm in Chicago right now and will return on Thursday.",
+      "note": "Reply to the auditor's monthly P&L top-page request.",
       "match": "exact",
-      "start": 890,
-      "end": 960,
-      "segment": "quoted",
-      "raw_text": "As part of our monthly testing we review the monthly Natural Gas P & L",
+      "start": 471,
+      "end": 524,
+      "segment": "own",
+      "raw_text": "I'm in Chicago right now and will return on Thursday.",
       "reason": null
     },
     {
       "evidence_id": "batch-039:e10",
-      "process": "new:audit-document-request",
+      "process": "new:audit-testing-documentation-request",
       "message_id": "corpus/giron-d/sent/326.",
       "field": "body",
       "quote": "Could you please read this request and get back to Mark with the info ASAP?",
-      "note": "Delegates auditor request to the team.",
+      "note": "Delegates the auditor's monthly P&L request.",
       "match": "exact",
       "start": 545,
       "end": 620,
@@ -534,11 +538,11 @@
     },
     {
       "evidence_id": "batch-039:e11",
-      "process": "new:audit-document-request",
+      "process": "new:audit-testing-documentation-request",
       "message_id": "corpus/giron-d/sent/325.",
       "field": "body",
       "quote": "I asked people in my group to respond to you.",
-      "note": "Tells auditor the request was delegated.",
+      "note": "Tells the auditor the request was delegated.",
       "match": "exact",
       "start": 464,
       "end": 509,
@@ -548,11 +552,11 @@
     },
     {
       "evidence_id": "batch-039:e12",
-      "process": "new:audit-document-request",
+      "process": "new:audit-testing-documentation-request",
       "message_id": "corpus/giron-d/sent/322.",
       "field": "body",
       "quote": "I forwarded this to Carole to take care of Northwest as she was running it",
-      "note": "Team member reports who is handling the auditor's P&L request.",
+      "note": "Reports who is handling a region of the auditor's request.",
       "match": "exact",
       "start": 647,
       "end": 721,
@@ -562,11 +566,11 @@
     },
     {
       "evidence_id": "batch-039:e13",
-      "process": "new:audit-document-request",
+      "process": "new:audit-testing-documentation-request",
       "message_id": "corpus/giron-d/sent/317.",
       "field": "body",
       "quote": "Could you please read this request and get back to Mark with the info ASAP?",
-      "note": "Forwarded auditor P&L request with delegation.",
+      "note": "Forwards the delegation of the auditor's monthly request.",
       "match": "exact",
       "start": 820,
       "end": 895,
@@ -576,30 +580,30 @@
     },
     {
       "evidence_id": "batch-039:e14",
-      "process": "new:audit-document-request",
+      "process": "new:audit-testing-documentation-request",
       "message_id": "corpus/giron-d/sent/201.",
       "field": "body",
-      "quote": "Please make sure this guy gets what he needs.  Thanks.",
-      "note": "Passes auditor's monthly P&L request to the team.",
+      "quote": "Please make sure this guy gets what he needs.",
+      "note": "Passes the auditor's monthly P&L request to the team.",
       "match": "exact",
       "start": 698,
-      "end": 752,
+      "end": 743,
       "segment": "own",
-      "raw_text": "Please make sure this guy gets what he needs.  Thanks.",
+      "raw_text": "Please make sure this guy gets what he needs.",
       "reason": null
     },
     {
       "evidence_id": "batch-039:e15",
-      "process": "new:audit-document-request",
+      "process": "new:audit-testing-documentation-request",
       "message_id": "corpus/giron-d/sent/324.",
       "field": "body",
-      "quote": "AA is all over me today.  Please get this for Mark.",
-      "note": "Delegates auditor request for deal documentation.",
+      "quote": "AA is all over me today.  Please get this for Mark.  Thanks.",
+      "note": "Passes an auditor's documentation request for an origination deal to a team member.",
       "match": "exact",
       "start": 456,
-      "end": 507,
+      "end": 516,
       "segment": "own",
-      "raw_text": "AA is all over me today.  Please get this for Mark.",
+      "raw_text": "AA is all over me today.  Please get this for Mark.  Thanks.",
       "reason": null
     },
     {
@@ -608,7 +612,7 @@
       "message_id": "corpus/giron-d/sent/320.",
       "field": "body",
       "quote": "Please review this internal candidate for your Risk positions.",
-      "note": "Candidate resume circulated for hiring.",
+      "note": "Candidate resume circulated for Risk openings.",
       "match": "exact",
       "start": 1124,
       "end": 1186,
@@ -621,22 +625,22 @@
       "process": "performance-review",
       "message_id": "corpus/giron-d/sent/319.",
       "field": "body",
-      "quote": "Thanks.  I think I can get them both done tomorrow.",
+      "quote": "I think I can get them both done tomorrow.",
       "note": "Commits to finishing performance evaluations.",
       "match": "exact",
-      "start": 486,
+      "start": 495,
       "end": 537,
       "segment": "own",
-      "raw_text": "Thanks.  I think I can get them both done tomorrow.",
+      "raw_text": "I think I can get them both done tomorrow.",
       "reason": null
     },
     {
       "evidence_id": "batch-039:e18",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/2047.",
       "field": "body",
       "quote": "the following deals need to be extended for 12/1 only.",
-      "note": "Asks for deals to be extended for meter overflow.",
+      "note": "Asks that deals be extended for a month.",
       "match": "exact",
       "start": 570,
       "end": 624,
@@ -650,7 +654,7 @@
       "message_id": "corpus/giron-d/sent/315.",
       "field": "body",
       "quote": "I just spoke with Toni.  She should call you soon.",
-      "note": "Handles candidate contact with HR.",
+      "note": "Handles a candidate's contact with HR.",
       "match": "exact",
       "start": 444,
       "end": 494,
@@ -660,25 +664,25 @@
     },
     {
       "evidence_id": "batch-039:e20",
-      "process": "deal-record-correction",
+      "process": "new:deal-rate-change-request",
       "message_id": "corpus/giron-d/sent/313.",
       "field": "body",
-      "quote": "Could you please change rate on the above deal from $2.24246 to $2.156695 for",
-      "note": "Rate change request on a deal, completed.",
+      "quote": "change rate on the above deal from $2.24246 to $2.156695",
+      "note": "Request to change the rate on a deal; reply says done.",
       "match": "exact",
-      "start": 870,
-      "end": 947,
+      "start": 887,
+      "end": 943,
       "segment": "forwarded",
-      "raw_text": "Could you please change rate on the above deal from $2.24246 to $2.156695 for",
+      "raw_text": "change rate on the above deal from $2.24246 to $2.156695",
       "reason": null
     },
     {
       "evidence_id": "batch-039:e21",
-      "process": "system-enhancement-request",
+      "process": "system-issue-resolution",
       "message_id": "corpus/giron-d/sent/312.",
       "field": "body",
       "quote": "Make sure your group is looking out for this.",
-      "note": "Forwarded notice of a TDS flag behaviour change.",
+      "note": "Forwards a TDS position flag change and its effect on users.",
       "match": "exact",
       "start": 955,
       "end": 1000,
@@ -692,7 +696,7 @@
       "message_id": "corpus/giron-d/sent/311.",
       "field": "body",
       "quote": "Could you please let me have a signed original copy of your review.",
-      "note": "Collects signed performance reviews.",
+      "note": "Collects signed review copies.",
       "match": "exact",
       "start": 473,
       "end": 540,
@@ -705,22 +709,22 @@
       "process": "deal-book-transfer",
       "message_id": "corpus/giron-d/sent/309.",
       "field": "body",
-      "quote": "did you calc and officialize the book one last time to",
-      "note": "Follow-up after deals moved to a new book.",
+      "quote": "I understand from Chris Abel that the deals contained within this book were",
+      "note": "Deals moved to a new book; follow-up on zeroing positions.",
       "match": "exact",
-      "start": 910,
-      "end": 964,
+      "start": 743,
+      "end": 818,
       "segment": "forwarded",
-      "raw_text": "did you calc and officialize the book one last time to",
+      "raw_text": "I understand from Chris Abel that the deals contained within this book were",
       "reason": null
     },
     {
       "evidence_id": "batch-039:e24",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/farmer-d/logistics/2048.",
       "field": "body",
       "quote": "Never mind.  They are now changing their price to 6.23.",
-      "note": "Price difference with counterparty on a deal.",
+      "note": "Counterparty price difference on a deal being settled.",
       "match": "exact",
       "start": 451,
       "end": 506,
@@ -730,25 +734,39 @@
     },
     {
       "evidence_id": "batch-039:e25",
-      "process": "meter-flow-deal-coverage",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/2049.",
       "field": "body",
-      "quote": "there is flow on meter 1386 for 1/4/01.  Deal 150325 expired on day",
-      "note": "Flow with expired deal; asks to extend or create.",
+      "quote": "Could you please extend this deal or create a new one?",
+      "note": "Asks to extend or replace an expired deal.",
       "match": "exact",
-      "start": 534,
-      "end": 601,
+      "start": 607,
+      "end": 661,
       "segment": "own",
-      "raw_text": "there is flow on meter 1386 for 1/4/01.  Deal 150325 expired on day",
+      "raw_text": "Could you please extend this deal or create a new one?",
       "reason": null
     },
     {
       "evidence_id": "batch-039:e26",
-      "process": "desk-coverage-on-call",
+      "process": "meter-flow-resolution",
+      "message_id": "corpus/farmer-d/logistics/2049.",
+      "field": "body",
+      "quote": "there is flow on meter 1386 for 1/4/01.",
+      "note": "Flow at a meter without a valid deal.",
+      "match": "exact",
+      "start": 534,
+      "end": 573,
+      "segment": "own",
+      "raw_text": "there is flow on meter 1386 for 1/4/01.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-039:e27",
+      "process": "on-call-coverage",
       "message_id": "corpus/farmer-d/logistics/2050.",
       "field": "body",
       "quote": "Received a call from Sheila at Basin regarding a well which",
-      "note": "Weekend on-call notes of events.",
+      "note": "Weekend on-call notes on what happened during the shift.",
       "match": "exact",
       "start": 1038,
       "end": 1097,
@@ -757,104 +775,91 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-039:e27",
-      "process": "system-enhancement-request",
+      "evidence_id": "batch-039:e28",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/2051.",
       "field": "body",
-      "quote": "Pops shows excessive flow (over 200M/Day beginning the 15th).",
-      "note": "Reports a bad SCADA feed problem.",
+      "quote": "shows excessive flow (over 200M/Day beginning the 15th).",
+      "note": "Bad meter feed with excessive flow to be corrected.",
       "match": "exact",
-      "start": 890,
+      "start": 895,
       "end": 951,
       "segment": "own",
-      "raw_text": "Pops shows excessive flow (over 200M/Day beginning the 15th).",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-039:e28",
-      "process": "performance-review",
-      "message_id": "corpus/giron-d/sent/306.",
-      "field": "body",
-      "quote": "The review is complete.  Let me know if I need to change some items.",
-      "note": "Review and development plan follow-up.",
-      "match": "exact",
-      "start": 545,
-      "end": 613,
-      "segment": "own",
-      "raw_text": "The review is complete.  Let me know if I need to change some items.",
+      "raw_text": "shows excessive flow (over 200M/Day beginning the 15th).",
       "reason": null
     },
     {
       "evidence_id": "batch-039:e29",
-      "process": "deal-record-correction",
+      "process": "performance-review",
+      "message_id": "corpus/giron-d/sent/306.",
+      "field": "body",
+      "quote": "The review is complete.",
+      "note": "Asks for help on a development plan after a completed review.",
+      "match": "exact",
+      "start": 545,
+      "end": 568,
+      "segment": "own",
+      "raw_text": "The review is complete.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-039:e30",
+      "process": "new:deal-rate-change-request",
       "message_id": "corpus/giron-d/sent/301.",
       "field": "body",
       "quote": "could you please change rate on S# 27239 for 12/00 production to",
-      "note": "Rate change request on a deal, completed.",
+      "note": "Recurring request to change a deal's rate for a production month.",
       "match": "exact",
       "start": 607,
       "end": 671,
       "segment": "quoted",
       "raw_text": "could you please change rate on S# 27239 for 12/00 production to",
       "reason": null
-    },
-    {
-      "evidence_id": "batch-039:e30",
-      "process": "new:audit-document-request",
-      "message_id": "corpus/giron-d/sent/324.",
-      "field": "subject",
-      "quote": "December Originations Request",
-      "note": "Auditor's request subject.",
-      "match": "exact",
-      "start": 171,
-      "end": 200,
-      "segment": "subject",
-      "raw_text": "December Originations Request",
-      "reason": null
     }
   ],
   "stall_checks": [
     {
+      "message_id": "corpus/giron-d/sent/326.",
+      "match": "exact",
+      "start": 884,
+      "end": 928,
+      "segment": "forwarded",
+      "raw_text": "Is there someone else that can direct us to?",
+      "reason": null
+    },
+    {
       "message_id": "corpus/giron-d/sent/313.",
       "match": "exact",
       "start": 599,
-      "end": 636,
+      "end": 631,
       "segment": "quoted",
-      "raw_text": "This is just a friendly reminder.....",
+      "raw_text": "This is just a friendly reminder",
       "reason": null
     },
     {
       "message_id": "corpus/farmer-d/logistics/2051.",
       "match": "exact",
-      "start": 890,
-      "end": 951,
+      "start": 1005,
+      "end": 1045,
       "segment": "own",
-      "raw_text": "Pops shows excessive flow (over 200M/Day beginning the 15th).",
+      "raw_text": "This issue will blow out our UA4 number,",
       "reason": null
     }
   ],
   "ownership_checks": [],
   "new_processes": [
     {
-      "key": "new:origination-report-maintenance",
+      "key": "new:origination-reporting",
       "name": "Origination report maintenance",
-      "definition": "Keeping the origination file and the daily originated-deals report accurate for a trading group.",
+      "definition": "Keeping the origination file and report of originated deals complete and accurate for the originating group.",
       "example_ids": [
         "corpus/giron-d/sent/339."
       ]
     },
     {
-      "key": "new:deal-ticket-number-lookup",
-      "name": "Deal ticket number lookup",
-      "definition": "Supplying the Sitara deal ticket numbers that colleagues ask for after deals are changed.",
-      "example_ids": [
-        "corpus/giron-d/sent/334."
-      ]
-    },
-    {
-      "key": "new:audit-document-request",
-      "name": "Auditor documentation request",
-      "definition": "Handling the external auditor's monthly testing requests for deal tickets, P&L top pages and origination support, and delegating them to analysts.",
+      "key": "new:audit-testing-documentation-request",
+      "name": "Auditor monthly testing document requests",
+      "definition": "Supplying P&L top pages, deal tickets, confirmations and forward details requested by the external auditor for its monthly testing, including delegating the request to the right team member.",
       "example_ids": [
         "corpus/giron-d/sent/332.",
         "corpus/giron-d/sent/327.",
@@ -867,9 +872,17 @@
       ]
     },
     {
+      "key": "new:staff-onboarding-request",
+      "name": "Staff placement request",
+      "definition": "Requesting that a person be brought into a group, with location and administrative details.",
+      "example_ids": [
+        "corpus/giron-d/sent/331."
+      ]
+    },
+    {
       "key": "new:recruiting-interviews",
-      "name": "Recruiting and candidate interviews",
-      "definition": "Coordinating candidate resumes, interviewers and scheduling with HR for open risk positions.",
+      "name": "Candidate recruiting and interviews",
+      "definition": "Selecting candidates, arranging interviewers and handling candidate contact with HR for open positions.",
       "example_ids": [
         "corpus/giron-d/sent/330.",
         "corpus/giron-d/sent/320.",
@@ -877,17 +890,26 @@
       ]
     },
     {
-      "key": "new:deal-booking-query",
-      "name": "Deal booking query",
-      "definition": "Answering questions from other groups on how a deal is booked or classified in the system.",
+      "key": "new:deal-booking-clarification",
+      "name": "Deal booking clarification",
+      "definition": "Answering back-office questions on how a deal or leg should be classified in the booking system.",
       "example_ids": [
         "corpus/giron-d/sent/329."
       ]
+    },
+    {
+      "key": "new:deal-rate-change-request",
+      "name": "Deal rate change request",
+      "definition": "Requests to change the rate on a deal for a production period, confirmed as done.",
+      "example_ids": [
+        "corpus/giron-d/sent/313.",
+        "corpus/giron-d/sent/301."
+      ]
     }
   ],
-  "batch_notes": "No injection attempts found. New keys proposed: origination-report-maintenance, deal-ticket-number-lookup, audit-document-request, recruiting-interviews, deal-booking-query. Joke forwards and ClickAtHome treated as noise; social mail as personal.",
+  "batch_notes": "Mostly Darron Giron's sent mail; many forwards and personal items. No injection attempts found. New keys proposed: origination-reporting, audit-testing-documentation-request, staff-onboarding-request, recruiting-interviews, deal-booking-clarification, deal-rate-change-request.",
   "quote_stats": {
-    "exact": 33,
+    "exact": 34,
     "repaired": 0,
     "rejected": 0
   }

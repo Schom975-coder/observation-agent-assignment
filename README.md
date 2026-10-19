@@ -85,7 +85,7 @@ To run cold, with every subagent again:
 /observe --force
 ```
 
-`--force` clears the model outputs first. Every cold rehearsal since the drafting stage was added completed in under 30 minutes on our Windows machine, and so did the submitted run: {{run.wall}}, with {{run.agents_total}} subagents started. A cold run asks the model again, so its process list, its merge and its work estimates can differ from the committed ones, and the dollar figures move with them. Counting and arithmetic are code and do not vary: the same model outputs give the same numbers on every rerun and every OS. If a cold run replaces the committed outputs, Git still holds the submitted run.
+`--force` clears the model outputs first. Every cold rehearsal since the drafting stage was added completed in under 30 minutes on our Windows machine, and so did the submitted run: 28 min 59 s, with 130 subagents started. A cold run asks the model again, so its process list, its merge and its work estimates can differ from the committed ones, and the dollar figures move with them. Counting and arithmetic are code and do not vary: the same model outputs give the same numbers on every rerun and every OS. If a cold run replaces the committed outputs, Git still holds the submitted run.
 
 ### Folder trust and permissions
 

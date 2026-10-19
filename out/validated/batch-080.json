@@ -12,7 +12,7 @@
     {
       "id": "corpus/lokay-m/inbox/52.",
       "processes": [
-        "new:transwestern-point-setup"
+        "new:pipeline-point-setup"
       ],
       "role": "request",
       "stall": null,
@@ -21,7 +21,7 @@
     {
       "id": "corpus/farmer-d/logistics/16.",
       "processes": [
-        "deal-record-correction"
+        "new:deal-counterparty-correction"
       ],
       "role": "request",
       "stall": {
@@ -33,19 +33,19 @@
     {
       "id": "corpus/farmer-d/logistics/15.",
       "processes": [
-        "deal-record-correction"
+        "new:deal-counterparty-correction"
       ],
       "role": "forward",
       "stall": {
         "kind": "handoff_confusion",
-        "quote": "This should be handled by your group."
+        "quote": "Please see message below pertaining to a Transport deal."
       },
       "ownership_claim": null
     },
     {
       "id": "corpus/lokay-m/inbox/69.",
       "processes": [
-        "new:primary-receipt-amendment"
+        "new:contract-amendment-request"
       ],
       "role": "request",
       "stall": null,
@@ -54,9 +54,9 @@
     {
       "id": "corpus/lokay-m/inbox/53.",
       "processes": [
-        "new:primary-receipt-amendment"
+        "new:contract-amendment-request"
       ],
-      "role": "request",
+      "role": "response",
       "stall": {
         "kind": "rework",
         "quote": "Just a quick revision to Dave's note below."
@@ -66,7 +66,7 @@
     {
       "id": "corpus/lokay-m/sent_items/164.",
       "processes": [
-        "new:primary-receipt-amendment"
+        "new:contract-amendment-request"
       ],
       "role": "request",
       "stall": null,
@@ -75,7 +75,7 @@
     {
       "id": "corpus/lokay-m/inbox/70.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "imbalance-resolution"
       ],
       "role": "fyi",
       "stall": null,
@@ -84,7 +84,7 @@
     {
       "id": "corpus/giron-d/inbox/403.",
       "processes": [
-        "curve-postid-mapping"
+        "curve-postid-maintenance"
       ],
       "role": "fyi",
       "stall": null,
@@ -93,7 +93,7 @@
     {
       "id": "corpus/giron-d/inbox/405.",
       "processes": [
-        "curve-postid-mapping"
+        "curve-postid-maintenance"
       ],
       "role": "response",
       "stall": null,
@@ -127,7 +127,7 @@
     {
       "id": "corpus/williams-w3/sent_items/73.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "forward",
       "stall": null,
@@ -136,7 +136,7 @@
     {
       "id": "corpus/williams-w3/sent_items/72.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "forward",
       "stall": null,
@@ -145,7 +145,7 @@
     {
       "id": "corpus/williams-w3/sent_items/71.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -161,17 +161,14 @@
     {
       "id": "corpus/williams-w3/sent_items/70.",
       "processes": [
-        "user-access-setup"
+        "system-access-request"
       ],
-      "role": "request",
+      "role": "forward",
       "stall": {
         "kind": "handoff_confusion",
         "quote": "Didn't know who this was going to."
       },
-      "ownership_claim": {
-        "person": "Will",
-        "quote": "I am not the approver for these rights."
-      }
+      "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/inbox/275.",
@@ -183,7 +180,7 @@
     {
       "id": "corpus/giron-d/inbox/276.",
       "processes": [
-        "new:forward-purchase-confirmation"
+        "new:forward-trade-confirmation"
       ],
       "role": "request",
       "stall": {
@@ -195,12 +192,12 @@
     {
       "id": "corpus/williams-w3/sent_items/69.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
-      "role": "fyi",
+      "role": "response",
       "stall": {
         "kind": "system_failure",
-        "quote": "I attempted to enter this in the cuts database but got several errors"
+        "quote": "I attempted to enter this in the cuts database but got several errors and do not have confidence that this occurred."
       },
       "ownership_claim": null
     },
@@ -214,7 +211,7 @@
     {
       "id": "corpus/giron-d/inbox/278.",
       "processes": [
-        "new:counterparty-delivery-suspension-notice"
+        "supply-cut-handling"
       ],
       "role": "forward",
       "stall": null,
@@ -231,11 +228,11 @@
   "evidence": [
     {
       "evidence_id": "batch-080:e0",
-      "process": "new:transwestern-point-setup",
+      "process": "new:pipeline-point-setup",
       "message_id": "corpus/lokay-m/inbox/52.",
       "field": "body",
       "quote": "Please set up the following points and combinations.",
-      "note": "Asks for new receipt and delivery points and combinations to be set up.",
+      "note": "Asks for receipt and delivery points to be set up before daily marketing starts.",
       "match": "exact",
       "start": 568,
       "end": 620,
@@ -245,39 +242,39 @@
     },
     {
       "evidence_id": "batch-080:e1",
-      "process": "deal-record-correction",
+      "process": "new:deal-counterparty-correction",
       "message_id": "corpus/farmer-d/logistics/16.",
       "field": "body",
-      "quote": "global counterparty said this deal should have Black Marlin Pipeline Company Inc. instead of Black Marlin Pipeline Company effective 3/99.",
-      "note": "Deal counterparty name needs changing on an existing deal record.",
+      "quote": "Have you had a chance to look at this yet?",
+      "note": "Chases a counterparty name change on a deal needed for payments.",
       "match": "exact",
-      "start": 1765,
-      "end": 1903,
-      "segment": "quoted",
-      "raw_text": "global counterparty said this deal should have Black Marlin Pipeline Company Inc. instead of Black Marlin Pipeline Company effective 3/99.",
+      "start": 552,
+      "end": 594,
+      "segment": "own",
+      "raw_text": "Have you had a chance to look at this yet?",
       "reason": null
     },
     {
       "evidence_id": "batch-080:e2",
-      "process": "deal-record-correction",
+      "process": "new:deal-counterparty-correction",
       "message_id": "corpus/farmer-d/logistics/15.",
       "field": "body",
-      "quote": "This deal is for Global # 96022051.",
-      "note": "Passes the deal counterparty change on to the group that should handle it.",
+      "quote": "This deal is for Global # 96022051.  This is between HPL and Black Marlin Pipeline Company.",
+      "note": "Passes the deal counterparty fix to the group that should handle it.",
       "match": "exact",
       "start": 936,
-      "end": 971,
+      "end": 1027,
       "segment": "own",
-      "raw_text": "This deal is for Global # 96022051.",
+      "raw_text": "This deal is for Global # 96022051.  This is between HPL and Black Marlin Pipeline Company.",
       "reason": null
     },
     {
       "evidence_id": "batch-080:e3",
-      "process": "new:primary-receipt-amendment",
+      "process": "new:contract-amendment-request",
       "message_id": "corpus/lokay-m/inbox/69.",
       "field": "body",
       "quote": "Per our conversation, PPL EnergyPlus requests that Transwestern assign",
-      "note": "Shipper requests assignment of primary receipts for its contract.",
+      "note": "Customer requests a change to primary receipts under its contract.",
       "match": "exact",
       "start": 723,
       "end": 793,
@@ -287,11 +284,11 @@
     },
     {
       "evidence_id": "batch-080:e4",
-      "process": "new:primary-receipt-amendment",
+      "process": "new:contract-amendment-request",
       "message_id": "corpus/lokay-m/inbox/53.",
       "field": "body",
       "quote": "Just a quick revision to Dave's note below.",
-      "note": "Corrects the dates in the primary receipt request.",
+      "note": "Corrects the dates in the earlier receipts request.",
       "match": "exact",
       "start": 632,
       "end": 675,
@@ -301,11 +298,11 @@
     },
     {
       "evidence_id": "batch-080:e5",
-      "process": "new:primary-receipt-amendment",
+      "process": "new:contract-amendment-request",
       "message_id": "corpus/lokay-m/sent_items/164.",
       "field": "body",
       "quote": "Please generate amendments for PPL's Red Rock expansion contract #27641.",
-      "note": "Approves the request and asks for contract amendments to be generated.",
+      "note": "Approves the request and asks for contract amendments to be produced.",
       "match": "exact",
       "start": 848,
       "end": 920,
@@ -315,7 +312,7 @@
     },
     {
       "evidence_id": "batch-080:e6",
-      "process": "volume-imbalance-reconciliation",
+      "process": "imbalance-resolution",
       "message_id": "corpus/lokay-m/inbox/70.",
       "field": "subject",
       "quote": "TW Imbalance Mtg.",
@@ -329,25 +326,25 @@
     },
     {
       "evidence_id": "batch-080:e7",
-      "process": "curve-postid-mapping",
+      "process": "curve-postid-maintenance",
       "message_id": "corpus/giron-d/inbox/403.",
-      "field": "subject",
-      "quote": "prompt post id",
-      "note": "List of post IDs by region for the prompt month.",
+      "field": "body",
+      "quote": "Central Transport - 1418060",
+      "note": "List of post IDs by region.",
       "match": "exact",
-      "start": 167,
-      "end": 181,
-      "segment": "subject",
-      "raw_text": "prompt post id",
+      "start": 589,
+      "end": 616,
+      "segment": "own",
+      "raw_text": "Central Transport - 1418060",
       "reason": null
     },
     {
       "evidence_id": "batch-080:e8",
-      "process": "curve-postid-mapping",
+      "process": "curve-postid-maintenance",
       "message_id": "corpus/giron-d/inbox/405.",
       "field": "body",
       "quote": "I do not know if you need wellhead, just in case it is 1416535.",
-      "note": "Adds a further post ID to the earlier list.",
+      "note": "Adds a further post ID to the circulated list.",
       "match": "exact",
       "start": 554,
       "end": 617,
@@ -360,13 +357,13 @@
       "process": "new:credit-approval-request",
       "message_id": "corpus/lokay-m/inbox/71.",
       "field": "body",
-      "quote": "Credit Approval Requested",
-      "note": "Notice asking for credit approval of a submitted shipper contract.",
+      "quote": "Contract Submitted to CAS for Capacity Approval",
+      "note": "Requests credit approval for a shipper contract.",
       "match": "exact",
-      "start": 1583,
-      "end": 1608,
+      "start": 1610,
+      "end": 1657,
       "segment": "own",
-      "raw_text": "Credit Approval Requested",
+      "raw_text": "Contract Submitted to CAS for Capacity Approval",
       "reason": null
     },
     {
@@ -385,25 +382,25 @@
     },
     {
       "evidence_id": "batch-080:e11",
-      "process": "realtime-schedule-checkout",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/73.",
       "field": "body",
-      "quote": "For He 24 EPE was prescheduled to send 50mw to the ISO.",
-      "note": "Forwarded account of a cut hourly power schedule being checked out with SRP.",
+      "quote": "I called SRP at 9:30 pst to verify that they were receiving the power.",
+      "note": "Describes checking a prescheduled power schedule with the counterparty.",
       "match": "exact",
-      "start": 702,
-      "end": 757,
+      "start": 964,
+      "end": 1034,
       "segment": "quoted",
-      "raw_text": "For He 24 EPE was prescheduled to send 50mw to the ISO.",
+      "raw_text": "I called SRP at 9:30 pst to verify that they were receiving the power.",
       "reason": null
     },
     {
       "evidence_id": "batch-080:e12",
-      "process": "realtime-schedule-checkout",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/72.",
       "field": "body",
       "quote": "The estimated time of the call from EPE that we were not checking out with SRP is about 11:30pm pst.",
-      "note": "Follow-up on a schedule that was not checking out.",
+      "note": "Follow-up on a schedule that did not check out.",
       "match": "exact",
       "start": 686,
       "end": 786,
@@ -413,11 +410,11 @@
     },
     {
       "evidence_id": "batch-080:e13",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/williams-w3/sent_items/71.",
       "field": "body",
       "quote": "It is very important that each of you call CERS and purchase energy from them to net this position out.",
-      "note": "Asks the desk to net out money owed by a counterparty.",
+      "note": "Netting an amount owed by a counterparty to avoid a loss.",
       "match": "exact",
       "start": 672,
       "end": 775,
@@ -427,25 +424,25 @@
     },
     {
       "evidence_id": "batch-080:e14",
-      "process": "user-access-setup",
+      "process": "system-access-request",
       "message_id": "corpus/williams-w3/sent_items/70.",
       "field": "body",
-      "quote": "You have received this email because you are listed as a data approver.",
-      "note": "Pending access requests that need an approver.",
+      "quote": "I have also not been able to approve these.",
+      "note": "Pending access request approvals for the Enpower application.",
       "match": "exact",
-      "start": 1607,
-      "end": 1678,
-      "segment": "forwarded",
-      "raw_text": "You have received this email because you are listed as a data approver.",
+      "start": 681,
+      "end": 724,
+      "segment": "own",
+      "raw_text": "I have also not been able to approve these.",
       "reason": null
     },
     {
       "evidence_id": "batch-080:e15",
-      "process": "new:forward-purchase-confirmation",
+      "process": "new:forward-trade-confirmation",
       "message_id": "corpus/giron-d/inbox/276.",
       "field": "body",
       "quote": "As we discussed, I never received a confirmation of the May, June and July",
-      "note": "Counterparty chases a missing confirmation of a forward gas purchase.",
+      "note": "Counterparty asks for a missing confirmation of a forward gas purchase.",
       "match": "exact",
       "start": 689,
       "end": 763,
@@ -455,11 +452,11 @@
     },
     {
       "evidence_id": "batch-080:e16",
-      "process": "realtime-schedule-checkout",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/69.",
       "field": "body",
       "quote": "I entered a deal to buy 25 mws from MWD at the contract price ($113.00) deal #882054",
-      "note": "Books out a cut real-time schedule with deals.",
+      "note": "Booking out a cut real-time power schedule.",
       "match": "exact",
       "start": 912,
       "end": 996,
@@ -469,11 +466,11 @@
     },
     {
       "evidence_id": "batch-080:e17",
-      "process": "new:counterparty-delivery-suspension-notice",
+      "process": "supply-cut-handling",
       "message_id": "corpus/giron-d/inbox/278.",
       "field": "body",
       "quote": "Please be advised that effective 11:00 am EST today AEP Energy Services,",
-      "note": "Forwarded counterparty notice suspending gas deliveries.",
+      "note": "Notice that a supplier is suspending gas deliveries.",
       "match": "exact",
       "start": 3192,
       "end": 3264,
@@ -495,10 +492,10 @@
     {
       "message_id": "corpus/farmer-d/logistics/15.",
       "match": "exact",
-      "start": 1029,
-      "end": 1066,
-      "segment": "own",
-      "raw_text": "This should be handled by your group.",
+      "start": 1262,
+      "end": 1318,
+      "segment": "quoted",
+      "raw_text": "Please see message below pertaining to a Transport deal.",
       "reason": null
     },
     {
@@ -532,37 +529,35 @@
       "message_id": "corpus/williams-w3/sent_items/69.",
       "match": "exact",
       "start": 1068,
-      "end": 1137,
+      "end": 1184,
       "segment": "own",
-      "raw_text": "I attempted to enter this in the cuts database but got several errors",
+      "raw_text": "I attempted to enter this in the cuts database but got several errors and do not have confidence that this occurred.",
       "reason": null
     }
   ],
-  "ownership_checks": [
-    {
-      "message_id": "corpus/williams-w3/sent_items/70.",
-      "person": "Will",
-      "match": "exact",
-      "start": 1258,
-      "end": 1297,
-      "segment": "quoted",
-      "raw_text": "I am not the approver for these rights.",
-      "reason": null
-    }
-  ],
+  "ownership_checks": [],
   "new_processes": [
     {
-      "key": "new:transwestern-point-setup",
-      "name": "Transwestern point and combination set-up",
-      "definition": "Requesting that new receipt and delivery points and their combinations be set up in the pipeline system for marketing.",
+      "key": "new:pipeline-point-setup",
+      "name": "Pipeline point and combination set-up",
+      "definition": "Requesting that receipt and delivery points and their combinations be set up in the systems before gas is marketed.",
       "example_ids": [
         "corpus/lokay-m/inbox/52."
       ]
     },
     {
-      "key": "new:primary-receipt-amendment",
-      "name": "Primary receipt amendment",
-      "definition": "Shipper requests changes to primary receipt assignments, approval, and generation of contract amendments.",
+      "key": "new:deal-counterparty-correction",
+      "name": "Deal counterparty correction",
+      "definition": "Getting the counterparty name on an existing deal changed so payments can be made, including passing the request to the group that handles it.",
+      "example_ids": [
+        "corpus/farmer-d/logistics/16.",
+        "corpus/farmer-d/logistics/15."
+      ]
+    },
+    {
+      "key": "new:contract-amendment-request",
+      "name": "Contract amendment request",
+      "definition": "Customer requests to change contract terms such as primary receipts, approval, and instruction to generate amendments.",
       "example_ids": [
         "corpus/lokay-m/inbox/69.",
         "corpus/lokay-m/inbox/53.",
@@ -571,8 +566,8 @@
     },
     {
       "key": "new:credit-approval-request",
-      "name": "Credit approval request for contract",
-      "definition": "Notices that a shipper contract was submitted for credit and capacity approval.",
+      "name": "Credit approval request",
+      "definition": "Announcing a contract submitted for credit and capacity approval, with shipper, term and volume.",
       "example_ids": [
         "corpus/lokay-m/inbox/71."
       ]
@@ -580,31 +575,23 @@
     {
       "key": "new:contract-status-tracking",
       "name": "Contract status tracking",
-      "definition": "Circulating status lists of contracts being processed, tendered or terminating for a start date.",
+      "definition": "Circulating a dated list of contracts being processed, tendered or terminating.",
       "example_ids": [
         "corpus/lokay-m/inbox/72."
       ]
     },
     {
-      "key": "new:forward-purchase-confirmation",
-      "name": "Forward purchase confirmation",
-      "definition": "Counterparty asking for or chasing written confirmation of a forward gas purchase.",
+      "key": "new:forward-trade-confirmation",
+      "name": "Forward trade confirmation",
+      "definition": "Chasing or issuing written confirmation of forward gas purchases with counterparties.",
       "example_ids": [
         "corpus/giron-d/inbox/276."
       ]
-    },
-    {
-      "key": "new:counterparty-delivery-suspension-notice",
-      "name": "Counterparty delivery suspension notice",
-      "definition": "Notices from a supplier suspending gas deliveries, passed to the desk.",
-      "example_ids": [
-        "corpus/giron-d/inbox/278."
-      ]
     }
   ],
-  "batch_notes": "No injection attempts found. New keys proposed for pipeline contract work and trade confirmation. Messages 275, 404 and 480 treated as noise; 73 and 279 as company bulletins.",
+  "batch_notes": "No injection attempts found. Proposed new keys for Transwestern contract work and deal correction. Messages 275 (screen capture with no readable content) and 404 treated as noise.",
   "quote_stats": {
-    "exact": 25,
+    "exact": 24,
     "repaired": 0,
     "rejected": 0
   }

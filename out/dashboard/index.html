@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Recurring work</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="styles.css">
+<script type="module" src="app.js"></script>
+</head>
+<body>
+<svg class="sr-only" aria-hidden="true" focusable="false" width="0" height="0">
+  <defs>
+    <pattern id="hatch" patternUnits="userSpaceOnUse" width="4.2" height="4.2" patternTransform="rotate(45)">
+      <rect class="hatch-bg" width="4.2" height="4.2"></rect>
+      <line class="hatch-ln" x1="0" y1="0" x2="0" y2="4.2"></line>
+    </pattern>
+  </defs>
+</svg>
+
+<div class="brandrule" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<div class="shell">
+  <div class="page">
+    <header class="top">
+      <div>
+        <p class="client">Prepared for Enron</p>
+        <h1 id="title">Recurring work</h1>
+        <p class="runline" id="runline"></p>
+      </div>
+      <div class="top-right">
+        <nav class="nav" aria-label="Views">
+          <a href="#overview" data-view="overview">Overview</a>
+          <a href="#all-processes" data-view="all-processes">All processes</a>
+          <a href="#open-loops" data-view="open-loops">Open loops</a>
+          <a href="#methodology" data-view="methodology">How we measured</a>
+          <button type="button" id="nav-lookup">Look up a message</button>
+        </nav>
+        <button type="button" class="theme" id="theme" aria-label="Theme: system. Follows the system colour setting; select to change.">Theme: system</button>
+      </div>
+    </header>
+    <main id="main">
+      <div id="overview" class="view"><p class="loading" role="status">Loading the dashboard…</p></div>
+      <div id="all-processes" class="view" hidden></div>
+      <div id="open-loops" class="view" hidden></div>
+      <div id="methodology" class="view" hidden></div>
+    </main>
+    <footer class="foot-bar" id="footer"></footer>
+  </div>
+</div>
+
+<div class="scrim" id="scrim" hidden></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" hidden>
+  <div class="d-head">
+    <div class="d-left">
+      <button type="button" class="d-close d-back" id="d-back">Back</button>
+      <nav class="crumbs" id="crumbs" aria-label="Drill path"></nav>
+    </div>
+    <button type="button" class="d-close" id="d-close">Close</button>
+  </div>
+  <div class="d-body" id="d-body"></div>
+</aside>
+</body>
+</html>

@@ -1,370 +1,451 @@
 {
   "version": 1,
-  "taxonomy_sha": "9f2eca0e89459b62abd599b4950ef3bc14994b4a027f839e12eccf2b087ee687",
+  "taxonomy_sha": "a3c765d1042e6910f565da87b30c2982385140d6f29eb069ec921580c0b37820",
   "labels": [
     {
       "id": "corpus/farmer-d/logistics/1.",
-      "processes": ["deal-record-correction"],
+      "processes": [
+        "deal-book-transfer"
+      ],
       "role": "response",
       "confirmed": true,
-      "note": "Sends list of 66 physical deals zeroed out in Sitara, answering Unify/Vol Mgmt's ask to zero out rather than kill deals"
+      "note": "Jayant answers the questions about killing ENA-to-ENA deals in Sitara with the list of 66 physical deals zeroed out, which is the deal-list step of killing or moving deals between books."
     },
     {
       "id": "corpus/farmer-d/logistics/110.",
-      "processes": ["counterparty-settlement-review"],
+      "processes": [
+        "settlement-resolution"
+      ],
       "role": "request",
       "confirmed": true,
-      "note": "Asks Daren to help resolve Duke price differences between Sitara and customer on two Feb-01 deals"
+      "note": "Elizabeth asks Daren to help resolve price differences between Sitara and the customer on two Duke day deals, a deal-price dispute that settlement resolution covers."
     },
     {
       "id": "corpus/farmer-d/logistics/1201.",
-      "processes": ["pipeline-outage-supply-cuts"],
+      "processes": [
+        "supply-cut-handling"
+      ],
       "role": "fyi",
       "confirmed": true,
-      "note": "FYI of El Paso supply cut to Oasis for 6/8/00 (Exxon cut by 484); matches the supply-cuts-on-Oasis example"
+      "note": "Mark tells Daren that El Paso cut Exxon's gas into Oasis by 484 on 6/8/00 and that Oasis kept the delivery whole, a pipeline supply cut passed on for information."
     },
     {
       "id": "corpus/farmer-d/logistics/131.",
-      "processes": ["gas-nomination-handling"],
+      "processes": [
+        "gas-nomination"
+      ],
       "role": "request",
       "confirmed": true,
-      "note": "Asks for nom change for lower Imperial Sugar May volumes; the buyback pricing question is ahead of delivery, not invoice settlement"
+      "note": "Craig asks logistics to change Imperial Sugar's May nomination to its lower expected volume and raises how to price the buyback, so the core work is a nomination change."
     },
     {
       "id": "corpus/farmer-d/logistics/1415.",
-      "processes": ["time-activity-reporting"],
+      "processes": [
+        "time-activity-reporting"
+      ],
       "role": "request",
       "confirmed": true,
-      "note": "OPM Hours Survey moving to MS Access; asks recipients to request Access and say who completes the survey"
+      "note": "James tells the people who fill in the OPM Hours Survey that the next survey moves to Microsoft Access and asks them to request Access before it goes out, which is part of collecting the hours survey."
     },
     {
       "id": "corpus/farmer-d/logistics/1523.",
-      "processes": ["volume-imbalance-reconciliation"],
+      "processes": [
+        "meter-flow-resolution"
+      ],
       "role": "response",
       "confirmed": true,
-      "note": "Sends Big Cowboy October production volumes by meter that Daren asked for; offers Coral volume statements"
+      "note": "Fred answers Daren's request with the Big Cowboy production volumes for October 2000 by meter, which the taxonomy places under production month volumes at a wellhead meter."
     },
     {
       "id": "corpus/farmer-d/logistics/1969.",
-      "processes": ["deal-record-correction"],
+      "processes": [
+        "deal-ticket-setup"
+      ],
       "role": "request",
       "confirmed": true,
-      "note": "After Cannon-to-Kinder Morgan trade assignment, asks whether to change counterparty on the sale and storage agmt"
+      "note": "Mary forwards the thread assigning Cannon's trades to Kinder Morgan under a new deal and asks Daren whether she should change the counterparty on the sale, which is replacing a deal so the gas has a valid deal."
     },
     {
       "id": "corpus/farmer-d/logistics/2053.",
       "processes": [],
       "role": "automated",
       "confirmed": true,
-      "note": "Training class enrollment confirmation from the Development Center; no taxonomy process"
+      "note": "A system confirmation that Stacey is enrolled in a training class and that the cost centre will be charged $300, unrelated to the listed work."
     },
     {
       "id": "corpus/farmer-d/logistics/223.",
-      "processes": ["new:supply-contract-termination"],
+      "processes": [
+        "new:supply-contract-termination"
+      ],
       "role": "response",
       "confirmed": true,
-      "note": "Replies that Exxon GTC has evergreen language and a termination letter is being prepared; no key covers contract termination"
+      "note": "Kim confirms the Exxon gas purchase contract has evergreen language and that a termination letter is being faxed, supplier contract work no key covers because the contract key is limited to transport contracts and OBAs."
     },
     {
       "id": "corpus/farmer-d/logistics/622.",
-      "processes": ["meter-flow-deal-coverage"],
+      "processes": [
+        "meter-flow-resolution"
+      ],
       "role": "request",
       "confirmed": true,
-      "note": "Black Marlin meter flow in 8/98 with no deal in OSS; asks if a CPR deal failed to feed over"
+      "note": "Stella reports 7,394 MMBtu of measured flow at meter 986782 for 8/98 with no matching deal in OSS and asks Daren whether a deal exists, an unexplained flow at a meter."
     },
     {
       "id": "corpus/farmer-d/logistics/717.",
-      "processes": ["gas-nomination-handling"],
+      "processes": [
+        "gas-nomination"
+      ],
       "role": "fyi",
       "confirmed": true,
-      "note": "FYI that Mobil Beaumont's estimated daily vols for late Jan and Feb were entered in Sitara"
+      "note": "Lee tells the team he entered Mobil Beaumont's estimated daily takes for late January and February into Sitara, which is receiving and entering a customer's requested volumes."
     },
     {
       "id": "corpus/farmer-d/logistics/811.",
-      "processes": ["gas-nomination-handling"],
+      "processes": [
+        "gas-nomination"
+      ],
       "role": "fyi",
       "confirmed": true,
-      "note": "Explains how Cilco storage withdrawals and HPLC transport must be pathed; scheduling procedure, no specific ask"
+      "note": "Howard sends the schedulers the Unify pathing to use for Cilco storage withdrawals and for HPLC transport into and out of Bammel storage, which is how nominated storage gas gets scheduled."
     },
     {
       "id": "corpus/farmer-d/logistics/906.",
-      "processes": ["market-rule-change-review"],
+      "processes": [
+        "regulatory-notice-review"
+      ],
       "role": "forward",
       "confirmed": true,
-      "note": "Forwards outside counsel's FERC research on seasonal rates for the BPA rate case, nothing added"
+      "note": "Mary forwards outside counsel's review of FERC orders on seasonal rates for the BPA rate case, which is regulatory review and comment work."
     },
     {
       "id": "corpus/giron-d/inbox/1.",
       "processes": [],
       "role": "noise",
       "confirmed": true,
-      "note": "Company-wide HR/security notice about new UBS Warburg access cards; no business process"
+      "note": "HR tells a large list how to collect new UBS Warburg building access cards, a mass announcement unrelated to the listed work."
     },
     {
       "id": "corpus/giron-d/inbox/18.",
       "processes": [],
       "role": "noise",
       "confirmed": true,
-      "note": "General announcement that Ken Lay resigned from the board"
+      "note": "A company-wide announcement that Ken Lay has resigned from the board, unrelated to the listed work."
     },
     {
       "id": "corpus/giron-d/inbox/260.",
       "processes": [],
       "role": "personal",
       "confirmed": true,
-      "note": "Personal forward of an MP3 attachment from an outside address"
+      "note": "A relative forwards an MP3 attachment to Darron's work address, which is personal mail."
     },
     {
       "id": "corpus/giron-d/inbox/393.",
-      "processes": ["new:customer-price-quote"],
+      "processes": [
+        "new:customer-fixed-price-sales"
+      ],
       "role": "request",
       "confirmed": true,
-      "note": "Customer bought fixed forward gas at Ventura and wants to buy more; customer quote/sale work no key covers"
+      "note": "A Great River Energy fuel buyer says he bought three fixed-forward contracts at Ventura from another trader and wants to buy more, a customer price quote and sale that no key covers."
     },
     {
       "id": "corpus/giron-d/inbox/81.",
       "processes": [],
       "role": "personal",
       "confirmed": true,
-      "note": "Joke MP3 forwarded among colleagues"
+      "note": "Sheri forwards a joke MP3 about Enron to colleagues and friends, a social note."
     },
     {
       "id": "corpus/giron-d/sent/162.",
-      "processes": ["credit-exposure-reporting"],
+      "processes": [
+        "credit-reporting"
+      ],
       "role": "forward",
       "confirmed": true,
-      "note": "Forwards the 3/8/01 credit report with no text of his own"
+      "note": "Darron forwards the 3/8/01 credit report to Carole Frank without comment, so it carries the credit report distribution."
     },
     {
       "id": "corpus/giron-d/sent/246.",
-      "processes": ["deal-book-transfer"],
+      "processes": [
+        "deal-book-transfer"
+      ],
       "role": "forward",
       "confirmed": true,
-      "note": "Forwards list of Aquila/Engage Canada deals to be flipped to another book"
+      "note": "Darron forwards without comment the list of Aquila and Engage Canada deals to be flipped to the FT-US/CAND-ERMS book, a transfer of deals between books."
     },
     {
       "id": "corpus/giron-d/sent/327.",
-      "processes": ["pnl-position-reporting"],
+      "processes": [
+        "pnl-reporting"
+      ],
       "role": "response",
       "confirmed": true,
-      "note": "Replies to auditor's request for monthly gas P&L top pages that he is away until Thursday"
+      "note": "Darron replies to the auditors' monthly request for natural gas P&L top pages by region that he is travelling and can supply them on Thursday, a step in providing and explaining desk P&L."
     },
     {
       "id": "corpus/giron-d/sent/408.",
-      "processes": ["new:analyst-recruiting"],
+      "processes": [
+        "new:analyst-recruiting"
+      ],
       "role": "response",
       "confirmed": true,
-      "note": "Returns analyst needs-assessment form and asks recruiter to call Chicago office; hiring work, no key fits"
+      "note": "Darron returns the analyst needs assessment form to recruiting and points them to the Chicago office's similar need, which is hiring work no key covers."
     },
     {
       "id": "corpus/giron-d/sent/49.",
-      "processes": ["curve-postid-mapping"],
+      "processes": [
+        "curve-postid-maintenance"
+      ],
       "role": "response",
       "confirmed": true,
-      "note": "Explains March forward curve shifts (Malin, PGE CG, CIG) for the monthly curve validation memo"
+      "note": "Darron explains to the curve validation reviewer why the NGI-MALIN, NGI-PGE CG and CIG WIC curves shifted in March, which is review of the price curves used to value positions."
     },
     {
       "id": "corpus/giron-d/sent/570.",
-      "processes": ["curve-postid-mapping"],
+      "processes": [
+        "curve-postid-maintenance"
+      ],
       "role": "forward",
       "confirmed": true,
-      "note": "Forwards an 'official post id' message; forwarded body is empty, nothing added"
+      "note": "Darron forwards the official post ID list to Jason Wolfe without comment, circulating a post ID list."
     },
     {
       "id": "corpus/giron-d/sent/652.",
       "processes": [],
       "role": "personal",
       "confirmed": true,
-      "note": "Chain letter from family forwarded to his home address"
+      "note": "Darron forwards a family chain letter to his home address, which is personal mail."
     },
     {
       "id": "corpus/giron-d/sent/734.",
       "processes": [],
       "role": "personal",
       "confirmed": true,
-      "note": "Airline joke forwarded to friends and colleagues"
+      "note": "Darron forwards an airline joke to friends and colleagues, which is personal mail."
     },
     {
       "id": "corpus/lokay-m/inbox/1.",
       "processes": [],
       "role": "noise",
       "confirmed": true,
-      "note": "General announcement of an executive eSpeak session"
+      "note": "A general announcement inviting staff to an online talk with the head of ETS Engineering and Construction, a mass announcement unrelated to the listed work."
     },
     {
       "id": "corpus/lokay-m/inbox/25.",
-      "processes": ["commercial-strategy-planning"],
+      "processes": [
+        "commercial-strategy-planning"
+      ],
       "role": "response",
       "confirmed": true,
-      "note": "Gives Level-A cost (about $8-10k) to make TW/Lonestar Ward County interconnect bi-directional"
+      "note": "Engineering tells Michelle that making the TW and Lone Star Ward County interconnect bi-directional would cost about $8,000 to $10,000, a cost input to a commercial interconnect project."
     },
     {
       "id": "corpus/lokay-m/inbox/41.",
-      "processes": ["commercial-strategy-planning"],
+      "processes": [
+        "commercial-strategy-planning"
+      ],
       "role": "request",
       "confirmed": true,
-      "note": "Asks for fuel-charge negotiation limits for Sun Devil expansion project shippers by 11/12"
+      "note": "Kevin asks for analysis of how far TW can discount fuel charges for Sun Devil expansion shippers, setting negotiation parameters as part of the project's commercial strategy."
     },
     {
       "id": "corpus/lokay-m/inbox/70.",
-      "processes": ["volume-imbalance-reconciliation"],
+      "processes": [
+        "imbalance-resolution"
+      ],
       "role": "request",
       "confirmed": true,
-      "note": "Meeting invite for a TW imbalance meeting; no body text"
+      "note": "Lynn invites the TW team to a meeting on TW imbalances, which arranges imbalance resolution work."
     },
     {
       "id": "corpus/lokay-m/sent_items/108.",
       "processes": [],
       "role": "personal",
       "confirmed": true,
-      "note": "Political cow joke sent to a personal address"
+      "note": "Michelle sends a joke about Enron to an outside personal address, which is personal mail."
     },
     {
       "id": "corpus/lokay-m/sent_items/125.",
-      "processes": ["new:index-price-lookup"],
+      "processes": [
+        "settlement-resolution"
+      ],
       "role": "response",
       "confirmed": true,
-      "note": "Supplies the Mojave/Topock index prices Hanagriff asked for; purpose not stated, so no key is supported"
+      "note": "Michelle completes Richard's request for the November to February Mojave (El Paso Topock) index prices, which most likely feed index-priced billing, so settlement resolution is the closest fit."
     },
     {
       "id": "corpus/lokay-m/sent_items/14.",
-      "processes": ["pipeline-capacity-marketing"],
+      "processes": [
+        "oba-contract-negotiation"
+      ],
       "role": "forward",
       "confirmed": true,
-      "note": "Forwards BRTI agreement to raise contract MDQ for 12/14-12/31, adding only 'Approved'"
+      "note": "Michelle forwards BRTI's agreed increase in the daily quantity of transport contract 27748 with the single word Approved, which is approval of a transportation contract change."
     },
     {
       "id": "corpus/lokay-m/sent_items/155.",
       "processes": [],
       "role": "noise",
       "confirmed": true,
-      "note": "Empty message with only a local temp file path (Clock-1.htm); no work content"
+      "note": "An empty message carrying only a local link to a clock web page, with no business content."
     },
     {
       "id": "corpus/lokay-m/sent_items/23.",
       "processes": [],
       "role": "personal",
       "confirmed": true,
-      "note": "Accepts a colleague's dinner invitation"
+      "note": "Michelle accepts a colleague's dinner invitation, a social note."
     },
     {
       "id": "corpus/lokay-m/sent_items/39.",
-      "processes": ["pipeline-capacity-marketing"],
+      "processes": [
+        "capacity-reporting"
+      ],
       "role": "request",
       "confirmed": true,
-      "note": "Asks colleagues to review the available firm capacity posting before Tuesday"
+      "note": "Michelle asks colleagues to review the Transwestern available firm capacity posting before Tuesday, which is part of posting available capacity."
     },
     {
       "id": "corpus/lokay-m/sent_items/53.",
       "processes": [],
       "role": "noise",
       "confirmed": true,
-      "note": "Forwards all-employee ETS floor meeting notice about the Dynegy settlement, nothing added"
+      "note": "Michelle forwards without comment an ETS-wide notice of a floor meeting on the Dynegy settlement, a mass announcement unrelated to the listed work."
     },
     {
       "id": "corpus/lokay-m/sent_items/69.",
-      "processes": ["volume-imbalance-reconciliation"],
+      "processes": [
+        "imbalance-resolution"
+      ],
       "role": "response",
       "confirmed": true,
-      "note": "Confirms Williams Field Services cash payment of cumulative imbalance on contract 21823"
+      "note": "Michelle confirms that Williams agreed the cash payment for its cumulative imbalance on contract 21823, which is agreeing how an imbalance is cleared."
     },
     {
       "id": "corpus/lokay-m/sent_items/84.",
-      "processes": ["new:gas-sale-confirmation"],
+      "processes": [
+        "new:gas-sale-confirmation"
+      ],
       "role": "fyi",
       "confirmed": true,
-      "note": "Sends a copy of the Western Gas sales confirmation; deal confirmation work no key covers"
+      "note": "Michelle sends Bert a copy of the Western Gas sales confirmation with no other text, which is trade confirmation work no key covers."
     },
     {
       "id": "corpus/williams-w3/inbox/1.",
-      "processes": ["realtime-schedule-checkout"],
-      "role": "automated",
+      "processes": [
+        "real-time-power-scheduling"
+      ],
+      "role": "fyi",
       "confirmed": true,
-      "note": "CAISO derate notice for PDCI for specific hours; taxonomy lists derate notices under this key"
+      "note": "CAISO tells market participants that the PDCI transfer capability has been derated and when adjusted schedules can be submitted, a transmission derate affecting schedules."
     },
     {
       "id": "corpus/williams-w3/inbox/19.",
-      "processes": ["user-access-setup"],
+      "processes": [
+        "system-access-request"
+      ],
       "role": "response",
       "confirmed": true,
-      "note": "Replies that EST accounts should stay active, not be disabled, until the Estate has a plan"
+      "note": "Tim replies that the EST accounts should stay active until the estate has an alternative plan, a decision on disabling user accounts."
     },
     {
       "id": "corpus/williams-w3/inbox/68.",
-      "processes": ["market-rule-change-review"],
+      "processes": [
+        "regulatory-notice-review"
+      ],
       "role": "fyi",
       "confirmed": true,
-      "note": "CAISO market notice of FERC-accepted 2002 Grid Management Charge rates"
+      "note": "CAISO notifies participants of the 2002 Grid Management Charge rates following FERC's order, an ISO market notice."
     },
     {
       "id": "corpus/williams-w3/sent_items/113.",
-      "processes": ["market-rule-change-review"],
+      "processes": [
+        "regulatory-notice-review"
+      ],
       "role": "forward",
       "confirmed": true,
-      "note": "Forwards colleague's summary of CAISO 2002 GMC rate increases, nothing added"
+      "note": "Bill forwards without comment Kit Blair's summary of CAISO's proposed 2002 Grid Management Charge increases, circulating an ISO rate proposal."
     },
     {
       "id": "corpus/williams-w3/sent_items/16.",
-      "processes": ["trading-book-setup"],
-      "role": "forward",
+      "processes": [
+        "trading-book-setup"
+      ],
+      "role": "fyi",
       "confirmed": true,
-      "note": "Forwards the instruction to book new deals in the EPMI-WEST-PERFORMANCE desk; own text only postpones a meeting"
+      "note": "Bill postpones his group's meeting and passes on the instruction to enter new deals under the EPMI-WEST-PERFORMANCE desk, which tells traders which book is ready for deals."
     },
     {
       "id": "corpus/williams-w3/sent_items/206.",
-      "processes": ["user-access-setup"],
+      "processes": [
+        "system-access-request"
+      ],
       "role": "fyi",
       "confirmed": true,
-      "note": "Shares a new team login for the Friedwire service"
+      "note": "Bill gives his group the new shared login for the Friedwire website, which grants the team access to an information service."
     },
     {
       "id": "corpus/williams-w3/sent_items/253.",
-      "processes": ["new:annual-budget-planning"],
+      "processes": [
+        "commercial-strategy-planning"
+      ],
       "role": "response",
       "confirmed": true,
-      "note": "Returns revised 2002 G&A budget for the real-time group; annual budgeting, no key fits"
+      "note": "Bill returns the revised 2002 expense budget for the real-time trading group, which is his part of the yearly plan."
     },
     {
       "id": "corpus/williams-w3/sent_items/3.",
-      "processes": ["user-access-setup"],
+      "processes": [
+        "system-access-request"
+      ],
       "role": "response",
       "confirmed": true,
-      "note": "Answers Stack Manager trader set-up check: he uses Terminal Server"
+      "note": "Bill answers that he reaches Stack Manager through Terminal Server, part of confirming traders are set up to trade."
     },
     {
       "id": "corpus/williams-w3/sent_items/344.",
-      "processes": ["trading-book-setup"],
+      "processes": [
+        "new:eol-product-setup"
+      ],
       "role": "response",
       "confirmed": true,
-      "note": "Approves loadshape language for new hourly West Power EnronOnline products"
+      "note": "Bill approves the loadshape wording for new hourly West Power products on EnronOnline, which is product set-up work no key covers."
     },
     {
       "id": "corpus/williams-w3/sent_items/391.",
-      "processes": ["realtime-schedule-checkout", "pnl-position-reporting", "user-access-setup"],
+      "processes": [
+        "real-time-power-scheduling",
+        "system-access-request"
+      ],
       "role": "request",
       "confirmed": true,
-      "note": "Reconciles the SAR after a real-time cut, asks that the $44 imbalance buy be booked in the Vol Mgmt flash, and asks for a new hire's access"
+      "note": "Bill asks Kate to make sure a real-time purchase made after a Palo Verde cut is recorded in the Volume Management flash and to get John Anderson access to the desk's systems, two separate pieces of work."
     },
     {
       "id": "corpus/williams-w3/sent_items/436.",
-      "processes": ["market-rule-change-review"],
+      "processes": [
+        "regulatory-notice-review"
+      ],
       "role": "response",
       "confirmed": true,
-      "note": "Thanks for update on seeking FERC clarification of retroactive CAISO mitigation price cap"
+      "note": "Bill thanks Alan for the update on seeking FERC clarification of a retroactive CAISO price cap, a step in reviewing a market rule with the regulator."
     },
     {
       "id": "corpus/williams-w3/sent_items/481.",
-      "processes": ["pnl-position-reporting"],
+      "processes": [
+        "pnl-reporting"
+      ],
       "role": "response",
       "confirmed": true,
-      "note": "Confirms trader agrees to $18,750 annuity from ST-CALI to ST-WHOURLY book"
+      "note": "Bill tells Heather that Chris agreed to an $18,750 annuity from ST-CALI to ST-WHOURLY, which moves profit between two desk books."
     },
     {
       "id": "corpus/williams-w3/sent_items/53.",
-      "processes": ["new:customer-relationship-planning"],
-      "role": "request",
+      "processes": [
+        "commercial-strategy-planning"
+      ],
+      "role": "fyi",
       "confirmed": true,
-      "note": "Names key real-time customers to win back and asks for ideas; customer planning, no key fits"
+      "note": "Bill names MPC and EPE as the key real-time customers to win back once a new company forms, which is customer strategy planning."
     }
   ]
 }

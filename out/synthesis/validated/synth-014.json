@@ -1,91 +1,94 @@
 {
   "group_id": "synth-014",
-  "content_sha": "2a3ff616f85d8f3b2bf018d05a7a7908897c9f72a232ac4ccdecf2e7cf8ca521",
+  "content_sha": "7583f3b11ad273540c57373c3ada5e8fad0092d2464eb9598db39e8b4e25a556",
   "processes": [
     {
-      "key": "ownership-transition-handover",
-      "description": "Handing Enron businesses to new owners: HPL to AEP, and later the gas and power trading business to UBS Warburg Energy, with the estate keeping the rest. A round starts with a memo or notice: a transition issue list or deal file sent for comments, a liquidation recommendation, IT migration notices and a data-migration protocol, or HR notices on new-hire paperwork, drug tests and orientation. Staff sort which files and procedures stay with the estate, copy their own data before the cutoff, file compliance forms and repair spreadsheets after migration.",
+      "key": "deal-ticket-setup",
+      "description": "A round usually starts when a scheduler, volume analyst or accountant finds gas flowing at a meter or on a pipeline with no valid deal: a ticket expired, ended mid-month or was never created. They email the desk, mostly Daren Farmer, asking for a Sitara deal to be created, extended, zeroed out or corrected. The desk or a logistics coordinator enters or extends the ticket and replies with the deal or track number. The requester then checks that the ticket reflects the flow, so that allocations and the Unify volume drafts can clear.",
       "steps": [
-        "A lead sends out a transition memo, issue list, deal file or implementation plan and asks for comments or a planning meeting.",
-        "Recipients review and send changes; the lead updates the document and redistributes it.",
-        "Teams list which files, directories and running procedures the estate needs and which move to the new owner.",
-        "Staff copy their own compliant documents and email and send file-migration compliance forms before the cutoff.",
-        "IT migrates systems; users repair spreadsheet macros and booklists that pointed at moved folders.",
-        "HR collects new-hire paperwork, follows up on missing application details and drug tests, and runs orientation sessions.",
-        "The estate confirms which ongoing tasks it takes over, such as daily settlement runs."
+        "A scheduler or analyst finds flow at a meter with no deal, an expired ticket or an allocation exception.",
+        "They email the desk with the meter, dates, counterparty and any existing deal number.",
+        "The desk checks Sitara to see whether the existing deal should be extended or a new one created.",
+        "The trader or coordinator creates, extends, zeroes or corrects the ticket in Sitara.",
+        "The deal or track number is sent back to the requester.",
+        "The requester confirms the ticket is released and flows into Unify so allocations and volume drafts can clear."
       ],
       "stalls": [
         {
-          "summary": "The migration broke access to systems people still needed: one user could not get into CAPS because the trading cluster was not reconfigured, and could not send a model to a colleague.",
+          "summary": "Requesters wait on the desk to enter or release a deal and have to ask again; logistics stays blocked until the trader answers.",
           "evidence_ids": [
-            "batch-095:s2",
-            "batch-095:e15"
+            "batch-057:s2",
+            "batch-057:e10",
+            "batch-082:s0",
+            "batch-004:s1",
+            "batch-004:e20"
           ]
         },
         {
-          "summary": "A request reached the wrong person and had to be redirected with a note that a response was required.",
+          "summary": "Expired or unreleased tickets stop deals from passing into Unify, so volumes cannot be drafted until the ticket is fixed.",
           "evidence_ids": [
-            "batch-090:s0",
-            "batch-090:e1"
+            "batch-054:s0",
+            "batch-049:s0",
+            "batch-043:e21"
           ]
         },
         {
-          "summary": "Onboarding with the new owner stalls on paperwork: drug tests not taken, applications missing information, and a same-day deadline for new-hire forms.",
+          "summary": "Requesters are unsure who can make the change, and requests are passed between people or redirected to another person.",
           "evidence_ids": [
-            "batch-095:e5",
-            "batch-095:e6",
-            "batch-094:e10",
-            "batch-088:e22"
+            "batch-010:s6",
+            "batch-020:s1",
+            "batch-008:s3",
+            "batch-047:o0"
           ]
         },
         {
-          "summary": "It is left open which files and which running procedures the estate team must take over from people moving to the new owner, so teams have to ask.",
+          "summary": "Deal terms are sent with mistakes in the effective date or price and have to be corrected after the first request.",
           "evidence_ids": [
-            "batch-085:e12",
-            "batch-096:e8"
-          ]
-        },
-        {
-          "summary": "Self-service data moves risk loss and rework: exported email loses its attachments, and staff must copy every document themselves.",
-          "evidence_ids": [
-            "batch-096:e10",
-            "batch-095:e14"
+            "batch-041:s1",
+            "batch-002:s2"
           ]
         }
       ],
       "contradictions": [
         {
-          "summary": "The mail gives mixed messages on who moves the data: infrastructure announces that IT will run the migrations, while another notice says staff have to copy all documents themselves before the cutoff.",
+          "summary": "Different people are named as the one who puts these deals in: an outside party is told to call Daren Farmer, while another sender says Danny Conner handles it and a third says to talk to Darren.",
           "evidence_ids": [
-            "batch-093:e14",
-            "batch-095:e14",
-            "batch-095:e1"
+            "batch-054:o0",
+            "batch-028:o1",
+            "batch-036:o0"
+          ]
+        },
+        {
+          "summary": "In the same round, setting up the accounting arrangements is assigned to Volume Management as a group, while Robert E Lloyd splits the months between himself and a colleague.",
+          "evidence_ids": [
+            "batch-001:o2",
+            "batch-001:o3"
           ]
         }
       ],
       "automation": {
-        "approach": "A transition tracker kept per handover: one list of files, directories, procedures and deals with the owner each goes to (estate or new owner), the migration cutoff, compliance-form status and who confirmed it, plus a new-hire report that flags missing paperwork and tests per person. A checked export routine that keeps attachments would replace manual copying.",
-        "artifact_type": "checklist",
-        "rationale": "Most rounds handle the same items again for different people and teams: what to copy, which form to file, which spreadsheet to repair, which onboarding step is missing. A standard handover checklist with owners and deadlines answers the recurring questions about which files and procedures stay with the estate and keeps requests from reaching the wrong person, while decisions such as a liquidation plan stay with people."
+        "approach": "A daily exception report comparing measured flow and allocation exceptions by meter against active Sitara tickets would flag meters with flow but no deal, and tickets expiring before month end, before anyone has to email. A standard request form would capture meter, dates, counterparty, price and existing deal number, and route to the named owner for that pipeline, with the new deal number returned automatically.",
+        "artifact_type": "template",
+        "rationale": "Most rounds are the same request missing the same fields (meter, dates, deal number, extend or create), and many stall on who handles it. A structured request form with a routing owner column removes the back-and-forth and the incorrect terms, while the trader still decides whether to extend or create."
       },
       "work_estimate": {
         "minutes_per_occurrence": {
           "low": 10,
-          "mid": 30,
-          "high": 120
+          "mid": 20,
+          "high": 45
         },
-        "automatable_pct": 30,
-        "basis": "inferred",
-        "rationale": "Hands-on work goes to building deal lists and transition issue memos, inventorying files and procedures for the estate, copying documents and filling compliance forms, repairing spreadsheet macros after migration and completing new-hire paperwork. Many rounds are notices needing a short form or check, around 10 minutes; a deal list, liquidation recommendation or file migration can take 120 minutes. A typical round sits near 30 minutes. Inventories, form status and reminders can be tracked by a tool; judgement on what moves cannot.",
+        "automatable_pct": 45,
+        "basis": "observed",
+        "rationale": "The requester looks up the meter, flow dates and expired ticket; the desk checks Sitara for the existing deal, decides extend or create, enters or corrects the ticket and confirms it reaches Unify. A simple extension takes about 10 minutes; multi-ticket clean-ups and replacement deals take longer, hence the mid of 20. Detection of missing deals and the request fields can be automated; the trading decision and entry review stay manual.",
         "evidence_ids": [
-          "batch-085:e12",
-          "batch-095:e14",
-          "batch-096:e11",
-          "batch-090:e12",
-          "batch-045:e12",
-          "batch-047:e29",
-          "batch-086:e14",
-          "batch-094:e10"
+          "batch-006:e30",
+          "batch-003:e14",
+          "batch-047:e13",
+          "batch-029:e13",
+          "batch-081:e12",
+          "batch-018:e11",
+          "batch-050:e8",
+          "batch-049:s0"
         ]
       },
       "estimate_check": {
@@ -94,156 +97,92 @@
       }
     },
     {
-      "key": "performance-review",
-      "description": "The mid-year and year-end performance review (PRC) cycle. HR announces the cycle and its schedule; managers set pre-PRC and PRC meetings and deadlines for feedback. Employees send reviewer names, self-evaluations and accomplishment lists; reviewers return evaluation choices and feedback forms. Supervisors write reviews on the standard PEP form, rank staff at the PRC meeting, nominate for awards, discuss reviews with employees and collect signed originals. When the PEP system fails, lists go by email instead.",
+      "key": "expense-approval",
+      "description": "Employees submit expense reports in the Concur expense system, which emails the approving manager that a report is ready for approval and later that its approval status has changed. The manager opens the report, reviews it and approves or rejects it. Company announcements push staff to file outstanding expenses through the XMS system and to clear reports waiting in approvers' inboxes.",
       "steps": [
-        "HR announces the mid-year or year-end cycle and its schedule.",
-        "Managers schedule the pre-PRC and PRC meetings and set a deadline for feedback.",
-        "Employees nominate reviewers and send self-evaluations and accomplishment lists.",
-        "Reviewers return feedback forms or evaluation choices through the PEP system or by email.",
-        "Supervisors write each review on the standard form and agree rankings at the PRC meeting.",
-        "Supervisors discuss the review with the employee, communicate the ranking and collect a signed original."
+        "An employee files an expense report in the expense system.",
+        "The system emails the approver that the report is ready for approval.",
+        "The approver opens the report and checks the items and receipts.",
+        "The approver approves or rejects it, and the system emails the status change."
       ],
       "stalls": [
         {
-          "summary": "The PEP system failed during the cycle, so reviewer lists had to go by email instead, and a supervisor found he was not set up to review in the system.",
+          "summary": "An approver away at a class cannot access the system, so reports waiting on that approval stay in the queue.",
           "evidence_ids": [
-            "batch-012:s1",
-            "batch-012:e13",
-            "batch-030:e3"
+            "batch-076:s1",
+            "batch-076:e13"
           ]
         },
         {
-          "summary": "Reviews and accomplishment lists come in late and have to be chased: a supervisor asks for word on an outstanding review, signed originals are requested afterwards, and accomplishments are updated after the deadline.",
+          "summary": "Reports pile up unprocessed in approvers' inboxes until a company-wide notice asks them to approve or reject them.",
           "evidence_ids": [
-            "batch-041:e5",
-            "batch-039:e22",
-            "batch-083:e2"
-          ]
-        },
-        {
-          "summary": "Submissions do not match what was asked, causing rework: goals and accomplishments arrived where a quick outline of duties was wanted, and a finished review is sent with an offer to change items.",
-          "evidence_ids": [
-            "batch-079:e2",
-            "batch-039:e28"
+            "batch-081:e10",
+            "batch-094:e12"
           ]
         }
       ],
-      "contradictions": [
-        {
-          "summary": "The PRC meeting date shifts between messages from the same manager: a Thursday meeting is proposed, feedback is then requested by the following day, and the reminder sets the meeting for the Tuesday after.",
-          "evidence_ids": [
-            "batch-012:e7",
-            "batch-014:e6",
-            "batch-015:e4"
-          ]
-        }
-      ],
+      "contradictions": [],
       "automation": {
-        "approach": "A cycle calendar and one standard intake form per employee covering reviewer nominations, self-evaluation, accomplishments and an outline of duties, with automatic reminders before each deadline and a status report showing which reviews, feedback forms and signed copies are still outstanding. Email submission stays as the fallback when the review system is down.",
-        "artifact_type": "template",
-        "rationale": "The rework in the mail comes from unclear asks and late items: people send accomplishments when duties were wanted, lists move to email when the system fails, and supervisors chase reviews and signatures. A standard form fixes what each person sends and the status report replaces the chasing; writing the review and agreeing rankings remain supervisor judgement."
-      },
-      "work_estimate": {
-        "minutes_per_occurrence": {
-          "low": 10,
-          "mid": 30,
-          "high": 120
-        },
-        "automatable_pct": 20,
-        "basis": "inferred",
-        "rationale": "Hands-on work goes to compiling accomplishment lists and self-evaluations, choosing reviewers, filling feedback forms, writing reviews on the standard form and preparing award nominations. A list of reviewer names takes about 10 minutes; a written review or nomination for one employee can take 120 minutes. A typical round sits near 30 minutes. Forms, reminders and tracking can be tooled; the assessment itself cannot, so the automatable share is small.",
-        "evidence_ids": [
-          "batch-039:e17",
-          "batch-012:e16",
-          "batch-076:e4",
-          "batch-060:e23",
-          "batch-014:e6",
-          "batch-052:e29",
-          "batch-053:e32",
-          "batch-052:e21"
-        ]
-      },
-      "estimate_check": {
-        "occurrences_cited": 8,
-        "senders_cited": 6
-      }
-    },
-    {
-      "key": "pipeline-capacity-marketing",
-      "description": "Marketing Transwestern's available firm capacity and handling capacity changes. A round starts with a draft capacity posting, a shipper or internal request to raise a contract's daily quantity, or a push to market capacity to a new customer such as a power plant. The commercial lead has colleagues review the posting, puts it on the EBB, forwards the link to shippers with the bid deadline that afternoon, approves quantity increases, checks contract notice clauses, and reports posting errors and late postings.",
-      "steps": [
-        "The commercial lead drafts a posting of available firm capacity or receives a request to change a contract quantity.",
-        "Colleagues review the draft posting before it goes up.",
-        "The posting goes live on the EBB and the link is forwarded to shippers with the bid deadline.",
-        "Bid-day reminders go out again to prospective bidders.",
-        "Requests to raise a daily quantity are approved and passed on so the contract quantity is changed in the system.",
-        "Contract clauses such as notice before expiration are checked when capacity is returned or released.",
-        "Posting errors and late postings are reported and fixed."
-      ],
-      "stalls": [
-        {
-          "summary": "Postings fail or slip: the unsubscribed capacity form on the EBB threw an error, and a posting went up late again.",
-          "evidence_ids": [
-            "batch-097:s0",
-            "batch-097:e3",
-            "batch-098:s0",
-            "batch-098:e27"
-          ]
-        },
-        {
-          "summary": "The same bid-deadline notice is forwarded again and again on bid day to get shippers to bid.",
-          "evidence_ids": [
-            "batch-087:e14",
-            "batch-087:e15",
-            "batch-087:e7",
-            "batch-087:e8"
-          ]
-        }
-      ],
-      "contradictions": [
-        {
-          "summary": "Requests on consecutive days raise a contract's daily quantity from the same base to different totals, and the mail does not show whether they concern one contract or several, so the figures cannot be reconciled from the mail alone.",
-          "evidence_ids": [
-            "batch-082:e3",
-            "batch-082:e5",
-            "batch-082:e14"
-          ]
-        },
-        {
-          "summary": "The terms of returning capacity are disputed: the lead agrees ENA owes money but says conditions had to be met before the capacity came back, and a contract notice deadline is argued from the clause's wording.",
-          "evidence_ids": [
-            "batch-087:e0",
-            "batch-084:e3"
-          ]
-        }
-      ],
-      "automation": {
-        "approach": "Generate capacity postings from the capacity and contract system with a pre-publication validation of the posting form, a timed alert when a posting is not live by its scheduled time, a standard bid notice with the EBB link sent to the shipper list once, and a contract-date check that works out notice deadlines before expiration.",
+        "approach": "The expense system already sends the notifications; an approver checklist and automatic policy checks on receipts, limits and coding would leave the approver reviewing only flagged items, and a delegate approver could cover absences.",
         "artifact_type": "checklist",
-        "rationale": "The trouble in the mail is mechanical: errors on the posting form, a posting going up late again, the same bid notice re-sent several times and quantity changes passed along by hand. A posting checklist covering review, publication time, error check and one shipper notice addresses those steps directly; pricing, approvals and contract disputes remain with the commercial team."
+        "rationale": "The work is a short review against policy each time; a checklist makes it consistent, and naming a delegate addresses the one stall the mail shows."
       },
       "work_estimate": {
         "minutes_per_occurrence": {
-          "low": 10,
-          "mid": 20,
-          "high": 60
+          "low": 3,
+          "mid": 5,
+          "high": 15
         },
         "automatable_pct": 40,
         "basis": "inferred",
-        "rationale": "Hands-on work goes to drafting and reviewing the capacity posting, entering quantity changes, checking contract clauses and troubleshooting posting errors. A quantity change or bid notice takes about 10 minutes; a new posting with review, or a contract dispute checked against its clauses, takes up to 60 minutes. A typical round sits near 20 minutes. Posting generation, validation and notices can be tooled; approvals and disputes cannot.",
+        "rationale": "Each round is one report reviewed in the system: open it, check items and receipts against policy, approve or reject. That is a few minutes for a typical report, longer when receipts need questioning. Policy checks could take over part of the review; the decision stays with the approver.",
         "evidence_ids": [
-          "batch-082:e3",
-          "batch-084:e3",
-          "batch-087:e6",
-          "batch-073:e2",
-          "batch-097:e3",
-          "batch-098:e27",
-          "batch-071:e4"
+          "batch-092:e0",
+          "batch-067:e0",
+          "batch-076:e13",
+          "batch-081:e10",
+          "batch-098:e26"
         ]
       },
       "estimate_check": {
-        "occurrences_cited": 7,
+        "occurrences_cited": 5,
+        "senders_cited": 3
+      }
+    },
+    {
+      "key": "travel-arrangement",
+      "description": "Staff or an assistant arrange trips and visits: asking which hotel is nearest the office, booking flights and hotels, and sending the traveller the itinerary or a ticketless airline confirmation. Questions about room details are answered from what the hotel will confirm.",
+      "steps": [
+        "A traveller or visitor asks about travel or hotel options.",
+        "Flights and hotel are booked, through the travel agency where used.",
+        "The itinerary or ticketless confirmation is sent to the traveller.",
+        "Follow-up questions about the booking are answered."
+      ],
+      "stalls": [],
+      "contradictions": [],
+      "automation": {
+        "approach": "A standard visitor travel note listing nearby hotels, the travel agency contact and booking steps, plus a reusable itinerary message, would cover the repeated questions.",
+        "artifact_type": "email_template",
+        "rationale": "Rounds are mostly sending the same kinds of information to travellers and visitors, so a reusable message saves the most effort."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": {
+          "low": 5,
+          "mid": 15,
+          "high": 30
+        },
+        "automatable_pct": 25,
+        "basis": "inferred",
+        "rationale": "Booking a flight and hotel or looking up hotel options and confirming details takes some minutes per trip; much is handled by the travel agency. A template covers the repeated information, while bookings still need people.",
+        "evidence_ids": [
+          "batch-055:e21",
+          "batch-074:e0",
+          "batch-020:e6",
+          "batch-075:e11"
+        ]
+      },
+      "estimate_check": {
+        "occurrences_cited": 4,
         "senders_cited": 4
       }
     }

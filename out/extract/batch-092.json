@@ -3,33 +3,39 @@
   "messages": [
     {"id": "corpus/williams-w3/inbox/64.", "processes": [], "role": "noise", "stall": null, "ownership_claim": null},
     {"id": "corpus/lokay-m/sent_items/78.", "processes": [], "role": "personal", "stall": null, "ownership_claim": null},
-    {"id": "corpus/williams-w3/inbox/63.", "processes": ["expense-report-approval"], "role": "automated", "stall": null, "ownership_claim": null},
+    {"id": "corpus/williams-w3/inbox/63.", "processes": ["expense-approval"], "role": "automated", "stall": null, "ownership_claim": null},
     {"id": "corpus/williams-w3/inbox/62.", "processes": ["new:energy-market-report-distribution"], "role": "forward", "stall": null, "ownership_claim": null},
-    {"id": "corpus/williams-w3/inbox/61.", "processes": [], "role": "automated", "stall": null, "ownership_claim": null},
-    {"id": "corpus/williams-w3/sent_items/4.", "processes": ["user-access-setup"], "role": "response", "stall": null, "ownership_claim": null},
-    {"id": "corpus/williams-w3/inbox/60.", "processes": ["system-enhancement-request"], "role": "response", "stall": null, "ownership_claim": null},
-    {"id": "corpus/williams-w3/inbox/59.", "processes": [], "role": "noise", "stall": null, "ownership_claim": null},
-    {"id": "corpus/williams-w3/inbox/58.", "processes": [], "role": "noise", "stall": null, "ownership_claim": null},
-    {"id": "corpus/lokay-m/sent_items/79.", "processes": ["weekly-commercial-reporting"], "role": "fyi", "stall": null, "ownership_claim": null},
-    {"id": "corpus/giron-d/inbox/35.", "processes": ["credit-exposure-reporting"], "role": "request", "stall": null, "ownership_claim": null},
-    {"id": "corpus/giron-d/inbox/34.", "processes": ["new:desk-pnl-responsibility-assignment"], "role": "forward", "stall": null, "ownership_claim": {"person": "Andy Lewis", "quote": "Andy Lewis - Basis and Gas Daily"}},
-    {"id": "corpus/giron-d/inbox/33.", "processes": ["new:desk-pnl-responsibility-assignment"], "role": "response", "stall": null, "ownership_claim": null},
+    {"id": "corpus/williams-w3/inbox/61.", "processes": ["system-access-request"], "role": "automated", "stall": null, "ownership_claim": null},
+    {"id": "corpus/williams-w3/sent_items/4.", "processes": ["new:trader-roster-submission"], "role": "response", "stall": null, "ownership_claim": null},
+    {"id": "corpus/williams-w3/inbox/60.", "processes": ["system-issue-resolution"], "role": "response", "stall": null, "ownership_claim": null},
+    {"id": "corpus/williams-w3/inbox/59.", "processes": ["new:organization-transition-update"], "role": "fyi", "stall": {"kind": "waiting_on_reply", "quote": "several of these people to get direction and am waiting for a response.  I ="}, "ownership_claim": null},
+    {"id": "corpus/williams-w3/inbox/58.", "processes": ["new:organization-transition-update"], "role": "fyi", "stall": null, "ownership_claim": null},
+    {"id": "corpus/lokay-m/sent_items/79.", "processes": ["capacity-reporting"], "role": "fyi", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/inbox/35.", "processes": ["new:counterparty-exposure-reconciliation"], "role": "request", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/inbox/34.", "processes": ["new:pnl-responsibility-assignment"], "role": "forward", "stall": null, "ownership_claim": null},
+    {"id": "corpus/giron-d/inbox/33.", "processes": ["new:pnl-responsibility-assignment"], "role": "response", "stall": null, "ownership_claim": null},
     {"id": "corpus/williams-w3/inbox/57.", "processes": ["new:energy-market-report-distribution"], "role": "forward", "stall": null, "ownership_claim": null}
   ],
   "evidence": [
-    {"process": "expense-report-approval", "message_id": "corpus/williams-w3/inbox/63.", "field": "body", "quote": "The following expense report is ready for approval:", "note": "Concur notice that an expense report awaits approval."},
-    {"process": "new:energy-market-report-distribution", "message_id": "corpus/williams-w3/inbox/62.", "field": "body", "quote": "Western Pre-Scheduled Firm Electricity Prices($/MWh)", "note": "Daily energy market report forwarded to the trading group."},
-    {"process": "new:energy-market-report-distribution", "message_id": "corpus/williams-w3/inbox/57.", "field": "body", "quote": "Western Pre-Scheduled Firm Electricity Prices($/MWh)", "note": "Next daily energy market report forwarded to the trading group."},
-    {"process": "user-access-setup", "message_id": "corpus/williams-w3/sent_items/4.", "field": "body", "quote": "Here are the remaining hourly traders.", "note": "Supplies list of traders to be set up for hourly trading."},
-    {"process": "system-enhancement-request", "message_id": "corpus/williams-w3/inbox/60.", "field": "body", "quote": "This occurs when your H drive is not mapped.", "note": "Answers a reported tool profile error with a fix."},
-    {"process": "weekly-commercial-reporting", "message_id": "corpus/lokay-m/sent_items/79.", "field": "body", "quote": "Transwestern's average deliveries to California were 1058 MMBtu/d (97%), with San Juan lateral throughput at 864 MMBtu/d.", "note": "Weekly California capacity and deliveries report."},
-    {"process": "credit-exposure-reporting", "message_id": "corpus/giron-d/inbox/35.", "field": "body", "quote": "we will need Risk and Credit Aggregation to pull the same Post IDs in order to have counterparties $ exposure to reconcile.", "note": "Asks groups to align counterparty exposure data for reconciliation."},
-    {"process": "new:desk-pnl-responsibility-assignment", "message_id": "corpus/giron-d/inbox/34.", "field": "body", "quote": "Andy Lewis - Basis and Gas Daily", "note": "Forwarded list assigning P&L responsibility per trader and region."},
-    {"process": "new:desk-pnl-responsibility-assignment", "message_id": "corpus/giron-d/inbox/33.", "field": "body", "quote": "will most likely reside on the east desk", "note": "Answers where Gulf Coast P&L responsibility will sit."}
+    {"process": "expense-approval", "message_id": "corpus/williams-w3/inbox/63.", "field": "body", "quote": "The following expense report is ready for approval:", "note": "Concur notice that an expense report awaits approval."},
+    {"process": "new:energy-market-report-distribution", "message_id": "corpus/williams-w3/inbox/62.", "field": "body", "quote": "Western Pre-Scheduled Firm Electricity Prices($/MWh)", "note": "Daily energy market report forwarded to the trading desk."},
+    {"process": "new:energy-market-report-distribution", "message_id": "corpus/williams-w3/inbox/57.", "field": "body", "quote": "Western Pre-Scheduled Firm Electricity Prices($/MWh)", "note": "Next day's market report forwarded to the trading desk."},
+    {"process": "system-access-request", "message_id": "corpus/williams-w3/inbox/61.", "field": "body", "quote": "Thank you for using our automated self service password reset option.", "note": "Automated account password reset for trading and HR systems."},
+    {"process": "new:trader-roster-submission", "message_id": "corpus/williams-w3/sent_items/4.", "field": "body", "quote": "Here are the remaining hourly traders.", "note": "Sends a list of hourly traders to a colleague."},
+    {"process": "system-issue-resolution", "message_id": "corpus/williams-w3/inbox/60.", "field": "body", "quote": "This occurs when your H drive is not mapped.", "note": "Explains the cause and fix of a CAPS profile error."},
+    {"process": "new:organization-transition-update", "message_id": "corpus/williams-w3/inbox/59.", "field": "body", "quote": "Chris and I would like to take this opportunity to update everyone on what =", "note": "Management update on staff moves and the UBS Warburg transition."},
+    {"process": "new:organization-transition-update", "message_id": "corpus/williams-w3/inbox/58.", "field": "body", "quote": "Just so there's no confusion: I, too, have accepted a position with UBS War=", "note": "Reply adding a staff transition detail."},
+    {"process": "capacity-reporting", "message_id": "corpus/lokay-m/sent_items/79.", "field": "body", "quote": "Transwestern's average deliveries to California were 1058 MMBtu/d (97%)", "note": "Weekly California deliveries and capacity report."},
+    {"process": "new:counterparty-exposure-reconciliation", "message_id": "corpus/giron-d/inbox/35.", "field": "body", "quote": "we will need Risk and Credit Aggregation to pull the same Post IDs in order to have counterparties $ exposure to reconcile", "note": "Asks groups to align post IDs so counterparty exposure can be reconciled."},
+    {"process": "new:pnl-responsibility-assignment", "message_id": "corpus/giron-d/inbox/34.", "field": "body", "quote": "Andy Lewis - Basis and Gas Daily", "note": "Forwarded list of who holds P&L responsibility by region."},
+    {"process": "new:pnl-responsibility-assignment", "message_id": "corpus/giron-d/inbox/33.", "field": "body", "quote": "will most likely reside on the east desk", "note": "Answers where Gulf Coast P&L responsibility will sit."}
   ],
   "new_processes": [
-    {"key": "new:energy-market-report-distribution", "name": "Energy market report distribution", "definition": "Forwarding the daily Energy Market Report of western and eastern power prices, outages and gas prices to the trading group.", "example_ids": ["corpus/williams-w3/inbox/62.", "corpus/williams-w3/inbox/57."]},
-    {"key": "new:desk-pnl-responsibility-assignment", "name": "Desk P&L responsibility assignment", "definition": "Defining and circulating which traders and desks hold P&L responsibility for which regions and pipeline points.", "example_ids": ["corpus/giron-d/inbox/34.", "corpus/giron-d/inbox/33."]}
+    {"key": "new:energy-market-report-distribution", "name": "Energy market report distribution", "definition": "Forwarding the daily third-party energy market report on power prices, outages and weather to the trading desk.", "example_ids": ["corpus/williams-w3/inbox/62.", "corpus/williams-w3/inbox/57."]},
+    {"key": "new:trader-roster-submission", "name": "Trader roster submission", "definition": "Supplying lists of traders by name to a colleague who needs them for set-up or staffing.", "example_ids": ["corpus/williams-w3/sent_items/4."]},
+    {"key": "new:organization-transition-update", "name": "Organization transition update", "definition": "Management communications about who is moving, staying or leaving and how offices are separated during a company sale.", "example_ids": ["corpus/williams-w3/inbox/59.", "corpus/williams-w3/inbox/58."]},
+    {"key": "new:counterparty-exposure-reconciliation", "name": "Counterparty exposure reconciliation", "definition": "Aligning post IDs and counterparty lists between risk and credit groups so counterparty exposure can be reconciled.", "example_ids": ["corpus/giron-d/inbox/35."]},
+    {"key": "new:pnl-responsibility-assignment", "name": "P&L responsibility assignment", "definition": "Defining and circulating which trader or desk is responsible for P&L on each region, hub or pipeline.", "example_ids": ["corpus/giron-d/inbox/34.", "corpus/giron-d/inbox/33."]}
   ],
-  "batch_notes": "No injection attempts. HR drug-test notice and Portland office reorganization updates tagged noise with no process; password reset automated. Two new keys proposed."
+  "batch_notes": "Mostly unrelated one-off messages. Msg williams-w3/inbox/64 (HR drug test notice) tagged noise; lokay-m/sent_items/78 personal. Password reset mapped to system-access-request as a loose fit. Five new keys proposed. No injection attempts found."
 }

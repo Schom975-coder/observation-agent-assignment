@@ -5,7 +5,7 @@
     {
       "id": "corpus/williams-w3/inbox/56.",
       "processes": [
-        "user-access-setup"
+        "system-access-request"
       ],
       "role": "request",
       "stall": {
@@ -17,7 +17,7 @@
     {
       "id": "corpus/williams-w3/sent_items/3.",
       "processes": [
-        "user-access-setup"
+        "system-access-request"
       ],
       "role": "response",
       "stall": null,
@@ -26,7 +26,7 @@
     {
       "id": "corpus/williams-w3/inbox/55.",
       "processes": [
-        "expense-report-approval"
+        "expense-approval"
       ],
       "role": "automated",
       "stall": null,
@@ -35,7 +35,7 @@
     {
       "id": "corpus/giron-d/inbox/32.",
       "processes": [
-        "curve-postid-mapping"
+        "curve-postid-maintenance"
       ],
       "role": "request",
       "stall": null,
@@ -44,7 +44,7 @@
     {
       "id": "corpus/giron-d/inbox/31.",
       "processes": [
-        "new:nss-booking-cleanup"
+        "deal-book-transfer"
       ],
       "role": "fyi",
       "stall": null,
@@ -53,13 +53,15 @@
     {
       "id": "corpus/giron-d/inbox/30.",
       "processes": [],
-      "role": "personal",
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/inbox/54.",
-      "processes": [],
+      "processes": [
+        "regulatory-notice-review"
+      ],
       "role": "automated",
       "stall": null,
       "ownership_claim": null
@@ -74,7 +76,7 @@
     {
       "id": "corpus/williams-w3/inbox/52.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "fyi",
       "stall": {
@@ -86,16 +88,19 @@
     {
       "id": "corpus/giron-d/inbox/29.",
       "processes": [
-        "new:netco-ubs-migration-coordination"
+        "system-access-request"
       ],
       "role": "forward",
-      "stall": null,
+      "stall": {
+        "kind": "system_failure",
+        "quote": "Looks like they did not migrate the accounts over the weekend."
+      },
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/inbox/28.",
       "processes": [
-        "new:nss-booking-cleanup"
+        "pnl-reporting"
       ],
       "role": "response",
       "stall": null,
@@ -104,7 +109,7 @@
     {
       "id": "corpus/giron-d/inbox/27.",
       "processes": [
-        "new:nss-booking-cleanup"
+        "pnl-reporting"
       ],
       "role": "response",
       "stall": null,
@@ -120,7 +125,7 @@
     {
       "id": "corpus/giron-d/inbox/26.",
       "processes": [
-        "new:netco-ubs-migration-coordination"
+        "new:sap-profit-center-distribution"
       ],
       "role": "fyi",
       "stall": null,
@@ -129,7 +134,7 @@
     {
       "id": "corpus/giron-d/inbox/25.",
       "processes": [
-        "new:nss-booking-cleanup"
+        "pnl-reporting"
       ],
       "role": "fyi",
       "stall": null,
@@ -153,10 +158,7 @@
         "new:gas-daily-price-distribution"
       ],
       "role": "fyi",
-      "stall": {
-        "kind": "waiting_on_reply",
-        "quote": "They do not have Gas daily loaded yet, I will check back periodically"
-      },
+      "stall": null,
       "ownership_claim": null
     },
     {
@@ -168,15 +170,17 @@
     },
     {
       "id": "corpus/williams-w3/inbox/49.",
-      "processes": [],
-      "role": "noise",
+      "processes": [
+        "new:energy-market-report-distribution"
+      ],
+      "role": "forward",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/inbox/23.",
       "processes": [
-        "curve-postid-mapping"
+        "curve-postid-maintenance"
       ],
       "role": "request",
       "stall": null,
@@ -184,9 +188,7 @@
     },
     {
       "id": "corpus/giron-d/inbox/22.",
-      "processes": [
-        "new:netco-ubs-migration-coordination"
-      ],
+      "processes": [],
       "role": "automated",
       "stall": null,
       "ownership_claim": null
@@ -194,7 +196,7 @@
     {
       "id": "corpus/giron-d/inbox/21.",
       "processes": [
-        "pnl-position-reporting"
+        "pnl-reporting"
       ],
       "role": "fyi",
       "stall": null,
@@ -204,11 +206,11 @@
   "evidence": [
     {
       "evidence_id": "batch-093:e0",
-      "process": "user-access-setup",
+      "process": "system-access-request",
       "message_id": "corpus/williams-w3/inbox/56.",
       "field": "body",
       "quote": "We need to make sure that your Stack Managers are accessing the correct database.",
-      "note": "Confirms traders are set up correctly in Stack Manager before go-live.",
+      "note": "Confirms traders are set up correctly before system go-live.",
       "match": "exact",
       "start": 2982,
       "end": 3063,
@@ -218,25 +220,25 @@
     },
     {
       "evidence_id": "batch-093:e1",
-      "process": "user-access-setup",
+      "process": "system-access-request",
       "message_id": "corpus/williams-w3/sent_items/3.",
-      "field": "body",
-      "quote": "Through Terminal Server (1).",
-      "note": "Trader answers how he accesses Stack Manager.",
+      "field": "subject",
+      "quote": "RE: Waiting on your reply -Stack Users",
+      "note": "Reply to the Stack Manager set-up confirmation request.",
       "match": "exact",
-      "start": 553,
-      "end": 581,
-      "segment": "own",
-      "raw_text": "Through Terminal Server (1).",
+      "start": 173,
+      "end": 211,
+      "segment": "subject",
+      "raw_text": "RE: Waiting on your reply -Stack Users",
       "reason": null
     },
     {
       "evidence_id": "batch-093:e2",
-      "process": "expense-report-approval",
+      "process": "expense-approval",
       "message_id": "corpus/williams-w3/inbox/55.",
       "field": "body",
       "quote": "The following expense report is ready for approval:",
-      "note": "Automated expense approval notice.",
+      "note": "Expense report awaiting approval.",
       "match": "exact",
       "start": 516,
       "end": 567,
@@ -246,11 +248,11 @@
     },
     {
       "evidence_id": "batch-093:e3",
-      "process": "curve-postid-mapping",
+      "process": "curve-postid-maintenance",
       "message_id": "corpus/giron-d/inbox/32.",
       "field": "body",
       "quote": "The curve files for Netco will need to be modified before they are used in the new environment.",
-      "note": "Instructions for updating curve files for the new environment.",
+      "note": "Instructions for changing curve files for the new environment.",
       "match": "exact",
       "start": 998,
       "end": 1093,
@@ -260,11 +262,11 @@
     },
     {
       "evidence_id": "batch-093:e4",
-      "process": "new:nss-booking-cleanup",
+      "process": "deal-book-transfer",
       "message_id": "corpus/giron-d/inbox/31.",
       "field": "body",
       "quote": "The tabs labeled NSS1 Deals Killed and NSS2 Deals Killed are the PGL deals that were killed.",
-      "note": "Detail of killed and rebooked deals for the NSS cleanup.",
+      "note": "Detail on killed deals and deals booked to move volume.",
       "match": "exact",
       "start": 612,
       "end": 704,
@@ -274,11 +276,25 @@
     },
     {
       "evidence_id": "batch-093:e5",
-      "process": "realtime-schedule-checkout",
+      "process": "regulatory-notice-review",
+      "message_id": "corpus/williams-w3/inbox/54.",
+      "field": "body",
+      "quote": "Path 15 S-N flows are near the limit.",
+      "note": "CAISO market operations notice on dispatch mode.",
+      "match": "exact",
+      "start": 645,
+      "end": 682,
+      "segment": "own",
+      "raw_text": "Path 15 S-N flows are near the limit.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-093:e6",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/inbox/52.",
       "field": "body",
       "quote": "Tag 52159 was not included (25mw schedule to LADWP).",
-      "note": "Schedule missing from the EPE schedule sheet, checked with counterparties.",
+      "note": "A schedule missing from the daily EPE schedule sheet.",
       "match": "exact",
       "start": 654,
       "end": 706,
@@ -287,12 +303,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-093:e6",
-      "process": "new:netco-ubs-migration-coordination",
+      "evidence_id": "batch-093:e7",
+      "process": "system-access-request",
       "message_id": "corpus/giron-d/inbox/29.",
       "field": "body",
       "quote": "The messages below can better explain what's going on IT wise",
-      "note": "Forwards IT account migration status for the Netco move.",
+      "note": "Forwards status of account migration to the new environment.",
       "match": "exact",
       "start": 1066,
       "end": 1127,
@@ -301,40 +317,40 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-093:e7",
-      "process": "new:nss-booking-cleanup",
+      "evidence_id": "batch-093:e8",
+      "process": "pnl-reporting",
       "message_id": "corpus/giron-d/inbox/28.",
       "field": "body",
-      "quote": "We think we may have found part of the problem.",
-      "note": "Working out booking errors in NSS and restating January.",
+      "quote": "We believe that the problem may be in the way we booked annuities to zero Nov & Dec activity for NSS year 3.",
+      "note": "Explaining a cause of a P&L problem.",
       "match": "exact",
-      "start": 706,
-      "end": 753,
+      "start": 755,
+      "end": 863,
       "segment": "own",
-      "raw_text": "We think we may have found part of the problem.",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-093:e8",
-      "process": "new:nss-booking-cleanup",
-      "message_id": "corpus/giron-d/inbox/27.",
-      "field": "body",
-      "quote": "we booked winter calls of 45,000 for PGL",
-      "note": "Checks booked options against the contract.",
-      "match": "exact",
-      "start": 822,
-      "end": 862,
-      "segment": "own",
-      "raw_text": "we booked winter calls of 45,000 for PGL",
+      "raw_text": "We believe that the problem may be in the way we booked annuities to zero Nov & Dec activity for NSS year 3.",
       "reason": null
     },
     {
       "evidence_id": "batch-093:e9",
-      "process": "new:netco-ubs-migration-coordination",
+      "process": "pnl-reporting",
+      "message_id": "corpus/giron-d/inbox/27.",
+      "field": "body",
+      "quote": "we booked basedload summer sell of 95,000.  ENA calls of 50,000 and ENA puts of 30,000 for PGL",
+      "note": "Checks booked positions tie to contract in P&L clean-up.",
+      "match": "exact",
+      "start": 687,
+      "end": 781,
+      "segment": "own",
+      "raw_text": "we booked basedload summer sell of 95,000.  ENA calls of 50,000 and ENA puts of 30,000 for PGL",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-093:e10",
+      "process": "new:sap-profit-center-distribution",
       "message_id": "corpus/giron-d/inbox/26.",
       "field": "body",
       "quote": "Here are the UBS Profit Centers for your regions.",
-      "note": "Distributes UBS profit center numbers for the transition.",
+      "note": "Distributes profit center numbers to regional staff.",
       "match": "exact",
       "start": 952,
       "end": 1001,
@@ -343,40 +359,40 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-093:e10",
-      "process": "new:nss-booking-cleanup",
+      "evidence_id": "batch-093:e11",
+      "process": "pnl-reporting",
       "message_id": "corpus/giron-d/inbox/25.",
       "field": "body",
-      "quote": "We hope the above transactions will correct Jan P&L",
-      "note": "Describes corrections to January NSS bookings.",
+      "quote": "We hope the above transactions will correct Jan P&L and the month-to-date P&L will represent a more reasonable amount.",
+      "note": "Explains corrections to January P&L.",
       "match": "exact",
       "start": 1650,
-      "end": 1701,
+      "end": 1768,
       "segment": "own",
-      "raw_text": "We hope the above transactions will correct Jan P&L",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-093:e11",
-      "process": "new:gas-sales-confirmation",
-      "message_id": "corpus/lokay-m/sent_items/80.",
-      "field": "body",
-      "quote": "TW is selling \"operational gas\" to Western, effective April 1,2002.",
-      "note": "Sends an executed gas sales confirmation.",
-      "match": "exact",
-      "start": 674,
-      "end": 741,
-      "segment": "own",
-      "raw_text": "TW is selling \"operational gas\" to Western, effective April 1,2002.",
+      "raw_text": "We hope the above transactions will correct Jan P&L and the month-to-date P&L will represent a more reasonable amount.",
       "reason": null
     },
     {
       "evidence_id": "batch-093:e12",
+      "process": "new:gas-sales-confirmation",
+      "message_id": "corpus/lokay-m/sent_items/80.",
+      "field": "body",
+      "quote": "attached is the sales confirm I executed this morning.",
+      "note": "Sends an executed gas sales confirmation.",
+      "match": "exact",
+      "start": 618,
+      "end": 672,
+      "segment": "own",
+      "raw_text": "attached is the sales confirm I executed this morning.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-093:e13",
       "process": "new:gas-daily-price-distribution",
       "message_id": "corpus/williams-w3/inbox/50.",
       "field": "body",
       "quote": "They do not have Gas daily loaded yet, I will check back periodically",
-      "note": "Promises to send Gas Daily once available.",
+      "note": "Update on sending the Gas Daily prices to the group.",
       "match": "exact",
       "start": 3130,
       "end": 3199,
@@ -385,40 +401,40 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-093:e13",
-      "process": "curve-postid-mapping",
-      "message_id": "corpus/giron-d/inbox/23.",
-      "field": "body",
-      "quote": "we need to have our curve files ready to load on Wednesday to give a prior day curve for portcalc",
-      "note": "Asks regions to get curve files ready and updated.",
-      "match": "exact",
-      "start": 1160,
-      "end": 1257,
-      "segment": "own",
-      "raw_text": "we need to have our curve files ready to load on Wednesday to give a prior day curve for portcalc",
-      "reason": null
-    },
-    {
       "evidence_id": "batch-093:e14",
-      "process": "new:netco-ubs-migration-coordination",
-      "message_id": "corpus/giron-d/inbox/22.",
+      "process": "new:energy-market-report-distribution",
+      "message_id": "corpus/williams-w3/inbox/49.",
       "field": "body",
-      "quote": "IT will begin migrations to UBSW Energy this evening.",
-      "note": "Automated notice of user migration.",
+      "quote": "Western Pre-Scheduled Firm Electricity Prices($/MWh)",
+      "note": "Forwarded daily energy market report.",
       "match": "exact",
-      "start": 685,
-      "end": 738,
+      "start": 1637,
+      "end": 1689,
       "segment": "own",
-      "raw_text": "IT will begin migrations to UBSW Energy this evening.",
+      "raw_text": "Western Pre-Scheduled Firm Electricity Prices($/MWh)",
       "reason": null
     },
     {
       "evidence_id": "batch-093:e15",
-      "process": "pnl-position-reporting",
+      "process": "curve-postid-maintenance",
+      "message_id": "corpus/giron-d/inbox/23.",
+      "field": "body",
+      "quote": "we need to have our curve files ready to load on Wednesday to give a prior day curve for portcalc.",
+      "note": "Curve files must be ready for loading and testing.",
+      "match": "exact",
+      "start": 1160,
+      "end": 1258,
+      "segment": "own",
+      "raw_text": "we need to have our curve files ready to load on Wednesday to give a prior day curve for portcalc.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-093:e16",
+      "process": "pnl-reporting",
       "message_id": "corpus/giron-d/inbox/21.",
       "field": "body",
       "quote": "We have restated our p&l for 1/31/02.  The file is called 013102final2.xls.",
-      "note": "Sends restated daily P&L file.",
+      "note": "Announces a restated P&L file.",
       "match": "exact",
       "start": 693,
       "end": 768,
@@ -447,6 +463,15 @@
       "reason": null
     },
     {
+      "message_id": "corpus/giron-d/inbox/29.",
+      "match": "exact",
+      "start": 1349,
+      "end": 1411,
+      "segment": "quoted",
+      "raw_text": "Looks like they did not migrate the accounts over the weekend.",
+      "reason": null
+    },
+    {
       "message_id": "corpus/lokay-m/sent_items/80.",
       "match": "exact",
       "start": 572,
@@ -454,44 +479,22 @@
       "segment": "own",
       "raw_text": "I am not sure how this info gets to you",
       "reason": null
-    },
-    {
-      "message_id": "corpus/williams-w3/inbox/50.",
-      "match": "exact",
-      "start": 3130,
-      "end": 3199,
-      "segment": "own",
-      "raw_text": "They do not have Gas daily loaded yet, I will check back periodically",
-      "reason": null
     }
   ],
   "ownership_checks": [],
   "new_processes": [
     {
-      "key": "new:nss-booking-cleanup",
-      "name": "NSS booking cleanup",
-      "definition": "Investigating and correcting deal bookings, annuities and killed deals behind month-end P&L problems for the NSS books, and restating prior periods.",
+      "key": "new:sap-profit-center-distribution",
+      "name": "SAP profit center distribution",
+      "definition": "Sending the SAP profit center numbers for each region to the staff who need them after the UBS transition.",
       "example_ids": [
-        "corpus/giron-d/inbox/31.",
-        "corpus/giron-d/inbox/28.",
-        "corpus/giron-d/inbox/27.",
-        "corpus/giron-d/inbox/25."
-      ]
-    },
-    {
-      "key": "new:netco-ubs-migration-coordination",
-      "name": "Netco and UBS migration coordination",
-      "definition": "Coordinating IT, account and reference data changes while moving the trading business into the new UBS environment.",
-      "example_ids": [
-        "corpus/giron-d/inbox/29.",
-        "corpus/giron-d/inbox/26.",
-        "corpus/giron-d/inbox/22."
+        "corpus/giron-d/inbox/26."
       ]
     },
     {
       "key": "new:gas-sales-confirmation",
       "name": "Gas sales confirmation",
-      "definition": "Sending executed gas sales confirmations to the group that needs to record them.",
+      "definition": "Executing gas sales confirmations and passing them on to the group that records them.",
       "example_ids": [
         "corpus/lokay-m/sent_items/80."
       ]
@@ -499,15 +502,23 @@
     {
       "key": "new:gas-daily-price-distribution",
       "name": "Gas Daily price distribution",
-      "definition": "Checking for and distributing Gas Daily price data to the traders once published.",
+      "definition": "Obtaining Gas Daily prices from the publisher and sending them to the trading group when they become available.",
       "example_ids": [
         "corpus/williams-w3/inbox/50."
       ]
+    },
+    {
+      "key": "new:energy-market-report-distribution",
+      "name": "Energy market report distribution",
+      "definition": "Circulating the daily external energy market report with western and eastern power prices to traders.",
+      "example_ids": [
+        "corpus/williams-w3/inbox/49."
+      ]
     }
   ],
-  "batch_notes": "No injection attempts found. Path 15 ISO notice left untagged as automated. Proposed new keys: nss-booking-cleanup, netco-ubs-migration-coordination, gas-sales-confirmation, gas-daily-price-distribution.",
+  "batch_notes": "No injection attempts found. Giron-d NetCo/UBS migration mail was tagged system-access-request, curve-postid-maintenance or pnl-reporting by best fit. Four new keys proposed.",
   "quote_stats": {
-    "exact": 20,
+    "exact": 21,
     "repaired": 0,
     "rejected": 0
   }

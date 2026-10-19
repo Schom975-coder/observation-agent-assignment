@@ -1,72 +1,108 @@
 {
   "group_id": "synth-010",
-  "content_sha": "68f9af9aeb02e398a468d1a4afe0992df432d3d9c98ef7032aa07f1449239d9f",
+  "content_sha": "69c5960c58aa3c5ec06958516a827ab454acd6343436ace6c0a4a1fa69ac1137",
   "processes": [
     {
-      "key": "iso-bid-strategy",
-      "description": "Bill Williams III explains to the desk how decremental and tiered adjustment bids are placed in the CAISO market and run on behalf of generators. Each round is one explanatory message: he asks what tools were used to settle earlier bids, attaches a simple sheet outlining the basic decremental bidding process, says the desk will work with generators on buy-backs or supplemental dec bids when market conditions warrant, sets the tiering process as the way forward, and warns of the CAISO cap on how many tiered bids its system reads.",
+      "key": "curve-postid-maintenance",
+      "description": "The gas risk team keeps the price curves and location mappings used to value positions current. A round starts when a trader, a desk or a system change needs a curve added, a location remapped or a subregion code changed. Darron Giron, and later Kam Keiser, sets up the curve, asks the desk how it should be mapped, circulates the day's curve lists and official post IDs, and answers questions about curve moves. In the Netco transition, curve files were rebuilt, checked for retired curves and moved to a new directory before loading.",
       "steps": [
-        "Find out which tools were used to settle earlier decremental bids.",
-        "Write up the basic decremental bidding process on a simple sheet and send it to the desk.",
-        "Work with the generators on buy-backs or supplemental dec bids when market conditions warrant.",
-        "Tier the adjustment bids using the process the desk has developed.",
-        "Keep each tiered bid set within the number of bids the CAISO system will read."
+        "A desk, trader or system change raises the need for a new curve, a remapping or a code change.",
+        "The risk analyst asks the desk how the location or deal set should be mapped.",
+        "The analyst sets up the curve following the written procedure and adds it to Tagg and the publication names.",
+        "The analyst records the official post ID and circulates the updated curve lists or mappings.",
+        "Desks check their regions for locations mapped to curves that will no longer be set and send back a list.",
+        "Questions about curve moves are answered with the traders' explanation of the market."
       ],
       "stalls": [
         {
-          "summary": "The CAISO system stops reading tiered adjustment bids past its cap, so bid sets have to be cut down to fit and the desk has to be warned about the limit.",
+          "summary": "Mapping decisions wait on the desk: the analyst cannot finish a curve or location set-up until someone says how it should be mapped, and some curve types depend on another group to set them up.",
           "evidence_ids": [
-            "batch-066:e19"
+            "batch-029:e6",
+            "batch-006:e31",
+            "batch-035:e24"
           ]
         },
         {
-          "summary": "How earlier decremental bids were settled is not written down; the author has to ask colleagues which settlement tools were used.",
+          "summary": "Newly set-up curves need a second hand-off before they are usable, being added to Tagg by someone else, and a reminder was needed to keep the routine post ID step from being skipped.",
           "evidence_ids": [
-            "batch-054:e4"
+            "batch-035:e4",
+            "batch-030:e20"
+          ]
+        },
+        {
+          "summary": "The Netco move forced curve files to be modified, relisted and relocated against a tight loading deadline, with lists of curves to load demanded at short notice.",
+          "evidence_ids": [
+            "batch-093:e3",
+            "batch-085:e7",
+            "batch-093:e15",
+            "batch-095:e11"
           ]
         }
       ],
-      "contradictions": [],
+      "contradictions": [
+        {
+          "summary": "Curve set-up is described both as something the risk analyst does directly and adds to Tagg, and as work certain curve types must leave to the global rate server group.",
+          "evidence_ids": [
+            "batch-035:e4",
+            "batch-028:e14",
+            "batch-035:e24"
+          ]
+        }
+      ],
       "automation": {
-        "approach": "A bid-building sheet that lays out decremental and tiered adjustment bids per generator, checks the tier count against the CAISO read limit before submission, and records which settlement tool applies, paired with a written procedure for dec bidding and generator buy-backs.",
+        "approach": "Keep one curve and location mapping register that a routine check compares with the official books: it flags locations mapped to retired curves, records the official post ID, and generates the circulated curve list, so the analyst only decides new mappings with the desk.",
         "artifact_type": "sop",
-        "rationale": "The mail is one trader explaining the same bidding method to the desk in pieces: the process sheet, the tiering rule, the generator buy-backs and the system cap. A single written procedure captures that knowledge once and answers the settlement-tool question the mail had to ask."
+        "rationale": "The mail already shows a written procedure for setting up a curve and a macro that queries official books; a single SOP that joins set-up, mapping questions, post ID recording and list circulation would let any analyst run a round the same way, which mattered when the work moved from one person to another during Netco."
       },
-      "work_estimate": null,
-      "estimate_check": null
+      "work_estimate": {
+        "minutes_per_occurrence": {
+          "low": 10,
+          "mid": 25,
+          "high": 60
+        },
+        "automatable_pct": 50,
+        "basis": "inferred",
+        "rationale": "Most rounds are one curve set-up, a remapping or a post ID and curve list to circulate: looking up the mapping, entering the curve in the system and Tagg, and checking it took around 25 minutes. Netco rebuilds of whole curve files and region checks push the high end. Recording post IDs and building the list are mechanical; mapping choices stay with people.",
+        "evidence_ids": [
+          "batch-035:e3",
+          "batch-028:e1",
+          "batch-028:e14",
+          "batch-085:e4",
+          "batch-093:e3",
+          "batch-047:e9",
+          "batch-086:e1"
+        ]
+      },
+      "estimate_check": {
+        "occurrences_cited": 7,
+        "senders_cited": 4
+      }
     },
     {
-      "key": "ledger-review-writeoffs",
-      "description": "Volume management and accounting staff pass preliminary ledgers and inventory schedules round for review and settle the volumes that must be written off. A round starts with a file or a request: a ledger re-sent because the first copy was distorted, a request to move volumes determined to be written off at a meter, storage inventory schedules put together for Spindletop and Bammel, or a request to help resolve differences between figures. Recipients research the volumes, reconcile the differences and process the write-off, with forwards and chasers when answers are slow.",
+      "key": "customer-event-planning",
+      "description": "Heather Choate organises the annual customer trip and customer meeting. A round starts with a trip proposal or invitation sent to the business, then asks each desk to name the customers and employees it designates, sets deadlines for replacing guests who cannot attend, and finishes with a final guest list, activities and a rooming list sent for review. Reminders go out as the trip approaches.",
       "steps": [
-        "Send the preliminary ledger or inventory schedule to the reviewers.",
-        "Re-send the file if the first copy arrives unreadable.",
-        "Research the meter volumes flagged to be written off.",
-        "Put together the inventory schedules for the storage facilities such as Spindletop and Bammel.",
-        "Ask the logistics and accounting contacts to help resolve the differences found.",
-        "Book the agreed volume or general ledger write-off."
+        "The organiser circulates the trip proposal for approval.",
+        "The invitation to the customer meeting is sent out.",
+        "Desks are asked to forward their customer and employee trip designations.",
+        "Replacements for declined guests are collected by a stated deadline.",
+        "The final guest list with activities and the rooming list are sent for review.",
+        "A reminder goes out as the trip approaches."
       ],
       "stalls": [
         {
-          "summary": "The first copy of the ledger file arrived distorted and had to be sent again before anyone could review it.",
+          "summary": "The guest list depends on desks returning their designations and replacements, so the organiser has to set firm cut-off deadlines to close it.",
           "evidence_ids": [
-            "batch-010:s2",
-            "batch-010:e11"
-          ]
-        },
-        {
-          "summary": "Differences between the figures stay open until several people are asked to help resolve them, and write-off volumes at a meter wait on someone to move them to the right place.",
-          "evidence_ids": [
-            "batch-086:e3",
-            "batch-028:e22"
+            "batch-012:e13",
+            "batch-055:e23"
           ]
         }
       ],
       "contradictions": [],
       "automation": {
-        "approach": "A standard reconciliation report that pulls scheduled, measured and booked volumes by meter and storage facility, flags differences above a tolerance, and pre-fills the write-off entry and the Spindletop and Bammel inventory schedules, leaving staff to research the flagged items and approve the write-off.",
+        "approach": "A shared guest tracker holding designations, RSVPs, replacements, activities and room assignments, from which the final guest and rooming lists are produced directly, with a standard request message to desks carrying the cut-off date.",
         "artifact_type": "template",
-        "rationale": "The repetitive work is assembling schedules and lining up volumes from different sources so differences show. A fixed schedule and reconciliation layout makes the differences visible in one place and cuts the rework of re-sent or distorted files, while the decision to write off stays with people."
+        "rationale": "Each round rebuilds the same lists from desk replies; one spreadsheet layout for designations, RSVPs and rooming removes the retyping and makes the final lists a by-product rather than a separate job."
       },
       "work_estimate": {
         "minutes_per_occurrence": {
@@ -74,47 +110,94 @@
           "mid": 60,
           "high": 150
         },
-        "automatable_pct": 35,
+        "automatable_pct": 40,
         "basis": "inferred",
-        "rationale": "Time goes to research rather than mail: tracing the meter volumes to be written off, building the Spindletop and Bammel inventory schedules, and working through the differences raised for resolution. A typical round of schedule building or volume research is put at 60 minutes; a simple re-sent ledger review near 30 minutes, a multi-facility schedule or a long reconciliation up to 150 minutes. Pulling volumes and laying out schedules can be generated by a report; researching causes and approving write-offs stays manual.",
+        "rationale": "The rounds show preparing a proposal or invitation, compiling designations and replacements, and building a final guest list with activities and a rooming list: around an hour of list building and checking per round, more for the proposal itself. A tracker template takes over compiling and formatting; choosing guests and arrangements stays with people.",
         "evidence_ids": [
-          "batch-010:e11",
-          "batch-028:e22",
-          "batch-046:e23",
-          "batch-086:e3"
+          "batch-007:e0",
+          "batch-012:e13",
+          "batch-061:e26",
+          "batch-055:e23",
+          "batch-016:e13"
         ]
       },
       "estimate_check": {
-        "occurrences_cited": 4,
-        "senders_cited": 4
+        "occurrences_cited": 5,
+        "senders_cited": 2
       }
     },
     {
-      "key": "liquidation-support",
-      "description": "Darron Giron supplies and chases the supporting detail behind monthly liquidation values. A round starts when support is needed for a month's liquidation values, such as the December liquidation values; he forwards the request to the person holding the detail, asks when the support may be available, and sends on a file with the volumes for the liquidations to the risk and accounting contacts.",
+      "key": "trading-book-setup",
+      "description": "Desks need new trading books in Tagg, Sitara, TDS and RisktRAC when regions are split, new offices such as Chicago open, new counterparties arrive or the Netco books are created. Darron Giron gathers the book names, trader and portfolio details, fills in the book request form and sends it to the set-up team, which asks follow-up questions such as the trader's name and confirms when the book is set up. Lists of book and portfolio codes are circulated, and later Netco book creation and access requests were sent on in bulk.",
       "steps": [
-        "Receive or raise a request for support behind the month's liquidation values.",
-        "Forward the request to the contact who holds the supporting detail.",
-        "Ask when the support may be available.",
-        "Send the file with the liquidation volumes to the risk and accounting contacts."
+        "A desk change, new office or new counterparty creates the need for a book.",
+        "The risk analyst gathers book name, trader, portfolio and region and completes the book request form.",
+        "The request goes to the set-up team for each system: Tagg, Sitara, TDS or RisktRAC.",
+        "The set-up team asks for missing details such as the trader's name.",
+        "The analyst follows up on whether the books are complete.",
+        "Set-up is confirmed and the book and portfolio code lists are circulated for review."
       ],
       "stalls": [
         {
-          "summary": "The support is not ready when asked for; the request goes out with a plea to be told when it may be available, so the round waits on the other party.",
+          "summary": "Requests go back and forth for missing details and completion status: the set-up team asks for trader names and the analyst has to ask whether requested books are done.",
           "evidence_ids": [
-            "batch-045:e14",
-            "batch-049:e0"
+            "batch-026:e2",
+            "batch-015:e22",
+            "batch-020:e2"
+          ]
+        },
+        {
+          "summary": "Confirmations of created Netco books reached someone who did not know why they were sent to him, and an analyst could not change the trading group himself.",
+          "evidence_ids": [
+            "batch-088:s1",
+            "batch-088:e27",
+            "batch-052:e14"
+          ]
+        },
+        {
+          "summary": "Book lists are compiled by hand and admitted to be incomplete, leaving others to spot books that need fixing.",
+          "evidence_ids": [
+            "batch-043:e8",
+            "batch-041:e20"
           ]
         }
       ],
-      "contradictions": [],
+      "contradictions": [
+        {
+          "summary": "New book names were introduced in Tagg for the intramonth portfolios, while the desk questioned whether renaming books just to avoid confusion was necessary at all.",
+          "evidence_ids": [
+            "batch-036:e31",
+            "batch-049:e6"
+          ]
+        }
+      ],
       "automation": {
-        "approach": "A standard liquidation support file produced each month from the deal and volume system, listing the volumes behind each liquidation value in a fixed layout, sent with the liquidation values so the risk and accounting contacts do not have to request it.",
+        "approach": "A single book request form that captures every required field up front (book name, trader, portfolio, region, systems) and routes to each system's set-up team, with a status list that shows when each book is live, replacing ad hoc requests and status questions.",
         "artifact_type": "template",
-        "rationale": "Each round asks for the same thing: the volume detail behind the liquidation values. A fixed file layout that is filled and sent routinely removes the request and the wait shown in the mail."
+        "rationale": "The follow-ups in the mail are about missing fields and unknown completion status; a complete request form with a status column addresses both and also serves as the circulated list of book codes."
       },
-      "work_estimate": null,
-      "estimate_check": null
+      "work_estimate": {
+        "minutes_per_occurrence": {
+          "low": 10,
+          "mid": 20,
+          "high": 45
+        },
+        "automatable_pct": 45,
+        "basis": "inferred",
+        "rationale": "A round means gathering book, trader and portfolio details, completing the request form and checking the books once created: around 20 minutes for one or a few books. Bulk Netco requests and full book code lists take longer. Form filling and status tracking are mechanical; deciding book structure is not.",
+        "evidence_ids": [
+          "batch-023:e20",
+          "batch-035:e2",
+          "batch-026:e2",
+          "batch-084:e20",
+          "batch-088:e27",
+          "batch-033:e6"
+        ]
+      },
+      "estimate_check": {
+        "occurrences_cited": 6,
+        "senders_cited": 3
+      }
     }
   ]
 }

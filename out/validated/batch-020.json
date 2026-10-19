@@ -5,7 +5,7 @@
     {
       "id": "corpus/farmer-d/logistics/1323.",
       "processes": [
-        "deal-record-correction"
+        "system-issue-resolution"
       ],
       "role": "request",
       "stall": {
@@ -17,7 +17,7 @@
     {
       "id": "corpus/farmer-d/logistics/1326.",
       "processes": [
-        "deal-record-correction"
+        "system-issue-resolution"
       ],
       "role": "forward",
       "stall": null,
@@ -56,7 +56,7 @@
     {
       "id": "corpus/farmer-d/logistics/1327.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -72,7 +72,7 @@
     {
       "id": "corpus/giron-d/sent/710.",
       "processes": [
-        "new:deal-booking-procedure-reminder"
+        "new:deal-booking-procedures"
       ],
       "role": "request",
       "stall": null,
@@ -81,7 +81,7 @@
     {
       "id": "corpus/farmer-d/logistics/1330.",
       "processes": [
-        "gas-nomination-handling"
+        "gas-nomination"
       ],
       "role": "fyi",
       "stall": null,
@@ -96,15 +96,17 @@
     },
     {
       "id": "corpus/giron-d/sent/707.",
-      "processes": [],
-      "role": "personal",
+      "processes": [
+        "new:travel-booking"
+      ],
+      "role": "response",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/1332.",
       "processes": [
-        "pipeline-outage-supply-cuts"
+        "pipeline-maintenance-notice"
       ],
       "role": "fyi",
       "stall": null,
@@ -127,22 +129,19 @@
     {
       "id": "corpus/farmer-d/logistics/1333.",
       "processes": [
-        "deal-record-correction"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": {
         "kind": "handoff_confusion",
         "quote": "Mark has informed me that one of you would handle anything prior to 5/00 on"
       },
-      "ownership_claim": {
-        "person": "Mark",
-        "quote": "Mark has informed me that one of you would handle anything prior to 5/00 on"
-      }
+      "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/1334.",
       "processes": [
-        "desk-coverage-on-call"
+        "on-call-coverage"
       ],
       "role": "fyi",
       "stall": null,
@@ -151,7 +150,7 @@
     {
       "id": "corpus/giron-d/sent/705.",
       "processes": [
-        "new:ops-training-session-scheduling"
+        "new:training-session-scheduling"
       ],
       "role": "response",
       "stall": null,
@@ -159,26 +158,22 @@
     },
     {
       "id": "corpus/farmer-d/logistics/1338.",
-      "processes": [
-        "new:customer-happy-hour-planning"
-      ],
-      "role": "fyi",
+      "processes": [],
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/1389.",
-      "processes": [
-        "new:customer-happy-hour-planning"
-      ],
-      "role": "fyi",
+      "processes": [],
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/1339.",
       "processes": [
-        "user-access-setup"
+        "system-access-request"
       ],
       "role": "forward",
       "stall": null,
@@ -187,7 +182,7 @@
     {
       "id": "corpus/farmer-d/logistics/1340.",
       "processes": [
-        "new:production-counterparty-name-lookup"
+        "meter-flow-resolution"
       ],
       "role": "forward",
       "stall": null,
@@ -205,7 +200,7 @@
     {
       "id": "corpus/farmer-d/logistics/1342.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -214,7 +209,7 @@
     {
       "id": "corpus/farmer-d/logistics/1344.",
       "processes": [
-        "gas-nomination-handling"
+        "new:channel-dispatch-report"
       ],
       "role": "forward",
       "stall": null,
@@ -223,14 +218,14 @@
     {
       "id": "corpus/giron-d/sent/704.",
       "processes": [],
-      "role": "noise",
+      "role": "personal",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/1346.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -239,7 +234,7 @@
     {
       "id": "corpus/farmer-d/logistics/1347.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -248,7 +243,7 @@
     {
       "id": "corpus/farmer-d/logistics/1349.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -257,18 +252,18 @@
     {
       "id": "corpus/giron-d/sent/703.",
       "processes": [
-        "pnl-position-reporting"
+        "pnl-reporting"
       ],
-      "role": "fyi",
+      "role": "response",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/sent/694.",
       "processes": [
-        "pnl-position-reporting"
+        "pnl-reporting"
       ],
-      "role": "fyi",
+      "role": "response",
       "stall": {
         "kind": "system_failure",
         "quote": "the system went down and I was not able to get"
@@ -293,11 +288,11 @@
   "evidence": [
     {
       "evidence_id": "batch-020:e0",
-      "process": "deal-record-correction",
+      "process": "system-issue-resolution",
       "message_id": "corpus/farmer-d/logistics/1323.",
       "field": "body",
       "quote": "Keep an eye on the bridge - these are still erroring out.",
-      "note": "Asks staff to watch for bridge errors on deals.",
+      "note": "Flags ongoing bridge errors to be monitored.",
       "match": "exact",
       "start": 531,
       "end": 588,
@@ -307,11 +302,11 @@
     },
     {
       "evidence_id": "batch-020:e1",
-      "process": "deal-record-correction",
+      "process": "system-issue-resolution",
       "message_id": "corpus/farmer-d/logistics/1326.",
       "field": "body",
       "quote": "Keep an eye on the bridge - these are still erroring out.",
-      "note": "Forwarded chain about bridge errors being fixed.",
+      "note": "Forwarded chain about bridge errors and their fix.",
       "match": "exact",
       "start": 1537,
       "end": 1594,
@@ -324,18 +319,18 @@
       "process": "trading-book-setup",
       "message_id": "corpus/giron-d/sent/711.",
       "field": "body",
-      "quote": "We need to have two more books created as soon as possible.",
+      "quote": "We need to have two more books created as soon as possible",
       "note": "Requests creation of new FT books.",
       "match": "exact",
       "start": 444,
-      "end": 503,
+      "end": 502,
       "segment": "own",
-      "raw_text": "We need to have two more books created as soon as possible.",
+      "raw_text": "We need to have two more books created as soon as possible",
       "reason": null
     },
     {
       "evidence_id": "batch-020:e3",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/farmer-d/logistics/1327.",
       "field": "body",
       "quote": "Please do not pay this charge when we receive",
@@ -349,11 +344,11 @@
     },
     {
       "evidence_id": "batch-020:e4",
-      "process": "new:deal-booking-procedure-reminder",
+      "process": "new:deal-booking-procedures",
       "message_id": "corpus/giron-d/sent/710.",
       "field": "body",
       "quote": "Link all physical Tagg deals by putting the Sitara number in the LINK field",
-      "note": "Reminds a colleague of deal booking and linking steps for each deal.",
+      "note": "Reminds a deal-booking procedure to follow on every deal.",
       "match": "exact",
       "start": 598,
       "end": 673,
@@ -363,49 +358,63 @@
     },
     {
       "evidence_id": "batch-020:e5",
-      "process": "gas-nomination-handling",
+      "process": "gas-nomination",
       "message_id": "corpus/farmer-d/logistics/1330.",
-      "field": "subject",
-      "quote": "Calpine Daily Gas Nomination (weekend)",
-      "note": "Customer daily nomination sheet sent.",
+      "field": "body",
+      "quote": "<<CALPINE DAILY GAS NOMINATION 1.doc>>",
+      "note": "Counterparty sends the daily gas nomination document.",
       "match": "exact",
-      "start": 161,
-      "end": 199,
-      "segment": "subject",
-      "raw_text": "Calpine Daily Gas Nomination (weekend)",
+      "start": 756,
+      "end": 794,
+      "segment": "own",
+      "raw_text": "<<CALPINE DAILY GAS NOMINATION 1.doc>>",
       "reason": null
     },
     {
       "evidence_id": "batch-020:e6",
-      "process": "pipeline-outage-supply-cuts",
-      "message_id": "corpus/farmer-d/logistics/1332.",
+      "process": "new:travel-booking",
+      "message_id": "corpus/giron-d/sent/707.",
       "field": "body",
-      "quote": "This is a reduction in total capacity from 528,000 to 400,000 at Station 809.",
-      "note": "Maintenance reduces pipeline capacity.",
+      "quote": "The hotel does not confirm bed type until arrival",
+      "note": "Travel agent answers an itinerary booking question.",
       "match": "exact",
-      "start": 625,
-      "end": 702,
-      "segment": "own",
-      "raw_text": "This is a reduction in total capacity from 528,000 to 400,000 at Station 809.",
+      "start": 693,
+      "end": 742,
+      "segment": "quoted",
+      "raw_text": "The hotel does not confirm bed type until arrival",
       "reason": null
     },
     {
       "evidence_id": "batch-020:e7",
-      "process": "deal-record-correction",
-      "message_id": "corpus/farmer-d/logistics/1333.",
+      "process": "pipeline-maintenance-notice",
+      "message_id": "corpus/farmer-d/logistics/1332.",
       "field": "body",
-      "quote": "Mark has informed me that one of you would handle anything prior to 5/00 on",
-      "note": "Asks who fixes a mis-set-up deal record.",
+      "quote": "Station 809 has scheduled maintenance on their 1B Solar Centaur Turbine for",
+      "note": "Planned station maintenance reducing capacity.",
       "match": "exact",
-      "start": 501,
-      "end": 576,
-      "segment": "own",
-      "raw_text": "Mark has informed me that one of you would handle anything prior to 5/00 on",
+      "start": 2064,
+      "end": 2139,
+      "segment": "forwarded",
+      "raw_text": "Station 809 has scheduled maintenance on their 1B Solar Centaur Turbine for",
       "reason": null
     },
     {
       "evidence_id": "batch-020:e8",
-      "process": "desk-coverage-on-call",
+      "process": "deal-ticket-setup",
+      "message_id": "corpus/farmer-d/logistics/1333.",
+      "field": "body",
+      "quote": "Can you please take a look at deal 109660?",
+      "note": "Asks for a look at a mis-set-up deal ticket.",
+      "match": "exact",
+      "start": 982,
+      "end": 1024,
+      "segment": "forwarded",
+      "raw_text": "Can you please take a look at deal 109660?",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-020:e9",
+      "process": "on-call-coverage",
       "message_id": "corpus/farmer-d/logistics/1334.",
       "field": "body",
       "quote": "Attached are the notes from this weekend.",
@@ -418,82 +427,54 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-020:e9",
-      "process": "new:ops-training-session-scheduling",
+      "evidence_id": "batch-020:e10",
+      "process": "new:training-session-scheduling",
       "message_id": "corpus/giron-d/sent/705.",
       "field": "body",
-      "quote": "Well, I hate to write this, but I found out last night that I will have to be",
-      "note": "Reply about scheduling of training sessions on risk management.",
+      "quote": "Please plan to attend one of two  training sessions conducted by Darron Giron",
+      "note": "Scheduling of training sessions; reply on availability.",
       "match": "exact",
-      "start": 443,
-      "end": 520,
-      "segment": "own",
-      "raw_text": "Well, I hate to write this, but I found out last night that I will have to be",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-020:e10",
-      "process": "new:customer-happy-hour-planning",
-      "message_id": "corpus/farmer-d/logistics/1338.",
-      "field": "body",
-      "quote": "Please mark your calendar for the Transportation and Logistics Customer Happy",
-      "note": "Announces customer happy hour event.",
-      "match": "exact",
-      "start": 2751,
-      "end": 2828,
-      "segment": "own",
-      "raw_text": "Please mark your calendar for the Transportation and Logistics Customer Happy",
+      "start": 1584,
+      "end": 1661,
+      "segment": "quoted",
+      "raw_text": "Please plan to attend one of two  training sessions conducted by Darron Giron",
       "reason": null
     },
     {
       "evidence_id": "batch-020:e11",
-      "process": "new:customer-happy-hour-planning",
-      "message_id": "corpus/farmer-d/logistics/1389.",
+      "process": "system-access-request",
+      "message_id": "corpus/farmer-d/logistics/1339.",
       "field": "body",
-      "quote": "The ENA party at Jillian's just crashed our Transport / Logistics happy hour.",
-      "note": "Reschedules the customer happy hour.",
+      "quote": "You will be notified via eMail when your request has been processed.",
+      "note": "Access request submission notice.",
       "match": "exact",
-      "start": 2059,
-      "end": 2136,
-      "segment": "own",
-      "raw_text": "The ENA party at Jillian's just crashed our Transport / Logistics happy hour.",
+      "start": 818,
+      "end": 886,
+      "segment": "forwarded",
+      "raw_text": "You will be notified via eMail when your request has been processed.",
       "reason": null
     },
     {
       "evidence_id": "batch-020:e12",
-      "process": "user-access-setup",
-      "message_id": "corpus/farmer-d/logistics/1339.",
+      "process": "meter-flow-resolution",
+      "message_id": "corpus/farmer-d/logistics/1340.",
       "field": "body",
-      "quote": "Request Type:  New Hire-Employee",
-      "note": "Access request for a new hire.",
+      "quote": "I don't see anything coming through in Unify",
+      "note": "Tracing production volumes that do not show in the system.",
       "match": "exact",
-      "start": 1278,
-      "end": 1310,
-      "segment": "forwarded",
-      "raw_text": "Request Type:  New Hire-Employee",
+      "start": 1386,
+      "end": 1430,
+      "segment": "quoted",
+      "raw_text": "I don't see anything coming through in Unify",
       "reason": null
     },
     {
       "evidence_id": "batch-020:e13",
-      "process": "new:production-counterparty-name-lookup",
-      "message_id": "corpus/farmer-d/logistics/1340.",
-      "field": "body",
-      "quote": "Thanks for your help, but I found it -- in Unify, it's T-C Oil.",
-      "note": "Resolves which counterparty name production is booked under.",
-      "match": "exact",
-      "start": 743,
-      "end": 806,
-      "segment": "forwarded",
-      "raw_text": "Thanks for your help, but I found it -- in Unify, it's T-C Oil.",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-020:e14",
       "process": "new:new-supply-start-notice",
       "message_id": "corpus/farmer-d/logistics/1341.",
       "field": "body",
       "quote": "The Samson well will be coming on this afternoon at 1.5 to 2.5 million/d and",
-      "note": "Notice of new well supply starting and where to divert it.",
+      "note": "Notice of new well flow and where to divert it.",
       "match": "exact",
       "start": 938,
       "end": 1014,
@@ -502,26 +483,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-020:e15",
-      "process": "meter-flow-deal-coverage",
+      "evidence_id": "batch-020:e14",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1342.",
       "field": "body",
-      "quote": "The above ref'd deal was from Jul, do you want to",
-      "note": "Asks whether to extend a deal for gas flowing at a meter.",
+      "quote": "There is a drab of gas; 34 MM's on the first of August on the meter.",
+      "note": "Unbooked gas at a meter.",
       "match": "exact",
-      "start": 566,
-      "end": 615,
+      "start": 467,
+      "end": 535,
       "segment": "own",
-      "raw_text": "The above ref'd deal was from Jul, do you want to",
+      "raw_text": "There is a drab of gas; 34 MM's on the first of August on the meter.",
       "reason": null
     },
     {
-      "evidence_id": "batch-020:e16",
-      "process": "gas-nomination-handling",
+      "evidence_id": "batch-020:e15",
+      "process": "new:channel-dispatch-report",
       "message_id": "corpus/farmer-d/logistics/1344.",
       "field": "subject",
       "quote": "Channel Dispatch 08/17/00",
-      "note": "Forwarded pipeline dispatch sheet; weak fit.",
+      "note": "Forwarded daily dispatch spreadsheet from the pipeline.",
       "match": "exact",
       "start": 168,
       "end": 193,
@@ -530,26 +511,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-020:e17",
-      "process": "meter-flow-deal-coverage",
+      "evidence_id": "batch-020:e16",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1346.",
       "field": "body",
-      "quote": "Logistics needs either a deal to record these volumes which have flowed into HPL's Pipeline",
-      "note": "Needs a deal or write-off approval for meter flow.",
-      "match": "repaired",
+      "quote": "Logistics needs either a deal to record these volumes which have",
+      "note": "Flow at a meter needs a deal or write-off approval.",
+      "match": "exact",
       "start": 960,
-      "end": 1052,
+      "end": 1024,
       "segment": "own",
-      "raw_text": "Logistics needs either a deal to record these volumes which have \nflowed into HPL's Pipeline",
+      "raw_text": "Logistics needs either a deal to record these volumes which have",
       "reason": null
     },
     {
-      "evidence_id": "batch-020:e18",
-      "process": "meter-flow-deal-coverage",
+      "evidence_id": "batch-020:e17",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1347.",
       "field": "body",
       "quote": "Gas flowed without a purchase from the29th through the 31st.",
-      "note": "Flow at a meter without a deal.",
+      "note": "Flow at a meter without a purchase.",
       "match": "exact",
       "start": 548,
       "end": 608,
@@ -558,26 +539,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-020:e19",
-      "process": "meter-flow-deal-coverage",
+      "evidence_id": "batch-020:e18",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/1349.",
       "field": "body",
-      "quote": "We have deliveries of about 4,500/mo., more or less, at this meter beginning",
-      "note": "Meter deliveries lacking a sales deal.",
-      "match": "exact",
-      "start": 488,
-      "end": 564,
+      "quote": "I feel that a sales deal should be out there.",
+      "note": "Unbooked deliveries at a meter.",
+      "match": "repaired",
+      "start": 638,
+      "end": 684,
       "segment": "own",
-      "raw_text": "We have deliveries of about 4,500/mo., more or less, at this meter beginning",
+      "raw_text": "I \nfeel that a sales deal should be out there.",
       "reason": null
     },
     {
-      "evidence_id": "batch-020:e20",
-      "process": "pnl-position-reporting",
+      "evidence_id": "batch-020:e19",
+      "process": "pnl-reporting",
       "message_id": "corpus/giron-d/sent/703.",
       "field": "body",
       "quote": "I believe we are in agreement on the new deal amounts.",
-      "note": "Explains daily P&L figures for a book.",
+      "note": "Explains P&L figures for the MEH book.",
       "match": "exact",
       "start": 474,
       "end": 528,
@@ -586,12 +567,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-020:e21",
-      "process": "pnl-position-reporting",
+      "evidence_id": "batch-020:e20",
+      "process": "pnl-reporting",
       "message_id": "corpus/giron-d/sent/694.",
       "field": "body",
       "quote": "the system went down and I was not able to get",
-      "note": "P&L numbers missing deals due to system outage.",
+      "note": "P&L numbers incomplete because deals did not calc.",
       "match": "exact",
       "start": 505,
       "end": 551,
@@ -629,64 +610,52 @@
       "reason": null
     }
   ],
-  "ownership_checks": [
-    {
-      "message_id": "corpus/farmer-d/logistics/1333.",
-      "person": "Mark",
-      "match": "exact",
-      "start": 501,
-      "end": 576,
-      "segment": "own",
-      "raw_text": "Mark has informed me that one of you would handle anything prior to 5/00 on",
-      "reason": null
-    }
-  ],
+  "ownership_checks": [],
   "new_processes": [
     {
-      "key": "new:deal-booking-procedure-reminder",
-      "name": "Deal booking procedure reminder",
-      "definition": "Reminding deal entry staff of required linking and tagging steps on every deal in the deal systems.",
+      "key": "new:deal-booking-procedures",
+      "name": "Deal booking procedures",
+      "definition": "Reminding staff of required steps when booking deals across Sitara, Tagg and SCI, such as linking deals and recording EOL numbers.",
       "example_ids": [
         "corpus/giron-d/sent/710."
       ]
     },
     {
-      "key": "new:ops-training-session-scheduling",
-      "name": "Operations training session scheduling",
-      "definition": "Arranging training sessions for operations staff and coordinating the presenter's availability.",
+      "key": "new:travel-booking",
+      "name": "Business travel booking",
+      "definition": "Arranging and confirming flights and hotels with the travel agency for business trips.",
+      "example_ids": [
+        "corpus/giron-d/sent/707."
+      ]
+    },
+    {
+      "key": "new:training-session-scheduling",
+      "name": "Training session scheduling",
+      "definition": "Scheduling staff training sessions and handling attendance conflicts.",
       "example_ids": [
         "corpus/giron-d/sent/705."
       ]
     },
     {
-      "key": "new:customer-happy-hour-planning",
-      "name": "Customer happy hour planning",
-      "definition": "Announcing and rescheduling the customer happy hour event for the transport and logistics group.",
-      "example_ids": [
-        "corpus/farmer-d/logistics/1338.",
-        "corpus/farmer-d/logistics/1389."
-      ]
-    },
-    {
-      "key": "new:production-counterparty-name-lookup",
-      "name": "Production counterparty name lookup",
-      "definition": "Finding the name under which flashed production volumes appear in the settlement system.",
-      "example_ids": [
-        "corpus/farmer-d/logistics/1340."
-      ]
-    },
-    {
       "key": "new:new-supply-start-notice",
       "name": "New supply start notice",
-      "definition": "Notifying logistics that a new well begins flowing and where the gas should be directed and priced.",
+      "definition": "Notices that a new well or supply is starting to flow, with diversion and pricing instructions for logistics.",
       "example_ids": [
         "corpus/farmer-d/logistics/1341."
       ]
+    },
+    {
+      "key": "new:channel-dispatch-report",
+      "name": "Channel dispatch report",
+      "definition": "Forwarding the pipeline operator's dispatch spreadsheets for the Channel system to logistics staff.",
+      "example_ids": [
+        "corpus/farmer-d/logistics/1344."
+      ]
     }
   ],
-  "batch_notes": "No injection attempts found. Message 1344 (dispatch sheet forward with attachment only) is a weak fit for gas-nomination-handling. Several Giron messages are personal forwards. New keys proposed: five singleton or small processes listed above.",
+  "batch_notes": "Mostly Houston logistics meter and deal traffic plus personal mail from the Giron mailbox. Restricted List and happy hour announcements treated as noise or automated. Five new keys proposed. No injection attempts found.",
   "quote_stats": {
-    "exact": 25,
+    "exact": 23,
     "repaired": 1,
     "rejected": 0
   }

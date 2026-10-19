@@ -1,131 +1,231 @@
 {
   "group_id": "synth-004",
-  "content_sha": "b73f157eacc216c356a7f139232211a7e418a2df9d81a666450323ffa9c40dc4",
+  "content_sha": "b130c1c2e3c38c44b30d4875b2023420782b32118dc5500b4bca75b8e8b4c73b",
   "processes": [
     {
-      "key": "curve-validation-review",
-      "description": "The validation group questions monthly forward gas curves whose shape or level moved sharply. Darron Giron forwards the flagged curves to the traders asking them to identify the factors driving the change, chases when no answer comes, and relays the explanation back: that Phillip Allen and Keith Holst confirmed the curve changes in question, or that the market simply traded higher in the West during the month.",
+      "key": "contract-status-reporting",
+      "description": "Ahead of each month, the contract administrator for Houston Pipe Line compiles a report of contract assignments, terminations, expirations and contracts still in process, and mails it as an attachment to schedulers, traders and logistics staff, who read it for changes affecting their deals. A later round is a dated status snapshot sent near month end. When a month's report is missed, the sender owns up and catches up in the next mailing.",
       "steps": [
-        "The validation group flags forward gas curves whose shape or level changed drastically.",
-        "Darron Giron forwards the flagged curves to the trading group and asks what is driving the change.",
-        "If no answer arrives, he asks anyone in the group to follow up on the curves.",
-        "Traders explain the move, such as the market trading higher in the West.",
-        "The explanation is relayed back to the validation group."
+        "Pull the contract changes for the coming month from the contract system.",
+        "Sort them into assignments, terminations, expirations and contracts in process.",
+        "Build the report spreadsheet and date it with the as-of time.",
+        "Mail the report as an attachment to the distribution of schedulers and logistics staff.",
+        "Recipients check the report for contracts that affect their nominations and deals."
       ],
       "stalls": [
         {
-          "summary": "Flagged curves wait on the traders to explain them: the request to identify the drivers of a drastic change had to be followed by a second ask for anyone in the group to follow up.",
+          "summary": "A month's report was skipped by accident and only noticed afterwards, so recipients went without the contract changes for that month until a catch-up mailing.",
           "evidence_ids": [
-            "batch-047:e20",
-            "batch-047:s2"
+            "batch-046:e17"
           ]
         }
       ],
       "contradictions": [],
       "automation": {
-        "approach": "A monthly curve-change report that compares each forward gas curve with the prior month's mark, flags large shape or level moves by location and month, and keeps a log where traders record the reason for each flagged move, so the validation group receives the flags with the market explanation already attached.",
-        "artifact_type": "template",
-        "rationale": "The round is a question-and-answer loop between validation and the desk, and the answers are short market explanations that recur. A standard curve-change explanation log removes the forward-and-wait step and gives the validation group one place to read the reasons."
-      },
-      "work_estimate": null,
-      "estimate_check": null
-    },
-    {
-      "key": "customer-event-planning",
-      "description": "Coordinators, mainly Heather Choate, organize customer trips, the annual Enron Customer Meeting and customer happy hours. A round starts with a trip proposal or a planning notice, then invitations go out as attachments, hosts are asked to confirm their customers or name replacements by a deadline (Friday, June 29, 2001 by 12pm), a final guest list with activities is circulated for review, and the schedule is revised and redistributed when attendees change.",
-      "steps": [
-        "The coordinator drafts the customer trip or meeting proposal and circulates it.",
-        "Planning starts and invitations are prepared and sent to hosts and customers.",
-        "Hosts confirm their customers or name replacements by the stated deadline.",
-        "The coordinator compiles the final guest list with activities, rooming and itinerary.",
-        "The final list and schedule are distributed for review and staff mark their calendars.",
-        "The schedule is revised and redistributed when attendees change."
-      ],
-      "stalls": [
-        {
-          "summary": "Guest lists and schedules change late in a round: hosts replacing customers are given a hard deadline to say so, and a trip schedule had to be revised and redistributed after a change in who was attending.",
-          "evidence_ids": [
-            "batch-055:e22",
-            "batch-068:e19"
-          ]
-        }
-      ],
-      "contradictions": [],
-      "automation": {
-        "approach": "A shared event workbook per round holding the guest list, RSVPs, replacements, activities and rooming, from which the final guest list and itinerary are produced, plus standard invitation, reminder and replacement-deadline messages reused across trips, meetings and happy hours.",
-        "artifact_type": "template",
-        "rationale": "Most of the hands-on work is keeping guest lists, activities and rooming lists consistent as people confirm or swap out, and rebuilding the schedule when they do. A single guest-list and itinerary layout lets the coordinator update one source and regenerate the distributed lists instead of reworking them by hand."
+        "approach": "Generate the assignment, termination and expiration report directly from the contract system on a fixed schedule, with a calendar reminder and a send checklist so no month is skipped, and a standard cover note naming the period and as-of time.",
+        "artifact_type": "checklist",
+        "rationale": "The report is the same layout every month and the one failure the mail shows is a skipped month, which a dated monthly checklist covering pull, sort, build and send prevents most directly."
       },
       "work_estimate": {
         "minutes_per_occurrence": {
-          "low": 20,
-          "mid": 90,
-          "high": 240
+          "low": 30,
+          "mid": 60,
+          "high": 120
         },
-        "automatable_pct": 35,
+        "automatable_pct": 60,
         "basis": "inferred",
-        "rationale": "Rounds range from a happy hour notice (about 20 minutes to set up) to a customer trip or annual meeting, where drafting the proposal, preparing invitations, tracking confirmations and replacements, and compiling the final guest list with activities and rooming takes several hours; 90 minutes is a middle round. Tracking RSVPs and regenerating lists and schedules is the part a template and tracker could take over; choosing guests and activities stays with people.",
+        "rationale": "Most of the time goes to pulling contract changes, classifying them into the report's categories and formatting the spreadsheet with an as-of date; around 60 minutes for a pipeline's monthly contract list, longer when a month must be caught up. The pull and layout are repeatable and could be generated, leaving review of the entries.",
         "evidence_ids": [
-          "batch-007:e0",
-          "batch-012:e17",
-          "batch-055:e22",
-          "batch-061:e26",
-          "batch-068:e19",
-          "batch-020:e10"
+          "batch-046:e17",
+          "batch-080:e10",
+          "batch-047:e30"
         ]
       },
       "estimate_check": {
-        "occurrences_cited": 6,
-        "senders_cited": 3
+        "occurrences_cited": 3,
+        "senders_cited": 2
       }
     },
     {
-      "key": "customer-origination-outreach",
-      "description": "Originators and marketers work customer leads and opportunities: a lead or product pitch is forwarded with a question about interest, meetings are arranged to discuss gas supply opportunities, customers ask for historical data for 1999 and 2000 before a meeting, staff estimate a prospect's energy requirements from published articles, contact reports are passed on after calls, and analysts are assigned to compile regional supply, market and infrastructure analysis. Existing relationships are checked by asking whether anyone has contacted the customer about renewing.",
+      "key": "hr-record-administration",
+      "description": "Staff and managers email HR or an assistant to change an employee's record or pay: setting up operating companies or system access for new people, adding people left off a roster, switching a parking benefit to a bus pass, stopping a charitable payroll deduction, or confirming whether departed employees get an extra payment. HR in turn sends surveys and membership questionnaires to fill out and return by a stated deadline. Each request is looked up, the record changed or the answer confirmed, and the requester told.",
       "steps": [
-        "A lead, product pitch or customer contact arrives and is forwarded to an originator.",
-        "The originator decides whether to pursue it and arranges a meeting with the customer.",
-        "Market or historical data the customer asked for is gathered before the meeting.",
-        "Supporting analysis is prepared, such as estimating a prospect's energy requirements from published sources.",
-        "After the call or meeting, a contact report is written and shared.",
-        "Renewals of existing customer relationships are followed up."
+        "An employee or manager emails a record, pay or benefit change, or HR sends out a form to complete.",
+        "The handler looks up the employee's current record or the policy in question.",
+        "The handler enters the change or confirms the answer with HR or payroll.",
+        "Missing people or access are added to the roster or system.",
+        "The requester is told the result, and completed forms are collected back."
       ],
       "stalls": [
         {
-          "summary": "Leads and renewals lack a clear owner: a renewal with an existing customer is raised by asking whether anyone has contacted them, and leads are passed along asking who is interested.",
+          "summary": "A manager needed a policy answer for a former employee who had called, and had to ask HR to let him know when they had something.",
           "evidence_ids": [
-            "batch-083:e9",
-            "batch-068:e21"
+            "batch-082:s1",
+            "batch-082:e22"
+          ]
+        },
+        {
+          "summary": "People were left off a distribution or missing from the system, so a second request was needed to set them up.",
+          "evidence_ids": [
+            "batch-031:e2",
+            "batch-031:e10"
+          ]
+        },
+        {
+          "summary": "A roster check reached a manager who replied he managed no one in that pool, so the request went to the wrong person.",
+          "evidence_ids": [
+            "batch-061:e20"
           ]
         }
       ],
       "contradictions": [],
       "automation": {
-        "approach": "A shared lead and contact log recording each lead, its owner, the meeting date, the data the customer asked for and the contact report, with renewal dates for existing customers flagged ahead of time, plus a standard pre-meeting data pack drawn from existing fundamentals and market data.",
+        "approach": "Route record and benefit changes through one request form with fields for employee, change type and effective date, feeding a tracked queue; keep roster checks against the HR system as a generated list sent only to each person's actual manager.",
         "artifact_type": "template",
-        "rationale": "The recurring work is gathering customer data, preparing for meetings and recording what was said, and the stalls come from leads and renewals with no named owner. A common contact-report and lead-tracker layout makes ownership visible and lets data pulls be reused across customers."
+        "rationale": "The requests are short and varied but share the same fields; a standard form removes the back-and-forth over missing people and misrouted roster checks, and gives the requester a status to look at instead of asking."
       },
       "work_estimate": {
         "minutes_per_occurrence": {
-          "low": 15,
-          "mid": 45,
-          "high": 120
+          "low": 5,
+          "mid": 15,
+          "high": 30
         },
         "automatable_pct": 30,
-        "basis": "inferred",
-        "rationale": "The minutes go to pulling historical or market data a customer requested, estimating a prospect's energy needs from outside sources, preparing for the meeting and writing the contact report afterwards. A simple forwarded lead takes little; a prepared customer meeting with a data request takes a couple of hours, so 45 minutes is a typical round. Standard data pulls and report layouts can be automated; judging the opportunity and talking to the customer cannot.",
+        "basis": "observed",
+        "rationale": "Each round is a single record lookup and change or a policy confirmation: switching a benefit, stopping a deduction, adding a missing person to a system, or filling in a short survey. Around 15 minutes of lookup and entry; a request form and queue would take over part of the intake and entry, while the policy answers stay with people.",
         "evidence_ids": [
-          "batch-073:e12",
-          "batch-071:e11",
-          "batch-071:e10",
-          "batch-061:e19",
-          "batch-067:e7",
-          "batch-083:e9"
+          "batch-082:e37",
+          "batch-086:e15",
+          "batch-031:e10",
+          "batch-082:e27",
+          "batch-006:e34",
+          "batch-004:e13"
         ]
       },
       "estimate_check": {
         "occurrences_cited": 6,
         "senders_cited": 5
+      }
+    },
+    {
+      "key": "settlement-resolution",
+      "description": "Settlements and accounting staff find a mismatch between a counterparty invoice or payment and the deal as booked in Sitara: a different price, an unpriced or wrong index, unactualized volumes, a deal that should be netted, or an invoice for gas never paid. They ask the scheduler or trader to verify the deal, correct the ticket or say what to bill, sometimes pulling trader tape recordings or checking published market prices for power disputes. Once the deal is corrected, the invoice is paid or rebilled before the payment date.",
+      "steps": [
+        "Settlements notices an invoice, payment or price that does not match the deal in Sitara.",
+        "They email the scheduler or trader with the deal number and the two figures.",
+        "The trader or scheduler checks the deal terms, volumes or published price, sometimes pulling tapes.",
+        "The ticket is corrected in Sitara or the counterparty is told the correct price.",
+        "Settlements reruns the invoice or payment and confirms before the due date.",
+        "Unresolved items are chased or escalated to the counterparty."
+      ],
+      "stalls": [
+        {
+          "summary": "Settlements waits on the scheduler or trader to verify deals, chasing with follow-ups while payment dates approach.",
+          "evidence_ids": [
+            "batch-015:s1",
+            "batch-037:s0",
+            "batch-007:s1",
+            "batch-059:s6",
+            "batch-011:s6",
+            "batch-053:e15"
+          ]
+        },
+        {
+          "summary": "Counterparties do not return calls about outstanding payments or disputed deals.",
+          "evidence_ids": [
+            "batch-073:s0",
+            "batch-000:s3"
+          ]
+        },
+        {
+          "summary": "Confusion over who handles a deal: requests go to the wrong desk or person and are redirected.",
+          "evidence_ids": [
+            "batch-033:s0",
+            "batch-040:o0",
+            "batch-038:o0"
+          ]
+        },
+        {
+          "summary": "Sitara itself blocks fixes: a ticket could not be opened to correct swing pricing, and the system held two prices for one day.",
+          "evidence_ids": [
+            "batch-055:s6",
+            "batch-055:e17"
+          ]
+        },
+        {
+          "summary": "Volumes not yet actualized leave nothing in volume management to settle against.",
+          "evidence_ids": [
+            "batch-053:e9"
+          ]
+        },
+        {
+          "summary": "Staff departures leave items open, with a handler trying to finish what they can before leaving.",
+          "evidence_ids": [
+            "batch-025:s0"
+          ]
+        }
+      ],
+      "contradictions": [
+        {
+          "summary": "Invoice and system prices disagree for the same deal: a counterparty billed one price while Sitara showed another, and Sitara held two prices for the same day.",
+          "evidence_ids": [
+            "batch-052:e19",
+            "batch-055:e17",
+            "batch-022:e2"
+          ]
+        },
+        {
+          "summary": "A price change believed final was not the final price for the deal, and a counterparty changed its price mid-dispute.",
+          "evidence_ids": [
+            "batch-054:e22",
+            "batch-039:e24"
+          ]
+        },
+        {
+          "summary": "Ownership of disputed deals is stated differently: one sender was told another person handled the deal, another says a deal belongs to a different desk, and a third asks that all monetized questions go through one person.",
+          "evidence_ids": [
+            "batch-033:o0",
+            "batch-040:o0",
+            "batch-024:o1",
+            "batch-025:o0"
+          ]
+        },
+        {
+          "summary": "Practice conflicts on contacting customers: staff emailed counterparties about disputes while a manager told them not to send dispute emails to customers.",
+          "evidence_ids": [
+            "batch-073:e11",
+            "batch-073:e2"
+          ]
+        }
+      ],
+      "automation": {
+        "approach": "Run a daily match of counterparty invoices against Sitara deal prices and volumes, listing each variance with deal number, both figures, the responsible desk and the payment due date, and send it to the owning scheduler or trader with a standard query. Track each variance to closure so follow-ups and escalations come from the list rather than ad hoc chasing.",
+        "artifact_type": "email_template",
+        "rationale": "Most rounds are the same question asked in different words: this invoice says one price, Sitara says another, which is right. A standard variance query with the deal number, both figures, due date and owner cuts the clarification loops and misrouting, and a matching report finds the mismatches before they become payment-day emergencies."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": {
+          "low": 20,
+          "mid": 45,
+          "high": 120
+        },
+        "automatable_pct": 40,
+        "basis": "observed",
+        "rationale": "Each round involves finding the deal in Sitara, comparing invoice and booked price or volume, checking the index or published price, correcting the ticket and rerunning the invoice; power disputes add checking risk records or pulling tapes. Around 45 minutes for a single-deal price fix, up to two hours where tapes or several deals are involved. Matching and variance listing are repeatable; the judgement on the right price stays with people.",
+        "evidence_ids": [
+          "batch-052:e19",
+          "batch-065:e3",
+          "batch-064:e12",
+          "batch-053:e19",
+          "batch-062:e15",
+          "batch-007:e21",
+          "batch-026:e7",
+          "batch-073:e15"
+        ]
+      },
+      "estimate_check": {
+        "occurrences_cited": 8,
+        "senders_cited": 6
       }
     }
   ]

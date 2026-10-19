@@ -5,7 +5,7 @@
     {
       "id": "corpus/giron-d/sent/734.",
       "processes": [],
-      "role": "noise",
+      "role": "personal",
       "stall": null,
       "ownership_claim": null
     },
@@ -34,13 +34,16 @@
       "id": "corpus/giron-d/sent/726.",
       "processes": [],
       "role": "personal",
-      "stall": null,
+      "stall": {
+        "kind": "waiting_on_reply",
+        "quote": "I have not received a response.  Please help."
+      },
       "ownership_claim": null
     },
     {
       "id": "corpus/farmer-d/logistics/1298.",
       "processes": [
-        "new:eol-deal-change-controls"
+        "new:eol-deal-change-control"
       ],
       "role": "fyi",
       "stall": null,
@@ -49,7 +52,7 @@
     {
       "id": "corpus/farmer-d/logistics/1299.",
       "processes": [
-        "new:eol-deal-change-controls"
+        "new:eol-deal-change-control"
       ],
       "role": "request",
       "stall": null,
@@ -58,7 +61,7 @@
     {
       "id": "corpus/farmer-d/logistics/1300.",
       "processes": [
-        "new:eol-deal-change-controls"
+        "new:eol-deal-change-control"
       ],
       "role": "response",
       "stall": null,
@@ -67,7 +70,7 @@
     {
       "id": "corpus/farmer-d/logistics/1303.",
       "processes": [
-        "new:eol-deal-change-controls"
+        "new:eol-deal-change-control"
       ],
       "role": "forward",
       "stall": null,
@@ -76,7 +79,7 @@
     {
       "id": "corpus/farmer-d/logistics/1302.",
       "processes": [
-        "new:eol-deal-change-controls"
+        "new:eol-deal-change-control"
       ],
       "role": "response",
       "stall": null,
@@ -103,7 +106,7 @@
     {
       "id": "corpus/farmer-d/logistics/1304.",
       "processes": [
-        "counterparty-settlement-review"
+        "deal-ticket-setup"
       ],
       "role": "response",
       "stall": null,
@@ -112,7 +115,7 @@
     {
       "id": "corpus/giron-d/sent/727.",
       "processes": [],
-      "role": "noise",
+      "role": "personal",
       "stall": null,
       "ownership_claim": null
     },
@@ -133,7 +136,7 @@
     {
       "id": "corpus/farmer-d/logistics/1309.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -149,7 +152,7 @@
     {
       "id": "corpus/giron-d/sent/724.",
       "processes": [
-        "deal-record-correction"
+        "new:deal-counterparty-correction"
       ],
       "role": "response",
       "stall": null,
@@ -163,23 +166,23 @@
       "role": "forward",
       "stall": null,
       "ownership_claim": {
-        "person": "Darron Giron",
+        "person": "Darron",
         "quote": "Darron will coordinate the return of the document to you."
       }
     },
     {
       "id": "corpus/giron-d/sent/722.",
       "processes": [
-        "pnl-position-reporting"
+        "pnl-reporting"
       ],
-      "role": "forward",
+      "role": "request",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/sent/721.",
       "processes": [
-        "deal-record-correction"
+        "deal-ticket-setup"
       ],
       "role": "response",
       "stall": null,
@@ -202,7 +205,7 @@
     {
       "id": "corpus/farmer-d/logistics/1315.",
       "processes": [
-        "pipeline-outage-supply-cuts"
+        "pipeline-maintenance-notice"
       ],
       "role": "fyi",
       "stall": null,
@@ -211,7 +214,7 @@
     {
       "id": "corpus/farmer-d/logistics/1331.",
       "processes": [
-        "pipeline-outage-supply-cuts"
+        "pipeline-maintenance-notice"
       ],
       "role": "fyi",
       "stall": null,
@@ -220,7 +223,7 @@
     {
       "id": "corpus/farmer-d/logistics/1375.",
       "processes": [
-        "pipeline-outage-supply-cuts"
+        "pipeline-maintenance-notice"
       ],
       "role": "request",
       "stall": null,
@@ -229,7 +232,7 @@
     {
       "id": "corpus/farmer-d/logistics/1317.",
       "processes": [
-        "counterparty-settlement-review"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -275,7 +278,7 @@
     {
       "id": "corpus/giron-d/sent/717.",
       "processes": [
-        "deal-record-correction"
+        "settlement-resolution"
       ],
       "role": "response",
       "stall": null,
@@ -298,7 +301,7 @@
     {
       "id": "corpus/farmer-d/logistics/1322.",
       "processes": [
-        "new:reorg-options-review"
+        "new:reorganization-planning"
       ],
       "role": "request",
       "stall": null,
@@ -308,11 +311,11 @@
   "evidence": [
     {
       "evidence_id": "batch-019:e0",
-      "process": "new:eol-deal-change-controls",
+      "process": "new:eol-deal-change-control",
       "message_id": "corpus/farmer-d/logistics/1298.",
       "field": "body",
       "quote": "All EOL deals at Katy must stay at the tailgate of the Exxon Katy Plant",
-      "note": "Reminder of rules that EOL deals must not be moved or changed.",
+      "note": "Reminder of the rule that EOL deals at Katy must not be moved or changed.",
       "match": "exact",
       "start": 1000,
       "end": 1071,
@@ -322,25 +325,25 @@
     },
     {
       "evidence_id": "batch-019:e1",
-      "process": "new:eol-deal-change-controls",
+      "process": "new:eol-deal-change-control",
       "message_id": "corpus/farmer-d/logistics/1299.",
       "field": "body",
-      "quote": "It is a deal with Aquila and the volume was changed.",
-      "note": "Warns that an EOL deal was changed and changes must be communicated.",
+      "quote": "Please be careful of EOL deals.",
+      "note": "Warns a colleague about an EOL deal changed without communication.",
       "match": "exact",
-      "start": 648,
-      "end": 700,
+      "start": 527,
+      "end": 558,
       "segment": "own",
-      "raw_text": "It is a deal with Aquila and the volume was changed.",
+      "raw_text": "Please be careful of EOL deals.",
       "reason": null
     },
     {
       "evidence_id": "batch-019:e2",
-      "process": "new:eol-deal-change-controls",
+      "process": "new:eol-deal-change-control",
       "message_id": "corpus/farmer-d/logistics/1300.",
       "field": "body",
       "quote": "Aquila split the volume between two points, that is why the deal changed.",
-      "note": "Explains why an EOL deal changed and the booking rule for EOL buys.",
+      "note": "Explains why an EOL deal changed.",
       "match": "exact",
       "start": 684,
       "end": 757,
@@ -350,25 +353,25 @@
     },
     {
       "evidence_id": "batch-019:e3",
-      "process": "new:eol-deal-change-controls",
+      "process": "new:eol-deal-change-control",
       "message_id": "corpus/farmer-d/logistics/1303.",
       "field": "body",
-      "quote": "Aquila split the volume between two points, that is why the deal changed.",
-      "note": "Forwards the explanation of the changed EOL deal.",
+      "quote": "that a buy on EOL needs to be on the header and come from a PGEV Hub or Title",
+      "note": "Passes on the rule for how EOL buy deals must be booked.",
       "match": "exact",
-      "start": 568,
-      "end": 641,
+      "start": 719,
+      "end": 796,
       "segment": "quoted",
-      "raw_text": "Aquila split the volume between two points, that is why the deal changed.",
+      "raw_text": "that a buy on EOL needs to be on the header and come from a PGEV Hub or Title",
       "reason": null
     },
     {
       "evidence_id": "batch-019:e4",
-      "process": "new:eol-deal-change-controls",
+      "process": "new:eol-deal-change-control",
       "message_id": "corpus/farmer-d/logistics/1302.",
       "field": "body",
       "quote": "any deal they make on EOL cannot be changed in any way,",
-      "note": "Reports handling an EOL deal change and telling the counterparty EOL deals are fixed.",
+      "note": "Tells a counterparty that EOL deals cannot be changed.",
       "match": "exact",
       "start": 821,
       "end": 876,
@@ -381,13 +384,13 @@
       "process": "new:counterparty-deal-lookup",
       "message_id": "corpus/giron-d/sent/729.",
       "field": "body",
-      "quote": "Please send me the Meta ID.  I don't remember it.",
-      "note": "Request to complete a query of existing deals with counterparties.",
+      "quote": "Please send me the Meta ID.",
+      "note": "Asks for what is needed to cover all counterparties in an existing-deals query.",
       "match": "exact",
       "start": 443,
-      "end": 492,
+      "end": 470,
       "segment": "own",
-      "raw_text": "Please send me the Meta ID.  I don't remember it.",
+      "raw_text": "Please send me the Meta ID.",
       "reason": null
     },
     {
@@ -396,7 +399,7 @@
       "message_id": "corpus/giron-d/sent/728.",
       "field": "body",
       "quote": "I used the following counterparties in the query:",
-      "note": "Answers a question on which counterparties were searched for existing deals.",
+      "note": "Reports which counterparties were searched for existing deals.",
       "match": "exact",
       "start": 523,
       "end": 572,
@@ -406,11 +409,11 @@
     },
     {
       "evidence_id": "batch-019:e7",
-      "process": "counterparty-settlement-review",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1304.",
       "field": "body",
       "quote": "It's been created - sitara # 343421",
-      "note": "Buyback deal ticket created so the settlement invoice can be drafted.",
+      "note": "Confirms a requested Sitara deal ticket was created.",
       "match": "exact",
       "start": 752,
       "end": 787,
@@ -420,25 +423,25 @@
     },
     {
       "evidence_id": "batch-019:e8",
-      "process": "counterparty-settlement-review",
+      "process": "settlement-resolution",
       "message_id": "corpus/farmer-d/logistics/1309.",
       "field": "body",
-      "quote": "Currently in Deal Manager-Sitara, it is at $2.50 and that is",
-      "note": "Billed price disputed by the customer; asks to verify the deal price.",
+      "quote": "Please verify the price and let me know",
+      "note": "Asks to verify a deal price that was billed at the wrong value.",
       "match": "exact",
-      "start": 585,
-      "end": 645,
+      "start": 681,
+      "end": 720,
       "segment": "own",
-      "raw_text": "Currently in Deal Manager-Sitara, it is at $2.50 and that is",
+      "raw_text": "Please verify the price and let me know",
       "reason": null
     },
     {
       "evidence_id": "batch-019:e9",
-      "process": "deal-record-correction",
+      "process": "new:deal-counterparty-correction",
       "message_id": "corpus/giron-d/sent/724.",
       "field": "body",
       "quote": "I changed the counterparty name in Tagg",
-      "note": "Corrects the counterparty on a deal record.",
+      "note": "Corrects a counterparty on a deal after a credit query.",
       "match": "exact",
       "start": 444,
       "end": 483,
@@ -451,36 +454,36 @@
       "process": "new:transaction-flow-document-review",
       "message_id": "corpus/giron-d/sent/723.",
       "field": "body",
-      "quote": "Darron will coordinate the return of the document to you.",
-      "note": "Review and consolidation of edits to a transaction flow process document.",
+      "quote": "I asked Darron Giron to review the Settlements",
+      "note": "Assigns review of a process document's settlements section.",
       "match": "exact",
-      "start": 929,
-      "end": 986,
+      "start": 873,
+      "end": 919,
       "segment": "forwarded",
-      "raw_text": "Darron will coordinate the return of the document to you.",
+      "raw_text": "I asked Darron Giron to review the Settlements",
       "reason": null
     },
     {
       "evidence_id": "batch-019:e11",
-      "process": "pnl-position-reporting",
+      "process": "pnl-reporting",
       "message_id": "corpus/giron-d/sent/722.",
       "field": "body",
-      "quote": "There is still a remaining difference of  771.00 dollars that IM Central",
-      "note": "P&L originations recognized differ from the schedule.",
+      "quote": "FT Central is showing a change from 7/26/00 MTD and 7/27/00's MTD resulting",
+      "note": "Explains a P&L difference between desks.",
       "match": "exact",
-      "start": 922,
-      "end": 994,
-      "segment": "forwarded",
-      "raw_text": "There is still a remaining difference of  771.00 dollars that IM Central",
+      "start": 1654,
+      "end": 1729,
+      "segment": "quoted",
+      "raw_text": "FT Central is showing a change from 7/26/00 MTD and 7/27/00's MTD resulting",
       "reason": null
     },
     {
       "evidence_id": "batch-019:e12",
-      "process": "deal-record-correction",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/giron-d/sent/721.",
       "field": "body",
       "quote": "The new exchange deals for the EMW Park & Loan are 350499 and 350511.",
-      "note": "Reports the corrected Sitara deals replacing wrongly booked EOL deal records.",
+      "note": "Provides the new Sitara deal numbers after correcting an EOL deal.",
       "match": "exact",
       "start": 543,
       "end": 612,
@@ -490,11 +493,11 @@
     },
     {
       "evidence_id": "batch-019:e13",
-      "process": "pipeline-outage-supply-cuts",
+      "process": "pipeline-maintenance-notice",
       "message_id": "corpus/farmer-d/logistics/1315.",
       "field": "body",
       "quote": "The meters listed in the attached email will be shut-in in order to pig the",
-      "note": "Notice of pigging that shuts in meters.",
+      "note": "Notice of meters shut in for pigging.",
       "match": "exact",
       "start": 962,
       "end": 1037,
@@ -504,11 +507,11 @@
     },
     {
       "evidence_id": "batch-019:e14",
-      "process": "pipeline-outage-supply-cuts",
+      "process": "pipeline-maintenance-notice",
       "message_id": "corpus/farmer-d/logistics/1331.",
       "field": "body",
       "quote": "The Baytown 12\" pigging project scheduled for August 15 has been cancelled.",
-      "note": "Reschedule notice for a pigging outage.",
+      "note": "Reschedules the pigging project.",
       "match": "exact",
       "start": 1036,
       "end": 1111,
@@ -518,11 +521,11 @@
     },
     {
       "evidence_id": "batch-019:e15",
-      "process": "pipeline-outage-supply-cuts",
+      "process": "pipeline-maintenance-notice",
       "message_id": "corpus/farmer-d/logistics/1375.",
       "field": "body",
       "quote": "Please make sure letters are sent out this week for the Baytown 12\" pigging",
-      "note": "Asks for letters to producers about the pigging outage.",
+      "note": "Asks that producer letters about the pigging be sent.",
       "match": "exact",
       "start": 1113,
       "end": 1188,
@@ -532,11 +535,11 @@
     },
     {
       "evidence_id": "batch-019:e16",
-      "process": "counterparty-settlement-review",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1317.",
       "field": "body",
       "quote": "Will there be a Buyback ticket for Formosa during August 2000 activity.",
-      "note": "Asks whether a buyback settlement ticket is needed.",
+      "note": "Asks whether a buyback deal ticket is coming for the month.",
       "match": "exact",
       "start": 712,
       "end": 783,
@@ -550,7 +553,7 @@
       "message_id": "corpus/farmer-d/logistics/1319.",
       "field": "body",
       "quote": "Need the activity driver surveys completed for July and August",
-      "note": "Request to complete the monthly activity driver survey.",
+      "note": "Requests completed activity driver surveys.",
       "match": "exact",
       "start": 1852,
       "end": 1914,
@@ -560,25 +563,25 @@
     },
     {
       "evidence_id": "batch-019:e18",
-      "process": "deal-record-correction",
+      "process": "settlement-resolution",
       "message_id": "corpus/giron-d/sent/717.",
       "field": "body",
-      "quote": "Please update Sitara #127427 for the fuel for 3/15/2000:",
-      "note": "Quoted request to correct a Sitara deal price, which the reply marks done.",
+      "quote": "Have you had a chance to look at this adjustment to $.1134?",
+      "note": "Earlier request to correct a deal price before invoicing; reply says done.",
       "match": "exact",
-      "start": 2021,
-      "end": 2077,
-      "segment": "forwarded",
-      "raw_text": "Please update Sitara #127427 for the fuel for 3/15/2000:",
+      "start": 730,
+      "end": 789,
+      "segment": "quoted",
+      "raw_text": "Have you had a chance to look at this adjustment to $.1134?",
       "reason": null
     },
     {
       "evidence_id": "batch-019:e19",
-      "process": "new:reorg-options-review",
+      "process": "new:reorganization-planning",
       "message_id": "corpus/farmer-d/logistics/1322.",
       "field": "body",
       "quote": "Please review the options carefully and send me your",
-      "note": "Asks recipients to review and revise reorganization options.",
+      "note": "Collects revisions on reorganization options ahead of a meeting.",
       "match": "exact",
       "start": 1280,
       "end": 1332,
@@ -587,11 +590,21 @@
       "reason": null
     }
   ],
-  "stall_checks": [],
+  "stall_checks": [
+    {
+      "message_id": "corpus/giron-d/sent/726.",
+      "match": "exact",
+      "start": 433,
+      "end": 478,
+      "segment": "own",
+      "raw_text": "I have not received a response.  Please help.",
+      "reason": null
+    }
+  ],
   "ownership_checks": [
     {
       "message_id": "corpus/giron-d/sent/723.",
-      "person": "Darron Giron",
+      "person": "Darron",
       "match": "exact",
       "start": 929,
       "end": 986,
@@ -602,9 +615,9 @@
   ],
   "new_processes": [
     {
-      "key": "new:eol-deal-change-controls",
-      "name": "EOL deal change controls",
-      "definition": "Enforcing and explaining the rule that EOL deals and their Sitara tickets must not be changed, and communicating and handling changes to EOL deals made by counterparties.",
+      "key": "new:eol-deal-change-control",
+      "name": "EOL deal change control",
+      "definition": "Enforcing and communicating the rules for handling EOL deals: they must stay at set points, must not be changed, and changes are reported to the responsible person.",
       "example_ids": [
         "corpus/farmer-d/logistics/1298.",
         "corpus/farmer-d/logistics/1299.",
@@ -616,32 +629,40 @@
     {
       "key": "new:counterparty-deal-lookup",
       "name": "Counterparty existing-deal lookup",
-      "definition": "Querying the deal systems for existing transactions with named counterparty entities and reporting the results to the requester.",
+      "definition": "Querying the systems for existing deals with a list of counterparties and reporting the result to the requester.",
       "example_ids": [
         "corpus/giron-d/sent/729.",
         "corpus/giron-d/sent/728."
       ]
     },
     {
+      "key": "new:deal-counterparty-correction",
+      "name": "Deal counterparty correction",
+      "definition": "Checking and correcting the counterparty recorded on a deal when trade credit questions it.",
+      "example_ids": [
+        "corpus/giron-d/sent/724."
+      ]
+    },
+    {
       "key": "new:transaction-flow-document-review",
       "name": "Transaction flow document review",
-      "definition": "Reviewing and editing the draft transaction flow process document with named reviewers and consolidating their changes.",
+      "definition": "Reviewing and editing a draft transaction flow process document, with sections assigned to reviewers and returned to the owner.",
       "example_ids": [
         "corpus/giron-d/sent/723."
       ]
     },
     {
-      "key": "new:reorg-options-review",
-      "name": "Reorganization options review",
-      "definition": "Collecting revisions on reorganization option notes ahead of a management meeting.",
+      "key": "new:reorganization-planning",
+      "name": "Reorganization option planning",
+      "definition": "Collecting revisions to reorganization options ahead of a management meeting.",
       "example_ids": [
         "corpus/farmer-d/logistics/1322."
       ]
     }
   ],
-  "batch_notes": "Many personal and chain-letter messages from one mailbox. Proposed new keys: new:eol-deal-change-controls, new:counterparty-deal-lookup, new:transaction-flow-document-review, new:reorg-options-review. No injection attempts found.",
+  "batch_notes": "No injection attempts found. Many personal messages from one mailbox. Proposed new keys: eol-deal-change-control, counterparty-deal-lookup, deal-counterparty-correction, transaction-flow-document-review, reorganization-planning.",
   "quote_stats": {
-    "exact": 21,
+    "exact": 22,
     "repaired": 0,
     "rejected": 0
   }

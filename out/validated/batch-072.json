@@ -5,7 +5,7 @@
     {
       "id": "corpus/williams-w3/sent_items/149.",
       "processes": [
-        "market-rule-change-review"
+        "regulatory-notice-review"
       ],
       "role": "request",
       "stall": null,
@@ -14,7 +14,7 @@
     {
       "id": "corpus/williams-w3/sent_items/148.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "request",
       "stall": null,
@@ -51,7 +51,7 @@
     {
       "id": "corpus/lokay-m/inbox/11.",
       "processes": [
-        "commercial-strategy-planning"
+        "new:pipeline-expansion-cost-estimates"
       ],
       "role": "fyi",
       "stall": null,
@@ -60,7 +60,7 @@
     {
       "id": "corpus/lokay-m/inbox/10.",
       "processes": [
-        "weekly-commercial-reporting"
+        "capacity-reporting"
       ],
       "role": "fyi",
       "stall": null,
@@ -78,7 +78,7 @@
     {
       "id": "corpus/farmer-d/logistics/36.",
       "processes": [
-        "new:contingency-plan-survey"
+        "new:contingency-planning-survey"
       ],
       "role": "request",
       "stall": null,
@@ -87,7 +87,7 @@
     {
       "id": "corpus/giron-d/inbox/264.",
       "processes": [
-        "commercial-strategy-planning"
+        "new:meeting-date-scheduling"
       ],
       "role": "request",
       "stall": null,
@@ -96,7 +96,7 @@
     {
       "id": "corpus/giron-d/inbox/265.",
       "processes": [
-        "commercial-strategy-planning"
+        "new:meeting-date-scheduling"
       ],
       "role": "response",
       "stall": null,
@@ -112,7 +112,7 @@
     {
       "id": "corpus/lokay-m/inbox/9.",
       "processes": [
-        "market-rule-change-review"
+        "regulatory-notice-review"
       ],
       "role": "forward",
       "stall": null,
@@ -121,14 +121,14 @@
     {
       "id": "corpus/giron-d/inbox/267.",
       "processes": [],
-      "role": "noise",
+      "role": "personal",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/lokay-m/inbox/8.",
       "processes": [
-        "new:tw-rate-matrix-posting"
+        "new:tariff-rate-matrix-posting"
       ],
       "role": "forward",
       "stall": null,
@@ -137,7 +137,7 @@
     {
       "id": "corpus/lokay-m/inbox/7.",
       "processes": [
-        "new:tw-rate-matrix-posting"
+        "new:tariff-rate-matrix-posting"
       ],
       "role": "fyi",
       "stall": null,
@@ -153,16 +153,16 @@
     {
       "id": "corpus/williams-w3/sent_items/146.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
-      "role": "request",
+      "role": "fyi",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/sent_items/145.",
       "processes": [
-        "pnl-position-reporting"
+        "pnl-reporting"
       ],
       "role": "response",
       "stall": null,
@@ -185,16 +185,7 @@
     {
       "id": "corpus/lokay-m/inbox/5.",
       "processes": [
-        "new:alt-point-contract-report"
-      ],
-      "role": "response",
-      "stall": null,
-      "ownership_claim": null
-    },
-    {
-      "id": "corpus/lokay-m/inbox/3.",
-      "processes": [
-        "new:alt-point-contract-report"
+        "new:alternate-point-usage-report"
       ],
       "role": "response",
       "stall": null,
@@ -236,6 +227,15 @@
       "ownership_claim": null
     },
     {
+      "id": "corpus/lokay-m/inbox/3.",
+      "processes": [
+        "new:alternate-point-usage-report"
+      ],
+      "role": "response",
+      "stall": null,
+      "ownership_claim": null
+    },
+    {
       "id": "corpus/lokay-m/inbox/1.",
       "processes": [],
       "role": "noise",
@@ -259,7 +259,7 @@
     {
       "id": "corpus/williams-w3/sent_items/138.",
       "processes": [
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
       "role": "fyi",
       "stall": null,
@@ -278,11 +278,11 @@
   "evidence": [
     {
       "evidence_id": "batch-072:e0",
-      "process": "market-rule-change-review",
+      "process": "regulatory-notice-review",
       "message_id": "corpus/williams-w3/sent_items/149.",
       "field": "body",
       "quote": "I have a few questions regarding the emminent implementation of the new target pricing mechanism.",
-      "note": "Questions on the CAISO target price rule change and its effect on trading.",
+      "note": "Asks about a CAISO market notice on target price methodology.",
       "match": "exact",
       "start": 588,
       "end": 685,
@@ -292,11 +292,11 @@
     },
     {
       "evidence_id": "batch-072:e1",
-      "process": "realtime-schedule-checkout",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/148.",
       "field": "body",
       "quote": "Please sell this energy in the off-peak (on-peak will go to fill our W-BOM short).",
-      "note": "Handles a long position and a schedule for the next day.",
+      "note": "Instructs the desk on handling a real-time power position.",
       "match": "exact",
       "start": 2159,
       "end": 2241,
@@ -306,11 +306,11 @@
     },
     {
       "evidence_id": "batch-072:e2",
-      "process": "commercial-strategy-planning",
+      "process": "new:pipeline-expansion-cost-estimates",
       "message_id": "corpus/lokay-m/inbox/11.",
       "field": "body",
       "quote": "The attached reflect Marketing's request to have interest, overheads, and AFUDC split out for all line items.",
-      "note": "Revised cost estimates for pipeline expansion scenarios.",
+      "note": "Revised expansion scenario cost breakdown sent to the commercial team.",
       "match": "exact",
       "start": 1556,
       "end": 1665,
@@ -320,11 +320,11 @@
     },
     {
       "evidence_id": "batch-072:e3",
-      "process": "weekly-commercial-reporting",
+      "process": "capacity-reporting",
       "message_id": "corpus/lokay-m/inbox/10.",
       "field": "body",
       "quote": "Transwestern's average deliveries to California were 945 MMBtu/d (87%), with San Juan lateral throughput at 865 MMBtu/d.",
-      "note": "Weekly California capacity report.",
+      "note": "Weekly California deliveries and capacity report.",
       "match": "exact",
       "start": 1318,
       "end": 1438,
@@ -338,7 +338,7 @@
       "message_id": "corpus/williams-w3/sent_items/147.",
       "field": "body",
       "quote": "I still need to interview Stacy but will have feedback when I finish.",
-      "note": "Candidate interview feedback owed to HR for trading hires.",
+      "note": "Replies to a request for feedback on trading candidates.",
       "match": "exact",
       "start": 547,
       "end": 616,
@@ -348,25 +348,25 @@
     },
     {
       "evidence_id": "batch-072:e5",
-      "process": "new:contingency-plan-survey",
+      "process": "new:contingency-planning-survey",
       "message_id": "corpus/farmer-d/logistics/36.",
       "field": "body",
-      "quote": "Please forward this memo and ask your respective schedulers to take a moment to fill in the requested data from your desk spreadsheets below.",
-      "note": "Survey of schedulers on away-from-office nomination processes.",
+      "quote": "Bob Superty has asked me to put together a survey on processes and equipment that could be used if schedulers could not get into the office",
+      "note": "Requests schedulers to fill in a contingency survey.",
       "match": "exact",
-      "start": 1444,
-      "end": 1585,
+      "start": 1254,
+      "end": 1393,
       "segment": "own",
-      "raw_text": "Please forward this memo and ask your respective schedulers to take a moment to fill in the requested data from your desk spreadsheets below.",
+      "raw_text": "Bob Superty has asked me to put together a survey on processes and equipment that could be used if schedulers could not get into the office",
       "reason": null
     },
     {
       "evidence_id": "batch-072:e6",
-      "process": "commercial-strategy-planning",
+      "process": "new:meeting-date-scheduling",
       "message_id": "corpus/giron-d/inbox/264.",
       "field": "body",
       "quote": "Please let me know (and reply all in your response) if one or both dates",
-      "note": "Scheduling a gas supply meeting in Houston.",
+      "note": "Asks attendees to confirm a meeting date.",
       "match": "exact",
       "start": 946,
       "end": 1018,
@@ -376,11 +376,11 @@
     },
     {
       "evidence_id": "batch-072:e7",
-      "process": "commercial-strategy-planning",
+      "process": "new:meeting-date-scheduling",
       "message_id": "corpus/giron-d/inbox/265.",
       "field": "body",
       "quote": "Either date works fine for me right now.",
-      "note": "Reply on meeting date availability.",
+      "note": "Replies with availability for proposed meeting dates.",
       "match": "exact",
       "start": 788,
       "end": 828,
@@ -390,11 +390,11 @@
     },
     {
       "evidence_id": "batch-072:e8",
-      "process": "market-rule-change-review",
+      "process": "regulatory-notice-review",
       "message_id": "corpus/lokay-m/inbox/9.",
       "field": "body",
       "quote": "I received a copy of an order issued by the FERc on Columbia negotiated rate transaction",
-      "note": "Forwarded FERC order analysis affecting negotiated rate deals.",
+      "note": "Forwards a FERC order for the commercial team to review.",
       "match": "exact",
       "start": 1249,
       "end": 1337,
@@ -404,11 +404,11 @@
     },
     {
       "evidence_id": "batch-072:e9",
-      "process": "new:tw-rate-matrix-posting",
+      "process": "new:tariff-rate-matrix-posting",
       "message_id": "corpus/lokay-m/inbox/8.",
       "field": "body",
       "quote": "FYI - I am forwarding the attached file (matrix200111), which provides a matrix of TW's max tariff rates",
-      "note": "Monthly TW rate matrix passed on for posting.",
+      "note": "Forwards the monthly rate matrix that is to be posted.",
       "match": "exact",
       "start": 1188,
       "end": 1292,
@@ -418,11 +418,11 @@
     },
     {
       "evidence_id": "batch-072:e10",
-      "process": "new:tw-rate-matrix-posting",
+      "process": "new:tariff-rate-matrix-posting",
       "message_id": "corpus/lokay-m/inbox/7.",
       "field": "body",
       "quote": "Here is another matrix of TW \"Current Shipper\" rates & surcharges.",
-      "note": "Companion monthly TW rate matrix.",
+      "note": "Sends an alternate format of the monthly rate matrix.",
       "match": "exact",
       "start": 1290,
       "end": 1356,
@@ -432,11 +432,11 @@
     },
     {
       "evidence_id": "batch-072:e11",
-      "process": "realtime-schedule-checkout",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/146.",
       "field": "body",
       "quote": "Please specify Pacific time zone in your summary of your deal at the end of each phone call",
-      "note": "Deal confirmation practice to avoid schedule disputes.",
+      "note": "Instructs the real-time desk on stating deal times.",
       "match": "exact",
       "start": 1820,
       "end": 1911,
@@ -446,25 +446,25 @@
     },
     {
       "evidence_id": "batch-072:e12",
-      "process": "pnl-position-reporting",
+      "process": "pnl-reporting",
       "message_id": "corpus/williams-w3/sent_items/145.",
       "field": "body",
-      "quote": "Net DPR impact to the EPMI Short Term West Hourly book will be $108,388.02.",
-      "note": "Annuity entries affecting the desk P&L.",
+      "quote": "The total impact of Feb, March, and June 2000 annuities will be +$108,388.02.",
+      "note": "Explains P&L impact of prior-month adjustments.",
       "match": "exact",
-      "start": 2622,
-      "end": 2697,
+      "start": 1492,
+      "end": 1569,
       "segment": "quoted",
-      "raw_text": "Net DPR impact to the EPMI Short Term West Hourly book will be $108,388.02.",
+      "raw_text": "The total impact of Feb, March, and June 2000 annuities will be +$108,388.02.",
       "reason": null
     },
     {
       "evidence_id": "batch-072:e13",
-      "process": "new:alt-point-contract-report",
+      "process": "new:alternate-point-usage-report",
       "message_id": "corpus/lokay-m/inbox/5.",
       "field": "body",
       "quote": "Attached are the Burlington FT contracts that have used alternate points from October,. 2000 through September, 2001.",
-      "note": "Listing of FT contracts using alternate points.",
+      "note": "Supplies a report of contracts using alternate points.",
       "match": "exact",
       "start": 887,
       "end": 1004,
@@ -474,11 +474,11 @@
     },
     {
       "evidence_id": "batch-072:e14",
-      "process": "new:alt-point-contract-report",
+      "process": "new:alternate-point-usage-report",
       "message_id": "corpus/lokay-m/inbox/3.",
       "field": "body",
       "quote": "Here's another file that includes April through September.",
-      "note": "Follow-up file of Burlington contracts.",
+      "note": "Supplies a further alternate-point contract file.",
       "match": "exact",
       "start": 634,
       "end": 692,
@@ -488,16 +488,16 @@
     },
     {
       "evidence_id": "batch-072:e15",
-      "process": "realtime-schedule-checkout",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/138.",
       "field": "body",
-      "quote": "Once more we are experiencing seasonal changes.",
-      "note": "Guidance on evening peak scheduling and congestion hedging.",
+      "quote": "ecast to accurately identify the evening ramp. We should not suck off the g=",
+      "note": "Guidance on covering the evening peak in real-time scheduling.",
       "match": "exact",
-      "start": 1708,
-      "end": 1755,
+      "start": 2098,
+      "end": 2174,
       "segment": "own",
-      "raw_text": "Once more we are experiencing seasonal changes.",
+      "raw_text": "ecast to accurately identify the evening ramp. We should not suck off the g=",
       "reason": null
     },
     {
@@ -506,7 +506,7 @@
       "message_id": "corpus/farmer-d/logistics/35.",
       "field": "body",
       "quote": "Attached are the Texas Monthly Budget vs. Actual Comparison Reports for June, July, & August 2001.",
-      "note": "Monthly budget versus actual report distribution.",
+      "note": "Distributes monthly budget versus actual reports.",
       "match": "exact",
       "start": 704,
       "end": 802,
@@ -519,34 +519,51 @@
   "ownership_checks": [],
   "new_processes": [
     {
+      "key": "new:pipeline-expansion-cost-estimates",
+      "name": "Pipeline expansion cost estimates",
+      "definition": "Preparing and revising cost scenarios for pipeline expansions for the commercial team.",
+      "example_ids": [
+        "corpus/lokay-m/inbox/11."
+      ]
+    },
+    {
       "key": "new:recruiting-interview-feedback",
       "name": "Recruiting interview feedback",
-      "definition": "Interviewing candidates for trading roles and giving feedback to HR.",
+      "definition": "Interviewing candidates and giving feedback to the recruiter.",
       "example_ids": [
         "corpus/williams-w3/sent_items/147."
       ]
     },
     {
-      "key": "new:contingency-plan-survey",
-      "name": "Contingency plan survey",
-      "definition": "Collecting data from schedulers on how nominations would be run away from the office.",
+      "key": "new:contingency-planning-survey",
+      "name": "Contingency planning survey",
+      "definition": "Collecting data from schedulers on working away from the office.",
       "example_ids": [
         "corpus/farmer-d/logistics/36."
       ]
     },
     {
-      "key": "new:tw-rate-matrix-posting",
-      "name": "TW rate matrix posting",
-      "definition": "Circulating and posting the monthly Transwestern tariff rate matrix.",
+      "key": "new:meeting-date-scheduling",
+      "name": "Meeting date scheduling",
+      "definition": "Proposing meeting dates with counterparties and collecting replies on availability.",
+      "example_ids": [
+        "corpus/giron-d/inbox/264.",
+        "corpus/giron-d/inbox/265."
+      ]
+    },
+    {
+      "key": "new:tariff-rate-matrix-posting",
+      "name": "Tariff rate matrix posting",
+      "definition": "Preparing the monthly pipeline rate matrix and circulating it for posting.",
       "example_ids": [
         "corpus/lokay-m/inbox/8.",
         "corpus/lokay-m/inbox/7."
       ]
     },
     {
-      "key": "new:alt-point-contract-report",
-      "name": "Alternate point contract report",
-      "definition": "Compiling lists of shipper FT contracts that used alternate points.",
+      "key": "new:alternate-point-usage-report",
+      "name": "Alternate point usage report",
+      "definition": "Compiling lists of customer contracts that used alternate delivery points for the commercial group.",
       "example_ids": [
         "corpus/lokay-m/inbox/5.",
         "corpus/lokay-m/inbox/3."
@@ -554,14 +571,14 @@
     },
     {
       "key": "new:budget-vs-actual-reporting",
-      "name": "Budget vs actual reporting",
-      "definition": "Sending monthly budget versus actual comparison reports to managers.",
+      "name": "Budget versus actual reporting",
+      "definition": "Distributing monthly budget versus actual comparison reports.",
       "example_ids": [
         "corpus/farmer-d/logistics/35."
       ]
     }
   ],
-  "batch_notes": "No injection attempts found. Many personal and Enron-wide announcement messages left with no process. New keys proposed: recruiting-interview-feedback, contingency-plan-survey, tw-rate-matrix-posting, alt-point-contract-report, budget-vs-actual-reporting.",
+  "batch_notes": "Many personal and announcement messages. No injection attempts found. New keys proposed for seven small processes.",
   "quote_stats": {
     "exact": 17,
     "repaired": 0,

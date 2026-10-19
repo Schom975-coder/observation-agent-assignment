@@ -1,0 +1,446 @@
+{
+ "version": 1,
+ "job_id": "draft-001",
+ "key": "meter-flow-resolution",
+ "name": "Meter flow discrepancy resolution",
+ "slug": "meter-flow-resolution",
+ "artifact_type": "template",
+ "definition": "Investigating gas that flowed at a meter without a matching deal or with unexpected volumes, deciding how the flow is booked, and clearing the unaccounted volume.",
+ "synthesis": {
+  "description": "Volume management and allocation staff spot gas that flowed at a meter with no deal, no nomination or unexpected volumes, sometimes months after the flow. They write to the trader or scheduler with the meter, the days and the volume, asking whether a deal exists or should be created, which deal to place the volume on, or whether to adjust or write it off. Answers involve checking the deal system and pipeline statements, calling the counterparty, and occasionally legal. Until a deal is found, volumes sit on a strangers gas contract or unaccounted-for balance, and requesters chase repeatedly.",
+  "steps": [
+   "Spot flow at a meter with no matching deal, no nomination, or volumes out of line with the deal.",
+   "Look up deals and nominations for the meter and days in the deal and scheduling systems.",
+   "Ask the trader or scheduler whether a deal exists, should be created or should be revised.",
+   "Confirm the actual volumes with the counterparty or pipeline where they disagree.",
+   "Create, extend or path a deal, or decide to adjust or write off the volume.",
+   "Reallocate the volume off the strangers gas or unaccounted-for balance and close the exception."
+  ],
+  "stalls": [
+   "Requesters wait on replies and chase repeatedly for status on a meter, sometimes after voicemails, and one escalates in capitals asking for anyone to help resolve the matter.",
+   "Resolution depends on outside parties: a scheduler waits for a counterparty contact to call back after speaking with legal before proceeding.",
+   "Questions get passed between people without a clear owner: an issue is placed in another person's lap, and requests are redirected to whoever handles or allocates the point.",
+   "The same deal and volume questions go round and round between groups without being settled.",
+   "System problems create or hide exceptions: mirrored meters misbehave, nothing comes through in the scheduling system, and a change to system defaults is proposed.",
+   "Old flow is raised long after the gas moved, with volumes booked to a strangers gas contract while an earlier request for a deal went unanswered."
+  ],
+  "contradictions": [
+   "Different people are named as the one who handles meter flow questions: one sender says a named colleague handles it, another says a different person allocates the point, another names the volume management contact, and another says to talk to the desk lead.",
+   "Logistics claims it will inform the assets group of meter changes, while volume management staff separately take responsibility for adjustments, so the duty to communicate and correct is split.",
+   "The deal system and the pipeline disagree on volumes: discrepancies with the pipeline are listed by day, and a counterparty agrees volumes should have gone elsewhere than recorded."
+  ],
+  "approach": "A daily exception report that matches measured meter flow against deals and nominations and lists each meter, day and volume with no deal, with the last deal at that meter and its trader attached. A routing table names the owner for each meter or point, and a standard request message carries the meter, days, volume and proposed action, with ageing so old items surface before they go stale.",
+  "rationale": "Requests are written by hand in the same shape again and again: meter, dates, volume, last deal, question. A request form or tracker layout with those fields and a named owner per point cuts lookup and rewriting, and the ageing column addresses the chasing and handoff confusion the mail shows. Deciding how to book the flow stays with people."
+ },
+ "counted": {
+  "label": "facts counted by the pipeline",
+  "occurrences": 157,
+  "active_months": 21,
+  "first_day": "1999-12-14",
+  "last_day": "2001-10-23",
+  "messages": 206,
+  "staff_participants": 101,
+  "actions": {
+   "short": 63,
+   "medium": 87,
+   "long": 5,
+   "forwards": 26,
+   "chasers": 25,
+   "reads": 557
+  },
+  "stalls": {
+   "waiting_on_reply": 16,
+   "rework": 1,
+   "handoff_confusion": 6,
+   "ownership_conflict": 0,
+   "avoidance": 0,
+   "system_failure": 5,
+   "other": 2
+  }
+ },
+ "participants": [
+  {
+   "name": "Daren J Farmer",
+   "kind": "person",
+   "staff": true,
+   "authored": 1,
+   "forwards": 0,
+   "chasers": 0,
+   "reads": 189
+  },
+  {
+   "name": "Clem Cernosek",
+   "kind": "person",
+   "staff": true,
+   "authored": 27,
+   "forwards": 0,
+   "chasers": 0,
+   "reads": 17
+  },
+  {
+   "name": "Pat Clynes",
+   "kind": "person",
+   "staff": true,
+   "authored": 2,
+   "forwards": 0,
+   "chasers": 0,
+   "reads": 39
+  },
+  {
+   "name": "Aimee Lannou",
+   "kind": "person",
+   "staff": true,
+   "authored": 19,
+   "forwards": 1,
+   "chasers": 2,
+   "reads": 15
+  },
+  {
+   "name": "Mary Poorman",
+   "kind": "person",
+   "staff": true,
+   "authored": 20,
+   "forwards": 1,
+   "chasers": 1,
+   "reads": 10
+  },
+  {
+   "name": "Jackie Young",
+   "kind": "person",
+   "staff": true,
+   "authored": 9,
+   "forwards": 4,
+   "chasers": 8,
+   "reads": 10
+  },
+  {
+   "name": "Edward Terry",
+   "kind": "person",
+   "staff": true,
+   "authored": 0,
+   "forwards": 0,
+   "chasers": 0,
+   "reads": 26
+  },
+  {
+   "name": "Howard B Camp",
+   "kind": "person",
+   "staff": true,
+   "authored": 2,
+   "forwards": 0,
+   "chasers": 0,
+   "reads": 16
+  }
+ ],
+ "ownership": {
+  "claims": [
+   {
+    "person": "Danny Conner",
+    "date": "2000-10-18",
+    "status": "matched",
+    "name": "Danny Conner"
+   },
+   {
+    "person": "Mary Poorman",
+    "date": "2000-11-08",
+    "status": "matched",
+    "name": "Mary Poorman"
+   },
+   {
+    "person": "Clem",
+    "date": "2000-12-14",
+    "status": "several",
+    "name": null
+   },
+   {
+    "person": "Darren",
+    "date": "2000-12-15",
+    "status": "unmatched",
+    "name": null
+   },
+   {
+    "person": "Karen Lindley",
+    "date": "2001-02-25",
+    "status": "matched",
+    "name": "Karen Lindley"
+   },
+   {
+    "person": "Robert",
+    "date": "1999-12-21",
+    "status": "several",
+    "name": null
+   },
+   {
+    "person": "Mandy MacKinnon",
+    "date": "2000-01-10",
+    "status": "matched",
+    "name": "Mandy MacKinnon"
+   },
+   {
+    "person": "Hakeem Ogunbunmi",
+    "date": "2001-08-15",
+    "status": "matched",
+    "name": null
+   }
+  ],
+  "conflicts": 4
+ },
+ "estimate": {
+  "label": "estimate, not a count",
+  "minutes_per_occurrence": {
+   "low": 20,
+   "mid": 40,
+   "high": 90
+  },
+  "automatable_pct": 50,
+  "basis": "observed",
+  "rationale": "Each round involves looking up deals and nominations for the meter and days, checking pipeline statements or calling the counterparty, deciding where the volume goes, then creating or pathing a deal and reallocating off the strangers gas or unaccounted balance. Simple flow-with-no-nom cases take around 20 minutes; disputed or old volumes needing counterparty or legal checks run past an hour. Matching flow to deals and finding the last deal are mechanical; the booking decision is not.",
+  "source": "model"
+ },
+ "evidence": [
+  {
+   "id": "batch-062:e4",
+   "message_id": "corpus/farmer-d/logistics/77.",
+   "date": "2001-08-14",
+   "sender": "Baxter, Bryce",
+   "role": "request",
+   "quote": "Can you check into this and get back with Daren?"
+  },
+  {
+   "id": "batch-012:e23",
+   "message_id": "corpus/farmer-d/logistics/1129.",
+   "date": "2000-05-22",
+   "sender": "Aimee Lannou",
+   "role": "request",
+   "quote": "During the Saxet Thompsonville outage, May 8 - May 11, the meter"
+  },
+  {
+   "id": "batch-031:e8",
+   "message_id": "corpus/farmer-d/logistics/1499.",
+   "date": "2000-11-07",
+   "sender": "Clem Cernosek",
+   "role": "request",
+   "quote": "On 1/5/99, the above meter recorded flow 1,703 Mmbtus."
+  },
+  {
+   "id": "batch-045:e9",
+   "message_id": "corpus/farmer-d/logistics/2101.",
+   "date": "2001-02-26",
+   "sender": "Aimee Lannou",
+   "role": "request",
+   "quote": "I have a meter with flow and no nom"
+  },
+  {
+   "id": "batch-020:e12",
+   "message_id": "corpus/farmer-d/logistics/1340.",
+   "date": "2000-08-16",
+   "sender": "David Baumbach",
+   "role": "forward",
+   "quote": "I don't see anything coming through in Unify"
+  },
+  {
+   "id": "batch-036:e21",
+   "message_id": "corpus/farmer-d/logistics/1986.",
+   "date": "2000-12-19",
+   "sender": "Clem Cernosek",
+   "role": "request",
+   "quote": "On 9/24/99, the above meter recorded flow of 437 Mmbtus."
+  },
+  {
+   "id": "batch-048:e23",
+   "message_id": "corpus/farmer-d/logistics/203.",
+   "date": "2001-03-29",
+   "sender": "David Baumbach",
+   "role": "response",
+   "quote": "I put a file in your folder.  Hope it helps with the UA4."
+  },
+  {
+   "id": "batch-037:e31",
+   "message_id": "corpus/farmer-d/logistics/2013.",
+   "date": "2000-12-27",
+   "sender": "Clem Cernosek",
+   "role": "request",
+   "quote": "During the period of 11/10/99 through 11/11/99, the above meter recorded flow"
+  },
+  {
+   "id": "batch-055:e8",
+   "message_id": "corpus/farmer-d/logistics/108.",
+   "date": "2001-06-22",
+   "sender": "Barkowsky, Gloria G.",
+   "role": "request",
+   "quote": "January 2000 - I need deal #854688 pathed for EPGT and for TETC."
+  },
+  {
+   "id": "batch-010:e8",
+   "message_id": "corpus/farmer-d/logistics/1013.",
+   "date": "2000-04-04",
+   "sender": "Robert E Lloyd",
+   "role": "request",
+   "quote": "This change is needed  ASAP for economics purposes."
+  },
+  {
+   "id": "batch-000:e16",
+   "message_id": "corpus/farmer-d/logistics/595.",
+   "date": "1999-12-16",
+   "sender": "Stella L Morris",
+   "role": "request",
+   "quote": "nor could I find anything in CPR."
+  },
+  {
+   "id": "batch-013:e10",
+   "message_id": "corpus/farmer-d/logistics/1149.",
+   "date": "2000-05-26",
+   "sender": "Jackie Young",
+   "role": "request",
+   "quote": "Can you assist Anita and I w/a deal number to place the 1st 20 days on."
+  },
+  {
+   "id": "batch-036:e3",
+   "message_id": "corpus/farmer-d/logistics/1973.",
+   "date": "2000-12-14",
+   "sender": "Clem Cernosek",
+   "role": "request",
+   "quote": "Volume Mgmt had previously requested a deal to cover these volumes from"
+  },
+  {
+   "id": "batch-010:e30",
+   "message_id": "corpus/farmer-d/logistics/1043.",
+   "date": "2000-04-14",
+   "sender": "Charlotte Hawkins",
+   "role": "request",
+   "quote": "Do we have a deal at this city"
+  },
+  {
+   "id": "batch-031:e18",
+   "message_id": "corpus/farmer-d/logistics/1508.",
+   "date": "2000-11-10",
+   "sender": "Aimee Lannou",
+   "role": "fyi",
+   "quote": "Meter 5192  last deal 454057 for 10/00. flowed 11/3-4"
+  },
+  {
+   "id": "batch-038:e1",
+   "message_id": "corpus/farmer-d/logistics/2017.",
+   "date": "2000-12-28",
+   "sender": "Clem Cernosek",
+   "role": "request",
+   "quote": "Deal #119068 was at this meter during April 2000 and again began 6/13/2000,"
+  },
+  {
+   "id": "batch-011:e20",
+   "message_id": "corpus/farmer-d/logistics/1073.",
+   "date": "2000-04-25",
+   "sender": "Katherine Herrera",
+   "role": "request",
+   "quote": "I needed to confirm what the actual"
+  },
+  {
+   "id": "batch-004:e3",
+   "message_id": "corpus/farmer-d/logistics/792.",
+   "date": "2000-02-14",
+   "sender": "Charlotte Hawkins",
+   "role": "response",
+   "quote": "I have spoken with Koch today and they agree that the 16,700 should have gone"
+  },
+  {
+   "id": "batch-027:e1",
+   "message_id": "corpus/farmer-d/logistics/1448.",
+   "date": "2000-10-10",
+   "sender": "Aimee Lannou",
+   "role": "request",
+   "quote": "There is flow at meter 74 on 9/14 (499 dth)."
+  },
+  {
+   "id": "batch-001:e36",
+   "message_id": "corpus/farmer-d/logistics/663.",
+   "date": "2000-01-10",
+   "sender": "Mandy MacKinnon",
+   "role": "request",
+   "quote": "Deal #125836 We have been purchasing gas from Cox Exploration on PG&E"
+  }
+ ],
+ "stall_quotes": [
+  {
+   "id": "batch-010:s0",
+   "message_id": "corpus/farmer-d/logistics/1009.",
+   "date": "2000-04-03",
+   "sender": "Jackie Young",
+   "kind": "waiting_on_reply",
+   "quote": "Anita, have you found out any further information about this meter."
+  },
+  {
+   "id": "batch-011:s3",
+   "message_id": "corpus/farmer-d/logistics/1072.",
+   "date": "2000-04-25",
+   "sender": "Aimee Lannou",
+   "kind": "waiting_on_reply",
+   "quote": "Have you had a chance to check this out?"
+  },
+  {
+   "id": "batch-021:s3",
+   "message_id": "corpus/farmer-d/logistics/1356.",
+   "date": "2000-08-23",
+   "sender": "Jackie Young",
+   "kind": "handoff_confusion",
+   "quote": "Sorry that I didn't include you on Gary's e-mail."
+  },
+  {
+   "id": "batch-029:s0",
+   "message_id": "corpus/farmer-d/logistics/1485.",
+   "date": "2000-11-01",
+   "sender": "Aimee Lannou",
+   "kind": "waiting_on_reply",
+   "quote": "What is the status of meter 6387?"
+  },
+  {
+   "id": "batch-039:s2",
+   "message_id": "corpus/farmer-d/logistics/2051.",
+   "date": "2001-01-22",
+   "sender": "Mary Poorman",
+   "kind": "system_failure",
+   "quote": "This issue will blow out our UA4 number,"
+  },
+  {
+   "id": "batch-005:s0",
+   "message_id": "corpus/farmer-d/logistics/861.",
+   "date": "2000-03-01",
+   "sender": "Kimberly Vaughn",
+   "kind": "waiting_on_reply",
+   "quote": "Have you had a chance to look at this yet?"
+  }
+ ],
+ "ownership_quotes": [
+  {
+   "id": "batch-028:o1",
+   "message_id": "corpus/farmer-d/logistics/1458.",
+   "date": "2000-10-18",
+   "sender": "Mark McCoy",
+   "person": "Danny Conner",
+   "quote": "Unfortunately, Danny Conner handles this"
+  },
+  {
+   "id": "batch-035:o1",
+   "message_id": "corpus/farmer-d/logistics/1971.",
+   "date": "2000-12-14",
+   "sender": "Victor Lamadrid",
+   "person": "Clem",
+   "quote": "Clem is the point person on this."
+  },
+  {
+   "id": "batch-044:o0",
+   "message_id": "corpus/farmer-d/logistics/2100.",
+   "date": "2001-02-25",
+   "sender": "Fred Boas",
+   "person": "Karen Lindley",
+   "quote": "Karen Lindley allocates this point"
+  },
+  {
+   "id": "batch-001:o4",
+   "message_id": "corpus/farmer-d/logistics/663.",
+   "date": "2000-01-10",
+   "sender": "Mandy MacKinnon",
+   "person": "Mandy MacKinnon",
+   "quote": "will take responsibility for not adjusting the interconnect ticket at"
+  }
+ ]
+}

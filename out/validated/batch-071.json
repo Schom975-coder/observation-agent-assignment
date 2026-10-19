@@ -5,7 +5,7 @@
     {
       "id": "corpus/williams-w3/sent_items/162.",
       "processes": [
-        "market-rule-change-review"
+        "regulatory-notice-review"
       ],
       "role": "request",
       "stall": null,
@@ -14,7 +14,7 @@
     {
       "id": "corpus/farmer-d/logistics/40.",
       "processes": [
-        "deal-record-correction"
+        "new:counterparty-name-correction"
       ],
       "role": "request",
       "stall": null,
@@ -23,7 +23,7 @@
     {
       "id": "corpus/williams-w3/sent_items/161.",
       "processes": [
-        "desk-coverage-on-call"
+        "real-time-power-scheduling"
       ],
       "role": "fyi",
       "stall": null,
@@ -32,7 +32,7 @@
     {
       "id": "corpus/williams-w3/sent_items/160.",
       "processes": [
-        "desk-coverage-on-call"
+        "real-time-power-scheduling"
       ],
       "role": "fyi",
       "stall": null,
@@ -41,7 +41,7 @@
     {
       "id": "corpus/lokay-m/inbox/15.",
       "processes": [
-        "pipeline-capacity-marketing"
+        "commercial-strategy-planning"
       ],
       "role": "request",
       "stall": null,
@@ -50,10 +50,9 @@
     {
       "id": "corpus/williams-w3/sent_items/159.",
       "processes": [
-        "counterparty-settlement-review",
-        "realtime-schedule-checkout"
+        "real-time-power-scheduling"
       ],
-      "role": "forward",
+      "role": "fyi",
       "stall": {
         "kind": "system_failure",
         "quote": "The CISO is again having difficulties reading our bids."
@@ -84,7 +83,7 @@
     {
       "id": "corpus/farmer-d/logistics/39.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "meter-flow-resolution"
       ],
       "role": "forward",
       "stall": null,
@@ -99,8 +98,10 @@
     },
     {
       "id": "corpus/williams-w3/sent_items/156.",
-      "processes": [],
-      "role": "noise",
+      "processes": [
+        "new:campus-recruiting-outreach"
+      ],
+      "role": "request",
       "stall": null,
       "ownership_claim": null
     },
@@ -114,7 +115,7 @@
     {
       "id": "corpus/giron-d/inbox/254.",
       "processes": [
-        "new:hedge-quote-request"
+        "new:customer-pricing-quote"
       ],
       "role": "request",
       "stall": null,
@@ -123,7 +124,7 @@
     {
       "id": "corpus/giron-d/inbox/257.",
       "processes": [
-        "new:hedge-quote-request"
+        "new:customer-pricing-quote"
       ],
       "role": "request",
       "stall": null,
@@ -132,16 +133,16 @@
     {
       "id": "corpus/giron-d/inbox/255.",
       "processes": [
-        "new:origination-customer-leads"
+        "new:customer-pricing-quote"
       ],
-      "role": "forward",
+      "role": "fyi",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/giron-d/inbox/256.",
       "processes": [
-        "new:origination-customer-leads"
+        "commercial-strategy-planning"
       ],
       "role": "forward",
       "stall": null,
@@ -150,7 +151,7 @@
     {
       "id": "corpus/farmer-d/logistics/38.",
       "processes": [
-        "new:meter-state-county-verification"
+        "new:meter-data-verification"
       ],
       "role": "forward",
       "stall": {
@@ -162,16 +163,16 @@
     {
       "id": "corpus/lokay-m/inbox/14.",
       "processes": [
-        "commercial-strategy-planning"
+        "new:storage-point-setup"
       ],
-      "role": "forward",
+      "role": "fyi",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/sent_items/155.",
       "processes": [
-        "market-rule-change-review"
+        "regulatory-notice-review"
       ],
       "role": "forward",
       "stall": null,
@@ -198,14 +199,14 @@
       "processes": [
         "new:headcount-approval"
       ],
-      "role": "request",
+      "role": "forward",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/williams-w3/sent_items/153.",
       "processes": [
-        "user-access-setup"
+        "system-access-request"
       ],
       "role": "response",
       "stall": null,
@@ -214,7 +215,7 @@
     {
       "id": "corpus/williams-w3/sent_items/152.",
       "processes": [
-        "new:time-off-approval"
+        "new:time-off-scheduling"
       ],
       "role": "response",
       "stall": null,
@@ -223,7 +224,7 @@
     {
       "id": "corpus/williams-w3/sent_items/151.",
       "processes": [
-        "new:time-off-approval"
+        "new:time-off-scheduling"
       ],
       "role": "response",
       "stall": null,
@@ -232,7 +233,7 @@
     {
       "id": "corpus/williams-w3/sent_items/150.",
       "processes": [
-        "new:time-off-approval"
+        "new:time-off-scheduling"
       ],
       "role": "response",
       "stall": null,
@@ -255,14 +256,14 @@
     {
       "id": "corpus/giron-d/inbox/260.",
       "processes": [],
-      "role": "personal",
+      "role": "noise",
       "stall": null,
       "ownership_claim": null
     },
     {
       "id": "corpus/lokay-m/inbox/12.",
       "processes": [
-        "market-rule-change-review"
+        "regulatory-notice-review"
       ],
       "role": "fyi",
       "stall": null,
@@ -272,53 +273,53 @@
   "evidence": [
     {
       "evidence_id": "batch-071:e0",
-      "process": "market-rule-change-review",
+      "process": "regulatory-notice-review",
       "message_id": "corpus/williams-w3/sent_items/162.",
       "field": "body",
-      "quote": "It fits with a more formal procedure posted last friday but shows some detail on what parties consuming R/T energy will be charged.",
-      "note": "Draft CAISO out-of-market procedure circulated for review of its charging effect.",
+      "quote": "What are Tracy's thoughts on this?",
+      "note": "Asks for a view on the CAISO draft procedure circulated via WPTF.",
       "match": "exact",
-      "start": 888,
-      "end": 1019,
-      "segment": "quoted",
-      "raw_text": "It fits with a more formal procedure posted last friday but shows some detail on what parties consuming R/T energy will be charged.",
+      "start": 534,
+      "end": 568,
+      "segment": "own",
+      "raw_text": "What are Tracy's thoughts on this?",
       "reason": null
     },
     {
       "evidence_id": "batch-071:e1",
-      "process": "deal-record-correction",
+      "process": "new:counterparty-name-correction",
       "message_id": "corpus/farmer-d/logistics/40.",
       "field": "body",
-      "quote": "Each has a relatively recent deal booked to it that need to be changed as described above: Sitara 1085609 for TXU and 1086002 for Enbridge Consumers Gas.",
-      "note": "Deals in Sitara must be changed to the correct counterparty.",
+      "quote": "Can you make the change?",
+      "note": "Asks for deals booked under the wrong counterparty name to be changed.",
       "match": "exact",
-      "start": 1315,
-      "end": 1468,
-      "segment": "quoted",
-      "raw_text": "Each has a relatively recent deal booked to it that need to be changed as described above: Sitara 1085609 for TXU and 1086002 for Enbridge Consumers Gas.",
+      "start": 576,
+      "end": 600,
+      "segment": "own",
+      "raw_text": "Can you make the change?",
       "reason": null
     },
     {
       "evidence_id": "batch-071:e2",
-      "process": "desk-coverage-on-call",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/161.",
       "field": "body",
-      "quote": "For those on night and day shift on Saturday/Sunday the emergency back-up generators will be tested.",
-      "note": "Weekend shift preparation notice for the desk.",
+      "quote": "I think we should work to have everything submitted early to the CISO, tags made, etc.",
+      "note": "Adjusts real-time schedule submission timing around generator testing.",
       "match": "exact",
-      "start": 1662,
-      "end": 1762,
+      "start": 1935,
+      "end": 2021,
       "segment": "own",
-      "raw_text": "For those on night and day shift on Saturday/Sunday the emergency back-up generators will be tested.",
+      "raw_text": "I think we should work to have everything submitted early to the CISO, tags made, etc.",
       "reason": null
     },
     {
       "evidence_id": "batch-071:e3",
-      "process": "desk-coverage-on-call",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/160.",
       "field": "body",
       "quote": "Also on Saturday morning...Enpower will be down from 5 AM to 7 AM.",
-      "note": "Weekend shift notice of system downtime to the desk group.",
+      "note": "Notice of scheduling system downtime affecting the real-time desk.",
       "match": "exact",
       "start": 1645,
       "end": 1711,
@@ -328,11 +329,11 @@
     },
     {
       "evidence_id": "batch-071:e4",
-      "process": "pipeline-capacity-marketing",
+      "process": "commercial-strategy-planning",
       "message_id": "corpus/lokay-m/inbox/15.",
       "field": "body",
       "quote": "Looking for a volunteer to market TW to this new power plant so that they will take the supplies off our pipe.",
-      "note": "Asks for someone to market TW capacity to a new plant.",
+      "note": "Seeks an owner to market the pipeline to a new customer project.",
       "match": "exact",
       "start": 908,
       "end": 1018,
@@ -342,11 +343,11 @@
     },
     {
       "evidence_id": "batch-071:e5",
-      "process": "counterparty-settlement-review",
+      "process": "real-time-power-scheduling",
       "message_id": "corpus/williams-w3/sent_items/159.",
       "field": "body",
       "quote": "We also received congestion for HE 5--50 mws at $74.83.",
-      "note": "ISO congestion awards and prices checked against the inc sheet.",
+      "note": "Reports congestion awards and bid submission issues with the CAISO.",
       "match": "exact",
       "start": 609,
       "end": 664,
@@ -356,25 +357,11 @@
     },
     {
       "evidence_id": "batch-071:e6",
-      "process": "realtime-schedule-checkout",
-      "message_id": "corpus/williams-w3/sent_items/159.",
-      "field": "body",
-      "quote": "HE 5 is not in the inc sheet but will be.",
-      "note": "Hourly schedule/bid entries corrected for the ISO.",
-      "match": "exact",
-      "start": 665,
-      "end": 706,
-      "segment": "own",
-      "raw_text": "HE 5 is not in the inc sheet but will be.",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-071:e7",
-      "process": "meter-flow-deal-coverage",
+      "process": "meter-flow-resolution",
       "message_id": "corpus/farmer-d/logistics/39.",
       "field": "body",
       "quote": "this meter needs to be set up for May 2001 just as it was for April 2001.",
-      "note": "Meter needs contracts set up so volumes can be booked.",
+      "note": "Meter volumes for a past month must be entered for a call-out meter.",
       "match": "exact",
       "start": 830,
       "end": 903,
@@ -383,12 +370,26 @@
       "reason": null
     },
     {
+      "evidence_id": "batch-071:e7",
+      "process": "new:campus-recruiting-outreach",
+      "message_id": "corpus/williams-w3/sent_items/156.",
+      "field": "body",
+      "quote": "Do you still want some to go to Seattle and stir up interest?",
+      "note": "Asks about sending staff to a university club to promote recruiting.",
+      "match": "exact",
+      "start": 639,
+      "end": 700,
+      "segment": "own",
+      "raw_text": "Do you still want some to go to Seattle and stir up interest?",
+      "reason": null
+    },
+    {
       "evidence_id": "batch-071:e8",
-      "process": "new:hedge-quote-request",
+      "process": "new:customer-pricing-quote",
       "message_id": "corpus/giron-d/inbox/254.",
       "field": "body",
       "quote": "Will you please give this guy a call today?",
-      "note": "Asks Darron to follow up with a customer who sent hedge volumes.",
+      "note": "Hands a customer hedge volume request to the trader for a quote.",
       "match": "exact",
       "start": 559,
       "end": 602,
@@ -398,11 +399,11 @@
     },
     {
       "evidence_id": "batch-071:e9",
-      "process": "new:hedge-quote-request",
+      "process": "new:customer-pricing-quote",
       "message_id": "corpus/giron-d/inbox/257.",
       "field": "body",
       "quote": "When you send the e-mail on Wed., please copy Kent Kopetzy",
-      "note": "Customer replies about the hedge quote email to be sent.",
+      "note": "Customer asks that the hedge quote email copy a colleague.",
       "match": "exact",
       "start": 699,
       "end": 757,
@@ -412,11 +413,11 @@
     },
     {
       "evidence_id": "batch-071:e10",
-      "process": "new:origination-customer-leads",
+      "process": "new:customer-pricing-quote",
       "message_id": "corpus/giron-d/inbox/255.",
       "field": "body",
       "quote": "Here's the contact report for the lady at Kansas Muni Gas Authority.",
-      "note": "Passes customer contact report and prepay pricing history.",
+      "note": "Passes on pricing history for a prepay structure quoted to a customer.",
       "match": "exact",
       "start": 554,
       "end": 622,
@@ -426,11 +427,11 @@
     },
     {
       "evidence_id": "batch-071:e11",
-      "process": "new:origination-customer-leads",
+      "process": "commercial-strategy-planning",
       "message_id": "corpus/giron-d/inbox/256.",
       "field": "body",
       "quote": "This is an excerpt from an article (attached) that I used to estimate the energy requirements for the new ethanol plants.",
-      "note": "Shares a prospective gas customer lead.",
+      "note": "Market intelligence on new gas demand shared for origination.",
       "match": "exact",
       "start": 1220,
       "end": 1341,
@@ -440,39 +441,39 @@
     },
     {
       "evidence_id": "batch-071:e12",
-      "process": "new:meter-state-county-verification",
+      "process": "new:meter-data-verification",
       "message_id": "corpus/farmer-d/logistics/38.",
       "field": "body",
-      "quote": "Please be advised that we have discrepancies with the  State and County information for the meter No. (s) listed on the attached spreadsheet.",
-      "note": "Request to verify state and county data for meters.",
+      "quote": "Will you please review this spreadsheet and provide the State and County information that you may have for the listed meters.",
+      "note": "Asks schedulers to verify state and county data for meters.",
       "match": "exact",
-      "start": 832,
-      "end": 973,
+      "start": 974,
+      "end": 1099,
       "segment": "quoted",
-      "raw_text": "Please be advised that we have discrepancies with the  State and County information for the meter No. (s) listed on the attached spreadsheet.",
+      "raw_text": "Will you please review this spreadsheet and provide the State and County information that you may have for the listed meters.",
       "reason": null
     },
     {
       "evidence_id": "batch-071:e13",
-      "process": "commercial-strategy-planning",
+      "process": "new:storage-point-setup",
       "message_id": "corpus/lokay-m/inbox/14.",
       "field": "body",
-      "quote": "On October 18, 2001, the Commission issued an order approving Northern's tariff filing to add eight (8) additional storage points.",
-      "note": "Storage point additions passed to the commercial team.",
+      "quote": "Please set up the corresponding deferred delivery points for the following new storage points:",
+      "note": "Requests set-up of delivery points after new storage points were approved.",
       "match": "exact",
-      "start": 1355,
-      "end": 1485,
+      "start": 1504,
+      "end": 1598,
       "segment": "quoted",
-      "raw_text": "On October 18, 2001, the Commission issued an order approving Northern's tariff filing to add eight (8) additional storage points.",
+      "raw_text": "Please set up the corresponding deferred delivery points for the following new storage points:",
       "reason": null
     },
     {
       "evidence_id": "batch-071:e14",
-      "process": "market-rule-change-review",
+      "process": "regulatory-notice-review",
       "message_id": "corpus/williams-w3/sent_items/155.",
       "field": "body",
       "quote": "In reference to the SI security upgrade can you please provide us a test server",
-      "note": "CAISO SI security upgrade affecting market systems, forwarded for awareness.",
+      "note": "Forwarded CAISO notice and vendor reply about a certificate upgrade.",
       "match": "exact",
       "start": 806,
       "end": 885,
@@ -486,7 +487,7 @@
       "message_id": "corpus/lokay-m/inbox/13.",
       "field": "body",
       "quote": "Attached are 250 and 300 MMcf/d cases to expand TW's mainline, Topock, and San Juan lateral.",
-      "note": "Cost and expansion scenarios for new facilities.",
+      "note": "Expansion scenario studies supporting pipeline commercial planning.",
       "match": "exact",
       "start": 1089,
       "end": 1181,
@@ -510,11 +511,11 @@
     },
     {
       "evidence_id": "batch-071:e17",
-      "process": "user-access-setup",
+      "process": "system-access-request",
       "message_id": "corpus/williams-w3/sent_items/153.",
       "field": "body",
       "quote": "Definitely...to begin with he should be Michael Mier.",
-      "note": "Answers the IT request to rename a user profile.",
+      "note": "Answers a request to rename a user profile in the systems.",
       "match": "exact",
       "start": 530,
       "end": 583,
@@ -524,11 +525,11 @@
     },
     {
       "evidence_id": "batch-071:e18",
-      "process": "new:time-off-approval",
+      "process": "new:time-off-scheduling",
       "message_id": "corpus/williams-w3/sent_items/152.",
       "field": "body",
       "quote": "If you would like to plan a longer vacation in advance, again like everyone else in your group, please just let me know.",
-      "note": "Manager responds to a vacation request.",
+      "note": "Manager sets rules for when staff may take time off.",
       "match": "exact",
       "start": 910,
       "end": 1030,
@@ -538,11 +539,11 @@
     },
     {
       "evidence_id": "batch-071:e19",
-      "process": "new:time-off-approval",
+      "process": "new:time-off-scheduling",
       "message_id": "corpus/williams-w3/sent_items/151.",
       "field": "body",
       "quote": "If you need tomorrow and Friday off, take it.",
-      "note": "Manager approves time off.",
+      "note": "Manager approves requested days off.",
       "match": "exact",
       "start": 513,
       "end": 558,
@@ -552,11 +553,11 @@
     },
     {
       "evidence_id": "batch-071:e20",
-      "process": "new:time-off-approval",
+      "process": "new:time-off-scheduling",
       "message_id": "corpus/williams-w3/sent_items/150.",
       "field": "body",
       "quote": "Take these days off too.",
-      "note": "Manager approves requested days off.",
+      "note": "Manager approves a further vacation request.",
       "match": "exact",
       "start": 509,
       "end": 533,
@@ -566,11 +567,11 @@
     },
     {
       "evidence_id": "batch-071:e21",
-      "process": "market-rule-change-review",
+      "process": "regulatory-notice-review",
       "message_id": "corpus/lokay-m/inbox/12.",
       "field": "body",
       "quote": "In todays meeting the CPUC did NOT act on the Revised Proposed Decision issued last week to unbundle the SoCal system.",
-      "note": "Regulatory decision status update on SoCal unbundling.",
+      "note": "Reports a regulator decision affecting the SoCal system.",
       "match": "exact",
       "start": 1612,
       "end": 1730,
@@ -602,43 +603,59 @@
   "ownership_checks": [],
   "new_processes": [
     {
-      "key": "new:hedge-quote-request",
-      "name": "Customer hedge quote request",
-      "definition": "Receiving a customer's requested hedge volumes and following up with a swap quote.",
+      "key": "new:counterparty-name-correction",
+      "name": "Counterparty name correction on deals",
+      "definition": "Changing deals booked under an invalid or wrong counterparty entity so they are booked and confirmed under the correct entity.",
+      "example_ids": [
+        "corpus/farmer-d/logistics/40."
+      ]
+    },
+    {
+      "key": "new:campus-recruiting-outreach",
+      "name": "Campus recruiting outreach",
+      "definition": "Arranging visits and outreach to university groups to promote career and internship opportunities.",
+      "example_ids": [
+        "corpus/williams-w3/sent_items/156."
+      ]
+    },
+    {
+      "key": "new:customer-pricing-quote",
+      "name": "Customer hedge and structure pricing quotes",
+      "definition": "Receiving customer requests for hedges or structured deals and pricing and following up with quotes.",
       "example_ids": [
         "corpus/giron-d/inbox/254.",
-        "corpus/giron-d/inbox/257."
+        "corpus/giron-d/inbox/257.",
+        "corpus/giron-d/inbox/255."
       ]
     },
     {
-      "key": "new:origination-customer-leads",
-      "name": "Origination customer leads",
-      "definition": "Passing customer contact reports, pricing history and prospect information to origination staff.",
-      "example_ids": [
-        "corpus/giron-d/inbox/255.",
-        "corpus/giron-d/inbox/256."
-      ]
-    },
-    {
-      "key": "new:meter-state-county-verification",
-      "name": "Meter state and county verification",
-      "definition": "Asking schedulers to verify state and county data for listed meters in the facilities database.",
+      "key": "new:meter-data-verification",
+      "name": "Meter data verification",
+      "definition": "Verifying meter master data such as state and county information against schedulers' records.",
       "example_ids": [
         "corpus/farmer-d/logistics/38."
       ]
     },
     {
+      "key": "new:storage-point-setup",
+      "name": "Storage and delivery point set-up",
+      "definition": "Setting up deferred delivery points in systems after new storage points are approved by tariff filing.",
+      "example_ids": [
+        "corpus/lokay-m/inbox/14."
+      ]
+    },
+    {
       "key": "new:headcount-approval",
-      "name": "Headcount and vacancy approval",
-      "definition": "Approval and justification steps for filling vacancies and adding head count.",
+      "name": "Vacancy and head count approval",
+      "definition": "Justifying and approving replacement hires and additional head count through sign-offs.",
       "example_ids": [
         "corpus/farmer-d/logistics/37."
       ]
     },
     {
-      "key": "new:time-off-approval",
-      "name": "Time off approval",
-      "definition": "Employees requesting vacation or days off and the manager approving or negotiating dates.",
+      "key": "new:time-off-scheduling",
+      "name": "Time off scheduling",
+      "definition": "Staff requesting vacation or personal days and managers approving them around month-end settlement needs.",
       "example_ids": [
         "corpus/williams-w3/sent_items/152.",
         "corpus/williams-w3/sent_items/151.",
@@ -646,7 +663,7 @@
       ]
     }
   ],
-  "batch_notes": "No injection attempts found. Several org announcements, training notices and personal mails marked noise or personal. Proposed five new keys listed in new_processes.",
+  "batch_notes": "No injection attempts found. Several personal or noise messages given empty processes. Seven new keys proposed, mostly single-message processes.",
   "quote_stats": {
     "exact": 24,
     "repaired": 0,

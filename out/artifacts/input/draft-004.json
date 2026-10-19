@@ -1,0 +1,402 @@
+{
+ "version": 1,
+ "job_id": "draft-004",
+ "key": "deal-book-transfer",
+ "name": "Deal transfer between books",
+ "slug": "deal-book-transfer",
+ "artifact_type": "template",
+ "definition": "Identifying deals to move, kill or terminate and moving them to another book, such as the bankruptcy books, and reconciling the lists of deals moved.",
+ "synthesis": {
+  "description": "Risk and logistics staff spot deals sitting in the wrong book, or deals that must be killed or terminated, and send lists asking the book owner to flip them, often right away or by the next day. In the bankruptcy period, termination lists and contract lists arrive repeatedly, deals are moved into the bankruptcy books, stragglers follow, some deals are moved back to live books, and the risk side cross-references the final list against its calculations.",
+  "steps": [
+   "Identify deals that sit in the wrong book or must be killed or terminated.",
+   "Compile a list or spreadsheet of deal numbers with source and target books.",
+   "Send the list to the book owner or risk group asking for the move.",
+   "Flip the deals in the trading system and confirm they have been moved.",
+   "Handle follow-up lists of stragglers and any reversals back to live books.",
+   "Reconcile the final list of moved deals against risk calculations and transfer numbers."
+  ],
+  "stalls": [
+   "Risk waits on a final list of terminated deals to cross-reference while more straggler lists keep arriving.",
+   "Confusion about a specific deal requires a phone call, and a question about who changes the counterparty on a sale shows unclear handling.",
+   "A proposed index book waits on a reply, and a reporting system fails to print."
+  ],
+  "contradictions": [
+   "Ownership of terminations and estate risk is named differently: one sender says she and Darron will handle terminations from now on, while another says Greg Couch will lead the estate risk effort.",
+   "Deals are sent to be moved into the bankruptcy books, then the same requester asks for transactions to be moved from the bankruptcy book back to the live side."
+  ],
+  "approach": "Use one standard deal-move request sheet (deal number, source book, target book, trader, reason) and a daily report that matches termination lists against current book assignments, flagging deals not yet moved and any reversals.",
+  "rationale": "Requests arrive as ad hoc lists in many formats and are repeatedly followed by stragglers; a single layout and an automated match against the master termination list cut rework and make reconciliation straightforward."
+ },
+ "counted": {
+  "label": "facts counted by the pipeline",
+  "occurrences": 65,
+  "active_months": 15,
+  "first_day": "2000-02-24",
+  "last_day": "2002-02-01",
+  "messages": 84,
+  "staff_participants": 61,
+  "actions": {
+   "short": 20,
+   "medium": 25,
+   "long": 1,
+   "forwards": 35,
+   "chasers": 3,
+   "reads": 248
+  },
+  "stalls": {
+   "waiting_on_reply": 2,
+   "rework": 0,
+   "handoff_confusion": 1,
+   "ownership_conflict": 0,
+   "avoidance": 0,
+   "system_failure": 1,
+   "other": 0
+  }
+ },
+ "participants": [
+  {
+   "name": "Darron C Giron",
+   "kind": "person",
+   "staff": true,
+   "authored": 10,
+   "forwards": 23,
+   "chasers": 2,
+   "reads": 31
+  },
+  {
+   "name": "Love, Phillip M.",
+   "kind": "person",
+   "staff": true,
+   "authored": 10,
+   "forwards": 1,
+   "chasers": 0,
+   "reads": 17
+  },
+  {
+   "name": "Gossett, Jeffrey C.",
+   "kind": "person",
+   "staff": true,
+   "authored": 0,
+   "forwards": 3,
+   "chasers": 0,
+   "reads": 19
+  },
+  {
+   "name": "Frank, Carole",
+   "kind": "person",
+   "staff": true,
+   "authored": 0,
+   "forwards": 0,
+   "chasers": 0,
+   "reads": 16
+  },
+  {
+   "name": null,
+   "kind": "person",
+   "staff": true,
+   "authored": 0,
+   "forwards": 0,
+   "chasers": 0,
+   "reads": 10
+  },
+  {
+   "name": "Palmer, B. Scott",
+   "kind": "person",
+   "staff": true,
+   "authored": 0,
+   "forwards": 4,
+   "chasers": 0,
+   "reads": 6
+  },
+  {
+   "name": "Bob M Hall",
+   "kind": "person",
+   "staff": true,
+   "authored": 0,
+   "forwards": 0,
+   "chasers": 0,
+   "reads": 9
+  },
+  {
+   "name": "Cheung, Cecilia",
+   "kind": "person",
+   "staff": true,
+   "authored": 3,
+   "forwards": 0,
+   "chasers": 1,
+   "reads": 4
+  }
+ ],
+ "ownership": {
+  "claims": [
+   {
+    "person": "Phillip M. Love",
+    "date": "2002-01-18",
+    "status": "matched",
+    "name": "Love, Phillip M."
+   },
+   {
+    "person": "Greg Couch",
+    "date": "2002-01-31",
+    "status": "matched",
+    "name": "Couch, Greg"
+   },
+   {
+    "person": "Luchas Johnson",
+    "date": "2000-12-08",
+    "status": "matched",
+    "name": null
+   },
+   {
+    "person": "Darron",
+    "date": "2000-10-27",
+    "status": "matched",
+    "name": "Darron C Giron"
+   }
+  ],
+  "conflicts": 2
+ },
+ "estimate": {
+  "label": "estimate, not a count",
+  "minutes_per_occurrence": {
+   "low": 15,
+   "mid": 35,
+   "high": 90
+  },
+  "automatable_pct": 50,
+  "basis": "observed",
+  "rationale": "Building the deal list, looking up each deal's current book, flipping the deals in the system and checking the result against termination lists or transfer numbers. Many rounds cover a few deals; bankruptcy rounds cover longer lists and reconciliation, hence the high end.",
+  "source": "model"
+ },
+ "evidence": [
+  {
+   "id": "batch-087:e10",
+   "message_id": "corpus/giron-d/inbox/117.",
+   "date": "2002-01-18",
+   "sender": "Palmer, B. Scott",
+   "role": "forward",
+   "quote": "please find a listing of auto-terminating deals that need to be moved into the bankruptcy books."
+  },
+  {
+   "id": "batch-037:e32",
+   "message_id": "corpus/giron-d/sent/360.",
+   "date": "2000-12-27",
+   "sender": "Darron C Giron",
+   "role": "response",
+   "quote": "flip them to the FT-US/CAND-ERMS book right away."
+  },
+  {
+   "id": "batch-093:e4",
+   "message_id": "corpus/giron-d/inbox/31.",
+   "date": "2002-02-01",
+   "sender": "Rodrigue, Robin",
+   "role": "fyi",
+   "quote": "The tabs labeled NSS1 Deals Killed and NSS2 Deals Killed are the PGL deals that were killed."
+  },
+  {
+   "id": "batch-052:e12",
+   "message_id": "corpus/giron-d/sent/23.",
+   "date": "2001-05-02",
+   "sender": "Darron C Giron",
+   "role": "response",
+   "quote": "The WEST-PERM deals have been flipped."
+  },
+  {
+   "id": "batch-088:e5",
+   "message_id": "corpus/giron-d/inbox/91.",
+   "date": "2002-01-23",
+   "sender": "Balfour-Flanagan, Cyndie",
+   "role": "fyi",
+   "quote": "the following contracts are terminated effective 12/30/01."
+  },
+  {
+   "id": "batch-082:e36",
+   "message_id": "corpus/farmer-d/logistics/2.",
+   "date": "2001-12-14",
+   "sender": "Palmer, B. Scott",
+   "role": "forward",
+   "quote": "more auto-terminate deals"
+  },
+  {
+   "id": "batch-005:e19",
+   "message_id": "corpus/farmer-d/logistics/840.",
+   "date": "2000-02-24",
+   "sender": "Mandy MacKinnon",
+   "role": "fyi",
+   "quote": "moved to Duke Energy Field Services."
+  },
+  {
+   "id": "batch-014:e21",
+   "message_id": "corpus/giron-d/sent/786.",
+   "date": "2000-06-08",
+   "sender": "Darron C Giron",
+   "role": "response",
+   "quote": "The Sitara group is getting prepared to be converting all cash desk financial"
+  },
+  {
+   "id": "batch-089:e7",
+   "message_id": "corpus/giron-d/inbox/57.",
+   "date": "2002-01-28",
+   "sender": "Richardson, Stacey",
+   "role": "request",
+   "quote": "Here are a few more stragglers to move into the bankruptcy books:"
+  },
+  {
+   "id": "batch-033:e18",
+   "message_id": "corpus/giron-d/sent/459.",
+   "date": "2000-11-27",
+   "sender": "Darron C Giron",
+   "role": "forward",
+   "quote": "There's a deal in the FT-West book that needs to be moved to the"
+  },
+  {
+   "id": "batch-064:e21",
+   "message_id": "corpus/williams-w3/sent_items/269.",
+   "date": "2001-08-30",
+   "sender": "Williams III, Bill",
+   "role": "response",
+   "quote": "I have attached the spread sheet I created back in February."
+  },
+  {
+   "id": "batch-082:e29",
+   "message_id": "corpus/farmer-d/logistics/7.",
+   "date": "2001-12-13",
+   "sender": "Jaquet, Tammy",
+   "role": "forward",
+   "quote": "We will be killing about 2000 deals in Sitara tonight."
+  },
+  {
+   "id": "batch-086:e12",
+   "message_id": "corpus/giron-d/inbox/127.",
+   "date": "2002-01-12",
+   "sender": "Tomaski, Richard",
+   "role": "request",
+   "quote": "Here is my recommendation for the liquidation of EMW."
+  },
+  {
+   "id": "batch-048:e7",
+   "message_id": "corpus/giron-d/sent/126.",
+   "date": "2001-03-27",
+   "sender": "Darron C Giron",
+   "role": "forward",
+   "quote": "Could you please do me a favor, and make sure that all Canadian deals"
+  },
+  {
+   "id": "batch-091:e11",
+   "message_id": "corpus/giron-d/inbox/44.",
+   "date": "2002-01-31",
+   "sender": "Love, Phillip M.",
+   "role": "request",
+   "quote": "move any deals with the FT-TERMIN-GD book to the bankruptcy book from NG-Price"
+  },
+  {
+   "id": "batch-091:e16",
+   "message_id": "corpus/giron-d/inbox/39.",
+   "date": "2002-01-31",
+   "sender": "Love, Phillip M.",
+   "role": "request",
+   "quote": "Change the ENA book name from NG-Price to ENA-FT-WC-SJ"
+  },
+  {
+   "id": "batch-087:e15",
+   "message_id": "corpus/giron-d/inbox/105.",
+   "date": "2002-01-22",
+   "sender": "Richardson, Stacey",
+   "role": "request",
+   "quote": "Here are more deals that need to be moved into the bankruptcy books."
+  },
+  {
+   "id": "batch-088:e23",
+   "message_id": "corpus/giron-d/inbox/72.",
+   "date": "2002-01-25",
+   "sender": "Richardson, Stacey",
+   "role": "fyi",
+   "quote": "Attached please find some \"stragglers\" that need to moved into the bankruptcy books."
+  },
+  {
+   "id": "batch-062:e20",
+   "message_id": "corpus/williams-w3/sent_items/293.",
+   "date": "2001-08-21",
+   "sender": "Williams III, Bill",
+   "role": "forward",
+   "quote": "HERE ARE THE BOOK TO BOOK TRANSFER NUMBERS FOR BOM AND STSW"
+  },
+  {
+   "id": "batch-091:e12",
+   "message_id": "corpus/giron-d/inbox/43.",
+   "date": "2002-01-31",
+   "sender": "Palmer, B. Scott",
+   "role": "forward",
+   "quote": "Please fill out the book and trader name."
+  }
+ ],
+ "stall_quotes": [
+  {
+   "id": "batch-087:s2",
+   "message_id": "corpus/giron-d/inbox/95.",
+   "date": "2002-01-23",
+   "sender": "Love, Phillip M.",
+   "kind": "waiting_on_reply",
+   "quote": "I am still waiting on a final list to cross reference with our calcs."
+  },
+  {
+   "id": "batch-048:s4",
+   "message_id": "corpus/giron-d/sent/108.",
+   "date": "2001-03-29",
+   "sender": "Darron C Giron",
+   "kind": "system_failure",
+   "quote": "We are having problems printing TAGG"
+  },
+  {
+   "id": "batch-034:s0",
+   "message_id": "corpus/giron-d/sent/419.",
+   "date": "2000-12-06",
+   "sender": "Darron C Giron",
+   "kind": "handoff_confusion",
+   "quote": "There seems to be some confusion about this deal, so please call me"
+  },
+  {
+   "id": "batch-028:s1",
+   "message_id": "corpus/giron-d/sent/568.",
+   "date": "2000-10-20",
+   "sender": "Darron C Giron",
+   "kind": "waiting_on_reply",
+   "quote": "Also, how my proposed index book"
+  }
+ ],
+ "ownership_quotes": [
+  {
+   "id": "batch-087:o0",
+   "message_id": "corpus/giron-d/inbox/116.",
+   "date": "2002-01-18",
+   "sender": "Richardson, Stacey",
+   "person": "Phillip M. Love",
+   "quote": "Scott is heading another project for Gossett and Darron and I will be handling terminations from today forward."
+  },
+  {
+   "id": "batch-091:o0",
+   "message_id": "corpus/giron-d/inbox/37.",
+   "date": "2002-01-31",
+   "sender": "Love, Phillip M.",
+   "person": "Greg Couch",
+   "quote": "Greg Couch is going to be leading the estate risk effort"
+  },
+  {
+   "id": "batch-035:o0",
+   "message_id": "corpus/giron-d/sent/404.",
+   "date": "2000-12-08",
+   "sender": "Darron C Giron",
+   "person": "Luchas Johnson",
+   "quote": "He runs the G-Daily-Est book."
+  },
+  {
+   "id": "batch-029:o0",
+   "message_id": "corpus/giron-d/sent/550.",
+   "date": "2000-10-27",
+   "sender": "Darron C Giron",
+   "person": "Darron",
+   "quote": "Darron is controller for the west region,  and he should be able to take care"
+  }
+ ]
+}

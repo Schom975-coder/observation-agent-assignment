@@ -1,62 +1,132 @@
 {
   "group_id": "synth-002",
-  "content_sha": "e16e863d73de9e7a8033b3e07b474017a6322e1efd452a7412f4374b83b10065",
+  "content_sha": "c199a4f0f38dc3d631b743e1c1ec47fdf36a9454e3bc9624370008b11c50b92f",
   "processes": [
     {
-      "key": "contract-administration",
-      "description": "Contract administrators handle requests from shippers and desks to set up, amend, assign or terminate transport contracts: raising MDQ or TQ on an amendment, assigning a contract to another party, sending termination letters. Requests are submitted to CAS for capacity approval, credit approval is requested, and amendments are routed for signature, executed and returned. The Global Contracts system is updated, and administrators circulate contract status reports, assignment, termination and expiration reports, and contract usage files on request.",
+      "key": "capacity-reporting",
+      "description": "Michelle Lokay sends the marketing team a recurring Transwestern summary of average deliveries to California, with utilization and San Juan lateral throughput. Alongside it she circulates capacity postings from the EBB for review before they go up and reminds colleagues that bids close at 5:00 on the due date. Colleagues send supporting files such as contract usage of alternate points or the California interstate capacity report, and questions on contract terms or billing are settled by discussion.",
       "steps": [
-        "A shipper or internal desk asks for a new contract, an amendment to volumes or points, an assignment or a termination.",
-        "The administrator submits the request to CAS for capacity approval and requests credit approval.",
-        "The amendment or termination letter is prepared and routed for signature.",
-        "The counterparty executes and returns the documents, and the contract is set up or updated in Global Contracts.",
-        "The approval and the contract number are confirmed back to the requester.",
-        "Contract status reports and assignment, termination and expiration reports are circulated, and contract files are pulled on request."
+        "Pull the week's delivery volumes to California and San Juan lateral throughput from the pipeline data.",
+        "Work out average deliveries and utilization against capacity.",
+        "Send the delivery summary to the marketing team.",
+        "Draft a capacity posting and ask colleagues to review it before it is published.",
+        "Publish the posting on the EBB and circulate the link.",
+        "Remind shippers and colleagues of the bid deadline on the due day.",
+        "Gather supporting contract or usage files when a capacity question or billing issue comes up."
       ],
       "stalls": [
         {
-          "summary": "Requesters lose track of a contract in transit and have to ask for its status because nobody is sure who has possession of it.",
+          "summary": "A report went out with the wrong effective date and had to be corrected in a follow-up message.",
           "evidence_ids": [
-            "batch-014:s3",
-            "batch-014:e10"
+            "batch-086:e11",
+            "batch-086:s0"
           ]
         },
         {
-          "summary": "Amendments sit pending because the executed copies have not been returned to the administrator.",
+          "summary": "A capacity posting was published late, and the remark that it happened again suggests a repeated timing problem.",
           "evidence_ids": [
-            "batch-022:e18"
-          ]
-        },
-        {
-          "summary": "Requests and reports are revised after they are sent: a shipper corrects its own assignment request, volumes on a pending amendment are raised again, and a monthly report revision runs late.",
-          "evidence_ids": [
-            "batch-080:s2",
-            "batch-084:e9",
-            "batch-098:e17",
-            "batch-046:e16"
-          ]
-        },
-        {
-          "summary": "A contract expected to move to new parties has not been transferred, and the reader is redirected to a named contact to sort it out.",
-          "evidence_ids": [
-            "batch-061:e22",
-            "batch-061:o1"
+            "batch-098:s0",
+            "batch-098:e27"
           ]
         }
       ],
-      "contradictions": [
-        {
-          "summary": "The same PPL EnergyPlus contract is cited under two contract numbers with transposed digits, once when amendments are routed and again when a later amendment is signed and returned.",
-          "evidence_ids": [
-            "batch-088:e2",
-            "batch-097:e23"
-          ]
-        }
-      ],
+      "contradictions": [],
       "automation": {
-        "approach": "A contract request tracker fed from CAS and Global Contracts could log each request with its capacity and credit approvals, routing and signature status, and produce the contract status and assignment, termination and expiration reports from the same records instead of compiling them by hand. A checklist per request type keeps every approval and the return of executed copies from being missed.",
+        "approach": "Generate the delivery summary directly from the pipeline's scheduled-volume data: a query fills average deliveries, utilization and lateral throughput into a fixed template, stamps the effective date range automatically, and sends it on a schedule after a quick human check. A posting calendar with automatic bid-deadline reminders would cover the posting and review steps.",
+        "artifact_type": "template",
+        "rationale": "The summary repeats the same sentence with new figures each round, so a fixed report layout fed by the data removes the manual calculation and the date errors seen in the mail. Postings and bids still need judgement, which the reminder calendar supports without replacing."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": {
+          "low": 10,
+          "mid": 20,
+          "high": 40
+        },
+        "automatable_pct": 65,
+        "basis": "observed",
+        "rationale": "Most rounds are the delivery summary: pulling volumes, computing averages and utilization and checking the lateral figure, about 15 to 20 minutes. Rounds that involve a capacity posting, contract file pulls or billing questions take longer. The figure calculation and formatting are routine and largely automatable; review of postings and contract questions are not.",
+        "evidence_ids": [
+          "batch-098:e20",
+          "batch-083:e0",
+          "batch-086:e11",
+          "batch-087:e4",
+          "batch-072:e14",
+          "batch-072:e13",
+          "batch-068:e9"
+        ]
+      },
+      "estimate_check": {
+        "occurrences_cited": 7,
+        "senders_cited": 3
+      }
+    },
+    {
+      "key": "staff-training",
+      "description": "Managers and senior staff arrange training for their people: system classes on SAP and the trading systems, a pilot programme, communication and ethics courses, cross-training on the desk and sit-ins with experienced colleagues. A round starts with a request to attend or an announcement of a class; the organiser asks managers to nominate or sign up staff, arranges cover such as night-shift staff arriving early, sets times and meetings, and prepares material or exercises. Approvals are sometimes given in a system that can fail.",
+      "steps": [
+        "A manager, trainer or employee proposes a class, session or sit-in.",
+        "The organiser announces the session and asks managers to nominate attendees.",
+        "Managers rank or choose staff and send their names to sign up.",
+        "Shift cover is arranged so attendees can leave the desk.",
+        "The trainer prepares material, exercises or topics for the session.",
+        "The enrolment is approved, and the session is held and followed by later units."
+      ],
+      "stalls": [
+        {
+          "summary": "An approver hit a system error when trying to approve a training request, holding up the enrolment.",
+          "evidence_ids": [
+            "batch-047:s0",
+            "batch-047:e20"
+          ]
+        }
+      ],
+      "contradictions": [],
+      "automation": {
+        "approach": "Keep a shared training calendar with an online sign-up form: managers enter nominees, remaining seats show automatically, approvals route to the right manager, and confirmations and reminders go out without manual messages. A short checklist covers shift cover and preparation of materials.",
         "artifact_type": "checklist",
-        "rationale": "Each round repeats the same approvals and routing in the same order, and the stalls come from lost possession of contracts, unreturned signatures and late revisions. A checklist that travels with each request makes the current holder and the next step plain, and a tracker lets the status reports come from records rather than being rebuilt."
+        "rationale": "The rounds differ in subject but share the same arrangements: nominate, check seats, cover the desk, approve, prepare. A checklist helps the people organising sessions tomorrow; the sign-up form removes the repeated seat and enrolment questions seen in the mail."
+      },
+      "work_estimate": {
+        "minutes_per_occurrence": {
+          "low": 10,
+          "mid": 25,
+          "high": 60
+        },
+        "automatable_pct": 40,
+        "basis": "inferred",
+        "rationale": "Hands-on work is choosing and ranking attendees, checking seats, arranging shift cover, booking rooms and occasionally preparing exercises or topic lists. Simple sign-ups take a few minutes; rounds where the organiser prepares material or ranks a group take closer to an hour. Scheduling and enrolment are automatable; choosing people and preparing content are not.",
+        "evidence_ids": [
+          "batch-065:e21",
+          "batch-020:e10",
+          "batch-031:e13",
+          "batch-061:e16",
+          "batch-077:e2",
+          "batch-097:e32",
+          "batch-009:e31"
+        ]
+      },
+      "estimate_check": {
+        "occurrences_cited": 7,
+        "senders_cited": 5
+      }
+    },
+    {
+      "key": "supply-cut-handling",
+      "description": "When a pipeline or supplier cuts scheduled gas, or a meter is shut in, the scheduler reports the cut to the trading and logistics team with the affected supplier, pipeline point and volumes. The desk then finds replacement supply, for example buying gas from another counterparty to resupply, and reschedules. Some rounds come from the counterparty side, such as a customer claiming force majeure or a supplier announcing it will stop deliveries, and need a summary of the affected days.",
+      "steps": [
+        "A pipeline, supplier or field contact reports a cut or shut-in.",
+        "The scheduler identifies the affected deals, points, gas days and volumes.",
+        "The scheduler sends the cut details to the desk and logistics team.",
+        "The trader buys replacement gas or adjusts the sale to cover the shortfall.",
+        "Nominations are rescheduled with the pipeline and affected parties are informed.",
+        "Force majeure claims or supplier notices are summarised for follow-up."
+      ],
+      "stalls": [],
+      "contradictions": [],
+      "automation": {
+        "approach": "Feed pipeline cut notices into a standard cut report that looks up the affected deals by point and gas day from the scheduling system, lists the lost volumes, and sends the result to the desk using one message layout. Replacement purchases and rescheduling stay with the trader and scheduler.",
+        "artifact_type": "email_template",
+        "rationale": "The cut messages carry the same facts each time: supplier, pipeline point, gas day, volume and replacement. A fixed message layout makes them faster to write and read, and a deal lookup removes the manual search; the buying decision still needs a person."
       },
       "work_estimate": {
         "minutes_per_occurrence": {
@@ -66,202 +136,19 @@
         },
         "automatable_pct": 35,
         "basis": "inferred",
-        "rationale": "Most of a round goes to the system and document work behind the emails: entering or amending the contract in Global Contracts, submitting capacity approval in CAS and requesting credit approval, drafting the amendment or termination letter, and checking executed copies. That is about 30 minutes for a routine amendment, 15 for a simple approval; status reports or files of alternate-point usage push a round toward 75. Approval submissions and drafting from templates could be tool-driven; review and signature stay manual.",
+        "rationale": "Each round needs the affected deals and volumes found, replacement gas bought or a sale adjusted, nominations rescheduled and calls made to the pipeline or counterparty. Simple notices take a quarter hour; rounds with resupply purchases or force majeure summaries take longer. Finding affected deals and formatting the notice are automatable; buying and rescheduling decisions are not.",
         "evidence_ids": [
-          "batch-010:e29",
-          "batch-083:e1",
-          "batch-080:e9",
-          "batch-088:e2",
-          "batch-046:e26",
-          "batch-047:e30",
-          "batch-072:e13"
-        ]
-      },
-      "estimate_check": {
-        "occurrences_cited": 7,
-        "senders_cited": 5
-      }
-    },
-    {
-      "key": "cost-center-charge-review",
-      "description": "Operations accounting sets the monthly allocation percentages that spread Texas Operations costs across cost centers and asks managers to review the plan allocations and update the shared spreadsheet. Managers review the charges and labor distribution on their RC reports, flag employees or purchases charged to the wrong RC, and ask for corrections. New RCs are set up to capture particular costs such as computer purchases and training, and requests for labor distribution reports are routed through a single contact.",
-      "steps": [
-        "Accounting sends the monthly allocation of Texas Operations costs across cost centers as a spreadsheet.",
-        "Managers review the plan allocations and send back changes to be applied to the spreadsheet.",
-        "The corrected allocation for the month is issued.",
-        "Managers review charges and labor distribution on their RC reports and check that staff and purchases sit in the proper RC.",
-        "Misallocated people or charges are reported and correction requests are sent.",
-        "New RCs are set up for specific cost types and the basis of a charge is explained to managers."
-      ],
-      "stalls": [
-        {
-          "summary": "The shared allocation spreadsheet resists edits: a column cannot be inserted, so the change is abandoned and sent as a request for someone else to update.",
-          "evidence_ids": [
-            "batch-002:s1",
-            "batch-002:e15"
-          ]
-        },
-        {
-          "summary": "A recipient of a correction request does not understand what is being asked, so the request has to be explained again.",
-          "evidence_ids": [
-            "batch-030:s2",
-            "batch-030:e24"
-          ]
-        },
-        {
-          "summary": "Staff do not know whom to ask for a labor distribution report until a single contact is named for them.",
-          "evidence_ids": [
-            "batch-008:e8",
-            "batch-008:o0"
-          ]
-        }
-      ],
-      "contradictions": [],
-      "automation": {
-        "approach": "A standard allocation template with fixed cost-center columns and protected formulas, plus a monthly exception report listing employees and charges whose RC differs from the expected mapping, could replace the manual line-by-line scan of RC and labor distribution reports and the rebuilding of the allocation spreadsheet.",
-        "artifact_type": "template",
-        "rationale": "The recurring friction is the allocation spreadsheet itself and the manual scan of RC reports for misplaced people and purchases. A template that accepts changes without restructuring, paired with a mapping check, addresses both while managers still decide the corrections."
-      },
-      "work_estimate": {
-        "minutes_per_occurrence": {
-          "low": 15,
-          "mid": 30,
-          "high": 60
-        },
-        "automatable_pct": 40,
-        "basis": "inferred",
-        "rationale": "A round involves preparing or updating the Texas Operations allocation spreadsheet, reviewing plan allocations, or scanning an RC or labor distribution report for misplaced people and charges and working out the correction. About 30 minutes covers a typical review or allocation update, 15 a single misallocated charge; restructuring the spreadsheet or setting up a new RC reaches 60. The mapping check and spreadsheet layout could be tool-driven; choosing the right RC stays with people.",
-        "evidence_ids": [
-          "batch-002:e14",
-          "batch-002:e15",
-          "batch-002:e20",
-          "batch-007:e16",
-          "batch-006:e3",
-          "batch-005:e5"
+          "batch-023:e0",
+          "batch-014:e11",
+          "batch-037:e17",
+          "batch-010:e34",
+          "batch-001:e41",
+          "batch-025:e6"
         ]
       },
       "estimate_check": {
         "occurrences_cited": 6,
-        "senders_cited": 3
-      }
-    },
-    {
-      "key": "counterparty-settlement-review",
-      "description": "A round starts when an invoice, payment, statement or ISO charge does not match what is booked: a counterparty bills a different price, a payment arrives that nobody can explain, a deal cannot be found in Sitara, or a capacity payment or congestion award looks wrong. Analysts search Sitara, back-track to purchase invoices and confirmation sheets, ask traders to verify pricing, correct deals, and decide whether to pay, hold or dispute the charge. Disputes are not to be raised with customers by email.",
-      "steps": [
-        "An invoice, statement, payment or ISO settlement arrives that differs from the deal as booked.",
-        "The analyst looks up the deal in Sitara and compares price, volume and days with the confirmation and purchase invoices.",
-        "The trader or scheduler is asked to verify the price or explain the deal, such as a washout or a purchase to reverse.",
-        "The deal is corrected in Sitara, or the counterparty is asked to rebill at the confirmed price.",
-        "For power, ISO and PMA charges, capacity payments and congestion awards are checked against bids and schedules.",
-        "Unsupported charges are held from payment or disputed, and corrected billing is sent on."
-      ],
-      "stalls": [
-        {
-          "summary": "Analysts wait on traders, schedulers and counterparties to confirm prices or change the system, and send follow-ups asking whether anything was found.",
-          "evidence_ids": [
-            "batch-011:s2",
-            "batch-037:s0",
-            "batch-048:s1",
-            "batch-026:s0",
-            "batch-054:s1"
-          ]
-        },
-        {
-          "summary": "Nobody is sure who handles a deal, an invoice or a billing, so items are forwarded to whoever might know, and an absence goes unnoticed while an item waits.",
-          "evidence_ids": [
-            "batch-070:s0",
-            "batch-064:s0",
-            "batch-050:s3",
-            "batch-037:e19",
-            "batch-033:o0"
-          ]
-        },
-        {
-          "summary": "Sitara is not updated or holds conflicting prices, and no deal can be found for an invoiced amount, so the system has to be researched and corrected before settlement.",
-          "evidence_ids": [
-            "batch-025:e0",
-            "batch-055:e16",
-            "batch-025:e14",
-            "batch-034:e1"
-          ]
-        },
-        {
-          "summary": "Information arrives late from the Hub, and ISO published prices do not match the bids, so charges cannot be settled until they are checked.",
-          "evidence_ids": [
-            "batch-053:s0",
-            "batch-074:s0"
-          ]
-        },
-        {
-          "summary": "Old items resurface: an invoice for gas from months earlier that was never paid, purchase deals from a prior year still under research, and last year's incentive and service sheets to be gone through.",
-          "evidence_ids": [
-            "batch-073:e16",
-            "batch-026:e7",
-            "batch-056:e4"
-          ]
-        }
-      ],
-      "contradictions": [
-        {
-          "summary": "Counterparty invoices and confirmation sheets carry prices that differ from the deals as booked, and one counterparty changes its price again in the middle of the discussion.",
-          "evidence_ids": [
-            "batch-049:e24",
-            "batch-050:e15",
-            "batch-053:e5",
-            "batch-059:e34",
-            "batch-039:e24"
-          ]
-        },
-        {
-          "summary": "Sitara holds two different prices for the same day on one deal.",
-          "evidence_ids": [
-            "batch-055:e16"
-          ]
-        },
-        {
-          "summary": "Counterparty records disagree with the booked position: a counterparty's accountant does not show deals that are booked, and another counterparty cannot say why it received a payment.",
-          "evidence_ids": [
-            "batch-009:e0",
-            "batch-090:e0"
-          ]
-        },
-        {
-          "summary": "ISO prices published for a congestion schedule do not match the bids submitted, and a capacity payment is questioned against the minimum rate expected for each hour.",
-          "evidence_ids": [
-            "batch-074:e4",
-            "batch-057:e5"
-          ]
-        }
-      ],
-      "automation": {
-        "approach": "An automated match of incoming invoices, statements and ISO settlement lines against Sitara deals could flag each price, volume or day mismatch with the confirmation alongside, and route the exception to the deal's owner from a maintained owner list. Analysts would then work only the flagged differences, with a standard discrepancy request carrying the deal number, days, invoiced price and booked price.",
-        "artifact_type": "sop",
-        "rationale": "Most rounds repeat the same lookups and comparisons, and the commonest stalls are waiting on replies and not knowing who owns a deal. A written procedure naming owners by counterparty and meter, the order of checks, when to hold payment, and that disputes are not emailed to customers addresses those directly, while the matching report removes the manual search."
-      },
-      "work_estimate": {
-        "minutes_per_occurrence": {
-          "low": 20,
-          "mid": 45,
-          "high": 120
-        },
-        "automatable_pct": 45,
-        "basis": "inferred",
-        "rationale": "A round goes to research rather than email: finding the deal in Sitara, back-tracking to purchase invoices and confirmation sheets, comparing prices day by day, correcting the deal, and for power settlements going through ISO charges, schedules and service sheets. A single price check takes about 20 minutes; a typical discrepancy with research and correction about 45; multi-month or ISO reconciliations reach 120. Matching and variance flagging could be tool-driven; deciding disputes stays with people.",
-        "evidence_ids": [
-          "batch-025:e0",
-          "batch-004:e28",
-          "batch-005:e14",
-          "batch-050:e15",
-          "batch-058:e16",
-          "batch-056:e4",
-          "batch-026:e7",
-          "batch-049:e24"
-        ]
-      },
-      "estimate_check": {
-        "occurrences_cited": 8,
-        "senders_cited": 7
+        "senders_cited": 4
       }
     }
   ]

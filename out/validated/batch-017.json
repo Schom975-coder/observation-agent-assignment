@@ -5,7 +5,7 @@
     {
       "id": "corpus/farmer-d/logistics/1248.",
       "processes": [
-        "trading-book-setup"
+        "new:eol-product-setup"
       ],
       "role": "fyi",
       "stall": null,
@@ -28,7 +28,7 @@
     {
       "id": "corpus/farmer-d/logistics/1250.",
       "processes": [
-        "volume-imbalance-reconciliation"
+        "imbalance-resolution"
       ],
       "role": "fyi",
       "stall": null,
@@ -51,7 +51,7 @@
     {
       "id": "corpus/farmer-d/logistics/1251.",
       "processes": [
-        "new:sap-rollout-communication"
+        "new:sap-rollout-training"
       ],
       "role": "forward",
       "stall": null,
@@ -60,7 +60,7 @@
     {
       "id": "corpus/farmer-d/logistics/1253.",
       "processes": [
-        "new:industrial-monthly-setup"
+        "customer-volume-confirmation"
       ],
       "role": "request",
       "stall": null,
@@ -75,12 +75,13 @@
     },
     {
       "id": "corpus/farmer-d/logistics/1254.",
-      "processes": [
-        "reference-data-update"
-      ],
-      "role": "fyi",
+      "processes": [],
+      "role": "noise",
       "stall": null,
-      "ownership_claim": null
+      "ownership_claim": {
+        "person": "Norma Villarreal",
+        "quote": "Norma Villarreal is the HR Generalist for all of Brent Price's group"
+      }
     },
     {
       "id": "corpus/giron-d/sent/752.",
@@ -92,7 +93,7 @@
     {
       "id": "corpus/farmer-d/logistics/1255.",
       "processes": [
-        "gas-nomination-handling"
+        "gas-nomination"
       ],
       "role": "forward",
       "stall": null,
@@ -108,7 +109,7 @@
     {
       "id": "corpus/farmer-d/logistics/1257.",
       "processes": [
-        "new:transport-usage-ticket-setup"
+        "deal-ticket-setup"
       ],
       "role": "request",
       "stall": null,
@@ -117,7 +118,7 @@
     {
       "id": "corpus/farmer-d/logistics/1258.",
       "processes": [
-        "new:sap-rollout-communication"
+        "new:sap-rollout-training"
       ],
       "role": "fyi",
       "stall": null,
@@ -126,7 +127,7 @@
     {
       "id": "corpus/giron-d/sent/750.",
       "processes": [
-        "counterparty-settlement-review"
+        "settlement-resolution"
       ],
       "role": "request",
       "stall": null,
@@ -142,7 +143,7 @@
     {
       "id": "corpus/farmer-d/logistics/1261.",
       "processes": [
-        "pipeline-outage-supply-cuts"
+        "new:meoh-plant-status-update"
       ],
       "role": "fyi",
       "stall": null,
@@ -151,7 +152,7 @@
     {
       "id": "corpus/giron-d/sent/748.",
       "processes": [
-        "new:software-media-return-request"
+        "new:software-media-return"
       ],
       "role": "response",
       "stall": null,
@@ -160,7 +161,7 @@
     {
       "id": "corpus/giron-d/sent/747.",
       "processes": [
-        "new:software-media-return-request"
+        "new:software-media-return"
       ],
       "role": "response",
       "stall": null,
@@ -176,7 +177,7 @@
     {
       "id": "corpus/farmer-d/logistics/1264.",
       "processes": [
-        "new:report-review-meeting-scheduling"
+        "new:morning-report-review-meeting"
       ],
       "role": "fyi",
       "stall": null,
@@ -185,7 +186,7 @@
     {
       "id": "corpus/farmer-d/logistics/1265.",
       "processes": [
-        "meter-flow-deal-coverage"
+        "deal-ticket-setup"
       ],
       "role": "response",
       "stall": null,
@@ -194,7 +195,7 @@
     {
       "id": "corpus/farmer-d/logistics/1267.",
       "processes": [
-        "pipeline-outage-supply-cuts"
+        "new:meoh-plant-status-update"
       ],
       "role": "fyi",
       "stall": null,
@@ -203,7 +204,7 @@
     {
       "id": "corpus/farmer-d/logistics/1297.",
       "processes": [
-        "pipeline-outage-supply-cuts"
+        "new:meoh-plant-status-update"
       ],
       "role": "fyi",
       "stall": null,
@@ -213,11 +214,11 @@
   "evidence": [
     {
       "evidence_id": "batch-017:e0",
-      "process": "trading-book-setup",
+      "process": "new:eol-product-setup",
       "message_id": "corpus/farmer-d/logistics/1248.",
       "field": "body",
       "quote": "I stressed to the Sitara/EOL folks the importance of adding comments",
-      "note": "Heads-up on setting up a new flexible physical product on EOL and its tickets.",
+      "note": "Logistics asks that comments be added to Sitara/EOL tickets for the new flexible physical product.",
       "match": "exact",
       "start": 842,
       "end": 910,
@@ -227,11 +228,11 @@
     },
     {
       "evidence_id": "batch-017:e1",
-      "process": "volume-imbalance-reconciliation",
+      "process": "imbalance-resolution",
       "message_id": "corpus/farmer-d/logistics/1250.",
       "field": "body",
       "quote": "Here are our updated imbalances per contract & total:",
-      "note": "Contract imbalance update for Oasis.",
+      "note": "Sends updated imbalance figures per contract.",
       "match": "exact",
       "start": 484,
       "end": 537,
@@ -241,25 +242,25 @@
     },
     {
       "evidence_id": "batch-017:e2",
-      "process": "new:sap-rollout-communication",
+      "process": "new:sap-rollout-training",
       "message_id": "corpus/farmer-d/logistics/1251.",
       "field": "body",
-      "quote": "Duane and Cindy need a list of the individuals needed this training.",
-      "note": "Collecting attendees for SAP FERC training.",
+      "quote": "The training will focus on the drill down into the FERC numbers in SAP.",
+      "note": "SAP FERC training being arranged for staff who need the numbers.",
       "match": "exact",
-      "start": 1198,
-      "end": 1266,
+      "start": 1707,
+      "end": 1778,
       "segment": "forwarded",
-      "raw_text": "Duane and Cindy need a list of the individuals needed this training.",
+      "raw_text": "The training will focus on the drill down into the FERC numbers in SAP.",
       "reason": null
     },
     {
       "evidence_id": "batch-017:e3",
-      "process": "new:industrial-monthly-setup",
+      "process": "customer-volume-confirmation",
       "message_id": "corpus/farmer-d/logistics/1253.",
       "field": "body",
       "quote": "Please make sure that Gary gets a copy of the Industrial spreadsheet.",
-      "note": "Asks for the industrial worksheet used in monthly industrial buyback setup.",
+      "note": "Industrial customer spreadsheet used for monthly industrial operations.",
       "match": "exact",
       "start": 582,
       "end": 651,
@@ -269,25 +270,11 @@
     },
     {
       "evidence_id": "batch-017:e4",
-      "process": "reference-data-update",
-      "message_id": "corpus/farmer-d/logistics/1254.",
-      "field": "body",
-      "quote": "Norma Villarreal is the HR Generalist for all of Brent Price's group and",
-      "note": "Distributes HR contact assignments for staff.",
-      "match": "exact",
-      "start": 3249,
-      "end": 3321,
-      "segment": "own",
-      "raw_text": "Norma Villarreal is the HR Generalist for all of Brent Price's group and",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-017:e5",
-      "process": "gas-nomination-handling",
+      "process": "gas-nomination",
       "message_id": "corpus/farmer-d/logistics/1255.",
       "field": "subject",
       "quote": "nom change for increased Midcon gas...",
-      "note": "Forwards a counterparty nom change file.",
+      "note": "Forwards a counterparty nomination change.",
       "match": "exact",
       "start": 323,
       "end": 361,
@@ -296,12 +283,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-017:e6",
-      "process": "new:transport-usage-ticket-setup",
+      "evidence_id": "batch-017:e5",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1257.",
       "field": "body",
       "quote": "I have input and updated transport usage tickets for July.",
-      "note": "Monthly transport usage tickets entered and handed over for rate adjustment.",
+      "note": "Transport usage tickets set up for the month, with further tickets to be created.",
       "match": "exact",
       "start": 585,
       "end": 643,
@@ -310,26 +297,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-017:e7",
-      "process": "new:sap-rollout-communication",
+      "evidence_id": "batch-017:e6",
+      "process": "new:sap-rollout-training",
       "message_id": "corpus/farmer-d/logistics/1258.",
       "field": "body",
-      "quote": "The attached file contains timelines for a",
-      "note": "Announces SAP implementation timelines to the groups.",
+      "quote": "the SAP Financial Systems will be implemented for the Enron",
+      "note": "Announces SAP implementation and transaction timelines.",
       "match": "exact",
-      "start": 9347,
-      "end": 9389,
+      "start": 9243,
+      "end": 9302,
       "segment": "own",
-      "raw_text": "The attached file contains timelines for a",
+      "raw_text": "the SAP Financial Systems will be implemented for the Enron",
       "reason": null
     },
     {
-      "evidence_id": "batch-017:e8",
-      "process": "counterparty-settlement-review",
+      "evidence_id": "batch-017:e7",
+      "process": "settlement-resolution",
       "message_id": "corpus/giron-d/sent/750.",
       "field": "body",
       "quote": "Are these deasl going to be settled by Unify?",
-      "note": "Asks how EMW deals are settled and invoiced.",
+      "note": "Asks how Sitara deals will be settled and invoiced.",
       "match": "exact",
       "start": 592,
       "end": 637,
@@ -338,40 +325,40 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-017:e9",
-      "process": "pipeline-outage-supply-cuts",
+      "evidence_id": "batch-017:e8",
+      "process": "new:meoh-plant-status-update",
       "message_id": "corpus/farmer-d/logistics/1261.",
       "field": "body",
-      "quote": "The MeOH plant  began having problems on June 30.",
-      "note": "Plant upset notice.",
+      "quote": "No eta for plant startup is available at this time.",
+      "note": "Methanol plant outage notice.",
       "match": "exact",
-      "start": 1046,
-      "end": 1095,
+      "start": 1210,
+      "end": 1261,
       "segment": "own",
-      "raw_text": "The MeOH plant  began having problems on June 30.",
+      "raw_text": "No eta for plant startup is available at this time.",
+      "reason": null
+    },
+    {
+      "evidence_id": "batch-017:e9",
+      "process": "new:software-media-return",
+      "message_id": "corpus/giron-d/sent/748.",
+      "field": "body",
+      "quote": "I have been in Chigago for the last two weeks.",
+      "note": "Reply about returning a checked-out Office CD to IT licensing.",
+      "match": "exact",
+      "start": 466,
+      "end": 512,
+      "segment": "own",
+      "raw_text": "I have been in Chigago for the last two weeks.",
       "reason": null
     },
     {
       "evidence_id": "batch-017:e10",
-      "process": "new:software-media-return-request",
-      "message_id": "corpus/giron-d/sent/748.",
-      "field": "body",
-      "quote": "The CD is in my desk in",
-      "note": "Replies to IT request to return a checked-out Office CD.",
-      "match": "exact",
-      "start": 514,
-      "end": 537,
-      "segment": "own",
-      "raw_text": "The CD is in my desk in",
-      "reason": null
-    },
-    {
-      "evidence_id": "batch-017:e11",
-      "process": "new:software-media-return-request",
+      "process": "new:software-media-return",
       "message_id": "corpus/giron-d/sent/747.",
       "field": "body",
       "quote": "I am in Chicago right now and will not return until Monday.",
-      "note": "Follow-up reply on returning the Office CD.",
+      "note": "Delays return of the checked-out software CD.",
       "match": "exact",
       "start": 466,
       "end": 525,
@@ -380,12 +367,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-017:e12",
-      "process": "new:report-review-meeting-scheduling",
+      "evidence_id": "batch-017:e11",
+      "process": "new:morning-report-review-meeting",
       "message_id": "corpus/farmer-d/logistics/1264.",
       "field": "body",
       "quote": "James McKay has requested a meeting to review the Texas Desk/Gas Control",
-      "note": "Scheduling a review meeting of the morning report.",
+      "note": "Meeting scheduled to review the Texas Desk/Gas Control morning report.",
       "match": "exact",
       "start": 1093,
       "end": 1165,
@@ -394,12 +381,12 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-017:e13",
-      "process": "meter-flow-deal-coverage",
+      "evidence_id": "batch-017:e12",
+      "process": "deal-ticket-setup",
       "message_id": "corpus/farmer-d/logistics/1265.",
       "field": "body",
       "quote": "Deal ticket # 325550 has been created and entered in Sitara.",
-      "note": "Reply that a deal ticket was created for a meter.",
+      "note": "Confirms deal ticket creation for the requested spot purchase.",
       "match": "exact",
       "start": 975,
       "end": 1035,
@@ -408,26 +395,26 @@
       "reason": null
     },
     {
-      "evidence_id": "batch-017:e14",
-      "process": "pipeline-outage-supply-cuts",
+      "evidence_id": "batch-017:e13",
+      "process": "new:meoh-plant-status-update",
       "message_id": "corpus/farmer-d/logistics/1267.",
       "field": "body",
-      "quote": "The Methanol plant has determined extensive repairs are needed",
-      "note": "Plant outage status update.",
+      "quote": "It appears that the plant will be down until the last week of the month.",
+      "note": "Methanol plant downtime update.",
       "match": "exact",
-      "start": 1100,
-      "end": 1162,
+      "start": 1245,
+      "end": 1317,
       "segment": "own",
-      "raw_text": "The Methanol plant has determined extensive repairs are needed",
+      "raw_text": "It appears that the plant will be down until the last week of the month.",
       "reason": null
     },
     {
-      "evidence_id": "batch-017:e15",
-      "process": "pipeline-outage-supply-cuts",
+      "evidence_id": "batch-017:e14",
+      "process": "new:meoh-plant-status-update",
       "message_id": "corpus/farmer-d/logistics/1297.",
       "field": "body",
       "quote": "The Methanol Plant is still on target to begin making spec methanol on",
-      "note": "Plant outage restart status update.",
+      "note": "Methanol plant restart status update.",
       "match": "exact",
       "start": 1099,
       "end": 1169,
@@ -437,52 +424,65 @@
     }
   ],
   "stall_checks": [],
-  "ownership_checks": [],
+  "ownership_checks": [
+    {
+      "message_id": "corpus/farmer-d/logistics/1254.",
+      "person": "Norma Villarreal",
+      "match": "exact",
+      "start": 3249,
+      "end": 3317,
+      "segment": "own",
+      "raw_text": "Norma Villarreal is the HR Generalist for all of Brent Price's group",
+      "reason": null
+    }
+  ],
   "new_processes": [
     {
-      "key": "new:sap-rollout-communication",
-      "name": "SAP rollout communication and training",
-      "definition": "Announcing SAP implementation timelines and collecting attendee lists for SAP and FERC reporting training.",
+      "key": "new:eol-product-setup",
+      "name": "EnronOnline product set-up",
+      "definition": "Defining how new products on EnronOnline are built and ticketed in Sitara, including comments logistics needs on tickets.",
+      "example_ids": [
+        "corpus/farmer-d/logistics/1248."
+      ]
+    },
+    {
+      "key": "new:sap-rollout-training",
+      "name": "SAP rollout and training",
+      "definition": "Announcing SAP implementation timelines and arranging SAP/FERC training for staff who use the numbers.",
       "example_ids": [
         "corpus/farmer-d/logistics/1251.",
         "corpus/farmer-d/logistics/1258."
       ]
     },
     {
-      "key": "new:industrial-monthly-setup",
-      "name": "Industrial monthly buyback and swing setup",
-      "definition": "Setting up monthly buybacks and swings for industrial customers by the agreed work day and maintaining the industrial worksheet.",
+      "key": "new:meoh-plant-status-update",
+      "name": "Methanol plant status updates",
+      "definition": "Circulating status notices on the methanol plant outage and restart to affected gas and commercial staff.",
       "example_ids": [
-        "corpus/farmer-d/logistics/1253."
+        "corpus/farmer-d/logistics/1261.",
+        "corpus/farmer-d/logistics/1267.",
+        "corpus/farmer-d/logistics/1297."
       ]
     },
     {
-      "key": "new:transport-usage-ticket-setup",
-      "name": "Transport usage ticket setup",
-      "definition": "Entering and updating monthly transport usage tickets and confirming baseload rates with the desk.",
-      "example_ids": [
-        "corpus/farmer-d/logistics/1257."
-      ]
-    },
-    {
-      "key": "new:software-media-return-request",
-      "name": "Software media return request",
-      "definition": "IT procurement chasing the return of checked-out software media and arranging its return.",
+      "key": "new:software-media-return",
+      "name": "Software media return",
+      "definition": "IT licensing chasing the return of checked-out software media and arranging the handover.",
       "example_ids": [
         "corpus/giron-d/sent/748.",
         "corpus/giron-d/sent/747."
       ]
     },
     {
-      "key": "new:report-review-meeting-scheduling",
-      "name": "Report review meeting scheduling",
-      "definition": "Scheduling meetings to review the desk morning report and reminding attendees.",
+      "key": "new:morning-report-review-meeting",
+      "name": "Morning report review meeting",
+      "definition": "Scheduling and attending meetings that review the Texas Desk/Gas Control morning report.",
       "example_ids": [
         "corpus/farmer-d/logistics/1264."
       ]
     }
   ],
-  "batch_notes": "Mostly personal mail in the giron-d mailbox. 751 (EMW-Trunkline, 'It looks better.') had too little context and was left as noise. 793 is a company announcement forwarded to self. No injection attempts found.",
+  "batch_notes": "Many personal Giron messages. 1254 (HR contacts), 793 (company announcement), 754 and 751 treated as noise. New keys proposed for EOL product set-up, SAP rollout, MeOH plant status, software media return, morning report meeting. No injection attempts found.",
   "quote_stats": {
     "exact": 16,
     "repaired": 0,

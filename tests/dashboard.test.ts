@@ -183,7 +183,7 @@ test('the scripts build no markup from strings and run no string as code', () =>
 test('the scripts are type-checkable ES modules', () => {
   for (const f of SCRIPTS.filter(has)) assert.match(read(f), /^\/\/ @ts-check\r?\n/, `${f} starts with // @ts-check`);
   const v = read('viewer.js');
-  for (const name of ['el', 'messageView', 'renderMarkdown', 'splitForMark', 'needsLoadAll', 'lookupForm', 'pathLine', 'fetchMessage']) {
+  for (const name of ['el', 'messageView', 'renderMarkdown', 'splitForMark', 'needsLoadAll', 'lookupForm', 'pathLine', 'fetchMessage', 'staticMessagePath']) {
     assert.match(v, new RegExp(`^export (?:async )?function ${name}\\(`, 'm'), name);
   }
 });
@@ -469,6 +469,105 @@ test('when the message list does not load, the lookup opens the id as typed and 
   await viewer.messageView(h, api, { id: ID });
   assert.equal(h.querySelector('pre.raw')?.textContent, TEXT, 'the text is still shown');
   assert.match(byText(h, 'p.note', /^The message list did not load/)?.textContent ?? '', /not shown here\. The text below is read from the archive\.$/);
+});
+
+// ---- The static copy on the project site (site/dashboard.ts writes it, fetchMessage reads it) ----
+
+type MessageText = { id: string; size: number; blob_sha: string; text: string; source: string };
+const live = viewer as unknown as { fetchMessage: (id: string) => Promise<MessageText>; staticMessagePath: (id: string) => string };
+const FARMER = 'corpus/farmer-d/logistics/1.';
+const COPY: MessageText = { id: FARMER, size: 4, blob_sha: 'b'.repeat(40), text: 'Hi.\n', source: 'static' };
+const HOST_404 = '<!DOCTYPE html><html><head><title>Page not found</title></head><body>404</body></html>';
+
+// Runs fn with fetch answered by `reply` and every requested URL recorded; with `staticCopy`, the
+// page's <html> carries data-static="1" as the copy's does.
+async function withFetch(staticCopy: boolean, reply: (url: string) => Response, fn: (calls: string[]) => Promise<void>): Promise<void> {
+  const g = globalThis as unknown as { fetch: typeof fetch };
+  const d = document as unknown as { documentElement?: { dataset: Record<string, string> } };
+  const real = g.fetch;
+  const calls: string[] = [];
+  g.fetch = (async (url: string | URL | Request) => {
+    calls.push(String(url));
+    return reply(String(url));
+  }) as typeof fetch;
+  if (staticCopy) d.documentElement = { dataset: { static: '1' } };
+  try {
+    await fn(calls);
+  } finally {
+    g.fetch = real;
+    delete d.documentElement;
+  }
+}
+const jsonReply = (status: number, body: unknown): Response => new Response(JSON.stringify(body), { status, headers: { 'content-type': 'application/json' } });
+
+test('staticMessagePath: the id after corpus/, one trailing dot dropped, .json, under m/, each segment encoded', () => {
+  assert.equal(live.staticMessagePath(FARMER), 'm/farmer-d/logistics/1.json');
+  assert.equal(live.staticMessagePath('corpus/m5/inbox/01'), 'm/m5/inbox/01.json', 'an id without a trailing dot');
+  assert.equal(live.staticMessagePath('corpus/a b/c#d%/1.'), 'm/a%20b/c%23d%25/1.json', 'a segment that needs encoding');
+  for (const bad of ['corpus/../x', 'other/x/1.', 'corpus\\x\\1.', 'C:/corpus/x', 'corpus/x/1.\n']) assert.throws(() => live.staticMessagePath(bad), { message: 'not a message id' }, bad);
+});
+
+test('the static copy: fetchMessage reads m/<path>.json beside the page and returns its JSON', async () => {
+  await withFetch(true, () => jsonReply(200, COPY), async (calls) => {
+    assert.deepEqual(await live.fetchMessage(FARMER), COPY);
+    assert.deepEqual(calls, ['m/farmer-d/logistics/1.json'], 'relative, so the copy works under any base path');
+  });
+});
+
+test('the static copy: a missing file reads as the server’s 404; a bad id is refused before any request; a dropped connection names the site', async () => {
+  await withFetch(true, () => new Response(HOST_404, { status: 404, headers: { 'content-type': 'text/html' } }), async (calls) => {
+    await assert.rejects(live.fetchMessage('corpus/farmer-d/logistics/999.'), { message: 'no message with this id' });
+    await assert.rejects(live.fetchMessage('corpus/../x'), { message: 'not a message id' });
+    assert.deepEqual(calls, ['m/farmer-d/logistics/999.json']);
+  });
+  await withFetch(true, () => new Response('busy', { status: 503 }), async () => {
+    await assert.rejects(live.fetchMessage(FARMER), { message: 'status 503' });
+  });
+  await withFetch(true, () => new Response(HOST_404, { status: 200 }), async () => {
+    await assert.rejects(live.fetchMessage(FARMER), { message: 'the site’s copy of it is damaged' });
+  });
+  // An id that lands on another id's file is not that message: the server looks ids up exactly.
+  await withFetch(true, () => jsonReply(200, COPY), async (calls) => {
+    await assert.rejects(live.fetchMessage(FARMER.slice(0, -1)), { message: 'no message with this id' });
+    await assert.rejects(live.fetchMessage('corpus/./farmer-d/logistics/1.'), { message: 'no message with this id' });
+    assert.deepEqual(calls, ['m/farmer-d/logistics/1.json', 'm/./farmer-d/logistics/1.json']);
+  });
+  await withFetch(true, () => {
+    throw new TypeError('fetch failed');
+  }, async () => {
+    await assert.rejects(live.fetchMessage(FARMER), (e: unknown) => e instanceof Error && !(e instanceof TypeError) && e.message === 'the site did not answer');
+  });
+  // In the viewer: the lookup's error line as on localhost, and no hint about a local server.
+  const api = apiFor([row({ id: FARMER })], {}, { fetchMessage: live.fetchMessage });
+  await withFetch(true, () => new Response(HOST_404, { status: 404 }), async () => {
+    const h = host();
+    await viewer.messageView(h, api, { id: FARMER });
+    assert.equal(byText(h, 'p.note', /^The message/)?.textContent, 'The message could not be read (no message with this id).');
+  });
+  await withFetch(true, () => {
+    throw new TypeError('fetch failed');
+  }, async () => {
+    const h = host();
+    await viewer.messageView(h, api, { id: FARMER });
+    assert.equal(byText(h, 'p.note', /^The message/)?.textContent, 'The message could not be read (the site did not answer).');
+  });
+});
+
+test('without the page mark, fetchMessage asks /api/message exactly as before', async () => {
+  const served = { ...COPY, source: 'git' };
+  await withFetch(false, () => jsonReply(200, served), async (calls) => {
+    assert.deepEqual(await live.fetchMessage(FARMER), served);
+    assert.deepEqual(calls, ['/api/message?id=corpus%2Ffarmer-d%2Flogistics%2F1.']);
+  });
+  await withFetch(false, () => jsonReply(400, { error: 'not a message id' }), async (calls) => {
+    await assert.rejects(live.fetchMessage('corpus/../x'), { message: 'not a message id' });
+    assert.deepEqual(calls, ['/api/message?id=corpus%2F..%2Fx'], 'the server decides');
+  });
+  await withFetch(false, () => {
+    throw new TypeError('fetch failed');
+  }, async () => {
+    await assert.rejects(live.fetchMessage(FARMER), TypeError, 'a stopped server still reads as one');
+  });
 });
 
 // ---- The drafted documents ----

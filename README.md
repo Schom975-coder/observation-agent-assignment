@@ -17,7 +17,7 @@ The outputs of the submitted run are committed in [`out/`](out/):
 - [`out/runs/`](out/runs/): the run logs.
 - [`out/dashboard/`](out/dashboard/): the dashboard data.
 
-`node obs.mjs serve` opens the dashboard on these files with no model call; `/serve` inside Claude Code does the same. The report has the same numbers as the dashboard. A copy of the report is on the site: [report.html](https://schom975-coder.github.io/observation-agent-assignment/report.html).
+`node obs.mjs serve` opens the dashboard on these files with no model call; `/serve` inside Claude Code does the same. The report has the same numbers as the dashboard. A copy of the report is on the site: [report.html](https://schom975-coder.github.io/observation-agent-assignment/report.html). The site also carries a copy of the dashboard with every message pre-written, so you can click from any number to its message there with nothing installed: https://schom975-coder.github.io/observation-agent-assignment/dashboard/. The dashboard served below, on localhost, is the one the brief asks for.
 
 ## Prerequisites
 

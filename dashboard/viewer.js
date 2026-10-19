@@ -9,6 +9,7 @@
 //   el(tag, props, ...kids), add(node, kids), useDocument(doc)   building nodes
 //   copyButton(text, label, target), pathLine(id)                the copyable message id
 //   fetchMessage(id)                                             GET /api/message, for api.fetchMessage
+//   staticMessagePath(id)                                        a message's file in the site's static copy
 //   messageView(host, api, opts)                                 the viewer, rendered into host
 //   lookupForm(api, opts)                                        "Paste a message ID", Open
 //   renderMarkdown(md, hooks)                                    a drafted document, as nodes
@@ -296,8 +297,50 @@ function otherCopies(index, row) {
   return { original, copies: (by.get(original) ?? []).filter((id) => id !== row.id) };
 }
 
-/** GET /api/message for one id; throws with the server's own reason. @param {string} id @returns {Promise<MessageText>} */
+/**
+ * Where the static copy of the dashboard keeps one message, relative to its page: the id after
+ * "corpus/", one trailing dot dropped, ".json" added, under m/, each segment URL-encoded, so
+ * corpus/farmer-d/logistics/1. is m/farmer-d/logistics/1.json. site/dashboard.ts writes the files by
+ * this rule. An id the server would refuse throws "not a message id", as the server answers.
+ * @param {string} id
+ */
+export function staticMessagePath(id) {
+  if (!id.startsWith('corpus/') || id.includes('..') || id.includes('\\') || /^[A-Za-z]:/.test(id) || /[\u0000-\u001f\u007f]/.test(id)) throw new Error('not a message id');
+  return `m/${`${id.slice('corpus/'.length).replace(/\.$/, '')}.json`.split('/').map(encodeURIComponent).join('/')}`;
+}
+
+/**
+ * One message as MessageText; throws with the server's own reason. From the dashboard server: GET
+ * /api/message. From the static copy on the project site (its <html> carries data-static="1"): the
+ * file staticMessagePath names, beside the page.
+ * @param {string} id @returns {Promise<MessageText>}
+ */
 export async function fetchMessage(id) {
+  if ((current ?? globalThis.document)?.documentElement?.dataset?.static === '1') {
+    const path = staticMessagePath(id);
+    /** @type {Response} */
+    let got;
+    try {
+      got = await fetch(path);
+    } catch {
+      // Not a TypeError: the viewer's hint about restarting the local server does not apply here.
+      throw new Error('the site did not answer');
+    }
+    // A missing file is the host's own 404 page, not JSON.
+    if (!got.ok) throw new Error(got.status === 404 ? 'no message with this id' : `status ${got.status}`);
+    /** @type {unknown} */
+    let copy = null;
+    try {
+      copy = await got.json();
+    } catch {
+      copy = null;
+    }
+    if (copy === null || typeof copy !== 'object' || typeof (/** @type {{ text?: unknown }} */ (copy).text) !== 'string') throw new Error('the site’s copy of it is damaged');
+    // The file of another id ("1" without its dot, or a "./" in the path, lands on 1.'s file): the
+    // server looks an id up exactly, so this is its 404.
+    if (/** @type {{ id?: unknown }} */ (copy).id !== id) throw new Error('no message with this id');
+    return /** @type {MessageText} */ (copy);
+  }
   const res = await fetch(`/api/message?id=${encodeURIComponent(id)}`);
   /** @type {unknown} */
   let body = null;

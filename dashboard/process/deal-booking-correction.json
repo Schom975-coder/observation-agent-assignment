@@ -2,10 +2,10 @@
   "key": "deal-booking-correction",
   "name": "Deal booking checks and corrections",
   "definition": "Checking booked trades for the right counterparty, terms, classification and cross-system links, and rebooking or correcting deals that are wrong.",
-  "rank": 28,
+  "rank": 27,
   "tier": "B",
   "row": {
-    "rank": 28,
+    "rank": 27,
     "key": "deal-booking-correction",
     "name": "Deal booking checks and corrections",
     "tier": "B",
@@ -188,7 +188,7 @@
         "key": "deal-booking-correction"
       }
     },
-    "fix": "A nightly exception report comparing Tagg, Sitara and Enpower could flag deals with missing EOL or Sitara links, counterparty names that do not match the credit-approved short…",
+    "fix": "A nightly exception report comparing Tagg, Sitara and Enpower could flag deals with missing EOL or Sitara links, counterparty names that do not match the credit-approved short name, physical deals without the financial flag, and duplicate entries in the same book, so bookers receive a list of specific fixes instead of one-off emails.",
     "document": null,
     "status_line": "Not drafted: $24 a month is under the $85 drafting line",
     "chasers": {

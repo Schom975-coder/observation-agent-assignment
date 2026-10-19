@@ -2,7 +2,7 @@ This is the repository's README, rendered.
 
 # Observation agent
 
-A system that reads a company's 3,240-message email archive inside Claude Code, finds its recurring work, and prices the automation opportunities at $85 an hour, with every claim cited to a message. It drafts working documents for the biggest opportunities and serves a dashboard on localhost.
+A system that reads a company's 3,240-message email archive inside Claude Code (here the public Enron archive, so the dashboard is "prepared for Enron" as a demonstration), finds its recurring work, and prices the automation opportunities at $85 an hour, with every claim cited to a message. It drafts working documents for the biggest opportunities and serves a dashboard on localhost.
 
 [Project site](https://schom975-coder.github.io/observation-agent-assignment/) · [NOTES.md](https://github.com/Schom975-coder/observation-agent-assignment/blob/main/NOTES.md) (the two-page notes the brief asks for) · [BRIEF.md](https://github.com/Schom975-coder/observation-agent-assignment/blob/main/BRIEF.md) (the assignment) · [llms.txt](https://schom975-coder.github.io/observation-agent-assignment/llms.txt). The site is the one-stop reading copy; this repo is the thing itself.
 
@@ -15,7 +15,7 @@ One command, `/observe`, runs the whole pipeline inside Claude Code. In order: p
 The outputs of the submitted run are committed in [`out/`](https://github.com/Schom975-coder/observation-agent-assignment/tree/main/out):
 
 - [`out/report.html`](https://github.com/Schom975-coder/observation-agent-assignment/blob/main/out/report.html) and [`out/report.md`](https://github.com/Schom975-coder/observation-agent-assignment/blob/main/out/report.md): the report. `report.html` is self-contained and opens with a double-click.
-- [`out/artifacts/`](https://github.com/Schom975-coder/observation-agent-assignment/tree/main/out/artifacts): the drafted documents.
+- [`out/artifacts/`](https://github.com/Schom975-coder/observation-agent-assignment/tree/main/out/artifacts): the five drafted documents, one folder per process (for example `real-time-power-scheduling/sop.md`). Beside them, `input/`, `raw/` and `validated/` hold each draft's brief, its text as the drafter wrote it, and the record of its check.
 - [`out/runs/`](https://github.com/Schom975-coder/observation-agent-assignment/tree/main/out/runs): the run logs.
 - [`out/dashboard/`](https://github.com/Schom975-coder/observation-agent-assignment/tree/main/out/dashboard): the dashboard data.
 
@@ -87,7 +87,7 @@ To run cold, with every subagent again:
 /observe --force
 ```
 
-`--force` clears the model outputs first. Every cold rehearsal since the drafting stage was added completed in under 30 minutes on our Windows machine, and so did the submitted run: 28 min 59 s, with 130 subagents started. A cold run asks the model again, so its process list, its merge and its work estimates can differ from the committed ones, and the dollar figures move with them. Counting and arithmetic are code and do not vary: the same model outputs give the same numbers on every rerun and every OS. If a cold run replaces the committed outputs, Git still holds the submitted run.
+`--force` clears the model outputs first. Every cold rehearsal since the drafting stage was added completed in under 30 minutes on our Windows machine, and so did the submitted run: 28 min 59 s from its first step to its last, with 130 subagents started (its log in `out/runs/`, which also records the final build, spans 29 min 1 s). A cold run asks the model again, so its process list, its merge and its work estimates can differ from the committed ones, and the dollar figures move with them. Across the four forced fresh runs in `out/runs/` that reached scoring, the headline ranged from $1,932 to $2,231 a month and the process count from 56 to 66, while the counted email part stayed between $523 and $553: most of the spread is in the estimates (agent instructions also changed between the earlier runs). The [run page](https://schom975-coder.github.io/observation-agent-assignment/run.html#rerun) lists them. Counting and arithmetic are code and do not vary: the same model outputs give the same numbers on every rerun and every OS. If a cold run replaces the committed outputs, Git still holds the submitted run.
 
 ### Folder trust and permissions
 

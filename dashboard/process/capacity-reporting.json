@@ -2,10 +2,10 @@
   "key": "capacity-reporting",
   "name": "Pipeline capacity reporting and release",
   "definition": "Reporting pipeline deliveries and available capacity to customers and colleagues, and handling capacity release to shippers.",
-  "rank": 7,
+  "rank": 6,
   "tier": "B",
   "row": {
-    "rank": 7,
+    "rank": 6,
     "key": "capacity-reporting",
     "name": "Pipeline capacity reporting and release",
     "tier": "B",
@@ -183,7 +183,7 @@
         "key": "capacity-reporting"
       }
     },
-    "fix": "Generate the delivery summary directly from the pipeline's scheduled-volume data: a query fills average deliveries, utilization and lateral throughput into a fixed template…",
+    "fix": "Generate the delivery summary directly from the pipeline's scheduled-volume data: a query fills average deliveries, utilization and lateral throughput into a fixed template, stamps the effective date range automatically, and sends it on a schedule after a quick human check.",
     "document": null,
     "status_line": "Not drafted: $82 a month is under the $85 drafting line",
     "chasers": {

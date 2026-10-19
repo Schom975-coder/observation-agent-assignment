@@ -23,6 +23,19 @@ The outputs of one real run of `/observe` are committed in [`out/`](https://gith
 
 The same facts print with `node obs.mjs summary`, and the dashboard's How we measured shows them beside the figures they explain.
 
+## Rerunning it
+
+Running `/observe` again reproduces these figures exactly: it finds every model output already done and starts no agent (the rerun after the submitted run took 19 s), and CI rebuilds every code step from the committed model outputs on macOS, Linux and Windows and fails if any committed output changes. A fresh run, `/observe --force`, asks the model again for its judgement: the list of processes, which messages belong to which, and the minutes one round of each takes. Like two analysts, two fresh runs do not judge identically, so the processes and the estimated dollars move with them. The counting and the arithmetic on any given judgement are exact. Every forced fresh run in the logs that reached scoring:
+
+| Fresh run | Processes | Estimates missing | Counted | Estimated | Total a month |
+|---|---:|---:|---:|---:|---:|
+| [`20261019T134634Z.jsonl`](https://github.com/Schom975-coder/observation-agent-assignment/blob/main/out/runs/20261019T134634Z.jsonl) (submitted) | 60 | 2 | $526.19 | $1,704.94 | $2,231.13 |
+| [`cold-clone-20261018T170417Z.jsonl`](https://github.com/Schom975-coder/observation-agent-assignment/blob/main/out/runs/cold-clone-20261018T170417Z.jsonl) | 66 | 1 | $535.29 | $1,397.11 | $1,932.33 |
+| [`cold-clone-20261018T184200Z.jsonl`](https://github.com/Schom975-coder/observation-agent-assignment/blob/main/out/runs/cold-clone-20261018T184200Z.jsonl) | 58 | 5 | $522.91 | $1,585.07 | $2,107.96 |
+| [`cold-clone-20261018T191015Z.jsonl`](https://github.com/Schom975-coder/observation-agent-assignment/blob/main/out/runs/cold-clone-20261018T191015Z.jsonl) | 56 | 4 | $552.54 | $1,665.53 | $2,218.12 |
+
+The counted part, email actions priced at published minutes, moved little; most of the spread is in the estimated work. Part of the spread is ours rather than the model's: agent instructions and the scoring code changed between the earlier runs (they also rounded each part on its own, so their counted and estimated parts can miss the total by a few cents), and a process with no accepted estimate adds nothing to the estimated part. In a real engagement the client would approve the process list and the estimates once and lock them (an estimates file already replaces the model's figure for the processes it names: [How to use](https://schom975-coder.github.io/observation-agent-assignment/how-to-use.md#rescore)), and later runs would move only when the mail does.
+
 ## Stage timeline
 
 Each stage's time from the run log, with the jobs it handed out, the subagents it started and the fix rounds it needed.
@@ -63,10 +76,10 @@ One document for each opportunity above the drafting threshold, in rank order. E
 | Rank | Document | Type | Status |
 |---:|---|---|---|
 | 1 | [Real-time power scheduling: SOP](https://schom975-coder.github.io/observation-agent-assignment/documents/real-time-power-scheduling.md) | SOP | drafted |
-| 3 | [Meter flow discrepancy resolution: template](https://schom975-coder.github.io/observation-agent-assignment/documents/meter-flow-resolution.md) | template | drafted |
-| 4 | [Settlement and invoice resolution: email template](https://schom975-coder.github.io/observation-agent-assignment/documents/settlement-resolution.md) | email template | drafted |
-| 5 | [Deal ticket and transport contract set-up: template](https://schom975-coder.github.io/observation-agent-assignment/documents/deal-ticket-setup.md) | template | drafted |
-| 6 | [Deal transfer between books: template](https://schom975-coder.github.io/observation-agent-assignment/documents/deal-book-transfer.md) | template | drafted |
+| 2 | [Meter flow discrepancy resolution: template](https://schom975-coder.github.io/observation-agent-assignment/documents/meter-flow-resolution.md) | template | drafted |
+| 3 | [Settlement and invoice resolution: email template](https://schom975-coder.github.io/observation-agent-assignment/documents/settlement-resolution.md) | email template | drafted |
+| 4 | [Deal ticket and transport contract set-up: template](https://schom975-coder.github.io/observation-agent-assignment/documents/deal-ticket-setup.md) | template | drafted |
+| 5 | [Deal transfer between books: template](https://schom975-coder.github.io/observation-agent-assignment/documents/deal-book-transfer.md) | template | drafted |
 
 ## What out/ holds
 

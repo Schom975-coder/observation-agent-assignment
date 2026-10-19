@@ -1271,7 +1271,7 @@ function rowsLayer(filter) {
     crumb: `${ROWS_TITLE[filter] ?? 'Processes'}: ${rows.length}`,
     render: () => [
       ...head('Processes', `${ROWS_TITLE[filter] ?? 'Processes'}: ${grouped(rows.length)}`),
-      filter === 'below' && rows.length > 0 ? el('p', { class: 'calc' }, `${cap(rows[0].tier_words)}; each is still listed and ranked.`) : null,
+      filter === 'below' && rows.length > 0 ? el('p', { class: 'calc' }, `${cap(rows[0].tier_words)}; each is listed after the total.`) : null,
       rowList(rows),
     ],
   };
@@ -1971,7 +1971,7 @@ function documentLayer(key) {
         const body = el('div', { class: 'doc' }, renderMarkdown(doc.markdown, { onMessageId: () => {} }));
         linkEvidence(body, f, r.name);
         return [
-          el('p', { class: 'calc' }, doc.blanks ? el('b', null, doc.blanks.t) : 'No items', ' for the owner to confirm, marked in the text below.'),
+          el('p', { class: 'calc' }, doc.blanks ? el('b', null, doc.blanks.t) : 'No items', ' for the owner to confirm (the owner, values it proposes and rules taken from a single email), marked in the text below with the other blanks: fields filled in each time it is used, and a few set once, such as where a shared list lives.'),
           body,
           el('p', { class: 'small' }, 'Drafted from the cited emails for the process owner to review; shown as drafted.'),
         ];
@@ -2279,6 +2279,7 @@ export function renderOverview() {
       el('span', null, swatch('estimated'), num(H.estimated), ' estimated from them')),
     el('div', { class: 'value-lines' },
       el('p', null, S.scope),
+      el('p', null, ...withNums(S.today, [H.today, H.hours_today, H.total])),
       el('p', null, S.split, ' ', ...withNums(S.range, [H.low, H.high]))));
   value.append(el('div', { class: 'value-links' },
     link('How to read these numbers', () => openTarget({ kind: 'method', section: 'explainer' }), 'link howto'),
@@ -2374,7 +2375,7 @@ function rankCell(row) {
  */
 function fillTable(t, rows, o) {
   const full = o.full;
-  const max = D.rows[0]?.total.v || 1;
+  const max = Math.max(1, ...D.rows.map((/** @type {any} */ r) => r.total.v));
   /** @param {string} key @param {string} text @param {string | null} cls @param {string} [sub] */
   const sortTh = (key, text, cls, sub) => {
     const sorted = o.sort && o.sort.key === key;
@@ -2479,8 +2480,8 @@ function renderAll() {
     el('div', { class: 'view-head' },
       el('p', { class: 'kicker' }, 'All processes'),
       el('h2', null, `All ${grouped(D.rows.length)} recurring processes, ranked`),
-      el('p', { class: 'lede' }, 'Ranked by what could be automated, in dollars a month; ties by name. ', num(H.rows_in_total), ' are in the ', num(H.total), ' total. ',
-        H.rows_below.v > 0 ? [num(H.rows_below), ' were seen too rarely to count and sit in rank order, marked, outside the total. '] : null,
+      el('p', { class: 'lede' }, 'Ranked by what could be automated, in dollars a month; ties by name. The ', num(H.rows_in_total), ' in the ', num(H.total), ' total come first. ',
+        H.rows_below.v > 0 ? [num(H.rows_below), ' were seen too rarely to count; they follow, marked, outside the total. '] : null,
         'Sorting by another column reorders the rows and keeps each one’s rank.')),
     el('div', { class: 'rankkey' },
       el('span', null, swatch('counted'), 'counted from the emails'), el('span', null, swatch('estimated'), 'estimated from the emails'),
@@ -2856,6 +2857,7 @@ function renderShell() {
       D.run.later_runs && D.run.later_runs.v > 0 ? [', continued in ', num(D.run.later_runs), ` later ${D.run.later_runs.v === 1 ? 'run' : 'runs'}`] : null,
       D.run.date ? ` · ${dateText(D.run.date)}` : '', ' · ', num(D.scope.files, { after: ' messages' }), ' · ', num(D.rates.hourly), ' an hour.'),
     el('p', null, 'Counted: email actions found in the messages, priced at published minutes per action. Estimated: the hands-on work behind each round, estimated once per process from cited emails and checked by code.'),
+    el('p', null, D.sentences.rerun),
     el('p', null, `Prepared for Enron from ${numberWord(mbs.length)} employees’ archived mail. `, el('a', { href: 'report.html', class: 'link' }, 'The same figures as a printable report'), '.'),
   ]);
 }

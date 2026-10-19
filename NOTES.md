@@ -58,7 +58,11 @@ In the submitted run 2,684 quotes matched exactly, 13 needed a small repair, non
 
 By dollar impact:
 
-1. **Work estimates:** $1,705 of the $2,231 a month is the model's estimate of hands-on minutes; $526 is counted. Bounded, cited from 3+ rounds and 2+ senders, overridable, but judgement: the range is $1,243 to $4,989.
+1. **The work estimates.** The $2,231 a month has two parts, and the dashboard shows both on every figure.
+   - **Counted, $526:** the email itself. Code counts every email written, forwarded, chased and read in each process and prices each action at a published rate (2 minutes for a short email, 1 minute per person who reads it) with a published share that could be automated.
+   - **Estimated, $1,705:** the hands-on work behind each round that the email does not show, such as entering a deal or correcting a schedule. For each process the model proposes the minutes one round takes and the share that could be automated, citing the emails it relied on. Code rejects an estimate over 480 minutes or 80%, or one not cited from at least 3 rounds and 2 senders, then multiplies it by the rounds it counted.
+
+   The estimate is judgement, so this is where the total is most likely off: with every estimate at the low or high end of its own range, it runs from $1,243 to $4,989. Any estimate can be overridden from a file without calling a model.
 2. **The merge**, which places 26% of tagged mail.
 3. **Rounds**, rebuilt from subjects and gaps; these emails carry no reply headers.
 4. **Tagging:** 80.8% exact (84.6% after the merge) on 52 emails labelled blind by a separate agent.
@@ -75,3 +79,7 @@ Checked, not trusted: the brief's "thirty context windows" measured six to eight
 ## What we drafted, and why
 
 A team should be able to use something the next morning. The rule, on the dashboard: a document for every process seen 10+ times over 3+ months by 2+ staff with $85 a month or more of automatable work, 3 to 8 in all; this run drafted 5. The model picks the type (SOP, checklist, email template, template); a checker refuses dollar figures, effort claims and text aimed at a machine; code appends the source emails.
+
+## More detail
+
+Two pages leave a lot out. The running log we kept while building, [`.claude/notes/NOTES-LOG.md`](.claude/notes/NOTES-LOG.md), has the fuller account behind each section with its evidence, and [`.claude/notes/DECISIONS.md`](.claude/notes/DECISIONS.md) records every decision made along the way with the alternatives we rejected and why.

@@ -994,7 +994,7 @@ ${runId === undefined ? '' : `<meta name="obs-run" content="${escapeHtml(runId)}
 ${x.kicker === undefined ? '' : `<p class="kicker">${escapeHtml(x.kicker)}</p>\n`}${x.banner ? `<p class="banner">${escapeHtml(NOT_COMMITTED)}</p>\n` : ''}${x.body}
 </main>
 <footer class="foot">
-<p><a href="${escapeHtml(cfg.repo_url)}">The repository on GitHub</a> · ${escapeHtml(cfg.author)} · <a href="${escapeHtml(x.twin)}">This page in Markdown</a> · <a href="${up}llms.txt">llms.txt</a></p>
+<p><a href="${escapeHtml(cfg.repo_url)}">The repository on GitHub</a> · ${escapeHtml(cfg.author)} · <a href="${escapeHtml(x.twin)}">This page in Markdown</a> · <a href="${up}llms.txt">llms.txt</a> · <a href="${up}llms-full.txt">llms-full.txt</a></p>
 </footer>
 </div>
 ${COPY_SCRIPT}
@@ -1141,7 +1141,7 @@ function placeholderPage(ctx: Ctx, path: string, title: string, navFile: string,
 
 function llmsTxt(ctx: Ctx, summary: string, docs: Doc[]): string {
   const cfg = ctx.cfg;
-  const lines = [`# ${cfg.title}`, '', `> ${summary}`, '', '## Pages', ''];
+  const lines = [`# ${cfg.title}`, '', `> ${summary}`, '', `Everything in one file: ${cfg.base_url}llms-full.txt`, '', '## Pages', ''];
   for (const p of cfg.pages) {
     if (p.kind === 'dashboard') lines.push(`- [${p.title}](${cfg.base_url}dashboard/index.html): ${p.description}`);
     else if (p.kind === 'report') lines.push(`- [${p.title}](${cfg.base_url}report.md): ${p.description} The printable page is ${cfg.base_url}report.html.`);
@@ -1164,7 +1164,7 @@ function llmsTxt(ctx: Ctx, summary: string, docs: Doc[]): string {
   // The Claude Code layer and the records file by file, as raw text an agent can fetch whole.
   lines.push('', '## The Claude Code layer and the records, as plain text', '');
   const layer = ctx.claude.files.map((f) => f.path).filter((p) => /^\.claude\/(agents\/[^/]+\.md|skills\/[^/]+\/SKILL\.md|hooks\/[^/]+\.ts)$/.test(p));
-  for (const path of [...layer, '.claude/plan/ARCHITECTURE.md', '.claude/notes/DECISIONS.md', '.claude/notes/NOTES-LOG.md']) {
+  for (const path of [...layer, '.claude/settings.json', '.claude/plan/ARCHITECTURE.md', '.claude/notes/DECISIONS.md', '.claude/notes/NOTES-LOG.md']) {
     const role = fileRole(path, ctx.claude);
     lines.push(`- [${path}](${rawUrl(ctx, path)})${role === '' ? '' : `: ${mdText(role)}`}`);
   }

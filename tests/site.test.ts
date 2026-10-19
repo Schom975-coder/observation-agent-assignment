@@ -395,6 +395,9 @@ test('the Markdown twins point at twins for pages, and keep the report and the d
     assert.ok(llms.includes(`[${f}](${raw}${f})`), `llms.txt lists ${f} as raw text`);
   }
   assert.ok(llms.includes('(https://github.com/Schom975-coder/observation-agent-assignment/tree/main/.claude)'), 'the .claude/ tree link stays');
+  assert.ok(llms.includes(`[.claude/settings.json](${raw}.claude/settings.json): Permissions and the hook wiring.`), 'llms.txt lists settings.json as raw text');
+  assert.ok(llms.split('## Pages')[0]?.includes(`Everything in one file: ${cfg.base_url}llms-full.txt`), 'llms.txt points at llms-full.txt before the pages');
+  for (const f of ownHtml()) assert.match(read(f), /<a href="(\.\.\/)?llms-full\.txt">llms-full\.txt<\/a>/, `${f}: the footer links llms-full.txt`);
 });
 
 test('5: every fixed id is on its page, and every link inside the site resolves to a file and an id', () => {

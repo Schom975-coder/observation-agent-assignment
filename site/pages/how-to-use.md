@@ -4,7 +4,7 @@ The run leaves four things to use: the dashboard, the report, the drafted docume
 
 ## The dashboard {#the-dashboard}
 
-`node obs.mjs serve` (or `/serve` inside Claude Code) serves it on `http://127.0.0.1:8765/` from the files the run built in `out/dashboard/`; `/observe` starts it at the end of every run. It binds the local address only and fetches nothing from the network. The [copy on this site](dashboard/index.html) is the same pages and data, with every message written out as a file instead of served, so it needs nothing installed.
+`node obs.mjs serve` (or `/serve` inside Claude Code) serves it on `http://127.0.0.1:8765/` by default, or on the next free port up to 8775, from the files the run built in `out/dashboard/`; the command prints the address it took; `/observe` starts it at the end of every run. It binds the local address only and fetches nothing from the network. The [copy on this site](dashboard/index.html) is the same pages and data, with every message written out as a file instead of served, so it needs nothing installed.
 
 The views, in the header:
 

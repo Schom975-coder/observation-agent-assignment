@@ -1,55 +1,77 @@
 # Notes
 
-A Claude Code pipeline that reads all 3,240 messages, prices recurring work from cited evidence and drafts documents. Figures are from the submitted run (`node obs.mjs summary`); the site expands every section: https://schom975-coder.github.io/observation-agent-assignment/.
+Figures are from the submitted run; the site expands each section: https://schom975-coder.github.io/observation-agent-assignment/.
 
 ## How we drove Claude Code
 
-The `/observe` skill orchestrates: each turn it runs `node obs.mjs advance`, which does every ready code step and returns job IDs for background subagents. Hooks: PreToolUse enforces per-agent allowlists, SubagentStop validates and records each job, Stop blocks an early stop with the next command. A content-hash ledger keeps reruns warm. A throwaway experiment first tested four Claude Code behaviours the loop needs. Cold `claude -p` runs: 32 min 34 s, then 25 min 01 s to 29 min 51 s after loop changes; the submitted run 28 min 59 s with 130 subagents, a warm rerun 19 s (57 s with start-up) with none. To build it, the main session chaired: architects and review panels in fresh contexts, implementers on disjoint files against written briefs, an independent lighter-model review before our own tests, browser click-throughs on real data. Scott approved designs and daytime commits; overnight work stayed on feature branches.
+I ran Claude Code like a small team. One main session led each milestone: an architect agent planned it in a fresh context, I approved the design, implementer agents built it in parallel on separate files from written briefs, and a separate reviewer read every change before the lead tested it. Work stayed on feature branches until I reviewed and pushed it.
+
+- **First,** a throwaway experiment proved what the design rests on: background agents wake the lead when they finish, hooks can block, all of it headless. Windows cannot check out the repo, since every email file name ends in a dot, so code reads mail from Git's storage, byte for byte what Mac and Linux read.
+- **M0 to M2, all code:** reading, a strict date parser (JavaScript turns 31 April into 1 May), de-duplication, threads, batches.
+- **M3 to M5:** a go/no-go on two batches, the full loop over 99, then counting, estimates and dollars. First timed cold run: 32 min 34 s.
+- **M6 to M8:** drafted documents behind a checker; the dashboard, designed and signed off before it was built; the submitted run.
+
+At run time `/observe` loops on `node obs.mjs advance`, which runs every step ready in code and hands back job IDs; hooks limit what each agent touches and check its result. A ledger keyed on content hashes repeats nothing: the warm rerun took 19 s with no agents.
 
 ## What we handed to subagents, and why
 
-Judgement, never counting. Five pipeline agents, each with Read and Write only and a code gate: the taxonomist once, an extractor per batch (99), the merger once, a synthesizer per group of processes, a drafter per document. They decide membership, aliasing, descriptions, one bounded work estimate per process, and prose; code does every count, tier and sum. Agent definitions pin each stage's model and effort (`.claude/agents/`).
+Judgement, never arithmetic. Five agents, each reading its input, writing one file and checked by code: one proposes the processes, 99 extractors tag every email with a process and a verbatim quote, one merges the names they invent, 20 describe processes and estimate minutes per round, one per document drafts. Every count and dollar is code.
 
 ## How we budgeted their context
 
-Read returns at most 25,000 tokens and numbers each line, so a batch stays under 64,000 bytes and 22,000 tokens, estimated as (bytes + 8 x lines) / 3: 99 batches. Synthesis groups hold at most four processes and 24,000 tokens. The orchestrator sees IDs and JSON, never email; fix-round problems travel in files. Prompts carry only a job ID and folder: typing 672-776-character prompts cost the first cold run about 4 minutes.
+Read returns at most 25,000 tokens, so a batch stops at 64 KB and about 22,000 tokens; a description agent gets at most four processes. The lead never sees an email, only IDs and short JSON.
 
 ## What ran in parallel
 
-Up to 20 extractors at once. Occupancy was the lever: 6.5 of 12 slots busy on average in M4, 10.0 of 20 in the first cold run, 11.6 with ID-only prompts and one `advance` per cycle, 12.5 with the orchestrator's effort pinned and a short folder path. Synthesis and drafting each run as one wave.
+Up to 20 extractors, then every description in one wave, then every draft. Getting under 30 minutes was not about faster agents. The first cold run's logs showed the lead spending 3.5 seconds typing each agent's 700-character prompt, and an agent only starts once its prompt is written, so half the slots sat empty. We cut prompts to a job ID, let one command run every ready step and cut the merge from 12 minutes to 5. Rehearsals then took 25 to 30 minutes; the submitted run 28 min 59 s, with 130 agents.
 
 ## Where Claude Code got it wrong, and how we caught it
 
-All caught before any output:
+None of these reached the output:
 
-- The SubagentStop block cannot re-enter a subagent that ended through its hand-back tool (auto mode); a deliberately corrupted batch stayed `running` (M3). Fix rounds became ledger re-dispatches in every mode.
-- Review showed the first corpus guard, a deny-list, let an extractor overwrite the guard hook (now an allowlist), and the taxonomy gate admitted instructions in definitions (now refused).
-- Review found 77 of 974 forwards mislabelled from quoted banners (the implementers' tests had passed) and our de-duplication would chain daily sends into one.
-- Drafts made one email a standing rule and its sender the owner; better instructions gained a point in ten, so code writes the people line.
-- One person's four addresses counted as four staff; folding cut staff counts from 726 to 688, and an eye check caught a wrong fold (`m..presto`).
-- M7 reviews caught email text forming live links in `report.md` and a regex older Safari cannot parse, which would have blanked the dashboard.
+- The hook that bounces a bad result could not reach an agent that had already handed back. Testing that undocumented case found it; retries now go out from the ledger.
+- Review showed an extractor could overwrite the first guard itself; the guard now lists what each agent may touch.
+- Implementers' tests passed while 77 of 974 forwards were misread and de-duplication chained daily reports together. A second reviewer caught both.
+- Drafts turned one email into a standing rule and its sender into the owner; code now writes who does what.
 
-Submitted run: 2,684 quotes exact, 13 repaired, 0 rejected; 4 fix rounds.
+In the submitted run 2,684 quotes matched exactly, 13 needed a small repair, none were rejected.
 
 ## What we would build next with another week
 
-A company-wide estimate from four mailboxes, assumptions stated; a hand check of the occurrences behind the top opportunities; nickname and sound-alike folds with evidence; per-sentence citations and worked examples in drafts; an injection check beyond phrases.
+**Features a president would act on**
+
+- **Company-wide numbers:** headcount by role turns four people's minutes into a company figure.
+- **Owners and proven savings:** assign each opportunity, freeze today's figure, count again after the fix ships.
+- **Trends and nudges:** growing work, worsening stalls, and a weekly list to each owner of threads waiting on them.
+- **Key-person risk:** three of the five documented processes live almost entirely in one mailbox.
+- **An expert in the loop:** an operations lead corrects labels on the dashboard, feeding the next run. We are not energy experts; this closes that gap.
+
+**Architecture**
+
+- **A container** with Node, Git and the Claude Code CLI: the same run on every OS, no Windows recipe.
+- **A hosted, shared app** with single sign-on: one live dashboard for leadership, with comments and owners.
+- **Postgres** for jobs, history across runs and a tenant per client; raw mail in encrypted object storage.
+- **A job queue** (Redis) and workers instead of one lead session, so runs scale and survive restarts; Redis also caches the dashboard's busiest reads.
+- **Live mail** from Exchange or Gmail, nightly and incremental, which the content-hash ledger already supports.
 
 ## Where the system is most likely wrong
 
 By dollar impact:
 
-1. Model-estimated hands-on minutes per round: $1,705 of the $2,231 a month ($526 counted). Bounded (1-480 minutes, at most 80% automatable), cited from 3+ rounds and 2+ senders, overridable. Range $1,243 to $4,989; forced reruns of the merge and estimates moved the headline 5% and 7.6%.
-2. The merge, which placed 26% of tagged mail.
-3. Occurrences: with no In-Reply-To headers, rounds come from subjects, 45-day gaps and fresh sends.
-4. Tagging: 80.8% exact (84.6% after the merge) on 52 code-sampled messages, labelled blind by a fresh agent; Scott kept its calls on the 8 it was least sure of.
-5. 13 forwarded reports with stripped headers, priced as long emails.
-6. Unsourced draft details, marked `[proposed: ...]`.
+1. **Work estimates:** $1,705 of the $2,231 a month is the model's estimate of hands-on minutes; $526 is counted. Bounded, cited from 3+ rounds and 2+ senders, overridable, but judgement: the range is $1,243 to $4,989.
+2. **The merge**, which places 26% of tagged mail.
+3. **Rounds**, rebuilt from subjects and gaps; these emails carry no reply headers.
+4. **Tagging:** 80.8% exact (84.6% after the merge) on 52 emails labelled blind by a separate agent.
 
 ## What it took on faith
 
-That email shows the work: phone and screen work leave no trace, so totals are floors. The brief's $85 an hour and our per-action minutes (`config/effort-rates.json`). That each address fold is one person, and that four mailboxes' recurring mail represents those people's processes. Neither of us knows the energy business: the process list, gold labels and drafts' domain detail are the agents' calls, checked for citations and consistency, not expertise. Undocumented Claude Code details, each failing safe. macOS, seen only through CI. Checked, not trusted: the corpus is about 6-8 times a 200k window, not thirty; we found the nine planted messages by their ID shape; the pipeline detects them by content and never reads that shape.
+- That email shows the work; calls and screen time leave no trace, so totals are floors.
+- The brief's $85 an hour and our minutes per email action.
+- The domain. I don't know energy trading. I approved the process list and the labeller's 8 least certain calls; code checked citations, not whether a gas scheduler would agree.
+- That four mailboxes are representative.
+
+Checked, not trusted: the brief's "thirty context windows" measured six to eight; the planted emails are caught by content, not by their IDs, so a reviewer's own traps get the same test.
 
 ## What we drafted, and why
 
-The rule (dashboard and report; numbers in `config/scoring.json`): "We draft a working document for every process seen 10 or more times over 3 or more months by 2 or more staff whose automatable work is worth one hour a month ($85) or more." Capped at 8, floored at 3; 5 drafted. The synthesizer picks one of the brief's four types; a gate refuses money, percent and effort figures, citations and steering text. Emails are reusable templates, not replies to threads still open in a 2002 archive. Open work shows as 24 recent open loops. Citations are per document: validated facts in, verbatim evidence appended by code.
+A team should be able to use something the next morning. The rule, on the dashboard: a document for every process seen 10+ times over 3+ months by 2+ staff with $85 a month or more of automatable work, 3 to 8 in all; this run drafted 5. The model picks the type (SOP, checklist, email template, template); a checker refuses dollar figures, effort claims and text aimed at a machine; code appends the source emails.

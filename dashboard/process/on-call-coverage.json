@@ -1,0 +1,6269 @@
+{
+  "key": "on-call-coverage",
+  "name": "On-call and holiday coverage",
+  "definition": "Arranging weekend, holiday and after-hours coverage and handing over on-call notes on what happened during the shift.",
+  "rank": 21,
+  "tier": "A",
+  "row": {
+    "rank": 21,
+    "key": "on-call-coverage",
+    "name": "On-call and holiday coverage",
+    "tier": "A",
+    "tier_words": "seen steadily: 40 or more times over 6 or more months by 3 or more staff",
+    "in_total": true,
+    "origin": "taxonomy",
+    "total": {
+      "v": 3192,
+      "t": "$32",
+      "x": "$31.92",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "on-call-coverage"
+      }
+    },
+    "counted": {
+      "v": 1190,
+      "t": "$12",
+      "x": "$11.90",
+      "k": "counted",
+      "d": {
+        "kind": "formula",
+        "key": "on-call-coverage"
+      }
+    },
+    "estimated": {
+      "v": 2002,
+      "t": "$20",
+      "x": "$20.02",
+      "k": "estimated",
+      "d": {
+        "kind": "formula",
+        "key": "on-call-coverage"
+      }
+    },
+    "low": {
+      "v": 1857,
+      "t": "$19",
+      "x": "$18.57",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "on-call-coverage"
+      }
+    },
+    "high": {
+      "v": 7197,
+      "t": "$72",
+      "x": "$71.97",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "on-call-coverage"
+      }
+    },
+    "today": {
+      "v": 10642,
+      "t": "$106",
+      "x": "$106.42",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "on-call-coverage"
+      }
+    },
+    "hours": {
+      "v": 38,
+      "t": "0.4",
+      "x": "0.38 hours",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "on-call-coverage"
+      }
+    },
+    "hours_today": {
+      "v": 125,
+      "t": "1.3",
+      "x": "1.25 hours",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "on-call-coverage"
+      }
+    },
+    "occurrences": {
+      "v": 52,
+      "t": "52 times",
+      "d": {
+        "kind": "occurrences",
+        "key": "on-call-coverage"
+      }
+    },
+    "shared_occurrences": 1,
+    "active_months": {
+      "v": 24,
+      "t": "24 active months",
+      "d": {
+        "kind": "months",
+        "key": "on-call-coverage"
+      }
+    },
+    "span_days": 832,
+    "first_utc": "1999-12-15T14:41:00Z",
+    "last_utc": "2002-03-25T19:18:05Z",
+    "messages": {
+      "v": 57,
+      "t": "57 emails",
+      "d": {
+        "kind": "occurrences",
+        "key": "on-call-coverage"
+      }
+    },
+    "threads": 43,
+    "mailboxes": [
+      {
+        "key": "farmer-d",
+        "n": 46,
+        "pct": 81
+      },
+      {
+        "key": "williams-w3",
+        "n": 9,
+        "pct": 16
+      },
+      {
+        "key": "giron-d",
+        "n": 1,
+        "pct": 2
+      },
+      {
+        "key": "lokay-m",
+        "n": 1,
+        "pct": 2
+      }
+    ],
+    "top_mailbox": "farmer-d",
+    "top_pct": 81,
+    "one_mailbox": false,
+    "seen_in": "Seen in: 4 mailboxes",
+    "staff": {
+      "v": 72,
+      "t": "72 staff",
+      "d": {
+        "kind": "participants",
+        "key": "on-call-coverage",
+        "filter": "staff"
+      }
+    },
+    "writers": {
+      "v": 20,
+      "t": "20",
+      "d": {
+        "kind": "participants",
+        "key": "on-call-coverage",
+        "filter": "writers"
+      }
+    },
+    "copied": {
+      "v": 52,
+      "t": "52",
+      "d": {
+        "kind": "participants",
+        "key": "on-call-coverage",
+        "filter": "copied"
+      }
+    },
+    "estimate": {
+      "low": 10,
+      "mid": 30,
+      "high": 90,
+      "automatable_pct": 25,
+      "basis_words": "worked out from the steps the emails show",
+      "source": "model"
+    },
+    "stall_label": "On-call contact details go stale: a manager could not reach a staff member because the…",
+    "stall_summary": "On-call contact details go stale: a manager could not reach a staff member because the cell number on file no longer worked, and pager numbers need revised contact sheets.",
+    "stall_kind": "handoff_confusion",
+    "stall_quotes": {
+      "v": 1,
+      "t": "1 stall quote",
+      "d": {
+        "kind": "stalls",
+        "key": "on-call-coverage"
+      }
+    },
+    "fix": "Keep one shared on-call calendar and contact sheet that each person updates when they will be out, with backups named per pipeline or desk, and use a fixed on-call notes form…",
+    "document": null,
+    "status_line": "Not drafted: $32 a month is under the $85 drafting line",
+    "chasers": {
+      "v": 0,
+      "t": "0 chasers",
+      "d": {
+        "kind": "actions",
+        "key": "on-call-coverage",
+        "type": "chaser"
+      }
+    },
+    "stall_count": {
+      "v": 1,
+      "t": "1",
+      "d": {
+        "kind": "stalls",
+        "key": "on-call-coverage",
+        "stall_kind": "handoff_confusion"
+      }
+    },
+    "loops": {
+      "v": 0,
+      "t": "0 open loops",
+      "d": {
+        "kind": "loops",
+        "key": "on-call-coverage"
+      }
+    },
+    "loops_recent": {
+      "v": 0,
+      "t": "0",
+      "d": {
+        "kind": "loops",
+        "key": "on-call-coverage",
+        "recent": true
+      }
+    },
+    "claims": {
+      "v": 9,
+      "t": "9 claims",
+      "d": {
+        "kind": "claims",
+        "key": "on-call-coverage"
+      }
+    },
+    "conflicts": {
+      "v": 3,
+      "t": "3 conflicts",
+      "d": {
+        "kind": "claims",
+        "key": "on-call-coverage"
+      }
+    },
+    "reply_gap": {
+      "n": {
+        "v": 9,
+        "t": "9",
+        "d": {
+          "kind": "gaps",
+          "key": "on-call-coverage"
+        }
+      },
+      "median_h": "0.3"
+    },
+    "last_three_months_share": {
+      "v": 11,
+      "t": "11 of 52",
+      "d": {
+        "kind": "occurrences",
+        "key": "on-call-coverage"
+      }
+    },
+    "flags": [
+      "one round shared with another process"
+    ]
+  },
+  "synthesis": {
+    "description": "Schedulers and traders announce absences and name who covers for them, circulate weekend and holiday on-call schedules with cell and pager numbers, and send on-call notes after each weekend describing calls received and actions taken, such as gas control pages, meter problems reported by producers, and corrected confirms. Managers also arrange skeleton staff for holiday trading days and cover for affiliates.",
+    "steps": [
+      "Someone announces an absence or a weekend or holiday that needs coverage.",
+      "A backup or on-call person is named, with contact numbers for the period.",
+      "The on-call schedule or contact sheet is updated and circulated.",
+      "The on-call person handles calls from gas control, pipelines and counterparties.",
+      "Actions taken are logged, including changed nominations or confirms.",
+      "On-call notes are sent to the team after the shift for follow-up."
+    ],
+    "approach": "Keep one shared on-call calendar and contact sheet that each person updates when they will be out, with backups named per pipeline or desk, and use a fixed on-call notes form that captures each call, the counterparty, the meter or contract, and the action taken.",
+    "rationale": "Coverage notices and weekend notes are free-form and scattered; a standard notes form and a single contact sheet make handovers complete, keep numbers current and show who covers what.",
+    "artifact_type": "template"
+  },
+  "formula": {
+    "counted": "52 occ (51.50 after sharing) over 832 d = 27.33 mo; email: 27 short x2 + 15 medium x6 + 8 long x15 + 3 fwd x2 + 0 chaser x3 + 248 read x1 = 518.00 min, 508.00 min after sharing = 18.59 min/mo; automatable 60/40/30/80/100/50% = 233.20 min, 229.70 min after sharing = 8.40 min/mo",
+    "estimated": "51.50 occ x 30 min/occ (estimate, mid of 10-90, basis inferred, 7 quotes from 7 occurrences) = 1,545.00 min = 56.53 min/mo; automatable 25% (estimate) = 14.13 min/mo; at the low end 10 min/occ = $18.57/mo, at the high end 90 min/occ = $71.97/mo (the row's automatable total)",
+    "total": "today 75.12 min/mo = 1.25 h/mo = $106.42/mo (email 18.59 min/mo = $26.34 + work 56.53 min/mo = $80.08); automatable 22.53 min/mo = 0.38 h/mo = $31.92/mo (counted email 8.40 min/mo = $11.90 + estimated work 14.13 min/mo = $20.02)"
+  },
+  "window": {
+    "first_utc": "1999-12-15T14:41:00Z",
+    "last_utc": "2002-03-25T19:18:05Z",
+    "span_days": 832,
+    "months_x100": 2733,
+    "active_months": 24,
+    "undated_occurrences": 0
+  },
+  "months": 2733,
+  "occurrence_share_x100": 5150,
+  "actions": {
+    "priced": {
+      "authored_short": 27,
+      "authored_medium": 15,
+      "authored_long": 8,
+      "forward": 3,
+      "chaser": 0,
+      "read": 248
+    },
+    "unpriced": {
+      "authored_short": 2,
+      "authored_medium": 1,
+      "authored_long": 0,
+      "forward": 1,
+      "chaser": 0,
+      "read": 6
+    }
+  },
+  "action_table": [
+    {
+      "type": "authored_short",
+      "words": "short emails written",
+      "count": {
+        "v": 27,
+        "t": "27",
+        "d": {
+          "kind": "actions",
+          "key": "on-call-coverage",
+          "type": "authored_short"
+        }
+      },
+      "minutes_each": 2,
+      "minutes": "54.00",
+      "automatable_pct": 60,
+      "automatable_minutes": "32.40"
+    },
+    {
+      "type": "authored_medium",
+      "words": "medium emails written",
+      "count": {
+        "v": 15,
+        "t": "15",
+        "d": {
+          "kind": "actions",
+          "key": "on-call-coverage",
+          "type": "authored_medium"
+        }
+      },
+      "minutes_each": 6,
+      "minutes": "90.00",
+      "automatable_pct": 40,
+      "automatable_minutes": "36.00"
+    },
+    {
+      "type": "authored_long",
+      "words": "long emails written",
+      "count": {
+        "v": 8,
+        "t": "8",
+        "d": {
+          "kind": "actions",
+          "key": "on-call-coverage",
+          "type": "authored_long"
+        }
+      },
+      "minutes_each": 15,
+      "minutes": "120.00",
+      "automatable_pct": 30,
+      "automatable_minutes": "36.00"
+    },
+    {
+      "type": "forward",
+      "words": "forwards",
+      "count": {
+        "v": 3,
+        "t": "3",
+        "d": {
+          "kind": "actions",
+          "key": "on-call-coverage",
+          "type": "forward"
+        }
+      },
+      "minutes_each": 2,
+      "minutes": "6.00",
+      "automatable_pct": 80,
+      "automatable_minutes": "4.80"
+    },
+    {
+      "type": "chaser",
+      "words": "chasers",
+      "count": {
+        "v": 0,
+        "t": "0",
+        "d": {
+          "kind": "actions",
+          "key": "on-call-coverage",
+          "type": "chaser"
+        }
+      },
+      "minutes_each": 3,
+      "minutes": "0.00",
+      "automatable_pct": 100,
+      "automatable_minutes": "0.00"
+    },
+    {
+      "type": "read",
+      "words": "reads, one per addressee",
+      "count": {
+        "v": 248,
+        "t": "248",
+        "d": {
+          "kind": "actions",
+          "key": "on-call-coverage",
+          "type": "read"
+        }
+      },
+      "minutes_each": 1,
+      "minutes": "248.00",
+      "automatable_pct": 50,
+      "automatable_minutes": "124.00"
+    }
+  ],
+  "email": {
+    "today_x100": 50800,
+    "automatable_x100": 22970,
+    "per_month_today_x100": 1859,
+    "per_month_automatable_x100": 840
+  },
+  "work": {
+    "per_month_today_x100": 5653,
+    "per_month_automatable_x100": 1413,
+    "low_cents": 667,
+    "high_cents": 6007
+  },
+  "estimate_quotes": [
+    {
+      "id": "batch-020:e9",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1334.",
+      "start": 1207,
+      "end": 1248,
+      "raw_text": "Attached are the notes from this weekend.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "robert.lloyd@enron.com",
+      "sender_label": "Robert E Lloyd",
+      "date_utc": "2000-08-14T08:39:00Z"
+    },
+    {
+      "id": "batch-046:e23",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/2115.",
+      "start": 993,
+      "end": 1064,
+      "raw_text": "Please find attached the On-Call Notes for the weekend of 3/10 & 11/01.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "robert.cotten@enron.com",
+      "sender_label": "Robert Cotten",
+      "date_utc": "2001-03-12T08:43:00Z"
+    },
+    {
+      "id": "batch-046:e4",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/210.",
+      "start": 1368,
+      "end": 1453,
+      "raw_text": "Received a page from Silver in Gas Control at 8:00 pm regarding the Gulf Plains Plant",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "mary.poorman@enron.com",
+      "sender_label": "Mary Poorman",
+      "date_utc": "2001-03-26T19:33:00Z"
+    },
+    {
+      "id": "batch-014:e4",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1171.",
+      "start": 1227,
+      "end": 1299,
+      "raw_text": "Sherry Fontenot ( w/Texaco) called stating Tank Batteries 5 & 7 (meters:",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "robert.lloyd@enron.com",
+      "sender_label": "Robert E Lloyd",
+      "date_utc": "2000-06-04T16:26:00Z"
+    },
+    {
+      "id": "batch-050:e15",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/180.",
+      "start": 1690,
+      "end": 1774,
+      "raw_text": "Notified by gas control that we needed to deliver to Centana for operational reasons",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "mark.mccoy@enron.com",
+      "sender_label": "Mark McCoy",
+      "date_utc": "2001-04-16T13:48:38Z"
+    },
+    {
+      "id": "batch-036:e23",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1990.",
+      "start": 985,
+      "end": 1057,
+      "raw_text": "We will need a small staff to handle potential trades for Wed. the 27th.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "mary.poorman@enron.com",
+      "sender_label": "Mary Poorman",
+      "date_utc": "2000-12-20T08:34:00Z"
+    },
+    {
+      "id": "batch-098:e23",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/161.",
+      "start": 566,
+      "end": 641,
+      "raw_text": "Shelley, here is the current weekend on-call schedule for the TW marketers.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-03-25T19:18:05Z"
+    }
+  ],
+  "estimate_check": {
+    "occurrences_cited": 7,
+    "senders_cited": 5
+  },
+  "monthly": [
+    {
+      "month": "1999-12",
+      "occurrences": {
+        "v": 5,
+        "t": "5",
+        "d": {
+          "kind": "occurrences",
+          "key": "on-call-coverage",
+          "month": "1999-12"
+        }
+      },
+      "messages": 5,
+      "ids": [
+        "t-11fb5f269b90-o1",
+        "t-9e9ffbc547a2-o1",
+        "t-d1090e918443-o1",
+        "t-e29e217cc2ed-o1",
+        "t-eab7961d2c59-o1"
+      ]
+    },
+    {
+      "month": "2000-01",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "on-call-coverage",
+          "month": "2000-01"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-1546c0b5ecb2-o1"
+      ]
+    },
+    {
+      "month": "2000-03",
+      "occurrences": {
+        "v": 3,
+        "t": "3",
+        "d": {
+          "kind": "occurrences",
+          "key": "on-call-coverage",
+          "month": "2000-03"
+        }
+      },
+      "messages": 3,
+      "ids": [
+        "t-02d3314ac956-o1",
+        "t-445e344f64b9-o1",
+        "t-445e344f64b9-o2"
+      ]
+    },
+    {
+      "month": "2000-04",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "on-call-coverage",
+          "month": "2000-04"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-b16b9dbb9c8e-o1"
+      ]
+    },
+    {
+      "month": "2000-05",
+      "occurrences": {
+        "v": 2,
+        "t": "2",
+        "d": {
+          "kind": "occurrences",
+          "key": "on-call-coverage",
+          "month": "2000-05"
+        }
+      },
+      "messages": 2,
+      "ids": [
+        "t-3d03b9db1272-o1",
+        "t-f74b051d2bbb-o1"
+      ]
+    },
+    {
+      "month": "2000-06",
+      "occurrences": {
+        "v": 2,
+        "t": "2",
+        "d": {
+          "kind": "occurrences",
+          "key": "on-call-coverage",
+          "month": "2000-06"
+        }
+      },
+      "messages": 2,
+      "ids": [
+        "t-d705d81abb58-o1",
+        "t-d705d81abb58-o2"
+      ]
+    },
+    {
+      "month": "2000-07",
+      "occurrences": {
+        "v": 4,
+        "t": "4",
+        "d": {
+          "kind": "occurrences",
+          "key": "on-call-coverage",
+          "month": "2000-07"
+        }
+      },
+      "messages": 4,
+      "ids": [
+        "t-4313bcd81ad6-o1",
+        "t-494932c52d46-o1",
+        "t-494932c52d46-o2",
+        "t-5f87dfae54ff-o1"
+      ]
+    },
+    {
+      "month": "2000-08",
+      "occurrences": {
+        "v": 2,
+        "t": "2",
+        "d": {
+          "kind": "occurrences",
+          "key": "on-call-coverage",
+          "month": "2000-08"
+        }
+      },
+      "messages": 2,
+      "ids": [
+        "t-0d9b15b1dffa-o1",
+        "t-20055714bd54-o1"
+      ]
+    },
+    {
+      "month": "2000-09",
+      "occurrences": {
+        "v": 2,
+        "t": "2",
+        "d": {
+          "kind": "occurrences",
+          "key": "on-call-coverage",
+          "month": "2000-09"
+        }
+      },
+      "messages": 2,
+      "ids": [
+        "t-494932c52d46-o3",
+        "t-effd22a4f5b7-o1"
+      ]
+    },
+    {
+      "month": "2000-10",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "on-call-coverage",
+          "month": "2000-10"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-b4b911cad001-o1"
+      ]
+    },
+    {
+      "month": "2000-11",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "on-call-coverage",
+          "month": "2000-11"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-5c694af186c2-o1"
+      ]
+    },
+    {
+      "month": "2000-12",
+      "occurrences": {
+        "v": 5,
+        "t": "5",
+        "d": {
+          "kind": "occurrences",
+          "key": "on-call-coverage",
+          "month": "2000-12"
+        }
+      },
+      "messages": 10,
+      "ids": [
+        "t-5c694af186c2-o2",
+        "t-ad7c57c75e5f-o1",
+        "t-b0edb6b5098b-o1",
+        "t-b0edb6b5098b-o2",
+        "t-dd7b464e55af-o1"
+      ]
+    },
+    {
+      "month": "2001-01",
+      "occurrences": {
+        "v": 2,
+        "t": "2",
+        "d": {
+          "kind": "occurrences",
+          "key": "on-call-coverage",
+          "month": "2001-01"
+        }
+      },
+      "messages": 2,
+      "ids": [
+        "t-7b24a12c1f4a-o1",
+        "t-df3080a7e083-o1"
+      ]
+    },
+    {
+      "month": "2001-02",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "on-call-coverage",
+          "month": "2001-02"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-a3789ea17693-o1"
+      ]
+    },
+    {
+      "month": "2001-03",
+      "occurrences": {
+        "v": 4,
+        "t": "4",
+        "d": {
+          "kind": "occurrences",
+          "key": "on-call-coverage",
+          "month": "2001-03"
+        }
+      },
+      "messages": 4,
+      "ids": [
+        "t-d859998136e6-o1",
+        "t-daef1003c3a5-o1",
+        "t-dedcbfbc1ad6-o1",
+        "t-dedcbfbc1ad6-o2"
+      ]
+    },
+    {
+      "month": "2001-04",
+      "occurrences": {
+        "v": 2,
+        "t": "2",
+        "d": {
+          "kind": "occurrences",
+          "key": "on-call-coverage",
+          "month": "2001-04"
+        }
+      },
+      "messages": 2,
+      "ids": [
+        "t-0042bd7a274e-o1",
+        "t-1e6b75a170a8-o1"
+      ]
+    },
+    {
+      "month": "2001-05",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "on-call-coverage",
+          "month": "2001-05"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-06a5fdc8505f-o1"
+      ]
+    },
+    {
+      "month": "2001-06",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "on-call-coverage",
+          "month": "2001-06"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-82abff6b9f9f-o1"
+      ]
+    },
+    {
+      "month": "2001-07",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "on-call-coverage",
+          "month": "2001-07"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-2062db0b829d-o1"
+      ]
+    },
+    {
+      "month": "2001-09",
+      "occurrences": {
+        "v": 3,
+        "t": "3",
+        "d": {
+          "kind": "occurrences",
+          "key": "on-call-coverage",
+          "month": "2001-09"
+        }
+      },
+      "messages": 3,
+      "ids": [
+        "t-90a5c3c1fbb8-o1",
+        "t-9c25c1dbde37-o1",
+        "t-c9517b5e2a52-o1"
+      ]
+    },
+    {
+      "month": "2001-10",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "on-call-coverage",
+          "month": "2001-10"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-9c25c1dbde37-o2"
+      ]
+    },
+    {
+      "month": "2001-11",
+      "occurrences": {
+        "v": 4,
+        "t": "4",
+        "d": {
+          "kind": "occurrences",
+          "key": "on-call-coverage",
+          "month": "2001-11"
+        }
+      },
+      "messages": 4,
+      "ids": [
+        "t-7ef124bc5dd8-o1",
+        "t-8b4e0fa80c89-o1",
+        "t-906e49d46a52-o1",
+        "t-9c25c1dbde37-o3"
+      ]
+    },
+    {
+      "month": "2002-01",
+      "occurrences": {
+        "v": 2,
+        "t": "2",
+        "d": {
+          "kind": "occurrences",
+          "key": "on-call-coverage",
+          "month": "2002-01"
+        }
+      },
+      "messages": 2,
+      "ids": [
+        "t-3e5c55cd4674-o1",
+        "t-c2605fa8c000-o1"
+      ]
+    },
+    {
+      "month": "2002-03",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "on-call-coverage",
+          "month": "2002-03"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-1a3bfb04cb8b-o1"
+      ]
+    }
+  ],
+  "occurrences": [
+    {
+      "id": "t-0042bd7a274e-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/180."
+      ],
+      "date_utc": "2001-04-16T13:48:38Z"
+    },
+    {
+      "id": "t-02d3314ac956-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/986."
+      ],
+      "date_utc": "2000-03-28T16:40:00Z"
+    },
+    {
+      "id": "t-06a5fdc8505f-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/142."
+      ],
+      "date_utc": "2001-05-09T20:18:48Z"
+    },
+    {
+      "id": "t-0d9b15b1dffa-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1334."
+      ],
+      "date_utc": "2000-08-14T08:39:00Z"
+    },
+    {
+      "id": "t-11fb5f269b90-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/600."
+      ],
+      "date_utc": "1999-12-20T15:36:00Z"
+    },
+    {
+      "id": "t-1546c0b5ecb2-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/708."
+      ],
+      "date_utc": "2000-01-21T16:00:00Z"
+    },
+    {
+      "id": "t-1a3bfb04cb8b-o1",
+      "message_ids": [
+        "corpus/lokay-m/sent_items/161."
+      ],
+      "date_utc": "2002-03-25T19:18:05Z"
+    },
+    {
+      "id": "t-1e6b75a170a8-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/167."
+      ],
+      "date_utc": "2001-04-20T21:15:31Z"
+    },
+    {
+      "id": "t-20055714bd54-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1369."
+      ],
+      "date_utc": "2000-08-28T08:58:00Z"
+    },
+    {
+      "id": "t-2062db0b829d-o1",
+      "message_ids": [
+        "corpus/williams-w3/sent_items/427."
+      ],
+      "date_utc": "2001-07-05T22:34:16Z"
+    },
+    {
+      "id": "t-3d03b9db1272-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1096."
+      ],
+      "date_utc": "2000-05-08T10:39:00Z"
+    },
+    {
+      "id": "t-3e5c55cd4674-o1",
+      "message_ids": [
+        "corpus/williams-w3/sent_items/15."
+      ],
+      "date_utc": "2002-01-24T22:52:23Z"
+    },
+    {
+      "id": "t-4313bcd81ad6-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1282."
+      ],
+      "date_utc": "2000-07-14T17:26:00Z"
+    },
+    {
+      "id": "t-445e344f64b9-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/940."
+      ],
+      "date_utc": "2000-03-22T09:45:00Z"
+    },
+    {
+      "id": "t-445e344f64b9-o2",
+      "message_ids": [
+        "corpus/farmer-d/logistics/941."
+      ],
+      "date_utc": "2000-03-22T10:13:00Z"
+    },
+    {
+      "id": "t-494932c52d46-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1269."
+      ],
+      "date_utc": "2000-07-10T16:05:00Z"
+    },
+    {
+      "id": "t-494932c52d46-o2",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1301."
+      ],
+      "date_utc": "2000-07-24T12:49:00Z"
+    },
+    {
+      "id": "t-494932c52d46-o3",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1382."
+      ],
+      "date_utc": "2000-09-01T09:12:00Z"
+    },
+    {
+      "id": "t-5c694af186c2-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1501."
+      ],
+      "date_utc": "2000-11-08T10:17:00Z"
+    },
+    {
+      "id": "t-5c694af186c2-o2",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1547."
+      ],
+      "date_utc": "2000-12-04T11:44:00Z"
+    },
+    {
+      "id": "t-5f87dfae54ff-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1281."
+      ],
+      "date_utc": "2000-07-14T15:39:00Z"
+    },
+    {
+      "id": "t-7b24a12c1f4a-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/2050."
+      ],
+      "date_utc": "2001-01-22T17:25:00Z"
+    },
+    {
+      "id": "t-7ef124bc5dd8-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/26."
+      ],
+      "date_utc": "2001-11-02T20:46:22Z"
+    },
+    {
+      "id": "t-82abff6b9f9f-o1",
+      "message_ids": [
+        "corpus/williams-w3/sent_items/470."
+      ],
+      "date_utc": "2001-06-25T16:21:05Z"
+    },
+    {
+      "id": "t-8b4e0fa80c89-o1",
+      "message_ids": [
+        "corpus/giron-d/inbox/395."
+      ],
+      "date_utc": "2001-11-21T20:43:53Z"
+    },
+    {
+      "id": "t-906e49d46a52-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/25."
+      ],
+      "date_utc": "2001-11-02T21:06:41Z"
+    },
+    {
+      "id": "t-90a5c3c1fbb8-o1",
+      "message_ids": [
+        "corpus/williams-w3/sent_items/233."
+      ],
+      "date_utc": "2001-09-19T16:22:22Z"
+    },
+    {
+      "id": "t-9c25c1dbde37-o1",
+      "message_ids": [
+        "corpus/williams-w3/sent_items/208."
+      ],
+      "date_utc": "2001-09-26T19:09:17Z"
+    },
+    {
+      "id": "t-9c25c1dbde37-o2",
+      "message_ids": [
+        "corpus/williams-w3/sent_items/197."
+      ],
+      "date_utc": "2001-10-03T21:22:22Z"
+    },
+    {
+      "id": "t-9c25c1dbde37-o3",
+      "message_ids": [
+        "corpus/williams-w3/sent_items/123."
+      ],
+      "date_utc": "2001-11-02T01:30:59Z"
+    },
+    {
+      "id": "t-9e9ffbc547a2-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/611."
+      ],
+      "date_utc": "1999-12-22T16:54:00Z"
+    },
+    {
+      "id": "t-a3789ea17693-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/2079."
+      ],
+      "date_utc": "2001-02-06T09:23:00Z"
+    },
+    {
+      "id": "t-ad7c57c75e5f-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1552."
+      ],
+      "date_utc": "2000-12-06T15:52:00Z"
+    },
+    {
+      "id": "t-b0edb6b5098b-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1990.",
+        "corpus/farmer-d/logistics/1991.",
+        "corpus/farmer-d/logistics/1993.",
+        "corpus/farmer-d/logistics/1994.",
+        "corpus/farmer-d/logistics/1995.",
+        "corpus/farmer-d/logistics/1996."
+      ],
+      "date_utc": "2000-12-20T08:34:00Z"
+    },
+    {
+      "id": "t-b0edb6b5098b-o2",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1997."
+      ],
+      "date_utc": "2000-12-20T12:55:00Z"
+    },
+    {
+      "id": "t-b16b9dbb9c8e-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1026."
+      ],
+      "date_utc": "2000-04-10T09:21:00Z"
+    },
+    {
+      "id": "t-b4b911cad001-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1443."
+      ],
+      "date_utc": "2000-10-05T15:31:00Z"
+    },
+    {
+      "id": "t-c2605fa8c000-o1",
+      "message_ids": [
+        "corpus/williams-w3/sent_items/14."
+      ],
+      "date_utc": "2002-01-24T22:57:26Z"
+    },
+    {
+      "id": "t-c9517b5e2a52-o1",
+      "message_ids": [
+        "corpus/williams-w3/sent_items/225."
+      ],
+      "date_utc": "2001-09-21T00:39:24Z"
+    },
+    {
+      "id": "t-d1090e918443-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/639."
+      ],
+      "date_utc": "1999-12-31T15:48:00Z"
+    },
+    {
+      "id": "t-d705d81abb58-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1171."
+      ],
+      "date_utc": "2000-06-04T16:26:00Z"
+    },
+    {
+      "id": "t-d705d81abb58-o2",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1177."
+      ],
+      "date_utc": "2000-06-05T13:17:00Z"
+    },
+    {
+      "id": "t-d859998136e6-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/2115."
+      ],
+      "date_utc": "2001-03-12T08:43:00Z"
+    },
+    {
+      "id": "t-daef1003c3a5-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/2117."
+      ],
+      "date_utc": "2001-03-14T09:09:00Z"
+    },
+    {
+      "id": "t-dd7b464e55af-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/2007."
+      ],
+      "date_utc": "2000-12-26T09:02:00Z"
+    },
+    {
+      "id": "t-dedcbfbc1ad6-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/2110."
+      ],
+      "date_utc": "2001-03-05T08:21:00Z"
+    },
+    {
+      "id": "t-dedcbfbc1ad6-o2",
+      "message_ids": [
+        "corpus/farmer-d/logistics/210."
+      ],
+      "date_utc": "2001-03-26T19:33:00Z"
+    },
+    {
+      "id": "t-df3080a7e083-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/2021."
+      ],
+      "date_utc": "2001-01-01T23:49:00Z"
+    },
+    {
+      "id": "t-e29e217cc2ed-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/609."
+      ],
+      "date_utc": "1999-12-22T09:30:00Z"
+    },
+    {
+      "id": "t-eab7961d2c59-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/592."
+      ],
+      "date_utc": "1999-12-15T14:41:00Z"
+    },
+    {
+      "id": "t-effd22a4f5b7-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1432."
+      ],
+      "date_utc": "2000-09-28T12:38:00Z"
+    },
+    {
+      "id": "t-f74b051d2bbb-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1095."
+      ],
+      "date_utc": "2000-05-08T09:57:00Z"
+    }
+  ],
+  "undated_occurrences": [],
+  "action_sources": [
+    {
+      "message_id": "corpus/farmer-d/logistics/1026.",
+      "type": "authored_short",
+      "person": "robert.lloyd@enron.com",
+      "address": "robert.lloyd@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1026.",
+      "type": "read",
+      "person": "aimee.lannou@enron.com",
+      "address": "aimee.lannou@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1026.",
+      "type": "read",
+      "person": "carlos.rodriguez@enron.com",
+      "address": "carlos.rodriguez@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1026.",
+      "type": "read",
+      "person": "george.grant@enron.com",
+      "address": "george.grant@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1026.",
+      "type": "read",
+      "person": "sabrae.zajac@enron.com",
+      "address": "sabrae.zajac@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1026.",
+      "type": "read",
+      "person": "stella.morris@enron.com",
+      "address": "stella.morris@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1095.",
+      "type": "authored_short",
+      "person": "tchristensen@anpower.com",
+      "address": "tchristensen@anpower.com",
+      "priced": false,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1095.",
+      "type": "read",
+      "person": "berwin1@txu.com",
+      "address": "berwin1@txu.com",
+      "priced": false,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1095.",
+      "type": "read",
+      "person": "bruce_franco@missionenergy.com",
+      "address": "bruce_franco@missionenergy.com",
+      "priced": false,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1095.",
+      "type": "read",
+      "person": "bruno.hofer@chkra.mail.abb.com",
+      "address": "bruno.hofer@chkra.mail.abb.com",
+      "priced": false,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1095.",
+      "type": "read",
+      "person": "carey.metz@enron.com",
+      "address": "carey.m.metz@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1095.",
+      "type": "read",
+      "person": "cepei@aol.com",
+      "address": "cepei@aol.com",
+      "priced": false,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1096.",
+      "type": "forward",
+      "person": "tchristensen@anpower.com",
+      "address": "tchristensen@anpower.com",
+      "priced": false,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1096.",
+      "type": "read",
+      "person": "carey.metz@enron.com",
+      "address": "carey.m.metz@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1096.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "dfarmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1096.",
+      "type": "read",
+      "person": "janet.wallis@enron.com",
+      "address": "janet.h.wallis@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1096.",
+      "type": "read",
+      "person": "lmaillet@anpower.com",
+      "address": "lmaillet@anpower.com",
+      "priced": false,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1096.",
+      "type": "read",
+      "person": "stacey.neuweiler@enron.com",
+      "address": "stacey.neuweiler@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1171.",
+      "type": "authored_long",
+      "person": "robert.lloyd@enron.com",
+      "address": "robert.lloyd@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1171.",
+      "type": "read",
+      "person": "carlos.rodriguez@enron.com",
+      "address": "carlos.rodriguez@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1171.",
+      "type": "read",
+      "person": "charlotte.hawkins@enron.com",
+      "address": "charlotte.hawkins@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1171.",
+      "type": "read",
+      "person": "jackie.young@enron.com",
+      "address": "jackie.young@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1171.",
+      "type": "read",
+      "person": "robert.cotten@enron.com",
+      "address": "robert.cotten@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1171.",
+      "type": "read",
+      "person": "stella.morris@enron.com",
+      "address": "stella.morris@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1177.",
+      "type": "authored_long",
+      "person": "robert.lloyd@enron.com",
+      "address": "robert.lloyd@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1177.",
+      "type": "read",
+      "person": "carlos.rodriguez@enron.com",
+      "address": "carlos.rodriguez@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1177.",
+      "type": "read",
+      "person": "charlotte.hawkins@enron.com",
+      "address": "charlotte.hawkins@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1177.",
+      "type": "read",
+      "person": "jackie.young@enron.com",
+      "address": "jackie.young@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1177.",
+      "type": "read",
+      "person": "robert.cotten@enron.com",
+      "address": "robert.cotten@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1177.",
+      "type": "read",
+      "person": "stella.morris@enron.com",
+      "address": "stella.morris@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1269.",
+      "type": "authored_medium",
+      "person": "mark.mccoy@enron.com",
+      "address": "mark.mccoy@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1269.",
+      "type": "read",
+      "person": "carlos.rodriguez@enron.com",
+      "address": "carlos.rodriguez@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1269.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1269.",
+      "type": "read",
+      "person": "pat.clynes@enron.com",
+      "address": "pat.clynes@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1269.",
+      "type": "read",
+      "person": "stacey.neuweiler@enron.com",
+      "address": "stacey.neuweiler@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1269.",
+      "type": "read",
+      "person": "stella.morris@enron.com",
+      "address": "stella.morris@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1281.",
+      "type": "authored_short",
+      "person": "robert.lloyd@enron.com",
+      "address": "robert.lloyd@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1281.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1281.",
+      "type": "read",
+      "person": "gary.hanks@enron.com",
+      "address": "gary.hanks@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1281.",
+      "type": "read",
+      "person": "gary.lamphier@enron.com",
+      "address": "gary.lamphier@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1281.",
+      "type": "read",
+      "person": "lee.papayoti@enron.com",
+      "address": "lee.papayoti@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1281.",
+      "type": "read",
+      "person": "rita.wynne@enron.com",
+      "address": "rita.wynne@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1282.",
+      "type": "authored_short",
+      "person": "steve.venturatos@enron.com",
+      "address": "steve.venturatos@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1282.",
+      "type": "read",
+      "person": "carrie.hollomon@enron.com",
+      "address": "carrie.hollomon@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1282.",
+      "type": "read",
+      "person": "edward.gottlob@enron.com",
+      "address": "edward.gottlob@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1282.",
+      "type": "read",
+      "person": "jeffrey.gossett@enron.com",
+      "address": "jeffrey.gossett@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1282.",
+      "type": "read",
+      "person": "jim.schwieger@enron.com",
+      "address": "jim.schwieger@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1282.",
+      "type": "read",
+      "person": "thomas.martin@enron.com",
+      "address": "thomas.martin@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1301.",
+      "type": "authored_short",
+      "person": "mary.poorman@enron.com",
+      "address": "mary.poorman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1301.",
+      "type": "read",
+      "person": "clem.cernosek@enron.com",
+      "address": "clem.cernosek@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1301.",
+      "type": "read",
+      "person": "pat.clynes@enron.com",
+      "address": "pat.clynes@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1301.",
+      "type": "read",
+      "person": "robert.cotten@enron.com",
+      "address": "robert.cotten@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1301.",
+      "type": "read",
+      "person": "stella.morris@enron.com",
+      "address": "stella.morris@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1301.",
+      "type": "read",
+      "person": "tom.acton@enron.com",
+      "address": "tom.acton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1334.",
+      "type": "authored_short",
+      "person": "robert.lloyd@enron.com",
+      "address": "robert.lloyd@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1334.",
+      "type": "read",
+      "person": "carlos.rodriguez@enron.com",
+      "address": "carlos.rodriguez@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1334.",
+      "type": "read",
+      "person": "clem.cernosek@enron.com",
+      "address": "clem.cernosek@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1334.",
+      "type": "read",
+      "person": "jackie.young@enron.com",
+      "address": "jackie.young@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1334.",
+      "type": "read",
+      "person": "robert.cotten@enron.com",
+      "address": "robert.cotten@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1334.",
+      "type": "read",
+      "person": "sabrae.zajac@enron.com",
+      "address": "sabrae.zajac@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1369.",
+      "type": "authored_long",
+      "person": "mary.poorman@enron.com",
+      "address": "mary.poorman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1369.",
+      "type": "read",
+      "person": "clem.cernosek@enron.com",
+      "address": "clem.cernosek@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1369.",
+      "type": "read",
+      "person": "pat.clynes@enron.com",
+      "address": "pat.clynes@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1369.",
+      "type": "read",
+      "person": "robert.cotten@enron.com",
+      "address": "robert.cotten@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1369.",
+      "type": "read",
+      "person": "stella.morris@enron.com",
+      "address": "stella.morris@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1369.",
+      "type": "read",
+      "person": "tom.acton@enron.com",
+      "address": "tom.acton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1382.",
+      "type": "authored_short",
+      "person": "robert.lloyd@enron.com",
+      "address": "robert.lloyd@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1382.",
+      "type": "read",
+      "person": "carlos.rodriguez@enron.com",
+      "address": "carlos.rodriguez@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1382.",
+      "type": "read",
+      "person": "clem.cernosek@enron.com",
+      "address": "clem.cernosek@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1382.",
+      "type": "read",
+      "person": "jackie.young@enron.com",
+      "address": "jackie.young@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1382.",
+      "type": "read",
+      "person": "robert.cotten@enron.com",
+      "address": "robert.cotten@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1382.",
+      "type": "read",
+      "person": "sabrae.zajac@enron.com",
+      "address": "sabrae.zajac@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/142.",
+      "type": "authored_short",
+      "person": "carlos.rodriguez@enron.com",
+      "address": "carlos.rodriguez@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/142.",
+      "type": "read",
+      "person": "jackie.young@enron.com",
+      "address": "jackie.young@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/142.",
+      "type": "read",
+      "person": "mark.mccoy@enron.com",
+      "address": "mark.mccoy@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/142.",
+      "type": "read",
+      "person": "mary.poorman@enron.com",
+      "address": "mary.poorman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/142.",
+      "type": "read",
+      "person": "sabrae.zajac@enron.com",
+      "address": "sabrae.zajac@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/142.",
+      "type": "read",
+      "person": "tom.acton@enron.com",
+      "address": "tom.acton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1432.",
+      "type": "authored_short",
+      "person": "pat.clynes@enron.com",
+      "address": "pat.clynes@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1432.",
+      "type": "read",
+      "person": "aimee.lannou@enron.com",
+      "address": "aimee.lannou@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1432.",
+      "type": "read",
+      "person": "carlos.rodriguez@enron.com",
+      "address": "carlos.rodriguez@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1432.",
+      "type": "read",
+      "person": "jackie.young@enron.com",
+      "address": "jackie.young@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1432.",
+      "type": "read",
+      "person": "sabrae.zajac@enron.com",
+      "address": "sabrae.zajac@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1432.",
+      "type": "read",
+      "person": "tom.acton@enron.com",
+      "address": "tom.acton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1443.",
+      "type": "authored_short",
+      "person": "mark.mccoy@enron.com",
+      "address": "mark.mccoy@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1443.",
+      "type": "read",
+      "person": "aimee.lannou@enron.com",
+      "address": "aimee.lannou@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1443.",
+      "type": "read",
+      "person": "carlos.rodriguez@enron.com",
+      "address": "carlos.rodriguez@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1443.",
+      "type": "read",
+      "person": "jackie.young@enron.com",
+      "address": "jackie.young@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1443.",
+      "type": "read",
+      "person": "mary.poorman@enron.com",
+      "address": "mary.poorman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1443.",
+      "type": "read",
+      "person": "sabrae.zajac@enron.com",
+      "address": "sabrae.zajac@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1501.",
+      "type": "authored_medium",
+      "person": "carlos.rodriguez@enron.com",
+      "address": "carlos.rodriguez@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1501.",
+      "type": "read",
+      "person": "aimee.lannou@enron.com",
+      "address": "aimee.lannou@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1501.",
+      "type": "read",
+      "person": "jackie.young@enron.com",
+      "address": "jackie.young@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1501.",
+      "type": "read",
+      "person": "mark.mccoy@enron.com",
+      "address": "mark.mccoy@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1501.",
+      "type": "read",
+      "person": "pat.clynes@enron.com",
+      "address": "pat.clynes@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1501.",
+      "type": "read",
+      "person": "tom.acton@enron.com",
+      "address": "tom.acton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1547.",
+      "type": "authored_medium",
+      "person": "carlos.rodriguez@enron.com",
+      "address": "carlos.rodriguez@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1547.",
+      "type": "read",
+      "person": "aimee.lannou@enron.com",
+      "address": "aimee.lannou@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1547.",
+      "type": "read",
+      "person": "jackie.young@enron.com",
+      "address": "jackie.young@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1547.",
+      "type": "read",
+      "person": "mark.mccoy@enron.com",
+      "address": "mark.mccoy@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1547.",
+      "type": "read",
+      "person": "pat.clynes@enron.com",
+      "address": "pat.clynes@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1547.",
+      "type": "read",
+      "person": "tom.acton@enron.com",
+      "address": "tom.acton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1552.",
+      "type": "authored_medium",
+      "person": "heather.choate@enron.com",
+      "address": "heather.choate@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1552.",
+      "type": "read",
+      "person": "bob.hall@enron.com",
+      "address": "bob.hall@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1552.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1552.",
+      "type": "read",
+      "person": "george.smith@enron.com",
+      "address": "george.smith@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1552.",
+      "type": "read",
+      "person": "randall.gay@enron.com",
+      "address": "randall.gay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1552.",
+      "type": "read",
+      "person": "robert.superty@enron.com",
+      "address": "robert.superty@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/167.",
+      "type": "forward",
+      "person": "brandee.jackson@enron.com",
+      "address": "brandee.jackson@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/167.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "j..farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/180.",
+      "type": "authored_medium",
+      "person": "mark.mccoy@enron.com",
+      "address": "mark.mccoy@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/180.",
+      "type": "read",
+      "person": "carlos.rodriguez@enron.com",
+      "address": "carlos.rodriguez@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/180.",
+      "type": "read",
+      "person": "edward.terry@enron.com",
+      "address": "edward.terry@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/180.",
+      "type": "read",
+      "person": "mary.poorman@enron.com",
+      "address": "mary.poorman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/180.",
+      "type": "read",
+      "person": "michael.olsen@enron.com",
+      "address": "michael.olsen@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/180.",
+      "type": "read",
+      "person": "robert.cotten@enron.com",
+      "address": "robert.cotten@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1990.",
+      "type": "authored_medium",
+      "person": "mary.poorman@enron.com",
+      "address": "mary.poorman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1990.",
+      "type": "read",
+      "person": "clem.cernosek@enron.com",
+      "address": "clem.cernosek@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1990.",
+      "type": "read",
+      "person": "jackie.young@enron.com",
+      "address": "jackie.young@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1990.",
+      "type": "read",
+      "person": "michael.olsen@enron.com",
+      "address": "michael.olsen@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1990.",
+      "type": "read",
+      "person": "robert.cotten@enron.com",
+      "address": "robert.cotten@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1990.",
+      "type": "read",
+      "person": "tom.acton@enron.com",
+      "address": "tom.acton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1991.",
+      "type": "authored_short",
+      "person": "tom.acton@enron.com",
+      "address": "tom.acton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1991.",
+      "type": "read",
+      "person": "clem.cernosek@enron.com",
+      "address": "clem.cernosek@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1991.",
+      "type": "read",
+      "person": "jackie.young@enron.com",
+      "address": "jackie.young@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1991.",
+      "type": "read",
+      "person": "mary.poorman@enron.com",
+      "address": "mary.poorman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1991.",
+      "type": "read",
+      "person": "michael.olsen@enron.com",
+      "address": "michael.olsen@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1991.",
+      "type": "read",
+      "person": "robert.cotten@enron.com",
+      "address": "robert.cotten@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1993.",
+      "type": "authored_short",
+      "person": "mark.mccoy@enron.com",
+      "address": "mark.mccoy@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1993.",
+      "type": "read",
+      "person": "clem.cernosek@enron.com",
+      "address": "clem.cernosek@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1993.",
+      "type": "read",
+      "person": "jackie.young@enron.com",
+      "address": "jackie.young@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1993.",
+      "type": "read",
+      "person": "michael.olsen@enron.com",
+      "address": "michael.olsen@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1993.",
+      "type": "read",
+      "person": "robert.cotten@enron.com",
+      "address": "robert.cotten@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1993.",
+      "type": "read",
+      "person": "tom.acton@enron.com",
+      "address": "tom.acton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1994.",
+      "type": "authored_short",
+      "person": "aimee.lannou@enron.com",
+      "address": "aimee.lannou@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1994.",
+      "type": "read",
+      "person": "clem.cernosek@enron.com",
+      "address": "clem.cernosek@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1994.",
+      "type": "read",
+      "person": "mary.poorman@enron.com",
+      "address": "mary.poorman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1994.",
+      "type": "read",
+      "person": "michael.olsen@enron.com",
+      "address": "michael.olsen@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1994.",
+      "type": "read",
+      "person": "robert.cotten@enron.com",
+      "address": "robert.cotten@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1994.",
+      "type": "read",
+      "person": "tom.acton@enron.com",
+      "address": "tom.acton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1995.",
+      "type": "authored_short",
+      "person": "eddie.janzen@enron.com",
+      "address": "eddie.janzen@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1995.",
+      "type": "read",
+      "person": "clem.cernosek@enron.com",
+      "address": "clem.cernosek@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1995.",
+      "type": "read",
+      "person": "jackie.young@enron.com",
+      "address": "jackie.young@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1995.",
+      "type": "read",
+      "person": "mark.mccoy@enron.com",
+      "address": "mark.mccoy@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1995.",
+      "type": "read",
+      "person": "michael.olsen@enron.com",
+      "address": "michael.olsen@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1995.",
+      "type": "read",
+      "person": "tom.acton@enron.com",
+      "address": "tom.acton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1996.",
+      "type": "authored_short",
+      "person": "sabrae.zajac@enron.com",
+      "address": "sabrae.zajac@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1996.",
+      "type": "read",
+      "person": "clem.cernosek@enron.com",
+      "address": "clem.cernosek@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1996.",
+      "type": "read",
+      "person": "mary.poorman@enron.com",
+      "address": "mary.poorman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1996.",
+      "type": "read",
+      "person": "michael.olsen@enron.com",
+      "address": "michael.olsen@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1996.",
+      "type": "read",
+      "person": "robert.cotten@enron.com",
+      "address": "robert.cotten@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1996.",
+      "type": "read",
+      "person": "tom.acton@enron.com",
+      "address": "tom.acton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1997.",
+      "type": "authored_short",
+      "person": "mary.poorman@enron.com",
+      "address": "mary.poorman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1997.",
+      "type": "read",
+      "person": "clem.cernosek@enron.com",
+      "address": "clem.cernosek@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1997.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1997.",
+      "type": "read",
+      "person": "michael.olsen@enron.com",
+      "address": "michael.olsen@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1997.",
+      "type": "read",
+      "person": "robert.cotten@enron.com",
+      "address": "robert.cotten@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1997.",
+      "type": "read",
+      "person": "tom.acton@enron.com",
+      "address": "tom.acton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2007.",
+      "type": "authored_long",
+      "person": "tom.acton@enron.com",
+      "address": "tom.acton@enron.com",
+      "priced": true,
+      "share_x100": 50
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2007.",
+      "type": "read",
+      "person": "clem.cernosek@enron.com",
+      "address": "clem.cernosek@enron.com",
+      "priced": true,
+      "share_x100": 50
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2007.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 50
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2007.",
+      "type": "read",
+      "person": "gary.hanks@enron.com",
+      "address": "gary.hanks@enron.com",
+      "priced": true,
+      "share_x100": 50
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2007.",
+      "type": "read",
+      "person": "lauri.allen@enron.com",
+      "address": "lauri.allen@enron.com",
+      "priced": true,
+      "share_x100": 50
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2007.",
+      "type": "read",
+      "person": "robert.cotten@enron.com",
+      "address": "robert.cotten@enron.com",
+      "priced": true,
+      "share_x100": 50
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2021.",
+      "type": "authored_short",
+      "person": "robert.cotten@enron.com",
+      "address": "robert.cotten@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2021.",
+      "type": "read",
+      "person": "clem.cernosek@enron.com",
+      "address": "clem.cernosek@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2021.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2021.",
+      "type": "read",
+      "person": "edward.gottlob@enron.com",
+      "address": "edward.gottlob@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2021.",
+      "type": "read",
+      "person": "lauri.allen@enron.com",
+      "address": "lauri.allen@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2021.",
+      "type": "read",
+      "person": "tom.acton@enron.com",
+      "address": "tom.acton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2050.",
+      "type": "authored_long",
+      "person": "mary.poorman@enron.com",
+      "address": "mary.poorman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2050.",
+      "type": "read",
+      "person": "clem.cernosek@enron.com",
+      "address": "clem.cernosek@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2050.",
+      "type": "read",
+      "person": "edward.terry@enron.com",
+      "address": "edward.terry@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2050.",
+      "type": "read",
+      "person": "michael.olsen@enron.com",
+      "address": "michael.olsen@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2050.",
+      "type": "read",
+      "person": "robert.cotten@enron.com",
+      "address": "robert.cotten@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2050.",
+      "type": "read",
+      "person": "tom.acton@enron.com",
+      "address": "tom.acton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2079.",
+      "type": "authored_medium",
+      "person": "mark.mccoy@enron.com",
+      "address": "mark.mccoy@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2079.",
+      "type": "read",
+      "person": "carlos.rodriguez@enron.com",
+      "address": "carlos.rodriguez@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2079.",
+      "type": "read",
+      "person": "clem.cernosek@enron.com",
+      "address": "clem.cernosek@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2079.",
+      "type": "read",
+      "person": "jackie.young@enron.com",
+      "address": "jackie.young@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2079.",
+      "type": "read",
+      "person": "mary.poorman@enron.com",
+      "address": "mary.poorman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2079.",
+      "type": "read",
+      "person": "sabrae.zajac@enron.com",
+      "address": "sabrae.zajac@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/210.",
+      "type": "authored_medium",
+      "person": "mary.poorman@enron.com",
+      "address": "mary.poorman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/210.",
+      "type": "read",
+      "person": "clem.cernosek@enron.com",
+      "address": "clem.cernosek@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/210.",
+      "type": "read",
+      "person": "edward.terry@enron.com",
+      "address": "edward.terry@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/210.",
+      "type": "read",
+      "person": "michael.olsen@enron.com",
+      "address": "michael.olsen@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/210.",
+      "type": "read",
+      "person": "robert.cotten@enron.com",
+      "address": "robert.cotten@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/210.",
+      "type": "read",
+      "person": "tom.acton@enron.com",
+      "address": "tom.acton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2110.",
+      "type": "authored_medium",
+      "person": "michael.olsen@enron.com",
+      "address": "michael.olsen@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2110.",
+      "type": "read",
+      "person": "aimee.lannou@enron.com",
+      "address": "aimee.lannou@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2110.",
+      "type": "read",
+      "person": "carlos.rodriguez@enron.com",
+      "address": "carlos.rodriguez@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2110.",
+      "type": "read",
+      "person": "mary.poorman@enron.com",
+      "address": "mary.poorman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2110.",
+      "type": "read",
+      "person": "sabrae.zajac@enron.com",
+      "address": "sabrae.zajac@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2110.",
+      "type": "read",
+      "person": "tom.acton@enron.com",
+      "address": "tom.acton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2115.",
+      "type": "authored_short",
+      "person": "robert.cotten@enron.com",
+      "address": "robert.cotten@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2115.",
+      "type": "read",
+      "person": "clem.cernosek@enron.com",
+      "address": "clem.cernosek@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2115.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2115.",
+      "type": "read",
+      "person": "edward.terry@enron.com",
+      "address": "edward.terry@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2115.",
+      "type": "read",
+      "person": "gary.hanks@enron.com",
+      "address": "gary.hanks@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2115.",
+      "type": "read",
+      "person": "lauri.allen@enron.com",
+      "address": "lauri.allen@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2117.",
+      "type": "authored_medium",
+      "person": "carlos.rodriguez@enron.com",
+      "address": "carlos.rodriguez@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2117.",
+      "type": "read",
+      "person": "aimee.lannou@enron.com",
+      "address": "aimee.lannou@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2117.",
+      "type": "read",
+      "person": "jackie.young@enron.com",
+      "address": "jackie.young@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2117.",
+      "type": "read",
+      "person": "mark.mccoy@enron.com",
+      "address": "mark.mccoy@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2117.",
+      "type": "read",
+      "person": "mary.poorman@enron.com",
+      "address": "mary.poorman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2117.",
+      "type": "read",
+      "person": "tom.acton@enron.com",
+      "address": "tom.acton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/25.",
+      "type": "authored_long",
+      "person": "brandee.jackson@enron.com",
+      "address": "brandee.jackson@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/25.",
+      "type": "read",
+      "person": "bonnie.chang@enron.com",
+      "address": "bonnie.chang@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/25.",
+      "type": "read",
+      "person": "kevin.brady@enron.com",
+      "address": "kevin.brady@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/25.",
+      "type": "read",
+      "person": "kirk.lenart@enron.com",
+      "address": "kirk.lenart@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/25.",
+      "type": "read",
+      "person": "mark.schrab@enron.com",
+      "address": "l..schrab@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/25.",
+      "type": "read",
+      "person": "tammy.gilmore@enron.com",
+      "address": "tammy.gilmore@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/26.",
+      "type": "authored_long",
+      "person": "brandee.jackson@enron.com",
+      "address": "brandee.jackson@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/26.",
+      "type": "read",
+      "person": "bonnie.chang@enron.com",
+      "address": "bonnie.chang@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/26.",
+      "type": "read",
+      "person": "kevin.brady@enron.com",
+      "address": "kevin.brady@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/26.",
+      "type": "read",
+      "person": "kirk.lenart@enron.com",
+      "address": "kirk.lenart@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/26.",
+      "type": "read",
+      "person": "mark.schrab@enron.com",
+      "address": "l..schrab@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/26.",
+      "type": "read",
+      "person": "tammy.gilmore@enron.com",
+      "address": "tammy.gilmore@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/592.",
+      "type": "authored_medium",
+      "person": "carlos.rodriguez@enron.com",
+      "address": "carlos.rodriguez@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/592.",
+      "type": "read",
+      "person": "alex.saldana@enron.com",
+      "address": "alex.saldana@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/592.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/592.",
+      "type": "read",
+      "person": "robert.superty@enron.com",
+      "address": "robert.superty@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/600.",
+      "type": "authored_medium",
+      "person": "romeo.d'souza@enron.com",
+      "address": "romeo.d'souza@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/600.",
+      "type": "read",
+      "person": "christine.pham@enron.com",
+      "address": "christine.pham@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/600.",
+      "type": "read",
+      "person": "dave.nommensen@enron.com",
+      "address": "dave.nommensen@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/600.",
+      "type": "read",
+      "person": "debbie.keeton@enron.com",
+      "address": "debbie.keeton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/600.",
+      "type": "read",
+      "person": "milind.patil@enron.com",
+      "address": "milind.patil@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/600.",
+      "type": "read",
+      "person": "shawn.macphail@enron.com",
+      "address": "shawn.macphail@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/609.",
+      "type": "authored_medium",
+      "person": "mandy.mackinnon@enron.com",
+      "address": "mandy.mackinnon@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/609.",
+      "type": "read",
+      "person": "aimee.lannou@enron.com",
+      "address": "aimee.lannou@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/609.",
+      "type": "read",
+      "person": "charlotte.hawkins@enron.com",
+      "address": "charlotte.hawkins@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/609.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/609.",
+      "type": "read",
+      "person": "stella.morris@enron.com",
+      "address": "stella.morris@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/609.",
+      "type": "read",
+      "person": "susan.trevino@enron.com",
+      "address": "susan.trevino@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/611.",
+      "type": "authored_medium",
+      "person": "brenda.herod@enron.com",
+      "address": "brenda.herod@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/611.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/611.",
+      "type": "read",
+      "person": "lisa.csikos@enron.com",
+      "address": "lisa.csikos@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/611.",
+      "type": "read",
+      "person": "mary.smith@enron.com",
+      "address": "mary.smith@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/611.",
+      "type": "read",
+      "person": "rita.wynne@enron.com",
+      "address": "rita.wynne@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/611.",
+      "type": "read",
+      "person": "steve.venturatos@enron.com",
+      "address": "steve.venturatos@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/639.",
+      "type": "authored_short",
+      "person": "rickya@calpine.com",
+      "address": "rickya@calpine.com",
+      "priced": false,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/639.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/639.",
+      "type": "read",
+      "person": "jackie.young@enron.com",
+      "address": "jackie.young@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/639.",
+      "type": "read",
+      "person": "robert.lloyd@enron.com",
+      "address": "robert.lloyd@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/708.",
+      "type": "authored_medium",
+      "person": "pat.clynes@enron.com",
+      "address": "pat.clynes@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/708.",
+      "type": "read",
+      "person": "aimee.lannou@enron.com",
+      "address": "aimee.lannou@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/708.",
+      "type": "read",
+      "person": "carlos.rodriguez@enron.com",
+      "address": "carlos.rodriguez@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/708.",
+      "type": "read",
+      "person": "charlotte.hawkins@enron.com",
+      "address": "charlotte.hawkins@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/708.",
+      "type": "read",
+      "person": "george.grant@enron.com",
+      "address": "george.grant@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/708.",
+      "type": "read",
+      "person": "kimberly.vaughn@enron.com",
+      "address": "kimberly.vaughn@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/940.",
+      "type": "authored_short",
+      "person": "robert.lloyd@enron.com",
+      "address": "robert.lloyd@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/940.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/940.",
+      "type": "read",
+      "person": "jackie.young@enron.com",
+      "address": "jackie.young@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/940.",
+      "type": "read",
+      "person": "pat.clynes@enron.com",
+      "address": "pat.clynes@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/940.",
+      "type": "read",
+      "person": "stacey.neuweiler@enron.com",
+      "address": "stacey.neuweiler@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/940.",
+      "type": "read",
+      "person": "susan.trevino@enron.com",
+      "address": "susan.trevino@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/941.",
+      "type": "authored_short",
+      "person": "robert.lloyd@enron.com",
+      "address": "robert.lloyd@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/941.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/941.",
+      "type": "read",
+      "person": "jackie.young@enron.com",
+      "address": "jackie.young@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/941.",
+      "type": "read",
+      "person": "pat.clynes@enron.com",
+      "address": "pat.clynes@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/941.",
+      "type": "read",
+      "person": "stacey.neuweiler@enron.com",
+      "address": "stacey.neuweiler@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/941.",
+      "type": "read",
+      "person": "susan.trevino@enron.com",
+      "address": "susan.trevino@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/986.",
+      "type": "authored_medium",
+      "person": "tchristensen@anpower.com",
+      "address": "tchristensen@anpower.com",
+      "priced": false,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/986.",
+      "type": "read",
+      "person": "carey.metz@enron.com",
+      "address": "carey.m.metz@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/986.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "dfarmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/986.",
+      "type": "read",
+      "person": "fuel@anpower.com",
+      "address": "fuel@anpower.com",
+      "priced": false,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/986.",
+      "type": "read",
+      "person": "jennifer.sabine@enron.com",
+      "address": "jsabine@ect.enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/986.",
+      "type": "read",
+      "person": "stacey.neuweiler@enron.com",
+      "address": "stacey.neuweiler@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/395.",
+      "type": "authored_long",
+      "person": "patrick.tucker@enron.com",
+      "address": "patrick.tucker@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/395.",
+      "type": "read",
+      "person": "bryant.frihart@enron.com",
+      "address": "bryant.frihart@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/395.",
+      "type": "read",
+      "person": "darron.giron@enron.com",
+      "address": "c..giron@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/161.",
+      "type": "authored_short",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/161.",
+      "type": "read",
+      "person": "shelley.corman@enron.com",
+      "address": "shelley.corman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/123.",
+      "type": "authored_short",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/123.",
+      "type": "read",
+      "person": "craig.dean@enron.com",
+      "address": "craig.dean@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/123.",
+      "type": "read",
+      "person": "john.anderson@enron.com",
+      "address": "john.anderson@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/123.",
+      "type": "read",
+      "person": "leaf.harasin@enron.com",
+      "address": "leaf.harasin@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/123.",
+      "type": "read",
+      "person": "mark.guzman@enron.com",
+      "address": "mark.guzman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/123.",
+      "type": "read",
+      "person": "todd.bland@enron.com",
+      "address": "todd.bland@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/14.",
+      "type": "authored_short",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/14.",
+      "type": "read",
+      "person": "geir.solberg@enron.com",
+      "address": "geir.solberg@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/15.",
+      "type": "authored_short",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/15.",
+      "type": "read",
+      "person": "michael.mier@enron.com",
+      "address": "michael.mier@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/197.",
+      "type": "authored_short",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/197.",
+      "type": "read",
+      "person": "craig.dean@enron.com",
+      "address": "craig.dean@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/197.",
+      "type": "read",
+      "person": "john.anderson@enron.com",
+      "address": "john.anderson@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/197.",
+      "type": "read",
+      "person": "leaf.harasin@enron.com",
+      "address": "leaf.harasin@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/197.",
+      "type": "read",
+      "person": "mark.guzman@enron.com",
+      "address": "mark.guzman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/197.",
+      "type": "read",
+      "person": "todd.bland@enron.com",
+      "address": "todd.bland@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/208.",
+      "type": "authored_short",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/208.",
+      "type": "read",
+      "person": "craig.dean@enron.com",
+      "address": "craig.dean@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/208.",
+      "type": "read",
+      "person": "john.anderson@enron.com",
+      "address": "john.anderson@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/208.",
+      "type": "read",
+      "person": "leaf.harasin@enron.com",
+      "address": "leaf.harasin@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/208.",
+      "type": "read",
+      "person": "mark.guzman@enron.com",
+      "address": "mark.guzman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/208.",
+      "type": "read",
+      "person": "todd.bland@enron.com",
+      "address": "todd.bland@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/225.",
+      "type": "forward",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/225.",
+      "type": "read",
+      "person": "craig.dean@enron.com",
+      "address": "craig.dean@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/225.",
+      "type": "read",
+      "person": "john.anderson@enron.com",
+      "address": "john.anderson@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/225.",
+      "type": "read",
+      "person": "leaf.harasin@enron.com",
+      "address": "leaf.harasin@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/225.",
+      "type": "read",
+      "person": "mark.guzman@enron.com",
+      "address": "mark.guzman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/225.",
+      "type": "read",
+      "person": "todd.bland@enron.com",
+      "address": "todd.bland@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/233.",
+      "type": "authored_short",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/233.",
+      "type": "read",
+      "person": "craig.dean@enron.com",
+      "address": "craig.dean@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/233.",
+      "type": "read",
+      "person": "john.anderson@enron.com",
+      "address": "john.anderson@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/233.",
+      "type": "read",
+      "person": "leaf.harasin@enron.com",
+      "address": "leaf.harasin@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/233.",
+      "type": "read",
+      "person": "mark.guzman@enron.com",
+      "address": "mark.guzman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/233.",
+      "type": "read",
+      "person": "todd.bland@enron.com",
+      "address": "todd.bland@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/427.",
+      "type": "forward",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/427.",
+      "type": "read",
+      "person": "cara.semperger@enron.com",
+      "address": "cara.semperger@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/470.",
+      "type": "authored_short",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/470.",
+      "type": "read",
+      "person": "steven.merris@enron.com",
+      "address": "steven.merris@enron.com",
+      "priced": true,
+      "share_x100": 100
+    }
+  ],
+  "participants": [
+    {
+      "email": "tom.acton@enron.com",
+      "name": "Tom Acton",
+      "label": "Tom Acton",
+      "kind": "person",
+      "addresses": [
+        "tom.acton@enron.com"
+      ],
+      "staff": true,
+      "authored": 2,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 17,
+      "wrote": true
+    },
+    {
+      "email": "jackie.young@enron.com",
+      "name": "Jackie Young",
+      "label": "Jackie Young",
+      "kind": "person",
+      "addresses": [
+        "jackie.young@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 18,
+      "wrote": false
+    },
+    {
+      "email": "robert.cotten@enron.com",
+      "name": "Robert Cotten",
+      "label": "Robert Cotten",
+      "kind": "person",
+      "addresses": [
+        "robert.cotten@enron.com"
+      ],
+      "staff": true,
+      "authored": 2,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 16,
+      "wrote": true
+    },
+    {
+      "email": "carlos.rodriguez@enron.com",
+      "name": "Carlos J Rodriguez",
+      "label": "Carlos J Rodriguez",
+      "kind": "person",
+      "addresses": [
+        "carlos.rodriguez@enron.com"
+      ],
+      "staff": true,
+      "authored": 5,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 12,
+      "wrote": true
+    },
+    {
+      "email": "clem.cernosek@enron.com",
+      "name": "Clem Cernosek",
+      "label": "Clem Cernosek",
+      "kind": "person",
+      "addresses": [
+        "clem.cernosek@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 17,
+      "wrote": false
+    },
+    {
+      "email": "daren.farmer@enron.com",
+      "name": "Daren J Farmer",
+      "label": "Daren J Farmer",
+      "kind": "person",
+      "addresses": [
+        "daren.farmer@enron.com",
+        "dfarmer@enron.com",
+        "j..farmer@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 16,
+      "wrote": false
+    },
+    {
+      "email": "mary.poorman@enron.com",
+      "name": "Mary Poorman",
+      "label": "Mary Poorman",
+      "kind": "person",
+      "addresses": [
+        "mary.poorman@enron.com"
+      ],
+      "staff": true,
+      "authored": 6,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 9,
+      "wrote": true
+    },
+    {
+      "email": "michael.olsen@enron.com",
+      "name": "Michael Olsen",
+      "label": "Michael Olsen",
+      "kind": "person",
+      "addresses": [
+        "michael.olsen@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 10,
+      "wrote": true
+    },
+    {
+      "email": "aimee.lannou@enron.com",
+      "name": "Aimee Lannou",
+      "label": "Aimee Lannou",
+      "kind": "person",
+      "addresses": [
+        "aimee.lannou@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 9,
+      "wrote": true
+    },
+    {
+      "email": "mark.mccoy@enron.com",
+      "name": "Mark McCoy",
+      "label": "Mark McCoy",
+      "kind": "person",
+      "addresses": [
+        "mark.mccoy@enron.com"
+      ],
+      "staff": true,
+      "authored": 5,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 5,
+      "wrote": true
+    },
+    {
+      "email": "bill.williams@enron.com",
+      "name": "Williams III, Bill",
+      "label": "Bill Williams III",
+      "kind": "person",
+      "addresses": [
+        "bill.williams@enron.com"
+      ],
+      "staff": true,
+      "authored": 7,
+      "forwards": 2,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "pat.clynes@enron.com",
+      "name": "Pat Clynes",
+      "label": "Pat Clynes",
+      "kind": "person",
+      "addresses": [
+        "pat.clynes@enron.com"
+      ],
+      "staff": true,
+      "authored": 2,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 7,
+      "wrote": true
+    },
+    {
+      "email": "robert.lloyd@enron.com",
+      "name": "Robert E Lloyd",
+      "label": "Robert E Lloyd",
+      "kind": "person",
+      "addresses": [
+        "robert.lloyd@enron.com"
+      ],
+      "staff": true,
+      "authored": 8,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": true
+    },
+    {
+      "email": "sabrae.zajac@enron.com",
+      "name": "Sabrae Zajac",
+      "label": "Sabrae Zajac",
+      "kind": "person",
+      "addresses": [
+        "sabrae.zajac@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 8,
+      "wrote": true
+    },
+    {
+      "email": "stella.morris@enron.com",
+      "name": "Stella L Morris",
+      "label": "Stella L Morris",
+      "kind": "person",
+      "addresses": [
+        "stella.morris@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 7,
+      "wrote": false
+    },
+    {
+      "email": "craig.dean@enron.com",
+      "name": "Dean, Craig",
+      "label": "Craig Dean",
+      "kind": "person",
+      "addresses": [
+        "craig.dean@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 5,
+      "wrote": false
+    },
+    {
+      "email": "john.anderson@enron.com",
+      "name": "Anderson, John",
+      "label": "John Anderson",
+      "kind": "person",
+      "addresses": [
+        "john.anderson@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 5,
+      "wrote": false
+    },
+    {
+      "email": "leaf.harasin@enron.com",
+      "name": null,
+      "label": "leaf.harasin@enron.com",
+      "kind": "person",
+      "addresses": [
+        "leaf.harasin@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 5,
+      "wrote": false
+    },
+    {
+      "email": "mark.guzman@enron.com",
+      "name": "Guzman, Mark",
+      "label": "Mark Guzman",
+      "kind": "person",
+      "addresses": [
+        "mark.guzman@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 5,
+      "wrote": false
+    },
+    {
+      "email": "stacey.neuweiler@enron.com",
+      "name": "Stacey Neuweiler",
+      "label": "Stacey Neuweiler",
+      "kind": "person",
+      "addresses": [
+        "stacey.neuweiler@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 5,
+      "wrote": false
+    },
+    {
+      "email": "todd.bland@enron.com",
+      "name": null,
+      "label": "todd.bland@enron.com",
+      "kind": "person",
+      "addresses": [
+        "todd.bland@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 5,
+      "wrote": false
+    },
+    {
+      "email": "charlotte.hawkins@enron.com",
+      "name": "Charlotte Hawkins",
+      "label": "Charlotte Hawkins",
+      "kind": "person",
+      "addresses": [
+        "charlotte.hawkins@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 4,
+      "wrote": false
+    },
+    {
+      "email": "edward.terry@enron.com",
+      "name": "Edward Terry",
+      "label": "Edward Terry",
+      "kind": "person",
+      "addresses": [
+        "edward.terry@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 4,
+      "wrote": false
+    },
+    {
+      "email": "brandee.jackson@enron.com",
+      "name": "Jackson, Brandee",
+      "label": "Brandee Jackson",
+      "kind": "person",
+      "addresses": [
+        "brandee.jackson@enron.com"
+      ],
+      "staff": true,
+      "authored": 2,
+      "forwards": 1,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "carey.metz@enron.com",
+      "name": "Carey M Metz",
+      "label": "Carey M Metz",
+      "kind": "person",
+      "addresses": [
+        "carey.m.metz@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 3,
+      "wrote": false
+    },
+    {
+      "email": "gary.hanks@enron.com",
+      "name": "Gary A Hanks",
+      "label": "Gary A Hanks",
+      "kind": "person",
+      "addresses": [
+        "gary.hanks@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 3,
+      "wrote": false
+    },
+    {
+      "email": "lauri.allen@enron.com",
+      "name": "Lauri A Allen",
+      "label": "Lauri A Allen",
+      "kind": "person",
+      "addresses": [
+        "lauri.allen@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 3,
+      "wrote": false
+    },
+    {
+      "email": "susan.trevino@enron.com",
+      "name": "Susan D Trevino",
+      "label": "Susan D Trevino",
+      "kind": "person",
+      "addresses": [
+        "susan.trevino@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 3,
+      "wrote": false
+    },
+    {
+      "email": "tchristensen@anpower.com",
+      "name": "Christensen, Trey",
+      "label": "Trey Christensen",
+      "kind": "person",
+      "addresses": [
+        "tchristensen@anpower.com"
+      ],
+      "staff": false,
+      "authored": 2,
+      "forwards": 1,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "bonnie.chang@enron.com",
+      "name": null,
+      "label": "bonnie.chang@enron.com",
+      "kind": "person",
+      "addresses": [
+        "bonnie.chang@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "edward.gottlob@enron.com",
+      "name": "Edward D Gottlob",
+      "label": "Edward D Gottlob",
+      "kind": "person",
+      "addresses": [
+        "edward.gottlob@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "george.grant@enron.com",
+      "name": "George Grant",
+      "label": "George Grant",
+      "kind": "person",
+      "addresses": [
+        "george.grant@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "kevin.brady@enron.com",
+      "name": null,
+      "label": "kevin.brady@enron.com",
+      "kind": "person",
+      "addresses": [
+        "kevin.brady@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "kirk.lenart@enron.com",
+      "name": null,
+      "label": "kirk.lenart@enron.com",
+      "kind": "person",
+      "addresses": [
+        "kirk.lenart@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "mark.schrab@enron.com",
+      "name": "Mark L Schrab",
+      "label": "Mark L Schrab",
+      "kind": "person",
+      "addresses": [
+        "l..schrab@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "rita.wynne@enron.com",
+      "name": "Rita Wynne",
+      "label": "Rita Wynne",
+      "kind": "person",
+      "addresses": [
+        "rita.wynne@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "robert.superty@enron.com",
+      "name": "Superty, Robert",
+      "label": "Robert Superty",
+      "kind": "person",
+      "addresses": [
+        "robert.superty@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "steve.venturatos@enron.com",
+      "name": "Steve Venturatos",
+      "label": "Steve Venturatos",
+      "kind": "person",
+      "addresses": [
+        "steve.venturatos@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": true
+    },
+    {
+      "email": "tammy.gilmore@enron.com",
+      "name": null,
+      "label": "tammy.gilmore@enron.com",
+      "kind": "person",
+      "addresses": [
+        "tammy.gilmore@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "alex.saldana@enron.com",
+      "name": "Alex Saldana",
+      "label": "Alex Saldana",
+      "kind": "person",
+      "addresses": [
+        "alex.saldana@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "berwin1@txu.com",
+      "name": null,
+      "label": "berwin1@txu.com",
+      "kind": "person",
+      "addresses": [
+        "berwin1@txu.com"
+      ],
+      "staff": false,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "bob.hall@enron.com",
+      "name": "Bob M Hall",
+      "label": "Bob M Hall",
+      "kind": "person",
+      "addresses": [
+        "bob.hall@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "brenda.herod@enron.com",
+      "name": "Brenda F Herod",
+      "label": "Brenda F Herod",
+      "kind": "person",
+      "addresses": [
+        "brenda.herod@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "bruce_franco@missionenergy.com",
+      "name": null,
+      "label": "bruce_franco@missionenergy.com",
+      "kind": "person",
+      "addresses": [
+        "bruce_franco@missionenergy.com"
+      ],
+      "staff": false,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "bruno.hofer@chkra.mail.abb.com",
+      "name": null,
+      "label": "bruno.hofer@chkra.mail.abb.com",
+      "kind": "person",
+      "addresses": [
+        "bruno.hofer@chkra.mail.abb.com"
+      ],
+      "staff": false,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "bryant.frihart@enron.com",
+      "name": "Frihart, Bryant",
+      "label": "Bryant Frihart",
+      "kind": "person",
+      "addresses": [
+        "bryant.frihart@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "cara.semperger@enron.com",
+      "name": "Semperger, Cara",
+      "label": "Cara Semperger",
+      "kind": "person",
+      "addresses": [
+        "cara.semperger@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "carrie.hollomon@enron.com",
+      "name": null,
+      "label": "carrie.hollomon@enron.com",
+      "kind": "person",
+      "addresses": [
+        "carrie.hollomon@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "cepei@aol.com",
+      "name": null,
+      "label": "cepei@aol.com",
+      "kind": "person",
+      "addresses": [
+        "cepei@aol.com"
+      ],
+      "staff": false,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "christine.pham@enron.com",
+      "name": null,
+      "label": "christine.pham@enron.com",
+      "kind": "person",
+      "addresses": [
+        "christine.pham@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "darron.giron@enron.com",
+      "name": "Darron C Giron",
+      "label": "Darron C Giron",
+      "kind": "person",
+      "addresses": [
+        "c..giron@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "dave.nommensen@enron.com",
+      "name": null,
+      "label": "dave.nommensen@enron.com",
+      "kind": "person",
+      "addresses": [
+        "dave.nommensen@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "debbie.keeton@enron.com",
+      "name": null,
+      "label": "debbie.keeton@enron.com",
+      "kind": "person",
+      "addresses": [
+        "debbie.keeton@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "eddie.janzen@enron.com",
+      "name": "Eddie Janzen",
+      "label": "Eddie Janzen",
+      "kind": "person",
+      "addresses": [
+        "eddie.janzen@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "fuel@anpower.com",
+      "name": null,
+      "label": "fuel@anpower.com",
+      "kind": "person",
+      "addresses": [
+        "fuel@anpower.com"
+      ],
+      "staff": false,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "gary.lamphier@enron.com",
+      "name": "Gary W Lamphier",
+      "label": "Gary W Lamphier",
+      "kind": "person",
+      "addresses": [
+        "gary.lamphier@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "geir.solberg@enron.com",
+      "name": "Solberg, Geir",
+      "label": "Geir Solberg",
+      "kind": "person",
+      "addresses": [
+        "geir.solberg@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "george.smith@enron.com",
+      "name": null,
+      "label": "george.smith@enron.com",
+      "kind": "person",
+      "addresses": [
+        "george.smith@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "heather.choate@enron.com",
+      "name": "Heather Choate",
+      "label": "Heather Choate",
+      "kind": "person",
+      "addresses": [
+        "heather.choate@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "janet.wallis@enron.com",
+      "name": "Janet H Wallis",
+      "label": "Janet H Wallis",
+      "kind": "person",
+      "addresses": [
+        "janet.h.wallis@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "jeffrey.gossett@enron.com",
+      "name": null,
+      "label": "jeffrey.gossett@enron.com",
+      "kind": "person",
+      "addresses": [
+        "jeffrey.gossett@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "jennifer.sabine@enron.com",
+      "name": null,
+      "label": "jennifer.sabine@enron.com",
+      "kind": "person",
+      "addresses": [
+        "jsabine@ect.enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "jim.schwieger@enron.com",
+      "name": null,
+      "label": "jim.schwieger@enron.com",
+      "kind": "person",
+      "addresses": [
+        "jim.schwieger@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "kimberly.vaughn@enron.com",
+      "name": "Kimberly Vaughn",
+      "label": "Kimberly Vaughn",
+      "kind": "person",
+      "addresses": [
+        "kimberly.vaughn@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "lee.papayoti@enron.com",
+      "name": "Lee L Papayoti",
+      "label": "Lee L Papayoti",
+      "kind": "person",
+      "addresses": [
+        "lee.papayoti@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "lisa.csikos@enron.com",
+      "name": "Lisa Csikos",
+      "label": "Lisa Csikos",
+      "kind": "person",
+      "addresses": [
+        "lisa.csikos@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "lmaillet@anpower.com",
+      "name": null,
+      "label": "lmaillet@anpower.com",
+      "kind": "person",
+      "addresses": [
+        "lmaillet@anpower.com"
+      ],
+      "staff": false,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "mandy.mackinnon@enron.com",
+      "name": "Mandy MacKinnon",
+      "label": "Mandy MacKinnon",
+      "kind": "person",
+      "addresses": [
+        "mandy.mackinnon@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "mary.smith@enron.com",
+      "name": "Mary M Smith",
+      "label": "Mary M Smith",
+      "kind": "person",
+      "addresses": [
+        "mary.smith@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "michael.mier@enron.com",
+      "name": null,
+      "label": "michael.mier@enron.com",
+      "kind": "person",
+      "addresses": [
+        "michael.mier@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "michelle.lokay@enron.com",
+      "name": "Lokay, Michelle",
+      "label": "Michelle Lokay",
+      "kind": "person",
+      "addresses": [
+        "michelle.lokay@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "milind.patil@enron.com",
+      "name": null,
+      "label": "milind.patil@enron.com",
+      "kind": "person",
+      "addresses": [
+        "milind.patil@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "patrick.tucker@enron.com",
+      "name": "Tucker, Patrick",
+      "label": "Patrick Tucker",
+      "kind": "person",
+      "addresses": [
+        "patrick.tucker@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "randall.gay@enron.com",
+      "name": null,
+      "label": "randall.gay@enron.com",
+      "kind": "person",
+      "addresses": [
+        "randall.gay@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "rickya@calpine.com",
+      "name": "Ricky Archer",
+      "label": "Ricky Archer",
+      "kind": "person",
+      "addresses": [
+        "rickya@calpine.com"
+      ],
+      "staff": false,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "romeo.d'souza@enron.com",
+      "name": "Romeo D'Souza",
+      "label": "Romeo D'Souza",
+      "kind": "person",
+      "addresses": [
+        "romeo.d'souza@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "shawn.macphail@enron.com",
+      "name": null,
+      "label": "shawn.macphail@enron.com",
+      "kind": "person",
+      "addresses": [
+        "shawn.macphail@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "shelley.corman@enron.com",
+      "name": null,
+      "label": "shelley.corman@enron.com",
+      "kind": "person",
+      "addresses": [
+        "shelley.corman@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "steven.merris@enron.com",
+      "name": null,
+      "label": "steven.merris@enron.com",
+      "kind": "person",
+      "addresses": [
+        "steven.merris@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "thomas.martin@enron.com",
+      "name": "Martin, Thomas A.",
+      "label": "Thomas A. Martin",
+      "kind": "person",
+      "addresses": [
+        "thomas.martin@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    }
+  ],
+  "stalls_by_kind": [
+    {
+      "kind": "handoff_confusion",
+      "words": "1 handoff confusion",
+      "count": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "stalls",
+          "key": "on-call-coverage",
+          "stall_kind": "handoff_confusion"
+        }
+      }
+    }
+  ],
+  "stall_groups": [
+    {
+      "summary": "On-call contact details go stale: a manager could not reach a staff member because the cell number on file no longer worked, and pager numbers need revised contact sheets.",
+      "quotes": [
+        {
+          "id": "batch-088:e15",
+          "kind": "evidence",
+          "message_id": "corpus/williams-w3/sent_items/15.",
+          "start": 529,
+          "end": 616,
+          "raw_text": "Your cell phone is not working or has been disconnected and I have no way to reach you.",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "bill.williams@enron.com",
+          "sender_label": "Bill Williams III",
+          "date_utc": "2002-01-24T22:52:23Z"
+        },
+        {
+          "id": "batch-088:e16",
+          "kind": "evidence",
+          "message_id": "corpus/williams-w3/sent_items/14.",
+          "start": 530,
+          "end": 580,
+          "raw_text": "I need to get a working cell phone number for you.",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "bill.williams@enron.com",
+          "sender_label": "Bill Williams III",
+          "date_utc": "2002-01-24T22:57:26Z"
+        },
+        {
+          "id": "batch-011:e35",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/1096.",
+          "start": 850,
+          "end": 926,
+          "raw_text": "Would you please forward this Revised Contact Sheet (ie my new Pager Number)",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "tchristensen@anpower.com",
+          "sender_label": "Trey Christensen",
+          "date_utc": "2000-05-08T10:39:00Z"
+        }
+      ]
+    },
+    {
+      "summary": "Coverage arranged in advance was not passed on, so the person expected to cover knew nothing about it.",
+      "quotes": [
+        {
+          "id": "batch-079:s1",
+          "kind": "stall",
+          "message_id": "corpus/giron-d/inbox/395.",
+          "start": 2025,
+          "end": 2054,
+          "raw_text": "Bonnie knew nothing about it.",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "patrick.tucker@enron.com",
+          "sender_label": "Patrick Tucker",
+          "date_utc": "2001-11-21T20:43:53Z",
+          "stall_kind": "handoff_confusion"
+        }
+      ]
+    }
+  ],
+  "stall_quotes": [
+    {
+      "id": "batch-079:s1",
+      "kind": "stall",
+      "message_id": "corpus/giron-d/inbox/395.",
+      "start": 2025,
+      "end": 2054,
+      "raw_text": "Bonnie knew nothing about it.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "patrick.tucker@enron.com",
+      "sender_label": "Patrick Tucker",
+      "date_utc": "2001-11-21T20:43:53Z",
+      "stall_kind": "handoff_confusion"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "batch-000:e13",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/592.",
+      "start": 201,
+      "end": 216,
+      "raw_text": "Y2K - Texas Log",
+      "match": "exact",
+      "segment": "subject",
+      "field": "subject",
+      "sender": "carlos.rodriguez@enron.com",
+      "sender_label": "Carlos J Rodriguez",
+      "date_utc": "1999-12-15T14:41:00Z"
+    },
+    {
+      "id": "batch-000:e20",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/600.",
+      "start": 1342,
+      "end": 1405,
+      "raw_text": "In my absence please contact the following persons for any POPS",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "romeo.d'souza@enron.com",
+      "sender_label": "Romeo D'Souza",
+      "date_utc": "1999-12-20T15:36:00Z"
+    },
+    {
+      "id": "batch-000:e32",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/609.",
+      "start": 437,
+      "end": 457,
+      "raw_text": "Holiday On-Call Data",
+      "match": "exact",
+      "segment": "subject",
+      "field": "subject",
+      "sender": "mandy.mackinnon@enron.com",
+      "sender_label": "Mandy MacKinnon",
+      "date_utc": "1999-12-22T09:30:00Z"
+    },
+    {
+      "id": "batch-000:e35",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/611.",
+      "start": 1073,
+      "end": 1129,
+      "raw_text": "I have asked Steve Venturatos to be the point person for",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "brenda.herod@enron.com",
+      "sender_label": "Brenda F Herod",
+      "date_utc": "1999-12-22T16:54:00Z"
+    },
+    {
+      "id": "batch-001:e17",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/639.",
+      "start": 590,
+      "end": 665,
+      "raw_text": "My cellular phone number is 713-562-2050 If you have any questions over the",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "rickya@calpine.com",
+      "sender_label": "Ricky Archer",
+      "date_utc": "1999-12-31T15:48:00Z"
+    },
+    {
+      "id": "batch-002:e25",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/708.",
+      "start": 1844,
+      "end": 1894,
+      "raw_text": "She will attend any meetings while I am out and is",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "pat.clynes@enron.com",
+      "sender_label": "Pat Clynes",
+      "date_utc": "2000-01-21T16:00:00Z"
+    },
+    {
+      "id": "batch-008:e13",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/940.",
+      "start": 1006,
+      "end": 1072,
+      "raw_text": "I will be on vacation Friday, March 24th,27th,28th and maybe 29th.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "robert.lloyd@enron.com",
+      "sender_label": "Robert E Lloyd",
+      "date_utc": "2000-03-22T09:45:00Z"
+    },
+    {
+      "id": "batch-008:e14",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/941.",
+      "start": 1005,
+      "end": 1071,
+      "raw_text": "I will be on vacation Friday, March 24th,27th,28th and maybe 29th.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "robert.lloyd@enron.com",
+      "sender_label": "Robert E Lloyd",
+      "date_utc": "2000-03-22T10:13:00Z"
+    },
+    {
+      "id": "batch-009:e18",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/986.",
+      "start": 837,
+      "end": 886,
+      "raw_text": "Here are Lisa Maillet and my contact information.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "tchristensen@anpower.com",
+      "sender_label": "Trey Christensen",
+      "date_utc": "2000-03-28T16:40:00Z"
+    },
+    {
+      "id": "batch-010:e18",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1026.",
+      "start": 1123,
+      "end": 1195,
+      "raw_text": "Attached are the notes for Weekend dated April 7th thru April 9th on the",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "robert.lloyd@enron.com",
+      "sender_label": "Robert E Lloyd",
+      "date_utc": "2000-04-10T09:21:00Z"
+    },
+    {
+      "id": "batch-011:e34",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1095.",
+      "start": 3522,
+      "end": 3578,
+      "raw_text": "I have a new pager number (It does NOT require a Pin #).",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "tchristensen@anpower.com",
+      "sender_label": "Trey Christensen",
+      "date_utc": "2000-05-08T09:57:00Z"
+    },
+    {
+      "id": "batch-011:e35",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1096.",
+      "start": 850,
+      "end": 926,
+      "raw_text": "Would you please forward this Revised Contact Sheet (ie my new Pager Number)",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "tchristensen@anpower.com",
+      "sender_label": "Trey Christensen",
+      "date_utc": "2000-05-08T10:39:00Z"
+    },
+    {
+      "id": "batch-014:e4",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1171.",
+      "start": 1227,
+      "end": 1299,
+      "raw_text": "Sherry Fontenot ( w/Texaco) called stating Tank Batteries 5 & 7 (meters:",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "robert.lloyd@enron.com",
+      "sender_label": "Robert E Lloyd",
+      "date_utc": "2000-06-04T16:26:00Z"
+    },
+    {
+      "id": "batch-014:e5",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1177.",
+      "start": 1243,
+      "end": 1315,
+      "raw_text": "Sherry Fontenot ( w/Texaco) called stating Tank Batteries 5 & 7 (meters:",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "robert.lloyd@enron.com",
+      "sender_label": "Robert E Lloyd",
+      "date_utc": "2000-06-05T13:17:00Z"
+    },
+    {
+      "id": "batch-018:e3",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1269.",
+      "start": 1235,
+      "end": 1278,
+      "raw_text": "980067 Lonestar Katy----daily confirmations",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "mark.mccoy@enron.com",
+      "sender_label": "Mark McCoy",
+      "date_utc": "2000-07-10T16:05:00Z"
+    },
+    {
+      "id": "batch-018:e4",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1301.",
+      "start": 1054,
+      "end": 1117,
+      "raw_text": "I will be out of the office this afternoon, beginning at 1 p.m.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "mary.poorman@enron.com",
+      "sender_label": "Mary Poorman",
+      "date_utc": "2000-07-24T12:49:00Z"
+    },
+    {
+      "id": "batch-018:e5",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1382.",
+      "start": 1286,
+      "end": 1359,
+      "raw_text": "I will be out of the office Tuesday, 9/5th . In my absence please contact",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "robert.lloyd@enron.com",
+      "sender_label": "Robert E Lloyd",
+      "date_utc": "2000-09-01T09:12:00Z"
+    },
+    {
+      "id": "batch-018:e13",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1281.",
+      "start": 886,
+      "end": 919,
+      "raw_text": "During my absence, please contact",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "robert.lloyd@enron.com",
+      "sender_label": "Robert E Lloyd",
+      "date_utc": "2000-07-14T15:39:00Z"
+    },
+    {
+      "id": "batch-018:e14",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1282.",
+      "start": 1193,
+      "end": 1255,
+      "raw_text": "I will be on vacation the week of July 17th through July 21st.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "steve.venturatos@enron.com",
+      "sender_label": "Steve Venturatos",
+      "date_utc": "2000-07-14T17:26:00Z"
+    },
+    {
+      "id": "batch-020:e9",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1334.",
+      "start": 1207,
+      "end": 1248,
+      "raw_text": "Attached are the notes from this weekend.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "robert.lloyd@enron.com",
+      "sender_label": "Robert E Lloyd",
+      "date_utc": "2000-08-14T08:39:00Z"
+    },
+    {
+      "id": "batch-022:e0",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1369.",
+      "start": 1087,
+      "end": 1121,
+      "raw_text": "Weekend of August 26 =01) 28, 2000",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "mary.poorman@enron.com",
+      "sender_label": "Mary Poorman",
+      "date_utc": "2000-08-28T08:58:00Z"
+    },
+    {
+      "id": "batch-025:e15",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1432.",
+      "start": 1080,
+      "end": 1140,
+      "raw_text": "I can be reached at (228) 386-7111 on Friday if you need me.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "pat.clynes@enron.com",
+      "sender_label": "Pat Clynes",
+      "date_utc": "2000-09-28T12:38:00Z"
+    },
+    {
+      "id": "batch-026:e14",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1443.",
+      "start": 946,
+      "end": 1025,
+      "raw_text": "In my \nabsence Tom Acton will be handling the Oasis & Lonestar interconnects at",
+      "match": "repaired",
+      "segment": "own",
+      "field": "body",
+      "sender": "mark.mccoy@enron.com",
+      "sender_label": "Mark McCoy",
+      "date_utc": "2000-10-05T15:31:00Z"
+    },
+    {
+      "id": "batch-031:e11",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1501.",
+      "start": 1331,
+      "end": 1394,
+      "raw_text": "Aimee 3-0506 will be the point person for any questions but the",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "carlos.rodriguez@enron.com",
+      "sender_label": "Carlos J Rodriguez",
+      "date_utc": "2000-11-08T10:17:00Z"
+    },
+    {
+      "id": "batch-031:e12",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1547.",
+      "start": 1690,
+      "end": 1753,
+      "raw_text": "Aimee 3-0506 will be the point person for any questions but the",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "carlos.rodriguez@enron.com",
+      "sender_label": "Carlos J Rodriguez",
+      "date_utc": "2000-12-04T11:44:00Z"
+    },
+    {
+      "id": "batch-034:e16",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1552.",
+      "start": 1092,
+      "end": 1144,
+      "raw_text": "The Texas Desk has reserved 15 rooms at the Hyatt in",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "heather.choate@enron.com",
+      "sender_label": "Heather Choate",
+      "date_utc": "2000-12-06T15:52:00Z"
+    },
+    {
+      "id": "batch-036:e23",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1990.",
+      "start": 985,
+      "end": 1057,
+      "raw_text": "We will need a small staff to handle potential trades for Wed. the 27th.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "mary.poorman@enron.com",
+      "sender_label": "Mary Poorman",
+      "date_utc": "2000-12-20T08:34:00Z"
+    },
+    {
+      "id": "batch-036:e24",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1991.",
+      "start": 1252,
+      "end": 1297,
+      "raw_text": "Mary since I will be on call I'll be in here.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "tom.acton@enron.com",
+      "sender_label": "Tom Acton",
+      "date_utc": "2000-12-20T08:49:00Z"
+    },
+    {
+      "id": "batch-036:e25",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1993.",
+      "start": 985,
+      "end": 1009,
+      "raw_text": "I'll be here on Tuesday.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "mark.mccoy@enron.com",
+      "sender_label": "Mark McCoy",
+      "date_utc": "2000-12-20T09:04:00Z"
+    },
+    {
+      "id": "batch-036:e26",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1994.",
+      "start": 1167,
+      "end": 1199,
+      "raw_text": "Mary - I can come in on Tuesday.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "aimee.lannou@enron.com",
+      "sender_label": "Aimee Lannou",
+      "date_utc": "2000-12-20T09:13:00Z"
+    },
+    {
+      "id": "batch-036:e27",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1995.",
+      "start": 909,
+      "end": 938,
+      "raw_text": "I will be here Tuesday, also.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "eddie.janzen@enron.com",
+      "sender_label": "Eddie Janzen",
+      "date_utc": "2000-12-20T09:20:00Z"
+    },
+    {
+      "id": "batch-036:e28",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1996.",
+      "start": 1647,
+      "end": 1719,
+      "raw_text": "We will need a small staff to handle potential trades for Wed. the 27th.",
+      "match": "exact",
+      "segment": "quoted",
+      "field": "body",
+      "sender": "sabrae.zajac@enron.com",
+      "sender_label": "Sabrae Zajac",
+      "date_utc": "2000-12-20T09:35:00Z"
+    },
+    {
+      "id": "batch-036:e29",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1997.",
+      "start": 1184,
+      "end": 1251,
+      "raw_text": "The following Logistics personnel will be in the office on Tuesday:",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "mary.poorman@enron.com",
+      "sender_label": "Mary Poorman",
+      "date_utc": "2000-12-20T12:55:00Z"
+    },
+    {
+      "id": "batch-037:e16",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/2007.",
+      "start": 972,
+      "end": 997,
+      "raw_text": "Here is the weekend calls",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "tom.acton@enron.com",
+      "sender_label": "Tom Acton",
+      "date_utc": "2000-12-26T09:02:00Z"
+    },
+    {
+      "id": "batch-038:e5",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/2021.",
+      "start": 1094,
+      "end": 1141,
+      "raw_text": "Please see the attached file for On-Call Notes.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "robert.cotten@enron.com",
+      "sender_label": "Robert Cotten",
+      "date_utc": "2001-01-01T23:49:00Z"
+    },
+    {
+      "id": "batch-039:e27",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/2050.",
+      "start": 1038,
+      "end": 1097,
+      "raw_text": "Received a call from Sheila at Basin regarding a well which",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "mary.poorman@enron.com",
+      "sender_label": "Mary Poorman",
+      "date_utc": "2001-01-22T17:25:00Z"
+    },
+    {
+      "id": "batch-042:e16",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/2079.",
+      "start": 1044,
+      "end": 1093,
+      "raw_text": "Mary Poorman and Tom Acton will be backing me up.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "mark.mccoy@enron.com",
+      "sender_label": "Mark McCoy",
+      "date_utc": "2001-02-06T09:23:00Z"
+    },
+    {
+      "id": "batch-046:e3",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/2110.",
+      "start": 1398,
+      "end": 1458,
+      "raw_text": "Changed confirm for Midcon Hardy to show the correct 20,000.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michael.olsen@enron.com",
+      "sender_label": "Michael Olsen",
+      "date_utc": "2001-03-05T08:21:00Z"
+    },
+    {
+      "id": "batch-046:e4",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/210.",
+      "start": 1368,
+      "end": 1453,
+      "raw_text": "Received a page from Silver in Gas Control at 8:00 pm regarding the Gulf Plains Plant",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "mary.poorman@enron.com",
+      "sender_label": "Mary Poorman",
+      "date_utc": "2001-03-26T19:33:00Z"
+    },
+    {
+      "id": "batch-046:e23",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/2115.",
+      "start": 993,
+      "end": 1064,
+      "raw_text": "Please find attached the On-Call Notes for the weekend of 3/10 & 11/01.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "robert.cotten@enron.com",
+      "sender_label": "Robert Cotten",
+      "date_utc": "2001-03-12T08:43:00Z"
+    },
+    {
+      "id": "batch-046:e26",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/2117.",
+      "start": 1121,
+      "end": 1169,
+      "raw_text": "Mike Olsen ext - 35796 will be the point person.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "carlos.rodriguez@enron.com",
+      "sender_label": "Carlos J Rodriguez",
+      "date_utc": "2001-03-14T09:09:00Z"
+    },
+    {
+      "id": "batch-050:e15",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/180.",
+      "start": 1690,
+      "end": 1774,
+      "raw_text": "Notified by gas control that we needed to deliver to Centana for operational reasons",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "mark.mccoy@enron.com",
+      "sender_label": "Mark McCoy",
+      "date_utc": "2001-04-16T13:48:38Z"
+    },
+    {
+      "id": "batch-051:e6",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/167.",
+      "start": 171,
+      "end": 182,
+      "raw_text": "FW: On Call",
+      "match": "exact",
+      "segment": "subject",
+      "field": "subject",
+      "sender": "brandee.jackson@enron.com",
+      "sender_label": "Brandee Jackson",
+      "date_utc": "2001-04-20T21:15:31Z"
+    },
+    {
+      "id": "batch-052:e26",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/142.",
+      "start": 2279,
+      "end": 2340,
+      "raw_text": "I will be on vacation from Thursday 5/10 thru Wednesday 5/16.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "carlos.rodriguez@enron.com",
+      "sender_label": "Carlos J Rodriguez",
+      "date_utc": "2001-05-09T20:18:48Z"
+    },
+    {
+      "id": "batch-055:e14",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/470.",
+      "start": 576,
+      "end": 622,
+      "raw_text": "Both notes were very informative and detailed.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-06-25T16:21:05Z"
+    },
+    {
+      "id": "batch-057:e7",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/427.",
+      "start": 544,
+      "end": 582,
+      "raw_text": "Fred can be reached at 1-915-543-4335.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-07-05T22:34:16Z"
+    },
+    {
+      "id": "batch-066:e21",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/233.",
+      "start": 1671,
+      "end": 1729,
+      "raw_text": "We will be covering for Enron Canada Corp as stated below.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-09-19T16:22:22Z"
+    },
+    {
+      "id": "batch-067:e4",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/225.",
+      "start": 1665,
+      "end": 1739,
+      "raw_text": "Here is some more inforation regarding taking care of Canada this weekend.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-09-21T00:39:24Z"
+    },
+    {
+      "id": "batch-068:e12",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/208.",
+      "start": 2513,
+      "end": 2603,
+      "raw_text": "Please refer trading questions to Ryan Slinger or call me on my cell phone...503-887-3449.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-09-26T19:09:17Z"
+    },
+    {
+      "id": "batch-068:e13",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/197.",
+      "start": 1834,
+      "end": 1887,
+      "raw_text": "Please see Ryan with any questions regarding trading.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-10-03T21:22:22Z"
+    },
+    {
+      "id": "batch-068:e14",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/123.",
+      "start": 1758,
+      "end": 1847,
+      "raw_text": "I will be out of the office on Friday November 2nd, I will return on Monday November 5th.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-11-02T01:30:59Z"
+    },
+    {
+      "id": "batch-074:e1",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/26.",
+      "start": 674,
+      "end": 681,
+      "raw_text": "ON CALL",
+      "match": "exact",
+      "segment": "subject",
+      "field": "subject",
+      "sender": "brandee.jackson@enron.com",
+      "sender_label": "Brandee Jackson",
+      "date_utc": "2001-11-02T20:46:22Z"
+    },
+    {
+      "id": "batch-074:e2",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/25.",
+      "start": 673,
+      "end": 694,
+      "raw_text": "FW: ON CALL (REVISED)",
+      "match": "exact",
+      "segment": "subject",
+      "field": "subject",
+      "sender": "brandee.jackson@enron.com",
+      "sender_label": "Brandee Jackson",
+      "date_utc": "2001-11-02T21:06:41Z"
+    },
+    {
+      "id": "batch-079:e5",
+      "kind": "evidence",
+      "message_id": "corpus/giron-d/inbox/395.",
+      "start": 3782,
+      "end": 3849,
+      "raw_text": "I'll be reachable by cell over the holiday weekend at 713-213-7644.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "patrick.tucker@enron.com",
+      "sender_label": "Patrick Tucker",
+      "date_utc": "2001-11-21T20:43:53Z"
+    },
+    {
+      "id": "batch-088:e15",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/15.",
+      "start": 529,
+      "end": 616,
+      "raw_text": "Your cell phone is not working or has been disconnected and I have no way to reach you.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2002-01-24T22:52:23Z"
+    },
+    {
+      "id": "batch-088:e16",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/14.",
+      "start": 530,
+      "end": 580,
+      "raw_text": "I need to get a working cell phone number for you.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2002-01-24T22:57:26Z"
+    },
+    {
+      "id": "batch-098:e23",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/161.",
+      "start": 566,
+      "end": 641,
+      "raw_text": "Shelley, here is the current weekend on-call schedule for the TW marketers.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-03-25T19:18:05Z"
+    }
+  ],
+  "chasers": [],
+  "reply_gaps": [
+    {
+      "from": "corpus/farmer-d/logistics/1269.",
+      "to": "corpus/farmer-d/logistics/1301.",
+      "hours_x10": 3327
+    },
+    {
+      "from": "corpus/farmer-d/logistics/1301.",
+      "to": "corpus/farmer-d/logistics/1382.",
+      "hours_x10": 9324
+    },
+    {
+      "from": "corpus/farmer-d/logistics/1990.",
+      "to": "corpus/farmer-d/logistics/1991.",
+      "hours_x10": 3
+    },
+    {
+      "from": "corpus/farmer-d/logistics/1991.",
+      "to": "corpus/farmer-d/logistics/1993.",
+      "hours_x10": 3
+    },
+    {
+      "from": "corpus/farmer-d/logistics/1993.",
+      "to": "corpus/farmer-d/logistics/1994.",
+      "hours_x10": 2
+    },
+    {
+      "from": "corpus/farmer-d/logistics/1994.",
+      "to": "corpus/farmer-d/logistics/1995.",
+      "hours_x10": 1
+    },
+    {
+      "from": "corpus/farmer-d/logistics/1995.",
+      "to": "corpus/farmer-d/logistics/1996.",
+      "hours_x10": 3
+    },
+    {
+      "from": "corpus/farmer-d/logistics/1996.",
+      "to": "corpus/farmer-d/logistics/1997.",
+      "hours_x10": 33
+    },
+    {
+      "from": "corpus/farmer-d/logistics/2110.",
+      "to": "corpus/farmer-d/logistics/210.",
+      "hours_x10": 5152
+    }
+  ],
+  "reply_gap_n": 9,
+  "median_reply_gap_h": 0.3,
+  "claims": [
+    {
+      "message_id": "corpus/farmer-d/logistics/142.",
+      "person": "Tom Acton",
+      "date_utc": "2001-05-09T20:18:48Z",
+      "status": "matched",
+      "status_words": "matched to someone on the threads",
+      "name": "Tom Acton",
+      "people": [
+        "tom.acton@enron.com"
+      ],
+      "quote": {
+        "id": "batch-052:o2",
+        "kind": "claim",
+        "message_id": "corpus/farmer-d/logistics/142.",
+        "start": 2341,
+        "end": 2369,
+        "raw_text": "Tom Acton will be my back up",
+        "match": "exact",
+        "segment": "own",
+        "field": "body",
+        "sender": "carlos.rodriguez@enron.com",
+        "sender_label": "Carlos J Rodriguez",
+        "date_utc": "2001-05-09T20:18:48Z",
+        "person": "Tom Acton"
+      }
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1443.",
+      "person": "Tom Acton",
+      "date_utc": "2000-10-05T15:31:00Z",
+      "status": "matched",
+      "status_words": "matched to someone on the threads",
+      "name": "Tom Acton",
+      "people": [
+        "tom.acton@enron.com"
+      ],
+      "quote": {
+        "id": "batch-026:o0",
+        "kind": "claim",
+        "message_id": "corpus/farmer-d/logistics/1443.",
+        "start": 961,
+        "end": 1025,
+        "raw_text": "Tom Acton will be handling the Oasis & Lonestar interconnects at",
+        "match": "exact",
+        "segment": "own",
+        "field": "body",
+        "sender": "mark.mccoy@enron.com",
+        "sender_label": "Mark McCoy",
+        "date_utc": "2000-10-05T15:31:00Z",
+        "person": "Tom Acton"
+      }
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1501.",
+      "person": "Aimee",
+      "date_utc": "2000-11-08T10:17:00Z",
+      "status": "matched",
+      "status_words": "matched to someone on the threads",
+      "name": "Aimee Lannou",
+      "people": [
+        "aimee.lannou@enron.com"
+      ],
+      "quote": {
+        "id": "batch-031:o0",
+        "kind": "claim",
+        "message_id": "corpus/farmer-d/logistics/1501.",
+        "start": 1331,
+        "end": 1394,
+        "raw_text": "Aimee 3-0506 will be the point person for any questions but the",
+        "match": "exact",
+        "segment": "own",
+        "field": "body",
+        "sender": "carlos.rodriguez@enron.com",
+        "sender_label": "Carlos J Rodriguez",
+        "date_utc": "2000-11-08T10:17:00Z",
+        "person": "Aimee"
+      }
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1547.",
+      "person": "Aimee",
+      "date_utc": "2000-12-04T11:44:00Z",
+      "status": "matched",
+      "status_words": "matched to someone on the threads",
+      "name": "Aimee Lannou",
+      "people": [
+        "aimee.lannou@enron.com"
+      ],
+      "quote": {
+        "id": "batch-031:o1",
+        "kind": "claim",
+        "message_id": "corpus/farmer-d/logistics/1547.",
+        "start": 1690,
+        "end": 1753,
+        "raw_text": "Aimee 3-0506 will be the point person for any questions but the",
+        "match": "exact",
+        "segment": "own",
+        "field": "body",
+        "sender": "carlos.rodriguez@enron.com",
+        "sender_label": "Carlos J Rodriguez",
+        "date_utc": "2000-12-04T11:44:00Z",
+        "person": "Aimee"
+      }
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2079.",
+      "person": "Mary",
+      "date_utc": "2001-02-06T09:23:00Z",
+      "status": "several",
+      "status_words": "could be any of several people on the threads",
+      "name": null,
+      "people": [
+        "mary.poorman@enron.com",
+        "mary.smith@enron.com"
+      ],
+      "quote": {
+        "id": "batch-042:o0",
+        "kind": "claim",
+        "message_id": "corpus/farmer-d/logistics/2079.",
+        "start": 1095,
+        "end": 1166,
+        "raw_text": "Mary will handle off system nominations (Oasis, Lonestar & Cornshucker,",
+        "match": "exact",
+        "segment": "own",
+        "field": "body",
+        "sender": "mark.mccoy@enron.com",
+        "sender_label": "Mark McCoy",
+        "date_utc": "2001-02-06T09:23:00Z",
+        "person": "Mary"
+      }
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2117.",
+      "person": "Mike Olsen",
+      "date_utc": "2001-03-14T09:09:00Z",
+      "status": "unmatched",
+      "status_words": "not matched to anyone on the threads",
+      "name": null,
+      "people": [],
+      "quote": {
+        "id": "batch-046:o0",
+        "kind": "claim",
+        "message_id": "corpus/farmer-d/logistics/2117.",
+        "start": 1121,
+        "end": 1169,
+        "raw_text": "Mike Olsen ext - 35796 will be the point person.",
+        "match": "exact",
+        "segment": "own",
+        "field": "body",
+        "sender": "carlos.rodriguez@enron.com",
+        "sender_label": "Carlos J Rodriguez",
+        "date_utc": "2001-03-14T09:09:00Z",
+        "person": "Mike Olsen"
+      }
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/611.",
+      "person": "Steve Venturatos",
+      "date_utc": "1999-12-22T16:54:00Z",
+      "status": "matched",
+      "status_words": "matched to someone on the threads",
+      "name": "Steve Venturatos",
+      "people": [
+        "steve.venturatos@enron.com"
+      ],
+      "quote": {
+        "id": "batch-000:o1",
+        "kind": "claim",
+        "message_id": "corpus/farmer-d/logistics/611.",
+        "start": 1073,
+        "end": 1129,
+        "raw_text": "I have asked Steve Venturatos to be the point person for",
+        "match": "exact",
+        "segment": "own",
+        "field": "body",
+        "sender": "brenda.herod@enron.com",
+        "sender_label": "Brenda F Herod",
+        "date_utc": "1999-12-22T16:54:00Z",
+        "person": "Steve Venturatos"
+      }
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/708.",
+      "person": "Charlotte Hawkins",
+      "date_utc": "2000-01-21T16:00:00Z",
+      "status": "matched",
+      "status_words": "matched to someone on the threads",
+      "name": "Charlotte Hawkins",
+      "people": [
+        "charlotte.hawkins@enron.com"
+      ],
+      "quote": {
+        "id": "batch-002:o0",
+        "kind": "claim",
+        "message_id": "corpus/farmer-d/logistics/708.",
+        "start": 1779,
+        "end": 1825,
+        "raw_text": "Hawkins will be the contact for the Texas Desk",
+        "match": "exact",
+        "segment": "own",
+        "field": "body",
+        "sender": "pat.clynes@enron.com",
+        "sender_label": "Pat Clynes",
+        "date_utc": "2000-01-21T16:00:00Z",
+        "person": "Charlotte Hawkins"
+      }
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/208.",
+      "person": "Ryan Slinger",
+      "date_utc": "2001-09-26T19:09:17Z",
+      "status": "unmatched",
+      "status_words": "not matched to anyone on the threads",
+      "name": null,
+      "people": [],
+      "quote": {
+        "id": "batch-068:o0",
+        "kind": "claim",
+        "message_id": "corpus/williams-w3/sent_items/208.",
+        "start": 2513,
+        "end": 2603,
+        "raw_text": "Please refer trading questions to Ryan Slinger or call me on my cell phone...503-887-3449.",
+        "match": "exact",
+        "segment": "own",
+        "field": "body",
+        "sender": "bill.williams@enron.com",
+        "sender_label": "Bill Williams III",
+        "date_utc": "2001-09-26T19:09:17Z",
+        "person": "Ryan Slinger"
+      }
+    }
+  ],
+  "conflicts": [
+    {
+      "a": "corpus/farmer-d/logistics/1443.",
+      "b": "corpus/farmer-d/logistics/1501.",
+      "days_apart": 33
+    },
+    {
+      "a": "corpus/farmer-d/logistics/1443.",
+      "b": "corpus/farmer-d/logistics/1547.",
+      "days_apart": 59
+    },
+    {
+      "a": "corpus/farmer-d/logistics/611.",
+      "b": "corpus/farmer-d/logistics/708.",
+      "days_apart": 29
+    }
+  ],
+  "contradictions": [
+    {
+      "summary": "A coverage message names only \"Mary\" as handling off-system nominations, which could mean either of two staff with that first name, so the owner of that coverage is unclear.",
+      "quotes": [
+        {
+          "id": "batch-042:o0",
+          "kind": "claim",
+          "message_id": "corpus/farmer-d/logistics/2079.",
+          "start": 1095,
+          "end": 1166,
+          "raw_text": "Mary will handle off system nominations (Oasis, Lonestar & Cornshucker,",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "mark.mccoy@enron.com",
+          "sender_label": "Mark McCoy",
+          "date_utc": "2001-02-06T09:23:00Z",
+          "person": "Mary"
+        },
+        {
+          "id": "batch-042:e16",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/2079.",
+          "start": 1044,
+          "end": 1093,
+          "raw_text": "Mary Poorman and Tom Acton will be backing me up.",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "mark.mccoy@enron.com",
+          "sender_label": "Mark McCoy",
+          "date_utc": "2001-02-06T09:23:00Z"
+        }
+      ],
+      "claims": [
+        {
+          "message_id": "corpus/farmer-d/logistics/2079.",
+          "person": "Mary",
+          "date_utc": "2001-02-06T09:23:00Z",
+          "status": "several",
+          "name": null
+        }
+      ]
+    }
+  ],
+  "contradictions_dropped": 0,
+  "loops": [],
+  "document": null
+}

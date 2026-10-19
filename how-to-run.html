@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>How to run it · Observation agent</title>
+<meta name="description" content="The repository&#39;s README: prerequisites, getting the code on macOS, Linux and Windows, the one command, warm and cold runs, the dashboard and the tests.">
+<meta name="obs-run" content="20261019T134634Z">
+<link rel="canonical" href="https://schom975-coder.github.io/observation-agent-assignment/how-to-run.html">
+<link rel="alternate" type="text/markdown" href="how-to-run.md">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<aside class="ai-note" aria-label="Reading with an AI assistant">
+<p class="ai-text">Reading this with an AI assistant? This site is set up for Claude to read in full. Give it this page's address and ask it anything about the project.</p>
+<p class="ai-url"><code id="page-url">https://schom975-coder.github.io/observation-agent-assignment/how-to-run.html</code> <button type="button" id="copy-url" class="copy" hidden>Copy address</button></p>
+</aside>
+<div class="brandrule" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<div class="shell">
+<header class="top">
+<p class="site"><a href="index.html">Observation agent</a> <span class="runline">Submitted run of 19 Oct 2026</span></p>
+<nav aria-label="Pages"><ul class="nav"><li><a href="index.html">Home</a></li><li><a href="dashboard/index.html">Dashboard</a></li><li><a href="how-to-use.html">How to use</a></li><li><a href="how-to-run.html" aria-current="page">How to run</a></li><li><a href="run.html">The run</a></li><li><a href="architecture.html">Architecture</a></li><li><a href="design.html">Design</a></li><li><a href="process.html">How it was built</a></li><li><a href="claude-dir.html">Claude Code layer</a></li><li><a href="notes.html">Notes</a></li><li><a href="report.html">Report</a></li><li><a href="brief.html">Brief</a></li></ul></nav>
+</header>
+<main id="main">
+<p class="kicker">How to run it</p>
+<p class="prefix">This is the repository&#39;s README, rendered. <a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/README.md">README.md on GitHub</a></p>
+<h1 id="observation-agent">Observation agent</h1>
+<p>A system that reads a company&#39;s 3,240-message email archive inside Claude Code, finds its recurring work, and prices the automation opportunities at $85 an hour, with every claim cited to a message. It drafts working documents for the biggest opportunities and serves a dashboard on localhost.</p>
+<p><a href="https://schom975-coder.github.io/observation-agent-assignment/">Project site</a> · <a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/NOTES.md">NOTES.md</a> (the two-page notes the brief asks for) · <a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/BRIEF.md">BRIEF.md</a> (the assignment) · <a href="https://schom975-coder.github.io/observation-agent-assignment/llms.txt">llms.txt</a>. The site is the one-stop reading copy; this repo is the thing itself.</p>
+<h2 id="what-this-is">What this is</h2>
+<p>One command, <code>/observe</code>, runs the whole pipeline inside Claude Code. In order: prepare (read, parse, de-duplicate, thread and batch every message), taxonomy (one subagent proposes the recurring processes), extraction (many subagents in parallel tag every message with a process and a verbatim quote), merge, rollup (count rounds, people, email actions and stalls), synthesis (subagents describe each process and estimate its work), scoring, drafting (subagents write the documents), build (the dashboard data and the report) and serve. The model decides which messages belong to which process, and estimates the hands-on work per round from cited evidence, within bounds that code sets. Everything else is TypeScript: parsing, de-duplication, counting, the hours and dollars arithmetic, citation validation and the server.</p>
+<h2 id="see-the-results-without-running-anything">See the results without running anything</h2>
+<p>The outputs of the submitted run are committed in <a href="https://github.com/Schom975-coder/observation-agent-assignment/tree/main/out"><code>out/</code></a>:</p>
+<ul><li><a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/out/report.html"><code>out/report.html</code></a> and <a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/out/report.md"><code>out/report.md</code></a>: the report. <code>report.html</code> is self-contained and opens with a double-click.</li><li><a href="https://github.com/Schom975-coder/observation-agent-assignment/tree/main/out/artifacts"><code>out/artifacts/</code></a>: the drafted documents.</li><li><a href="https://github.com/Schom975-coder/observation-agent-assignment/tree/main/out/runs"><code>out/runs/</code></a>: the run logs.</li><li><a href="https://github.com/Schom975-coder/observation-agent-assignment/tree/main/out/dashboard"><code>out/dashboard/</code></a>: the dashboard data.</li></ul>
+<p><code>node obs.mjs serve</code> opens the dashboard on these files with no model call; <code>/serve</code> inside Claude Code does the same. The report has the same numbers as the dashboard. A copy of the report is on the site: <a href="https://schom975-coder.github.io/observation-agent-assignment/report.html">report.html</a>. The site also carries a copy of the dashboard with every message pre-written, so you can click from any number to its message there with nothing installed: <a href="https://schom975-coder.github.io/observation-agent-assignment/dashboard/">https://schom975-coder.github.io/observation-agent-assignment/dashboard/</a>. The dashboard served below, on localhost, is the one the brief asks for.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul><li>Node.js 22.18 or newer. It runs the TypeScript sources directly, so there is no build step. Claude Code&#39;s installer does not install Node; get it from <a href="https://nodejs.org">nodejs.org</a>.</li><li>Git.</li><li>Claude Code, signed in on a subscription whose plan includes Opus and Sonnet: the agent definitions pin Opus for the taxonomist, merger and synthesizer and Sonnet for the extractors and drafters (each file in <a href="https://github.com/Schom975-coder/observation-agent-assignment/tree/main/.claude/agents"><code>.claude/agents/</code></a> names its model and effort). No API key and no API spend. The pipeline fetches nothing from the network; every model call goes through your Claude Code session.</li></ul>
+<p><code>npm install</code> installs only the TypeScript compiler and Node&#39;s type definitions, for <code>npm run typecheck</code>. The pipeline, the server and the tests use nothing from <code>node_modules</code>.</p>
+<h2 id="get-the-code">Get the code</h2>
+<h3 id="macos-and-linux">macOS and Linux</h3>
+<p>A plain <code>git clone</code> works. The corpus files&#39; names end in a dot (<code>corpus/farmer-d/logistics/1.</code>) and check out as they are.</p>
+<pre><code>git clone https://github.com/Schom975-coder/observation-agent-assignment.git obs
+cd obs
+npm install</code></pre>
+<h3 id="windows">Windows</h3>
+<p>A plain <code>git clone</code> checks out nothing on Windows, not even the code, because Windows cannot create file names that end in a dot. Use this instead (PowerShell):</p>
+<pre><code>git clone --no-checkout https://github.com/Schom975-coder/observation-agent-assignment.git obs
+cd obs
+git config core.protectNTFS false
+git sparse-checkout set --no-cone &#39;/*&#39; &#39;!/corpus/&#39;
+git checkout main</code></pre>
+<p>In Git Bash, prefix the sparse-checkout line with <code>MSYS_NO_PATHCONV=1</code>; otherwise Git Bash rewrites <code>/corpus/</code> into <code>C:/Program Files/Git/corpus/</code> and the exclusion silently fails:</p>
+<pre><code>MSYS_NO_PATHCONV=1 git sparse-checkout set --no-cone &#39;/*&#39; &#39;!/corpus/&#39;</code></pre>
+<p>The corpus then stays in Git&#39;s objects, off disk. The code reads every message from there (<code>git cat-file --batch</code>) and gets the same bytes macOS and Linux read from disk; a test checks that the two agree. Nothing is lost. Then run <code>npm install</code>, as on macOS and Linux.</p>
+<h2 id="run-it">Run it</h2>
+<p>Start Claude Code in the folder:</p>
+<pre><code>claude</code></pre>
+<p>At the Claude Code prompt, type the one command:</p>
+<pre><code>/observe</code></pre>
+<p>When the run is done, it prints the stages it ran, starts the dashboard in the background and prints its address (<code>Dashboard: http://127.0.0.1:&lt;port&gt;/</code>), tries to open that address in your browser, and prints the run&#39;s status. The dashboard keeps running after you leave Claude Code; <code>node obs.mjs serve --stop</code> stops it. If a run stops part way (a crash, a closed window, a usage-limit pause), running <code>/observe</code> again resumes it from the run ledger.</p>
+<h3 id="warm-and-cold-runs">Warm and cold runs</h3>
+<p>The model outputs and the run ledger are committed, so the first run on a fresh clone is warm. It repeats no finished work and starts no subagent: it rebuilds the deterministic stages and ends with the dashboard.</p>
+<p>To run cold, with every subagent again:</p>
+<pre><code>/observe --force</code></pre>
+<p><code>--force</code> clears the model outputs first. Every cold rehearsal since the drafting stage was added completed in under 30 minutes on our Windows machine, and so did the submitted run: 28 min 59 s, with 130 subagents started. A cold run asks the model again, so its process list, its merge and its work estimates can differ from the committed ones, and the dollar figures move with them. Counting and arithmetic are code and do not vary: the same model outputs give the same numbers on every rerun and every OS. If a cold run replaces the committed outputs, Git still holds the submitted run.</p>
+<h3 id="folder-trust-and-permissions">Folder trust and permissions</h3>
+<p>The first time Claude Code opens a folder, it asks whether you trust it. Until the folder is trusted, Claude Code ignores the <code>permissions.allow</code> entry in the project&#39;s <a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/.claude/settings.json"><code>.claude/settings.json</code></a>. The run does not depend on it: the <code>/observe</code> skill&#39;s <code>allowed-tools</code> pre-approve its commands and its subagents while the skill runs, and the hooks apply either way. We checked this in a fresh, untrusted clone: the hooks all worked, and only that entry was ignored.</p>
+<p>The hooks are in <a href="https://github.com/Schom975-coder/observation-agent-assignment/tree/main/.claude/hooks"><code>.claude/hooks/</code></a>, wired up in <code>settings.json</code>:</p>
+<ul><li>The corpus guard (<code>guard-corpus.ts</code>, before every tool call) keeps each pipeline subagent to its own job&#39;s files and, during a run, refuses any tool call that names <code>corpus/</code> and any subagent that is not one of the five pipeline agents.</li><li>The gate (<code>gate-subagent.ts</code>, when an extractor, synthesizer or drafter finishes) checks the output it wrote (schema, coverage, quotes against the raw messages, estimate rules, draft rules) and records the job as done, or as failed with a list of problems that goes back to a subagent as a fix round.</li><li>The Stop hook (<code>gate-run.ts</code>) keeps the orchestrator going: when it would end its turn with a step ready to run, the hook hands it the next command.</li><li><code>log-event.ts</code> writes each subagent&#39;s start and stop to the run log in <code>out/runs/</code>.</li></ul>
+<h3 id="unattended">Unattended</h3>
+<p>The rehearsals ran headless, with stdin closed and the permission prompts off. From a macOS or Linux shell:</p>
+<pre><code>claude -p &quot;/observe&quot; --permission-mode auto --permission-prompts none &lt; /dev/null</code></pre>
+<p>For a cold run, pass <code>&quot;/observe --force&quot;</code> instead. On Windows, run it from Git Bash, the shell we tested there, with the prefix <code>MSYS_NO_PATHCONV=1</code>; without it, Git Bash rewrites <code>/observe</code> into a path under Program Files and the skill never runs:</p>
+<pre><code>MSYS_NO_PATHCONV=1 claude -p &quot;/observe&quot; --permission-mode auto --permission-prompts none &lt; /dev/null</code></pre>
+<p>For a log of the orchestrator&#39;s turns, add <code>--output-format stream-json --verbose &gt; ../observe-stream.jsonl</code>. Keep that file outside the repo: it carries the folder&#39;s absolute path. After a crash or a usage-limit pause, run the same command again; the run resumes from the ledger.</p>
+<h2 id="open-the-dashboard">Open the dashboard</h2>
+<pre><code>node obs.mjs serve                        # foreground; Ctrl+C stops it
+node obs.mjs serve --background --open    # returns at once, leaves it running, opens the browser
+node obs.mjs serve --status               # prints the address of the running server
+node obs.mjs serve --stop                 # stops the background server</code></pre>
+<p><code>--port N</code> picks the port. <code>--background</code> reuses a server already running for this folder. The server binds 127.0.0.1 only. Inside Claude Code, <code>/serve</code> does the same as <code>--background --open</code>.</p>
+<p>What you can do there:</p>
+<ul><li>Click any number to see its formula and the messages behind it. Every figure shows which parts are counted and which are estimated.</li><li>The message viewer shows the raw message with the cited quote marked, and a copy button with the ready <code>git show HEAD:&quot;&lt;id&gt;&quot;</code> command, so you can check the quote against the raw file yourself.</li><li>The lookup box opens any message by its ID, which is its Git path with the trailing dot included (<code>corpus/farmer-d/logistics/1.</code>).</li></ul>
+<h2 id="tests">Tests</h2>
+<pre><code>npm test
+npm run typecheck</code></pre>
+<p>No model is ever invoked: the tests stand in for the model stages with scripted fixtures. CI (<a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/.github/workflows/ci.yml"><code>.github/workflows/ci.yml</code></a>) runs both on Ubuntu, macOS and Windows (Windows with the clone recipe above), then rebuilds the deterministic stages and re-checks every committed model output against the corpus. You can run those two steps yourself:</p>
+<pre><code>node obs.mjs prepare --force
+node obs.mjs verify</code></pre>
+<p>We developed on Windows. macOS and Linux behaviour is proven by CI, not by a Mac at hand.</p>
+<h2 id="where-things-are">Where things are</h2>
+<div class="table"><table><thead><tr><th scope="col">Path</th><th scope="col">What it holds</th></tr></thead><tbody><tr><td data-label="Path"><a href="https://github.com/Schom975-coder/observation-agent-assignment/tree/main/src"><code>src/</code></a></td><td data-label="What it holds">The pipeline, by stage: <code>corpus/</code> (the one corpus reader), <code>parse/</code>, <code>normalize/</code>, <code>batch/</code>, <code>model/</code> (the model stages&#39; inputs and checks), <code>validate/</code> (quotes), <code>metrics/</code> (rollup and score), <code>report/</code> (build), <code>serve/</code>, and <code>run/</code> (the ledger and the commands behind <a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/obs.mjs"><code>obs.mjs</code></a>)</td></tr><tr><td data-label="Path"><a href="https://github.com/Schom975-coder/observation-agent-assignment/tree/main/config"><code>config/</code></a></td><td data-label="What it holds">Rates, scoring rules, gold labels</td></tr><tr><td data-label="Path"><a href="https://github.com/Schom975-coder/observation-agent-assignment/tree/main/dashboard"><code>dashboard/</code></a></td><td data-label="What it holds">The dashboard&#39;s page sources</td></tr><tr><td data-label="Path"><a href="https://github.com/Schom975-coder/observation-agent-assignment/tree/main/.claude"><code>.claude/</code></a></td><td data-label="What it holds">The Claude Code layer, submitted exactly as used: the skills, the five agent definitions, the hooks, <code>settings.json</code></td></tr><tr><td data-label="Path"><a href="https://github.com/Schom975-coder/observation-agent-assignment/tree/main/out"><code>out/</code></a></td><td data-label="What it holds">The submitted run</td></tr><tr><td data-label="Path"><a href="https://github.com/Schom975-coder/observation-agent-assignment/tree/main/tests"><code>tests/</code></a></td><td data-label="What it holds">The model-free tests and their fixtures</td></tr><tr><td data-label="Path"><a href="https://github.com/Schom975-coder/observation-agent-assignment/tree/main/site"><code>site/</code></a></td><td data-label="What it holds">The generator of the Pages site</td></tr><tr><td data-label="Path"><a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/NOTES.md"><code>NOTES.md</code></a></td><td data-label="What it holds">The notes the brief asks for</td></tr><tr><td data-label="Path"><a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/BRIEF.md"><code>BRIEF.md</code></a></td><td data-label="What it holds">The assignment, verbatim</td></tr><tr><td data-label="Path"><a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/.claude/plan/ARCHITECTURE.md"><code>.claude/plan/ARCHITECTURE.md</code></a>, <a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/.claude/notes/DECISIONS.md"><code>.claude/notes/DECISIONS.md</code></a></td><td data-label="What it holds">The design and the decision log</td></tr></tbody></table></div>
+<h2 id="reading-this-with-an-ai-assistant">Reading this with an AI assistant</h2>
+<p>Reading this with an AI assistant? The project site is set up for Claude to read in full. Give it the site&#39;s address and ask it anything about the project.</p>
+<ul><li>Site: <a href="https://schom975-coder.github.io/observation-agent-assignment/">https://schom975-coder.github.io/observation-agent-assignment/</a></li><li><code>llms.txt</code>: <a href="https://schom975-coder.github.io/observation-agent-assignment/llms.txt">https://schom975-coder.github.io/observation-agent-assignment/llms.txt</a></li><li><a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/out/report.md"><code>out/report.md</code></a> is the report in Markdown, for readers without a browser.</li></ul>
+</main>
+<footer class="foot">
+<p><a href="https://github.com/Schom975-coder/observation-agent-assignment">The repository on GitHub</a> · Scott Hom · <a href="how-to-run.md">This page in Markdown</a> · <a href="llms.txt">llms.txt</a> · <a href="llms-full.txt">llms-full.txt</a></p>
+</footer>
+</div>
+<script>
+(() => {
+  const button = document.getElementById('copy-url');
+  const url = document.getElementById('page-url');
+  if (!button || !url) return;
+  button.hidden = false;
+  const select = () => {
+    const range = document.createRange();
+    range.selectNodeContents(url);
+    const sel = window.getSelection();
+    if (sel) { sel.removeAllRanges(); sel.addRange(range); }
+  };
+  button.addEventListener('click', () => {
+    const text = url.textContent || '';
+    const selected = () => { select(); button.textContent = 'Selected: press Ctrl+C or Cmd+C'; };
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(() => { button.textContent = 'Copied'; }, selected);
+    else selected();
+  });
+})();
+</script>
+</body>
+</html>

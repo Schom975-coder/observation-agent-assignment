@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Real-time power scheduling: SOP · Observation agent</title>
+<meta name="description" content="A drafted SOP for one of the recurring processes the run found, with its evidence quoted exactly from the emails.">
+<meta name="obs-run" content="20261019T134634Z">
+<link rel="canonical" href="https://schom975-coder.github.io/observation-agent-assignment/documents/real-time-power-scheduling.html">
+<link rel="alternate" type="text/markdown" href="real-time-power-scheduling.md">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../site.css">
+</head>
+<body>
+<aside class="ai-note" aria-label="Reading with an AI assistant">
+<p class="ai-text">Reading this with an AI assistant? This site is set up for Claude to read in full. Give it this page's address and ask it anything about the project.</p>
+<p class="ai-url"><code id="page-url">https://schom975-coder.github.io/observation-agent-assignment/documents/real-time-power-scheduling.html</code> <button type="button" id="copy-url" class="copy" hidden>Copy address</button></p>
+</aside>
+<div class="brandrule" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<div class="shell">
+<header class="top">
+<p class="site"><a href="../index.html">Observation agent</a> <span class="runline">Submitted run of 19 Oct 2026</span></p>
+<nav aria-label="Pages"><ul class="nav"><li><a href="../index.html">Home</a></li><li><a href="../dashboard/index.html">Dashboard</a></li><li><a href="../how-to-use.html">How to use</a></li><li><a href="../how-to-run.html">How to run</a></li><li><a href="../run.html" aria-current="page">The run</a></li><li><a href="../architecture.html">Architecture</a></li><li><a href="../design.html">Design</a></li><li><a href="../process.html">How it was built</a></li><li><a href="../claude-dir.html">Claude Code layer</a></li><li><a href="../notes.html">Notes</a></li><li><a href="../report.html">Report</a></li><li><a href="../brief.html">Brief</a></li></ul></nav>
+</header>
+<main id="main">
+<p class="kicker">Drafted document · rank 1 · SOP</p>
+<h1>Real-time power scheduling: SOP</h1>
+<p class="prefix">Drafted by the run for the process owner to review. The body is model prose that passed the draft gate; the title, the line under it and the Evidence section are written by code, and every quote in the Evidence section is checked against the raw message. <a href="../run.html#documents">All the drafted documents</a>.</p>
+<div class="doc"><p>Draft prepared from 160 emails about this process, for the process owner to review. Evidence about this process, quoted exactly from the emails, is listed at the end.</p>
+<h2>Purpose</h2>
+<p>Keep real-time power trades, imports and positions scheduled correctly with the CISO and counterparties, and keep every shift staffed. This procedure holds the standing rules for the real-time desk so each shift works the same way and schedule sheet errors are caught before they reach the CISO.</p>
+<h2>Owner</h2>
+<p>People doing this work (counted from the emails): Bill Williams III (120 written, 19 forwarded), John Anderson (2 written), Craig Dean (1 forwarded). Named as owner in the emails: Kate Symes (Jul 2001). Owner: <mark class="blank">[process owner to confirm]</mark>.</p>
+<p>The real-time desk lead owns this procedure. The desk lead:</p>
+<ul><li>reports open longs and shorts by hub and hour, and tells traders which purchases and sales to enter in Enpower and under which book;</li><li>issues the deal numbers to use for transmission and any rule changes, and makes sure every shift has them;</li><li>publishes the monthly shift schedule and approves changes to it;</li><li>supplies prices and deal numbers through a named pricing contact <mark class="blank">[confirm still in force]</mark>.</li></ul>
+<p>Shift traders run the shift. Preschedulers build the preschedule sheet and work with traders to get it correct.</p>
+<h2>When to run</h2>
+<p>Run this procedure every shift, and again for any correction round after a schedule has been submitted. A round starts when the desk lead or a prescheduler reports the day&#39;s positions and deals by hub and hour (for example, &quot;long 25 MW in NP-15&quot; or &quot;short 50 MW in SP-15 for HE 7–22&quot;).</p>
+<h2>What you need</h2>
+<ul><li>Enpower access, with the books and deal numbers for the day.</li><li>The preschedule sheet and the EPE schedule sheet for the operating day.</li><li>CISO access for submitting schedules, tags and bids.</li><li>The current list of counterparty contacts for hourly calls and nightly checkout, including Grays Harbor, Frontier and the major marketers and utilities.</li><li>The monthly shift schedule.</li><li>A shared list of the standing deal numbers for transmission (set up in step 1).</li></ul>
+<h2>Procedure</h2>
+<ol><li>Set up one shared page at <mark class="blank">[location]</mark> that lists the standing rules and deal numbers for transmission (the deal number and price rule for each path), and keep it current. Use it as the source for every later step.</li><li>Desk lead or preschedulers: report the day&#39;s open positions and deals by hub and hour to every shift trader.</li><li>Shift trader: enter each purchase and sale in Enpower under the book and deal number given for it. Make real-time purchases from the Calimbalance and the matching sales under ST-WBOM during real time <mark class="blank">[confirm still in force]</mark>.</li><li>Shift trader: when scheduling transmission, use the deal number on the shared page for that path and set the price the page requires. For Portland General Electric from John Day to Malin, use deal #146517 at a price of zero <mark class="blank">[confirm still in force]</mark>.</li><li>Shift trader: for a buy from EPE, enter it flat against the matching day-ahead sale, and record the lending volume in the EPE schedule sheet exactly as it appears in the deal.</li><li>Shift trader: before submitting, check the preschedule and EPE sheets for duplicate schedules, lending volumes that differ from the deal, missing schedules, and import IDs or tags that do not match what you will send to the CISO. Fix them with the preschedulers.</li><li>Shift trader: submit schedules and tags to the CISO and the counterparties. Where a counterparty requires it, call at the top of every hour (Grays Harbor and Frontier) <mark class="blank">[confirm still in force]</mark>.</li><li>Shift trader: keep track of amounts exercised on options and record them on the sheet.</li><li>Shift trader: confirm with the CISO that each submitted schedule and tag shows as entered, including the correct hour ending, volume and import ID.</li><li>Shift trader: record every deal as it is done, so that the sheet can be rebuilt from the record if needed.</li><li>Shift trader: each night, check out with the major marketers and utilities and compare positions by counterparty and hour against the sheets. Correct any difference before the shift ends.</li><li>Shift trader: call the desk lead before calling a customer about a position or a problem <mark class="blank">[confirm still in force]</mark>.</li><li>Desk lead: circulate shift coverage and rule changes to the group, including Enpower information, and update the shared page from step 1.</li><li>Shift trader: if you cannot work a shift, find a replacement yourself, then email the desk lead about the change and write it on the schedule <mark class="blank">[confirm still in force]</mark>.</li></ol>
+<h2>Exceptions and escalation</h2>
+<ul><li><strong>Duplicate or missing schedule in a sheet.</strong> Correct the sheet, tell the preschedulers and the desk lead, and adjust the next day&#39;s sheets if they carry the same error. If a schedule is missing from the EPE schedule sheet on consecutive days, tell the desk lead so the cause is found.</li><li><strong>Lending position differs from the deal.</strong> Treat the deal as correct. Fix the sheet to match it, then tell the desk lead and the counterparty&#39;s scheduler (for example PSCO) if the volume was sent wrong.</li><li><strong>Wrong import ID or schedule misentered at the CISO.</strong> Contact the CISO right away to correct it, then correct your sheet and tell the desk lead.</li><li><strong>Spreadsheet figure does not match what was scheduled.</strong> Do not submit. Reconcile it against Enpower and the CISO entry, and answer the desk lead&#39;s question with the corrected figure.</li><li><strong>CISO cannot read submitted bids, trading screens stop, or Enpower is down for maintenance.</strong> Tell the desk lead at once, switch to the backup way of working the desk has <mark class="blank">[backup procedure]</mark>, and enter the missed deals in Enpower after the system returns. Watch for announced maintenance windows and plan around them.</li><li><strong>Deals not recorded during a shift.</strong> The traders who were on that shift coordinate the deals that were done and reconstruct the sheet, then give it to the desk lead.</li><li><strong>A task cannot be done in the shift.</strong> Tell the desk lead before the shift ends and agree a new day for it, so it is not dropped.</li><li><strong>No counterparty will sell.</strong> Report to the desk lead which counterparties have been asked, and wait for instructions.</li><li><strong>Owner unclear for prices and deal numbers.</strong> Ask the desk lead who supplies them <mark class="blank">[confirm still in force]</mark>.</li></ul>
+<h2>Evidence</h2>
+<p>Passages about this process, each quoted exactly from the email named above it. They support the document as a whole, not any one line of it.</p>
+<h3>The work</h3>
+<ul><li><code>corpus/williams-w3/sent_items/357.</code> (2001-07-28, from Williams III, Bill):<blockquote>We must call Grays Harbor and Frontier at the top of EVERY hour.</blockquote></li><li><code>corpus/williams-w3/sent_items/330.</code> (2001-08-04, from Williams III, Bill):<blockquote>We need to keep track of the amount exercised.</blockquote></li><li><code>corpus/williams-w3/sent_items/66.</code> (2001-11-30, from Williams III, Bill):<blockquote>longterm contracts will require an annuity for the value of the cut on that particular day.</blockquote></li><li><code>corpus/williams-w3/sent_items/506.</code> (2001-06-13, from Williams III, Bill):<blockquote>We are long for the 13th in California, 25 mws under ST-WBOM in NP-15 at $57.</blockquote></li><li><code>corpus/williams-w3/sent_items/367.</code> (2001-07-24, from Williams III, Bill):<blockquote>I think we need to enter the buy from EPE flat to our day ahead sale to STSW.</blockquote></li><li><code>corpus/williams-w3/inbox/124.</code> (2002-01-02, from Williams III, Bill):<blockquote>If you will be unable to work a shift it is your responsibility to find a replacement</blockquote></li><li><code>corpus/williams-w3/sent_items/13.</code> (2002-01-25, from Williams III, Bill):<blockquote>Please be sure to send me an email regarding changes, and write them on the schedule.</blockquote></li><li><code>corpus/williams-w3/sent_items/374.</code> (2001-07-23, from Williams III, Bill):<blockquote>Please work with the preschedulers to get the sheet correct</blockquote></li><li><code>corpus/williams-w3/sent_items/474.</code> (2001-06-22, from Williams III, Bill):<blockquote>We have asked every single counterparty in the NW to sell us energy.</blockquote></li><li><code>corpus/williams-w3/sent_items/414.</code> (2001-07-11, from Williams III, Bill):<blockquote>We are short 50 mws in SP-15 for HE 7-22 on Wednesday at $61.44.</blockquote></li><li><code>corpus/williams-w3/inbox/98.</code> (2002-01-24, from Anderson, John):<blockquote>http://172.17.172.22/elpaso/!current.txt</blockquote></li><li><code>corpus/williams-w3/sent_items/406.</code> (2001-07-12, from Williams III, Bill):<blockquote>Annuities killed - 679980/679973/679991/679995/678497/678498/678495/678496</blockquote></li><li><code>corpus/williams-w3/sent_items/329.</code> (2001-08-06, from Williams III, Bill):<blockquote>Here is some new info, and some updated info for our packet.</blockquote></li><li><code>corpus/williams-w3/sent_items/434.</code> (2001-07-03, from Williams III, Bill):<blockquote>When scheduling transmission on Portland General Electric from John Day to Malin we MUST use deal #146517, we MUST make the price zero.</blockquote></li><li><code>corpus/williams-w3/sent_items/283.</code> (2001-08-27, from Williams III, Bill):<blockquote>Please call me before you call our customer.</blockquote></li><li><code>corpus/williams-w3/sent_items/240.</code> (2001-09-15, from Williams III, Bill):<blockquote>Please give this information to the group including Enpower information...etc.</blockquote></li><li><code>corpus/williams-w3/sent_items/392.</code> (2001-07-14, from Williams III, Bill):<blockquote>Please make real-time purchases from the Calimbalance and corresponding sales under ST-WBOM in Enpower during real time.</blockquote></li><li><code>corpus/williams-w3/sent_items/164.</code> (2001-10-19, from Williams III, Bill):<blockquote>If you could adjust your sheets for tomorrow I would appreciate it.</blockquote></li><li><code>corpus/williams-w3/inbox/79.</code> (2002-01-30, from Meyers, Albert):<blockquote>Tag number 6181 has been cancelled (50mw to the CISO).</blockquote></li><li><code>corpus/williams-w3/sent_items/160.</code> (2001-10-20, from Williams III, Bill):<blockquote>Also on Saturday morning...Enpower will be down from 5 AM to 7 AM.</blockquote></li></ul>
+<h3>Where it stalls</h3>
+<ul><li><code>corpus/williams-w3/inbox/122.</code> (2002-01-02, from Williams III, Bill):<blockquote>Those who were on shift for that period will need to coordinate what deals were done and will need to reconstruct a sheet.</blockquote></li><li><code>corpus/williams-w3/inbox/52.</code> (2002-02-03, from Meyers, Albert):<blockquote>For yet another day we seem to be having problems including all the schedules in our EPE schedule sheet.</blockquote></li><li><code>corpus/williams-w3/sent_items/159.</code> (2001-10-22, from Williams III, Bill):<blockquote>The CISO is again having difficulties reading our bids.</blockquote></li><li><code>corpus/williams-w3/sent_items/374.</code> (2001-07-23, from Williams III, Bill):<blockquote>Friday&#39;s sheet for Monday had a duplicate 10 mw schedule in it</blockquote></li><li><code>corpus/williams-w3/sent_items/384.</code> (2001-07-20, from Williams III, Bill):<blockquote>I will not have time today.  Perhaps it can wait till tomorrow.</blockquote></li><li><code>corpus/williams-w3/sent_items/510.</code> (2001-06-12, from Williams III, Bill):<blockquote>For HE 11 and HE12, Danielle at the CISO misentered our schedule.</blockquote></li></ul>
+<h3>Who owns it</h3>
+<ul><li><code>corpus/williams-w3/sent_items/365.</code> (2001-07-24, from Williams III, Bill):<blockquote>Details regarding prices and deal numbers will be coming from Kate.</blockquote></li></ul>
+<p>Counted from the emails: this work came up 149 times over 9 active months (2001-06-11 to 2002-02-07), across 160 emails, with 49 staff taking part.</p>
+<p>Estimated, not counted: about 30 minutes of hands-on work each time (range 10 to 90), about 40% of it automatable. Basis: seen in the emails; proposed by a model and checked by code.</p></div>
+</main>
+<footer class="foot">
+<p><a href="https://github.com/Schom975-coder/observation-agent-assignment">The repository on GitHub</a> · Scott Hom · <a href="real-time-power-scheduling.md">This page in Markdown</a> · <a href="../llms.txt">llms.txt</a> · <a href="../llms-full.txt">llms-full.txt</a></p>
+</footer>
+</div>
+<script>
+(() => {
+  const button = document.getElementById('copy-url');
+  const url = document.getElementById('page-url');
+  if (!button || !url) return;
+  button.hidden = false;
+  const select = () => {
+    const range = document.createRange();
+    range.selectNodeContents(url);
+    const sel = window.getSelection();
+    if (sel) { sel.removeAllRanges(); sel.addRange(range); }
+  };
+  button.addEventListener('click', () => {
+    const text = url.textContent || '';
+    const selected = () => { select(); button.textContent = 'Selected: press Ctrl+C or Cmd+C'; };
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(() => { button.textContent = 'Copied'; }, selected);
+    else selected();
+  });
+})();
+</script>
+</body>
+</html>

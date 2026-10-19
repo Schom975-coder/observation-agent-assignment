@@ -1,0 +1,985 @@
+{
+  "key": "price-data-request",
+  "name": "Price data requests",
+  "definition": "Looking up and sending index, basis and Gas Daily prices or historical market data to colleagues and customers who ask for them.",
+  "rank": 52,
+  "tier": "C",
+  "row": {
+    "rank": 52,
+    "key": "price-data-request",
+    "name": "Price data requests",
+    "tier": "C",
+    "tier_words": "seen too rarely to count, not in the total",
+    "in_total": false,
+    "origin": "promoted",
+    "total": {
+      "v": 507,
+      "t": "$5",
+      "x": "$5.07",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "price-data-request"
+      }
+    },
+    "counted": {
+      "v": 123,
+      "t": "$1",
+      "x": "$1.23",
+      "k": "counted",
+      "d": {
+        "kind": "formula",
+        "key": "price-data-request"
+      }
+    },
+    "estimated": {
+      "v": 384,
+      "t": "$4",
+      "x": "$3.84",
+      "k": "estimated",
+      "d": {
+        "kind": "formula",
+        "key": "price-data-request"
+      }
+    },
+    "low": {
+      "v": 251,
+      "t": "$3",
+      "x": "$2.51",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "price-data-request"
+      }
+    },
+    "high": {
+      "v": 1147,
+      "t": "$11",
+      "x": "$11.47",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "price-data-request"
+      }
+    },
+    "today": {
+      "v": 833,
+      "t": "$8",
+      "x": "$8.33",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "price-data-request"
+      }
+    },
+    "hours": {
+      "v": 6,
+      "t": "0.1",
+      "x": "0.06 hours",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "price-data-request"
+      }
+    },
+    "hours_today": {
+      "v": 10,
+      "t": "0.1",
+      "x": "0.10 hours",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "price-data-request"
+      }
+    },
+    "occurrences": {
+      "v": 4,
+      "t": "4 times",
+      "d": {
+        "kind": "occurrences",
+        "key": "price-data-request"
+      }
+    },
+    "shared_occurrences": 0,
+    "active_months": {
+      "v": 4,
+      "t": "4 active months",
+      "d": {
+        "kind": "months",
+        "key": "price-data-request"
+      }
+    },
+    "span_days": 404,
+    "first_utc": "2001-01-26T14:45:00Z",
+    "last_utc": "2002-03-05T18:54:59Z",
+    "messages": {
+      "v": 5,
+      "t": "5 emails",
+      "d": {
+        "kind": "occurrences",
+        "key": "price-data-request"
+      }
+    },
+    "threads": 4,
+    "mailboxes": [
+      {
+        "key": "giron-d",
+        "n": 2,
+        "pct": 40
+      },
+      {
+        "key": "lokay-m",
+        "n": 2,
+        "pct": 40
+      },
+      {
+        "key": "williams-w3",
+        "n": 1,
+        "pct": 20
+      }
+    ],
+    "top_mailbox": "giron-d",
+    "top_pct": 40,
+    "one_mailbox": false,
+    "seen_in": "Seen in: 3 mailboxes",
+    "staff": {
+      "v": 10,
+      "t": "10 staff",
+      "d": {
+        "kind": "participants",
+        "key": "price-data-request",
+        "filter": "staff"
+      }
+    },
+    "writers": {
+      "v": 3,
+      "t": "3",
+      "d": {
+        "kind": "participants",
+        "key": "price-data-request",
+        "filter": "writers"
+      }
+    },
+    "copied": {
+      "v": 7,
+      "t": "7",
+      "d": {
+        "kind": "participants",
+        "key": "price-data-request",
+        "filter": "copied"
+      }
+    },
+    "estimate": {
+      "low": 5,
+      "mid": 15,
+      "high": 40,
+      "automatable_pct": 60,
+      "basis_words": "worked out from the steps the emails show",
+      "source": "model"
+    },
+    "stall_label": "Requests wait on the price source itself: Gas Daily data was not loaded yet, so the…",
+    "stall_summary": "Requests wait on the price source itself: Gas Daily data was not loaded yet, so the person handling the request had to keep checking back before replying.",
+    "stall_kind": null,
+    "stall_quotes": {
+      "v": 0,
+      "t": "0 stall quotes",
+      "d": {
+        "kind": "stalls",
+        "key": "price-data-request"
+      }
+    },
+    "fix": "Give requesters self-service access to a standard price lookup or a regularly refreshed price extract covering index, basis, Gas Daily and point prices by month, so routine…",
+    "document": null,
+    "status_line": "Not drafted: seen too rarely to count",
+    "chasers": {
+      "v": 1,
+      "t": "1 chaser",
+      "d": {
+        "kind": "actions",
+        "key": "price-data-request",
+        "type": "chaser"
+      }
+    },
+    "stall_count": {
+      "v": 0,
+      "t": "0",
+      "d": {
+        "kind": "stalls",
+        "key": "price-data-request"
+      }
+    },
+    "loops": {
+      "v": 1,
+      "t": "1 open loop",
+      "d": {
+        "kind": "loops",
+        "key": "price-data-request"
+      }
+    },
+    "loops_recent": {
+      "v": 1,
+      "t": "1",
+      "d": {
+        "kind": "loops",
+        "key": "price-data-request",
+        "recent": true
+      }
+    },
+    "claims": {
+      "v": 0,
+      "t": "0 claims",
+      "d": {
+        "kind": "claims",
+        "key": "price-data-request"
+      }
+    },
+    "conflicts": {
+      "v": 0,
+      "t": "0 conflicts",
+      "d": {
+        "kind": "claims",
+        "key": "price-data-request"
+      }
+    },
+    "reply_gap": null,
+    "last_three_months_share": {
+      "v": 2,
+      "t": "2 of 4",
+      "d": {
+        "kind": "occurrences",
+        "key": "price-data-request"
+      }
+    },
+    "flags": []
+  },
+  "synthesis": {
+    "description": "Colleagues and outside customers ask for specific price data, such as historical market data for past years ahead of a meeting or a monthly point price at a pipeline location. The person asked looks the figure up in the price sources, waits when a source such as Gas Daily has not been loaded yet, and replies with the price or a data file and an offer to answer questions.",
+    "steps": [
+      "A colleague or customer emails asking for index, point or historical price data for given periods.",
+      "The recipient checks which source holds the data and whether it has been loaded.",
+      "If the data is not yet available, the recipient checks back later.",
+      "The recipient extracts the prices and assembles them in a reply or attachment.",
+      "The reply is sent with an offer to answer follow-up questions."
+    ],
+    "approach": "Give requesters self-service access to a standard price lookup or a regularly refreshed price extract covering index, basis, Gas Daily and point prices by month, so routine requests are answered without a manual lookup, and flag when a source has not loaded yet.",
+    "rationale": "The requests ask for the same kinds of figures in the same shape. A standard price-data layout lets the person asked fill or forward it quickly, and lets customers see exactly which points and periods are available.",
+    "artifact_type": "template"
+  },
+  "formula": {
+    "counted": "4 occ over 404 d = 13.27 mo; email: 2 short x2 + 0 medium x6 + 0 long x15 + 1 fwd x2 + 1 chaser x3 + 9 read x1 = 18.00 min = 1.36 min/mo; automatable 60/40/30/80/100/50% = 11.50 min = 0.87 min/mo",
+    "estimated": "4.00 occ x 15 min/occ (estimate, mid of 5-40, basis inferred, 4 quotes from 4 occurrences) = 60.00 min = 4.52 min/mo; automatable 60% (estimate) = 2.71 min/mo; at the low end 5 min/occ = $2.51/mo, at the high end 40 min/occ = $11.47/mo (the row's automatable total)",
+    "total": "today 5.88 min/mo = 0.10 h/mo = $8.33/mo (email 1.36 min/mo = $1.93 + work 4.52 min/mo = $6.40); automatable 3.58 min/mo = 0.06 h/mo = $5.07/mo (counted email 0.87 min/mo = $1.23 + estimated work 2.71 min/mo = $3.84)"
+  },
+  "window": {
+    "first_utc": "2001-01-26T14:45:00Z",
+    "last_utc": "2002-03-05T18:54:59Z",
+    "span_days": 404,
+    "months_x100": 1327,
+    "active_months": 4,
+    "undated_occurrences": 0
+  },
+  "months": 1327,
+  "occurrence_share_x100": 400,
+  "actions": {
+    "priced": {
+      "authored_short": 2,
+      "authored_medium": 0,
+      "authored_long": 0,
+      "forward": 1,
+      "chaser": 1,
+      "read": 9
+    },
+    "unpriced": {
+      "authored_short": 0,
+      "authored_medium": 1,
+      "authored_long": 0,
+      "forward": 0,
+      "chaser": 0,
+      "read": 0
+    }
+  },
+  "action_table": [
+    {
+      "type": "authored_short",
+      "words": "short emails written",
+      "count": {
+        "v": 2,
+        "t": "2",
+        "d": {
+          "kind": "actions",
+          "key": "price-data-request",
+          "type": "authored_short"
+        }
+      },
+      "minutes_each": 2,
+      "minutes": "4.00",
+      "automatable_pct": 60,
+      "automatable_minutes": "2.40"
+    },
+    {
+      "type": "authored_medium",
+      "words": "medium emails written",
+      "count": {
+        "v": 0,
+        "t": "0",
+        "d": {
+          "kind": "actions",
+          "key": "price-data-request",
+          "type": "authored_medium"
+        }
+      },
+      "minutes_each": 6,
+      "minutes": "0.00",
+      "automatable_pct": 40,
+      "automatable_minutes": "0.00"
+    },
+    {
+      "type": "authored_long",
+      "words": "long emails written",
+      "count": {
+        "v": 0,
+        "t": "0",
+        "d": {
+          "kind": "actions",
+          "key": "price-data-request",
+          "type": "authored_long"
+        }
+      },
+      "minutes_each": 15,
+      "minutes": "0.00",
+      "automatable_pct": 30,
+      "automatable_minutes": "0.00"
+    },
+    {
+      "type": "forward",
+      "words": "forwards",
+      "count": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "actions",
+          "key": "price-data-request",
+          "type": "forward"
+        }
+      },
+      "minutes_each": 2,
+      "minutes": "2.00",
+      "automatable_pct": 80,
+      "automatable_minutes": "1.60"
+    },
+    {
+      "type": "chaser",
+      "words": "chasers",
+      "count": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "actions",
+          "key": "price-data-request",
+          "type": "chaser"
+        }
+      },
+      "minutes_each": 3,
+      "minutes": "3.00",
+      "automatable_pct": 100,
+      "automatable_minutes": "3.00"
+    },
+    {
+      "type": "read",
+      "words": "reads, one per addressee",
+      "count": {
+        "v": 9,
+        "t": "9",
+        "d": {
+          "kind": "actions",
+          "key": "price-data-request",
+          "type": "read"
+        }
+      },
+      "minutes_each": 1,
+      "minutes": "9.00",
+      "automatable_pct": 50,
+      "automatable_minutes": "4.50"
+    }
+  ],
+  "email": {
+    "today_x100": 1800,
+    "automatable_x100": 1150,
+    "per_month_today_x100": 136,
+    "per_month_automatable_x100": 87
+  },
+  "work": {
+    "per_month_today_x100": 452,
+    "per_month_automatable_x100": 271,
+    "low_cents": 128,
+    "high_cents": 1024
+  },
+  "estimate_quotes": [
+    {
+      "id": "batch-098:e0",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/125.",
+      "start": 566,
+      "end": 623,
+      "raw_text": "The February 2002 El Paso Topock point price was $1.8600.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-03-04T21:18:22Z"
+    },
+    {
+      "id": "batch-073:e13",
+      "kind": "evidence",
+      "message_id": "corpus/giron-d/inbox/368.",
+      "start": 753,
+      "end": 826,
+      "raw_text": "I would like to look at the following data for 1999 and 2000 prior to our",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "csulzer@grenergy.com",
+      "sender_label": "Carl Sulzer GRE/ER Fuel/Plant",
+      "date_utc": "2001-10-31T16:08:02Z"
+    },
+    {
+      "id": "batch-093:e13",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/inbox/50.",
+      "start": 3130,
+      "end": 3199,
+      "raw_text": "They do not have Gas daily loaded yet, I will check back periodically",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "theresa.villeggiante@enron.com",
+      "sender_label": "Theresa Villeggiante",
+      "date_utc": "2002-02-04T19:22:38Z"
+    },
+    {
+      "id": "batch-040:e11",
+      "kind": "evidence",
+      "message_id": "corpus/giron-d/sent/285.",
+      "start": 455,
+      "end": 493,
+      "raw_text": "Let me know if you have any questions.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "darron.giron@enron.com",
+      "sender_label": "Darron C Giron",
+      "date_utc": "2001-01-26T14:45:00Z"
+    }
+  ],
+  "estimate_check": {
+    "occurrences_cited": 4,
+    "senders_cited": 4
+  },
+  "monthly": [
+    {
+      "month": "2001-01",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "price-data-request",
+          "month": "2001-01"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-65a933fd6af6-o1"
+      ]
+    },
+    {
+      "month": "2001-10",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "price-data-request",
+          "month": "2001-10"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-861a30cc837a-o1"
+      ]
+    },
+    {
+      "month": "2002-02",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "price-data-request",
+          "month": "2002-02"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-5542290a879e-o1"
+      ]
+    },
+    {
+      "month": "2002-03",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "price-data-request",
+          "month": "2002-03"
+        }
+      },
+      "messages": 2,
+      "ids": [
+        "t-d9948d1ca085-o1"
+      ]
+    }
+  ],
+  "occurrences": [
+    {
+      "id": "t-5542290a879e-o1",
+      "message_ids": [
+        "corpus/williams-w3/inbox/50."
+      ],
+      "date_utc": "2002-02-04T19:22:38Z"
+    },
+    {
+      "id": "t-65a933fd6af6-o1",
+      "message_ids": [
+        "corpus/giron-d/sent/285."
+      ],
+      "date_utc": "2001-01-26T14:45:00Z"
+    },
+    {
+      "id": "t-861a30cc837a-o1",
+      "message_ids": [
+        "corpus/giron-d/inbox/368."
+      ],
+      "date_utc": "2001-10-31T16:08:02Z"
+    },
+    {
+      "id": "t-d9948d1ca085-o1",
+      "message_ids": [
+        "corpus/lokay-m/sent_items/125.",
+        "corpus/lokay-m/sent_items/127."
+      ],
+      "date_utc": "2002-03-04T21:18:22Z"
+    }
+  ],
+  "undated_occurrences": [],
+  "action_sources": [
+    {
+      "message_id": "corpus/giron-d/inbox/368.",
+      "type": "authored_medium",
+      "person": "csulzer@grenergy.com",
+      "address": "csulzer@grenergy.com",
+      "priced": false,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/368.",
+      "type": "read",
+      "person": "darron.giron@enron.com",
+      "address": "c..giron@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/sent/285.",
+      "type": "authored_short",
+      "person": "darron.giron@enron.com",
+      "address": "darron.giron@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/sent/285.",
+      "type": "read",
+      "person": "ernie.lachica@enron.com",
+      "address": "ernie.lachica@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/125.",
+      "type": "forward",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/125.",
+      "type": "read",
+      "person": "richard.hanagriff@enron.com",
+      "address": "richard.hanagriff@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/127.",
+      "type": "chaser",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/127.",
+      "type": "read",
+      "person": "richard.hanagriff@enron.com",
+      "address": "richard.hanagriff@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/inbox/50.",
+      "type": "authored_short",
+      "person": "theresa.villeggiante@enron.com",
+      "address": "theresa.villeggiante@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/inbox/50.",
+      "type": "read",
+      "person": "ed.clark@enron.com",
+      "address": "ed.clark@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/inbox/50.",
+      "type": "read",
+      "person": "f..calger@enron.com",
+      "address": "f..calger@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/inbox/50.",
+      "type": "read",
+      "person": "jim.buerkle@enron.com",
+      "address": "jim.buerkle@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/inbox/50.",
+      "type": "read",
+      "person": "john.anderson@enron.com",
+      "address": "john.anderson@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/inbox/50.",
+      "type": "read",
+      "person": "robert.badeer@enron.com",
+      "address": "robert.badeer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    }
+  ],
+  "participants": [
+    {
+      "email": "darron.giron@enron.com",
+      "name": "Darron C Giron",
+      "label": "Darron C Giron",
+      "kind": "person",
+      "addresses": [
+        "c..giron@enron.com",
+        "darron.giron@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": true
+    },
+    {
+      "email": "michelle.lokay@enron.com",
+      "name": "Lokay, Michelle",
+      "label": "Michelle Lokay",
+      "kind": "person",
+      "addresses": [
+        "michelle.lokay@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 1,
+      "chasers": 1,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "richard.hanagriff@enron.com",
+      "name": "Hanagriff, Richard",
+      "label": "Richard Hanagriff",
+      "kind": "person",
+      "addresses": [
+        "richard.hanagriff@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "csulzer@grenergy.com",
+      "name": "Carl Sulzer GRE/ER Fuel/Plant",
+      "label": "Carl Sulzer GRE/ER Fuel/Plant",
+      "kind": "person",
+      "addresses": [
+        "csulzer@grenergy.com"
+      ],
+      "staff": false,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "ed.clark@enron.com",
+      "name": null,
+      "label": "ed.clark@enron.com",
+      "kind": "person",
+      "addresses": [
+        "ed.clark@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "ernie.lachica@enron.com",
+      "name": null,
+      "label": "ernie.lachica@enron.com",
+      "kind": "person",
+      "addresses": [
+        "ernie.lachica@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "f..calger@enron.com",
+      "name": "Calger, Christopher F.",
+      "label": "Christopher F. Calger",
+      "kind": "person",
+      "addresses": [
+        "f..calger@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "jim.buerkle@enron.com",
+      "name": null,
+      "label": "jim.buerkle@enron.com",
+      "kind": "person",
+      "addresses": [
+        "jim.buerkle@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "john.anderson@enron.com",
+      "name": "Anderson, John",
+      "label": "John Anderson",
+      "kind": "person",
+      "addresses": [
+        "john.anderson@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "robert.badeer@enron.com",
+      "name": null,
+      "label": "robert.badeer@enron.com",
+      "kind": "person",
+      "addresses": [
+        "robert.badeer@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "theresa.villeggiante@enron.com",
+      "name": "Villeggiante, Theresa",
+      "label": "Theresa Villeggiante",
+      "kind": "person",
+      "addresses": [
+        "theresa.villeggiante@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    }
+  ],
+  "stalls_by_kind": [],
+  "stall_groups": [
+    {
+      "summary": "Requests wait on the price source itself: Gas Daily data was not loaded yet, so the person handling the request had to keep checking back before replying.",
+      "quotes": [
+        {
+          "id": "batch-093:e13",
+          "kind": "evidence",
+          "message_id": "corpus/williams-w3/inbox/50.",
+          "start": 3130,
+          "end": 3199,
+          "raw_text": "They do not have Gas daily loaded yet, I will check back periodically",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "theresa.villeggiante@enron.com",
+          "sender_label": "Theresa Villeggiante",
+          "date_utc": "2002-02-04T19:22:38Z"
+        }
+      ]
+    }
+  ],
+  "stall_quotes": [],
+  "evidence": [
+    {
+      "id": "batch-040:e11",
+      "kind": "evidence",
+      "message_id": "corpus/giron-d/sent/285.",
+      "start": 455,
+      "end": 493,
+      "raw_text": "Let me know if you have any questions.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "darron.giron@enron.com",
+      "sender_label": "Darron C Giron",
+      "date_utc": "2001-01-26T14:45:00Z"
+    },
+    {
+      "id": "batch-073:e13",
+      "kind": "evidence",
+      "message_id": "corpus/giron-d/inbox/368.",
+      "start": 753,
+      "end": 826,
+      "raw_text": "I would like to look at the following data for 1999 and 2000 prior to our",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "csulzer@grenergy.com",
+      "sender_label": "Carl Sulzer GRE/ER Fuel/Plant",
+      "date_utc": "2001-10-31T16:08:02Z"
+    },
+    {
+      "id": "batch-093:e13",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/inbox/50.",
+      "start": 3130,
+      "end": 3199,
+      "raw_text": "They do not have Gas daily loaded yet, I will check back periodically",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "theresa.villeggiante@enron.com",
+      "sender_label": "Theresa Villeggiante",
+      "date_utc": "2002-02-04T19:22:38Z"
+    },
+    {
+      "id": "batch-098:e0",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/125.",
+      "start": 566,
+      "end": 623,
+      "raw_text": "The February 2002 El Paso Topock point price was $1.8600.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-03-04T21:18:22Z"
+    },
+    {
+      "id": "batch-098:e1",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/127.",
+      "start": 617,
+      "end": 662,
+      "raw_text": "February was revised and March is now posted.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-03-05T18:54:59Z"
+    }
+  ],
+  "chasers": [
+    "corpus/lokay-m/sent_items/127."
+  ],
+  "reply_gaps": [],
+  "reply_gap_n": 0,
+  "median_reply_gap_h": null,
+  "claims": [],
+  "conflicts": [],
+  "contradictions": [],
+  "contradictions_dropped": 0,
+  "loops": [
+    {
+      "thread_id": "t-d9948d1ca085",
+      "message_id": "corpus/lokay-m/sent_items/127.",
+      "why": "chase",
+      "date_utc": "2002-03-05T18:54:59Z",
+      "mailbox": "lokay-m",
+      "mailbox_end_utc": "2002-03-25T23:13:29Z",
+      "days_before_end": 20,
+      "recent": true,
+      "subject": "FW: Mojave index",
+      "from": "michelle.lokay@enron.com",
+      "from_label": "Michelle Lokay",
+      "thread_length": 2,
+      "processes": [
+        "price-data-request"
+      ],
+      "quote": null
+    }
+  ],
+  "document": null
+}

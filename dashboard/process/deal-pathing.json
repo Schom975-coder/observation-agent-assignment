@@ -1,0 +1,2075 @@
+{
+  "key": "deal-pathing",
+  "name": "Deal pathing and buyback links",
+  "definition": "Pathing deal volumes to contracts in the scheduling systems, linking buybacks with market deals and validating path data.",
+  "rank": 15,
+  "tier": "B",
+  "row": {
+    "rank": 15,
+    "key": "deal-pathing",
+    "name": "Deal pathing and buyback links",
+    "tier": "B",
+    "tier_words": "in the total: 10 or more times over 3 or more months by 2 or more staff",
+    "in_total": true,
+    "origin": "promoted",
+    "total": {
+      "v": 4376,
+      "t": "$44",
+      "x": "$43.76",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "deal-pathing"
+      }
+    },
+    "counted": {
+      "v": 996,
+      "t": "$10",
+      "x": "$9.96",
+      "k": "counted",
+      "d": {
+        "kind": "formula",
+        "key": "deal-pathing"
+      }
+    },
+    "estimated": {
+      "v": 3380,
+      "t": "$34",
+      "x": "$33.80",
+      "k": "estimated",
+      "d": {
+        "kind": "formula",
+        "key": "deal-pathing"
+      }
+    },
+    "low": {
+      "v": 2445,
+      "t": "$24",
+      "x": "$24.45",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "deal-pathing"
+      }
+    },
+    "high": {
+      "v": 8241,
+      "t": "$82",
+      "x": "$82.41",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "deal-pathing"
+      }
+    },
+    "today": {
+      "v": 9526,
+      "t": "$95",
+      "x": "$95.26",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "deal-pathing"
+      }
+    },
+    "hours": {
+      "v": 51,
+      "t": "0.5",
+      "x": "0.51 hours",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "deal-pathing"
+      }
+    },
+    "hours_today": {
+      "v": 112,
+      "t": "1.1",
+      "x": "1.12 hours",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "deal-pathing"
+      }
+    },
+    "occurrences": {
+      "v": 11,
+      "t": "11 times",
+      "d": {
+        "kind": "occurrences",
+        "key": "deal-pathing"
+      }
+    },
+    "shared_occurrences": 1,
+    "active_months": {
+      "v": 4,
+      "t": "4 active months",
+      "d": {
+        "kind": "months",
+        "key": "deal-pathing"
+      }
+    },
+    "span_days": 211,
+    "first_utc": "1999-12-16T12:38:00Z",
+    "last_utc": "2000-07-13T15:35:00Z",
+    "messages": {
+      "v": 14,
+      "t": "14 emails",
+      "d": {
+        "kind": "occurrences",
+        "key": "deal-pathing"
+      }
+    },
+    "threads": 11,
+    "mailboxes": [
+      {
+        "key": "farmer-d",
+        "n": 14,
+        "pct": 100
+      }
+    ],
+    "top_mailbox": "farmer-d",
+    "top_pct": 100,
+    "one_mailbox": true,
+    "seen_in": "Mostly seen in: Farmer (100%)",
+    "staff": {
+      "v": 26,
+      "t": "26 staff",
+      "d": {
+        "kind": "participants",
+        "key": "deal-pathing",
+        "filter": "staff"
+      }
+    },
+    "writers": {
+      "v": 6,
+      "t": "6",
+      "d": {
+        "kind": "participants",
+        "key": "deal-pathing",
+        "filter": "writers"
+      }
+    },
+    "copied": {
+      "v": 20,
+      "t": "20",
+      "d": {
+        "kind": "participants",
+        "key": "deal-pathing",
+        "filter": "copied"
+      }
+    },
+    "estimate": {
+      "low": 15,
+      "mid": 35,
+      "high": 75,
+      "automatable_pct": 45,
+      "basis_words": "seen in the emails",
+      "source": "model"
+    },
+    "stall_label": "A request about a buyback with no counterparty documentation sat until the requester…",
+    "stall_summary": "A request about a buyback with no counterparty documentation sat until the requester asked for its status.",
+    "stall_kind": "waiting_on_reply",
+    "stall_quotes": {
+      "v": 3,
+      "t": "3 stall quotes",
+      "d": {
+        "kind": "stalls",
+        "key": "deal-pathing"
+      }
+    },
+    "fix": "A validation report that compares each month's paths against active deals, flags buybacks with no linked market deal, flags path edits made by someone other than the creator, and…",
+    "document": null,
+    "status_line": "Not drafted: $44 a month is under the $85 drafting line",
+    "chasers": {
+      "v": 0,
+      "t": "0 chasers",
+      "d": {
+        "kind": "actions",
+        "key": "deal-pathing",
+        "type": "chaser"
+      }
+    },
+    "stall_count": {
+      "v": 1,
+      "t": "1",
+      "d": {
+        "kind": "stalls",
+        "key": "deal-pathing",
+        "stall_kind": "waiting_on_reply"
+      }
+    },
+    "loops": {
+      "v": 1,
+      "t": "1 open loop",
+      "d": {
+        "kind": "loops",
+        "key": "deal-pathing"
+      }
+    },
+    "loops_recent": {
+      "v": 0,
+      "t": "0",
+      "d": {
+        "kind": "loops",
+        "key": "deal-pathing",
+        "recent": true
+      }
+    },
+    "claims": {
+      "v": 0,
+      "t": "0 claims",
+      "d": {
+        "kind": "claims",
+        "key": "deal-pathing"
+      }
+    },
+    "conflicts": {
+      "v": 0,
+      "t": "0 conflicts",
+      "d": {
+        "kind": "claims",
+        "key": "deal-pathing"
+      }
+    },
+    "reply_gap": null,
+    "last_three_months_share": {
+      "v": 0,
+      "t": "0 of 11",
+      "d": {
+        "kind": "occurrences",
+        "key": "deal-pathing"
+      }
+    },
+    "flags": [
+      "one round shared with another process"
+    ]
+  },
+  "synthesis": {
+    "description": "Schedulers and volume staff path deal volumes to contracts and meters in the scheduling systems and link buybacks to the market deals they offset. Rounds start when a buyback is announced, when a monthly path list is sent out for checking, when a storage customer needs a specific withdrawal path, or when one scheduler changes a path another created. Questions about pricing, documentation from the counterparty and whether a buyback exists at all go back and forth until the supply and market deals are attached as a buy/sell and the month's activity is reviewed.",
+    "steps": [
+      "Receive notice of a sale, buyback or pathing requirement from the desk or a customer.",
+      "Confirm the deal terms, pricing type and counterparty documentation.",
+      "Create or change the path in the scheduling system for the meter and volume.",
+      "Attach the supply deal to the market deal to establish the buy/sell or buyback link.",
+      "Circulate the monthly path list for others to check for anything out of line.",
+      "Review the month's allocations, links and buybacks and correct what is wrong."
+    ],
+    "approach": "A validation report that compares each month's paths against active deals, flags buybacks with no linked market deal, flags path edits made by someone other than the creator, and lists deals with tiered pricing, so the monthly path list arrives pre-checked. A short procedure fixes who links buybacks and who confirms counterparty documentation.",
+    "rationale": "Most rounds are a check of whether paths and buyback links match the deals. A checklist for the monthly review, covering links, buybacks, pricing type and documentation, gives schedulers one shared standard and reduces the disagreements and ownership questions the mail shows.",
+    "artifact_type": "checklist"
+  },
+  "formula": {
+    "counted": "11 occ (10.50 after sharing) over 211 d = 6.93 mo; email: 2 short x2 + 7 medium x6 + 0 long x15 + 5 fwd x2 + 0 chaser x3 + 48 read x1 = 104.00 min, 98.50 min after sharing = 14.21 min/mo; automatable 60/40/30/80/100/50% = 51.20 min, 48.75 min after sharing = 7.03 min/mo",
+    "estimated": "10.50 occ x 35 min/occ (estimate, mid of 15-75, basis observed, 6 quotes from 6 occurrences) = 367.50 min = 53.03 min/mo; automatable 45% (estimate) = 23.86 min/mo; at the low end 15 min/occ = $24.45/mo, at the high end 75 min/occ = $82.41/mo (the row's automatable total)",
+    "total": "today 67.24 min/mo = 1.12 h/mo = $95.26/mo (email 14.21 min/mo = $20.13 + work 53.03 min/mo = $75.13); automatable 30.89 min/mo = 0.51 h/mo = $43.76/mo (counted email 7.03 min/mo = $9.96 + estimated work 23.86 min/mo = $33.80)"
+  },
+  "window": {
+    "first_utc": "1999-12-16T12:38:00Z",
+    "last_utc": "2000-07-13T15:35:00Z",
+    "span_days": 211,
+    "months_x100": 693,
+    "active_months": 4,
+    "undated_occurrences": 0
+  },
+  "months": 693,
+  "occurrence_share_x100": 1050,
+  "actions": {
+    "priced": {
+      "authored_short": 2,
+      "authored_medium": 7,
+      "authored_long": 0,
+      "forward": 5,
+      "chaser": 0,
+      "read": 48
+    },
+    "unpriced": {
+      "authored_short": 0,
+      "authored_medium": 0,
+      "authored_long": 0,
+      "forward": 0,
+      "chaser": 0,
+      "read": 0
+    }
+  },
+  "action_table": [
+    {
+      "type": "authored_short",
+      "words": "short emails written",
+      "count": {
+        "v": 2,
+        "t": "2",
+        "d": {
+          "kind": "actions",
+          "key": "deal-pathing",
+          "type": "authored_short"
+        }
+      },
+      "minutes_each": 2,
+      "minutes": "4.00",
+      "automatable_pct": 60,
+      "automatable_minutes": "2.40"
+    },
+    {
+      "type": "authored_medium",
+      "words": "medium emails written",
+      "count": {
+        "v": 7,
+        "t": "7",
+        "d": {
+          "kind": "actions",
+          "key": "deal-pathing",
+          "type": "authored_medium"
+        }
+      },
+      "minutes_each": 6,
+      "minutes": "42.00",
+      "automatable_pct": 40,
+      "automatable_minutes": "16.80"
+    },
+    {
+      "type": "authored_long",
+      "words": "long emails written",
+      "count": {
+        "v": 0,
+        "t": "0",
+        "d": {
+          "kind": "actions",
+          "key": "deal-pathing",
+          "type": "authored_long"
+        }
+      },
+      "minutes_each": 15,
+      "minutes": "0.00",
+      "automatable_pct": 30,
+      "automatable_minutes": "0.00"
+    },
+    {
+      "type": "forward",
+      "words": "forwards",
+      "count": {
+        "v": 5,
+        "t": "5",
+        "d": {
+          "kind": "actions",
+          "key": "deal-pathing",
+          "type": "forward"
+        }
+      },
+      "minutes_each": 2,
+      "minutes": "10.00",
+      "automatable_pct": 80,
+      "automatable_minutes": "8.00"
+    },
+    {
+      "type": "chaser",
+      "words": "chasers",
+      "count": {
+        "v": 0,
+        "t": "0",
+        "d": {
+          "kind": "actions",
+          "key": "deal-pathing",
+          "type": "chaser"
+        }
+      },
+      "minutes_each": 3,
+      "minutes": "0.00",
+      "automatable_pct": 100,
+      "automatable_minutes": "0.00"
+    },
+    {
+      "type": "read",
+      "words": "reads, one per addressee",
+      "count": {
+        "v": 48,
+        "t": "48",
+        "d": {
+          "kind": "actions",
+          "key": "deal-pathing",
+          "type": "read"
+        }
+      },
+      "minutes_each": 1,
+      "minutes": "48.00",
+      "automatable_pct": 50,
+      "automatable_minutes": "24.00"
+    }
+  ],
+  "email": {
+    "today_x100": 9850,
+    "automatable_x100": 4875,
+    "per_month_today_x100": 1421,
+    "per_month_automatable_x100": 703
+  },
+  "work": {
+    "per_month_today_x100": 5303,
+    "per_month_automatable_x100": 2386,
+    "low_cents": 1449,
+    "high_cents": 7245
+  },
+  "estimate_quotes": [
+    {
+      "id": "batch-003:e29",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/759.",
+      "start": 756,
+      "end": 830,
+      "raw_text": "Attached is my list for Feb. Please let me know if you see anything out of",
+      "match": "exact",
+      "segment": "forwarded",
+      "field": "body",
+      "sender": "kenneth.seaman@enron.com",
+      "sender_label": "Kenneth Seaman",
+      "date_utc": "2000-02-07T10:19:00Z"
+    },
+    {
+      "id": "batch-003:e8",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/733.",
+      "start": 879,
+      "end": 941,
+      "raw_text": "I changed a path you created for meter #: 1040 for 90,000/d to",
+      "match": "exact",
+      "segment": "forwarded",
+      "field": "body",
+      "sender": "kenneth.seaman@enron.com",
+      "sender_label": "Kenneth Seaman",
+      "date_utc": "2000-01-31T11:01:00Z"
+    },
+    {
+      "id": "batch-003:e45",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/779.",
+      "start": 1298,
+      "end": 1367,
+      "raw_text": "Attach the Supply Deal with the Market Deal to establish a \"buy/sell\"",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "robert.lloyd@enron.com",
+      "sender_label": "Robert E Lloyd",
+      "date_utc": "2000-02-09T16:44:00Z"
+    },
+    {
+      "id": "batch-004:e26",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/811.",
+      "start": 1011,
+      "end": 1081,
+      "raw_text": "Cilco needs to be pathed the following way on a withdrawl day or month",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "howard.camp@enron.com",
+      "sender_label": "Howard B Camp",
+      "date_utc": "2000-02-17T17:55:00Z"
+    },
+    {
+      "id": "batch-003:e27",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/757.",
+      "start": 783,
+      "end": 858,
+      "raw_text": "I will review January Industrial activity {alloc., links/buybacks, ect.} by",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "robert.lloyd@enron.com",
+      "sender_label": "Robert E Lloyd",
+      "date_utc": "2000-02-07T08:34:00Z"
+    },
+    {
+      "id": "batch-000:e15",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/594.",
+      "start": 1278,
+      "end": 1330,
+      "raw_text": "has sold back 7,000 mmbtu/day starting 12/17 through",
+      "match": "exact",
+      "segment": "forwarded",
+      "field": "body",
+      "sender": "gregg.lenart@enron.com",
+      "sender_label": "Gregg Lenart",
+      "date_utc": "1999-12-16T14:03:00Z"
+    }
+  ],
+  "estimate_check": {
+    "occurrences_cited": 6,
+    "senders_cited": 4
+  },
+  "monthly": [
+    {
+      "month": "1999-12",
+      "occurrences": {
+        "v": 4,
+        "t": "4",
+        "d": {
+          "kind": "occurrences",
+          "key": "deal-pathing",
+          "month": "1999-12"
+        }
+      },
+      "messages": 5,
+      "ids": [
+        "t-535133eb1170-o1",
+        "t-888d3a3f48fc-o1",
+        "t-a02d5c4efc41-o1",
+        "t-d2a61c7ba0b3-o1"
+      ]
+    },
+    {
+      "month": "2000-01",
+      "occurrences": {
+        "v": 2,
+        "t": "2",
+        "d": {
+          "kind": "occurrences",
+          "key": "deal-pathing",
+          "month": "2000-01"
+        }
+      },
+      "messages": 2,
+      "ids": [
+        "t-425a51a2c959-o1",
+        "t-6c7c94742b82-o1"
+      ]
+    },
+    {
+      "month": "2000-02",
+      "occurrences": {
+        "v": 4,
+        "t": "4",
+        "d": {
+          "kind": "occurrences",
+          "key": "deal-pathing",
+          "month": "2000-02"
+        }
+      },
+      "messages": 6,
+      "ids": [
+        "t-5c1a89e1c578-o1",
+        "t-7216996f162f-o1",
+        "t-c4c3c78986c7-o1",
+        "t-fea182d5deae-o1"
+      ]
+    },
+    {
+      "month": "2000-07",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "deal-pathing",
+          "month": "2000-07"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-d52b07ac1cb7-o1"
+      ]
+    }
+  ],
+  "occurrences": [
+    {
+      "id": "t-425a51a2c959-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/734.",
+        "corpus/farmer-d/logistics/736."
+      ],
+      "date_utc": "2000-01-31T15:12:00Z"
+    },
+    {
+      "id": "t-535133eb1170-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/602.",
+        "corpus/farmer-d/logistics/626."
+      ],
+      "date_utc": "1999-12-21T13:02:00Z"
+    },
+    {
+      "id": "t-5c1a89e1c578-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/759."
+      ],
+      "date_utc": "2000-02-07T10:19:00Z"
+    },
+    {
+      "id": "t-6c7c94742b82-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/733."
+      ],
+      "date_utc": "2000-01-31T11:01:00Z"
+    },
+    {
+      "id": "t-7216996f162f-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/779."
+      ],
+      "date_utc": "2000-02-09T16:44:00Z"
+    },
+    {
+      "id": "t-888d3a3f48fc-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/601."
+      ],
+      "date_utc": "1999-12-21T07:20:00Z"
+    },
+    {
+      "id": "t-a02d5c4efc41-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/594."
+      ],
+      "date_utc": "1999-12-16T14:03:00Z"
+    },
+    {
+      "id": "t-c4c3c78986c7-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/811.",
+        "corpus/farmer-d/logistics/823."
+      ],
+      "date_utc": "2000-02-17T17:55:00Z"
+    },
+    {
+      "id": "t-d2a61c7ba0b3-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/593."
+      ],
+      "date_utc": "1999-12-16T12:38:00Z"
+    },
+    {
+      "id": "t-d52b07ac1cb7-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1278."
+      ],
+      "date_utc": "2000-07-13T15:35:00Z"
+    },
+    {
+      "id": "t-fea182d5deae-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/757."
+      ],
+      "date_utc": "2000-02-07T08:34:00Z"
+    }
+  ],
+  "undated_occurrences": [],
+  "action_sources": [
+    {
+      "message_id": "corpus/farmer-d/logistics/1278.",
+      "type": "authored_short",
+      "person": "shari.mao@enron.com",
+      "address": "shari.mao@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1278.",
+      "type": "read",
+      "person": "brenda.herod@enron.com",
+      "address": "brenda.herod@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1278.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1278.",
+      "type": "read",
+      "person": "howard.camp@enron.com",
+      "address": "howard.camp@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1278.",
+      "type": "read",
+      "person": "james.scribner@enron.com",
+      "address": "james.scribner@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1278.",
+      "type": "read",
+      "person": "jennifer.reside@enron.com",
+      "address": "jennifer.reside@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/593.",
+      "type": "authored_short",
+      "person": "kenneth.seaman@enron.com",
+      "address": "kenneth.seaman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/593.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/593.",
+      "type": "read",
+      "person": "gary.lamphier@enron.com",
+      "address": "gary.lamphier@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/593.",
+      "type": "read",
+      "person": "howard.camp@enron.com",
+      "address": "howard.camp@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/593.",
+      "type": "read",
+      "person": "kristen.hanson@enron.com",
+      "address": "kristen.hanson@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/593.",
+      "type": "read",
+      "person": "tina.valadez@enron.com",
+      "address": "tina.valadez@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/594.",
+      "type": "forward",
+      "person": "gregg.lenart@enron.com",
+      "address": "gregg.lenart@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/594.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/594.",
+      "type": "read",
+      "person": "howard.camp@enron.com",
+      "address": "howard.camp@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/594.",
+      "type": "read",
+      "person": "julie.meyers@enron.com",
+      "address": "julie.meyers@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/601.",
+      "type": "authored_medium",
+      "person": "kenneth.seaman@enron.com",
+      "address": "kenneth.seaman@enron.com",
+      "priced": true,
+      "share_x100": 50
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/601.",
+      "type": "read",
+      "person": "howard.camp@enron.com",
+      "address": "howard.camp@enron.com",
+      "priced": true,
+      "share_x100": 50
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/601.",
+      "type": "read",
+      "person": "kristen.hanson@enron.com",
+      "address": "kristen.hanson@enron.com",
+      "priced": true,
+      "share_x100": 50
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/601.",
+      "type": "read",
+      "person": "lee.papayoti@enron.com",
+      "address": "lee.papayoti@enron.com",
+      "priced": true,
+      "share_x100": 50
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/601.",
+      "type": "read",
+      "person": "stella.morris@enron.com",
+      "address": "stella.morris@enron.com",
+      "priced": true,
+      "share_x100": 50
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/601.",
+      "type": "read",
+      "person": "thu.nguyen@enron.com",
+      "address": "thu.nguyen@enron.com",
+      "priced": true,
+      "share_x100": 50
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/602.",
+      "type": "authored_medium",
+      "person": "kenneth.seaman@enron.com",
+      "address": "kenneth.seaman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/602.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/602.",
+      "type": "read",
+      "person": "gary.lamphier@enron.com",
+      "address": "gary.lamphier@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/602.",
+      "type": "read",
+      "person": "howard.camp@enron.com",
+      "address": "howard.camp@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/602.",
+      "type": "read",
+      "person": "joanie.ngo@enron.com",
+      "address": "joanie.ngo@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/602.",
+      "type": "read",
+      "person": "robert.lloyd@enron.com",
+      "address": "robert.lloyd@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/626.",
+      "type": "forward",
+      "person": "howard.camp@enron.com",
+      "address": "howard.camp@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/626.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/626.",
+      "type": "read",
+      "person": "gary.lamphier@enron.com",
+      "address": "gary.lamphier@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/626.",
+      "type": "read",
+      "person": "joanie.ngo@enron.com",
+      "address": "joanie.ngo@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/626.",
+      "type": "read",
+      "person": "kenneth.seaman@enron.com",
+      "address": "kenneth.seaman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/626.",
+      "type": "read",
+      "person": "robert.lloyd@enron.com",
+      "address": "robert.lloyd@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/733.",
+      "type": "forward",
+      "person": "kenneth.seaman@enron.com",
+      "address": "kenneth.seaman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/733.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/733.",
+      "type": "read",
+      "person": "pat.clynes@enron.com",
+      "address": "pat.clynes@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/734.",
+      "type": "authored_medium",
+      "person": "kenneth.seaman@enron.com",
+      "address": "kenneth.seaman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/734.",
+      "type": "read",
+      "person": "robert.lloyd@enron.com",
+      "address": "robert.lloyd@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/736.",
+      "type": "forward",
+      "person": "kenneth.seaman@enron.com",
+      "address": "kenneth.seaman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/736.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/757.",
+      "type": "authored_medium",
+      "person": "robert.lloyd@enron.com",
+      "address": "robert.lloyd@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/757.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/757.",
+      "type": "read",
+      "person": "jackie.young@enron.com",
+      "address": "jackie.young@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/757.",
+      "type": "read",
+      "person": "pat.clynes@enron.com",
+      "address": "pat.clynes@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/759.",
+      "type": "forward",
+      "person": "kenneth.seaman@enron.com",
+      "address": "kenneth.seaman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/759.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/779.",
+      "type": "authored_medium",
+      "person": "robert.lloyd@enron.com",
+      "address": "robert.lloyd@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/779.",
+      "type": "read",
+      "person": "aimee.lannou@enron.com",
+      "address": "aimee.lannou@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/779.",
+      "type": "read",
+      "person": "george.grant@enron.com",
+      "address": "george.grant@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/779.",
+      "type": "read",
+      "person": "jackie.young@enron.com",
+      "address": "jackie.young@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/779.",
+      "type": "read",
+      "person": "mandy.mackinnon@enron.com",
+      "address": "mandy.mackinnon@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/779.",
+      "type": "read",
+      "person": "susan.trevino@enron.com",
+      "address": "susan.trevino@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/811.",
+      "type": "authored_medium",
+      "person": "howard.camp@enron.com",
+      "address": "howard.camp@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/811.",
+      "type": "read",
+      "person": "aimee.lannou@enron.com",
+      "address": "aimee.lannou@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/811.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/811.",
+      "type": "read",
+      "person": "fred.boas@enron.com",
+      "address": "fred.boas@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/811.",
+      "type": "read",
+      "person": "gregory.steagall@enron.com",
+      "address": "gregory.steagall@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/811.",
+      "type": "read",
+      "person": "robert.lloyd@enron.com",
+      "address": "robert.lloyd@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/823.",
+      "type": "authored_medium",
+      "person": "rita.wynne@enron.com",
+      "address": "rita.wynne@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/823.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/823.",
+      "type": "read",
+      "person": "pat.clynes@enron.com",
+      "address": "pat.clynes@enron.com",
+      "priced": true,
+      "share_x100": 100
+    }
+  ],
+  "participants": [
+    {
+      "email": "daren.farmer@enron.com",
+      "name": "Daren J Farmer",
+      "label": "Daren J Farmer",
+      "kind": "person",
+      "addresses": [
+        "daren.farmer@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 11,
+      "wrote": false
+    },
+    {
+      "email": "kenneth.seaman@enron.com",
+      "name": "Kenneth Seaman",
+      "label": "Kenneth Seaman",
+      "kind": "person",
+      "addresses": [
+        "kenneth.seaman@enron.com"
+      ],
+      "staff": true,
+      "authored": 4,
+      "forwards": 3,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": true
+    },
+    {
+      "email": "howard.camp@enron.com",
+      "name": "Howard B Camp",
+      "label": "Howard B Camp",
+      "kind": "person",
+      "addresses": [
+        "howard.camp@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 1,
+      "chasers": 0,
+      "reads": 5,
+      "wrote": true
+    },
+    {
+      "email": "robert.lloyd@enron.com",
+      "name": "Robert E Lloyd",
+      "label": "Robert E Lloyd",
+      "kind": "person",
+      "addresses": [
+        "robert.lloyd@enron.com"
+      ],
+      "staff": true,
+      "authored": 2,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 4,
+      "wrote": true
+    },
+    {
+      "email": "gary.lamphier@enron.com",
+      "name": "Gary W Lamphier",
+      "label": "Gary W Lamphier",
+      "kind": "person",
+      "addresses": [
+        "gary.lamphier@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 3,
+      "wrote": false
+    },
+    {
+      "email": "pat.clynes@enron.com",
+      "name": "Pat Clynes",
+      "label": "Pat Clynes",
+      "kind": "person",
+      "addresses": [
+        "pat.clynes@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 3,
+      "wrote": false
+    },
+    {
+      "email": "aimee.lannou@enron.com",
+      "name": "Aimee Lannou",
+      "label": "Aimee Lannou",
+      "kind": "person",
+      "addresses": [
+        "aimee.lannou@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "jackie.young@enron.com",
+      "name": "Jackie Young",
+      "label": "Jackie Young",
+      "kind": "person",
+      "addresses": [
+        "jackie.young@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "joanie.ngo@enron.com",
+      "name": "Joanie H Ngo",
+      "label": "Joanie H Ngo",
+      "kind": "person",
+      "addresses": [
+        "joanie.ngo@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "kristen.hanson@enron.com",
+      "name": "Kristen J Hanson",
+      "label": "Kristen J Hanson",
+      "kind": "person",
+      "addresses": [
+        "kristen.hanson@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "brenda.herod@enron.com",
+      "name": "Brenda F Herod",
+      "label": "Brenda F Herod",
+      "kind": "person",
+      "addresses": [
+        "brenda.herod@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "fred.boas@enron.com",
+      "name": "Fred Boas",
+      "label": "Fred Boas",
+      "kind": "person",
+      "addresses": [
+        "fred.boas@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "george.grant@enron.com",
+      "name": "George Grant",
+      "label": "George Grant",
+      "kind": "person",
+      "addresses": [
+        "george.grant@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "gregg.lenart@enron.com",
+      "name": "Gregg Lenart",
+      "label": "Gregg Lenart",
+      "kind": "person",
+      "addresses": [
+        "gregg.lenart@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 1,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "gregory.steagall@enron.com",
+      "name": null,
+      "label": "gregory.steagall@enron.com",
+      "kind": "person",
+      "addresses": [
+        "gregory.steagall@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "james.scribner@enron.com",
+      "name": "James Scribner",
+      "label": "James Scribner",
+      "kind": "person",
+      "addresses": [
+        "james.scribner@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "jennifer.reside@enron.com",
+      "name": "Jennifer Reside",
+      "label": "Jennifer Reside",
+      "kind": "person",
+      "addresses": [
+        "jennifer.reside@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "julie.meyers@enron.com",
+      "name": "Julie Meyers",
+      "label": "Julie Meyers",
+      "kind": "person",
+      "addresses": [
+        "julie.meyers@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "lee.papayoti@enron.com",
+      "name": "Lee L Papayoti",
+      "label": "Lee L Papayoti",
+      "kind": "person",
+      "addresses": [
+        "lee.papayoti@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "mandy.mackinnon@enron.com",
+      "name": "Mandy MacKinnon",
+      "label": "Mandy MacKinnon",
+      "kind": "person",
+      "addresses": [
+        "mandy.mackinnon@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "rita.wynne@enron.com",
+      "name": "Rita Wynne",
+      "label": "Rita Wynne",
+      "kind": "person",
+      "addresses": [
+        "rita.wynne@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "shari.mao@enron.com",
+      "name": "Shari Mao",
+      "label": "Shari Mao",
+      "kind": "person",
+      "addresses": [
+        "shari.mao@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "stella.morris@enron.com",
+      "name": "Stella L Morris",
+      "label": "Stella L Morris",
+      "kind": "person",
+      "addresses": [
+        "stella.morris@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "susan.trevino@enron.com",
+      "name": "Susan D Trevino",
+      "label": "Susan D Trevino",
+      "kind": "person",
+      "addresses": [
+        "susan.trevino@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "thu.nguyen@enron.com",
+      "name": "Thu Nguyen",
+      "label": "Thu Nguyen",
+      "kind": "person",
+      "addresses": [
+        "thu.nguyen@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "tina.valadez@enron.com",
+      "name": "Tina Valadez",
+      "label": "Tina Valadez",
+      "kind": "person",
+      "addresses": [
+        "tina.valadez@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    }
+  ],
+  "stalls_by_kind": [
+    {
+      "kind": "waiting_on_reply",
+      "words": "1 waiting on a reply",
+      "count": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "stalls",
+          "key": "deal-pathing",
+          "stall_kind": "waiting_on_reply"
+        }
+      }
+    },
+    {
+      "kind": "ownership_conflict",
+      "words": "1 ownership conflict",
+      "count": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "stalls",
+          "key": "deal-pathing",
+          "stall_kind": "ownership_conflict"
+        }
+      }
+    },
+    {
+      "kind": "other",
+      "words": "1 other",
+      "count": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "stalls",
+          "key": "deal-pathing",
+          "stall_kind": "other"
+        }
+      }
+    }
+  ],
+  "stall_groups": [
+    {
+      "summary": "A request about a buyback with no counterparty documentation sat until the requester asked for its status.",
+      "quotes": [
+        {
+          "id": "batch-000:e23",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/602.",
+          "start": 836,
+          "end": 890,
+          "raw_text": "I have not seen any documentation of this from Valero.",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "kenneth.seaman@enron.com",
+          "sender_label": "Kenneth Seaman",
+          "date_utc": "1999-12-21T13:02:00Z"
+        },
+        {
+          "id": "batch-000:s1",
+          "kind": "stall",
+          "message_id": "corpus/farmer-d/logistics/626.",
+          "start": 791,
+          "end": 818,
+          "raw_text": "What is the status of this?",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "howard.camp@enron.com",
+          "sender_label": "Howard B Camp",
+          "date_utc": "1999-12-29T10:07:00Z",
+          "stall_kind": "waiting_on_reply"
+        }
+      ]
+    },
+    {
+      "summary": "Two schedulers working the same industrial pathing disagree on how it should be done, and one expects the other will not agree on the approach.",
+      "quotes": [
+        {
+          "id": "batch-003:s2",
+          "kind": "stall",
+          "message_id": "corpus/farmer-d/logistics/736.",
+          "start": 467,
+          "end": 534,
+          "raw_text": "I don't think Robert would get on the same page with me if his life",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "kenneth.seaman@enron.com",
+          "sender_label": "Kenneth Seaman",
+          "date_utc": "2000-02-01T07:37:00Z",
+          "stall_kind": "other"
+        },
+        {
+          "id": "batch-003:e9",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/734.",
+          "start": 453,
+          "end": 485,
+          "raw_text": "Sitara 147092 is tiered pricing.",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "kenneth.seaman@enron.com",
+          "sender_label": "Kenneth Seaman",
+          "date_utc": "2000-01-31T15:12:00Z"
+        }
+      ]
+    },
+    {
+      "summary": "A storage withdrawal pathing request drew a complaint that its requester should have been driving the work, showing unclear ownership.",
+      "quotes": [
+        {
+          "id": "batch-004:e26",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/811.",
+          "start": 1011,
+          "end": 1081,
+          "raw_text": "Cilco needs to be pathed the following way on a withdrawl day or month",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "howard.camp@enron.com",
+          "sender_label": "Howard B Camp",
+          "date_utc": "2000-02-17T17:55:00Z"
+        },
+        {
+          "id": "batch-004:s2",
+          "kind": "stall",
+          "message_id": "corpus/farmer-d/logistics/823.",
+          "start": 676,
+          "end": 735,
+          "raw_text": "that Howard should have been the driving force behind this.",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "rita.wynne@enron.com",
+          "sender_label": "Rita Wynne",
+          "date_utc": "2000-02-22T13:40:00Z",
+          "stall_kind": "ownership_conflict"
+        }
+      ]
+    }
+  ],
+  "stall_quotes": [
+    {
+      "id": "batch-000:s1",
+      "kind": "stall",
+      "message_id": "corpus/farmer-d/logistics/626.",
+      "start": 791,
+      "end": 818,
+      "raw_text": "What is the status of this?",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "howard.camp@enron.com",
+      "sender_label": "Howard B Camp",
+      "date_utc": "1999-12-29T10:07:00Z",
+      "stall_kind": "waiting_on_reply"
+    },
+    {
+      "id": "batch-003:s2",
+      "kind": "stall",
+      "message_id": "corpus/farmer-d/logistics/736.",
+      "start": 467,
+      "end": 534,
+      "raw_text": "I don't think Robert would get on the same page with me if his life",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "kenneth.seaman@enron.com",
+      "sender_label": "Kenneth Seaman",
+      "date_utc": "2000-02-01T07:37:00Z",
+      "stall_kind": "other"
+    },
+    {
+      "id": "batch-004:s2",
+      "kind": "stall",
+      "message_id": "corpus/farmer-d/logistics/823.",
+      "start": 676,
+      "end": 735,
+      "raw_text": "that Howard should have been the driving force behind this.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "rita.wynne@enron.com",
+      "sender_label": "Rita Wynne",
+      "date_utc": "2000-02-22T13:40:00Z",
+      "stall_kind": "ownership_conflict"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "batch-000:e14",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/593.",
+      "start": 731,
+      "end": 804,
+      "raw_text": "My latest understanding is the buyback will be in place through 12/31/99.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "kenneth.seaman@enron.com",
+      "sender_label": "Kenneth Seaman",
+      "date_utc": "1999-12-16T12:38:00Z"
+    },
+    {
+      "id": "batch-000:e15",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/594.",
+      "start": 1278,
+      "end": 1330,
+      "raw_text": "has sold back 7,000 mmbtu/day starting 12/17 through",
+      "match": "exact",
+      "segment": "forwarded",
+      "field": "body",
+      "sender": "gregg.lenart@enron.com",
+      "sender_label": "Gregg Lenart",
+      "date_utc": "1999-12-16T14:03:00Z"
+    },
+    {
+      "id": "batch-000:e22",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/601.",
+      "start": 985,
+      "end": 1018,
+      "raw_text": "intended no swing and no buyback.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "kenneth.seaman@enron.com",
+      "sender_label": "Kenneth Seaman",
+      "date_utc": "1999-12-21T07:20:00Z"
+    },
+    {
+      "id": "batch-000:e23",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/602.",
+      "start": 836,
+      "end": 890,
+      "raw_text": "I have not seen any documentation of this from Valero.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "kenneth.seaman@enron.com",
+      "sender_label": "Kenneth Seaman",
+      "date_utc": "1999-12-21T13:02:00Z"
+    },
+    {
+      "id": "batch-000:e24",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/626.",
+      "start": 791,
+      "end": 818,
+      "raw_text": "What is the status of this?",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "howard.camp@enron.com",
+      "sender_label": "Howard B Camp",
+      "date_utc": "1999-12-29T10:07:00Z"
+    },
+    {
+      "id": "batch-003:e8",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/733.",
+      "start": 879,
+      "end": 941,
+      "raw_text": "I changed a path you created for meter #: 1040 for 90,000/d to",
+      "match": "exact",
+      "segment": "forwarded",
+      "field": "body",
+      "sender": "kenneth.seaman@enron.com",
+      "sender_label": "Kenneth Seaman",
+      "date_utc": "2000-01-31T11:01:00Z"
+    },
+    {
+      "id": "batch-003:e9",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/734.",
+      "start": 453,
+      "end": 485,
+      "raw_text": "Sitara 147092 is tiered pricing.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "kenneth.seaman@enron.com",
+      "sender_label": "Kenneth Seaman",
+      "date_utc": "2000-01-31T15:12:00Z"
+    },
+    {
+      "id": "batch-003:e10",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/736.",
+      "start": 800,
+      "end": 855,
+      "raw_text": "the term deal agreed to by Lyondell {via nomination} is",
+      "match": "exact",
+      "segment": "forwarded",
+      "field": "body",
+      "sender": "kenneth.seaman@enron.com",
+      "sender_label": "Kenneth Seaman",
+      "date_utc": "2000-02-01T07:37:00Z"
+    },
+    {
+      "id": "batch-003:e27",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/757.",
+      "start": 783,
+      "end": 858,
+      "raw_text": "I will review January Industrial activity {alloc., links/buybacks, ect.} by",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "robert.lloyd@enron.com",
+      "sender_label": "Robert E Lloyd",
+      "date_utc": "2000-02-07T08:34:00Z"
+    },
+    {
+      "id": "batch-003:e29",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/759.",
+      "start": 756,
+      "end": 830,
+      "raw_text": "Attached is my list for Feb. Please let me know if you see anything out of",
+      "match": "exact",
+      "segment": "forwarded",
+      "field": "body",
+      "sender": "kenneth.seaman@enron.com",
+      "sender_label": "Kenneth Seaman",
+      "date_utc": "2000-02-07T10:19:00Z"
+    },
+    {
+      "id": "batch-003:e45",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/779.",
+      "start": 1298,
+      "end": 1367,
+      "raw_text": "Attach the Supply Deal with the Market Deal to establish a \"buy/sell\"",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "robert.lloyd@enron.com",
+      "sender_label": "Robert E Lloyd",
+      "date_utc": "2000-02-09T16:44:00Z"
+    },
+    {
+      "id": "batch-004:e26",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/811.",
+      "start": 1011,
+      "end": 1081,
+      "raw_text": "Cilco needs to be pathed the following way on a withdrawl day or month",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "howard.camp@enron.com",
+      "sender_label": "Howard B Camp",
+      "date_utc": "2000-02-17T17:55:00Z"
+    },
+    {
+      "id": "batch-004:e27",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/823.",
+      "start": 527,
+      "end": 579,
+      "raw_text": "Just wanted to make known my concerns on this issue.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "rita.wynne@enron.com",
+      "sender_label": "Rita Wynne",
+      "date_utc": "2000-02-22T13:40:00Z"
+    },
+    {
+      "id": "batch-018:e12",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1278.",
+      "start": 729,
+      "end": 774,
+      "raw_text": "We met this afternoon concerning path counts.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "shari.mao@enron.com",
+      "sender_label": "Shari Mao",
+      "date_utc": "2000-07-13T15:35:00Z"
+    }
+  ],
+  "chasers": [],
+  "reply_gaps": [
+    {
+      "from": "corpus/farmer-d/logistics/602.",
+      "to": "corpus/farmer-d/logistics/626.",
+      "hours_x10": 1891
+    },
+    {
+      "from": "corpus/farmer-d/logistics/811.",
+      "to": "corpus/farmer-d/logistics/823.",
+      "hours_x10": 1158
+    }
+  ],
+  "reply_gap_n": 2,
+  "median_reply_gap_h": 152.4,
+  "claims": [],
+  "conflicts": [],
+  "contradictions": [
+    {
+      "summary": "The same buyback is described differently: one message reports volumes sold back over a period, a reply says the buyback will be in place through year end, and another reply says no swing and no buyback were intended.",
+      "quotes": [
+        {
+          "id": "batch-000:e15",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/594.",
+          "start": 1278,
+          "end": 1330,
+          "raw_text": "has sold back 7,000 mmbtu/day starting 12/17 through",
+          "match": "exact",
+          "segment": "forwarded",
+          "field": "body",
+          "sender": "gregg.lenart@enron.com",
+          "sender_label": "Gregg Lenart",
+          "date_utc": "1999-12-16T14:03:00Z"
+        },
+        {
+          "id": "batch-000:e14",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/593.",
+          "start": 731,
+          "end": 804,
+          "raw_text": "My latest understanding is the buyback will be in place through 12/31/99.",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "kenneth.seaman@enron.com",
+          "sender_label": "Kenneth Seaman",
+          "date_utc": "1999-12-16T12:38:00Z"
+        },
+        {
+          "id": "batch-000:e22",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/601.",
+          "start": 985,
+          "end": 1018,
+          "raw_text": "intended no swing and no buyback.",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "kenneth.seaman@enron.com",
+          "sender_label": "Kenneth Seaman",
+          "date_utc": "1999-12-21T07:20:00Z"
+        }
+      ],
+      "claims": []
+    },
+    {
+      "summary": "The storage pathing request comes from one scheduler, while another party says he should have been the driving force behind it, so who owns that pathing is disputed.",
+      "quotes": [
+        {
+          "id": "batch-004:e26",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/811.",
+          "start": 1011,
+          "end": 1081,
+          "raw_text": "Cilco needs to be pathed the following way on a withdrawl day or month",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "howard.camp@enron.com",
+          "sender_label": "Howard B Camp",
+          "date_utc": "2000-02-17T17:55:00Z"
+        },
+        {
+          "id": "batch-004:s2",
+          "kind": "stall",
+          "message_id": "corpus/farmer-d/logistics/823.",
+          "start": 676,
+          "end": 735,
+          "raw_text": "that Howard should have been the driving force behind this.",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "rita.wynne@enron.com",
+          "sender_label": "Rita Wynne",
+          "date_utc": "2000-02-22T13:40:00Z",
+          "stall_kind": "ownership_conflict"
+        }
+      ],
+      "claims": []
+    }
+  ],
+  "contradictions_dropped": 0,
+  "loops": [
+    {
+      "thread_id": "t-535133eb1170",
+      "message_id": "corpus/farmer-d/logistics/626.",
+      "why": "waiting",
+      "date_utc": "1999-12-29T10:07:00Z",
+      "mailbox": "farmer-d",
+      "mailbox_end_utc": "2001-12-14T16:11:23Z",
+      "days_before_end": 716,
+      "recent": false,
+      "subject": "Valero 8018 and 1394",
+      "from": "howard.camp@enron.com",
+      "from_label": "Howard B Camp",
+      "thread_length": 2,
+      "processes": [
+        "deal-pathing"
+      ],
+      "quote": {
+        "id": "batch-000:s1",
+        "kind": "stall",
+        "message_id": "corpus/farmer-d/logistics/626.",
+        "start": 791,
+        "end": 818,
+        "raw_text": "What is the status of this?",
+        "match": "exact",
+        "segment": "own",
+        "field": "body",
+        "sender": "howard.camp@enron.com",
+        "sender_label": "Howard B Camp",
+        "date_utc": "1999-12-29T10:07:00Z",
+        "stall_kind": "waiting_on_reply"
+      }
+    }
+  ],
+  "document": null
+}

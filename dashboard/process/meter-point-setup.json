@@ -1,0 +1,2215 @@
+{
+  "key": "meter-point-setup",
+  "name": "Meter and point set-up",
+  "definition": "Setting up, changing and retiring meters, pooling, receipt, delivery and storage points and their mappings in the facility and scheduling systems.",
+  "rank": 50,
+  "tier": "B",
+  "row": {
+    "rank": 50,
+    "key": "meter-point-setup",
+    "name": "Meter and point set-up",
+    "tier": "B",
+    "tier_words": "in the total: 10 or more times over 3 or more months by 2 or more staff",
+    "in_total": true,
+    "origin": "promoted",
+    "total": {
+      "v": 962,
+      "t": "$10",
+      "x": "$9.62",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "meter-point-setup"
+      }
+    },
+    "counted": {
+      "v": 385,
+      "t": "$4",
+      "x": "$3.85",
+      "k": "counted",
+      "d": {
+        "kind": "formula",
+        "key": "meter-point-setup"
+      }
+    },
+    "estimated": {
+      "v": 577,
+      "t": "$6",
+      "x": "$5.77",
+      "k": "estimated",
+      "d": {
+        "kind": "formula",
+        "key": "meter-point-setup"
+      }
+    },
+    "low": {
+      "v": 674,
+      "t": "$7",
+      "x": "$6.74",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "meter-point-setup"
+      }
+    },
+    "high": {
+      "v": 1683,
+      "t": "$17",
+      "x": "$16.83",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "meter-point-setup"
+      }
+    },
+    "today": {
+      "v": 2248,
+      "t": "$22",
+      "x": "$22.48",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "meter-point-setup"
+      }
+    },
+    "hours": {
+      "v": 11,
+      "t": "0.1",
+      "x": "0.11 hours",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "meter-point-setup"
+      }
+    },
+    "hours_today": {
+      "v": 26,
+      "t": "0.3",
+      "x": "0.26 hours",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "meter-point-setup"
+      }
+    },
+    "occurrences": {
+      "v": 11,
+      "t": "11 times",
+      "d": {
+        "kind": "occurrences",
+        "key": "meter-point-setup"
+      }
+    },
+    "shared_occurrences": 0,
+    "active_months": {
+      "v": 7,
+      "t": "7 active months",
+      "d": {
+        "kind": "months",
+        "key": "meter-point-setup"
+      }
+    },
+    "span_days": 658,
+    "first_utc": "2000-02-08T15:28:00Z",
+    "last_utc": "2001-11-26T22:27:25Z",
+    "messages": {
+      "v": 14,
+      "t": "14 emails",
+      "d": {
+        "kind": "occurrences",
+        "key": "meter-point-setup"
+      }
+    },
+    "threads": 11,
+    "mailboxes": [
+      {
+        "key": "farmer-d",
+        "n": 12,
+        "pct": 86
+      },
+      {
+        "key": "lokay-m",
+        "n": 2,
+        "pct": 14
+      }
+    ],
+    "top_mailbox": "farmer-d",
+    "top_pct": 86,
+    "one_mailbox": false,
+    "seen_in": "Seen in: 2 mailboxes",
+    "staff": {
+      "v": 38,
+      "t": "38 staff",
+      "d": {
+        "kind": "participants",
+        "key": "meter-point-setup",
+        "filter": "staff"
+      }
+    },
+    "writers": {
+      "v": 13,
+      "t": "13",
+      "d": {
+        "kind": "participants",
+        "key": "meter-point-setup",
+        "filter": "writers"
+      }
+    },
+    "copied": {
+      "v": 25,
+      "t": "25",
+      "d": {
+        "kind": "participants",
+        "key": "meter-point-setup",
+        "filter": "copied"
+      }
+    },
+    "estimate": {
+      "low": 10,
+      "mid": 20,
+      "high": 45,
+      "automatable_pct": 40,
+      "basis_words": "worked out from the steps the emails show",
+      "source": "model"
+    },
+    "stall_label": "A forwarded spreadsheet of meters arrived without clear instructions, and the recipient…",
+    "stall_summary": "A forwarded spreadsheet of meters arrived without clear instructions, and the recipient could not tell what was being asked before passing it on for State and County details.",
+    "stall_kind": "handoff_confusion",
+    "stall_quotes": {
+      "v": 1,
+      "t": "1 stall quote",
+      "d": {
+        "kind": "stalls",
+        "key": "meter-point-setup"
+      }
+    },
+    "fix": "A standard set-up request form capturing point type, pipeline, zone, mapping, State and County, effective date and approver, validated against the facility master before entry…",
+    "document": null,
+    "status_line": "Not drafted: $10 a month is under the $85 drafting line",
+    "chasers": {
+      "v": 1,
+      "t": "1 chaser",
+      "d": {
+        "kind": "actions",
+        "key": "meter-point-setup",
+        "type": "chaser"
+      }
+    },
+    "stall_count": {
+      "v": 1,
+      "t": "1",
+      "d": {
+        "kind": "stalls",
+        "key": "meter-point-setup",
+        "stall_kind": "handoff_confusion"
+      }
+    },
+    "loops": {
+      "v": 1,
+      "t": "1 open loop",
+      "d": {
+        "kind": "loops",
+        "key": "meter-point-setup"
+      }
+    },
+    "loops_recent": {
+      "v": 0,
+      "t": "0",
+      "d": {
+        "kind": "loops",
+        "key": "meter-point-setup",
+        "recent": true
+      }
+    },
+    "claims": {
+      "v": 2,
+      "t": "2 claims",
+      "d": {
+        "kind": "claims",
+        "key": "meter-point-setup"
+      }
+    },
+    "conflicts": {
+      "v": 0,
+      "t": "0 conflicts",
+      "d": {
+        "kind": "claims",
+        "key": "meter-point-setup"
+      }
+    },
+    "reply_gap": null,
+    "last_three_months_share": {
+      "v": 3,
+      "t": "3 of 11",
+      "d": {
+        "kind": "occurrences",
+        "key": "meter-point-setup"
+      }
+    },
+    "flags": []
+  },
+  "synthesis": {
+    "description": "A trader, scheduler or pipeline contact asks the data or facility team to set up new pooling, storage or delivery points and combinations, re-map a zone, change a pipe code, zero confirmed nominations or remove meters from an estimate. The facility team enters the change in Global Facilities or the scheduling system, sometimes only after authorization from the desk lead, and confirms it back, often naming who is assigned the meter. Some rounds need extra data gathered first, such as State and County details for a list of meters.",
+    "steps": [
+      "A requester emails a list of points, meters or mappings to create, change or retire.",
+      "Missing reference data, such as State and County for listed meters, is gathered from colleagues.",
+      "Where needed, the change is authorized by the responsible desk lead.",
+      "The facility team sets up or changes the record in Global Facilities or the scheduling system.",
+      "Related records are adjusted, such as deferred delivery points, nominations or estimates.",
+      "The team confirms the set-up and names the person assigned to the meter."
+    ],
+    "approach": "A standard set-up request form capturing point type, pipeline, zone, mapping, State and County, effective date and approver, validated against the facility master before entry, with an automatic confirmation naming the assigned scheduler.",
+    "rationale": "Requests arrive as free-text lists of differing shape and sometimes lack the data needed to set up a point. A fixed request layout gets complete, approved requests to the facility team the first time and makes entry largely mechanical.",
+    "artifact_type": "template"
+  },
+  "formula": {
+    "counted": "11 occ over 658 d = 21.62 mo; email: 3 short x2 + 3 medium x6 + 2 long x15 + 5 fwd x2 + 1 chaser x3 + 56 read x1 = 123.00 min = 5.69 min/mo; automatable 60/40/30/80/100/50% = 58.80 min = 2.72 min/mo",
+    "estimated": "11.00 occ x 20 min/occ (estimate, mid of 10-45, basis inferred, 7 quotes from 7 occurrences) = 220.00 min = 10.18 min/mo; automatable 40% (estimate) = 4.07 min/mo; at the low end 10 min/occ = $6.74/mo, at the high end 45 min/occ = $16.83/mo (the row's automatable total)",
+    "total": "today 15.87 min/mo = 0.26 h/mo = $22.48/mo (email 5.69 min/mo = $8.06 + work 10.18 min/mo = $14.42); automatable 6.79 min/mo = 0.11 h/mo = $9.62/mo (counted email 2.72 min/mo = $3.85 + estimated work 4.07 min/mo = $5.77)"
+  },
+  "window": {
+    "first_utc": "2000-02-08T15:28:00Z",
+    "last_utc": "2001-11-26T22:27:25Z",
+    "span_days": 658,
+    "months_x100": 2162,
+    "active_months": 7,
+    "undated_occurrences": 0
+  },
+  "months": 2162,
+  "occurrence_share_x100": 1100,
+  "actions": {
+    "priced": {
+      "authored_short": 3,
+      "authored_medium": 3,
+      "authored_long": 2,
+      "forward": 5,
+      "chaser": 1,
+      "read": 56
+    },
+    "unpriced": {
+      "authored_short": 0,
+      "authored_medium": 0,
+      "authored_long": 0,
+      "forward": 0,
+      "chaser": 0,
+      "read": 0
+    }
+  },
+  "action_table": [
+    {
+      "type": "authored_short",
+      "words": "short emails written",
+      "count": {
+        "v": 3,
+        "t": "3",
+        "d": {
+          "kind": "actions",
+          "key": "meter-point-setup",
+          "type": "authored_short"
+        }
+      },
+      "minutes_each": 2,
+      "minutes": "6.00",
+      "automatable_pct": 60,
+      "automatable_minutes": "3.60"
+    },
+    {
+      "type": "authored_medium",
+      "words": "medium emails written",
+      "count": {
+        "v": 3,
+        "t": "3",
+        "d": {
+          "kind": "actions",
+          "key": "meter-point-setup",
+          "type": "authored_medium"
+        }
+      },
+      "minutes_each": 6,
+      "minutes": "18.00",
+      "automatable_pct": 40,
+      "automatable_minutes": "7.20"
+    },
+    {
+      "type": "authored_long",
+      "words": "long emails written",
+      "count": {
+        "v": 2,
+        "t": "2",
+        "d": {
+          "kind": "actions",
+          "key": "meter-point-setup",
+          "type": "authored_long"
+        }
+      },
+      "minutes_each": 15,
+      "minutes": "30.00",
+      "automatable_pct": 30,
+      "automatable_minutes": "9.00"
+    },
+    {
+      "type": "forward",
+      "words": "forwards",
+      "count": {
+        "v": 5,
+        "t": "5",
+        "d": {
+          "kind": "actions",
+          "key": "meter-point-setup",
+          "type": "forward"
+        }
+      },
+      "minutes_each": 2,
+      "minutes": "10.00",
+      "automatable_pct": 80,
+      "automatable_minutes": "8.00"
+    },
+    {
+      "type": "chaser",
+      "words": "chasers",
+      "count": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "actions",
+          "key": "meter-point-setup",
+          "type": "chaser"
+        }
+      },
+      "minutes_each": 3,
+      "minutes": "3.00",
+      "automatable_pct": 100,
+      "automatable_minutes": "3.00"
+    },
+    {
+      "type": "read",
+      "words": "reads, one per addressee",
+      "count": {
+        "v": 56,
+        "t": "56",
+        "d": {
+          "kind": "actions",
+          "key": "meter-point-setup",
+          "type": "read"
+        }
+      },
+      "minutes_each": 1,
+      "minutes": "56.00",
+      "automatable_pct": 50,
+      "automatable_minutes": "28.00"
+    }
+  ],
+  "email": {
+    "today_x100": 12300,
+    "automatable_x100": 5880,
+    "per_month_today_x100": 569,
+    "per_month_automatable_x100": 272
+  },
+  "work": {
+    "per_month_today_x100": 1018,
+    "per_month_automatable_x100": 407,
+    "low_cents": 289,
+    "high_cents": 1298
+  },
+  "estimate_quotes": [
+    {
+      "id": "batch-080:e0",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/inbox/52.",
+      "start": 568,
+      "end": 620,
+      "raw_text": "Please set up the following points and combinations.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2001-11-26T22:27:25Z"
+    },
+    {
+      "id": "batch-071:e13",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/inbox/14.",
+      "start": 1504,
+      "end": 1598,
+      "raw_text": "Please set up the corresponding deferred delivery points for the following new storage points:",
+      "match": "exact",
+      "segment": "quoted",
+      "field": "body",
+      "sender": "kimberly.watson@enron.com",
+      "sender_label": "Kimberly Watson",
+      "date_utc": "2001-10-23T22:27:51Z"
+    },
+    {
+      "id": "batch-012:e11",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1110.",
+      "start": 635,
+      "end": 710,
+      "raw_text": "Please re-map HPL Zone 4 from A/S East Beaumont to A/S East Beaumont Offer.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "david.baumbach@enron.com",
+      "sender_label": "David Baumbach",
+      "date_utc": "2000-05-15T11:01:00Z"
+    },
+    {
+      "id": "batch-061:e21",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/82.",
+      "start": 558,
+      "end": 632,
+      "raw_text": "Per authorization fromDaren Farmer, I have changed pipe code PGEV to PGTT.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "marlene.hilliard@enron.com",
+      "sender_label": "Marlene Hilliard",
+      "date_utc": "2001-08-10T21:35:04Z"
+    },
+    {
+      "id": "batch-011:e32",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1091.",
+      "start": 1849,
+      "end": 1920,
+      "raw_text": "The below Houston Pipe Line meter has been set up in Global Facilities.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "donna.consemiu@enron.com",
+      "sender_label": "Donna Consemiu",
+      "date_utc": "2000-05-04T17:15:00Z"
+    },
+    {
+      "id": "batch-026:e10",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1439.",
+      "start": 1104,
+      "end": 1175,
+      "raw_text": "Please change the confirmed noms to zero for all contracts that have be",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "clem.cernosek@enron.com",
+      "sender_label": "Clem Cernosek",
+      "date_utc": "2000-10-03T17:19:00Z"
+    },
+    {
+      "id": "batch-071:e12",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/38.",
+      "start": 974,
+      "end": 1099,
+      "raw_text": "Will you please review this spreadsheet and provide the State and County information that you may have for the listed meters.",
+      "match": "exact",
+      "segment": "quoted",
+      "field": "body",
+      "sender": "michael.olsen@enron.com",
+      "sender_label": "Michael Olsen",
+      "date_utc": "2001-10-23T21:52:12Z"
+    }
+  ],
+  "estimate_check": {
+    "occurrences_cited": 7,
+    "senders_cited": 7
+  },
+  "monthly": [
+    {
+      "month": "2000-02",
+      "occurrences": {
+        "v": 3,
+        "t": "3",
+        "d": {
+          "kind": "occurrences",
+          "key": "meter-point-setup",
+          "month": "2000-02"
+        }
+      },
+      "messages": 3,
+      "ids": [
+        "t-178abf2f8425-o1",
+        "t-8453a50eab4d-o1",
+        "t-8c1e32fc6714-o1"
+      ]
+    },
+    {
+      "month": "2000-05",
+      "occurrences": {
+        "v": 2,
+        "t": "2",
+        "d": {
+          "kind": "occurrences",
+          "key": "meter-point-setup",
+          "month": "2000-05"
+        }
+      },
+      "messages": 2,
+      "ids": [
+        "t-9ee2afe07ead-o1",
+        "t-c88bcbca694b-o1"
+      ]
+    },
+    {
+      "month": "2000-09",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "meter-point-setup",
+          "month": "2000-09"
+        }
+      },
+      "messages": 2,
+      "ids": [
+        "t-b0a76edee1b2-o1"
+      ]
+    },
+    {
+      "month": "2000-10",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "meter-point-setup",
+          "month": "2000-10"
+        }
+      },
+      "messages": 3,
+      "ids": [
+        "t-00e557f56a87-o1"
+      ]
+    },
+    {
+      "month": "2001-08",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "meter-point-setup",
+          "month": "2001-08"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-f7de19242403-o1"
+      ]
+    },
+    {
+      "month": "2001-10",
+      "occurrences": {
+        "v": 2,
+        "t": "2",
+        "d": {
+          "kind": "occurrences",
+          "key": "meter-point-setup",
+          "month": "2001-10"
+        }
+      },
+      "messages": 2,
+      "ids": [
+        "t-71c29b23faab-o1",
+        "t-c3e0c9383e49-o1"
+      ]
+    },
+    {
+      "month": "2001-11",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "meter-point-setup",
+          "month": "2001-11"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-4f93738358ea-o1"
+      ]
+    }
+  ],
+  "occurrences": [
+    {
+      "id": "t-00e557f56a87-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1439.",
+        "corpus/farmer-d/logistics/1442.",
+        "corpus/farmer-d/logistics/1444."
+      ],
+      "date_utc": "2000-10-03T17:19:00Z"
+    },
+    {
+      "id": "t-178abf2f8425-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/851."
+      ],
+      "date_utc": "2000-02-28T14:33:00Z"
+    },
+    {
+      "id": "t-4f93738358ea-o1",
+      "message_ids": [
+        "corpus/lokay-m/inbox/52."
+      ],
+      "date_utc": "2001-11-26T22:27:25Z"
+    },
+    {
+      "id": "t-71c29b23faab-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/38."
+      ],
+      "date_utc": "2001-10-23T21:52:12Z"
+    },
+    {
+      "id": "t-8453a50eab4d-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/853."
+      ],
+      "date_utc": "2000-02-28T16:43:00Z"
+    },
+    {
+      "id": "t-8c1e32fc6714-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/768."
+      ],
+      "date_utc": "2000-02-08T15:28:00Z"
+    },
+    {
+      "id": "t-9ee2afe07ead-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1091."
+      ],
+      "date_utc": "2000-05-04T17:15:00Z"
+    },
+    {
+      "id": "t-b0a76edee1b2-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1396.",
+        "corpus/farmer-d/logistics/1430."
+      ],
+      "date_utc": "2000-09-12T08:52:00Z"
+    },
+    {
+      "id": "t-c3e0c9383e49-o1",
+      "message_ids": [
+        "corpus/lokay-m/inbox/14."
+      ],
+      "date_utc": "2001-10-23T22:27:51Z"
+    },
+    {
+      "id": "t-c88bcbca694b-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1110."
+      ],
+      "date_utc": "2000-05-15T11:01:00Z"
+    },
+    {
+      "id": "t-f7de19242403-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/82."
+      ],
+      "date_utc": "2001-08-10T21:35:04Z"
+    }
+  ],
+  "undated_occurrences": [],
+  "action_sources": [
+    {
+      "message_id": "corpus/farmer-d/logistics/1091.",
+      "type": "authored_medium",
+      "person": "donna.consemiu@enron.com",
+      "address": "donna.consemiu@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1091.",
+      "type": "read",
+      "person": "clem.cernosek@enron.com",
+      "address": "clem.cernosek@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1091.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1091.",
+      "type": "read",
+      "person": "gary.hanks@enron.com",
+      "address": "gary.hanks@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1091.",
+      "type": "read",
+      "person": "mary.cook@enron.com",
+      "address": "mary.cook@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1091.",
+      "type": "read",
+      "person": "molly.carriere@enron.com",
+      "address": "molly.carriere@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1110.",
+      "type": "authored_short",
+      "person": "david.baumbach@enron.com",
+      "address": "david.baumbach@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1110.",
+      "type": "read",
+      "person": "bryan.hull@enron.com",
+      "address": "bryan.hull@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1110.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1110.",
+      "type": "read",
+      "person": "imelda.frayre@enron.com",
+      "address": "imelda.frayre@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1110.",
+      "type": "read",
+      "person": "d..winfree@enron.com",
+      "address": "o'neal.winfree@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1396.",
+      "type": "authored_short",
+      "person": "pat.clynes@enron.com",
+      "address": "pat.clynes@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1396.",
+      "type": "read",
+      "person": "aimee.lannou@enron.com",
+      "address": "aimee.lannou@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1396.",
+      "type": "read",
+      "person": "carlos.rodriguez@enron.com",
+      "address": "carlos.rodriguez@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1396.",
+      "type": "read",
+      "person": "jackie.young@enron.com",
+      "address": "jackie.young@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1396.",
+      "type": "read",
+      "person": "robert.lloyd@enron.com",
+      "address": "robert.lloyd@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1396.",
+      "type": "read",
+      "person": "tom.acton@enron.com",
+      "address": "tom.acton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1430.",
+      "type": "forward",
+      "person": "jackie.young@enron.com",
+      "address": "jackie.young@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1430.",
+      "type": "read",
+      "person": "aimee.lannou@enron.com",
+      "address": "aimee.lannou@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1430.",
+      "type": "read",
+      "person": "carlos.rodriguez@enron.com",
+      "address": "carlos.rodriguez@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1430.",
+      "type": "read",
+      "person": "robert.lloyd@enron.com",
+      "address": "robert.lloyd@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1430.",
+      "type": "read",
+      "person": "sabrae.zajac@enron.com",
+      "address": "sabrae.zajac@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1430.",
+      "type": "read",
+      "person": "tom.acton@enron.com",
+      "address": "tom.acton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1439.",
+      "type": "authored_long",
+      "person": "clem.cernosek@enron.com",
+      "address": "clem.cernosek@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1439.",
+      "type": "read",
+      "person": "donna.consemiu@enron.com",
+      "address": "donna.consemiu@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1439.",
+      "type": "read",
+      "person": "jackie.young@enron.com",
+      "address": "jackie.young@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1439.",
+      "type": "read",
+      "person": "michael.eiben@enron.com",
+      "address": "michael.eiben@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1439.",
+      "type": "read",
+      "person": "romeo.d'souza@enron.com",
+      "address": "romeo.d'souza@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1439.",
+      "type": "read",
+      "person": "sherlyn.schumack@enron.com",
+      "address": "sherlyn.schumack@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1442.",
+      "type": "authored_medium",
+      "person": "howard.camp@enron.com",
+      "address": "howard.camp@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1442.",
+      "type": "read",
+      "person": "donna.consemiu@enron.com",
+      "address": "donna.consemiu@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1442.",
+      "type": "read",
+      "person": "jackie.young@enron.com",
+      "address": "jackie.young@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1442.",
+      "type": "read",
+      "person": "michael.eiben@enron.com",
+      "address": "michael.eiben@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1442.",
+      "type": "read",
+      "person": "rita.wynne@enron.com",
+      "address": "rita.wynne@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1442.",
+      "type": "read",
+      "person": "sherlyn.schumack@enron.com",
+      "address": "sherlyn.schumack@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1444.",
+      "type": "chaser",
+      "person": "howard.camp@enron.com",
+      "address": "howard.camp@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1444.",
+      "type": "read",
+      "person": "donna.consemiu@enron.com",
+      "address": "donna.consemiu@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1444.",
+      "type": "read",
+      "person": "jackie.young@enron.com",
+      "address": "jackie.young@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1444.",
+      "type": "read",
+      "person": "mary.poorman@enron.com",
+      "address": "mary.poorman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1444.",
+      "type": "read",
+      "person": "rita.wynne@enron.com",
+      "address": "rita.wynne@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1444.",
+      "type": "read",
+      "person": "sherlyn.schumack@enron.com",
+      "address": "sherlyn.schumack@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/38.",
+      "type": "forward",
+      "person": "michael.olsen@enron.com",
+      "address": "michael.olsen@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/38.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "j..farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/768.",
+      "type": "authored_medium",
+      "person": "george.grant@enron.com",
+      "address": "george.grant@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/768.",
+      "type": "read",
+      "person": "aimee.lannou@enron.com",
+      "address": "aimee.lannou@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/768.",
+      "type": "read",
+      "person": "clem.cernosek@enron.com",
+      "address": "clem.cernosek@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/768.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/768.",
+      "type": "read",
+      "person": "gary.hanks@enron.com",
+      "address": "gary.hanks@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/768.",
+      "type": "read",
+      "person": "pat.clynes@enron.com",
+      "address": "pat.clynes@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/82.",
+      "type": "forward",
+      "person": "marlene.hilliard@enron.com",
+      "address": "marlene.hilliard@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/851.",
+      "type": "forward",
+      "person": "gary.hanks@enron.com",
+      "address": "gary.hanks@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/851.",
+      "type": "read",
+      "person": "aimee.lannou@enron.com",
+      "address": "aimee.lannou@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/851.",
+      "type": "read",
+      "person": "clem.cernosek@enron.com",
+      "address": "clem.cernosek@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/851.",
+      "type": "read",
+      "person": "david.stadnick@enron.com",
+      "address": "david.stadnick@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/851.",
+      "type": "read",
+      "person": "pat.clynes@enron.com",
+      "address": "pat.clynes@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/851.",
+      "type": "read",
+      "person": "steve.wood@enron.com",
+      "address": "steve.wood@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/853.",
+      "type": "authored_short",
+      "person": "robert.lloyd@enron.com",
+      "address": "robert.lloyd@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/853.",
+      "type": "read",
+      "person": "carlos.rodriguez@enron.com",
+      "address": "carlos.rodriguez@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/853.",
+      "type": "read",
+      "person": "charlotte.hawkins@enron.com",
+      "address": "charlotte.hawkins@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/853.",
+      "type": "read",
+      "person": "kimberly.vaughn@enron.com",
+      "address": "kimberly.vaughn@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/853.",
+      "type": "read",
+      "person": "pat.clynes@enron.com",
+      "address": "pat.clynes@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/853.",
+      "type": "read",
+      "person": "stella.morris@enron.com",
+      "address": "stella.morris@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/14.",
+      "type": "forward",
+      "person": "kimberly.watson@enron.com",
+      "address": "kimberly.watson@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/14.",
+      "type": "read",
+      "person": "lorraine.lindberg@enron.com",
+      "address": "lorraine.lindberg@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/14.",
+      "type": "read",
+      "person": "mark.mcconnell@enron.com",
+      "address": "mark.mcconnell@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/14.",
+      "type": "read",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/14.",
+      "type": "read",
+      "person": "paul.y'barbo@enron.com",
+      "address": "paul.y'barbo@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/14.",
+      "type": "read",
+      "person": "tk.lohman@enron.com",
+      "address": "tk.lohman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/52.",
+      "type": "authored_long",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/inbox/52.",
+      "type": "read",
+      "person": "kevin.meredith@enron.com",
+      "address": "kevin.meredith@enron.com",
+      "priced": true,
+      "share_x100": 100
+    }
+  ],
+  "participants": [
+    {
+      "email": "jackie.young@enron.com",
+      "name": "Jackie Young",
+      "label": "Jackie Young",
+      "kind": "person",
+      "addresses": [
+        "jackie.young@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 1,
+      "chasers": 0,
+      "reads": 4,
+      "wrote": true
+    },
+    {
+      "email": "aimee.lannou@enron.com",
+      "name": "Aimee Lannou",
+      "label": "Aimee Lannou",
+      "kind": "person",
+      "addresses": [
+        "aimee.lannou@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 4,
+      "wrote": false
+    },
+    {
+      "email": "clem.cernosek@enron.com",
+      "name": "Clem Cernosek",
+      "label": "Clem Cernosek",
+      "kind": "person",
+      "addresses": [
+        "clem.cernosek@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 3,
+      "wrote": true
+    },
+    {
+      "email": "daren.farmer@enron.com",
+      "name": "Daren J Farmer",
+      "label": "Daren J Farmer",
+      "kind": "person",
+      "addresses": [
+        "daren.farmer@enron.com",
+        "j..farmer@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 4,
+      "wrote": false
+    },
+    {
+      "email": "donna.consemiu@enron.com",
+      "name": "Donna Consemiu",
+      "label": "Donna Consemiu",
+      "kind": "person",
+      "addresses": [
+        "donna.consemiu@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 3,
+      "wrote": true
+    },
+    {
+      "email": "pat.clynes@enron.com",
+      "name": "Pat Clynes",
+      "label": "Pat Clynes",
+      "kind": "person",
+      "addresses": [
+        "pat.clynes@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 3,
+      "wrote": true
+    },
+    {
+      "email": "carlos.rodriguez@enron.com",
+      "name": "Carlos J Rodriguez",
+      "label": "Carlos J Rodriguez",
+      "kind": "person",
+      "addresses": [
+        "carlos.rodriguez@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 3,
+      "wrote": false
+    },
+    {
+      "email": "gary.hanks@enron.com",
+      "name": "Gary A Hanks",
+      "label": "Gary A Hanks",
+      "kind": "person",
+      "addresses": [
+        "gary.hanks@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 1,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": true
+    },
+    {
+      "email": "robert.lloyd@enron.com",
+      "name": "Robert E Lloyd",
+      "label": "Robert E Lloyd",
+      "kind": "person",
+      "addresses": [
+        "robert.lloyd@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": true
+    },
+    {
+      "email": "sherlyn.schumack@enron.com",
+      "name": "Sherlyn Schumack",
+      "label": "Sherlyn Schumack",
+      "kind": "person",
+      "addresses": [
+        "sherlyn.schumack@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 3,
+      "wrote": false
+    },
+    {
+      "email": "howard.camp@enron.com",
+      "name": "Howard B Camp",
+      "label": "Howard B Camp",
+      "kind": "person",
+      "addresses": [
+        "howard.camp@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 1,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "michael.eiben@enron.com",
+      "name": "Michael Eiben",
+      "label": "Michael Eiben",
+      "kind": "person",
+      "addresses": [
+        "michael.eiben@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "michelle.lokay@enron.com",
+      "name": "Lokay, Michelle",
+      "label": "Michelle Lokay",
+      "kind": "person",
+      "addresses": [
+        "michelle.lokay@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": true
+    },
+    {
+      "email": "rita.wynne@enron.com",
+      "name": "Rita Wynne",
+      "label": "Rita Wynne",
+      "kind": "person",
+      "addresses": [
+        "rita.wynne@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "tom.acton@enron.com",
+      "name": "Tom Acton",
+      "label": "Tom Acton",
+      "kind": "person",
+      "addresses": [
+        "tom.acton@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "bryan.hull@enron.com",
+      "name": "Bryan Hull",
+      "label": "Bryan Hull",
+      "kind": "person",
+      "addresses": [
+        "bryan.hull@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "charlotte.hawkins@enron.com",
+      "name": "Charlotte Hawkins",
+      "label": "Charlotte Hawkins",
+      "kind": "person",
+      "addresses": [
+        "charlotte.hawkins@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "d..winfree@enron.com",
+      "name": "Winfree, O'Neal D.",
+      "label": "O'Neal D. Winfree",
+      "kind": "person",
+      "addresses": [
+        "o'neal.winfree@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "david.baumbach@enron.com",
+      "name": "David Baumbach",
+      "label": "David Baumbach",
+      "kind": "person",
+      "addresses": [
+        "david.baumbach@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "david.stadnick@enron.com",
+      "name": "David Stadnick",
+      "label": "David Stadnick",
+      "kind": "person",
+      "addresses": [
+        "david.stadnick@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "george.grant@enron.com",
+      "name": "George Grant",
+      "label": "George Grant",
+      "kind": "person",
+      "addresses": [
+        "george.grant@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "imelda.frayre@enron.com",
+      "name": null,
+      "label": "imelda.frayre@enron.com",
+      "kind": "person",
+      "addresses": [
+        "imelda.frayre@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "kevin.meredith@enron.com",
+      "name": null,
+      "label": "kevin.meredith@enron.com",
+      "kind": "person",
+      "addresses": [
+        "kevin.meredith@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "kimberly.vaughn@enron.com",
+      "name": "Kimberly Vaughn",
+      "label": "Kimberly Vaughn",
+      "kind": "person",
+      "addresses": [
+        "kimberly.vaughn@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "kimberly.watson@enron.com",
+      "name": "Watson, Kimberly",
+      "label": "Kimberly Watson",
+      "kind": "person",
+      "addresses": [
+        "kimberly.watson@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 1,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "lorraine.lindberg@enron.com",
+      "name": "Lindberg, Lorraine",
+      "label": "Lorraine Lindberg",
+      "kind": "person",
+      "addresses": [
+        "lorraine.lindberg@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "mark.mcconnell@enron.com",
+      "name": null,
+      "label": "mark.mcconnell@enron.com",
+      "kind": "person",
+      "addresses": [
+        "mark.mcconnell@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "marlene.hilliard@enron.com",
+      "name": "Marlene Hilliard",
+      "label": "Marlene Hilliard",
+      "kind": "person",
+      "addresses": [
+        "marlene.hilliard@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 1,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "mary.cook@enron.com",
+      "name": null,
+      "label": "mary.cook@enron.com",
+      "kind": "person",
+      "addresses": [
+        "mary.cook@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "mary.poorman@enron.com",
+      "name": "Mary Poorman",
+      "label": "Mary Poorman",
+      "kind": "person",
+      "addresses": [
+        "mary.poorman@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "michael.olsen@enron.com",
+      "name": "Michael Olsen",
+      "label": "Michael Olsen",
+      "kind": "person",
+      "addresses": [
+        "michael.olsen@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 1,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "molly.carriere@enron.com",
+      "name": null,
+      "label": "molly.carriere@enron.com",
+      "kind": "person",
+      "addresses": [
+        "molly.carriere@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "paul.y'barbo@enron.com",
+      "name": null,
+      "label": "paul.y'barbo@enron.com",
+      "kind": "person",
+      "addresses": [
+        "paul.y'barbo@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "romeo.d'souza@enron.com",
+      "name": "Romeo D'Souza",
+      "label": "Romeo D'Souza",
+      "kind": "person",
+      "addresses": [
+        "romeo.d'souza@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "sabrae.zajac@enron.com",
+      "name": "Sabrae Zajac",
+      "label": "Sabrae Zajac",
+      "kind": "person",
+      "addresses": [
+        "sabrae.zajac@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "stella.morris@enron.com",
+      "name": "Stella L Morris",
+      "label": "Stella L Morris",
+      "kind": "person",
+      "addresses": [
+        "stella.morris@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "steve.wood@enron.com",
+      "name": "Steve Wood",
+      "label": "Steve Wood",
+      "kind": "person",
+      "addresses": [
+        "steve.wood@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "tk.lohman@enron.com",
+      "name": null,
+      "label": "tk.lohman@enron.com",
+      "kind": "person",
+      "addresses": [
+        "tk.lohman@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    }
+  ],
+  "stalls_by_kind": [
+    {
+      "kind": "handoff_confusion",
+      "words": "1 handoff confusion",
+      "count": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "stalls",
+          "key": "meter-point-setup",
+          "stall_kind": "handoff_confusion"
+        }
+      }
+    }
+  ],
+  "stall_groups": [
+    {
+      "summary": "A forwarded spreadsheet of meters arrived without clear instructions, and the recipient could not tell what was being asked before passing it on for State and County details.",
+      "quotes": [
+        {
+          "id": "batch-071:s1",
+          "kind": "stall",
+          "message_id": "corpus/farmer-d/logistics/38.",
+          "start": 556,
+          "end": 597,
+          "raw_text": "I cant figure out what to make of this...",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "michael.olsen@enron.com",
+          "sender_label": "Michael Olsen",
+          "date_utc": "2001-10-23T21:52:12Z",
+          "stall_kind": "handoff_confusion"
+        },
+        {
+          "id": "batch-071:e12",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/38.",
+          "start": 974,
+          "end": 1099,
+          "raw_text": "Will you please review this spreadsheet and provide the State and County information that you may have for the listed meters.",
+          "match": "exact",
+          "segment": "quoted",
+          "field": "body",
+          "sender": "michael.olsen@enron.com",
+          "sender_label": "Michael Olsen",
+          "date_utc": "2001-10-23T21:52:12Z"
+        }
+      ]
+    }
+  ],
+  "stall_quotes": [
+    {
+      "id": "batch-071:s1",
+      "kind": "stall",
+      "message_id": "corpus/farmer-d/logistics/38.",
+      "start": 556,
+      "end": 597,
+      "raw_text": "I cant figure out what to make of this...",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michael.olsen@enron.com",
+      "sender_label": "Michael Olsen",
+      "date_utc": "2001-10-23T21:52:12Z",
+      "stall_kind": "handoff_confusion"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "batch-003:e38",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/768.",
+      "start": 864,
+      "end": 920,
+      "raw_text": "there should not be any measurement taking place on HPL.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "george.grant@enron.com",
+      "sender_label": "George Grant",
+      "date_utc": "2000-02-08T15:28:00Z"
+    },
+    {
+      "id": "batch-005:e27",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/851.",
+      "start": 968,
+      "end": 1043,
+      "raw_text": "Please have Steve remove the meters in the following list from the estimate",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "gary.hanks@enron.com",
+      "sender_label": "Gary A Hanks",
+      "date_utc": "2000-02-28T14:33:00Z"
+    },
+    {
+      "id": "batch-005:e29",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/853.",
+      "start": 1420,
+      "end": 1462,
+      "raw_text": "The two new pooling points are as follows:",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "robert.lloyd@enron.com",
+      "sender_label": "Robert E Lloyd",
+      "date_utc": "2000-02-28T16:43:00Z"
+    },
+    {
+      "id": "batch-011:e32",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1091.",
+      "start": 1849,
+      "end": 1920,
+      "raw_text": "The below Houston Pipe Line meter has been set up in Global Facilities.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "donna.consemiu@enron.com",
+      "sender_label": "Donna Consemiu",
+      "date_utc": "2000-05-04T17:15:00Z"
+    },
+    {
+      "id": "batch-012:e11",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1110.",
+      "start": 635,
+      "end": 710,
+      "raw_text": "Please re-map HPL Zone 4 from A/S East Beaumont to A/S East Beaumont Offer.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "david.baumbach@enron.com",
+      "sender_label": "David Baumbach",
+      "date_utc": "2000-05-15T11:01:00Z"
+    },
+    {
+      "id": "batch-023:e5",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1396.",
+      "start": 1443,
+      "end": 1479,
+      "raw_text": "Jackie Young is assigned this meter.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "pat.clynes@enron.com",
+      "sender_label": "Pat Clynes",
+      "date_utc": "2000-09-12T08:52:00Z"
+    },
+    {
+      "id": "batch-023:e6",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1430.",
+      "start": 1472,
+      "end": 1543,
+      "raw_text": "Tetco Enerfin's new meter 98-0439 will not be operable until October 2,",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "jackie.young@enron.com",
+      "sender_label": "Jackie Young",
+      "date_utc": "2000-09-28T09:09:00Z"
+    },
+    {
+      "id": "batch-026:e10",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1439.",
+      "start": 1104,
+      "end": 1175,
+      "raw_text": "Please change the confirmed noms to zero for all contracts that have be",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "clem.cernosek@enron.com",
+      "sender_label": "Clem Cernosek",
+      "date_utc": "2000-10-03T17:19:00Z"
+    },
+    {
+      "id": "batch-026:e11",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1442.",
+      "start": 828,
+      "end": 856,
+      "raw_text": "Step # 1 has been completed.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "howard.camp@enron.com",
+      "sender_label": "Howard B Camp",
+      "date_utc": "2000-10-04T13:06:00Z"
+    },
+    {
+      "id": "batch-026:e12",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1444.",
+      "start": 874,
+      "end": 901,
+      "raw_text": "Steps 2 - 4 have been done.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "howard.camp@enron.com",
+      "sender_label": "Howard B Camp",
+      "date_utc": "2000-10-05T16:33:00Z"
+    },
+    {
+      "id": "batch-061:e21",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/82.",
+      "start": 558,
+      "end": 632,
+      "raw_text": "Per authorization fromDaren Farmer, I have changed pipe code PGEV to PGTT.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "marlene.hilliard@enron.com",
+      "sender_label": "Marlene Hilliard",
+      "date_utc": "2001-08-10T21:35:04Z"
+    },
+    {
+      "id": "batch-071:e12",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/38.",
+      "start": 974,
+      "end": 1099,
+      "raw_text": "Will you please review this spreadsheet and provide the State and County information that you may have for the listed meters.",
+      "match": "exact",
+      "segment": "quoted",
+      "field": "body",
+      "sender": "michael.olsen@enron.com",
+      "sender_label": "Michael Olsen",
+      "date_utc": "2001-10-23T21:52:12Z"
+    },
+    {
+      "id": "batch-071:e13",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/inbox/14.",
+      "start": 1504,
+      "end": 1598,
+      "raw_text": "Please set up the corresponding deferred delivery points for the following new storage points:",
+      "match": "exact",
+      "segment": "quoted",
+      "field": "body",
+      "sender": "kimberly.watson@enron.com",
+      "sender_label": "Kimberly Watson",
+      "date_utc": "2001-10-23T22:27:51Z"
+    },
+    {
+      "id": "batch-080:e0",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/inbox/52.",
+      "start": 568,
+      "end": 620,
+      "raw_text": "Please set up the following points and combinations.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2001-11-26T22:27:25Z"
+    }
+  ],
+  "chasers": [
+    "corpus/farmer-d/logistics/1444."
+  ],
+  "reply_gaps": [
+    {
+      "from": "corpus/farmer-d/logistics/1396.",
+      "to": "corpus/farmer-d/logistics/1430.",
+      "hours_x10": 3843
+    },
+    {
+      "from": "corpus/farmer-d/logistics/1439.",
+      "to": "corpus/farmer-d/logistics/1442.",
+      "hours_x10": 198
+    }
+  ],
+  "reply_gap_n": 2,
+  "median_reply_gap_h": 202,
+  "claims": [
+    {
+      "message_id": "corpus/farmer-d/logistics/1396.",
+      "person": "Jackie Young",
+      "date_utc": "2000-09-12T08:52:00Z",
+      "status": "matched",
+      "status_words": "matched to someone on the threads",
+      "name": "Jackie Young",
+      "people": [
+        "jackie.young@enron.com"
+      ],
+      "quote": {
+        "id": "batch-023:o0",
+        "kind": "claim",
+        "message_id": "corpus/farmer-d/logistics/1396.",
+        "start": 1443,
+        "end": 1479,
+        "raw_text": "Jackie Young is assigned this meter.",
+        "match": "exact",
+        "segment": "own",
+        "field": "body",
+        "sender": "pat.clynes@enron.com",
+        "sender_label": "Pat Clynes",
+        "date_utc": "2000-09-12T08:52:00Z",
+        "person": "Jackie Young"
+      }
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1430.",
+      "person": "Jackie Young",
+      "date_utc": "2000-09-28T09:09:00Z",
+      "status": "matched",
+      "status_words": "matched to someone on the threads",
+      "name": "Jackie Young",
+      "people": [
+        "jackie.young@enron.com"
+      ],
+      "quote": {
+        "id": "batch-023:o1",
+        "kind": "claim",
+        "message_id": "corpus/farmer-d/logistics/1430.",
+        "start": 1552,
+        "end": 1582,
+        "raw_text": "This meter is assisgned to me.",
+        "match": "exact",
+        "segment": "own",
+        "field": "body",
+        "sender": "jackie.young@enron.com",
+        "sender_label": "Jackie Young",
+        "date_utc": "2000-09-28T09:09:00Z",
+        "person": "Jackie Young"
+      }
+    }
+  ],
+  "conflicts": [],
+  "contradictions": [],
+  "contradictions_dropped": 0,
+  "loops": [
+    {
+      "thread_id": "t-00e557f56a87",
+      "message_id": "corpus/farmer-d/logistics/1444.",
+      "why": "chase",
+      "date_utc": "2000-10-05T16:33:00Z",
+      "mailbox": "farmer-d",
+      "mailbox_end_utc": "2001-12-14T16:11:23Z",
+      "days_before_end": 434,
+      "recent": false,
+      "subject": "Re: Tetco/HPL (Enerfin) Meter #986892",
+      "from": "howard.camp@enron.com",
+      "from_label": "Howard B Camp",
+      "thread_length": 3,
+      "processes": [
+        "meter-point-setup"
+      ],
+      "quote": null
+    }
+  ],
+  "document": null
+}

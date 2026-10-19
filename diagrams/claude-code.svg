@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 802" width="360" height="802" role="img" aria-labelledby="claude-code-title claude-code-desc" class="dg" font-family="Archivo, system-ui, sans-serif">
+<title id="claude-code-title">Inside Claude Code</title>
+<desc id="claude-code-desc">The /observe skill runs node obs.mjs run start, then prepare, then advance; each advance returns Agent calls, made in the background, and every completion calls advance again with the finished job IDs, until advance reports the run done and the skill runs serve --background --open. The five agent types, taxonomist, extractor, merger, synthesizer and drafter, each have the model, effort, tools and turn cap their file sets. Three hooks: PreToolUse on every tool keeps agents to their own files and every call away from the corpus during a run; SubagentStop checks a job output and records it; Stop blocks an early stop with the next command. The ledger keeps one state file per job and the run log records every event.</desc>
+<rect x="8" y="6" width="344" height="262" rx="4" class="orch" fill="none" stroke="#0B3C86" stroke-width="1.4" stroke-dasharray="6 4"/>
+<text x="20" y="28" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">The /observe skill: the orchestrator</text>
+<text x="20" y="45" class="s" font-size="12" fill="#3D4B5D">runs node obs.mjs and starts agents, nothing else</text>
+<rect x="24" y="60" width="150" height="28" rx="3" class="code" fill="#FFFFFF" stroke="#A9B5C3" stroke-width="1.2"/>
+<text x="36" y="79" class="m s" font-size="11.5" fill="#3D4B5D" font-family="'IBM Plex Mono', ui-monospace, Consolas, monospace">run start</text>
+<path class="arrow" d="M99 88 V94" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M95 93 L103 93 L99 100 Z" fill="#5F6D82"/>
+<rect x="24" y="100" width="150" height="28" rx="3" class="code" fill="#FFFFFF" stroke="#A9B5C3" stroke-width="1.2"/>
+<text x="36" y="119" class="m s" font-size="11.5" fill="#3D4B5D" font-family="'IBM Plex Mono', ui-monospace, Consolas, monospace">prepare</text>
+<path class="arrow" d="M99 128 V134" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M95 133 L103 133 L99 140 Z" fill="#5F6D82"/>
+<rect x="24" y="140" width="150" height="28" rx="3" class="code" fill="#FFFFFF" stroke="#A9B5C3" stroke-width="1.2"/>
+<text x="36" y="159" class="m t" font-size="13" font-weight="500" fill="#0F1B2D" font-family="'IBM Plex Mono', ui-monospace, Consolas, monospace">advance --json</text>
+<path class="arrow" d="M99 168 V182" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M95 181 L103 181 L99 188 Z" fill="#5F6D82"/>
+<rect x="24" y="188" width="150" height="28" rx="3" class="model" fill="#EDF2F9" stroke="#0B3C86" stroke-width="1.6"/>
+<text x="36" y="207" class="s" font-size="12" fill="#3D4B5D">Agent calls</text>
+<path class="arrow" d="M99 216 V224" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M95 223 L103 223 L99 230 Z" fill="#5F6D82"/>
+<rect x="24" y="230" width="150" height="28" rx="3" class="data" fill="none" stroke="#5F6D82" stroke-width="1.2" stroke-dasharray="4 3"/>
+<text x="36" y="249" class="s" font-size="12" fill="#3D4B5D">completions</text>
+<path class="arrow" d="M174 244 H202 V160 H181" fill="none" stroke="#5F6D82" stroke-width="1.4"/>
+<path class="head" d="M181 156 L181 164 L174 160 Z" fill="#5F6D82"/>
+<text x="208" y="206" class="m s" font-size="11.5" fill="#3D4B5D" font-family="'IBM Plex Mono', ui-monospace, Consolas, monospace">advance &lt;ids&gt;</text>
+<path class="arrow" d="M174 148 H208" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M207 144 L207 152 L214 148 Z" fill="#5F6D82"/>
+<text x="184" y="141" class="s" font-size="12" fill="#3D4B5D">done</text>
+<rect x="214" y="124" width="130" height="50" rx="3" class="code" fill="#FFFFFF" stroke="#A9B5C3" stroke-width="1.2"/>
+<text x="226" y="140" class="m s" font-size="11.5" fill="#3D4B5D" font-family="'IBM Plex Mono', ui-monospace, Consolas, monospace">serve</text>
+<text x="226" y="155" class="m s" font-size="11.5" fill="#3D4B5D" font-family="'IBM Plex Mono', ui-monospace, Consolas, monospace">--background</text>
+<text x="226" y="170" class="m s" font-size="11.5" fill="#3D4B5D" font-family="'IBM Plex Mono', ui-monospace, Consolas, monospace">--open</text>
+<text x="8" y="294" class="l" font-size="12.5" fill="#3D4B5D">The five agent types, as their files set them</text>
+<g class="agent" data-agent="taxonomist">
+<rect x="8" y="304" width="168" height="62" rx="3" class="model" fill="#EDF2F9" stroke="#0B3C86" stroke-width="1.6"/>
+<text x="20" y="324" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">taxonomist</text>
+<text x="20" y="342" class="s" font-size="12" fill="#3D4B5D">opus · medium effort</text>
+<text x="20" y="358" class="s" font-size="12" fill="#3D4B5D">Read, Write · 6 turns</text>
+</g>
+<g class="agent" data-agent="extractor">
+<rect x="184" y="304" width="168" height="62" rx="3" class="model" fill="#EDF2F9" stroke="#0B3C86" stroke-width="1.6"/>
+<text x="196" y="324" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">extractor</text>
+<text x="196" y="342" class="s" font-size="12" fill="#3D4B5D">sonnet · medium effort</text>
+<text x="196" y="358" class="s" font-size="12" fill="#3D4B5D">Read, Write · 16 turns</text>
+</g>
+<g class="agent" data-agent="merger">
+<rect x="8" y="376" width="168" height="62" rx="3" class="model" fill="#EDF2F9" stroke="#0B3C86" stroke-width="1.6"/>
+<text x="20" y="396" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">merger</text>
+<text x="20" y="414" class="s" font-size="12" fill="#3D4B5D">opus · medium effort</text>
+<text x="20" y="430" class="s" font-size="12" fill="#3D4B5D">Read, Write · 8 turns</text>
+</g>
+<g class="agent" data-agent="synthesizer">
+<rect x="184" y="376" width="168" height="62" rx="3" class="model" fill="#EDF2F9" stroke="#0B3C86" stroke-width="1.6"/>
+<text x="196" y="396" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">synthesizer</text>
+<text x="196" y="414" class="s" font-size="12" fill="#3D4B5D">opus · medium effort</text>
+<text x="196" y="430" class="s" font-size="12" fill="#3D4B5D">Read, Write · 8 turns</text>
+</g>
+<g class="agent" data-agent="drafter">
+<rect x="8" y="448" width="168" height="62" rx="3" class="model" fill="#EDF2F9" stroke="#0B3C86" stroke-width="1.6"/>
+<text x="20" y="468" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">drafter</text>
+<text x="20" y="486" class="s" font-size="12" fill="#3D4B5D">sonnet · medium effort</text>
+<text x="20" y="502" class="s" font-size="12" fill="#3D4B5D">Read, Write · 6 turns</text>
+</g>
+<text x="188" y="468" class="s" font-size="12" fill="#3D4B5D">Each reads only its own</text>
+<text x="188" y="484" class="s" font-size="12" fill="#3D4B5D">job’s files and writes</text>
+<text x="188" y="500" class="s" font-size="12" fill="#3D4B5D">one output.</text>
+<text x="8" y="536" class="l" font-size="12.5" fill="#3D4B5D">Hooks, wired in settings.json</text>
+<rect x="8" y="546" width="344" height="44" rx="10" class="gate" fill="#FBF1D6" stroke="#A57700" stroke-width="1.4"/>
+<text x="20" y="564" class="k" font-size="12.5" font-weight="600" fill="#0F1B2D">PreToolUse, every tool: guard-corpus</text>
+<text x="20" y="581" class="s" font-size="12" fill="#3D4B5D">allowlists and job binding; no corpus/ in a run</text>
+<rect x="8" y="598" width="344" height="44" rx="10" class="gate" fill="#FBF1D6" stroke="#A57700" stroke-width="1.4"/>
+<text x="20" y="616" class="k" font-size="12.5" font-weight="600" fill="#0F1B2D">SubagentStop: gate-subagent</text>
+<text x="20" y="633" class="s" font-size="12" fill="#3D4B5D">checks the job’s output, records done or failed</text>
+<rect x="8" y="650" width="344" height="44" rx="10" class="gate" fill="#FBF1D6" stroke="#A57700" stroke-width="1.4"/>
+<text x="20" y="668" class="k" font-size="12.5" font-weight="600" fill="#0F1B2D">Stop: gate-run</text>
+<text x="20" y="685" class="s" font-size="12" fill="#3D4B5D">blocks an early stop, naming the next command</text>
+<path class="arrow" d="M92 698 V710" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M88 709 L96 709 L92 716 Z" fill="#5F6D82"/>
+<path class="arrow" d="M268 698 V710" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M264 709 L272 709 L268 716 Z" fill="#5F6D82"/>
+<rect x="8" y="716" width="168" height="44" rx="6" class="data" fill="none" stroke="#5F6D82" stroke-width="1.2" stroke-dasharray="4 3"/>
+<text x="20" y="734" class="m s" font-size="11.5" fill="#3D4B5D" font-family="'IBM Plex Mono', ui-monospace, Consolas, monospace">out/ledger/&lt;job&gt;.json</text>
+<text x="20" y="751" class="s" font-size="12" fill="#3D4B5D">one state file per job</text>
+<rect x="184" y="716" width="168" height="44" rx="6" class="data" fill="none" stroke="#5F6D82" stroke-width="1.2" stroke-dasharray="4 3"/>
+<text x="196" y="734" class="m s" font-size="11.5" fill="#3D4B5D" font-family="'IBM Plex Mono', ui-monospace, Consolas, monospace">out/runs/&lt;run&gt;.jsonl</text>
+<text x="196" y="751" class="s" font-size="12" fill="#3D4B5D">starts, stops, gates, steps</text>
+<g class="legend">
+<rect x="8" y="778" width="16" height="14" rx="2" class="code" fill="#FFFFFF" stroke="#A9B5C3" stroke-width="1.2"/>
+<text x="30" y="790" class="l" font-size="12.5" fill="#3D4B5D">code</text>
+<rect x="84" y="778" width="16" height="14" rx="2" class="model" fill="#EDF2F9" stroke="#0B3C86" stroke-width="1.6"/>
+<text x="106" y="790" class="l" font-size="12.5" fill="#3D4B5D">model</text>
+<rect x="166" y="778" width="24" height="14" rx="7" class="gate" fill="#FBF1D6" stroke="#A57700" stroke-width="1.4"/>
+<text x="196" y="790" class="l" font-size="12.5" fill="#3D4B5D">gate</text>
+<rect x="244" y="778" width="16" height="14" rx="2" class="data" fill="none" stroke="#5F6D82" stroke-width="1.2" stroke-dasharray="4 3"/>
+<text x="266" y="790" class="l" font-size="12.5" fill="#3D4B5D">data</text>
+</g>
+</svg>

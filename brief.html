@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>The assignment · Observation agent</title>
+<meta name="description" content="The assignment as received, so its own words are one click away.">
+<meta name="obs-run" content="20261019T134634Z">
+<link rel="canonical" href="https://schom975-coder.github.io/observation-agent-assignment/brief.html">
+<link rel="alternate" type="text/markdown" href="brief.md">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<aside class="ai-note" aria-label="Reading with an AI assistant">
+<p class="ai-text">Reading this with an AI assistant? This site is set up for Claude to read in full. Give it this page's address and ask it anything about the project.</p>
+<p class="ai-url"><code id="page-url">https://schom975-coder.github.io/observation-agent-assignment/brief.html</code> <button type="button" id="copy-url" class="copy" hidden>Copy address</button></p>
+</aside>
+<div class="brandrule" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<div class="shell">
+<header class="top">
+<p class="site"><a href="index.html">Observation agent</a> <span class="runline">Submitted run of 19 Oct 2026</span></p>
+<nav aria-label="Pages"><ul class="nav"><li><a href="index.html">Home</a></li><li><a href="dashboard/index.html">Dashboard</a></li><li><a href="how-to-use.html">How to use</a></li><li><a href="how-to-run.html">How to run</a></li><li><a href="run.html">The run</a></li><li><a href="architecture.html">Architecture</a></li><li><a href="design.html">Design</a></li><li><a href="process.html">How it was built</a></li><li><a href="claude-dir.html">Claude Code layer</a></li><li><a href="notes.html">Notes</a></li><li><a href="report.html">Report</a></li><li><a href="brief.html" aria-current="page">Brief</a></li></ul></nav>
+</header>
+<main id="main">
+<p class="kicker">The assignment</p>
+<p class="prefix">The brief, as received. <a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/BRIEF.md">BRIEF.md on GitHub</a></p>
+<h1 id="build-assignment-an-observation-agent">Build assignment: an observation agent</h1>
+<p>You are given a company&#39;s email archive. Build a system that reads all of it, works out where that company is losing time, proves every claim it makes, and puts the result on a dashboard. It should also act on what it finds rather than only describing it.</p>
+<p>Claude Code is the runtime here. The thing you deliver runs inside it and is driven by it. That is the exercise.</p>
+<h2 id="the-corpus">The corpus</h2>
+<p>A subset of the Enron email archive, 3,240 messages, at <code>corpus/</code> in this repo. It is raw. Some messages have no usable date. Some are duplicated. One is enormous. The formatting is inconsistent because it came off a real mail server in 2002.</p>
+<p>It is about thirty times larger than a single context window. Everything about this assignment follows from that.</p>
+<h2 id="what-it-has-to-do">What it has to do</h2>
+<p>One command, and the system:</p>
+<ol><li><p>Reads every message in the corpus. Not a sample.</p></li><li><p>Identifies the recurring processes at that company: the work that happens over and over, who touches it, how often, and where it stalls.</p></li><li><p>Ranks the automation opportunities. Each one carries an estimate of hours per month and dollars per month at a blended $85/hour.</p></li><li><p>Cites everything. Every process and every opportunity traces back to specific messages, each carrying a verbatim quote. A claim that cannot name its evidence does not ship. I will pull claims at random and check them against the raw files.</p></li><li><p>Acts. For the opportunities above a threshold you choose, produce a drafted artifact someone could use the next morning: a written SOP, a draft email, a checklist, a template. You decide what is worth producing, and you defend that decision in your notes.</p></li><li><p>Serves a dashboard on localhost. Ranked opportunities, the running dollar total, and drill-through on every claim. If I cannot click a number and land on the message it came from, the dashboard is not finished. It should look like something I would put in front of a client president.</p></li></ol>
+<h2 id="constraints">Constraints</h2>
+<ul><li>No paid API keys and no API spend, yours or mine. It runs on your Claude Code subscription. Wanting to buy tokens means the design went wrong somewhere.</li><li>A full run completes unattended in under 30 minutes.</li><li>Re-running against an unchanged corpus does not repeat finished work.</li><li>Anything that has to be exactly right is deterministic code rather than a model call. Parsing, deduplication, the hours and dollars arithmetic, citation validation, the server. I will check whether a model was left holding any of it.</li><li>Tests pass without invoking a model at all.</li><li>Python or TypeScript for the deterministic parts.</li><li>Everything runs locally.</li></ul>
+<h2 id="what-to-send-back">What to send back</h2>
+<ul><li>The repo.</li><li>Your <code>.claude/</code> directory exactly as you used it. CLAUDE.md, subagents, skills, hooks, slash commands, settings, whatever you built.</li><li><code>NOTES.md</code>, two pages at most. How you drove Claude Code. What you handed to subagents and why. How you budgeted their context. What you ran in parallel. Where Claude Code got it wrong and how you caught it before it reached the output. What you would build next with another week.</li><li>In those notes, tell me where your system is most likely to be wrong, and what it took on faith because you had no way to check it.</li><li>The output of one real run: the report, the dashboard, the run logs, and the drafted artifacts.</li></ul>
+<p>Push all of it to your own repo and send me the link.</p>
+</main>
+<footer class="foot">
+<p><a href="https://github.com/Schom975-coder/observation-agent-assignment">The repository on GitHub</a> · Scott Hom · <a href="brief.md">This page in Markdown</a> · <a href="llms.txt">llms.txt</a> · <a href="llms-full.txt">llms-full.txt</a></p>
+</footer>
+</div>
+<script>
+(() => {
+  const button = document.getElementById('copy-url');
+  const url = document.getElementById('page-url');
+  if (!button || !url) return;
+  button.hidden = false;
+  const select = () => {
+    const range = document.createRange();
+    range.selectNodeContents(url);
+    const sel = window.getSelection();
+    if (sel) { sel.removeAllRanges(); sel.addRange(range); }
+  };
+  button.addEventListener('click', () => {
+    const text = url.textContent || '';
+    const selected = () => { select(); button.textContent = 'Selected: press Ctrl+C or Cmd+C'; };
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(() => { button.textContent = 'Copied'; }, selected);
+    else selected();
+  });
+})();
+</script>
+</body>
+</html>

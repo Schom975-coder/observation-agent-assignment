@@ -1,0 +1,68 @@
+# Observation agent
+
+> A system that runs inside Claude Code, reads all 3,240 messages of an email archive from Enron, finds the work that recurs, prices what could be automated at $85 an hour, and ties every claim to a message and a verbatim quote. One command runs it; the outputs of one real run are committed with the code. Start with the index page: it maps every requirement of the brief to where it is met and how it is checked.
+
+Everything in one file: https://schom975-coder.github.io/observation-agent-assignment/llms-full.txt
+
+## Pages
+
+- [Observation agent](https://schom975-coder.github.io/observation-agent-assignment/index.md): What the brief asked for and where each part is, the ways in, and the submitted run in figures. HTML: https://schom975-coder.github.io/observation-agent-assignment/
+- [Dashboard](https://schom975-coder.github.io/observation-agent-assignment/dashboard/index.html): A copy of the localhost dashboard with the same pages and data and every message pre-written, so every number still opens down to its message; a JavaScript page, and report.md carries the same figures in Markdown.
+- [How to use what it produced](https://schom975-coder.github.io/observation-agent-assignment/how-to-use.md): How to read the dashboard, check any claim against the raw files yourself, and use the report, the drafted documents and the re-scoring commands. HTML: https://schom975-coder.github.io/observation-agent-assignment/how-to-use.html
+- [How to run it](https://schom975-coder.github.io/observation-agent-assignment/how-to-run.md): The repository's README: prerequisites, getting the code on macOS, Linux and Windows, the one command, warm and cold runs, the dashboard and the tests. HTML: https://schom975-coder.github.io/observation-agent-assignment/how-to-run.html
+- [The submitted run](https://schom975-coder.github.io/observation-agent-assignment/run.md): The facts of the submitted run read from its outputs: timings by stage, subagents, quote checks, coverage, the run logs and the drafted documents. HTML: https://schom975-coder.github.io/observation-agent-assignment/run.html
+- [Architecture](https://schom975-coder.github.io/observation-agent-assignment/architecture.md): The pipeline, the Claude Code layer and the path from a figure to its message, in three diagrams with the prose that reads them. HTML: https://schom975-coder.github.io/observation-agent-assignment/architecture.html
+- [Design choices, and why](https://schom975-coder.github.io/observation-agent-assignment/design.md): The choices that shape the numbers, each with what it rejected and why, linked to the decision log and the code. HTML: https://schom975-coder.github.io/observation-agent-assignment/design.html
+- [How it was built, M-1 to M8](https://schom975-coder.github.io/observation-agent-assignment/process.md): How it was built from M-1 to M8: what each milestone delivered, its commits, what went wrong and how it was caught, and the working method. HTML: https://schom975-coder.github.io/observation-agent-assignment/process.html
+- [The Claude Code layer, exactly as used](https://schom975-coder.github.io/observation-agent-assignment/claude-dir.md): Every file under .claude/ with its role: the agents' configuration read from their frontmatter, the skills, the hooks and settings.json. HTML: https://schom975-coder.github.io/observation-agent-assignment/claude-dir.html
+- [Notes](https://schom975-coder.github.io/observation-agent-assignment/notes.md): NOTES.md: how Claude Code was driven, what went to subagents and in parallel, where it went wrong, where the system is most likely wrong and what it took on faith. HTML: https://schom975-coder.github.io/observation-agent-assignment/notes.html
+- [Report](https://schom975-coder.github.io/observation-agent-assignment/report.md): The report of the submitted run, printable, with the same figures as the dashboard; report.md is the same report in Markdown. The printable page is https://schom975-coder.github.io/observation-agent-assignment/report.html.
+- [The assignment](https://schom975-coder.github.io/observation-agent-assignment/brief.md): The assignment as received, so its own words are one click away. HTML: https://schom975-coder.github.io/observation-agent-assignment/brief.html
+
+## The run’s output
+
+- [The report in Markdown](https://schom975-coder.github.io/observation-agent-assignment/report.md): every figure of the dashboard, in Markdown.
+- [Real-time power scheduling: SOP](https://schom975-coder.github.io/observation-agent-assignment/documents/real-time-power-scheduling.md): drafted SOP, rank 1.
+- [Meter flow discrepancy resolution: template](https://schom975-coder.github.io/observation-agent-assignment/documents/meter-flow-resolution.md): drafted template, rank 3.
+- [Settlement and invoice resolution: email template](https://schom975-coder.github.io/observation-agent-assignment/documents/settlement-resolution.md): drafted email template, rank 4.
+- [Deal ticket and transport contract set-up: template](https://schom975-coder.github.io/observation-agent-assignment/documents/deal-ticket-setup.md): drafted template, rank 5.
+- [Deal transfer between books: template](https://schom975-coder.github.io/observation-agent-assignment/documents/deal-book-transfer.md): drafted template, rank 6.
+- [Run log 20261019T134634Z.jsonl](https://github.com/Schom975-coder/observation-agent-assignment/blob/main/out/runs/20261019T134634Z.jsonl): the submitted run; JSON lines, 96.6 KB.
+- [Run log 20261017T085852Z.jsonl](https://github.com/Schom975-coder/observation-agent-assignment/blob/main/out/runs/20261017T085852Z.jsonl): an earlier run, kept as timing evidence; JSON lines, 4.7 KB.
+- [Run log 20261017T103308Z.jsonl](https://github.com/Schom975-coder/observation-agent-assignment/blob/main/out/runs/20261017T103308Z.jsonl): an earlier run, kept as timing evidence; JSON lines, 65.6 KB.
+- [Run log 20261017T203518Z.jsonl](https://github.com/Schom975-coder/observation-agent-assignment/blob/main/out/runs/20261017T203518Z.jsonl): an earlier run, kept as timing evidence; JSON lines, 16.7 KB.
+- [Run log 20261018T042856Z.jsonl](https://github.com/Schom975-coder/observation-agent-assignment/blob/main/out/runs/20261018T042856Z.jsonl): an earlier run, kept as timing evidence; JSON lines, 19.6 KB.
+- [Run log 20261019T143301Z.jsonl](https://github.com/Schom975-coder/observation-agent-assignment/blob/main/out/runs/20261019T143301Z.jsonl): an earlier run, kept as timing evidence; JSON lines, 0.5 KB.
+- [Run log cold-clone-20261018T044152Z.jsonl](https://github.com/Schom975-coder/observation-agent-assignment/blob/main/out/runs/cold-clone-20261018T044152Z.jsonl): an earlier timed rehearsal in a fresh clone; JSON lines, 85.6 KB.
+- [Run log cold-clone-20261018T170417Z.jsonl](https://github.com/Schom975-coder/observation-agent-assignment/blob/main/out/runs/cold-clone-20261018T170417Z.jsonl): an earlier timed rehearsal in a fresh clone; JSON lines, 96.1 KB.
+- [Run log cold-clone-20261018T184200Z.jsonl](https://github.com/Schom975-coder/observation-agent-assignment/blob/main/out/runs/cold-clone-20261018T184200Z.jsonl): an earlier timed rehearsal in a fresh clone; JSON lines, 94.0 KB.
+- [Run log cold-clone-20261018T191015Z.jsonl](https://github.com/Schom975-coder/observation-agent-assignment/blob/main/out/runs/cold-clone-20261018T191015Z.jsonl): an earlier timed rehearsal in a fresh clone; JSON lines, 94.5 KB.
+
+## The repository
+
+- [README.md](https://github.com/Schom975-coder/observation-agent-assignment/blob/main/README.md): how to get the code, run it and test it.
+- [NOTES.md](https://github.com/Schom975-coder/observation-agent-assignment/blob/main/NOTES.md): the notes the brief asks for.
+- [BRIEF.md](https://github.com/Schom975-coder/observation-agent-assignment/blob/main/BRIEF.md): the assignment, verbatim.
+- [CLAUDE.md](https://github.com/Schom975-coder/observation-agent-assignment/blob/main/CLAUDE.md): the project rules every session follows.
+- [.claude/](https://github.com/Schom975-coder/observation-agent-assignment/tree/main/.claude): the Claude Code layer exactly as used: agents, skills, hooks, settings.
+- [out/](https://github.com/Schom975-coder/observation-agent-assignment/tree/main/out): the submitted run’s outputs.
+
+## The Claude Code layer and the records, as plain text
+
+- [.claude/agents/drafter.md](https://raw.githubusercontent.com/Schom975-coder/observation-agent-assignment/main/.claude/agents/drafter.md): The drafter subagent: for one recurring process, writes the body of one working document (an SOP, a checklist, an email template or a template) from the brief code prepared, under the headings of its type; writes out/artifacts/raw/\<draft\_id\>.md.
+- [.claude/agents/extractor.md](https://raw.githubusercontent.com/Schom975-coder/observation-agent-assignment/main/.claude/agents/extractor.md): The extractor subagent: classifies every message in one prepared batch file into recurring business processes with verbatim evidence, and writes out/extract/\<batch\_id\>.json.
+- [.claude/agents/merger.md](https://raw.githubusercontent.com/Schom975-coder/observation-agent-assignment/main/.claude/agents/merger.md): The merger subagent: reads the process keys the extractors proposed (new:\<slug\>), with the counts code made for each, and decides for every one whether its messages count under a taxonomy key, under a new process it promotes, or nowhere; writes out/merge-proposed.json.
+- [.claude/agents/synthesizer.md](https://raw.githubusercontent.com/Schom975-coder/observation-agent-assignment/main/.claude/agents/synthesizer.md): The synthesizer subagent: for one synthesis group of recurring processes, describes each process from the facts and quotes code prepared and estimates the hands-on work behind one round of it, citing the quotes it relied on; writes out/synthesis/raw/\<group\_id\>.json.
+- [.claude/agents/taxonomist.md](https://raw.githubusercontent.com/Schom975-coder/observation-agent-assignment/main/.claude/agents/taxonomist.md): The taxonomist subagent: reads the taxonomy digest of the company's archived email and proposes the list of recurring business processes every extractor then tags messages with; writes out/taxonomy-proposed.json.
+- [.claude/hooks/gate-run.ts](https://raw.githubusercontent.com/Schom975-coder/observation-agent-assignment/main/.claude/hooks/gate-run.ts): Stop: keep the orchestrator in the loop while a pipeline run is active, stage by stage (ARCHITECTURE.md 6.7, 7.4).
+- [.claude/hooks/gate-subagent.ts](https://raw.githubusercontent.com/Schom975-coder/observation-agent-assignment/main/.claude/hooks/gate-subagent.ts): SubagentStop (matcher: extractor\|synthesizer\|drafter): check a finished agent's output and record the result in the ledger.
+- [.claude/hooks/guard-corpus.ts](https://raw.githubusercontent.com/Schom975-coder/observation-agent-assignment/main/.claude/hooks/guard-corpus.ts): PreToolUse (every tool): keep pipeline agents to their own files, and keep every tool call during a pipeline run away from the raw corpus.
+- [.claude/hooks/lib.ts](https://raw.githubusercontent.com/Schom975-coder/observation-agent-assignment/main/.claude/hooks/lib.ts): Shared by the hook scripts in this folder.
+- [.claude/hooks/log-event.ts](https://raw.githubusercontent.com/Schom975-coder/observation-agent-assignment/main/.claude/hooks/log-event.ts): SubagentStart and SubagentStop (extractor, taxonomist, merger, synthesizer, drafter; the matchers in .claude/settings.json choose which agents): one line per event in the run log, out/runs/\<run\_id\>.jsonl (out/runs/adhoc.jsonl outside a run), so subagent launches and their agent\_ids can be read back next to the guard's bindings and the gate's records.
+- [.claude/skills/extract-batch/SKILL.md](https://raw.githubusercontent.com/Schom975-coder/observation-agent-assignment/main/.claude/skills/extract-batch/SKILL.md): The /extract-batch skill: run the extractor subagent on named batches, the synthesizer subagent on named synthesis groups, or the drafter subagent on named artifact drafts, and report their ledger status.
+- [.claude/skills/observe/SKILL.md](https://raw.githubusercontent.com/Schom975-coder/observation-agent-assignment/main/.claude/skills/observe/SKILL.md): The /observe skill: run the observation pipeline over the email archive.
+- [.claude/skills/serve/SKILL.md](https://raw.githubusercontent.com/Schom975-coder/observation-agent-assignment/main/.claude/skills/serve/SKILL.md): The /serve skill: open the dashboard of the last complete run on 127.0.0.1 without running the pipeline; reuses a server that is already up.
+- [.claude/settings.json](https://raw.githubusercontent.com/Schom975-coder/observation-agent-assignment/main/.claude/settings.json): Permissions and the hook wiring.
+- [.claude/plan/ARCHITECTURE.md](https://raw.githubusercontent.com/Schom975-coder/observation-agent-assignment/main/.claude/plan/ARCHITECTURE.md): The design: stages, data contracts, decisions, the Claude Code layer, tests and the build order.
+- [.claude/notes/DECISIONS.md](https://raw.githubusercontent.com/Schom975-coder/observation-agent-assignment/main/.claude/notes/DECISIONS.md): One line per non-obvious choice: what was chosen, what was rejected, and why.
+- [.claude/notes/NOTES-LOG.md](https://raw.githubusercontent.com/Schom975-coder/observation-agent-assignment/main/.claude/notes/NOTES-LOG.md): The running log NOTES.md was written from.

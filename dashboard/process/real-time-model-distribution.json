@@ -1,0 +1,1299 @@
+{
+  "key": "real-time-model-distribution",
+  "name": "Real-time model and data file distribution",
+  "definition": "Sending the daily real-time models, deal sheets and hourly data files to EES, EPE and settlements, and reconciling them against reports.",
+  "rank": 34,
+  "tier": "B",
+  "row": {
+    "rank": 34,
+    "key": "real-time-model-distribution",
+    "name": "Real-time model and data file distribution",
+    "tier": "B",
+    "tier_words": "in the total: 10 or more times over 3 or more months by 2 or more staff",
+    "in_total": true,
+    "origin": "promoted",
+    "total": {
+      "v": 2059,
+      "t": "$21",
+      "x": "$20.59",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "real-time-model-distribution"
+      }
+    },
+    "counted": {
+      "v": 428,
+      "t": "$4",
+      "x": "$4.28",
+      "k": "counted",
+      "d": {
+        "kind": "formula",
+        "key": "real-time-model-distribution"
+      }
+    },
+    "estimated": {
+      "v": 1631,
+      "t": "$17",
+      "x": "$16.31",
+      "k": "estimated",
+      "d": {
+        "kind": "formula",
+        "key": "real-time-model-distribution"
+      }
+    },
+    "low": {
+      "v": 972,
+      "t": "$10",
+      "x": "$9.72",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "real-time-model-distribution"
+      }
+    },
+    "high": {
+      "v": 5320,
+      "t": "$53",
+      "x": "$53.20",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "real-time-model-distribution"
+      }
+    },
+    "today": {
+      "v": 3424,
+      "t": "$34",
+      "x": "$34.24",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "real-time-model-distribution"
+      }
+    },
+    "hours": {
+      "v": 24,
+      "t": "0.2",
+      "x": "0.24 hours",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "real-time-model-distribution"
+      }
+    },
+    "hours_today": {
+      "v": 40,
+      "t": "0.4",
+      "x": "0.40 hours",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "real-time-model-distribution"
+      }
+    },
+    "occurrences": {
+      "v": 10,
+      "t": "10 times",
+      "d": {
+        "kind": "occurrences",
+        "key": "real-time-model-distribution"
+      }
+    },
+    "shared_occurrences": 0,
+    "active_months": {
+      "v": 5,
+      "t": "5 active months",
+      "d": {
+        "kind": "months",
+        "key": "real-time-model-distribution"
+      }
+    },
+    "span_days": 238,
+    "first_utc": "2001-06-12T17:59:47Z",
+    "last_utc": "2002-02-04T22:18:15Z",
+    "messages": {
+      "v": 11,
+      "t": "11 emails",
+      "d": {
+        "kind": "occurrences",
+        "key": "real-time-model-distribution"
+      }
+    },
+    "threads": 10,
+    "mailboxes": [
+      {
+        "key": "williams-w3",
+        "n": 11,
+        "pct": 100
+      }
+    ],
+    "top_mailbox": "williams-w3",
+    "top_pct": 100,
+    "one_mailbox": true,
+    "seen_in": "Mostly seen in: Williams (100%)",
+    "staff": {
+      "v": 9,
+      "t": "9 staff",
+      "d": {
+        "kind": "participants",
+        "key": "real-time-model-distribution",
+        "filter": "staff"
+      }
+    },
+    "writers": {
+      "v": 2,
+      "t": "2",
+      "d": {
+        "kind": "participants",
+        "key": "real-time-model-distribution",
+        "filter": "writers"
+      }
+    },
+    "copied": {
+      "v": 7,
+      "t": "7",
+      "d": {
+        "kind": "participants",
+        "key": "real-time-model-distribution",
+        "filter": "copied"
+      }
+    },
+    "estimate": {
+      "low": 5,
+      "mid": 15,
+      "high": 45,
+      "automatable_pct": 60,
+      "basis_words": "seen in the emails",
+      "source": "model"
+    },
+    "stall_label": "Files went to the wrong Bill Williams because of a name clash, so the sender had to…",
+    "stall_summary": "Files went to the wrong Bill Williams because of a name clash, so the sender had to confirm the correct recipient.",
+    "stall_kind": "handoff_confusion",
+    "stall_quotes": {
+      "v": 1,
+      "t": "1 stall quote",
+      "d": {
+        "kind": "stalls",
+        "key": "real-time-model-distribution"
+      }
+    },
+    "fix": "Generate and send the daily model from the scheduling system to a maintained distribution list, and run an automatic comparison of the real-time model against the CARP report…",
+    "document": null,
+    "status_line": "Not drafted: $21 a month is under the $85 drafting line",
+    "chasers": {
+      "v": 1,
+      "t": "1 chaser",
+      "d": {
+        "kind": "actions",
+        "key": "real-time-model-distribution",
+        "type": "chaser"
+      }
+    },
+    "stall_count": {
+      "v": 1,
+      "t": "1",
+      "d": {
+        "kind": "stalls",
+        "key": "real-time-model-distribution",
+        "stall_kind": "handoff_confusion"
+      }
+    },
+    "loops": {
+      "v": 1,
+      "t": "1 open loop",
+      "d": {
+        "kind": "loops",
+        "key": "real-time-model-distribution"
+      }
+    },
+    "loops_recent": {
+      "v": 0,
+      "t": "0",
+      "d": {
+        "kind": "loops",
+        "key": "real-time-model-distribution",
+        "recent": true
+      }
+    },
+    "claims": {
+      "v": 0,
+      "t": "0 claims",
+      "d": {
+        "kind": "claims",
+        "key": "real-time-model-distribution"
+      }
+    },
+    "conflicts": {
+      "v": 0,
+      "t": "0 conflicts",
+      "d": {
+        "kind": "claims",
+        "key": "real-time-model-distribution"
+      }
+    },
+    "reply_gap": null,
+    "last_three_months_share": {
+      "v": 3,
+      "t": "3 of 10",
+      "d": {
+        "kind": "occurrences",
+        "key": "real-time-model-distribution"
+      }
+    },
+    "flags": []
+  },
+  "synthesis": {
+    "description": "The real-time desk sends the daily EES and El Paso Electric models and hourly data files to customers and settlements, forwarding them on and keeping the recipient list current. Desk staff also reconcile the El Paso model against the internal CARP report each month and complete a monthly EPE reconciliation sheet.",
+    "steps": [
+      "The desk prepares the daily real-time model for EES or EPE for the prior day.",
+      "The model is emailed to the distribution list and forwarded where needed.",
+      "Recipients are added or removed from the list when staff change.",
+      "Hourly data are added to the daily mail-out on request.",
+      "The real-time model is reconciled against the CARP report and the monthly reconciliation sheet is completed."
+    ],
+    "approach": "Generate and send the daily model from the scheduling system to a maintained distribution list, and run an automatic comparison of the real-time model against the CARP report that flags only variances for review.",
+    "rationale": "The work is a fixed daily send and a periodic reconciliation. A short procedure covering the file, the list owner and the reconciliation check keeps it consistent, and most of the send and comparison can be scripted.",
+    "artifact_type": "sop"
+  },
+  "formula": {
+    "counted": "10 occ over 238 d = 7.82 mo; email: 4 short x2 + 1 medium x6 + 0 long x15 + 4 fwd x2 + 1 chaser x3 + 14 read x1 = 39.00 min = 4.99 min/mo; automatable 60/40/30/80/100/50% = 23.60 min = 3.02 min/mo",
+    "estimated": "10.00 occ x 15 min/occ (estimate, mid of 5-45, basis observed, 6 quotes from 6 occurrences) = 150.00 min = 19.18 min/mo; automatable 60% (estimate) = 11.51 min/mo; at the low end 5 min/occ = $9.72/mo, at the high end 45 min/occ = $53.20/mo (the row's automatable total)",
+    "total": "today 24.17 min/mo = 0.40 h/mo = $34.24/mo (email 4.99 min/mo = $7.07 + work 19.18 min/mo = $27.17); automatable 14.53 min/mo = 0.24 h/mo = $20.59/mo (counted email 3.02 min/mo = $4.28 + estimated work 11.51 min/mo = $16.31)"
+  },
+  "window": {
+    "first_utc": "2001-06-12T17:59:47Z",
+    "last_utc": "2002-02-04T22:18:15Z",
+    "span_days": 238,
+    "months_x100": 782,
+    "active_months": 5,
+    "undated_occurrences": 0
+  },
+  "months": 782,
+  "occurrence_share_x100": 1000,
+  "actions": {
+    "priced": {
+      "authored_short": 4,
+      "authored_medium": 1,
+      "authored_long": 0,
+      "forward": 4,
+      "chaser": 1,
+      "read": 14
+    },
+    "unpriced": {
+      "authored_short": 0,
+      "authored_medium": 0,
+      "authored_long": 0,
+      "forward": 1,
+      "chaser": 0,
+      "read": 2
+    }
+  },
+  "action_table": [
+    {
+      "type": "authored_short",
+      "words": "short emails written",
+      "count": {
+        "v": 4,
+        "t": "4",
+        "d": {
+          "kind": "actions",
+          "key": "real-time-model-distribution",
+          "type": "authored_short"
+        }
+      },
+      "minutes_each": 2,
+      "minutes": "8.00",
+      "automatable_pct": 60,
+      "automatable_minutes": "4.80"
+    },
+    {
+      "type": "authored_medium",
+      "words": "medium emails written",
+      "count": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "actions",
+          "key": "real-time-model-distribution",
+          "type": "authored_medium"
+        }
+      },
+      "minutes_each": 6,
+      "minutes": "6.00",
+      "automatable_pct": 40,
+      "automatable_minutes": "2.40"
+    },
+    {
+      "type": "authored_long",
+      "words": "long emails written",
+      "count": {
+        "v": 0,
+        "t": "0",
+        "d": {
+          "kind": "actions",
+          "key": "real-time-model-distribution",
+          "type": "authored_long"
+        }
+      },
+      "minutes_each": 15,
+      "minutes": "0.00",
+      "automatable_pct": 30,
+      "automatable_minutes": "0.00"
+    },
+    {
+      "type": "forward",
+      "words": "forwards",
+      "count": {
+        "v": 4,
+        "t": "4",
+        "d": {
+          "kind": "actions",
+          "key": "real-time-model-distribution",
+          "type": "forward"
+        }
+      },
+      "minutes_each": 2,
+      "minutes": "8.00",
+      "automatable_pct": 80,
+      "automatable_minutes": "6.40"
+    },
+    {
+      "type": "chaser",
+      "words": "chasers",
+      "count": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "actions",
+          "key": "real-time-model-distribution",
+          "type": "chaser"
+        }
+      },
+      "minutes_each": 3,
+      "minutes": "3.00",
+      "automatable_pct": 100,
+      "automatable_minutes": "3.00"
+    },
+    {
+      "type": "read",
+      "words": "reads, one per addressee",
+      "count": {
+        "v": 14,
+        "t": "14",
+        "d": {
+          "kind": "actions",
+          "key": "real-time-model-distribution",
+          "type": "read"
+        }
+      },
+      "minutes_each": 1,
+      "minutes": "14.00",
+      "automatable_pct": 50,
+      "automatable_minutes": "7.00"
+    }
+  ],
+  "email": {
+    "today_x100": 3900,
+    "automatable_x100": 2360,
+    "per_month_today_x100": 499,
+    "per_month_automatable_x100": 302
+  },
+  "work": {
+    "per_month_today_x100": 1918,
+    "per_month_automatable_x100": 1151,
+    "low_cents": 544,
+    "high_cents": 4892
+  },
+  "estimate_quotes": [
+    {
+      "id": "batch-088:e25",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/inbox/94.",
+      "start": 622,
+      "end": 670,
+      "raw_text": "Please find the enclosed epe model for 01/25/02:",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "albert.meyers@enron.com",
+      "sender_label": "Albert Meyers",
+      "date_utc": "2002-01-26T11:58:40Z"
+    },
+    {
+      "id": "batch-086:e10",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/inbox/107.",
+      "start": 173,
+      "end": 195,
+      "raw_text": "EPE model for 01/10/02",
+      "match": "exact",
+      "segment": "subject",
+      "field": "subject",
+      "sender": "albert.meyers@enron.com",
+      "sender_label": "Albert Meyers",
+      "date_utc": "2002-01-11T14:49:11Z"
+    },
+    {
+      "id": "batch-057:e15",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/418.",
+      "start": 914,
+      "end": 1050,
+      "raw_text": "I just skimmed through the first 8 days of this month, and we show no variances between the Real Time El Paso model and our CARP report.",
+      "match": "exact",
+      "segment": "quoted",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-07-10T00:40:45Z"
+    },
+    {
+      "id": "batch-057:e16",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/417.",
+      "start": 735,
+      "end": 799,
+      "raw_text": "please complete the July EPE Reconciliation sheet going forward.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-07-10T16:53:39Z"
+    },
+    {
+      "id": "batch-054:e17",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/489.",
+      "start": 573,
+      "end": 674,
+      "raw_text": "Please add Ainsley Gaddis and remove Daniel Kang from your list when sending the spreadsheets to EES.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-06-19T01:10:55Z"
+    },
+    {
+      "id": "batch-094:e1",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/inbox/48.",
+      "start": 589,
+      "end": 615,
+      "raw_text": "Here is the latest report.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "kalmeida@caiso.com",
+      "sender_label": "Keoni Almeida",
+      "date_utc": "2002-02-04T22:18:15Z"
+    }
+  ],
+  "estimate_check": {
+    "occurrences_cited": 6,
+    "senders_cited": 3
+  },
+  "monthly": [
+    {
+      "month": "2001-06",
+      "occurrences": {
+        "v": 4,
+        "t": "4",
+        "d": {
+          "kind": "occurrences",
+          "key": "real-time-model-distribution",
+          "month": "2001-06"
+        }
+      },
+      "messages": 5,
+      "ids": [
+        "t-0b458fa1147a-o1",
+        "t-339a1ab68ab4-o1",
+        "t-5f80c8a5b98d-o1",
+        "t-b87a4395cec5-o1"
+      ]
+    },
+    {
+      "month": "2001-07",
+      "occurrences": {
+        "v": 2,
+        "t": "2",
+        "d": {
+          "kind": "occurrences",
+          "key": "real-time-model-distribution",
+          "month": "2001-07"
+        }
+      },
+      "messages": 2,
+      "ids": [
+        "t-5bc136fdcc5e-o1",
+        "t-be209c1987e9-o1"
+      ]
+    },
+    {
+      "month": "2001-10",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "real-time-model-distribution",
+          "month": "2001-10"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-8200b1f5c0c3-o1"
+      ]
+    },
+    {
+      "month": "2002-01",
+      "occurrences": {
+        "v": 2,
+        "t": "2",
+        "d": {
+          "kind": "occurrences",
+          "key": "real-time-model-distribution",
+          "month": "2002-01"
+        }
+      },
+      "messages": 2,
+      "ids": [
+        "t-0502b440faa6-o1",
+        "t-80a9079fc04d-o1"
+      ]
+    },
+    {
+      "month": "2002-02",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "real-time-model-distribution",
+          "month": "2002-02"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-7018360b9243-o1"
+      ]
+    }
+  ],
+  "occurrences": [
+    {
+      "id": "t-0502b440faa6-o1",
+      "message_ids": [
+        "corpus/williams-w3/inbox/94."
+      ],
+      "date_utc": "2002-01-26T11:58:40Z"
+    },
+    {
+      "id": "t-0b458fa1147a-o1",
+      "message_ids": [
+        "corpus/williams-w3/sent_items/489."
+      ],
+      "date_utc": "2001-06-19T01:10:55Z"
+    },
+    {
+      "id": "t-339a1ab68ab4-o1",
+      "message_ids": [
+        "corpus/williams-w3/sent_items/458."
+      ],
+      "date_utc": "2001-06-28T18:23:10Z"
+    },
+    {
+      "id": "t-5bc136fdcc5e-o1",
+      "message_ids": [
+        "corpus/williams-w3/sent_items/417."
+      ],
+      "date_utc": "2001-07-10T16:53:39Z"
+    },
+    {
+      "id": "t-5f80c8a5b98d-o1",
+      "message_ids": [
+        "corpus/williams-w3/sent_items/460.",
+        "corpus/williams-w3/sent_items/456."
+      ],
+      "date_utc": "2001-06-28T18:22:11Z"
+    },
+    {
+      "id": "t-7018360b9243-o1",
+      "message_ids": [
+        "corpus/williams-w3/inbox/48."
+      ],
+      "date_utc": "2002-02-04T22:18:15Z"
+    },
+    {
+      "id": "t-80a9079fc04d-o1",
+      "message_ids": [
+        "corpus/williams-w3/inbox/107."
+      ],
+      "date_utc": "2002-01-11T14:49:11Z"
+    },
+    {
+      "id": "t-8200b1f5c0c3-o1",
+      "message_ids": [
+        "corpus/williams-w3/sent_items/132."
+      ],
+      "date_utc": "2001-10-31T03:12:59Z"
+    },
+    {
+      "id": "t-b87a4395cec5-o1",
+      "message_ids": [
+        "corpus/williams-w3/sent_items/507."
+      ],
+      "date_utc": "2001-06-12T17:59:47Z"
+    },
+    {
+      "id": "t-be209c1987e9-o1",
+      "message_ids": [
+        "corpus/williams-w3/sent_items/418."
+      ],
+      "date_utc": "2001-07-10T00:40:45Z"
+    }
+  ],
+  "undated_occurrences": [],
+  "action_sources": [
+    {
+      "message_id": "corpus/williams-w3/inbox/107.",
+      "type": "authored_short",
+      "person": "albert.meyers@enron.com",
+      "address": "albert.meyers@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/inbox/107.",
+      "type": "read",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/inbox/107.",
+      "type": "read",
+      "person": "kpeterso@epelectric.com",
+      "address": "kpeterso@epelectric.com",
+      "priced": false,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/inbox/48.",
+      "type": "forward",
+      "person": "kalmeida@caiso.com",
+      "address": "kalmeida@caiso.com",
+      "priced": false,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/inbox/48.",
+      "type": "read",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/inbox/48.",
+      "type": "read",
+      "person": "h..foster@enron.com",
+      "address": "h..foster@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/inbox/94.",
+      "type": "authored_short",
+      "person": "albert.meyers@enron.com",
+      "address": "albert.meyers@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/inbox/94.",
+      "type": "read",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/inbox/94.",
+      "type": "read",
+      "person": "kpeterso@epelectric.com",
+      "address": "kpeterso@epelectric.com",
+      "priced": false,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/132.",
+      "type": "authored_medium",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/132.",
+      "type": "read",
+      "person": "kate.symes@enron.com",
+      "address": "kate.symes@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/132.",
+      "type": "read",
+      "person": "kysa.alport@enron.com",
+      "address": "kysa.alport@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/417.",
+      "type": "authored_short",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/417.",
+      "type": "read",
+      "person": "mark.guzman@enron.com",
+      "address": "mark.guzman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/417.",
+      "type": "read",
+      "person": "v..porter@enron.com",
+      "address": "v..porter@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/418.",
+      "type": "authored_short",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/418.",
+      "type": "read",
+      "person": "kate.symes@enron.com",
+      "address": "kate.symes@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/456.",
+      "type": "chaser",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/456.",
+      "type": "read",
+      "person": "kate.symes@enron.com",
+      "address": "kate.symes@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/458.",
+      "type": "forward",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/458.",
+      "type": "read",
+      "person": "kate.symes@enron.com",
+      "address": "kate.symes@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/460.",
+      "type": "forward",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/460.",
+      "type": "read",
+      "person": "kate.symes@enron.com",
+      "address": "kate.symes@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/489.",
+      "type": "forward",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/489.",
+      "type": "read",
+      "person": "shift.portland@enron.com",
+      "address": "shift.portland@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/507.",
+      "type": "forward",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/507.",
+      "type": "read",
+      "person": "steven.merris@enron.com",
+      "address": "steven.merris@enron.com",
+      "priced": true,
+      "share_x100": 100
+    }
+  ],
+  "participants": [
+    {
+      "email": "bill.williams@enron.com",
+      "name": "Williams III, Bill",
+      "label": "Bill Williams III",
+      "kind": "person",
+      "addresses": [
+        "bill.williams@enron.com"
+      ],
+      "staff": true,
+      "authored": 3,
+      "forwards": 4,
+      "chasers": 1,
+      "reads": 3,
+      "wrote": true
+    },
+    {
+      "email": "kate.symes@enron.com",
+      "name": "Symes, Kate",
+      "label": "Kate Symes",
+      "kind": "person",
+      "addresses": [
+        "kate.symes@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 5,
+      "wrote": false
+    },
+    {
+      "email": "albert.meyers@enron.com",
+      "name": "Meyers, Albert",
+      "label": "Albert Meyers",
+      "kind": "person",
+      "addresses": [
+        "albert.meyers@enron.com"
+      ],
+      "staff": true,
+      "authored": 2,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "kpeterso@epelectric.com",
+      "name": null,
+      "label": "kpeterso@epelectric.com",
+      "kind": "person",
+      "addresses": [
+        "kpeterso@epelectric.com"
+      ],
+      "staff": false,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "h..foster@enron.com",
+      "name": "Foster, Chris H.",
+      "label": "Chris H. Foster",
+      "kind": "person",
+      "addresses": [
+        "h..foster@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "kalmeida@caiso.com",
+      "name": "Almeida, Keoni",
+      "label": "Keoni Almeida",
+      "kind": "person",
+      "addresses": [
+        "kalmeida@caiso.com"
+      ],
+      "staff": false,
+      "authored": 0,
+      "forwards": 1,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "kysa.alport@enron.com",
+      "name": null,
+      "label": "kysa.alport@enron.com",
+      "kind": "person",
+      "addresses": [
+        "kysa.alport@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "mark.guzman@enron.com",
+      "name": "Guzman, Mark",
+      "label": "Mark Guzman",
+      "kind": "person",
+      "addresses": [
+        "mark.guzman@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "shift.portland@enron.com",
+      "name": null,
+      "label": "shift.portland@enron.com",
+      "kind": "person",
+      "addresses": [
+        "shift.portland@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "steven.merris@enron.com",
+      "name": null,
+      "label": "steven.merris@enron.com",
+      "kind": "person",
+      "addresses": [
+        "steven.merris@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "v..porter@enron.com",
+      "name": null,
+      "label": "v..porter@enron.com",
+      "kind": "person",
+      "addresses": [
+        "v..porter@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    }
+  ],
+  "stalls_by_kind": [
+    {
+      "kind": "handoff_confusion",
+      "words": "1 handoff confusion",
+      "count": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "stalls",
+          "key": "real-time-model-distribution",
+          "stall_kind": "handoff_confusion"
+        }
+      }
+    }
+  ],
+  "stall_groups": [
+    {
+      "summary": "Files went to the wrong Bill Williams because of a name clash, so the sender had to confirm the correct recipient.",
+      "quotes": [
+        {
+          "id": "batch-053:s3",
+          "kind": "stall",
+          "message_id": "corpus/williams-w3/sent_items/507.",
+          "start": 778,
+          "end": 804,
+          "raw_text": "This must be for you Bill.",
+          "match": "exact",
+          "segment": "quoted",
+          "field": "body",
+          "sender": "bill.williams@enron.com",
+          "sender_label": "Bill Williams III",
+          "date_utc": "2001-06-12T17:59:47Z",
+          "stall_kind": "handoff_confusion"
+        },
+        {
+          "id": "batch-053:e32",
+          "kind": "evidence",
+          "message_id": "corpus/williams-w3/sent_items/507.",
+          "start": 542,
+          "end": 598,
+          "raw_text": "Just want to make sure you have me as Bill Williams III.",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "bill.williams@enron.com",
+          "sender_label": "Bill Williams III",
+          "date_utc": "2001-06-12T17:59:47Z"
+        }
+      ]
+    }
+  ],
+  "stall_quotes": [
+    {
+      "id": "batch-053:s3",
+      "kind": "stall",
+      "message_id": "corpus/williams-w3/sent_items/507.",
+      "start": 778,
+      "end": 804,
+      "raw_text": "This must be for you Bill.",
+      "match": "exact",
+      "segment": "quoted",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-06-12T17:59:47Z",
+      "stall_kind": "handoff_confusion"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "batch-053:e32",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/507.",
+      "start": 542,
+      "end": 598,
+      "raw_text": "Just want to make sure you have me as Bill Williams III.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-06-12T17:59:47Z"
+    },
+    {
+      "id": "batch-054:e17",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/489.",
+      "start": 573,
+      "end": 674,
+      "raw_text": "Please add Ainsley Gaddis and remove Daniel Kang from your list when sending the spreadsheets to EES.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-06-19T01:10:55Z"
+    },
+    {
+      "id": "batch-056:e2",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/460.",
+      "start": 170,
+      "end": 190,
+      "raw_text": "FW: EES for 06/27/01",
+      "match": "exact",
+      "segment": "subject",
+      "field": "subject",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-06-28T18:22:11Z"
+    },
+    {
+      "id": "batch-056:e3",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/456.",
+      "start": 931,
+      "end": 1029,
+      "raw_text": "the people who need the sheet are still not getting it - namely, Brooklyn Couch and Ainsley Gaddis",
+      "match": "exact",
+      "segment": "quoted",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-06-28T18:33:29Z"
+    },
+    {
+      "id": "batch-056:e5",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/458.",
+      "start": 170,
+      "end": 196,
+      "raw_text": "FW: EES MODEL for 06/26/01",
+      "match": "exact",
+      "segment": "subject",
+      "field": "subject",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-06-28T18:23:10Z"
+    },
+    {
+      "id": "batch-057:e15",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/418.",
+      "start": 914,
+      "end": 1050,
+      "raw_text": "I just skimmed through the first 8 days of this month, and we show no variances between the Real Time El Paso model and our CARP report.",
+      "match": "exact",
+      "segment": "quoted",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-07-10T00:40:45Z"
+    },
+    {
+      "id": "batch-057:e16",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/417.",
+      "start": 735,
+      "end": 799,
+      "raw_text": "please complete the July EPE Reconciliation sheet going forward.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-07-10T16:53:39Z"
+    },
+    {
+      "id": "batch-073:e10",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/132.",
+      "start": 1554,
+      "end": 1619,
+      "raw_text": "If you would like to add EES Hourly data into your daily mail-out",
+      "match": "exact",
+      "segment": "quoted",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-10-31T03:12:59Z"
+    },
+    {
+      "id": "batch-086:e10",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/inbox/107.",
+      "start": 173,
+      "end": 195,
+      "raw_text": "EPE model for 01/10/02",
+      "match": "exact",
+      "segment": "subject",
+      "field": "subject",
+      "sender": "albert.meyers@enron.com",
+      "sender_label": "Albert Meyers",
+      "date_utc": "2002-01-11T14:49:11Z"
+    },
+    {
+      "id": "batch-088:e25",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/inbox/94.",
+      "start": 622,
+      "end": 670,
+      "raw_text": "Please find the enclosed epe model for 01/25/02:",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "albert.meyers@enron.com",
+      "sender_label": "Albert Meyers",
+      "date_utc": "2002-01-26T11:58:40Z"
+    },
+    {
+      "id": "batch-094:e1",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/inbox/48.",
+      "start": 589,
+      "end": 615,
+      "raw_text": "Here is the latest report.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "kalmeida@caiso.com",
+      "sender_label": "Keoni Almeida",
+      "date_utc": "2002-02-04T22:18:15Z"
+    }
+  ],
+  "chasers": [
+    "corpus/williams-w3/sent_items/456."
+  ],
+  "reply_gaps": [],
+  "reply_gap_n": 0,
+  "median_reply_gap_h": null,
+  "claims": [],
+  "conflicts": [],
+  "contradictions": [],
+  "contradictions_dropped": 0,
+  "loops": [
+    {
+      "thread_id": "t-5f80c8a5b98d",
+      "message_id": "corpus/williams-w3/sent_items/456.",
+      "why": "chase",
+      "date_utc": "2001-06-28T18:33:29Z",
+      "mailbox": "williams-w3",
+      "mailbox_end_utc": "2002-02-07T11:05:04Z",
+      "days_before_end": 223,
+      "recent": false,
+      "subject": "RE: EES for 06/27/01",
+      "from": "bill.williams@enron.com",
+      "from_label": "Bill Williams III",
+      "thread_length": 2,
+      "processes": [
+        "real-time-model-distribution"
+      ],
+      "quote": null
+    }
+  ],
+  "document": null
+}

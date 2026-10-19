@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Meter flow discrepancy resolution: template · Observation agent</title>
+<meta name="description" content="A drafted template for one of the recurring processes the run found, with its evidence quoted exactly from the emails.">
+<meta name="obs-run" content="20261019T134634Z">
+<link rel="canonical" href="https://schom975-coder.github.io/observation-agent-assignment/documents/meter-flow-resolution.html">
+<link rel="alternate" type="text/markdown" href="meter-flow-resolution.md">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../site.css">
+</head>
+<body>
+<aside class="ai-note" aria-label="Reading with an AI assistant">
+<p class="ai-text">Reading this with an AI assistant? This site is set up for Claude to read in full. Give it this page's address and ask it anything about the project.</p>
+<p class="ai-url"><code id="page-url">https://schom975-coder.github.io/observation-agent-assignment/documents/meter-flow-resolution.html</code> <button type="button" id="copy-url" class="copy" hidden>Copy address</button></p>
+</aside>
+<div class="brandrule" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<div class="shell">
+<header class="top">
+<p class="site"><a href="../index.html">Observation agent</a> <span class="runline">Submitted run of 19 Oct 2026</span></p>
+<nav aria-label="Pages"><ul class="nav"><li><a href="../index.html">Home</a></li><li><a href="../dashboard/index.html">Dashboard</a></li><li><a href="../how-to-use.html">How to use</a></li><li><a href="../how-to-run.html">How to run</a></li><li><a href="../run.html" aria-current="page">The run</a></li><li><a href="../architecture.html">Architecture</a></li><li><a href="../design.html">Design</a></li><li><a href="../process.html">How it was built</a></li><li><a href="../claude-dir.html">Claude Code layer</a></li><li><a href="../notes.html">Notes</a></li><li><a href="../report.html">Report</a></li><li><a href="../brief.html">Brief</a></li></ul></nav>
+</header>
+<main id="main">
+<p class="kicker">Drafted document · rank 3 · template</p>
+<h1>Meter flow discrepancy resolution: template</h1>
+<p class="prefix">Drafted by the run for the process owner to review. The body is model prose that passed the draft gate; the title, the line under it and the Evidence section are written by code, and every quote in the Evidence section is checked against the raw message. <a href="../run.html#documents">All the drafted documents</a>.</p>
+<div class="doc"><p>Draft prepared from 206 emails about this process, for the process owner to review. Evidence about this process, quoted exactly from the emails, is listed at the end.</p>
+<h2>Purpose</h2>
+<p>Use this request form when gas flowed at a meter with no matching deal, no nomination, or volumes out of line with the deal. One form carries everything the trader or scheduler needs to answer: the meter, the days, the volume, the last deal at that meter, and the action you propose. It replaces the hand-written message that is otherwise rebuilt each time.</p>
+<p>The form asks for a decision on how the flow is booked: create, extend or path a deal, move the volume to an existing deal, adjust it, or write it off. Booking stays with people; the form only gets the question to the right person with the facts attached.</p>
+<h2>Who fills it in</h2>
+<p>People doing this work (counted from the emails): Clem Cernosek (27 written), Mary Poorman (20 written, 1 forwarded), Aimee Lannou (19 written, 1 forwarded), Jackie Young (9 written, 4 forwarded). Named as owner in the emails: Danny Conner (Oct 2000), Mary Poorman (Nov 2000), Karen Lindley (Feb 2001), Mandy MacKinnon (Jan 2000); the process owner settles which. Owner: <mark class="blank">[process owner to confirm]</mark>.</p>
+<p>The volume management or allocation analyst who spots the flow fills in the form and sends it. That role also looks up the deal and nominations before sending, tracks the request until it closes, and reallocates the volume off the strangers gas contract or unaccounted-for balance once the answer comes back.</p>
+<p>The trader or scheduler named for the meter in the routing table answers the form: whether a deal exists, should be created, or should be revised. The logistics group tells the assets group about meter changes and the volume management analyst owns the adjustments, so state both in the form&#39;s last two fields instead of assuming one covers the other.</p>
+<h2>When</h2>
+<p>Fill in a form each time a meter shows flow with no deal, no nomination, or volumes that disagree with the deal or the pipeline statement. Send it the same day you find the flow <mark class="blank">[proposed: same day]</mark>. Send one form per meter; list every affected day on that form.</p>
+<p>Check the Ageing field each morning <mark class="blank">[proposed: every business day]</mark>. Chase once after <mark class="blank">[proposed: 2 business days]</mark> without a reply, and send the item to the desk lead if it is still open after that <mark class="blank">[proposed: one reminder, then escalate]</mark>. Flag old flow, raised long after the gas moved, at the top of the form so it is read first.</p>
+<h2>Template</h2>
+<p>Fill in one row per field. Replace every <code>[placeholder]</code>.</p>
+<table><thead><tr><th scope="col">Field</th><th scope="col">Entry</th></tr></thead><tbody><tr><td>Date sent</td><td><mark class="blank">[date]</mark></td></tr><tr><td>Requested by (role and name)</td><td><mark class="blank">[volume management or allocation analyst]</mark></td></tr><tr><td>Sent to (owner of this meter from the routing table)</td><td><mark class="blank">[trader or scheduler]</mark></td></tr><tr><td>Meter number and name</td><td><mark class="blank">[meter]</mark></td></tr><tr><td>Pipeline / point</td><td><mark class="blank">[pipeline and point]</mark></td></tr><tr><td>Days that flowed</td><td><mark class="blank">[day or date range]</mark></td></tr><tr><td>Volume that flowed</td><td><mark class="blank">[volume]</mark> <mark class="blank">[unit: MMBtu or dth, as the pipeline statement shows]</mark></td></tr><tr><td>What is missing or wrong</td><td><mark class="blank">[no deal / no nomination / volume differs from deal]</mark></td></tr><tr><td>Last deal at this meter and its trader</td><td><mark class="blank">[deal number]</mark> for <mark class="blank">[month]</mark>, trader <mark class="blank">[name]</mark></td></tr><tr><td>Deals and nominations checked</td><td><mark class="blank">[deal system and scheduling system results, for example nothing coming through in Unify or CPR]</mark></td></tr><tr><td>Volume currently sitting on</td><td><mark class="blank">[strangers gas contract / unaccounted-for balance / other]</mark></td></tr><tr><td>Counterparty or pipeline volume, if different</td><td><mark class="blank">[actual volume]</mark> <mark class="blank">[unit]</mark>, confirmed with <mark class="blank">[counterparty or pipeline contact]</mark></td></tr><tr><td>Earlier request for this flow</td><td><mark class="blank">[date and recipient, or none]</mark></td></tr><tr><td>Proposed action</td><td>[create a deal / extend deal <mark class="blank">[number]</mark> / path deal <mark class="blank">[number]</mark> to <mark class="blank">[pipeline]</mark> / move volume to deal <mark class="blank">[number]</mark> / adjust / write off]</td></tr><tr><td>Question for you</td><td><mark class="blank">[Does a deal exist, should one be created, or should it be revised?]</mark></td></tr><tr><td>Needed by</td><td><mark class="blank">[deadline]</mark></td></tr><tr><td>Impact if not cleared</td><td><mark class="blank">[for example, effect on the UA4 number or on economics]</mark></td></tr><tr><td>Ageing (days since flow / days since this request)</td><td><mark class="blank">[days]</mark> / <mark class="blank">[days]</mark></td></tr><tr><td>Status</td><td><mark class="blank">[open / waiting on counterparty / waiting on legal / booked / closed]</mark></td></tr><tr><td>Resolution</td><td><mark class="blank">[deal number the volume was placed on, adjustment, or write-off; date reallocated]</mark></td></tr><tr><td>Who informs the assets group of the meter change</td><td><mark class="blank">[logistics contact]</mark></td></tr><tr><td>Who makes the adjustment</td><td><mark class="blank">[volume management contact]</mark></td></tr></tbody></table>
+<h2>Where it goes</h2>
+<p>Send the completed form by email to the owner of the meter or point, copying the desk lead and the volume management contact. Keep each form in the meter exceptions tracker at <mark class="blank">[location]</mark>, one row per form with the same fields and the Ageing column, and sort the tracker by Ageing so the oldest items show first.</p>
+<p>Set up the following before first use:</p>
+<ol><li>Set up the meter exceptions tracker at <mark class="blank">[location]</mark> and keep it current. Close an item only when the Resolution field names where the volume was reallocated.</li><li>Set up a routing table at <mark class="blank">[location]</mark> that names the owner for each meter or point, with a backup. Keep it current; when a question is redirected to someone else, update the table so the next form goes to the right person.</li><li>Set up a daily exception report <mark class="blank">[proposed: run each morning]</mark> that matches measured meter flow against deals and nominations and lists each meter, day and volume with no deal, with the last deal at that meter and its trader attached. Use it as the starting point for new forms.</li></ol>
+<h3>If the item stalls</h3>
+<ul><li>No reply: chase once, then send it to the desk lead named in the routing table.</li><li>Waiting on a counterparty who is checking with legal: set Status to waiting on legal, note the contact and the date, and do not book the volume until they call back.</li><li>The deal system and the pipeline disagree on volumes: list the differences by day in the Counterparty or pipeline volume field and confirm with the counterparty before you propose an action.</li><li>Nothing comes through in the scheduling system, or mirrored meters misbehave: record it in the Deals and nominations checked field and tell the system owner <mark class="blank">[contact]</mark>, since it may be hiding other exceptions.</li><li>Two people each say someone else handles the meter: send the form to the desk lead to name the owner, then update the routing table.</li></ul>
+<h2>Evidence</h2>
+<p>Passages about this process, each quoted exactly from the email named above it. They support the document as a whole, not any one line of it.</p>
+<h3>The work</h3>
+<ul><li><code>corpus/farmer-d/logistics/77.</code> (2001-08-14, from Baxter, Bryce):<blockquote>Can you check into this and get back with Daren?</blockquote></li><li><code>corpus/farmer-d/logistics/1129.</code> (2000-05-22, from Aimee Lannou):<blockquote>During the Saxet Thompsonville outage, May 8 - May 11, the meter</blockquote></li><li><code>corpus/farmer-d/logistics/1499.</code> (2000-11-07, from Clem Cernosek):<blockquote>On 1/5/99, the above meter recorded flow 1,703 Mmbtus.</blockquote></li><li><code>corpus/farmer-d/logistics/2101.</code> (2001-02-26, from Aimee Lannou):<blockquote>I have a meter with flow and no nom</blockquote></li><li><code>corpus/farmer-d/logistics/1340.</code> (2000-08-16, from David Baumbach):<blockquote>I don&#39;t see anything coming through in Unify</blockquote></li><li><code>corpus/farmer-d/logistics/1986.</code> (2000-12-19, from Clem Cernosek):<blockquote>On 9/24/99, the above meter recorded flow of 437 Mmbtus.</blockquote></li><li><code>corpus/farmer-d/logistics/203.</code> (2001-03-29, from David Baumbach):<blockquote>I put a file in your folder.  Hope it helps with the UA4.</blockquote></li><li><code>corpus/farmer-d/logistics/2013.</code> (2000-12-27, from Clem Cernosek):<blockquote>During the period of 11/10/99 through 11/11/99, the above meter recorded flow</blockquote></li><li><code>corpus/farmer-d/logistics/108.</code> (2001-06-22, from Barkowsky, Gloria G.):<blockquote>January 2000 - I need deal #854688 pathed for EPGT and for TETC.</blockquote></li><li><code>corpus/farmer-d/logistics/1013.</code> (2000-04-04, from Robert E Lloyd):<blockquote>This change is needed  ASAP for economics purposes.</blockquote></li><li><code>corpus/farmer-d/logistics/595.</code> (1999-12-16, from Stella L Morris):<blockquote>nor could I find anything in CPR.</blockquote></li><li><code>corpus/farmer-d/logistics/1149.</code> (2000-05-26, from Jackie Young):<blockquote>Can you assist Anita and I w/a deal number to place the 1st 20 days on.</blockquote></li><li><code>corpus/farmer-d/logistics/1973.</code> (2000-12-14, from Clem Cernosek):<blockquote>Volume Mgmt had previously requested a deal to cover these volumes from</blockquote></li><li><code>corpus/farmer-d/logistics/1043.</code> (2000-04-14, from Charlotte Hawkins):<blockquote>Do we have a deal at this city</blockquote></li><li><code>corpus/farmer-d/logistics/1508.</code> (2000-11-10, from Aimee Lannou):<blockquote>Meter 5192  last deal 454057 for 10/00. flowed 11/3-4</blockquote></li><li><code>corpus/farmer-d/logistics/2017.</code> (2000-12-28, from Clem Cernosek):<blockquote>Deal #119068 was at this meter during April 2000 and again began 6/13/2000,</blockquote></li><li><code>corpus/farmer-d/logistics/1073.</code> (2000-04-25, from Katherine Herrera):<blockquote>I needed to confirm what the actual</blockquote></li><li><code>corpus/farmer-d/logistics/792.</code> (2000-02-14, from Charlotte Hawkins):<blockquote>I have spoken with Koch today and they agree that the 16,700 should have gone</blockquote></li><li><code>corpus/farmer-d/logistics/1448.</code> (2000-10-10, from Aimee Lannou):<blockquote>There is flow at meter 74 on 9/14 (499 dth).</blockquote></li><li><code>corpus/farmer-d/logistics/663.</code> (2000-01-10, from Mandy MacKinnon):<blockquote>Deal #125836 We have been purchasing gas from Cox Exploration on PG&amp;E</blockquote></li></ul>
+<h3>Where it stalls</h3>
+<ul><li><code>corpus/farmer-d/logistics/1009.</code> (2000-04-03, from Jackie Young):<blockquote>Anita, have you found out any further information about this meter.</blockquote></li><li><code>corpus/farmer-d/logistics/1072.</code> (2000-04-25, from Aimee Lannou):<blockquote>Have you had a chance to check this out?</blockquote></li><li><code>corpus/farmer-d/logistics/1356.</code> (2000-08-23, from Jackie Young):<blockquote>Sorry that I didn&#39;t include you on Gary&#39;s e-mail.</blockquote></li><li><code>corpus/farmer-d/logistics/1485.</code> (2000-11-01, from Aimee Lannou):<blockquote>What is the status of meter 6387?</blockquote></li><li><code>corpus/farmer-d/logistics/2051.</code> (2001-01-22, from Mary Poorman):<blockquote>This issue will blow out our UA4 number,</blockquote></li><li><code>corpus/farmer-d/logistics/861.</code> (2000-03-01, from Kimberly Vaughn):<blockquote>Have you had a chance to look at this yet?</blockquote></li></ul>
+<h3>Who owns it</h3>
+<ul><li><code>corpus/farmer-d/logistics/1458.</code> (2000-10-18, from Mark McCoy):<blockquote>Unfortunately, Danny Conner handles this</blockquote></li><li><code>corpus/farmer-d/logistics/1971.</code> (2000-12-14, from Victor Lamadrid):<blockquote>Clem is the point person on this.</blockquote></li><li><code>corpus/farmer-d/logistics/2100.</code> (2001-02-25, from Fred Boas):<blockquote>Karen Lindley allocates this point</blockquote></li><li><code>corpus/farmer-d/logistics/663.</code> (2000-01-10, from Mandy MacKinnon):<blockquote>will take responsibility for not adjusting the interconnect ticket at</blockquote></li></ul>
+<p>Counted from the emails: this work came up 157 times over 21 active months (1999-12-14 to 2001-10-23), across 206 emails, with 101 staff taking part.</p>
+<p>Estimated, not counted: about 40 minutes of hands-on work each time (range 20 to 90), about 50% of it automatable. Basis: seen in the emails; proposed by a model and checked by code.</p></div>
+</main>
+<footer class="foot">
+<p><a href="https://github.com/Schom975-coder/observation-agent-assignment">The repository on GitHub</a> · Scott Hom · <a href="meter-flow-resolution.md">This page in Markdown</a> · <a href="../llms.txt">llms.txt</a> · <a href="../llms-full.txt">llms-full.txt</a></p>
+</footer>
+</div>
+<script>
+(() => {
+  const button = document.getElementById('copy-url');
+  const url = document.getElementById('page-url');
+  if (!button || !url) return;
+  button.hidden = false;
+  const select = () => {
+    const range = document.createRange();
+    range.selectNodeContents(url);
+    const sel = window.getSelection();
+    if (sel) { sel.removeAllRanges(); sel.addRange(range); }
+  };
+  button.addEventListener('click', () => {
+    const text = url.textContent || '';
+    const selected = () => { select(); button.textContent = 'Selected: press Ctrl+C or Cmd+C'; };
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(() => { button.textContent = 'Copied'; }, selected);
+    else selected();
+  });
+})();
+</script>
+</body>
+</html>

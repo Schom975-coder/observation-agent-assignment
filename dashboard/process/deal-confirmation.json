@@ -1,0 +1,1112 @@
+{
+  "key": "deal-confirmation",
+  "name": "Deal confirmation",
+  "definition": "Issuing, chasing and passing on written confirmations of gas purchases and sales with counterparties.",
+  "rank": 58,
+  "tier": "C",
+  "row": {
+    "rank": 58,
+    "key": "deal-confirmation",
+    "name": "Deal confirmation",
+    "tier": "C",
+    "tier_words": "seen too rarely to count, not in the total",
+    "in_total": false,
+    "origin": "promoted",
+    "total": {
+      "v": 236,
+      "t": "$2",
+      "x": "$2.36",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "deal-confirmation"
+      }
+    },
+    "counted": {
+      "v": 45,
+      "t": "$0",
+      "x": "$0.45",
+      "k": "counted",
+      "d": {
+        "kind": "formula",
+        "key": "deal-confirmation"
+      }
+    },
+    "estimated": {
+      "v": 191,
+      "t": "$2",
+      "x": "$1.91",
+      "k": "estimated",
+      "d": {
+        "kind": "formula",
+        "key": "deal-confirmation"
+      }
+    },
+    "low": {
+      "v": 141,
+      "t": "$1",
+      "x": "$1.41",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "deal-confirmation"
+      }
+    },
+    "high": {
+      "v": 524,
+      "t": "$5",
+      "x": "$5.24",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "deal-confirmation"
+      }
+    },
+    "today": {
+      "v": 403,
+      "t": "$4",
+      "x": "$4.03",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "deal-confirmation"
+      }
+    },
+    "hours": {
+      "v": 3,
+      "t": "0.0",
+      "x": "0.03 hours",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "deal-confirmation"
+      }
+    },
+    "hours_today": {
+      "v": 5,
+      "t": "0.1",
+      "x": "0.05 hours",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "deal-confirmation"
+      }
+    },
+    "occurrences": {
+      "v": 5,
+      "t": "5 times",
+      "d": {
+        "kind": "occurrences",
+        "key": "deal-confirmation"
+      }
+    },
+    "shared_occurrences": 0,
+    "active_months": {
+      "v": 4,
+      "t": "4 active months",
+      "d": {
+        "kind": "months",
+        "key": "deal-confirmation"
+      }
+    },
+    "span_days": 676,
+    "first_utc": "2000-04-03T12:53:00Z",
+    "last_utc": "2002-02-07T16:40:25Z",
+    "messages": {
+      "v": 5,
+      "t": "5 emails",
+      "d": {
+        "kind": "occurrences",
+        "key": "deal-confirmation"
+      }
+    },
+    "threads": 5,
+    "mailboxes": [
+      {
+        "key": "farmer-d",
+        "n": 2,
+        "pct": 40
+      },
+      {
+        "key": "lokay-m",
+        "n": 2,
+        "pct": 40
+      },
+      {
+        "key": "giron-d",
+        "n": 1,
+        "pct": 20
+      }
+    ],
+    "top_mailbox": "farmer-d",
+    "top_pct": 40,
+    "one_mailbox": false,
+    "seen_in": "Seen in: 3 mailboxes",
+    "staff": {
+      "v": 8,
+      "t": "8 staff",
+      "d": {
+        "kind": "participants",
+        "key": "deal-confirmation",
+        "filter": "staff"
+      }
+    },
+    "writers": {
+      "v": 2,
+      "t": "2",
+      "d": {
+        "kind": "participants",
+        "key": "deal-confirmation",
+        "filter": "writers"
+      }
+    },
+    "copied": {
+      "v": 6,
+      "t": "6",
+      "d": {
+        "kind": "participants",
+        "key": "deal-confirmation",
+        "filter": "copied"
+      }
+    },
+    "estimate": {
+      "low": 5,
+      "mid": 10,
+      "high": 25,
+      "automatable_pct": 60,
+      "basis_words": "worked out from the steps the emails show",
+      "source": "model"
+    },
+    "stall_label": "A counterparty never received confirmations for several months of deals and had to chase…",
+    "stall_summary": "A counterparty never received confirmations for several months of deals and had to chase them.",
+    "stall_kind": "waiting_on_reply",
+    "stall_quotes": {
+      "v": 2,
+      "t": "2 stall quotes",
+      "d": {
+        "kind": "stalls",
+        "key": "deal-confirmation"
+      }
+    },
+    "fix": "Generate confirmations from the deal record when a deal is entered, send them to the counterparty and a fixed internal distribution automatically, and track which deals still…",
+    "document": null,
+    "status_line": "Not drafted: seen too rarely to count",
+    "chasers": {
+      "v": 0,
+      "t": "0 chasers",
+      "d": {
+        "kind": "actions",
+        "key": "deal-confirmation",
+        "type": "chaser"
+      }
+    },
+    "stall_count": {
+      "v": 1,
+      "t": "1",
+      "d": {
+        "kind": "stalls",
+        "key": "deal-confirmation",
+        "stall_kind": "waiting_on_reply"
+      }
+    },
+    "loops": {
+      "v": 1,
+      "t": "1 open loop",
+      "d": {
+        "kind": "loops",
+        "key": "deal-confirmation"
+      }
+    },
+    "loops_recent": {
+      "v": 1,
+      "t": "1",
+      "d": {
+        "kind": "loops",
+        "key": "deal-confirmation",
+        "recent": true
+      }
+    },
+    "claims": {
+      "v": 0,
+      "t": "0 claims",
+      "d": {
+        "kind": "claims",
+        "key": "deal-confirmation"
+      }
+    },
+    "conflicts": {
+      "v": 0,
+      "t": "0 conflicts",
+      "d": {
+        "kind": "claims",
+        "key": "deal-confirmation"
+      }
+    },
+    "reply_gap": null,
+    "last_three_months_share": {
+      "v": 3,
+      "t": "3 of 5",
+      "d": {
+        "kind": "occurrences",
+        "key": "deal-confirmation"
+      }
+    },
+    "flags": []
+  },
+  "synthesis": {
+    "description": "Written confirmations of gas purchases and sales are executed and passed on. A marketer executes a sales confirm and sends a copy to colleagues, counterparties ask for copies to be faxed or forwarded, and counterparties chase confirmations for months they never received. Senders are not always sure how the confirmation reaches the people who need it.",
+    "steps": [
+      "A gas purchase or sale is agreed with a counterparty.",
+      "The confirmation is prepared and executed.",
+      "A copy is sent to internal colleagues and to the counterparty.",
+      "Missing confirmations are requested by the counterparty and resent."
+    ],
+    "approach": "Generate confirmations from the deal record when a deal is entered, send them to the counterparty and a fixed internal distribution automatically, and track which deals still lack a confirmation so gaps are caught before the counterparty asks.",
+    "rationale": "The problems shown are about routing: who gets the confirm and whether it was ever sent. A short written procedure naming the distribution and the check for unconfirmed deals addresses both right away.",
+    "artifact_type": "sop"
+  },
+  "formula": {
+    "counted": "5 occ over 676 d = 22.21 mo; email: 3 short x2 + 0 medium x6 + 0 long x15 + 0 fwd x2 + 0 chaser x3 + 7 read x1 = 13.00 min = 0.59 min/mo; automatable 60/40/30/80/100/50% = 7.10 min = 0.32 min/mo",
+    "estimated": "5.00 occ x 10 min/occ (estimate, mid of 5-25, basis inferred, 4 quotes from 4 occurrences) = 50.00 min = 2.25 min/mo; automatable 60% (estimate) = 1.35 min/mo; at the low end 5 min/occ = $1.41/mo, at the high end 25 min/occ = $5.24/mo (the row's automatable total)",
+    "total": "today 2.84 min/mo = 0.05 h/mo = $4.03/mo (email 0.59 min/mo = $0.84 + work 2.25 min/mo = $3.19); automatable 1.67 min/mo = 0.03 h/mo = $2.36/mo (counted email 0.32 min/mo = $0.45 + estimated work 1.35 min/mo = $1.91)"
+  },
+  "window": {
+    "first_utc": "2000-04-03T12:53:00Z",
+    "last_utc": "2002-02-07T16:40:25Z",
+    "span_days": 676,
+    "months_x100": 2221,
+    "active_months": 4,
+    "undated_occurrences": 0
+  },
+  "months": 2221,
+  "occurrence_share_x100": 500,
+  "actions": {
+    "priced": {
+      "authored_short": 3,
+      "authored_medium": 0,
+      "authored_long": 0,
+      "forward": 0,
+      "chaser": 0,
+      "read": 7
+    },
+    "unpriced": {
+      "authored_short": 0,
+      "authored_medium": 2,
+      "authored_long": 0,
+      "forward": 0,
+      "chaser": 0,
+      "read": 2
+    }
+  },
+  "action_table": [
+    {
+      "type": "authored_short",
+      "words": "short emails written",
+      "count": {
+        "v": 3,
+        "t": "3",
+        "d": {
+          "kind": "actions",
+          "key": "deal-confirmation",
+          "type": "authored_short"
+        }
+      },
+      "minutes_each": 2,
+      "minutes": "6.00",
+      "automatable_pct": 60,
+      "automatable_minutes": "3.60"
+    },
+    {
+      "type": "authored_medium",
+      "words": "medium emails written",
+      "count": {
+        "v": 0,
+        "t": "0",
+        "d": {
+          "kind": "actions",
+          "key": "deal-confirmation",
+          "type": "authored_medium"
+        }
+      },
+      "minutes_each": 6,
+      "minutes": "0.00",
+      "automatable_pct": 40,
+      "automatable_minutes": "0.00"
+    },
+    {
+      "type": "authored_long",
+      "words": "long emails written",
+      "count": {
+        "v": 0,
+        "t": "0",
+        "d": {
+          "kind": "actions",
+          "key": "deal-confirmation",
+          "type": "authored_long"
+        }
+      },
+      "minutes_each": 15,
+      "minutes": "0.00",
+      "automatable_pct": 30,
+      "automatable_minutes": "0.00"
+    },
+    {
+      "type": "forward",
+      "words": "forwards",
+      "count": {
+        "v": 0,
+        "t": "0",
+        "d": {
+          "kind": "actions",
+          "key": "deal-confirmation",
+          "type": "forward"
+        }
+      },
+      "minutes_each": 2,
+      "minutes": "0.00",
+      "automatable_pct": 80,
+      "automatable_minutes": "0.00"
+    },
+    {
+      "type": "chaser",
+      "words": "chasers",
+      "count": {
+        "v": 0,
+        "t": "0",
+        "d": {
+          "kind": "actions",
+          "key": "deal-confirmation",
+          "type": "chaser"
+        }
+      },
+      "minutes_each": 3,
+      "minutes": "0.00",
+      "automatable_pct": 100,
+      "automatable_minutes": "0.00"
+    },
+    {
+      "type": "read",
+      "words": "reads, one per addressee",
+      "count": {
+        "v": 7,
+        "t": "7",
+        "d": {
+          "kind": "actions",
+          "key": "deal-confirmation",
+          "type": "read"
+        }
+      },
+      "minutes_each": 1,
+      "minutes": "7.00",
+      "automatable_pct": 50,
+      "automatable_minutes": "3.50"
+    }
+  ],
+  "email": {
+    "today_x100": 1300,
+    "automatable_x100": 710,
+    "per_month_today_x100": 59,
+    "per_month_automatable_x100": 32
+  },
+  "work": {
+    "per_month_today_x100": 225,
+    "per_month_automatable_x100": 135,
+    "low_cents": 96,
+    "high_cents": 479
+  },
+  "estimate_quotes": [
+    {
+      "id": "batch-093:e12",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/80.",
+      "start": 618,
+      "end": 672,
+      "raw_text": "attached is the sales confirm I executed this morning.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-02-04T19:22:03Z"
+    },
+    {
+      "id": "batch-097:e4",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/84.",
+      "start": 575,
+      "end": 609,
+      "raw_text": "Copy of confirmation of gas sales.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-02-07T16:40:25Z"
+    },
+    {
+      "id": "batch-080:e15",
+      "kind": "evidence",
+      "message_id": "corpus/giron-d/inbox/276.",
+      "start": 689,
+      "end": 763,
+      "raw_text": "As we discussed, I never received a confirmation of the May, June and July",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "csulzer@grenergy.com",
+      "sender_label": "Carl Sulzer GRE/ER Fuel/Plant",
+      "date_utc": "2001-11-28T21:20:28Z"
+    },
+    {
+      "id": "batch-010:e1",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1006.",
+      "start": 693,
+      "end": 767,
+      "raw_text": "Would you please forward to Lisa Maillet (Fax# 508-786-7201) a copy of the",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "tchristensen@anpower.com",
+      "sender_label": "Trey Christensen",
+      "date_utc": "2000-04-03T12:53:00Z"
+    }
+  ],
+  "estimate_check": {
+    "occurrences_cited": 4,
+    "senders_cited": 3
+  },
+  "monthly": [
+    {
+      "month": "2000-04",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "deal-confirmation",
+          "month": "2000-04"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-83b86114786e-o1"
+      ]
+    },
+    {
+      "month": "2001-04",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "deal-confirmation",
+          "month": "2001-04"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-da6989b59a5e-o1"
+      ]
+    },
+    {
+      "month": "2001-11",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "deal-confirmation",
+          "month": "2001-11"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-480fd83d4a03-o1"
+      ]
+    },
+    {
+      "month": "2002-02",
+      "occurrences": {
+        "v": 2,
+        "t": "2",
+        "d": {
+          "kind": "occurrences",
+          "key": "deal-confirmation",
+          "month": "2002-02"
+        }
+      },
+      "messages": 2,
+      "ids": [
+        "t-43aaeaceaeff-o1",
+        "t-47986dd11dcf-o1"
+      ]
+    }
+  ],
+  "occurrences": [
+    {
+      "id": "t-43aaeaceaeff-o1",
+      "message_ids": [
+        "corpus/lokay-m/sent_items/84."
+      ],
+      "date_utc": "2002-02-07T16:40:25Z"
+    },
+    {
+      "id": "t-47986dd11dcf-o1",
+      "message_ids": [
+        "corpus/lokay-m/sent_items/80."
+      ],
+      "date_utc": "2002-02-04T19:22:03Z"
+    },
+    {
+      "id": "t-480fd83d4a03-o1",
+      "message_ids": [
+        "corpus/giron-d/inbox/276."
+      ],
+      "date_utc": "2001-11-28T21:20:28Z"
+    },
+    {
+      "id": "t-83b86114786e-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1006."
+      ],
+      "date_utc": "2000-04-03T12:53:00Z"
+    },
+    {
+      "id": "t-da6989b59a5e-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/162."
+      ],
+      "date_utc": "2001-04-24T22:36:11Z"
+    }
+  ],
+  "undated_occurrences": [],
+  "action_sources": [
+    {
+      "message_id": "corpus/farmer-d/logistics/1006.",
+      "type": "authored_medium",
+      "person": "tchristensen@anpower.com",
+      "address": "tchristensen@anpower.com",
+      "priced": false,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1006.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "dfarmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1006.",
+      "type": "read",
+      "person": "fuel@anpower.com",
+      "address": "fuel@anpower.com",
+      "priced": false,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1006.",
+      "type": "read",
+      "person": "jennifer.sabine@enron.com",
+      "address": "jennifer.sabine@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/162.",
+      "type": "authored_short",
+      "person": "ellen.wallumrod@enron.com",
+      "address": "ellen.wallumrod@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/162.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "j..farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/276.",
+      "type": "authored_medium",
+      "person": "csulzer@grenergy.com",
+      "address": "csulzer@grenergy.com",
+      "priced": false,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/276.",
+      "type": "read",
+      "person": "'lewis@enron.com",
+      "address": "'lewis@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/276.",
+      "type": "read",
+      "person": "darron.giron@enron.com",
+      "address": "c..giron@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/276.",
+      "type": "read",
+      "person": "mjlewis@mnpower.com",
+      "address": "mjlewis@mnpower.com",
+      "priced": false,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/80.",
+      "type": "authored_short",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/80.",
+      "type": "read",
+      "person": "paul.cherry@enron.com",
+      "address": "paul.cherry@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/84.",
+      "type": "authored_short",
+      "person": "michelle.lokay@enron.com",
+      "address": "michelle.lokay@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/lokay-m/sent_items/84.",
+      "type": "read",
+      "person": "bert.hernandez@enron.com",
+      "address": "bert.hernandez@enron.com",
+      "priced": true,
+      "share_x100": 100
+    }
+  ],
+  "participants": [
+    {
+      "email": "daren.farmer@enron.com",
+      "name": "Daren J Farmer",
+      "label": "Daren J Farmer",
+      "kind": "person",
+      "addresses": [
+        "dfarmer@enron.com",
+        "j..farmer@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "michelle.lokay@enron.com",
+      "name": "Lokay, Michelle",
+      "label": "Michelle Lokay",
+      "kind": "person",
+      "addresses": [
+        "michelle.lokay@enron.com"
+      ],
+      "staff": true,
+      "authored": 2,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "'lewis@enron.com",
+      "name": null,
+      "label": "'lewis@enron.com",
+      "kind": "person",
+      "addresses": [
+        "'lewis@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "bert.hernandez@enron.com",
+      "name": null,
+      "label": "bert.hernandez@enron.com",
+      "kind": "person",
+      "addresses": [
+        "bert.hernandez@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "csulzer@grenergy.com",
+      "name": "Carl Sulzer GRE/ER Fuel/Plant",
+      "label": "Carl Sulzer GRE/ER Fuel/Plant",
+      "kind": "person",
+      "addresses": [
+        "csulzer@grenergy.com"
+      ],
+      "staff": false,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "darron.giron@enron.com",
+      "name": "Darron C Giron",
+      "label": "Darron C Giron",
+      "kind": "person",
+      "addresses": [
+        "c..giron@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "ellen.wallumrod@enron.com",
+      "name": "Wallumrod, Ellen",
+      "label": "Ellen Wallumrod",
+      "kind": "person",
+      "addresses": [
+        "ellen.wallumrod@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "fuel@anpower.com",
+      "name": null,
+      "label": "fuel@anpower.com",
+      "kind": "person",
+      "addresses": [
+        "fuel@anpower.com"
+      ],
+      "staff": false,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "jennifer.sabine@enron.com",
+      "name": null,
+      "label": "jennifer.sabine@enron.com",
+      "kind": "person",
+      "addresses": [
+        "jennifer.sabine@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "mjlewis@mnpower.com",
+      "name": null,
+      "label": "mjlewis@mnpower.com",
+      "kind": "person",
+      "addresses": [
+        "mjlewis@mnpower.com"
+      ],
+      "staff": false,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "paul.cherry@enron.com",
+      "name": null,
+      "label": "paul.cherry@enron.com",
+      "kind": "person",
+      "addresses": [
+        "paul.cherry@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "tchristensen@anpower.com",
+      "name": "Christensen, Trey",
+      "label": "Trey Christensen",
+      "kind": "person",
+      "addresses": [
+        "tchristensen@anpower.com"
+      ],
+      "staff": false,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    }
+  ],
+  "stalls_by_kind": [
+    {
+      "kind": "waiting_on_reply",
+      "words": "1 waiting on a reply",
+      "count": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "stalls",
+          "key": "deal-confirmation",
+          "stall_kind": "waiting_on_reply"
+        }
+      }
+    },
+    {
+      "kind": "handoff_confusion",
+      "words": "1 handoff confusion",
+      "count": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "stalls",
+          "key": "deal-confirmation",
+          "stall_kind": "handoff_confusion"
+        }
+      }
+    }
+  ],
+  "stall_groups": [
+    {
+      "summary": "A counterparty never received confirmations for several months of deals and had to chase them.",
+      "quotes": [
+        {
+          "id": "batch-080:s4",
+          "kind": "stall",
+          "message_id": "corpus/giron-d/inbox/276.",
+          "start": 689,
+          "end": 763,
+          "raw_text": "As we discussed, I never received a confirmation of the May, June and July",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "csulzer@grenergy.com",
+          "sender_label": "Carl Sulzer GRE/ER Fuel/Plant",
+          "date_utc": "2001-11-28T21:20:28Z",
+          "stall_kind": "waiting_on_reply"
+        }
+      ]
+    },
+    {
+      "summary": "The sender of an executed confirm did not know the route by which confirmation details reach the downstream team.",
+      "quotes": [
+        {
+          "id": "batch-093:s3",
+          "kind": "stall",
+          "message_id": "corpus/lokay-m/sent_items/80.",
+          "start": 572,
+          "end": 611,
+          "raw_text": "I am not sure how this info gets to you",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "michelle.lokay@enron.com",
+          "sender_label": "Michelle Lokay",
+          "date_utc": "2002-02-04T19:22:03Z",
+          "stall_kind": "handoff_confusion"
+        },
+        {
+          "id": "batch-093:e12",
+          "kind": "evidence",
+          "message_id": "corpus/lokay-m/sent_items/80.",
+          "start": 618,
+          "end": 672,
+          "raw_text": "attached is the sales confirm I executed this morning.",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "michelle.lokay@enron.com",
+          "sender_label": "Michelle Lokay",
+          "date_utc": "2002-02-04T19:22:03Z"
+        }
+      ]
+    }
+  ],
+  "stall_quotes": [
+    {
+      "id": "batch-080:s4",
+      "kind": "stall",
+      "message_id": "corpus/giron-d/inbox/276.",
+      "start": 689,
+      "end": 763,
+      "raw_text": "As we discussed, I never received a confirmation of the May, June and July",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "csulzer@grenergy.com",
+      "sender_label": "Carl Sulzer GRE/ER Fuel/Plant",
+      "date_utc": "2001-11-28T21:20:28Z",
+      "stall_kind": "waiting_on_reply"
+    },
+    {
+      "id": "batch-093:s3",
+      "kind": "stall",
+      "message_id": "corpus/lokay-m/sent_items/80.",
+      "start": 572,
+      "end": 611,
+      "raw_text": "I am not sure how this info gets to you",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-02-04T19:22:03Z",
+      "stall_kind": "handoff_confusion"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "batch-010:e1",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1006.",
+      "start": 693,
+      "end": 767,
+      "raw_text": "Would you please forward to Lisa Maillet (Fax# 508-786-7201) a copy of the",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "tchristensen@anpower.com",
+      "sender_label": "Trey Christensen",
+      "date_utc": "2000-04-03T12:53:00Z"
+    },
+    {
+      "id": "batch-051:e16",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/162.",
+      "start": 171,
+      "end": 187,
+      "raw_text": "Aspect Resources",
+      "match": "exact",
+      "segment": "subject",
+      "field": "subject",
+      "sender": "ellen.wallumrod@enron.com",
+      "sender_label": "Ellen Wallumrod",
+      "date_utc": "2001-04-24T22:36:11Z"
+    },
+    {
+      "id": "batch-080:e15",
+      "kind": "evidence",
+      "message_id": "corpus/giron-d/inbox/276.",
+      "start": 689,
+      "end": 763,
+      "raw_text": "As we discussed, I never received a confirmation of the May, June and July",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "csulzer@grenergy.com",
+      "sender_label": "Carl Sulzer GRE/ER Fuel/Plant",
+      "date_utc": "2001-11-28T21:20:28Z"
+    },
+    {
+      "id": "batch-093:e12",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/80.",
+      "start": 618,
+      "end": 672,
+      "raw_text": "attached is the sales confirm I executed this morning.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-02-04T19:22:03Z"
+    },
+    {
+      "id": "batch-097:e4",
+      "kind": "evidence",
+      "message_id": "corpus/lokay-m/sent_items/84.",
+      "start": 575,
+      "end": 609,
+      "raw_text": "Copy of confirmation of gas sales.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michelle.lokay@enron.com",
+      "sender_label": "Michelle Lokay",
+      "date_utc": "2002-02-07T16:40:25Z"
+    }
+  ],
+  "chasers": [],
+  "reply_gaps": [],
+  "reply_gap_n": 0,
+  "median_reply_gap_h": null,
+  "claims": [],
+  "conflicts": [],
+  "contradictions": [],
+  "contradictions_dropped": 0,
+  "loops": [
+    {
+      "thread_id": "t-480fd83d4a03",
+      "message_id": "corpus/giron-d/inbox/276.",
+      "why": "waiting",
+      "date_utc": "2001-11-28T21:20:28Z",
+      "mailbox": "giron-d",
+      "mailbox_end_utc": "2002-02-06T23:14:02Z",
+      "days_before_end": 70,
+      "recent": true,
+      "subject": "Confirmation of Forward Purchase",
+      "from": "csulzer@grenergy.com",
+      "from_label": "Carl Sulzer GRE/ER Fuel/Plant",
+      "thread_length": 1,
+      "processes": [
+        "deal-confirmation"
+      ],
+      "quote": {
+        "id": "batch-080:s4",
+        "kind": "stall",
+        "message_id": "corpus/giron-d/inbox/276.",
+        "start": 689,
+        "end": 763,
+        "raw_text": "As we discussed, I never received a confirmation of the May, June and July",
+        "match": "exact",
+        "segment": "own",
+        "field": "body",
+        "sender": "csulzer@grenergy.com",
+        "sender_label": "Carl Sulzer GRE/ER Fuel/Plant",
+        "date_utc": "2001-11-28T21:20:28Z",
+        "stall_kind": "waiting_on_reply"
+      }
+    }
+  ],
+  "document": null
+}

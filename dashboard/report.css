@@ -1,0 +1,186 @@
+/* The report's styles (out/report.html inlines this file; the build adds the two fonts as data
+   URIs above it). The brand tokens of the dashboard, a board-paper reading measure, and print rules:
+   letter pages, page one standing alone, table headers repeated. Meaning never rests on colour: the
+   drafting line is a dashed rule with words, blanks are underlined and bold. */
+
+:root {
+  --bg: #F0F3F6;
+  --surface: #FFFFFF;
+  --surface-2: #E7ECF1;
+  --ink: #0F1B2D;
+  --ink-2: #3D4B5D;
+  --ink-3: #5F6D82;
+  --rule: #D3DAE2;
+  --rule-2: #A9B5C3;
+  --brand: #0B3C86;
+  --brand-wash: #EDF2F9;
+  --line: #A57700;
+  --gold: #E2A400;
+  --green: #2F7F3B;
+  --red: #BE1E2D;
+  --mark: #FFE6A0;
+  --mark-ink: #0F1B2D;
+  --sans: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, Consolas, 'Courier New', monospace;
+  color-scheme: light;
+}
+@media screen and (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0B121C;
+    --surface: #111B28;
+    --surface-2: #182536;
+    --ink: #E5EBF2;
+    --ink-2: #B0BCCB;
+    --ink-3: #8C9AAE;
+    --rule: #223042;
+    --rule-2: #3A4C63;
+    --brand: #86A9E6;
+    --brand-wash: #142238;
+    --line: #E0AE33;
+    --gold: #E7B23A;
+    --green: #58AE68;
+    --red: #E0566A;
+    --mark: #5E4D12;
+    --mark-ink: #FFF6DA;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0B121C;
+  --surface: #111B28;
+  --surface-2: #182536;
+  --ink: #E5EBF2;
+  --ink-2: #B0BCCB;
+  --ink-3: #8C9AAE;
+  --rule: #223042;
+  --rule-2: #3A4C63;
+  --brand: #86A9E6;
+  --brand-wash: #142238;
+  --line: #E0AE33;
+  --gold: #E7B23A;
+  --green: #58AE68;
+  --red: #E0566A;
+  --mark: #5E4D12;
+  --mark-ink: #FFF6DA;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.55;
+  font-variant-numeric: tabular-nums lining-nums;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+code, pre { font-family: var(--mono); }
+code { font-size: 0.86em; overflow-wrap: anywhere; }
+
+/* the client's colours, as a plain segmented rule */
+.brandrule { display: flex; height: 4px; }
+.brandrule i { display: block; }
+.brandrule i:nth-child(1) { flex: 1 1 auto; background: var(--brand); }
+.brandrule i:nth-child(2) { flex: 0 0 56px; background: var(--green); }
+.brandrule i:nth-child(3) { flex: 0 0 56px; background: var(--gold); }
+.brandrule i:nth-child(4) { flex: 0 0 56px; background: var(--red); }
+
+/* the sheet */
+.report {
+  max-width: 1000px;
+  margin: 24px auto 56px;
+  padding: 36px max(16px, min(56px, 5vw)) 48px;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+}
+.report p, .report li { max-width: 68ch; }
+.report p { margin: 10px 0 0; }
+.report ul, .report ol { margin: 10px 0 0; padding-left: 22px; }
+.report li { margin: 4px 0; }
+
+/* headings */
+h1, h2, h3, h4, h5, h6 { margin: 0; line-height: 1.2; }
+.client { margin: 0; font-size: 12px; font-weight: 600; font-stretch: 112%; letter-spacing: 0.09em; text-transform: uppercase; color: var(--brand); }
+h1 { font-size: clamp(24px, 3vw, 30px); font-weight: 650; letter-spacing: -0.005em; margin-top: 6px; }
+.runline { margin-top: 4px; font-size: 13px; color: var(--ink-3); }
+h2 { font-size: 22px; font-weight: 650; margin-top: 44px; padding-bottom: 8px; border-bottom: 2px solid var(--ink); }
+h3 { font-size: 12px; font-weight: 650; font-stretch: 112%; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-3); margin-top: 28px; }
+h4 { font-size: 18px; font-weight: 650; margin-top: 24px; }
+h5, h6 { font-size: 14px; font-weight: 650; margin-top: 16px; color: var(--ink-2); }
+
+/* the value, stated simply */
+.value-big { margin-top: 26px; font-size: clamp(40px, 6vw, 60px); line-height: 1; font-weight: 750; letter-spacing: -0.02em; }
+.value-label { margin-top: 8px; font-size: 13px; font-weight: 600; font-stretch: 108%; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); }
+.value-what { font-size: clamp(18px, 2vw, 22px); line-height: 1.3; font-weight: 600; max-width: 34em; }
+.foot { margin-top: 28px; padding-top: 12px; border-top: 1px solid var(--rule); font-size: 12.5px; color: var(--ink-3); }
+.tag { font-size: 0.86em; font-style: italic; color: var(--ink-3); }
+.small { font-size: 13px; color: var(--ink-3); }
+.fig { white-space: nowrap; }
+.sub { display: block; font-size: 12px; color: var(--ink-3); margin-top: 1px; }
+strong { font-weight: 650; }
+
+/* tables */
+.tw { margin-top: 12px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+th {
+  font-size: 11px; font-weight: 650; font-stretch: 108%; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-3);
+  text-align: left; vertical-align: bottom; padding: 7px 10px 7px 0; border-bottom: 1px solid var(--rule-2);
+}
+td { padding: 7px 10px 7px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th.r, td.r { text-align: right; white-space: nowrap; }
+table.full { font-size: 12.5px; }
+tr.line td {
+  padding: 8px 10px; border-top: 2px dashed var(--line); background: var(--brand-wash);
+  font-size: 13px; color: var(--ink-2);
+}
+
+/* quotes from the archive: sender, date and Git path first, then the exact text */
+.quote { margin: 12px 0 0; max-width: 72ch; }
+.quote figcaption { font-size: 12.5px; color: var(--ink-2); }
+.quote figcaption code { color: var(--ink-3); }
+.quote blockquote {
+  margin: 4px 0 0; padding: 4px 0 4px 12px; border-left: 2px solid var(--rule-2);
+  font-size: 14px; color: var(--ink); overflow-wrap: anywhere;
+}
+
+/* the run's own formula strings */
+pre.formula {
+  margin: 8px 0 0; padding: 10px 12px; background: var(--bg); border: 1px solid var(--rule);
+  font-size: 12px; line-height: 1.6; white-space: pre-wrap; overflow-wrap: anywhere;
+}
+
+/* a drafted document, framed: model-drafted text shown as written */
+.doc { margin-top: 14px; padding: 6px 20px 18px; border: 1px solid var(--rule); border-left: 3px solid var(--rule-2); background: var(--surface); }
+.doc h4 { font-size: 16px; }
+.doc blockquote { margin: 4px 0 6px; padding: 2px 0 2px 12px; border-left: 2px solid var(--rule-2); color: var(--ink-2); }
+.doc pre { margin: 10px 0 0; padding: 10px 12px; background: var(--bg); border: 1px solid var(--rule); font-size: 12px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.doc table { margin-top: 10px; }
+.doc code { font-size: 12px; }
+mark.blank { background: none; color: var(--ink); box-shadow: inset 0 -2px 0 var(--line); padding: 0 1px; font-weight: 600; }
+
+.pagebreak { height: 0; }
+
+@media (max-width: 560px) {
+  body { font-size: 14.5px; }
+  .report { margin: 0; border: 0; border-radius: 0; padding: 24px 16px 40px; }
+  h2 { font-size: 20px; }
+}
+
+@media print {
+  @page { size: letter; margin: 18mm; }
+  :root { color-scheme: light; }
+  body { background: #FFFFFF; font-size: 10.5pt; }
+  .report { max-width: none; margin: 0; padding: 0; border: 0; background: #FFFFFF; }
+  .brandrule { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page-one { break-after: page; }
+  thead { display: table-header-group; }
+  tr, figure, pre { break-inside: avoid; }
+  h2, h3, h4 { break-after: avoid; }
+  .tw { overflow: visible; }
+  a { color: inherit; text-decoration: none; }
+}

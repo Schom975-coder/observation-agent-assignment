@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>How to use what it produced · Observation agent</title>
+<meta name="description" content="How to read the dashboard, check any claim against the raw files yourself, and use the report, the drafted documents and the re-scoring commands.">
+<meta name="obs-run" content="20261019T134634Z">
+<link rel="canonical" href="https://schom975-coder.github.io/observation-agent-assignment/how-to-use.html">
+<link rel="alternate" type="text/markdown" href="how-to-use.md">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<aside class="ai-note" aria-label="Reading with an AI assistant">
+<p class="ai-text">Reading this with an AI assistant? This site is set up for Claude to read in full. Give it this page's address and ask it anything about the project.</p>
+<p class="ai-url"><code id="page-url">https://schom975-coder.github.io/observation-agent-assignment/how-to-use.html</code> <button type="button" id="copy-url" class="copy" hidden>Copy address</button></p>
+</aside>
+<div class="brandrule" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<div class="shell">
+<header class="top">
+<p class="site"><a href="index.html">Observation agent</a> <span class="runline">Submitted run of 19 Oct 2026</span></p>
+<nav aria-label="Pages"><ul class="nav"><li><a href="index.html">Home</a></li><li><a href="dashboard/index.html">Dashboard</a></li><li><a href="how-to-use.html" aria-current="page">How to use</a></li><li><a href="how-to-run.html">How to run</a></li><li><a href="run.html">The run</a></li><li><a href="architecture.html">Architecture</a></li><li><a href="design.html">Design</a></li><li><a href="process.html">How it was built</a></li><li><a href="claude-dir.html">Claude Code layer</a></li><li><a href="notes.html">Notes</a></li><li><a href="report.html">Report</a></li><li><a href="brief.html">Brief</a></li></ul></nav>
+</header>
+<main id="main">
+<h1 id="how-to-use-what-it-produced">How to use what it produced</h1>
+<p>The run leaves four things to use: the dashboard, the report, the drafted documents, and the files in <a href="https://github.com/Schom975-coder/observation-agent-assignment/tree/main/out"><code>out/</code></a> they are built from. None of them needs a model call, and every figure in them leads back to messages in the archive.</p>
+<h2 id="the-dashboard">The dashboard</h2>
+<p><code>node obs.mjs serve</code> (or <code>/serve</code> inside Claude Code) serves it on <code>http://127.0.0.1:8765/</code> by default, or on the next free port up to 8775, from the files the run built in <code>out/dashboard/</code>; the command prints the address it took; <code>/observe</code> starts it at the end of every run. It binds the local address only and fetches nothing from the network. The <a href="dashboard/index.html">copy on this site</a> is the same pages and data, with every message written out as a file instead of served, so it needs nothing installed.</p>
+<p>The views, in the header:</p>
+<ul><li><strong>Overview</strong>: the value stated simply, the three biggest findings with the quote behind each, the step chart of every process ranked by automatable dollars with the running total and the drafting line, the ranked table, and next steps.</li><li><strong>All processes</strong>: every process found, sortable, including the ones seen too rarely to count in the total.</li><li><strong>Open loops</strong>: threads whose last message in the archive is a chase, or a quote that is waiting for an answer, in the last 90 days of their mailbox.</li><li><strong>How we measured</strong>: the published rates, the tiers, the drafting threshold, the work estimates, the rounding, the identity folds, the flagged messages, the merge table, the quote checks and the run&#39;s facts.</li><li><strong>Look up a message</strong>: type or paste any message ID and read the message.</li></ul>
+<p>The theme button in the header switches between the system setting, light and dark.</p>
+<figure class="shot"><img src="assets/screenshots/overview.png" alt="The dashboard&#39;s first screen: the automatable value a month with its counted and estimated parts, the three biggest findings, and the step chart of every process with the running total and the drafting line." width="1280" loading="lazy"><figcaption>The dashboard&#39;s first screen: the automatable value a month with its counted and estimated parts, the three biggest findings, and the step chart of every process with the running total and the drafting line.</figcaption></figure>
+<h3 id="drill">From a number to the message</h3>
+<p>Every figure is a button. A process&#39;s dollars open its formula, in two parts:</p>
+<ul><li>the <strong>counted</strong> part: the email actions code counted on the trail (written, forwarded, chased, read), each at its published minutes and automatable share from <a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/config/effort-rates.json"><code>config/effort-rates.json</code></a>;</li><li>the <strong>estimated</strong> part: the rounds code counted, times the minutes of hands-on work per round that the synthesizer estimated from quoted evidence, inside the bounds code sets.</li></ul>
+<p>Each count in the formula opens the list of messages it was counted from; each quote opens the message viewer, with the quoted span marked at the offsets the validator stored. Back and Escape step back through the drawer. On every figure the counted part is drawn solid and the estimated part hatched, with the estimate&#39;s own range as a band.</p>
+<figure class="shot"><img src="assets/screenshots/process.png" alt="A process page: how often it was seen and by whom, where it stalls with quotes, its open loops and its drafted document." width="1280" loading="lazy"><figcaption>A process page: how often it was seen and by whom, where it stalls with quotes, its open loops and its drafted document.</figcaption></figure>
+<figure class="shot"><img src="assets/screenshots/formula.png" alt="A figure&#39;s formula: the counted email actions at published minutes beside the estimated work per round, each part opening its messages." width="1280" loading="lazy"><figcaption>A figure&#39;s formula: the counted email actions at published minutes beside the estimated work per round, each part opening its messages.</figcaption></figure>
+<figure class="shot"><img src="assets/screenshots/viewer.png" alt="The message viewer: one email as the file holds it, the quoted span marked, with the buttons that copy the message ID and the git show command." width="1280" loading="lazy"><figcaption>The message viewer: one email as the file holds it, the quoted span marked, with the buttons that copy the message ID and the git show command.</figcaption></figure>
+<figure class="shot"><img src="assets/screenshots/open-loops.png" alt="The open loops view: threads whose last message is a chase or a wait for an answer, in the last 90 days of their mailbox." width="1280" loading="lazy"><figcaption>The open loops view: threads whose last message is a chase or a wait for an answer, in the last 90 days of their mailbox.</figcaption></figure>
+<figure class="shot"><img src="assets/screenshots/methodology.png" alt="How we measured: the published rates, the tiers, the drafting threshold and the counted and estimated parts of every figure." width="1280" loading="lazy"><figcaption>How we measured: the published rates, the tiers, the drafting threshold and the counted and estimated parts of every figure.</figcaption></figure>
+<h2 id="check-a-claim">Check a claim yourself</h2>
+<p>A message&#39;s ID is its path in the repository, trailing dot included: <code>corpus/farmer-d/logistics/1.</code> To check any quote against the raw file:</p>
+<ol><li>Open the message from a figure, a quote, or Look up a message.</li><li>Press <strong>Copy message ID</strong>, or <strong>Copy the git show command</strong> for the whole command.</li><li>In a clone of the repository, run <code>git show HEAD:&quot;corpus/&lt;mailbox&gt;/&lt;folder&gt;/&lt;n&gt;.&quot;</code> The double quotes keep the shell away from the trailing dot. It prints the committed bytes; on macOS and Linux the same file is on disk.</li><li>Compare. The viewer shows the message exactly as the file holds it, headers, line ends and quoted-printable residue included, so the marked quote is a substring of what <code>git show</code> prints.</li></ol>
+<p><code>node obs.mjs verify</code> repeats the check wholesale: it re-validates every committed extraction, synthesis and draft against its inputs and the corpus bytes, and fails on any difference. CI runs it on every push.</p>
+<h2 id="report">The report</h2>
+<p><a href="report.html"><code>report.html</code></a> is one file with its styles and two fonts inline, no script and no network, so it opens by double-click; page one prints alone on letter paper. <a href="report.md"><code>report.md</code></a> is the same report in Markdown. Both are rendered from one model of the report, built from the same data as the dashboard, so the numbers agree by construction (<a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/src/report/report.ts"><code>src/report/report.ts</code></a>).</p>
+<h2 id="documents">The drafted documents</h2>
+<p>The run drafts one working document for each opportunity above the threshold, of the type the synthesizer chose for the process: an SOP, a checklist, an email template or a template. Each is written for the team that does the work, to use the next morning. Code writes the title, the line under it and the people line; the drafter subagent writes the body under the headings of its type; code appends the Evidence section, message IDs with verbatim quotes checked against the raw bytes.</p>
+<p>Two markers say what the mail does not settle. <code>[proposed: ...]</code> is a value the drafter proposed because the emails give none, such as a deadline; <code>[confirm still in force]</code> follows a rule that rests on a single email. Any other bracketed blank is for the owner to fill in. <a href="run.html#documents">The run&#39;s documents</a> are on this site, rendered and as Markdown.</p>
+<h2 id="rescore">Re-scoring without a model</h2>
+<p>The rates and the estimates are files, so anyone can re-price the run in seconds:</p>
+<ul><li><code>node obs.mjs score --rates &lt;file&gt;</code> re-scores with other per-action minutes and automatable shares (start from a copy of <a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/config/effort-rates.json"><code>config/effort-rates.json</code></a>);</li><li><code>node obs.mjs score --estimates &lt;file&gt;</code> re-scores with other work estimates;</li><li><code>config/estimates.json</code>, when present, replaces the model&#39;s estimate for the processes it names and is labelled as an override everywhere.</li></ul>
+<p>A re-score with <code>--rates</code> or <code>--estimates</code> writes <code>out/opportunities.&lt;name&gt;.json</code> beside the run&#39;s own file and leaves the run&#39;s own figures alone. The rules are in <a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/src/run/score.ts"><code>src/run/score.ts</code></a>; the arithmetic in <a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/src/metrics/score.ts"><code>src/metrics/score.ts</code></a>.</p>
+<h2 id="code">Where the code is</h2>
+<ul><li><a href="https://github.com/Schom975-coder/observation-agent-assignment/tree/main/src/report"><code>src/report/</code></a>: the build stage. Every figure is pre-formatted with its kind and drill target (<a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/src/report/data.ts"><code>data.ts</code></a>), money only through one formatter (<a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/src/report/format.ts"><code>format.ts</code></a>), and every drill target is checked by a walk over the built files (<a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/src/report/targets.ts"><code>targets.ts</code></a>).</li><li><a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/src/serve/server.ts"><code>src/serve/server.ts</code></a>: the local server, the message API and the detached start.</li><li><a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/dashboard/viewer.js"><code>dashboard/viewer.js</code></a>: the message viewer, which marks a quote at its stored offsets and never searches for it.</li></ul>
+</main>
+<footer class="foot">
+<p><a href="https://github.com/Schom975-coder/observation-agent-assignment">The repository on GitHub</a> · Scott Hom · <a href="how-to-use.md">This page in Markdown</a> · <a href="llms.txt">llms.txt</a> · <a href="llms-full.txt">llms-full.txt</a></p>
+</footer>
+</div>
+<script>
+(() => {
+  const button = document.getElementById('copy-url');
+  const url = document.getElementById('page-url');
+  if (!button || !url) return;
+  button.hidden = false;
+  const select = () => {
+    const range = document.createRange();
+    range.selectNodeContents(url);
+    const sel = window.getSelection();
+    if (sel) { sel.removeAllRanges(); sel.addRange(range); }
+  };
+  button.addEventListener('click', () => {
+    const text = url.textContent || '';
+    const selected = () => { select(); button.textContent = 'Selected: press Ctrl+C or Cmd+C'; };
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(() => { button.textContent = 'Copied'; }, selected);
+    else selected();
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,2851 @@
+{
+  "key": "meeting-scheduling",
+  "name": "Internal meeting scheduling",
+  "definition": "Scheduling group, staff and management meetings and events, collecting availability and attendance, and arranging rooms.",
+  "rank": 47,
+  "tier": "B",
+  "row": {
+    "rank": 47,
+    "key": "meeting-scheduling",
+    "name": "Internal meeting scheduling",
+    "tier": "B",
+    "tier_words": "in the total: 10 or more times over 3 or more months by 2 or more staff",
+    "in_total": true,
+    "origin": "promoted",
+    "total": {
+      "v": 1080,
+      "t": "$11",
+      "x": "$10.80",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "meeting-scheduling"
+      }
+    },
+    "counted": {
+      "v": 455,
+      "t": "$5",
+      "x": "$4.55",
+      "k": "counted",
+      "d": {
+        "kind": "formula",
+        "key": "meeting-scheduling"
+      }
+    },
+    "estimated": {
+      "v": 625,
+      "t": "$6",
+      "x": "$6.25",
+      "k": "estimated",
+      "d": {
+        "kind": "formula",
+        "key": "meeting-scheduling"
+      }
+    },
+    "low": {
+      "v": 768,
+      "t": "$8",
+      "x": "$7.68",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "meeting-scheduling"
+      }
+    },
+    "high": {
+      "v": 2018,
+      "t": "$20",
+      "x": "$20.18",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "meeting-scheduling"
+      }
+    },
+    "today": {
+      "v": 2082,
+      "t": "$21",
+      "x": "$20.82",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "meeting-scheduling"
+      }
+    },
+    "hours": {
+      "v": 13,
+      "t": "0.1",
+      "x": "0.13 hours",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "meeting-scheduling"
+      }
+    },
+    "hours_today": {
+      "v": 24,
+      "t": "0.2",
+      "x": "0.24 hours",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "meeting-scheduling"
+      }
+    },
+    "occurrences": {
+      "v": 20,
+      "t": "20 times",
+      "d": {
+        "kind": "occurrences",
+        "key": "meeting-scheduling"
+      }
+    },
+    "shared_occurrences": 0,
+    "active_months": {
+      "v": 11,
+      "t": "11 active months",
+      "d": {
+        "kind": "months",
+        "key": "meeting-scheduling"
+      }
+    },
+    "span_days": 690,
+    "first_utc": "2000-01-21T11:45:00Z",
+    "last_utc": "2001-12-11T04:02:28Z",
+    "messages": {
+      "v": 25,
+      "t": "25 emails",
+      "d": {
+        "kind": "occurrences",
+        "key": "meeting-scheduling"
+      }
+    },
+    "threads": 20,
+    "mailboxes": [
+      {
+        "key": "williams-w3",
+        "n": 12,
+        "pct": 48
+      },
+      {
+        "key": "farmer-d",
+        "n": 7,
+        "pct": 28
+      },
+      {
+        "key": "giron-d",
+        "n": 6,
+        "pct": 24
+      }
+    ],
+    "top_mailbox": "williams-w3",
+    "top_pct": 48,
+    "one_mailbox": false,
+    "seen_in": "Seen in: 3 mailboxes",
+    "staff": {
+      "v": 49,
+      "t": "49 staff",
+      "d": {
+        "kind": "participants",
+        "key": "meeting-scheduling",
+        "filter": "staff"
+      }
+    },
+    "writers": {
+      "v": 9,
+      "t": "9",
+      "d": {
+        "kind": "participants",
+        "key": "meeting-scheduling",
+        "filter": "writers"
+      }
+    },
+    "copied": {
+      "v": 40,
+      "t": "40",
+      "d": {
+        "kind": "participants",
+        "key": "meeting-scheduling",
+        "filter": "copied"
+      }
+    },
+    "estimate": {
+      "low": 5,
+      "mid": 10,
+      "high": 25,
+      "automatable_pct": 50,
+      "basis_words": "seen in the emails",
+      "source": "model"
+    },
+    "stall_label": "Final head counts are still being collected close to the event, so the organiser keeps…",
+    "stall_summary": "Final head counts are still being collected close to the event, so the organiser keeps chasing confirmations to finalise numbers.",
+    "stall_kind": null,
+    "stall_quotes": {
+      "v": 0,
+      "t": "0 stall quotes",
+      "d": {
+        "kind": "stalls",
+        "key": "meeting-scheduling"
+      }
+    },
+    "fix": "Use shared calendar invitations with built-in accept or decline and date polling instead of reply-to-email availability requests, with a standard announcement template carrying…",
+    "document": null,
+    "status_line": "Not drafted: $11 a month is under the $85 drafting line",
+    "chasers": {
+      "v": 3,
+      "t": "3 chasers",
+      "d": {
+        "kind": "actions",
+        "key": "meeting-scheduling",
+        "type": "chaser"
+      }
+    },
+    "stall_count": {
+      "v": 0,
+      "t": "0",
+      "d": {
+        "kind": "stalls",
+        "key": "meeting-scheduling"
+      }
+    },
+    "loops": {
+      "v": 3,
+      "t": "3 open loops",
+      "d": {
+        "kind": "loops",
+        "key": "meeting-scheduling"
+      }
+    },
+    "loops_recent": {
+      "v": 0,
+      "t": "0",
+      "d": {
+        "kind": "loops",
+        "key": "meeting-scheduling",
+        "recent": true
+      }
+    },
+    "claims": {
+      "v": 0,
+      "t": "0 claims",
+      "d": {
+        "kind": "claims",
+        "key": "meeting-scheduling"
+      }
+    },
+    "conflicts": {
+      "v": 0,
+      "t": "0 conflicts",
+      "d": {
+        "kind": "claims",
+        "key": "meeting-scheduling"
+      }
+    },
+    "reply_gap": null,
+    "last_three_months_share": {
+      "v": 3,
+      "t": "3 of 20",
+      "d": {
+        "kind": "occurrences",
+        "key": "meeting-scheduling"
+      }
+    },
+    "flags": []
+  },
+  "synthesis": {
+    "description": "An organiser, often a manager or assistant, announces a group, staff or management meeting or asks recipients to hold a date, and asks them to reply if they cannot attend or which of several dates suits them. Attendees confirm or sign up, the organiser collects head counts for catering, books a conference room or sends a calendar invitation, and sometimes chases more detail about the meeting from whoever requested it.",
+    "steps": [
+      "Someone requests a meeting or the organiser plans a regular group meeting.",
+      "The organiser emails the date, time and room, or asks recipients to hold or choose between dates.",
+      "Recipients reply with availability or sign up for a date.",
+      "The organiser tallies attendance and finalises numbers for food or space.",
+      "The organiser books the room or sends a calendar invitation and confirms the arrangement."
+    ],
+    "approach": "Use shared calendar invitations with built-in accept or decline and date polling instead of reply-to-email availability requests, with a standard announcement template carrying date, time, room and an RSVP deadline so head counts come from the calendar responses.",
+    "rationale": "Most rounds are a short announcement or a request to hold or choose a date; a consistent invitation with RSVP built in cuts the manual tallying and the chasing, while organisers still pick dates and rooms.",
+    "artifact_type": "email_template"
+  },
+  "formula": {
+    "counted": "20 occ over 690 d = 22.67 mo; email: 15 short x2 + 4 medium x6 + 0 long x15 + 2 fwd x2 + 3 chaser x3 + 66 read x1 = 133.00 min = 5.87 min/mo; automatable 60/40/30/80/100/50% = 72.80 min = 3.21 min/mo",
+    "estimated": "20.00 occ x 10 min/occ (estimate, mid of 5-25, basis observed, 6 quotes from 6 occurrences) = 200.00 min = 8.82 min/mo; automatable 50% (estimate) = 4.41 min/mo; at the low end 5 min/occ = $7.68/mo, at the high end 25 min/occ = $20.18/mo (the row's automatable total)",
+    "total": "today 14.69 min/mo = 0.24 h/mo = $20.82/mo (email 5.87 min/mo = $8.32 + work 8.82 min/mo = $12.50); automatable 7.62 min/mo = 0.13 h/mo = $10.80/mo (counted email 3.21 min/mo = $4.55 + estimated work 4.41 min/mo = $6.25)"
+  },
+  "window": {
+    "first_utc": "2000-01-21T11:45:00Z",
+    "last_utc": "2001-12-11T04:02:28Z",
+    "span_days": 690,
+    "months_x100": 2267,
+    "active_months": 11,
+    "undated_occurrences": 0
+  },
+  "months": 2267,
+  "occurrence_share_x100": 2000,
+  "actions": {
+    "priced": {
+      "authored_short": 15,
+      "authored_medium": 4,
+      "authored_long": 0,
+      "forward": 2,
+      "chaser": 3,
+      "read": 66
+    },
+    "unpriced": {
+      "authored_short": 0,
+      "authored_medium": 1,
+      "authored_long": 0,
+      "forward": 0,
+      "chaser": 0,
+      "read": 1
+    }
+  },
+  "action_table": [
+    {
+      "type": "authored_short",
+      "words": "short emails written",
+      "count": {
+        "v": 15,
+        "t": "15",
+        "d": {
+          "kind": "actions",
+          "key": "meeting-scheduling",
+          "type": "authored_short"
+        }
+      },
+      "minutes_each": 2,
+      "minutes": "30.00",
+      "automatable_pct": 60,
+      "automatable_minutes": "18.00"
+    },
+    {
+      "type": "authored_medium",
+      "words": "medium emails written",
+      "count": {
+        "v": 4,
+        "t": "4",
+        "d": {
+          "kind": "actions",
+          "key": "meeting-scheduling",
+          "type": "authored_medium"
+        }
+      },
+      "minutes_each": 6,
+      "minutes": "24.00",
+      "automatable_pct": 40,
+      "automatable_minutes": "9.60"
+    },
+    {
+      "type": "authored_long",
+      "words": "long emails written",
+      "count": {
+        "v": 0,
+        "t": "0",
+        "d": {
+          "kind": "actions",
+          "key": "meeting-scheduling",
+          "type": "authored_long"
+        }
+      },
+      "minutes_each": 15,
+      "minutes": "0.00",
+      "automatable_pct": 30,
+      "automatable_minutes": "0.00"
+    },
+    {
+      "type": "forward",
+      "words": "forwards",
+      "count": {
+        "v": 2,
+        "t": "2",
+        "d": {
+          "kind": "actions",
+          "key": "meeting-scheduling",
+          "type": "forward"
+        }
+      },
+      "minutes_each": 2,
+      "minutes": "4.00",
+      "automatable_pct": 80,
+      "automatable_minutes": "3.20"
+    },
+    {
+      "type": "chaser",
+      "words": "chasers",
+      "count": {
+        "v": 3,
+        "t": "3",
+        "d": {
+          "kind": "actions",
+          "key": "meeting-scheduling",
+          "type": "chaser"
+        }
+      },
+      "minutes_each": 3,
+      "minutes": "9.00",
+      "automatable_pct": 100,
+      "automatable_minutes": "9.00"
+    },
+    {
+      "type": "read",
+      "words": "reads, one per addressee",
+      "count": {
+        "v": 66,
+        "t": "66",
+        "d": {
+          "kind": "actions",
+          "key": "meeting-scheduling",
+          "type": "read"
+        }
+      },
+      "minutes_each": 1,
+      "minutes": "66.00",
+      "automatable_pct": 50,
+      "automatable_minutes": "33.00"
+    }
+  ],
+  "email": {
+    "today_x100": 13300,
+    "automatable_x100": 7280,
+    "per_month_today_x100": 587,
+    "per_month_automatable_x100": 321
+  },
+  "work": {
+    "per_month_today_x100": 882,
+    "per_month_automatable_x100": 441,
+    "low_cents": 313,
+    "high_cents": 1563
+  },
+  "estimate_quotes": [
+    {
+      "id": "batch-054:e8",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/490.",
+      "start": 893,
+      "end": 997,
+      "raw_text": "We will have our regular bi-weekly Enpower meeting this Wednesday at 1 PM in the CASCADE conference room",
+      "match": "exact",
+      "segment": "quoted",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-06-18T21:58:17Z"
+    },
+    {
+      "id": "batch-054:e9",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/485.",
+      "start": 1014,
+      "end": 1092,
+      "raw_text": "Grace is trying to finalize numbers for the above meeting on Thursday, July 5.",
+      "match": "exact",
+      "segment": "quoted",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-06-19T18:44:02Z"
+    },
+    {
+      "id": "batch-005:e21",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/842.",
+      "start": 798,
+      "end": 873,
+      "raw_text": "Please hold Thursday, March 9th 11:30 - 5:00 pm as Tentative for the Follow",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "yvette.connevey@enron.com",
+      "sender_label": "Yvette G Connevey",
+      "date_utc": "2000-02-24T17:10:00Z"
+    },
+    {
+      "id": "batch-072:e6",
+      "kind": "evidence",
+      "message_id": "corpus/giron-d/inbox/264.",
+      "start": 946,
+      "end": 1018,
+      "raw_text": "Please let me know (and reply all in your response) if one or both dates",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "csulzer@grenergy.com",
+      "sender_label": "Carl Sulzer GRE/ER Fuel/Plant",
+      "date_utc": "2001-10-26T20:53:57Z"
+    },
+    {
+      "id": "batch-075:e7",
+      "kind": "evidence",
+      "message_id": "corpus/giron-d/inbox/439.",
+      "start": 1558,
+      "end": 1642,
+      "raw_text": "Please accept this invitation, as it will automatically populate onto your schedule.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "laura.luce@enron.com",
+      "sender_label": "Laura Luce",
+      "date_utc": "2001-11-12T14:34:47Z"
+    },
+    {
+      "id": "batch-032:e6",
+      "kind": "evidence",
+      "message_id": "corpus/giron-d/sent/485.",
+      "start": 458,
+      "end": 497,
+      "raw_text": "Put me down for the 15th also.  Thanks.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "darron.giron@enron.com",
+      "sender_label": "Darron C Giron",
+      "date_utc": "2000-11-15T12:58:00Z"
+    }
+  ],
+  "estimate_check": {
+    "occurrences_cited": 6,
+    "senders_cited": 5
+  },
+  "monthly": [
+    {
+      "month": "2000-01",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "meeting-scheduling",
+          "month": "2000-01"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-e475577ce40b-o1"
+      ]
+    },
+    {
+      "month": "2000-02",
+      "occurrences": {
+        "v": 4,
+        "t": "4",
+        "d": {
+          "kind": "occurrences",
+          "key": "meeting-scheduling",
+          "month": "2000-02"
+        }
+      },
+      "messages": 4,
+      "ids": [
+        "t-0d66096b88cf-o1",
+        "t-6942be13be48-o1",
+        "t-ed6a95164f16-o1",
+        "t-fb8f8d1bfe10-o1"
+      ]
+    },
+    {
+      "month": "2000-05",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "meeting-scheduling",
+          "month": "2000-05"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-347a976bb115-o1"
+      ]
+    },
+    {
+      "month": "2000-07",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "meeting-scheduling",
+          "month": "2000-07"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-b8f1be6faf21-o1"
+      ]
+    },
+    {
+      "month": "2000-11",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "meeting-scheduling",
+          "month": "2000-11"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-fa83df64615c-o1"
+      ]
+    },
+    {
+      "month": "2000-12",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "meeting-scheduling",
+          "month": "2000-12"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-76d0e11555e2-o1"
+      ]
+    },
+    {
+      "month": "2001-06",
+      "occurrences": {
+        "v": 5,
+        "t": "5",
+        "d": {
+          "kind": "occurrences",
+          "key": "meeting-scheduling",
+          "month": "2001-06"
+        }
+      },
+      "messages": 7,
+      "ids": [
+        "t-1d7787ac0ae6-o1",
+        "t-71c3e30ed59c-o1",
+        "t-d36a4972aa4f-o1",
+        "t-e30d8a6a008d-o1",
+        "t-eea7670aea5c-o1"
+      ]
+    },
+    {
+      "month": "2001-07",
+      "occurrences": {
+        "v": 2,
+        "t": "2",
+        "d": {
+          "kind": "occurrences",
+          "key": "meeting-scheduling",
+          "month": "2001-07"
+        }
+      },
+      "messages": 3,
+      "ids": [
+        "t-66ca36bcd958-o1",
+        "t-6d5b8d6a3dce-o1"
+      ]
+    },
+    {
+      "month": "2001-10",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "meeting-scheduling",
+          "month": "2001-10"
+        }
+      },
+      "messages": 2,
+      "ids": [
+        "t-7a7ce97be602-o1"
+      ]
+    },
+    {
+      "month": "2001-11",
+      "occurrences": {
+        "v": 2,
+        "t": "2",
+        "d": {
+          "kind": "occurrences",
+          "key": "meeting-scheduling",
+          "month": "2001-11"
+        }
+      },
+      "messages": 3,
+      "ids": [
+        "t-0f3c9db00aa8-o1",
+        "t-4d51a749f565-o1"
+      ]
+    },
+    {
+      "month": "2001-12",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "meeting-scheduling",
+          "month": "2001-12"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-58b3c5002827-o1"
+      ]
+    }
+  ],
+  "occurrences": [
+    {
+      "id": "t-0d66096b88cf-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/841."
+      ],
+      "date_utc": "2000-02-24T16:00:00Z"
+    },
+    {
+      "id": "t-0f3c9db00aa8-o1",
+      "message_ids": [
+        "corpus/giron-d/inbox/439."
+      ],
+      "date_utc": "2001-11-12T14:34:47Z"
+    },
+    {
+      "id": "t-1d7787ac0ae6-o1",
+      "message_ids": [
+        "corpus/williams-w3/sent_items/484.",
+        "corpus/williams-w3/sent_items/483."
+      ],
+      "date_utc": "2001-06-19T19:12:30Z"
+    },
+    {
+      "id": "t-347a976bb115-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1113."
+      ],
+      "date_utc": "2000-05-17T11:02:00Z"
+    },
+    {
+      "id": "t-4d51a749f565-o1",
+      "message_ids": [
+        "corpus/giron-d/inbox/449.",
+        "corpus/williams-w3/sent_items/74."
+      ],
+      "date_utc": "2001-11-13T19:32:48Z"
+    },
+    {
+      "id": "t-58b3c5002827-o1",
+      "message_ids": [
+        "corpus/williams-w3/sent_items/54."
+      ],
+      "date_utc": "2001-12-11T04:02:28Z"
+    },
+    {
+      "id": "t-66ca36bcd958-o1",
+      "message_ids": [
+        "corpus/williams-w3/sent_items/342."
+      ],
+      "date_utc": "2001-07-31T00:47:09Z"
+    },
+    {
+      "id": "t-6942be13be48-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/829."
+      ],
+      "date_utc": "2000-02-23T11:15:00Z"
+    },
+    {
+      "id": "t-6d5b8d6a3dce-o1",
+      "message_ids": [
+        "corpus/williams-w3/sent_items/348.",
+        "corpus/williams-w3/sent_items/347."
+      ],
+      "date_utc": "2001-07-30T20:20:46Z"
+    },
+    {
+      "id": "t-71c3e30ed59c-o1",
+      "message_ids": [
+        "corpus/williams-w3/sent_items/503."
+      ],
+      "date_utc": "2001-06-13T22:03:11Z"
+    },
+    {
+      "id": "t-76d0e11555e2-o1",
+      "message_ids": [
+        "corpus/giron-d/sent/367."
+      ],
+      "date_utc": "2000-12-27T07:23:00Z"
+    },
+    {
+      "id": "t-7a7ce97be602-o1",
+      "message_ids": [
+        "corpus/giron-d/inbox/264.",
+        "corpus/giron-d/inbox/265."
+      ],
+      "date_utc": "2001-10-26T20:53:57Z"
+    },
+    {
+      "id": "t-b8f1be6faf21-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1264."
+      ],
+      "date_utc": "2000-07-07T13:58:00Z"
+    },
+    {
+      "id": "t-d36a4972aa4f-o1",
+      "message_ids": [
+        "corpus/williams-w3/sent_items/490."
+      ],
+      "date_utc": "2001-06-18T21:58:17Z"
+    },
+    {
+      "id": "t-e30d8a6a008d-o1",
+      "message_ids": [
+        "corpus/williams-w3/sent_items/485.",
+        "corpus/williams-w3/sent_items/482."
+      ],
+      "date_utc": "2001-06-19T18:44:02Z"
+    },
+    {
+      "id": "t-e475577ce40b-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/705."
+      ],
+      "date_utc": "2000-01-21T11:45:00Z"
+    },
+    {
+      "id": "t-ed6a95164f16-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/842."
+      ],
+      "date_utc": "2000-02-24T17:10:00Z"
+    },
+    {
+      "id": "t-eea7670aea5c-o1",
+      "message_ids": [
+        "corpus/williams-w3/sent_items/504."
+      ],
+      "date_utc": "2001-06-13T20:08:22Z"
+    },
+    {
+      "id": "t-fa83df64615c-o1",
+      "message_ids": [
+        "corpus/giron-d/sent/485."
+      ],
+      "date_utc": "2000-11-15T12:58:00Z"
+    },
+    {
+      "id": "t-fb8f8d1bfe10-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/835."
+      ],
+      "date_utc": "2000-02-24T12:56:00Z"
+    }
+  ],
+  "undated_occurrences": [],
+  "action_sources": [
+    {
+      "message_id": "corpus/farmer-d/logistics/1113.",
+      "type": "authored_short",
+      "person": "michael.eiben@enron.com",
+      "address": "michael.eiben@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1113.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1264.",
+      "type": "forward",
+      "person": "stacey.neuweiler@enron.com",
+      "address": "stacey.neuweiler@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1264.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/705.",
+      "type": "forward",
+      "person": "mary.weatherstone@enron.com",
+      "address": "mary.weatherstone@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/705.",
+      "type": "read",
+      "person": "dave.nommensen@enron.com",
+      "address": "dave.nommensen@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/705.",
+      "type": "read",
+      "person": "inja.chun@enron.com",
+      "address": "inja.chun@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/705.",
+      "type": "read",
+      "person": "kevin.montagne@enron.com",
+      "address": "kevin.montagne@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/705.",
+      "type": "read",
+      "person": "michael.guadarrama@enron.com",
+      "address": "michael.guadarrama@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/705.",
+      "type": "read",
+      "person": "paul.poellinger@enron.com",
+      "address": "paul.poellinger@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/829.",
+      "type": "authored_medium",
+      "person": "yvette.connevey@enron.com",
+      "address": "yvette.connevey@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/829.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/829.",
+      "type": "read",
+      "person": "lisa.csikos@enron.com",
+      "address": "lisa.csikos@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/829.",
+      "type": "read",
+      "person": "mary.smith@enron.com",
+      "address": "mary.smith@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/829.",
+      "type": "read",
+      "person": "rita.wynne@enron.com",
+      "address": "rita.wynne@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/829.",
+      "type": "read",
+      "person": "steve.venturatos@enron.com",
+      "address": "steve.venturatos@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/835.",
+      "type": "authored_short",
+      "person": "yvette.connevey@enron.com",
+      "address": "yvette.connevey@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/835.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/835.",
+      "type": "read",
+      "person": "lisa.csikos@enron.com",
+      "address": "lisa.csikos@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/835.",
+      "type": "read",
+      "person": "mary.smith@enron.com",
+      "address": "mary.smith@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/835.",
+      "type": "read",
+      "person": "rita.wynne@enron.com",
+      "address": "rita.wynne@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/835.",
+      "type": "read",
+      "person": "steve.venturatos@enron.com",
+      "address": "steve.venturatos@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/841.",
+      "type": "authored_medium",
+      "person": "yvette.connevey@enron.com",
+      "address": "yvette.connevey@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/841.",
+      "type": "read",
+      "person": "bryan.hull@enron.com",
+      "address": "bryan.hull@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/841.",
+      "type": "read",
+      "person": "david.baumbach@enron.com",
+      "address": "david.baumbach@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/841.",
+      "type": "read",
+      "person": "eric.bass@enron.com",
+      "address": "eric.bass@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/841.",
+      "type": "read",
+      "person": "michael.walters@enron.com",
+      "address": "michael.walters@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/841.",
+      "type": "read",
+      "person": "d..winfree@enron.com",
+      "address": "o'neal.winfree@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/842.",
+      "type": "authored_short",
+      "person": "yvette.connevey@enron.com",
+      "address": "yvette.connevey@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/842.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/842.",
+      "type": "read",
+      "person": "lisa.csikos@enron.com",
+      "address": "lisa.csikos@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/842.",
+      "type": "read",
+      "person": "mary.smith@enron.com",
+      "address": "mary.smith@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/842.",
+      "type": "read",
+      "person": "rita.wynne@enron.com",
+      "address": "rita.wynne@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/842.",
+      "type": "read",
+      "person": "steve.venturatos@enron.com",
+      "address": "steve.venturatos@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/264.",
+      "type": "authored_medium",
+      "person": "csulzer@grenergy.com",
+      "address": "csulzer@grenergy.com",
+      "priced": false,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/264.",
+      "type": "read",
+      "person": "darron.giron@enron.com",
+      "address": "c..giron@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/264.",
+      "type": "read",
+      "person": "janet'.'bowers@enron.com",
+      "address": "janet'.'bowers@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/264.",
+      "type": "read",
+      "person": "jo'.'lewis@enron.com",
+      "address": "jo'.'lewis@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/265.",
+      "type": "authored_short",
+      "person": "janet.bowers@enron.com",
+      "address": "janet.bowers@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/265.",
+      "type": "read",
+      "person": "darron.giron@enron.com",
+      "address": "c..giron@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/265.",
+      "type": "read",
+      "person": "fuel/plant'.'carl@enron.com",
+      "address": "fuel/plant'.'carl@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/265.",
+      "type": "read",
+      "person": "janet'.'bowers@enron.com",
+      "address": "janet'.'bowers@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/265.",
+      "type": "read",
+      "person": "jo'.'lewis@enron.com",
+      "address": "jo'.'lewis@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/439.",
+      "type": "authored_medium",
+      "person": "laura.luce@enron.com",
+      "address": "laura.luce@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/439.",
+      "type": "read",
+      "person": "bryant.frihart@enron.com",
+      "address": "bryant.frihart@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/439.",
+      "type": "read",
+      "person": "darron.giron@enron.com",
+      "address": "c..giron@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/439.",
+      "type": "read",
+      "person": "e.murrell@enron.com",
+      "address": "e.murrell@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/439.",
+      "type": "read",
+      "person": "l..mims@enron.com",
+      "address": "l..mims@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/439.",
+      "type": "read",
+      "person": "lindsay.culotta@enron.com",
+      "address": "lindsay.culotta@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/449.",
+      "type": "authored_short",
+      "person": "kimberly.bates@enron.com",
+      "address": "kimberly.bates@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/449.",
+      "type": "read",
+      "person": "david.jones@enron.com",
+      "address": "david.jones@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/449.",
+      "type": "read",
+      "person": "jared.kaiser@enron.com",
+      "address": "jared.kaiser@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/449.",
+      "type": "read",
+      "person": "robin.barbe@enron.com",
+      "address": "robin.barbe@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/449.",
+      "type": "read",
+      "person": "ruth.concannon@enron.com",
+      "address": "ruth.concannon@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/449.",
+      "type": "read",
+      "person": "scott.goodell@enron.com",
+      "address": "scott.goodell@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/sent/367.",
+      "type": "authored_short",
+      "person": "darron.giron@enron.com",
+      "address": "darron.giron@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/sent/367.",
+      "type": "read",
+      "person": "irena.hogan@enron.com",
+      "address": "irena.hogan@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/sent/485.",
+      "type": "authored_short",
+      "person": "darron.giron@enron.com",
+      "address": "darron.giron@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/sent/485.",
+      "type": "read",
+      "person": "irena.hogan@enron.com",
+      "address": "irena.hogan@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/342.",
+      "type": "authored_medium",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/342.",
+      "type": "read",
+      "person": "craig.dean@enron.com",
+      "address": "craig.dean@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/342.",
+      "type": "read",
+      "person": "john.anderson@enron.com",
+      "address": "john.anderson@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/342.",
+      "type": "read",
+      "person": "leaf.harasin@enron.com",
+      "address": "leaf.harasin@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/342.",
+      "type": "read",
+      "person": "mark.guzman@enron.com",
+      "address": "mark.guzman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/342.",
+      "type": "read",
+      "person": "todd.bland@enron.com",
+      "address": "todd.bland@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/347.",
+      "type": "chaser",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/347.",
+      "type": "read",
+      "person": "cara.semperger@enron.com",
+      "address": "cara.semperger@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/348.",
+      "type": "authored_short",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/348.",
+      "type": "read",
+      "person": "cara.semperger@enron.com",
+      "address": "cara.semperger@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/482.",
+      "type": "chaser",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/482.",
+      "type": "read",
+      "person": "amy.fitzpatrick@enron.com",
+      "address": "amy.fitzpatrick@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/482.",
+      "type": "read",
+      "person": "grace.rodriguez@enron.com",
+      "address": "grace.rodriguez@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/483.",
+      "type": "chaser",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/483.",
+      "type": "read",
+      "person": "kate.symes@enron.com",
+      "address": "kate.symes@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/484.",
+      "type": "authored_short",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/484.",
+      "type": "read",
+      "person": "craig.dean@enron.com",
+      "address": "craig.dean@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/484.",
+      "type": "read",
+      "person": "eric.linder@enron.com",
+      "address": "eric.linder@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/484.",
+      "type": "read",
+      "person": "leaf.harasin@enron.com",
+      "address": "leaf.harasin@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/484.",
+      "type": "read",
+      "person": "mark.guzman@enron.com",
+      "address": "mark.guzman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/484.",
+      "type": "read",
+      "person": "todd.bland@enron.com",
+      "address": "todd.bland@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/485.",
+      "type": "authored_short",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/485.",
+      "type": "read",
+      "person": "amy.fitzpatrick@enron.com",
+      "address": "amy.fitzpatrick@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/490.",
+      "type": "authored_short",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/490.",
+      "type": "read",
+      "person": "mike.purcell@enron.com",
+      "address": "mike.purcell@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/503.",
+      "type": "authored_short",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/503.",
+      "type": "read",
+      "person": "jill.chatterton@enron.com",
+      "address": "jill.chatterton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/504.",
+      "type": "authored_short",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/504.",
+      "type": "read",
+      "person": "bharsh@puget.com",
+      "address": "bharsh@puget.com",
+      "priced": false,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/54.",
+      "type": "authored_short",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/54.",
+      "type": "read",
+      "person": "shift.dl-portland@enron.com",
+      "address": "shift.dl-portland@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/74.",
+      "type": "authored_short",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/74.",
+      "type": "read",
+      "person": "jill.chatterton@enron.com",
+      "address": "jill.chatterton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    }
+  ],
+  "participants": [
+    {
+      "email": "bill.williams@enron.com",
+      "name": "Williams III, Bill",
+      "label": "Bill Williams III",
+      "kind": "person",
+      "addresses": [
+        "bill.williams@enron.com"
+      ],
+      "staff": true,
+      "authored": 9,
+      "forwards": 0,
+      "chasers": 3,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "daren.farmer@enron.com",
+      "name": "Daren J Farmer",
+      "label": "Daren J Farmer",
+      "kind": "person",
+      "addresses": [
+        "daren.farmer@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 5,
+      "wrote": false
+    },
+    {
+      "email": "darron.giron@enron.com",
+      "name": "Darron C Giron",
+      "label": "Darron C Giron",
+      "kind": "person",
+      "addresses": [
+        "c..giron@enron.com",
+        "darron.giron@enron.com"
+      ],
+      "staff": true,
+      "authored": 2,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 3,
+      "wrote": true
+    },
+    {
+      "email": "yvette.connevey@enron.com",
+      "name": "Yvette G Connevey",
+      "label": "Yvette G Connevey",
+      "kind": "person",
+      "addresses": [
+        "yvette.connevey@enron.com"
+      ],
+      "staff": true,
+      "authored": 4,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "lisa.csikos@enron.com",
+      "name": "Lisa Csikos",
+      "label": "Lisa Csikos",
+      "kind": "person",
+      "addresses": [
+        "lisa.csikos@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 3,
+      "wrote": false
+    },
+    {
+      "email": "mary.smith@enron.com",
+      "name": "Mary M Smith",
+      "label": "Mary M Smith",
+      "kind": "person",
+      "addresses": [
+        "mary.smith@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 3,
+      "wrote": false
+    },
+    {
+      "email": "rita.wynne@enron.com",
+      "name": "Rita Wynne",
+      "label": "Rita Wynne",
+      "kind": "person",
+      "addresses": [
+        "rita.wynne@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 3,
+      "wrote": false
+    },
+    {
+      "email": "steve.venturatos@enron.com",
+      "name": "Steve Venturatos",
+      "label": "Steve Venturatos",
+      "kind": "person",
+      "addresses": [
+        "steve.venturatos@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 3,
+      "wrote": false
+    },
+    {
+      "email": "amy.fitzpatrick@enron.com",
+      "name": "Fitzpatrick, Amy",
+      "label": "Amy Fitzpatrick",
+      "kind": "person",
+      "addresses": [
+        "amy.fitzpatrick@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "cara.semperger@enron.com",
+      "name": "Semperger, Cara",
+      "label": "Cara Semperger",
+      "kind": "person",
+      "addresses": [
+        "cara.semperger@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "craig.dean@enron.com",
+      "name": "Dean, Craig",
+      "label": "Craig Dean",
+      "kind": "person",
+      "addresses": [
+        "craig.dean@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "irena.hogan@enron.com",
+      "name": null,
+      "label": "irena.hogan@enron.com",
+      "kind": "person",
+      "addresses": [
+        "irena.hogan@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "janet'.'bowers@enron.com",
+      "name": null,
+      "label": "janet'.'bowers@enron.com",
+      "kind": "person",
+      "addresses": [
+        "janet'.'bowers@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "jill.chatterton@enron.com",
+      "name": "Chatterton, Jill",
+      "label": "Jill Chatterton",
+      "kind": "person",
+      "addresses": [
+        "jill.chatterton@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "jo'.'lewis@enron.com",
+      "name": null,
+      "label": "jo'.'lewis@enron.com",
+      "kind": "person",
+      "addresses": [
+        "jo'.'lewis@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "leaf.harasin@enron.com",
+      "name": null,
+      "label": "leaf.harasin@enron.com",
+      "kind": "person",
+      "addresses": [
+        "leaf.harasin@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "mark.guzman@enron.com",
+      "name": "Guzman, Mark",
+      "label": "Mark Guzman",
+      "kind": "person",
+      "addresses": [
+        "mark.guzman@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "todd.bland@enron.com",
+      "name": null,
+      "label": "todd.bland@enron.com",
+      "kind": "person",
+      "addresses": [
+        "todd.bland@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "bharsh@puget.com",
+      "name": null,
+      "label": "bharsh@puget.com",
+      "kind": "person",
+      "addresses": [
+        "bharsh@puget.com"
+      ],
+      "staff": false,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "bryan.hull@enron.com",
+      "name": "Bryan Hull",
+      "label": "Bryan Hull",
+      "kind": "person",
+      "addresses": [
+        "bryan.hull@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "bryant.frihart@enron.com",
+      "name": "Frihart, Bryant",
+      "label": "Bryant Frihart",
+      "kind": "person",
+      "addresses": [
+        "bryant.frihart@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "csulzer@grenergy.com",
+      "name": "Carl Sulzer GRE/ER Fuel/Plant",
+      "label": "Carl Sulzer GRE/ER Fuel/Plant",
+      "kind": "person",
+      "addresses": [
+        "csulzer@grenergy.com"
+      ],
+      "staff": false,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "d..winfree@enron.com",
+      "name": "Winfree, O'Neal D.",
+      "label": "O'Neal D. Winfree",
+      "kind": "person",
+      "addresses": [
+        "o'neal.winfree@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "dave.nommensen@enron.com",
+      "name": null,
+      "label": "dave.nommensen@enron.com",
+      "kind": "person",
+      "addresses": [
+        "dave.nommensen@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "david.baumbach@enron.com",
+      "name": "David Baumbach",
+      "label": "David Baumbach",
+      "kind": "person",
+      "addresses": [
+        "david.baumbach@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "david.jones@enron.com",
+      "name": null,
+      "label": "david.jones@enron.com",
+      "kind": "person",
+      "addresses": [
+        "david.jones@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "e.murrell@enron.com",
+      "name": null,
+      "label": "e.murrell@enron.com",
+      "kind": "person",
+      "addresses": [
+        "e.murrell@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "eric.bass@enron.com",
+      "name": "Eric Bass",
+      "label": "Eric Bass",
+      "kind": "person",
+      "addresses": [
+        "eric.bass@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "eric.linder@enron.com",
+      "name": null,
+      "label": "eric.linder@enron.com",
+      "kind": "person",
+      "addresses": [
+        "eric.linder@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "fuel/plant'.'carl@enron.com",
+      "name": null,
+      "label": "fuel/plant'.'carl@enron.com",
+      "kind": "person",
+      "addresses": [
+        "fuel/plant'.'carl@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "grace.rodriguez@enron.com",
+      "name": null,
+      "label": "grace.rodriguez@enron.com",
+      "kind": "person",
+      "addresses": [
+        "grace.rodriguez@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "inja.chun@enron.com",
+      "name": null,
+      "label": "inja.chun@enron.com",
+      "kind": "person",
+      "addresses": [
+        "inja.chun@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "janet.bowers@enron.com",
+      "name": "Bowers, Janet",
+      "label": "Janet Bowers",
+      "kind": "person",
+      "addresses": [
+        "janet.bowers@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "jared.kaiser@enron.com",
+      "name": null,
+      "label": "jared.kaiser@enron.com",
+      "kind": "person",
+      "addresses": [
+        "jared.kaiser@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "john.anderson@enron.com",
+      "name": "Anderson, John",
+      "label": "John Anderson",
+      "kind": "person",
+      "addresses": [
+        "john.anderson@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "kate.symes@enron.com",
+      "name": "Symes, Kate",
+      "label": "Kate Symes",
+      "kind": "person",
+      "addresses": [
+        "kate.symes@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "kevin.montagne@enron.com",
+      "name": null,
+      "label": "kevin.montagne@enron.com",
+      "kind": "person",
+      "addresses": [
+        "kevin.montagne@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "kimberly.bates@enron.com",
+      "name": "Bates, Kimberly",
+      "label": "Kimberly Bates",
+      "kind": "person",
+      "addresses": [
+        "kimberly.bates@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "l..mims@enron.com",
+      "name": null,
+      "label": "l..mims@enron.com",
+      "kind": "person",
+      "addresses": [
+        "l..mims@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "laura.luce@enron.com",
+      "name": "Luce, Laura",
+      "label": "Laura Luce",
+      "kind": "person",
+      "addresses": [
+        "laura.luce@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "lindsay.culotta@enron.com",
+      "name": "Culotta, Lindsay",
+      "label": "Lindsay Culotta",
+      "kind": "person",
+      "addresses": [
+        "lindsay.culotta@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "mary.weatherstone@enron.com",
+      "name": "Mary Weatherstone",
+      "label": "Mary Weatherstone",
+      "kind": "person",
+      "addresses": [
+        "mary.weatherstone@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 1,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "michael.eiben@enron.com",
+      "name": "Michael Eiben",
+      "label": "Michael Eiben",
+      "kind": "person",
+      "addresses": [
+        "michael.eiben@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "michael.guadarrama@enron.com",
+      "name": null,
+      "label": "michael.guadarrama@enron.com",
+      "kind": "person",
+      "addresses": [
+        "michael.guadarrama@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "michael.walters@enron.com",
+      "name": "Michael Walters",
+      "label": "Michael Walters",
+      "kind": "person",
+      "addresses": [
+        "michael.walters@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "mike.purcell@enron.com",
+      "name": null,
+      "label": "mike.purcell@enron.com",
+      "kind": "person",
+      "addresses": [
+        "mike.purcell@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "paul.poellinger@enron.com",
+      "name": null,
+      "label": "paul.poellinger@enron.com",
+      "kind": "person",
+      "addresses": [
+        "paul.poellinger@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "robin.barbe@enron.com",
+      "name": null,
+      "label": "robin.barbe@enron.com",
+      "kind": "person",
+      "addresses": [
+        "robin.barbe@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "ruth.concannon@enron.com",
+      "name": null,
+      "label": "ruth.concannon@enron.com",
+      "kind": "person",
+      "addresses": [
+        "ruth.concannon@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "scott.goodell@enron.com",
+      "name": null,
+      "label": "scott.goodell@enron.com",
+      "kind": "person",
+      "addresses": [
+        "scott.goodell@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "shift.dl-portland@enron.com",
+      "name": null,
+      "label": "shift.dl-portland@enron.com",
+      "kind": "list",
+      "addresses": [
+        "shift.dl-portland@enron.com"
+      ],
+      "staff": false,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "stacey.neuweiler@enron.com",
+      "name": "Stacey Neuweiler",
+      "label": "Stacey Neuweiler",
+      "kind": "person",
+      "addresses": [
+        "stacey.neuweiler@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 1,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    }
+  ],
+  "stalls_by_kind": [],
+  "stall_groups": [
+    {
+      "summary": "Final head counts are still being collected close to the event, so the organiser keeps chasing confirmations to finalise numbers.",
+      "quotes": [
+        {
+          "id": "batch-054:e9",
+          "kind": "evidence",
+          "message_id": "corpus/williams-w3/sent_items/485.",
+          "start": 1014,
+          "end": 1092,
+          "raw_text": "Grace is trying to finalize numbers for the above meeting on Thursday, July 5.",
+          "match": "exact",
+          "segment": "quoted",
+          "field": "body",
+          "sender": "bill.williams@enron.com",
+          "sender_label": "Bill Williams III",
+          "date_utc": "2001-06-19T18:44:02Z"
+        },
+        {
+          "id": "batch-072:e6",
+          "kind": "evidence",
+          "message_id": "corpus/giron-d/inbox/264.",
+          "start": 946,
+          "end": 1018,
+          "raw_text": "Please let me know (and reply all in your response) if one or both dates",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "csulzer@grenergy.com",
+          "sender_label": "Carl Sulzer GRE/ER Fuel/Plant",
+          "date_utc": "2001-10-26T20:53:57Z"
+        }
+      ]
+    },
+    {
+      "summary": "Organisers sometimes lack details of the meeting they are arranging and have to call the requester for more information before confirming.",
+      "quotes": [
+        {
+          "id": "batch-012:e12",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/1113.",
+          "start": 469,
+          "end": 544,
+          "raw_text": "I have a call into Jo Williams for her to give me more info on the meeting.",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "michael.eiben@enron.com",
+          "sender_label": "Michael Eiben",
+          "date_utc": "2000-05-17T11:02:00Z"
+        }
+      ]
+    }
+  ],
+  "stall_quotes": [],
+  "evidence": [
+    {
+      "id": "batch-002:e22",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/705.",
+      "start": 1142,
+      "end": 1216,
+      "raw_text": "Please let me know if you would be available for the above mtg on Tuesday,",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "mary.weatherstone@enron.com",
+      "sender_label": "Mary Weatherstone",
+      "date_utc": "2000-01-21T11:45:00Z"
+    },
+    {
+      "id": "batch-005:e9",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/829.",
+      "start": 728,
+      "end": 799,
+      "raw_text": "Per the Management Offsite Meeting, please provide me with your monthly",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "yvette.connevey@enron.com",
+      "sender_label": "Yvette G Connevey",
+      "date_utc": "2000-02-23T11:15:00Z"
+    },
+    {
+      "id": "batch-005:e13",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/835.",
+      "start": 660,
+      "end": 721,
+      "raw_text": "Please clear your calendars for lunch on Wednesday, March 8th",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "yvette.connevey@enron.com",
+      "sender_label": "Yvette G Connevey",
+      "date_utc": "2000-02-24T12:56:00Z"
+    },
+    {
+      "id": "batch-005:e20",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/841.",
+      "start": 1162,
+      "end": 1234,
+      "raw_text": "Please mark your calendar for the upcoming \"ENA Gas Assets Meeting\" with",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "yvette.connevey@enron.com",
+      "sender_label": "Yvette G Connevey",
+      "date_utc": "2000-02-24T16:00:00Z"
+    },
+    {
+      "id": "batch-005:e21",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/842.",
+      "start": 798,
+      "end": 873,
+      "raw_text": "Please hold Thursday, March 9th 11:30 - 5:00 pm as Tentative for the Follow",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "yvette.connevey@enron.com",
+      "sender_label": "Yvette G Connevey",
+      "date_utc": "2000-02-24T17:10:00Z"
+    },
+    {
+      "id": "batch-012:e12",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1113.",
+      "start": 469,
+      "end": 544,
+      "raw_text": "I have a call into Jo Williams for her to give me more info on the meeting.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "michael.eiben@enron.com",
+      "sender_label": "Michael Eiben",
+      "date_utc": "2000-05-17T11:02:00Z"
+    },
+    {
+      "id": "batch-017:e11",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1264.",
+      "start": 1093,
+      "end": 1165,
+      "raw_text": "James McKay has requested a meeting to review the Texas Desk/Gas Control",
+      "match": "exact",
+      "segment": "forwarded",
+      "field": "body",
+      "sender": "stacey.neuweiler@enron.com",
+      "sender_label": "Stacey Neuweiler",
+      "date_utc": "2000-07-07T13:58:00Z"
+    },
+    {
+      "id": "batch-032:e6",
+      "kind": "evidence",
+      "message_id": "corpus/giron-d/sent/485.",
+      "start": 458,
+      "end": 497,
+      "raw_text": "Put me down for the 15th also.  Thanks.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "darron.giron@enron.com",
+      "sender_label": "Darron C Giron",
+      "date_utc": "2000-11-15T12:58:00Z"
+    },
+    {
+      "id": "batch-037:e22",
+      "kind": "evidence",
+      "message_id": "corpus/giron-d/sent/367.",
+      "start": 863,
+      "end": 940,
+      "raw_text": "Please reply, letting me know if Friday, February 2 , 2001, is a good day for",
+      "match": "exact",
+      "segment": "quoted",
+      "field": "body",
+      "sender": "darron.giron@enron.com",
+      "sender_label": "Darron C Giron",
+      "date_utc": "2000-12-27T07:23:00Z"
+    },
+    {
+      "id": "batch-054:e6",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/504.",
+      "start": 625,
+      "end": 659,
+      "raw_text": "I will see you on the 27th at PDX.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-06-13T20:08:22Z"
+    },
+    {
+      "id": "batch-054:e7",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/503.",
+      "start": 730,
+      "end": 795,
+      "raw_text": "You are all set for your meeting at 2pm pacific, 4pm central time",
+      "match": "exact",
+      "segment": "quoted",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-06-13T22:03:11Z"
+    },
+    {
+      "id": "batch-054:e8",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/490.",
+      "start": 893,
+      "end": 997,
+      "raw_text": "We will have our regular bi-weekly Enpower meeting this Wednesday at 1 PM in the CASCADE conference room",
+      "match": "exact",
+      "segment": "quoted",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-06-18T21:58:17Z"
+    },
+    {
+      "id": "batch-054:e9",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/485.",
+      "start": 1014,
+      "end": 1092,
+      "raw_text": "Grace is trying to finalize numbers for the above meeting on Thursday, July 5.",
+      "match": "exact",
+      "segment": "quoted",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-06-19T18:44:02Z"
+    },
+    {
+      "id": "batch-054:e10",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/482.",
+      "start": 739,
+      "end": 793,
+      "raw_text": "Actually Amy, I will not be able to attend on the 5th.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-06-19T19:18:11Z"
+    },
+    {
+      "id": "batch-054:e11",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/484.",
+      "start": 1389,
+      "end": 1449,
+      "raw_text": "There will be a Real-Time Group Meeting on July 9th at 4:30.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-06-19T19:12:30Z"
+    },
+    {
+      "id": "batch-054:e12",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/483.",
+      "start": 1127,
+      "end": 1187,
+      "raw_text": "There will be a Real-Time Group Meeting on July 9th at 4:30.",
+      "match": "exact",
+      "segment": "quoted",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-06-19T19:15:08Z"
+    },
+    {
+      "id": "batch-060:e8",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/348.",
+      "start": 578,
+      "end": 621,
+      "raw_text": "We can meet.  Who else do we need?  Anyone?",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-07-30T20:20:46Z"
+    },
+    {
+      "id": "batch-060:e9",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/347.",
+      "start": 586,
+      "end": 652,
+      "raw_text": "Just grab me after lunch sometime I spose...if that works for you.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-07-30T20:21:51Z"
+    },
+    {
+      "id": "batch-060:e14",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/342.",
+      "start": 1499,
+      "end": 1564,
+      "raw_text": "We will have a real-time meeting on Tuesday August 7th at 4:30PM.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-07-31T00:47:09Z"
+    },
+    {
+      "id": "batch-072:e6",
+      "kind": "evidence",
+      "message_id": "corpus/giron-d/inbox/264.",
+      "start": 946,
+      "end": 1018,
+      "raw_text": "Please let me know (and reply all in your response) if one or both dates",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "csulzer@grenergy.com",
+      "sender_label": "Carl Sulzer GRE/ER Fuel/Plant",
+      "date_utc": "2001-10-26T20:53:57Z"
+    },
+    {
+      "id": "batch-072:e7",
+      "kind": "evidence",
+      "message_id": "corpus/giron-d/inbox/265.",
+      "start": 788,
+      "end": 828,
+      "raw_text": "Either date works fine for me right now.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "janet.bowers@enron.com",
+      "sender_label": "Janet Bowers",
+      "date_utc": "2001-10-26T21:40:59Z"
+    },
+    {
+      "id": "batch-075:e7",
+      "kind": "evidence",
+      "message_id": "corpus/giron-d/inbox/439.",
+      "start": 1558,
+      "end": 1642,
+      "raw_text": "Please accept this invitation, as it will automatically populate onto your schedule.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "laura.luce@enron.com",
+      "sender_label": "Laura Luce",
+      "date_utc": "2001-11-12T14:34:47Z"
+    },
+    {
+      "id": "batch-076:e0",
+      "kind": "evidence",
+      "message_id": "corpus/giron-d/inbox/449.",
+      "start": 2033,
+      "end": 2126,
+      "raw_text": "would like to meet with the group tomorrow at 2:00. Please let me know if you can not attend.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "kimberly.bates@enron.com",
+      "sender_label": "Kimberly Bates",
+      "date_utc": "2001-11-13T19:32:48Z"
+    },
+    {
+      "id": "batch-076:e1",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/74.",
+      "start": 530,
+      "end": 560,
+      "raw_text": "Thanks for reserving the room.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-11-27T00:39:18Z"
+    },
+    {
+      "id": "batch-082:e7",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/54.",
+      "start": 602,
+      "end": 699,
+      "raw_text": "We will be meeting on Thursday at 4:30 to discuss recent changes and the company outlook with Tim",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-12-11T04:02:28Z"
+    }
+  ],
+  "chasers": [
+    "corpus/williams-w3/sent_items/347.",
+    "corpus/williams-w3/sent_items/482.",
+    "corpus/williams-w3/sent_items/483."
+  ],
+  "reply_gaps": [
+    {
+      "from": "corpus/giron-d/inbox/264.",
+      "to": "corpus/giron-d/inbox/265.",
+      "hours_x10": 8
+    },
+    {
+      "from": "corpus/giron-d/inbox/449.",
+      "to": "corpus/williams-w3/sent_items/74.",
+      "hours_x10": 3171
+    }
+  ],
+  "reply_gap_n": 2,
+  "median_reply_gap_h": 158.9,
+  "claims": [],
+  "conflicts": [],
+  "contradictions": [],
+  "contradictions_dropped": 0,
+  "loops": [
+    {
+      "thread_id": "t-6d5b8d6a3dce",
+      "message_id": "corpus/williams-w3/sent_items/347.",
+      "why": "chase",
+      "date_utc": "2001-07-30T20:21:51Z",
+      "mailbox": "williams-w3",
+      "mailbox_end_utc": "2002-02-07T11:05:04Z",
+      "days_before_end": 191,
+      "recent": false,
+      "subject": "RE: Do you want to meet today regarding West Power Discussion?",
+      "from": "bill.williams@enron.com",
+      "from_label": "Bill Williams III",
+      "thread_length": 2,
+      "processes": [
+        "meeting-scheduling"
+      ],
+      "quote": null
+    },
+    {
+      "thread_id": "t-e30d8a6a008d",
+      "message_id": "corpus/williams-w3/sent_items/482.",
+      "why": "chase",
+      "date_utc": "2001-06-19T19:18:11Z",
+      "mailbox": "williams-w3",
+      "mailbox_end_utc": "2002-02-07T11:05:04Z",
+      "days_before_end": 232,
+      "recent": false,
+      "subject": "RE: Associate and Analyst Meeting - July 5, 2001 at 11:00 am in Mt Hood (Lunch will be provided!)",
+      "from": "bill.williams@enron.com",
+      "from_label": "Bill Williams III",
+      "thread_length": 2,
+      "processes": [
+        "meeting-scheduling"
+      ],
+      "quote": null
+    },
+    {
+      "thread_id": "t-1d7787ac0ae6",
+      "message_id": "corpus/williams-w3/sent_items/483.",
+      "why": "chase",
+      "date_utc": "2001-06-19T19:15:08Z",
+      "mailbox": "williams-w3",
+      "mailbox_end_utc": "2002-02-07T11:05:04Z",
+      "days_before_end": 232,
+      "recent": false,
+      "subject": "RE: Meeting on July 9th",
+      "from": "bill.williams@enron.com",
+      "from_label": "Bill Williams III",
+      "thread_length": 2,
+      "processes": [
+        "meeting-scheduling"
+      ],
+      "quote": null
+    }
+  ],
+  "document": null
+}

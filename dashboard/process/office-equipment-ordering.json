@@ -1,0 +1,2075 @@
+{
+  "key": "office-equipment-ordering",
+  "name": "Office and IT equipment requests",
+  "definition": "Ordering, installing and managing computers, phones, turrets and cell phone plans for staff, and confirming receipt so purchases can be paid.",
+  "rank": 27,
+  "tier": "B",
+  "row": {
+    "rank": 27,
+    "key": "office-equipment-ordering",
+    "name": "Office and IT equipment requests",
+    "tier": "B",
+    "tier_words": "in the total: 10 or more times over 3 or more months by 2 or more staff",
+    "in_total": true,
+    "origin": "promoted",
+    "total": {
+      "v": 2673,
+      "t": "$27",
+      "x": "$26.73",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "office-equipment-ordering"
+      }
+    },
+    "counted": {
+      "v": 884,
+      "t": "$9",
+      "x": "$8.84",
+      "k": "counted",
+      "d": {
+        "kind": "formula",
+        "key": "office-equipment-ordering"
+      }
+    },
+    "estimated": {
+      "v": 1789,
+      "t": "$18",
+      "x": "$17.89",
+      "k": "estimated",
+      "d": {
+        "kind": "formula",
+        "key": "office-equipment-ordering"
+      }
+    },
+    "low": {
+      "v": 1779,
+      "t": "$18",
+      "x": "$17.79",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "office-equipment-ordering"
+      }
+    },
+    "high": {
+      "v": 6253,
+      "t": "$63",
+      "x": "$62.53",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "office-equipment-ordering"
+      }
+    },
+    "today": {
+      "v": 7673,
+      "t": "$77",
+      "x": "$76.73",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "office-equipment-ordering"
+      }
+    },
+    "hours": {
+      "v": 31,
+      "t": "0.3",
+      "x": "0.31 hours",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "office-equipment-ordering"
+      }
+    },
+    "hours_today": {
+      "v": 90,
+      "t": "0.9",
+      "x": "0.90 hours",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "office-equipment-ordering"
+      }
+    },
+    "occurrences": {
+      "v": 20,
+      "t": "20 times",
+      "d": {
+        "kind": "occurrences",
+        "key": "office-equipment-ordering"
+      }
+    },
+    "shared_occurrences": 1,
+    "active_months": {
+      "v": 7,
+      "t": "7 active months",
+      "d": {
+        "kind": "months",
+        "key": "office-equipment-ordering"
+      }
+    },
+    "span_days": 282,
+    "first_utc": "2001-02-06T10:23:00Z",
+    "last_utc": "2001-11-14T19:20:55Z",
+    "messages": {
+      "v": 23,
+      "t": "23 emails",
+      "d": {
+        "kind": "occurrences",
+        "key": "office-equipment-ordering"
+      }
+    },
+    "threads": 20,
+    "mailboxes": [
+      {
+        "key": "williams-w3",
+        "n": 15,
+        "pct": 65
+      },
+      {
+        "key": "giron-d",
+        "n": 5,
+        "pct": 22
+      },
+      {
+        "key": "farmer-d",
+        "n": 3,
+        "pct": 13
+      }
+    ],
+    "top_mailbox": "williams-w3",
+    "top_pct": 65,
+    "one_mailbox": false,
+    "seen_in": "Seen in: 3 mailboxes",
+    "staff": {
+      "v": 18,
+      "t": "18 staff",
+      "d": {
+        "kind": "participants",
+        "key": "office-equipment-ordering",
+        "filter": "staff"
+      }
+    },
+    "writers": {
+      "v": 5,
+      "t": "5",
+      "d": {
+        "kind": "participants",
+        "key": "office-equipment-ordering",
+        "filter": "writers"
+      }
+    },
+    "copied": {
+      "v": 13,
+      "t": "13",
+      "d": {
+        "kind": "participants",
+        "key": "office-equipment-ordering",
+        "filter": "copied"
+      }
+    },
+    "estimate": {
+      "low": 10,
+      "mid": 20,
+      "high": 60,
+      "automatable_pct": 30,
+      "basis_words": "worked out from the steps the emails show",
+      "source": "model"
+    },
+    "stall_label": "Requests wait on vendors and installers: the manager chases a carrier on a phone for a…",
+    "stall_summary": "Requests wait on vendors and installers: the manager chases a carrier on a phone for a new staff member and acknowledges that moving turrets and reconfiguring desks takes time.",
+    "stall_kind": null,
+    "stall_quotes": {
+      "v": 0,
+      "t": "0 stall quotes",
+      "d": {
+        "kind": "stalls",
+        "key": "office-equipment-ordering"
+      }
+    },
+    "fix": "A standard equipment request form routed to IT deployment, with automatic completion notices that trigger a receipt confirmation to the requester and close the requisition, plus…",
+    "document": null,
+    "status_line": "Not drafted: $27 a month is under the $85 drafting line",
+    "chasers": {
+      "v": 3,
+      "t": "3 chasers",
+      "d": {
+        "kind": "actions",
+        "key": "office-equipment-ordering",
+        "type": "chaser"
+      }
+    },
+    "stall_count": {
+      "v": 0,
+      "t": "0",
+      "d": {
+        "kind": "stalls",
+        "key": "office-equipment-ordering"
+      }
+    },
+    "loops": {
+      "v": 3,
+      "t": "3 open loops",
+      "d": {
+        "kind": "loops",
+        "key": "office-equipment-ordering"
+      }
+    },
+    "loops_recent": {
+      "v": 0,
+      "t": "0",
+      "d": {
+        "kind": "loops",
+        "key": "office-equipment-ordering",
+        "recent": true
+      }
+    },
+    "claims": {
+      "v": 1,
+      "t": "1 claim",
+      "d": {
+        "kind": "claims",
+        "key": "office-equipment-ordering"
+      }
+    },
+    "conflicts": {
+      "v": 0,
+      "t": "0 conflicts",
+      "d": {
+        "kind": "claims",
+        "key": "office-equipment-ordering"
+      }
+    },
+    "reply_gap": null,
+    "last_three_months_share": {
+      "v": 1,
+      "t": "1 of 20",
+      "d": {
+        "kind": "occurrences",
+        "key": "office-equipment-ordering"
+      }
+    },
+    "flags": [
+      "one round shared with another process"
+    ]
+  },
+  "synthesis": {
+    "description": "A desk manager requests turrets, handsets, headsets, PCs and cell phones for the real-time trading group, orders are assigned to IT deployment staff who install the equipment, and the manager adjusts group calling plans and services with the carrier. Purchasing staff ask the requester to confirm receipt so the purchase can be paid, and the requisition work tends to pile up with one person.",
+    "steps": [
+      "The manager or staff member requests equipment or a phone plan change.",
+      "The order is logged and assigned to an IT deployment technician.",
+      "The technician prepares and installs the equipment and reports completion.",
+      "The manager follows up with vendors or carriers on outstanding items and plan settings.",
+      "Purchasing asks the requester to confirm the items were received.",
+      "The requisition is completed so the vendor can be paid."
+    ],
+    "approach": "A standard equipment request form routed to IT deployment, with automatic completion notices that trigger a receipt confirmation to the requester and close the requisition, plus a periodic usage report per phone plan member.",
+    "rationale": "The stalls are about handoffs: who owns requisitions, when receipt is confirmed, who chases vendors. A written procedure naming each owner and the receipt step addresses the ownership gap first.",
+    "artifact_type": "sop"
+  },
+  "formula": {
+    "counted": "20 occ (19.50 after sharing) over 282 d = 9.26 mo; email: 12 short x2 + 8 medium x6 + 0 long x15 + 0 fwd x2 + 3 chaser x3 + 32 read x1 = 113.00 min, 111.50 min after sharing = 12.04 min/mo; automatable 60/40/30/80/100/50% = 58.60 min, 57.75 min after sharing = 6.24 min/mo",
+    "estimated": "19.50 occ x 20 min/occ (estimate, mid of 10-60, basis inferred, 6 quotes from 6 occurrences) = 390.00 min = 42.12 min/mo; automatable 30% (estimate) = 12.63 min/mo; at the low end 10 min/occ = $17.79/mo, at the high end 60 min/occ = $62.53/mo (the row's automatable total)",
+    "total": "today 54.16 min/mo = 0.90 h/mo = $76.73/mo (email 12.04 min/mo = $17.06 + work 42.12 min/mo = $59.67); automatable 18.87 min/mo = 0.31 h/mo = $26.73/mo (counted email 6.24 min/mo = $8.84 + estimated work 12.63 min/mo = $17.89)"
+  },
+  "window": {
+    "first_utc": "2001-02-06T10:23:00Z",
+    "last_utc": "2001-11-14T19:20:55Z",
+    "span_days": 282,
+    "months_x100": 926,
+    "active_months": 7,
+    "undated_occurrences": 0
+  },
+  "months": 926,
+  "occurrence_share_x100": 1950,
+  "actions": {
+    "priced": {
+      "authored_short": 12,
+      "authored_medium": 8,
+      "authored_long": 0,
+      "forward": 0,
+      "chaser": 3,
+      "read": 32
+    },
+    "unpriced": {
+      "authored_short": 0,
+      "authored_medium": 0,
+      "authored_long": 0,
+      "forward": 0,
+      "chaser": 0,
+      "read": 0
+    }
+  },
+  "action_table": [
+    {
+      "type": "authored_short",
+      "words": "short emails written",
+      "count": {
+        "v": 12,
+        "t": "12",
+        "d": {
+          "kind": "actions",
+          "key": "office-equipment-ordering",
+          "type": "authored_short"
+        }
+      },
+      "minutes_each": 2,
+      "minutes": "24.00",
+      "automatable_pct": 60,
+      "automatable_minutes": "14.40"
+    },
+    {
+      "type": "authored_medium",
+      "words": "medium emails written",
+      "count": {
+        "v": 8,
+        "t": "8",
+        "d": {
+          "kind": "actions",
+          "key": "office-equipment-ordering",
+          "type": "authored_medium"
+        }
+      },
+      "minutes_each": 6,
+      "minutes": "48.00",
+      "automatable_pct": 40,
+      "automatable_minutes": "19.20"
+    },
+    {
+      "type": "authored_long",
+      "words": "long emails written",
+      "count": {
+        "v": 0,
+        "t": "0",
+        "d": {
+          "kind": "actions",
+          "key": "office-equipment-ordering",
+          "type": "authored_long"
+        }
+      },
+      "minutes_each": 15,
+      "minutes": "0.00",
+      "automatable_pct": 30,
+      "automatable_minutes": "0.00"
+    },
+    {
+      "type": "forward",
+      "words": "forwards",
+      "count": {
+        "v": 0,
+        "t": "0",
+        "d": {
+          "kind": "actions",
+          "key": "office-equipment-ordering",
+          "type": "forward"
+        }
+      },
+      "minutes_each": 2,
+      "minutes": "0.00",
+      "automatable_pct": 80,
+      "automatable_minutes": "0.00"
+    },
+    {
+      "type": "chaser",
+      "words": "chasers",
+      "count": {
+        "v": 3,
+        "t": "3",
+        "d": {
+          "kind": "actions",
+          "key": "office-equipment-ordering",
+          "type": "chaser"
+        }
+      },
+      "minutes_each": 3,
+      "minutes": "9.00",
+      "automatable_pct": 100,
+      "automatable_minutes": "9.00"
+    },
+    {
+      "type": "read",
+      "words": "reads, one per addressee",
+      "count": {
+        "v": 32,
+        "t": "32",
+        "d": {
+          "kind": "actions",
+          "key": "office-equipment-ordering",
+          "type": "read"
+        }
+      },
+      "minutes_each": 1,
+      "minutes": "32.00",
+      "automatable_pct": 50,
+      "automatable_minutes": "16.00"
+    }
+  ],
+  "email": {
+    "today_x100": 11150,
+    "automatable_x100": 5775,
+    "per_month_today_x100": 1204,
+    "per_month_automatable_x100": 624
+  },
+  "work": {
+    "per_month_today_x100": 4212,
+    "per_month_automatable_x100": 1263,
+    "low_cents": 895,
+    "high_cents": 5369
+  },
+  "estimate_quotes": [
+    {
+      "id": "batch-056:e6",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/455.",
+      "start": 703,
+      "end": 780,
+      "raw_text": "I called and put in the order for your headset.  I told them to send it ASAP.",
+      "match": "exact",
+      "segment": "quoted",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-06-29T02:00:15Z"
+    },
+    {
+      "id": "batch-065:e6",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/65.",
+      "start": 544,
+      "end": 580,
+      "raw_text": "I'm working on the PC you requested.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "tommy.garza@enron.com",
+      "sender_label": "Tommy Garza Jr.",
+      "date_utc": "2001-09-07T14:56:50Z"
+    },
+    {
+      "id": "batch-065:e7",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/64.",
+      "start": 809,
+      "end": 874,
+      "raw_text": "The installation of the equipment (see below) has been completed.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "tommy.garza@enron.com",
+      "sender_label": "Tommy Garza Jr.",
+      "date_utc": "2001-09-07T17:33:25Z"
+    },
+    {
+      "id": "batch-042:e18",
+      "kind": "evidence",
+      "message_id": "corpus/giron-d/sent/237.",
+      "start": 748,
+      "end": 811,
+      "raw_text": "Could you please check to see if you have received this item(s)",
+      "match": "exact",
+      "segment": "quoted",
+      "field": "body",
+      "sender": "darron.giron@enron.com",
+      "sender_label": "Darron C Giron",
+      "date_utc": "2001-02-09T15:09:00Z"
+    },
+    {
+      "id": "batch-066:e9",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/246.",
+      "start": 579,
+      "end": 694,
+      "raw_text": "Could you send an email to each group member giving them their average usage since you started or the last 3 months",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-09-14T19:52:54Z"
+    },
+    {
+      "id": "batch-064:e6",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/284.",
+      "start": 574,
+      "end": 621,
+      "raw_text": "We need to get a third turret in the mix at RT.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-08-27T17:17:37Z"
+    }
+  ],
+  "estimate_check": {
+    "occurrences_cited": 6,
+    "senders_cited": 3
+  },
+  "monthly": [
+    {
+      "month": "2001-02",
+      "occurrences": {
+        "v": 2,
+        "t": "2",
+        "d": {
+          "kind": "occurrences",
+          "key": "office-equipment-ordering",
+          "month": "2001-02"
+        }
+      },
+      "messages": 2,
+      "ids": [
+        "t-92bc00d32678-o1",
+        "t-b0cae8d7b6ba-o1"
+      ]
+    },
+    {
+      "month": "2001-03",
+      "occurrences": {
+        "v": 2,
+        "t": "2",
+        "d": {
+          "kind": "occurrences",
+          "key": "office-equipment-ordering",
+          "month": "2001-03"
+        }
+      },
+      "messages": 2,
+      "ids": [
+        "t-1492b67cc882-o1",
+        "t-20c17effdb77-o1"
+      ]
+    },
+    {
+      "month": "2001-06",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "office-equipment-ordering",
+          "month": "2001-06"
+        }
+      },
+      "messages": 2,
+      "ids": [
+        "t-c4c36d24cbe7-o1"
+      ]
+    },
+    {
+      "month": "2001-07",
+      "occurrences": {
+        "v": 3,
+        "t": "3",
+        "d": {
+          "kind": "occurrences",
+          "key": "office-equipment-ordering",
+          "month": "2001-07"
+        }
+      },
+      "messages": 4,
+      "ids": [
+        "t-1394ad835bd3-o1",
+        "t-9f542559c329-o1",
+        "t-bcac80091ffd-o1"
+      ]
+    },
+    {
+      "month": "2001-08",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "office-equipment-ordering",
+          "month": "2001-08"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-45352aaabd43-o1"
+      ]
+    },
+    {
+      "month": "2001-09",
+      "occurrences": {
+        "v": 9,
+        "t": "9",
+        "d": {
+          "kind": "occurrences",
+          "key": "office-equipment-ordering",
+          "month": "2001-09"
+        }
+      },
+      "messages": 10,
+      "ids": [
+        "t-3a10734280e3-o1",
+        "t-4076c64b9dbd-o1",
+        "t-5fb21b635223-o1",
+        "t-6565a392eb88-o1",
+        "t-a40462716860-o1",
+        "t-a6d28c6438b9-o1",
+        "t-b6f3cafada58-o1",
+        "t-f30fe38299c0-o1",
+        "t-f4f521a704fb-o1"
+      ]
+    },
+    {
+      "month": "2001-11",
+      "occurrences": {
+        "v": 2,
+        "t": "2",
+        "d": {
+          "kind": "occurrences",
+          "key": "office-equipment-ordering",
+          "month": "2001-11"
+        }
+      },
+      "messages": 2,
+      "ids": [
+        "t-252b6183323a-o1",
+        "t-cbc7f6cb0c62-o1"
+      ]
+    }
+  ],
+  "occurrences": [
+    {
+      "id": "t-1394ad835bd3-o1",
+      "message_ids": [
+        "corpus/williams-w3/sent_items/352."
+      ],
+      "date_utc": "2001-07-28T01:56:59Z"
+    },
+    {
+      "id": "t-1492b67cc882-o1",
+      "message_ids": [
+        "corpus/giron-d/sent/131."
+      ],
+      "date_utc": "2001-03-21T15:18:00Z"
+    },
+    {
+      "id": "t-20c17effdb77-o1",
+      "message_ids": [
+        "corpus/giron-d/sent/130."
+      ],
+      "date_utc": "2001-03-22T09:09:00Z"
+    },
+    {
+      "id": "t-252b6183323a-o1",
+      "message_ids": [
+        "corpus/giron-d/inbox/482."
+      ],
+      "date_utc": "2001-11-14T19:20:55Z"
+    },
+    {
+      "id": "t-3a10734280e3-o1",
+      "message_ids": [
+        "corpus/williams-w3/sent_items/258."
+      ],
+      "date_utc": "2001-09-12T20:24:50Z"
+    },
+    {
+      "id": "t-4076c64b9dbd-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/65."
+      ],
+      "date_utc": "2001-09-07T14:56:50Z"
+    },
+    {
+      "id": "t-45352aaabd43-o1",
+      "message_ids": [
+        "corpus/williams-w3/sent_items/284."
+      ],
+      "date_utc": "2001-08-27T17:17:37Z"
+    },
+    {
+      "id": "t-5fb21b635223-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/64."
+      ],
+      "date_utc": "2001-09-07T17:33:25Z"
+    },
+    {
+      "id": "t-6565a392eb88-o1",
+      "message_ids": [
+        "corpus/williams-w3/sent_items/265."
+      ],
+      "date_utc": "2001-09-05T23:38:23Z"
+    },
+    {
+      "id": "t-92bc00d32678-o1",
+      "message_ids": [
+        "corpus/giron-d/sent/237."
+      ],
+      "date_utc": "2001-02-09T15:09:00Z"
+    },
+    {
+      "id": "t-9f542559c329-o1",
+      "message_ids": [
+        "corpus/williams-w3/sent_items/355.",
+        "corpus/williams-w3/sent_items/351."
+      ],
+      "date_utc": "2001-07-28T00:48:15Z"
+    },
+    {
+      "id": "t-a40462716860-o1",
+      "message_ids": [
+        "corpus/williams-w3/sent_items/245."
+      ],
+      "date_utc": "2001-09-14T21:06:11Z"
+    },
+    {
+      "id": "t-a6d28c6438b9-o1",
+      "message_ids": [
+        "corpus/williams-w3/sent_items/249.",
+        "corpus/williams-w3/sent_items/247."
+      ],
+      "date_utc": "2001-09-14T18:52:54Z"
+    },
+    {
+      "id": "t-b0cae8d7b6ba-o1",
+      "message_ids": [
+        "corpus/giron-d/sent/252."
+      ],
+      "date_utc": "2001-02-06T10:23:00Z"
+    },
+    {
+      "id": "t-b6f3cafada58-o1",
+      "message_ids": [
+        "corpus/williams-w3/sent_items/246."
+      ],
+      "date_utc": "2001-09-14T19:52:54Z"
+    },
+    {
+      "id": "t-bcac80091ffd-o1",
+      "message_ids": [
+        "corpus/williams-w3/sent_items/343."
+      ],
+      "date_utc": "2001-07-31T00:34:55Z"
+    },
+    {
+      "id": "t-c4c36d24cbe7-o1",
+      "message_ids": [
+        "corpus/williams-w3/sent_items/455.",
+        "corpus/williams-w3/sent_items/454."
+      ],
+      "date_utc": "2001-06-29T02:00:15Z"
+    },
+    {
+      "id": "t-cbc7f6cb0c62-o1",
+      "message_ids": [
+        "corpus/williams-w3/sent_items/115."
+      ],
+      "date_utc": "2001-11-06T22:40:40Z"
+    },
+    {
+      "id": "t-f30fe38299c0-o1",
+      "message_ids": [
+        "corpus/williams-w3/sent_items/248."
+      ],
+      "date_utc": "2001-09-14T18:54:09Z"
+    },
+    {
+      "id": "t-f4f521a704fb-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/66."
+      ],
+      "date_utc": "2001-09-06T19:42:06Z"
+    }
+  ],
+  "undated_occurrences": [],
+  "action_sources": [
+    {
+      "message_id": "corpus/farmer-d/logistics/64.",
+      "type": "authored_short",
+      "person": "tommy.garza@enron.com",
+      "address": "tommy.garza@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/64.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "j..farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/65.",
+      "type": "authored_medium",
+      "person": "tommy.garza@enron.com",
+      "address": "tommy.garza@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/65.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "j..farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/66.",
+      "type": "authored_medium",
+      "person": "dalton.hogan@enron.com",
+      "address": "dalton.hogan@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/66.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "j..farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/482.",
+      "type": "authored_short",
+      "person": "mary.poorman@enron.com",
+      "address": "mary.poorman@enron.com",
+      "priced": true,
+      "share_x100": 50
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/482.",
+      "type": "read",
+      "person": "darron.giron@enron.com",
+      "address": "darron.giron@enron.com",
+      "priced": true,
+      "share_x100": 50
+    },
+    {
+      "message_id": "corpus/giron-d/sent/130.",
+      "type": "authored_medium",
+      "person": "darron.giron@enron.com",
+      "address": "darron.giron@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/sent/130.",
+      "type": "read",
+      "person": "jackson.logan@enron.com",
+      "address": "jackson.logan@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/sent/131.",
+      "type": "authored_short",
+      "person": "darron.giron@enron.com",
+      "address": "darron.giron@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/sent/131.",
+      "type": "read",
+      "person": "chris.austin@enron.com",
+      "address": "chris.austin@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/sent/237.",
+      "type": "authored_short",
+      "person": "darron.giron@enron.com",
+      "address": "darron.giron@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/sent/237.",
+      "type": "read",
+      "person": "john.chambers@enron.com",
+      "address": "john.chambers@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/sent/237.",
+      "type": "read",
+      "person": "tabitha.mohon@enron.com",
+      "address": "tabitha.mohon@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/sent/252.",
+      "type": "authored_short",
+      "person": "darron.giron@enron.com",
+      "address": "darron.giron@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/sent/252.",
+      "type": "read",
+      "person": "angela.collins@enron.com",
+      "address": "angela.collins@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/115.",
+      "type": "authored_short",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/115.",
+      "type": "read",
+      "person": "jill.chatterton@enron.com",
+      "address": "jill.chatterton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/245.",
+      "type": "authored_short",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/245.",
+      "type": "read",
+      "person": "jill.chatterton@enron.com",
+      "address": "jill.chatterton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/246.",
+      "type": "authored_medium",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/246.",
+      "type": "read",
+      "person": "jill.chatterton@enron.com",
+      "address": "jill.chatterton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/247.",
+      "type": "chaser",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/247.",
+      "type": "read",
+      "person": "jill.chatterton@enron.com",
+      "address": "jill.chatterton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/248.",
+      "type": "authored_short",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/248.",
+      "type": "read",
+      "person": "jill.chatterton@enron.com",
+      "address": "jill.chatterton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/249.",
+      "type": "authored_medium",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/249.",
+      "type": "read",
+      "person": "jill.chatterton@enron.com",
+      "address": "jill.chatterton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/258.",
+      "type": "authored_short",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/258.",
+      "type": "read",
+      "person": "david.steiner@enron.com",
+      "address": "david.steiner@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/265.",
+      "type": "authored_short",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/265.",
+      "type": "read",
+      "person": "david.steiner@enron.com",
+      "address": "david.steiner@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/284.",
+      "type": "authored_short",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/284.",
+      "type": "read",
+      "person": "david.steiner@enron.com",
+      "address": "david.steiner@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/343.",
+      "type": "authored_medium",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/343.",
+      "type": "read",
+      "person": "craig.dean@enron.com",
+      "address": "craig.dean@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/343.",
+      "type": "read",
+      "person": "john.anderson@enron.com",
+      "address": "john.anderson@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/343.",
+      "type": "read",
+      "person": "leaf.harasin@enron.com",
+      "address": "leaf.harasin@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/343.",
+      "type": "read",
+      "person": "mark.guzman@enron.com",
+      "address": "mark.guzman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/343.",
+      "type": "read",
+      "person": "todd.bland@enron.com",
+      "address": "todd.bland@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/351.",
+      "type": "chaser",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/351.",
+      "type": "read",
+      "person": "david.steiner@enron.com",
+      "address": "david.steiner@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/352.",
+      "type": "authored_medium",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/352.",
+      "type": "read",
+      "person": "craig.dean@enron.com",
+      "address": "craig.dean@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/352.",
+      "type": "read",
+      "person": "john.anderson@enron.com",
+      "address": "john.anderson@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/352.",
+      "type": "read",
+      "person": "leaf.harasin@enron.com",
+      "address": "leaf.harasin@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/352.",
+      "type": "read",
+      "person": "mark.guzman@enron.com",
+      "address": "mark.guzman@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/352.",
+      "type": "read",
+      "person": "todd.bland@enron.com",
+      "address": "todd.bland@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/355.",
+      "type": "authored_medium",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/355.",
+      "type": "read",
+      "person": "david.steiner@enron.com",
+      "address": "david.steiner@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/454.",
+      "type": "chaser",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/454.",
+      "type": "read",
+      "person": "jill.chatterton@enron.com",
+      "address": "jill.chatterton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/455.",
+      "type": "authored_short",
+      "person": "bill.williams@enron.com",
+      "address": "bill.williams@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/williams-w3/sent_items/455.",
+      "type": "read",
+      "person": "jill.chatterton@enron.com",
+      "address": "jill.chatterton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    }
+  ],
+  "participants": [
+    {
+      "email": "bill.williams@enron.com",
+      "name": "Williams III, Bill",
+      "label": "Bill Williams III",
+      "kind": "person",
+      "addresses": [
+        "bill.williams@enron.com"
+      ],
+      "staff": true,
+      "authored": 12,
+      "forwards": 0,
+      "chasers": 3,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "jill.chatterton@enron.com",
+      "name": "Chatterton, Jill",
+      "label": "Jill Chatterton",
+      "kind": "person",
+      "addresses": [
+        "jill.chatterton@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 8,
+      "wrote": false
+    },
+    {
+      "email": "darron.giron@enron.com",
+      "name": "Darron C Giron",
+      "label": "Darron C Giron",
+      "kind": "person",
+      "addresses": [
+        "darron.giron@enron.com"
+      ],
+      "staff": true,
+      "authored": 4,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": true
+    },
+    {
+      "email": "david.steiner@enron.com",
+      "name": "Steiner, David",
+      "label": "David Steiner",
+      "kind": "person",
+      "addresses": [
+        "david.steiner@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 5,
+      "wrote": false
+    },
+    {
+      "email": "daren.farmer@enron.com",
+      "name": "Daren J Farmer",
+      "label": "Daren J Farmer",
+      "kind": "person",
+      "addresses": [
+        "j..farmer@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 3,
+      "wrote": false
+    },
+    {
+      "email": "craig.dean@enron.com",
+      "name": "Dean, Craig",
+      "label": "Craig Dean",
+      "kind": "person",
+      "addresses": [
+        "craig.dean@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "john.anderson@enron.com",
+      "name": "Anderson, John",
+      "label": "John Anderson",
+      "kind": "person",
+      "addresses": [
+        "john.anderson@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "leaf.harasin@enron.com",
+      "name": null,
+      "label": "leaf.harasin@enron.com",
+      "kind": "person",
+      "addresses": [
+        "leaf.harasin@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "mark.guzman@enron.com",
+      "name": "Guzman, Mark",
+      "label": "Mark Guzman",
+      "kind": "person",
+      "addresses": [
+        "mark.guzman@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "todd.bland@enron.com",
+      "name": null,
+      "label": "todd.bland@enron.com",
+      "kind": "person",
+      "addresses": [
+        "todd.bland@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "tommy.garza@enron.com",
+      "name": "Garza Jr., Tommy",
+      "label": "Tommy Garza Jr.",
+      "kind": "person",
+      "addresses": [
+        "tommy.garza@enron.com"
+      ],
+      "staff": true,
+      "authored": 2,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "angela.collins@enron.com",
+      "name": null,
+      "label": "angela.collins@enron.com",
+      "kind": "person",
+      "addresses": [
+        "angela.collins@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "chris.austin@enron.com",
+      "name": null,
+      "label": "chris.austin@enron.com",
+      "kind": "person",
+      "addresses": [
+        "chris.austin@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "dalton.hogan@enron.com",
+      "name": "Hogan, Dalton",
+      "label": "Dalton Hogan",
+      "kind": "person",
+      "addresses": [
+        "dalton.hogan@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "jackson.logan@enron.com",
+      "name": "Logan III, Jackson",
+      "label": "Jackson Logan III",
+      "kind": "person",
+      "addresses": [
+        "jackson.logan@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "john.chambers@enron.com",
+      "name": null,
+      "label": "john.chambers@enron.com",
+      "kind": "person",
+      "addresses": [
+        "john.chambers@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "mary.poorman@enron.com",
+      "name": "Mary Poorman",
+      "label": "Mary Poorman",
+      "kind": "person",
+      "addresses": [
+        "mary.poorman@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "tabitha.mohon@enron.com",
+      "name": null,
+      "label": "tabitha.mohon@enron.com",
+      "kind": "person",
+      "addresses": [
+        "tabitha.mohon@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    }
+  ],
+  "stalls_by_kind": [],
+  "stall_groups": [
+    {
+      "summary": "Requests wait on vendors and installers: the manager chases a carrier on a phone for a new staff member and acknowledges that moving turrets and reconfiguring desks takes time.",
+      "quotes": [
+        {
+          "id": "batch-065:e8",
+          "kind": "evidence",
+          "message_id": "corpus/williams-w3/sent_items/258.",
+          "start": 551,
+          "end": 596,
+          "raw_text": "Any word from PGE regarding a phone for Kate?",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "bill.williams@enron.com",
+          "sender_label": "Bill Williams III",
+          "date_utc": "2001-09-12T20:24:50Z"
+        },
+        {
+          "id": "batch-065:e4",
+          "kind": "evidence",
+          "message_id": "corpus/williams-w3/sent_items/265.",
+          "start": 596,
+          "end": 665,
+          "raw_text": "I understand that moving turrets, and reconfiguring desks takes time.",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "bill.williams@enron.com",
+          "sender_label": "Bill Williams III",
+          "date_utc": "2001-09-05T23:38:23Z"
+        }
+      ]
+    },
+    {
+      "summary": "Payment waits on receipt confirmation, which purchasing has to request item by item.",
+      "quotes": [
+        {
+          "id": "batch-042:e17",
+          "kind": "evidence",
+          "message_id": "corpus/giron-d/sent/252.",
+          "start": 705,
+          "end": 740,
+          "raw_text": "Have you received this merchandise?",
+          "match": "exact",
+          "segment": "quoted",
+          "field": "body",
+          "sender": "darron.giron@enron.com",
+          "sender_label": "Darron C Giron",
+          "date_utc": "2001-02-06T10:23:00Z"
+        },
+        {
+          "id": "batch-042:e18",
+          "kind": "evidence",
+          "message_id": "corpus/giron-d/sent/237.",
+          "start": 748,
+          "end": 811,
+          "raw_text": "Could you please check to see if you have received this item(s)",
+          "match": "exact",
+          "segment": "quoted",
+          "field": "body",
+          "sender": "darron.giron@enron.com",
+          "sender_label": "Darron C Giron",
+          "date_utc": "2001-02-09T15:09:00Z"
+        }
+      ]
+    },
+    {
+      "summary": "The purchase requisition work has no willing owner and sits with one person.",
+      "quotes": [
+        {
+          "id": "batch-076:o0",
+          "kind": "claim",
+          "message_id": "corpus/giron-d/inbox/482.",
+          "start": 660,
+          "end": 710,
+          "raw_text": "Nobody wants to touch it and it just sits with me.",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "mary.poorman@enron.com",
+          "sender_label": "Mary Poorman",
+          "date_utc": "2001-11-14T19:20:55Z",
+          "person": "Mary"
+        },
+        {
+          "id": "batch-076:e15",
+          "kind": "evidence",
+          "message_id": "corpus/giron-d/inbox/482.",
+          "start": 589,
+          "end": 659,
+          "raw_text": "the purchase requisition process eats half my week, every\nsingle week.",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "mary.poorman@enron.com",
+          "sender_label": "Mary Poorman",
+          "date_utc": "2001-11-14T19:20:55Z"
+        }
+      ]
+    },
+    {
+      "summary": "A carrier rep reverted a phone plan setting, so the change had to be made again.",
+      "quotes": [
+        {
+          "id": "batch-066:e10",
+          "kind": "evidence",
+          "message_id": "corpus/williams-w3/sent_items/245.",
+          "start": 591,
+          "end": 662,
+          "raw_text": "It looks like our AT&T rep switched him back to the group calling plan.",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "bill.williams@enron.com",
+          "sender_label": "Bill Williams III",
+          "date_utc": "2001-09-14T21:06:11Z"
+        }
+      ]
+    }
+  ],
+  "stall_quotes": [],
+  "evidence": [
+    {
+      "id": "batch-042:e17",
+      "kind": "evidence",
+      "message_id": "corpus/giron-d/sent/252.",
+      "start": 705,
+      "end": 740,
+      "raw_text": "Have you received this merchandise?",
+      "match": "exact",
+      "segment": "quoted",
+      "field": "body",
+      "sender": "darron.giron@enron.com",
+      "sender_label": "Darron C Giron",
+      "date_utc": "2001-02-06T10:23:00Z"
+    },
+    {
+      "id": "batch-042:e18",
+      "kind": "evidence",
+      "message_id": "corpus/giron-d/sent/237.",
+      "start": 748,
+      "end": 811,
+      "raw_text": "Could you please check to see if you have received this item(s)",
+      "match": "exact",
+      "segment": "quoted",
+      "field": "body",
+      "sender": "darron.giron@enron.com",
+      "sender_label": "Darron C Giron",
+      "date_utc": "2001-02-09T15:09:00Z"
+    },
+    {
+      "id": "batch-047:e24",
+      "kind": "evidence",
+      "message_id": "corpus/giron-d/sent/131.",
+      "start": 443,
+      "end": 491,
+      "raw_text": "I have 3 flat screen monitors and a Sun monitor.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "darron.giron@enron.com",
+      "sender_label": "Darron C Giron",
+      "date_utc": "2001-03-21T15:18:00Z"
+    },
+    {
+      "id": "batch-047:e25",
+      "kind": "evidence",
+      "message_id": "corpus/giron-d/sent/130.",
+      "start": 466,
+      "end": 505,
+      "raw_text": "cpr    Oracle 73\nCPR HOUSTON  Oracle 73",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "darron.giron@enron.com",
+      "sender_label": "Darron C Giron",
+      "date_utc": "2001-03-22T09:09:00Z"
+    },
+    {
+      "id": "batch-056:e6",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/455.",
+      "start": 703,
+      "end": 780,
+      "raw_text": "I called and put in the order for your headset.  I told them to send it ASAP.",
+      "match": "exact",
+      "segment": "quoted",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-06-29T02:00:15Z"
+    },
+    {
+      "id": "batch-056:e7",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/454.",
+      "start": 538,
+      "end": 609,
+      "raw_text": "Go ahead and order everyone in the group who wants them the new phones.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-06-29T02:39:25Z"
+    },
+    {
+      "id": "batch-060:e2",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/355.",
+      "start": 614,
+      "end": 651,
+      "raw_text": "Each real-time desk needs 2 handsets.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-07-28T00:48:15Z"
+    },
+    {
+      "id": "batch-060:e3",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/351.",
+      "start": 755,
+      "end": 816,
+      "raw_text": "Chip has said this will be done by end of business on Monday.",
+      "match": "exact",
+      "segment": "quoted",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-07-28T01:58:36Z"
+    },
+    {
+      "id": "batch-060:e5",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/352.",
+      "start": 1604,
+      "end": 1675,
+      "raw_text": "we should be getting new handsets (two for each turret) early next week",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-07-28T01:56:59Z"
+    },
+    {
+      "id": "batch-060:e13",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/343.",
+      "start": 1508,
+      "end": 1567,
+      "raw_text": "The cell phones are for group member to group member usage.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-07-31T00:34:55Z"
+    },
+    {
+      "id": "batch-064:e6",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/284.",
+      "start": 574,
+      "end": 621,
+      "raw_text": "We need to get a third turret in the mix at RT.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-08-27T17:17:37Z"
+    },
+    {
+      "id": "batch-065:e4",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/265.",
+      "start": 596,
+      "end": 665,
+      "raw_text": "I understand that moving turrets, and reconfiguring desks takes time.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-09-05T23:38:23Z"
+    },
+    {
+      "id": "batch-065:e5",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/66.",
+      "start": 806,
+      "end": 880,
+      "raw_text": "Your order (see below) has been assigned to Garza-TraderDeployments Tommy.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "dalton.hogan@enron.com",
+      "sender_label": "Dalton Hogan",
+      "date_utc": "2001-09-06T19:42:06Z"
+    },
+    {
+      "id": "batch-065:e6",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/65.",
+      "start": 544,
+      "end": 580,
+      "raw_text": "I'm working on the PC you requested.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "tommy.garza@enron.com",
+      "sender_label": "Tommy Garza Jr.",
+      "date_utc": "2001-09-07T14:56:50Z"
+    },
+    {
+      "id": "batch-065:e7",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/64.",
+      "start": 809,
+      "end": 874,
+      "raw_text": "The installation of the equipment (see below) has been completed.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "tommy.garza@enron.com",
+      "sender_label": "Tommy Garza Jr.",
+      "date_utc": "2001-09-07T17:33:25Z"
+    },
+    {
+      "id": "batch-065:e8",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/258.",
+      "start": 551,
+      "end": 596,
+      "raw_text": "Any word from PGE regarding a phone for Kate?",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-09-12T20:24:50Z"
+    },
+    {
+      "id": "batch-066:e6",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/249.",
+      "start": 606,
+      "end": 688,
+      "raw_text": "I would like to cap per employee costs at $50 per month on the group calling plan.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-09-14T18:52:54Z"
+    },
+    {
+      "id": "batch-066:e7",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/247.",
+      "start": 556,
+      "end": 662,
+      "raw_text": "Please send an email to the group explaining to them that they will be billed if they go over $55 a month.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-09-14T19:37:07Z"
+    },
+    {
+      "id": "batch-066:e8",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/248.",
+      "start": 540,
+      "end": 589,
+      "raw_text": "Could you also cancel my monthly PalmNet service.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-09-14T18:54:09Z"
+    },
+    {
+      "id": "batch-066:e9",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/246.",
+      "start": 579,
+      "end": 694,
+      "raw_text": "Could you send an email to each group member giving them their average usage since you started or the last 3 months",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-09-14T19:52:54Z"
+    },
+    {
+      "id": "batch-066:e10",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/245.",
+      "start": 591,
+      "end": 662,
+      "raw_text": "It looks like our AT&T rep switched him back to the group calling plan.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-09-14T21:06:11Z"
+    },
+    {
+      "id": "batch-074:e8",
+      "kind": "evidence",
+      "message_id": "corpus/williams-w3/sent_items/115.",
+      "start": 529,
+      "end": 590,
+      "raw_text": "We will not be needing any headsets in the real-time group...",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "bill.williams@enron.com",
+      "sender_label": "Bill Williams III",
+      "date_utc": "2001-11-06T22:40:40Z"
+    },
+    {
+      "id": "batch-076:e15",
+      "kind": "evidence",
+      "message_id": "corpus/giron-d/inbox/482.",
+      "start": 589,
+      "end": 659,
+      "raw_text": "the purchase requisition process eats half my week, every\nsingle week.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "mary.poorman@enron.com",
+      "sender_label": "Mary Poorman",
+      "date_utc": "2001-11-14T19:20:55Z"
+    }
+  ],
+  "chasers": [
+    "corpus/williams-w3/sent_items/247.",
+    "corpus/williams-w3/sent_items/351.",
+    "corpus/williams-w3/sent_items/454."
+  ],
+  "reply_gaps": [],
+  "reply_gap_n": 0,
+  "median_reply_gap_h": null,
+  "claims": [
+    {
+      "message_id": "corpus/giron-d/inbox/482.",
+      "person": "Mary",
+      "date_utc": "2001-11-14T19:20:55Z",
+      "status": "matched",
+      "status_words": "matched to someone on the threads",
+      "name": "Mary Poorman",
+      "people": [
+        "mary.poorman@enron.com"
+      ],
+      "quote": {
+        "id": "batch-076:o0",
+        "kind": "claim",
+        "message_id": "corpus/giron-d/inbox/482.",
+        "start": 660,
+        "end": 710,
+        "raw_text": "Nobody wants to touch it and it just sits with me.",
+        "match": "exact",
+        "segment": "own",
+        "field": "body",
+        "sender": "mary.poorman@enron.com",
+        "sender_label": "Mary Poorman",
+        "date_utc": "2001-11-14T19:20:55Z",
+        "person": "Mary"
+      }
+    }
+  ],
+  "conflicts": [],
+  "contradictions": [
+    {
+      "summary": "Headset needs for the real-time group change: a headset is ordered urgently for one person, yet later the group is said to need no headsets.",
+      "quotes": [
+        {
+          "id": "batch-056:e6",
+          "kind": "evidence",
+          "message_id": "corpus/williams-w3/sent_items/455.",
+          "start": 703,
+          "end": 780,
+          "raw_text": "I called and put in the order for your headset.  I told them to send it ASAP.",
+          "match": "exact",
+          "segment": "quoted",
+          "field": "body",
+          "sender": "bill.williams@enron.com",
+          "sender_label": "Bill Williams III",
+          "date_utc": "2001-06-29T02:00:15Z"
+        },
+        {
+          "id": "batch-074:e8",
+          "kind": "evidence",
+          "message_id": "corpus/williams-w3/sent_items/115.",
+          "start": 529,
+          "end": 590,
+          "raw_text": "We will not be needing any headsets in the real-time group...",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "bill.williams@enron.com",
+          "sender_label": "Bill Williams III",
+          "date_utc": "2001-11-06T22:40:40Z"
+        }
+      ],
+      "claims": []
+    }
+  ],
+  "contradictions_dropped": 0,
+  "loops": [
+    {
+      "thread_id": "t-a6d28c6438b9",
+      "message_id": "corpus/williams-w3/sent_items/247.",
+      "why": "chase",
+      "date_utc": "2001-09-14T19:37:07Z",
+      "mailbox": "williams-w3",
+      "mailbox_end_utc": "2002-02-07T11:05:04Z",
+      "days_before_end": 145,
+      "recent": false,
+      "subject": "RE: Cellular Phone Budget",
+      "from": "bill.williams@enron.com",
+      "from_label": "Bill Williams III",
+      "thread_length": 2,
+      "processes": [
+        "office-equipment-ordering"
+      ],
+      "quote": null
+    },
+    {
+      "thread_id": "t-9f542559c329",
+      "message_id": "corpus/williams-w3/sent_items/351.",
+      "why": "chase",
+      "date_utc": "2001-07-28T01:58:36Z",
+      "mailbox": "williams-w3",
+      "mailbox_end_utc": "2002-02-07T11:05:04Z",
+      "days_before_end": 194,
+      "recent": false,
+      "subject": "RE: Real-Time Handsets",
+      "from": "bill.williams@enron.com",
+      "from_label": "Bill Williams III",
+      "thread_length": 2,
+      "processes": [
+        "office-equipment-ordering"
+      ],
+      "quote": null
+    },
+    {
+      "thread_id": "t-c4c36d24cbe7",
+      "message_id": "corpus/williams-w3/sent_items/454.",
+      "why": "chase",
+      "date_utc": "2001-06-29T02:39:25Z",
+      "mailbox": "williams-w3",
+      "mailbox_end_utc": "2002-02-07T11:05:04Z",
+      "days_before_end": 223,
+      "recent": false,
+      "subject": "RE: headset and wall",
+      "from": "bill.williams@enron.com",
+      "from_label": "Bill Williams III",
+      "thread_length": 2,
+      "processes": [
+        "office-equipment-ordering"
+      ],
+      "quote": null
+    }
+  ],
+  "document": null
+}

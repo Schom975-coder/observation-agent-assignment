@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Deal transfer between books: template · Observation agent</title>
+<meta name="description" content="A drafted template for one of the recurring processes the run found, with its evidence quoted exactly from the emails.">
+<meta name="obs-run" content="20261019T134634Z">
+<link rel="canonical" href="https://schom975-coder.github.io/observation-agent-assignment/documents/deal-book-transfer.html">
+<link rel="alternate" type="text/markdown" href="deal-book-transfer.md">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../site.css">
+</head>
+<body>
+<aside class="ai-note" aria-label="Reading with an AI assistant">
+<p class="ai-text">Reading this with an AI assistant? This site is set up for Claude to read in full. Give it this page's address and ask it anything about the project.</p>
+<p class="ai-url"><code id="page-url">https://schom975-coder.github.io/observation-agent-assignment/documents/deal-book-transfer.html</code> <button type="button" id="copy-url" class="copy" hidden>Copy address</button></p>
+</aside>
+<div class="brandrule" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<div class="shell">
+<header class="top">
+<p class="site"><a href="../index.html">Observation agent</a> <span class="runline">Submitted run of 19 Oct 2026</span></p>
+<nav aria-label="Pages"><ul class="nav"><li><a href="../index.html">Home</a></li><li><a href="../dashboard/index.html">Dashboard</a></li><li><a href="../how-to-use.html">How to use</a></li><li><a href="../how-to-run.html">How to run</a></li><li><a href="../run.html" aria-current="page">The run</a></li><li><a href="../architecture.html">Architecture</a></li><li><a href="../design.html">Design</a></li><li><a href="../process.html">How it was built</a></li><li><a href="../claude-dir.html">Claude Code layer</a></li><li><a href="../notes.html">Notes</a></li><li><a href="../report.html">Report</a></li><li><a href="../brief.html">Brief</a></li></ul></nav>
+</header>
+<main id="main">
+<p class="kicker">Drafted document · rank 6 · template</p>
+<h1>Deal transfer between books: template</h1>
+<p class="prefix">Drafted by the run for the process owner to review. The body is model prose that passed the draft gate; the title, the line under it and the Evidence section are written by code, and every quote in the Evidence section is checked against the raw message. <a href="../run.html#documents">All the drafted documents</a>.</p>
+<div class="doc"><p>Draft prepared from 84 emails about this process, for the process owner to review. Evidence about this process, quoted exactly from the emails, is listed at the end.</p>
+<h2>Purpose</h2>
+<p>Use this sheet to ask the book owner to move, kill or terminate deals, for example into the bankruptcy books, or back to a live book. One sheet layout replaces ad hoc lists in different formats, so the book owner can flip the deals once and risk can reconcile the final list against its calculations and the book to book transfer numbers.</p>
+<h2>Who fills it in</h2>
+<p>People doing this work (counted from the emails): Darron C Giron (10 written, 23 forwarded), Phillip M. Love (10 written, 1 forwarded), B. Scott Palmer (4 forwarded), Jeffrey C. Gossett (3 forwarded). Named as owner in the emails: Phillip M. Love (Jan 2002), Greg Couch (Jan 2002), Darron C Giron (Oct 2000); the process owner settles which. Owner: <mark class="blank">[process owner to confirm]</mark>.</p>
+<p>The requester is the risk or logistics analyst who spotted the deals in the wrong book or on a termination list. The book owner (or the risk group that owns the target book) fills in the last two columns once the deals are flipped in the trading system. The termination and estate risk lead keeps the master list and reconciles each sheet against it. Confirm who holds each role at the start of a termination round, because the mail names different people for terminations and for estate risk.</p>
+<h2>When</h2>
+<p>Fill in a sheet whenever deals are found in the wrong book or must be killed or terminated, and send it to the book owner right away or by the next day, as the request says.</p>
+<ul><li>During a bankruptcy round, send one sheet per batch of termination or contract lists, and send each batch of stragglers as its own new sheet that points to the earlier one.</li><li>Send a reversal (deals moved from a bankruptcy book back to the live side) as a separate sheet, with the reason filled in, so it is not mistaken for a new move.</li><li>Before sending, check the deals against the master termination list so deals already moved are not sent again. If no master list exists yet, set one up at <mark class="blank">[location]</mark> and keep it current, and note who maintains it.</li><li>Keep a daily match of the master termination list against current book assignments. Flag deals not yet moved and any reversals, and send the flags to the requester.</li><li>Before the final reconciliation, ask the book owner to confirm no more straggler sheets are coming. If risk is still waiting on the final list, send a reminder <mark class="blank">[proposed: one reminder, then escalate to the estate risk lead]</mark>.</li></ul>
+<h2>Template</h2>
+<p>Request header:</p>
+<pre>Request ID: <mark class="blank">[request ID]</mark>
+Date sent: <mark class="blank">[date]</mark>
+Requester (role and name): <mark class="blank">[requester]</mark>
+Book owner or risk group: <mark class="blank">[recipient]</mark>
+Request type: <mark class="blank">[move / kill / terminate / reversal]</mark>
+Round: <mark class="blank">[first list / straggler list / reversal]</mark>
+Earlier sheet this follows: <mark class="blank">[request ID or none]</mark>
+Needed by: <mark class="blank">[right away / next day / date]</mark></pre>
+<p>Deal rows:</p>
+<table><thead><tr><th scope="col">Deal number</th><th scope="col">Source book</th><th scope="col">Target book</th><th scope="col">Trader</th><th scope="col">Reason</th><th scope="col">Counterparty (if the sale counterparty changes)</th><th scope="col">Effective date</th><th scope="col">Flipped by (book owner)</th><th scope="col">Date flipped</th><th scope="col">Confirmed in trading system (yes/no)</th></tr></thead><tbody><tr><td><mark class="blank">[deal number]</mark></td><td><mark class="blank">[source book, e.g. FT-West]</mark></td><td><mark class="blank">[target book, e.g. FT-US/CAND-ERMS or a bankruptcy book]</mark></td><td><mark class="blank">[trader name]</mark></td><td><mark class="blank">[reason: wrong book / kill / terminate / auto-terminating / reversal]</mark></td><td><mark class="blank">[counterparty]</mark></td><td><mark class="blank">[effective date]</mark></td><td><mark class="blank">[name]</mark></td><td><mark class="blank">[date]</mark></td><td><mark class="blank">[yes/no]</mark></td></tr><tr><td><mark class="blank">[deal number]</mark></td><td><mark class="blank">[source book]</mark></td><td><mark class="blank">[target book]</mark></td><td><mark class="blank">[trader name]</mark></td><td><mark class="blank">[reason]</mark></td><td><mark class="blank">[counterparty]</mark></td><td><mark class="blank">[effective date]</mark></td><td><mark class="blank">[name]</mark></td><td><mark class="blank">[date]</mark></td><td><mark class="blank">[yes/no]</mark></td></tr></tbody></table>
+<p>Reconciliation, filled in by risk after the final list:</p>
+<pre>Final list received: <mark class="blank">[date]</mark>
+Deals on the sheet: <mark class="blank">[count]</mark> 
+Deals confirmed moved: <mark class="blank">[count]</mark>
+Deals not yet moved: <mark class="blank">[deal numbers]</mark>
+Reversals: <mark class="blank">[deal numbers]</mark>
+Matched to risk calculations: <mark class="blank">[yes/no, notes]</mark>
+Matched to book to book transfer numbers: <mark class="blank">[yes/no, notes]</mark>
+Open questions and who is answering: <mark class="blank">[notes]</mark></pre>
+<p>Rules for filling it in:</p>
+<ul><li>Fill in the trader and the target book on every row. A row without them goes back to the requester.</li><li>Give one deal number per row, with the source and target book exactly as the trading system names them.</li><li>If a book must be renamed or a new book is proposed (an index book, for example), do not mix it into a deal row. Raise it in the open questions line and get the book owner&#39;s reply before any deals are moved to it.</li></ul>
+<h2>Where it goes</h2>
+<ul><li>Send the sheet to the book owner or risk group that owns the target book, with the requester&#39;s own manager copied <mark class="blank">[proposed: manager copied on every sheet]</mark>.</li><li>Save a copy in the shared termination folder at <mark class="blank">[location]</mark>, named with the request ID, and add the deals to the master termination list at <mark class="blank">[location]</mark>.</li><li>If a deal is unclear (for example, who changes the counterparty on a sale), call the book owner instead of resending the sheet, and note the answer in the open questions line.</li><li>If the sheet is waiting on a reply, send one reminder <mark class="blank">[proposed: one reminder, then escalate to the estate risk lead]</mark>.</li><li>If the reporting system will not print the sheet or the report (TAGG has failed to print before), send the sheet as an attachment by email and tell the system support contact at <mark class="blank">[contact]</mark>.</li><li>When the book owner confirms the flips, return the completed sheet to the requester and to risk for the reconciliation.</li></ul>
+<h2>Evidence</h2>
+<p>Passages about this process, each quoted exactly from the email named above it. They support the document as a whole, not any one line of it.</p>
+<h3>The work</h3>
+<ul><li><code>corpus/giron-d/inbox/117.</code> (2002-01-18, from Palmer, B. Scott):<blockquote>please find a listing of auto-terminating deals that need to be moved into the bankruptcy books.</blockquote></li><li><code>corpus/giron-d/sent/360.</code> (2000-12-27, from Darron C Giron):<blockquote>flip them to the FT-US/CAND-ERMS book right away.</blockquote></li><li><code>corpus/giron-d/inbox/31.</code> (2002-02-01, from Rodrigue, Robin):<blockquote>The tabs labeled NSS1 Deals Killed and NSS2 Deals Killed are the PGL deals that were killed.</blockquote></li><li><code>corpus/giron-d/sent/23.</code> (2001-05-02, from Darron C Giron):<blockquote>The WEST-PERM deals have been flipped.</blockquote></li><li><code>corpus/giron-d/inbox/91.</code> (2002-01-23, from Balfour-Flanagan, Cyndie):<blockquote>the following contracts are terminated effective 12/30/01.</blockquote></li><li><code>corpus/farmer-d/logistics/2.</code> (2001-12-14, from Palmer, B. Scott):<blockquote>more auto-terminate deals</blockquote></li><li><code>corpus/farmer-d/logistics/840.</code> (2000-02-24, from Mandy MacKinnon):<blockquote>moved to Duke Energy Field Services.</blockquote></li><li><code>corpus/giron-d/sent/786.</code> (2000-06-08, from Darron C Giron):<blockquote>The Sitara group is getting prepared to be converting all cash desk financial</blockquote></li><li><code>corpus/giron-d/inbox/57.</code> (2002-01-28, from Richardson, Stacey):<blockquote>Here are a few more stragglers to move into the bankruptcy books:</blockquote></li><li><code>corpus/giron-d/sent/459.</code> (2000-11-27, from Darron C Giron):<blockquote>There&#39;s a deal in the FT-West book that needs to be moved to the</blockquote></li><li><code>corpus/williams-w3/sent_items/269.</code> (2001-08-30, from Williams III, Bill):<blockquote>I have attached the spread sheet I created back in February.</blockquote></li><li><code>corpus/farmer-d/logistics/7.</code> (2001-12-13, from Jaquet, Tammy):<blockquote>We will be killing about 2000 deals in Sitara tonight.</blockquote></li><li><code>corpus/giron-d/inbox/127.</code> (2002-01-12, from Tomaski, Richard):<blockquote>Here is my recommendation for the liquidation of EMW.</blockquote></li><li><code>corpus/giron-d/sent/126.</code> (2001-03-27, from Darron C Giron):<blockquote>Could you please do me a favor, and make sure that all Canadian deals</blockquote></li><li><code>corpus/giron-d/inbox/44.</code> (2002-01-31, from Love, Phillip M.):<blockquote>move any deals with the FT-TERMIN-GD book to the bankruptcy book from NG-Price</blockquote></li><li><code>corpus/giron-d/inbox/39.</code> (2002-01-31, from Love, Phillip M.):<blockquote>Change the ENA book name from NG-Price to ENA-FT-WC-SJ</blockquote></li><li><code>corpus/giron-d/inbox/105.</code> (2002-01-22, from Richardson, Stacey):<blockquote>Here are more deals that need to be moved into the bankruptcy books.</blockquote></li><li><code>corpus/giron-d/inbox/72.</code> (2002-01-25, from Richardson, Stacey):<blockquote>Attached please find some &quot;stragglers&quot; that need to moved into the bankruptcy books.</blockquote></li><li><code>corpus/williams-w3/sent_items/293.</code> (2001-08-21, from Williams III, Bill):<blockquote>HERE ARE THE BOOK TO BOOK TRANSFER NUMBERS FOR BOM AND STSW</blockquote></li><li><code>corpus/giron-d/inbox/43.</code> (2002-01-31, from Palmer, B. Scott):<blockquote>Please fill out the book and trader name.</blockquote></li></ul>
+<h3>Where it stalls</h3>
+<ul><li><code>corpus/giron-d/inbox/95.</code> (2002-01-23, from Love, Phillip M.):<blockquote>I am still waiting on a final list to cross reference with our calcs.</blockquote></li><li><code>corpus/giron-d/sent/108.</code> (2001-03-29, from Darron C Giron):<blockquote>We are having problems printing TAGG</blockquote></li><li><code>corpus/giron-d/sent/419.</code> (2000-12-06, from Darron C Giron):<blockquote>There seems to be some confusion about this deal, so please call me</blockquote></li><li><code>corpus/giron-d/sent/568.</code> (2000-10-20, from Darron C Giron):<blockquote>Also, how my proposed index book</blockquote></li></ul>
+<h3>Who owns it</h3>
+<ul><li><code>corpus/giron-d/inbox/116.</code> (2002-01-18, from Richardson, Stacey):<blockquote>Scott is heading another project for Gossett and Darron and I will be handling terminations from today forward.</blockquote></li><li><code>corpus/giron-d/inbox/37.</code> (2002-01-31, from Love, Phillip M.):<blockquote>Greg Couch is going to be leading the estate risk effort</blockquote></li><li><code>corpus/giron-d/sent/404.</code> (2000-12-08, from Darron C Giron):<blockquote>He runs the G-Daily-Est book.</blockquote></li><li><code>corpus/giron-d/sent/550.</code> (2000-10-27, from Darron C Giron):<blockquote>Darron is controller for the west region,  and he should be able to take care</blockquote></li></ul>
+<p>Counted from the emails: this work came up 65 times over 15 active months (2000-02-24 to 2002-02-01), across 84 emails, with 61 staff taking part.</p>
+<p>Estimated, not counted: about 35 minutes of hands-on work each time (range 15 to 90), about 50% of it automatable. Basis: seen in the emails; proposed by a model and checked by code.</p></div>
+</main>
+<footer class="foot">
+<p><a href="https://github.com/Schom975-coder/observation-agent-assignment">The repository on GitHub</a> · Scott Hom · <a href="deal-book-transfer.md">This page in Markdown</a> · <a href="../llms.txt">llms.txt</a> · <a href="../llms-full.txt">llms-full.txt</a></p>
+</footer>
+</div>
+<script>
+(() => {
+  const button = document.getElementById('copy-url');
+  const url = document.getElementById('page-url');
+  if (!button || !url) return;
+  button.hidden = false;
+  const select = () => {
+    const range = document.createRange();
+    range.selectNodeContents(url);
+    const sel = window.getSelection();
+    if (sel) { sel.removeAllRanges(); sel.addRange(range); }
+  };
+  button.addEventListener('click', () => {
+    const text = url.textContent || '';
+    const selected = () => { select(); button.textContent = 'Selected: press Ctrl+C or Cmd+C'; };
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(() => { button.textContent = 'Copied'; }, selected);
+    else selected();
+  });
+})();
+</script>
+</body>
+</html>

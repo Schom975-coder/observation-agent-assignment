@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Architecture · Observation agent</title>
+<meta name="description" content="The pipeline, the Claude Code layer and the path from a figure to its message, in three diagrams with the prose that reads them.">
+<meta name="obs-run" content="20261019T134634Z">
+<link rel="canonical" href="https://schom975-coder.github.io/observation-agent-assignment/architecture.html">
+<link rel="alternate" type="text/markdown" href="architecture.md">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<aside class="ai-note" aria-label="Reading with an AI assistant">
+<p class="ai-text">Reading this with an AI assistant? This site is set up for Claude to read in full. Give it this page's address and ask it anything about the project.</p>
+<p class="ai-url"><code id="page-url">https://schom975-coder.github.io/observation-agent-assignment/architecture.html</code> <button type="button" id="copy-url" class="copy" hidden>Copy address</button></p>
+</aside>
+<div class="brandrule" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<div class="shell">
+<header class="top">
+<p class="site"><a href="index.html">Observation agent</a> <span class="runline">Submitted run of 19 Oct 2026</span></p>
+<nav aria-label="Pages"><ul class="nav"><li><a href="index.html">Home</a></li><li><a href="dashboard/index.html">Dashboard</a></li><li><a href="how-to-use.html">How to use</a></li><li><a href="how-to-run.html">How to run</a></li><li><a href="run.html">The run</a></li><li><a href="architecture.html" aria-current="page">Architecture</a></li><li><a href="design.html">Design</a></li><li><a href="process.html">How it was built</a></li><li><a href="claude-dir.html">Claude Code layer</a></li><li><a href="notes.html">Notes</a></li><li><a href="report.html">Report</a></li><li><a href="brief.html">Brief</a></li></ul></nav>
+</header>
+<main id="main">
+<h1 id="architecture">Architecture</h1>
+<p>One TypeScript pipeline with no runtime dependency, run from inside Claude Code by one skill. Code does everything that has to be exact; subagents do the judgement; code checks every model output before anything uses it. The full design, with every contract and decision, is <a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/.claude/plan/ARCHITECTURE.md"><code>.claude/plan/ARCHITECTURE.md</code></a>.</p>
+<h2 id="diagram-pipeline">From the archive to the dashboard</h2>
+<figure class="diagram" aria-labelledby="pipeline-title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 774" width="360" height="774" role="img" aria-labelledby="pipeline-title pipeline-desc" class="dg" font-family="Archivo, system-ui, sans-serif">
+<title id="pipeline-title">From the archive to the dashboard</title>
+<desc id="pipeline-desc">The pipeline from top to bottom. The /observe skill runs one command per turn and drives every step. The corpus, in Git objects or on disk, is read by the corpus reader; prepare parses, de-duplicates, threads and batches it; one taxonomist call proposes the processes, accepted by code; 99 extractor jobs, 20 at a time, tag every message with quotes, checked by the quote gate; one merger call places the proposed keys, checked by code; the rollup counts; synthesizers in one wave describe each process and estimate its work, checked against bounds; score prices counted and estimated parts at $85 an hour; up to 8 drafters write documents, checked by the draft gate; build writes the dashboard data and the report; serve shows the dashboard on 127.0.0.1.</desc>
+<rect x="8" y="6" width="344" height="50" rx="4" class="orch" fill="none" stroke="#0B3C86" stroke-width="1.4" stroke-dasharray="6 4"/>
+<text x="20" y="27" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">The /observe skill: the orchestrator</text>
+<text x="20" y="45" class="s" font-size="12" fill="#3D4B5D">one command per turn runs every step below</text>
+<g class="row">
+<rect x="8" y="72" width="246" height="42" rx="12" class="data" fill="none" stroke="#5F6D82" stroke-width="1.2" stroke-dasharray="4 3"/>
+<text x="20" y="90" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">The corpus</text>
+<text x="20" y="106" class="s" font-size="12" fill="#3D4B5D">in Git objects or on disk</text>
+</g>
+<path class="arrow" d="M131 114 V122" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M127 121 L135 121 L131 128 Z" fill="#5F6D82"/>
+<g class="row">
+<rect x="8" y="128" width="246" height="42" rx="3" class="code" fill="#FFFFFF" stroke="#A9B5C3" stroke-width="1.2"/>
+<text x="20" y="146" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">Corpus reader</text>
+<text x="20" y="162" class="s" font-size="12" fill="#3D4B5D">the same bytes from either source</text>
+</g>
+<path class="arrow" d="M131 170 V178" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M127 177 L135 177 L131 184 Z" fill="#5F6D82"/>
+<g class="row">
+<rect x="8" y="184" width="246" height="42" rx="3" class="code" fill="#FFFFFF" stroke="#A9B5C3" stroke-width="1.2"/>
+<text x="20" y="202" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">prepare</text>
+<text x="20" y="218" class="s" font-size="12" fill="#3D4B5D">parse, de-duplicate, thread, batch</text>
+</g>
+<path class="arrow" d="M131 226 V234" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M127 233 L135 233 L131 240 Z" fill="#5F6D82"/>
+<g class="row">
+<rect x="8" y="240" width="246" height="42" rx="3" class="model" fill="#EDF2F9" stroke="#0B3C86" stroke-width="1.6"/>
+<text x="20" y="258" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">taxonomist (1)</text>
+<text x="20" y="274" class="s" font-size="12" fill="#3D4B5D">the list of recurring processes</text>
+<rect x="266" y="246" width="86" height="30" rx="15" class="gate" fill="#FBF1D6" stroke="#A57700" stroke-width="1.4"/>
+<text x="309" y="265" class="k" font-size="11.5" font-weight="600" fill="#0F1B2D" text-anchor="middle">accept</text>
+<path class="arrow" d="M254 261 H260" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M259 257 L259 265 L266 261 Z" fill="#5F6D82"/>
+</g>
+<path class="arrow" d="M309 276 V289 H131 V290" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M127 289 L135 289 L131 296 Z" fill="#5F6D82"/>
+<g class="row">
+<rect x="8" y="296" width="246" height="42" rx="3" class="model" fill="#EDF2F9" stroke="#0B3C86" stroke-width="1.6"/>
+<text x="20" y="314" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">extractors (99)</text>
+<text x="20" y="330" class="s" font-size="12" fill="#3D4B5D">20 in flight: tags and quotes</text>
+<rect x="266" y="302" width="86" height="30" rx="15" class="gate" fill="#FBF1D6" stroke="#A57700" stroke-width="1.4"/>
+<text x="309" y="321" class="k" font-size="11.5" font-weight="600" fill="#0F1B2D" text-anchor="middle">quote check</text>
+<path class="arrow" d="M254 317 H260" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M259 313 L259 321 L266 317 Z" fill="#5F6D82"/>
+</g>
+<path class="arrow" d="M309 332 V345 H131 V346" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M127 345 L135 345 L131 352 Z" fill="#5F6D82"/>
+<g class="row">
+<rect x="8" y="352" width="246" height="42" rx="3" class="model" fill="#EDF2F9" stroke="#0B3C86" stroke-width="1.6"/>
+<text x="20" y="370" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">merger (1)</text>
+<text x="20" y="386" class="s" font-size="12" fill="#3D4B5D">places every proposed key</text>
+<rect x="266" y="358" width="86" height="30" rx="15" class="gate" fill="#FBF1D6" stroke="#A57700" stroke-width="1.4"/>
+<text x="309" y="377" class="k" font-size="11.5" font-weight="600" fill="#0F1B2D" text-anchor="middle">key check</text>
+<path class="arrow" d="M254 373 H260" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M259 369 L259 377 L266 373 Z" fill="#5F6D82"/>
+</g>
+<path class="arrow" d="M309 388 V401 H131 V402" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M127 401 L135 401 L131 408 Z" fill="#5F6D82"/>
+<g class="row">
+<rect x="8" y="408" width="246" height="42" rx="3" class="code" fill="#FFFFFF" stroke="#A9B5C3" stroke-width="1.2"/>
+<text x="20" y="426" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">rollup</text>
+<text x="20" y="442" class="s" font-size="12" fill="#3D4B5D">rounds, people, actions, stalls</text>
+</g>
+<path class="arrow" d="M131 450 V458" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M127 457 L135 457 L131 464 Z" fill="#5F6D82"/>
+<g class="row">
+<rect x="8" y="464" width="246" height="42" rx="3" class="model" fill="#EDF2F9" stroke="#0B3C86" stroke-width="1.6"/>
+<text x="20" y="482" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">synthesizers</text>
+<text x="20" y="498" class="s" font-size="12" fill="#3D4B5D">groups of up to 4, one wave</text>
+<rect x="266" y="470" width="86" height="30" rx="15" class="gate" fill="#FBF1D6" stroke="#A57700" stroke-width="1.4"/>
+<text x="309" y="489" class="k" font-size="11.5" font-weight="600" fill="#0F1B2D" text-anchor="middle">bounds check</text>
+<path class="arrow" d="M254 485 H260" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M259 481 L259 489 L266 485 Z" fill="#5F6D82"/>
+</g>
+<path class="arrow" d="M309 500 V513 H131 V514" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M127 513 L135 513 L131 520 Z" fill="#5F6D82"/>
+<g class="row">
+<rect x="8" y="520" width="246" height="42" rx="3" class="code" fill="#FFFFFF" stroke="#A9B5C3" stroke-width="1.2"/>
+<text x="20" y="538" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">score</text>
+<text x="20" y="554" class="s" font-size="12" fill="#3D4B5D">counted + estimated, at $85 an hour</text>
+</g>
+<path class="arrow" d="M131 562 V570" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M127 569 L135 569 L131 576 Z" fill="#5F6D82"/>
+<g class="row">
+<rect x="8" y="576" width="246" height="42" rx="3" class="model" fill="#EDF2F9" stroke="#0B3C86" stroke-width="1.6"/>
+<text x="20" y="594" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">drafters (up to 8)</text>
+<text x="20" y="610" class="s" font-size="12" fill="#3D4B5D">one working document each</text>
+<rect x="266" y="582" width="86" height="30" rx="15" class="gate" fill="#FBF1D6" stroke="#A57700" stroke-width="1.4"/>
+<text x="309" y="601" class="k" font-size="11.5" font-weight="600" fill="#0F1B2D" text-anchor="middle">draft gate</text>
+<path class="arrow" d="M254 597 H260" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M259 593 L259 601 L266 597 Z" fill="#5F6D82"/>
+</g>
+<path class="arrow" d="M309 612 V625 H131 V626" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M127 625 L135 625 L131 632 Z" fill="#5F6D82"/>
+<g class="row">
+<rect x="8" y="632" width="246" height="42" rx="3" class="code" fill="#FFFFFF" stroke="#A9B5C3" stroke-width="1.2"/>
+<text x="20" y="650" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">build</text>
+<text x="20" y="666" class="s" font-size="12" fill="#3D4B5D">the dashboard data and the report</text>
+</g>
+<path class="arrow" d="M131 674 V682" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M127 681 L135 681 L131 688 Z" fill="#5F6D82"/>
+<g class="row">
+<rect x="8" y="688" width="246" height="42" rx="3" class="code" fill="#FFFFFF" stroke="#A9B5C3" stroke-width="1.2"/>
+<text x="20" y="706" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">serve on 127.0.0.1</text>
+<text x="20" y="722" class="s" font-size="12" fill="#3D4B5D">the dashboard and each message</text>
+</g>
+<g class="legend">
+<rect x="8" y="750" width="16" height="14" rx="2" class="code" fill="#FFFFFF" stroke="#A9B5C3" stroke-width="1.2"/>
+<text x="30" y="762" class="l" font-size="12.5" fill="#3D4B5D">code</text>
+<rect x="84" y="750" width="16" height="14" rx="2" class="model" fill="#EDF2F9" stroke="#0B3C86" stroke-width="1.6"/>
+<text x="106" y="762" class="l" font-size="12.5" fill="#3D4B5D">model</text>
+<rect x="166" y="750" width="24" height="14" rx="7" class="gate" fill="#FBF1D6" stroke="#A57700" stroke-width="1.4"/>
+<text x="196" y="762" class="l" font-size="12.5" fill="#3D4B5D">gate</text>
+<rect x="244" y="750" width="16" height="14" rx="2" class="data" fill="none" stroke="#5F6D82" stroke-width="1.2" stroke-dasharray="4 3"/>
+<text x="266" y="762" class="l" font-size="12.5" fill="#3D4B5D">data</text>
+</g>
+</svg></figure>
+<details class="diagram-text"><summary>The diagram in words</summary>
+<ul><li>The orchestrator above every stage: the <code>/observe</code> skill, which runs one command per turn, <code>node obs.mjs advance</code>. Each call runs every code step that is ready and names the subagents to start next.</li><li>The corpus, kept in Git objects on Windows and on disk on macOS and Linux, is opened only by the corpus reader, which returns the same bytes from either.</li><li>prepare (code): ingest, parse, de-duplicate, thread and batch every message.</li><li>taxonomist (model, one call): proposes the list of recurring processes; code accepts it or sends back the problems.</li><li>extractors (model, 99 batch jobs, 20 in flight): tag every message with process keys and verbatim quotes. The gate checks that every message is classified and every quote is in the raw bytes.</li><li>merger (model, one call): places every process key the extractors proposed. The gate checks each key is placed once and sizes every promoted process on the messages behind it.</li><li>rollup (code): counts rounds, people, email actions, reply gaps and stalls on the merged membership.</li><li>synthesizers (model, groups of up to 4 processes, one wave): describe each process and estimate its hands-on minutes per round. The gate checks the estimate&#39;s bounds and citations.</li><li>score (code): counted email time at the published rates, plus counted rounds times the checked estimate, at $85 an hour; then tiers, ranks and the drafting threshold.</li><li>drafters (model, up to 8): one working document per opportunity above the threshold. The draft gate checks headings, quotes and figures.</li><li>build (code): the dashboard data and the report, every figure pre-formatted with its drill target.</li><li>serve (code): the dashboard on 127.0.0.1, each message read through the corpus reader.</li><li>Key: code steps are plain boxes, model steps tinted boxes, gates amber pills.</li></ul>
+</details>
+<h3 id="stages">The stages</h3>
+<p>Every stage is a command of <a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/obs.mjs"><code>obs.mjs</code></a>; during a run <code>advance</code> calls them in order. Condensed from <a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/.claude/plan/ARCHITECTURE.md#4-pipeline-stages">section 4 of the design</a>.</p>
+<div class="table"><table><thead><tr><th scope="col">Stage</th><th scope="col">Done by</th><th scope="col">Input</th><th scope="col">Output</th><th scope="col">Cache key</th></tr></thead><tbody><tr><td data-label="Stage"><a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/src/pipeline/prepare.ts">prepare</a></td><td data-label="Done by">code</td><td data-label="Input">the corpus, through the <a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/src/corpus/reader.ts">reader</a></td><td data-label="Output">the manifest, parsed messages, duplicates, threads, people, batch files</td><td data-label="Cache key">skipped when the corpus listing, the code and every output are unchanged</td></tr><tr><td data-label="Stage"><a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/src/run/taxonomy.ts">taxonomy</a></td><td data-label="Done by">model, then the accept step</td><td data-label="Input">the taxonomy digest built by code</td><td data-label="Output"><code>out/taxonomy.json</code></td><td data-label="Cache key">the digest and the taxonomist&#39;s definition</td></tr><tr><td data-label="Stage">extract</td><td data-label="Done by">model, then the <a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/src/model/validate-extraction.ts">gate</a></td><td data-label="Input">one batch file and the taxonomy</td><td data-label="Output"><code>out/extract/</code>, <code>out/validated/</code></td><td data-label="Cache key">the batch, the taxonomy and the extractor&#39;s definition</td></tr><tr><td data-label="Stage"><a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/src/run/merge.ts">merge</a></td><td data-label="Done by">model, then the <a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/src/model/merge.ts">accept step</a></td><td data-label="Input">the merge input built by code</td><td data-label="Output"><code>out/merge.json</code></td><td data-label="Cache key">the extractions, the taxonomy and the merger&#39;s definition</td></tr><tr><td data-label="Stage"><a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/src/metrics/rollup.ts">rollup</a></td><td data-label="Done by">code</td><td data-label="Input">validated extractions, the merge, threads, people</td><td data-label="Output"><code>out/rollup.json</code>, the synthesis inputs</td><td data-label="Cache key">reruns in seconds</td></tr><tr><td data-label="Stage">synthesize</td><td data-label="Done by">model, then the <a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/src/model/synthesis.ts">gate</a></td><td data-label="Input">one group input</td><td data-label="Output"><code>out/synthesis/validated/</code></td><td data-label="Cache key">the group input and the synthesizer&#39;s definition</td></tr><tr><td data-label="Stage"><a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/src/metrics/score.ts">score</a></td><td data-label="Done by">code</td><td data-label="Input">rollup, syntheses, <a href="https://github.com/Schom975-coder/observation-agent-assignment/tree/main/config"><code>config/</code></a></td><td data-label="Output"><code>out/opportunities.json</code></td><td data-label="Cache key">reruns</td></tr><tr><td data-label="Stage"><a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/src/run/artifacts.ts">artifacts prepare</a></td><td data-label="Done by">code</td><td data-label="Input">opportunities, rollup, syntheses</td><td data-label="Output">one brief per document</td><td data-label="Cache key">reruns</td></tr><tr><td data-label="Stage">draft</td><td data-label="Done by">model, then the <a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/src/model/artifacts.ts">draft gate</a></td><td data-label="Input">one brief</td><td data-label="Output"><code>out/artifacts/raw/</code>, <code>validated/</code></td><td data-label="Cache key">the brief and the drafter&#39;s definition</td></tr><tr><td data-label="Stage">artifacts collect</td><td data-label="Done by">code</td><td data-label="Input">checked drafts and their briefs</td><td data-label="Output"><code>out/artifacts/&lt;process&gt;/&lt;type&gt;.md</code></td><td data-label="Cache key">reruns</td></tr><tr><td data-label="Stage"><a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/src/report/build.ts">build</a></td><td data-label="Done by">code</td><td data-label="Input">everything above</td><td data-label="Output"><code>out/dashboard/</code>, the report, <code>out/run-summary.json</code></td><td data-label="Cache key">the hashes of its inputs, recorded in <code>data.json</code></td></tr><tr><td data-label="Stage"><a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/src/serve/server.ts">serve</a></td><td data-label="Done by">code</td><td data-label="Input"><code>out/dashboard/</code>, the corpus reader</td><td data-label="Output">the dashboard on 127.0.0.1</td><td data-label="Cache key">nothing cached</td></tr></tbody></table></div>
+<p>The ledger that records every job, its cache key and its state is <a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/src/run/ledger.ts"><code>src/run/ledger.ts</code></a>: one file per job, so a rerun on an unchanged corpus repeats nothing and a crash or a usage-limit pause resumes where it stopped.</p>
+<h3 id="model-edges">The two places a model touches a number</h3>
+<ol><li><strong>Membership.</strong> Which messages belong to which process is judgement: the extractors tag each message, and the merger decides where each proposed key&#39;s messages count. Code then counts everything from that membership: rounds, people, email actions, windows. It checks first: every tag needs its own verbatim quote that passes validation, every proposed key is placed exactly once, and a promoted process must reach a minimum size on its own messages (<code>promote_min</code> in <a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/config/scoring.json"><code>config/scoring.json</code></a>) or it is demoted and left unpriced.</li><li><strong>The work estimate.</strong> For each process the synthesizer proposes the minutes of hands-on work one round takes (low, mid and high) and the share of that work that could be automated, citing the quotes it relied on. Code accepts it only inside fixed bounds (1 to 480 minutes, at most 80% automatable) and with evidence from at least three rounds and two senders, so one person&#39;s claim can never set a value. The mid value multiplies the counted rounds and nothing else; low and high give the range shown beside it; a file, <code>config/estimates.json</code>, can replace any estimate without a model call.</li></ol>
+<p>Everything else that produces a number is code: counts, windows, rates, tiers, ranks, the threshold, the arithmetic at $85 an hour and the rounding. See <a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/src/metrics/score.ts"><code>src/metrics/score.ts</code></a> and <a href="design.html#counted-vs-estimated">Counted and estimated</a>.</p>
+<h2 id="diagram-claude-code">Inside Claude Code</h2>
+<figure class="diagram" aria-labelledby="claude-code-title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 802" width="360" height="802" role="img" aria-labelledby="claude-code-title claude-code-desc" class="dg" font-family="Archivo, system-ui, sans-serif">
+<title id="claude-code-title">Inside Claude Code</title>
+<desc id="claude-code-desc">The /observe skill runs node obs.mjs run start, then prepare, then advance; each advance returns Agent calls, made in the background, and every completion calls advance again with the finished job IDs, until advance reports the run done and the skill runs serve --background --open. The five agent types, taxonomist, extractor, merger, synthesizer and drafter, each have the model, effort, tools and turn cap their file sets. Three hooks: PreToolUse on every tool keeps agents to their own files and every call away from the corpus during a run; SubagentStop checks a job output and records it; Stop blocks an early stop with the next command. The ledger keeps one state file per job and the run log records every event.</desc>
+<rect x="8" y="6" width="344" height="262" rx="4" class="orch" fill="none" stroke="#0B3C86" stroke-width="1.4" stroke-dasharray="6 4"/>
+<text x="20" y="28" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">The /observe skill: the orchestrator</text>
+<text x="20" y="45" class="s" font-size="12" fill="#3D4B5D">runs node obs.mjs and starts agents, nothing else</text>
+<rect x="24" y="60" width="150" height="28" rx="3" class="code" fill="#FFFFFF" stroke="#A9B5C3" stroke-width="1.2"/>
+<text x="36" y="79" class="m s" font-size="11.5" fill="#3D4B5D" font-family="'IBM Plex Mono', ui-monospace, Consolas, monospace">run start</text>
+<path class="arrow" d="M99 88 V94" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M95 93 L103 93 L99 100 Z" fill="#5F6D82"/>
+<rect x="24" y="100" width="150" height="28" rx="3" class="code" fill="#FFFFFF" stroke="#A9B5C3" stroke-width="1.2"/>
+<text x="36" y="119" class="m s" font-size="11.5" fill="#3D4B5D" font-family="'IBM Plex Mono', ui-monospace, Consolas, monospace">prepare</text>
+<path class="arrow" d="M99 128 V134" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M95 133 L103 133 L99 140 Z" fill="#5F6D82"/>
+<rect x="24" y="140" width="150" height="28" rx="3" class="code" fill="#FFFFFF" stroke="#A9B5C3" stroke-width="1.2"/>
+<text x="36" y="159" class="m t" font-size="13" font-weight="500" fill="#0F1B2D" font-family="'IBM Plex Mono', ui-monospace, Consolas, monospace">advance --json</text>
+<path class="arrow" d="M99 168 V182" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M95 181 L103 181 L99 188 Z" fill="#5F6D82"/>
+<rect x="24" y="188" width="150" height="28" rx="3" class="model" fill="#EDF2F9" stroke="#0B3C86" stroke-width="1.6"/>
+<text x="36" y="207" class="s" font-size="12" fill="#3D4B5D">Agent calls</text>
+<path class="arrow" d="M99 216 V224" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M95 223 L103 223 L99 230 Z" fill="#5F6D82"/>
+<rect x="24" y="230" width="150" height="28" rx="3" class="data" fill="none" stroke="#5F6D82" stroke-width="1.2" stroke-dasharray="4 3"/>
+<text x="36" y="249" class="s" font-size="12" fill="#3D4B5D">completions</text>
+<path class="arrow" d="M174 244 H202 V160 H181" fill="none" stroke="#5F6D82" stroke-width="1.4"/>
+<path class="head" d="M181 156 L181 164 L174 160 Z" fill="#5F6D82"/>
+<text x="208" y="206" class="m s" font-size="11.5" fill="#3D4B5D" font-family="'IBM Plex Mono', ui-monospace, Consolas, monospace">advance &lt;ids&gt;</text>
+<path class="arrow" d="M174 148 H208" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M207 144 L207 152 L214 148 Z" fill="#5F6D82"/>
+<text x="184" y="141" class="s" font-size="12" fill="#3D4B5D">done</text>
+<rect x="214" y="124" width="130" height="50" rx="3" class="code" fill="#FFFFFF" stroke="#A9B5C3" stroke-width="1.2"/>
+<text x="226" y="140" class="m s" font-size="11.5" fill="#3D4B5D" font-family="'IBM Plex Mono', ui-monospace, Consolas, monospace">serve</text>
+<text x="226" y="155" class="m s" font-size="11.5" fill="#3D4B5D" font-family="'IBM Plex Mono', ui-monospace, Consolas, monospace">--background</text>
+<text x="226" y="170" class="m s" font-size="11.5" fill="#3D4B5D" font-family="'IBM Plex Mono', ui-monospace, Consolas, monospace">--open</text>
+<text x="8" y="294" class="l" font-size="12.5" fill="#3D4B5D">The five agent types, as their files set them</text>
+<g class="agent" data-agent="taxonomist">
+<rect x="8" y="304" width="168" height="62" rx="3" class="model" fill="#EDF2F9" stroke="#0B3C86" stroke-width="1.6"/>
+<text x="20" y="324" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">taxonomist</text>
+<text x="20" y="342" class="s" font-size="12" fill="#3D4B5D">opus · medium effort</text>
+<text x="20" y="358" class="s" font-size="12" fill="#3D4B5D">Read, Write · 6 turns</text>
+</g>
+<g class="agent" data-agent="extractor">
+<rect x="184" y="304" width="168" height="62" rx="3" class="model" fill="#EDF2F9" stroke="#0B3C86" stroke-width="1.6"/>
+<text x="196" y="324" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">extractor</text>
+<text x="196" y="342" class="s" font-size="12" fill="#3D4B5D">sonnet · medium effort</text>
+<text x="196" y="358" class="s" font-size="12" fill="#3D4B5D">Read, Write · 16 turns</text>
+</g>
+<g class="agent" data-agent="merger">
+<rect x="8" y="376" width="168" height="62" rx="3" class="model" fill="#EDF2F9" stroke="#0B3C86" stroke-width="1.6"/>
+<text x="20" y="396" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">merger</text>
+<text x="20" y="414" class="s" font-size="12" fill="#3D4B5D">opus · medium effort</text>
+<text x="20" y="430" class="s" font-size="12" fill="#3D4B5D">Read, Write · 8 turns</text>
+</g>
+<g class="agent" data-agent="synthesizer">
+<rect x="184" y="376" width="168" height="62" rx="3" class="model" fill="#EDF2F9" stroke="#0B3C86" stroke-width="1.6"/>
+<text x="196" y="396" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">synthesizer</text>
+<text x="196" y="414" class="s" font-size="12" fill="#3D4B5D">opus · medium effort</text>
+<text x="196" y="430" class="s" font-size="12" fill="#3D4B5D">Read, Write · 8 turns</text>
+</g>
+<g class="agent" data-agent="drafter">
+<rect x="8" y="448" width="168" height="62" rx="3" class="model" fill="#EDF2F9" stroke="#0B3C86" stroke-width="1.6"/>
+<text x="20" y="468" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">drafter</text>
+<text x="20" y="486" class="s" font-size="12" fill="#3D4B5D">sonnet · medium effort</text>
+<text x="20" y="502" class="s" font-size="12" fill="#3D4B5D">Read, Write · 6 turns</text>
+</g>
+<text x="188" y="468" class="s" font-size="12" fill="#3D4B5D">Each reads only its own</text>
+<text x="188" y="484" class="s" font-size="12" fill="#3D4B5D">job’s files and writes</text>
+<text x="188" y="500" class="s" font-size="12" fill="#3D4B5D">one output.</text>
+<text x="8" y="536" class="l" font-size="12.5" fill="#3D4B5D">Hooks, wired in settings.json</text>
+<rect x="8" y="546" width="344" height="44" rx="10" class="gate" fill="#FBF1D6" stroke="#A57700" stroke-width="1.4"/>
+<text x="20" y="564" class="k" font-size="12.5" font-weight="600" fill="#0F1B2D">PreToolUse, every tool: guard-corpus</text>
+<text x="20" y="581" class="s" font-size="12" fill="#3D4B5D">allowlists and job binding; no corpus/ in a run</text>
+<rect x="8" y="598" width="344" height="44" rx="10" class="gate" fill="#FBF1D6" stroke="#A57700" stroke-width="1.4"/>
+<text x="20" y="616" class="k" font-size="12.5" font-weight="600" fill="#0F1B2D">SubagentStop: gate-subagent</text>
+<text x="20" y="633" class="s" font-size="12" fill="#3D4B5D">checks the job’s output, records done or failed</text>
+<rect x="8" y="650" width="344" height="44" rx="10" class="gate" fill="#FBF1D6" stroke="#A57700" stroke-width="1.4"/>
+<text x="20" y="668" class="k" font-size="12.5" font-weight="600" fill="#0F1B2D">Stop: gate-run</text>
+<text x="20" y="685" class="s" font-size="12" fill="#3D4B5D">blocks an early stop, naming the next command</text>
+<path class="arrow" d="M92 698 V710" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M88 709 L96 709 L92 716 Z" fill="#5F6D82"/>
+<path class="arrow" d="M268 698 V710" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M264 709 L272 709 L268 716 Z" fill="#5F6D82"/>
+<rect x="8" y="716" width="168" height="44" rx="6" class="data" fill="none" stroke="#5F6D82" stroke-width="1.2" stroke-dasharray="4 3"/>
+<text x="20" y="734" class="m s" font-size="11.5" fill="#3D4B5D" font-family="'IBM Plex Mono', ui-monospace, Consolas, monospace">out/ledger/&lt;job&gt;.json</text>
+<text x="20" y="751" class="s" font-size="12" fill="#3D4B5D">one state file per job</text>
+<rect x="184" y="716" width="168" height="44" rx="6" class="data" fill="none" stroke="#5F6D82" stroke-width="1.2" stroke-dasharray="4 3"/>
+<text x="196" y="734" class="m s" font-size="11.5" fill="#3D4B5D" font-family="'IBM Plex Mono', ui-monospace, Consolas, monospace">out/runs/&lt;run&gt;.jsonl</text>
+<text x="196" y="751" class="s" font-size="12" fill="#3D4B5D">starts, stops, gates, steps</text>
+<g class="legend">
+<rect x="8" y="778" width="16" height="14" rx="2" class="code" fill="#FFFFFF" stroke="#A9B5C3" stroke-width="1.2"/>
+<text x="30" y="790" class="l" font-size="12.5" fill="#3D4B5D">code</text>
+<rect x="84" y="778" width="16" height="14" rx="2" class="model" fill="#EDF2F9" stroke="#0B3C86" stroke-width="1.6"/>
+<text x="106" y="790" class="l" font-size="12.5" fill="#3D4B5D">model</text>
+<rect x="166" y="778" width="24" height="14" rx="7" class="gate" fill="#FBF1D6" stroke="#A57700" stroke-width="1.4"/>
+<text x="196" y="790" class="l" font-size="12.5" fill="#3D4B5D">gate</text>
+<rect x="244" y="778" width="16" height="14" rx="2" class="data" fill="none" stroke="#5F6D82" stroke-width="1.2" stroke-dasharray="4 3"/>
+<text x="266" y="790" class="l" font-size="12.5" fill="#3D4B5D">data</text>
+</g>
+</svg></figure>
+<details class="diagram-text"><summary>The diagram in words</summary>
+<ul><li>The <code>/observe</code> skill is the orchestrator. It runs <code>node obs.mjs run start</code>, then <code>node obs.mjs prepare</code>, then <code>node obs.mjs advance --json</code>. Each <code>advance</code> returns the Agent calls to make; the orchestrator makes them in the background, and on each completion calls <code>advance</code> again with the finished job IDs. When <code>advance</code> says the run is done, the skill runs <code>node obs.mjs serve --background --open</code>.</li><li>Five agent types do the model work: taxonomist, extractor, merger, synthesizer and drafter. Each file sets the agent&#39;s model, effort, tools and turn cap; <a href="claude-dir.html#agents">The Claude Code layer</a> lists them as read from the files.</li><li>Three hooks enforce the run. The PreToolUse hook on every tool keeps each pipeline agent to its own files and keeps every tool call during a run away from the corpus. The SubagentStop hook checks a finished job&#39;s output and records it done or failed. The Stop hook blocks the orchestrator from stopping while work remains, naming the next command.</li><li>The ledger holds one state file per job (<code>out/ledger/&lt;job&gt;.json</code>); the run log (<code>out/runs/&lt;run&gt;.jsonl</code>) records every subagent start and stop, every gate verdict and every stage step.</li></ul>
+</details>
+<p>The orchestrator never reads email: <code>advance</code> hands it job IDs, and each job&#39;s prompt is two lines, the job ID and the project folder. Each agent derives its own file paths from those, reads only its own job&#39;s files, and writes one output. The hooks are where that is enforced, in every permission mode: an agent bound to batch 17 cannot read batch 18, and nothing in the run can open <code>corpus/</code> except the reader. The ledger, not the model&#39;s reply, decides whether a job is done; a job that fails its check comes back as a fix round, with the problems in a file only that job&#39;s agent may read. The skill and the agents are in <a href="https://github.com/Schom975-coder/observation-agent-assignment/tree/main/.claude"><code>.claude/</code></a>, and <a href="claude-dir.html">The Claude Code layer</a> lists every file.</p>
+<h2 id="diagram-drill">Every number lands on a message</h2>
+<figure class="diagram" aria-labelledby="drill-title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 506" width="360" height="506" role="img" aria-labelledby="drill-title drill-desc" class="dg" font-family="Archivo, system-ui, sans-serif">
+<title id="drill-title">Every number lands on a message</title>
+<desc id="drill-desc">A figure on the dashboard opens its formula: a counted part, email actions times published minutes, and an estimated part, rounds times the bounded estimate. Each count opens the list of messages it was counted from, and the estimate opens the quotes it cites. Any message opens in the viewer, fetched by its ID with the quote marked at its stored offsets. The viewer gets the raw bytes from the corpus reader, from disk on macOS and Linux or Git objects on Windows, and git show HEAD with the ID prints the same bytes for your own check.</desc>
+<defs><pattern id="drill-hatch" patternUnits="userSpaceOnUse" width="5" height="5" patternTransform="rotate(45)"><rect class="hatch-bg" width="5" height="5" fill="#FFFFFF"/><line class="hatch-ln" x1="0" y1="0" x2="0" y2="5" stroke="#0B3C86" stroke-width="1.6"/></pattern></defs>
+<rect x="8" y="8" width="344" height="44" rx="3" class="code" fill="#FFFFFF" stroke="#A9B5C3" stroke-width="1.2"/>
+<text x="20" y="26" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">A figure on the dashboard</text>
+<text x="20" y="43" class="s" font-size="12" fill="#3D4B5D">a process’s automatable dollars a month</text>
+<path class="arrow" d="M180 52 V66" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M176 65 L184 65 L180 72 Z" fill="#5F6D82"/>
+<rect x="8" y="72" width="344" height="44" rx="3" class="code" fill="#FFFFFF" stroke="#A9B5C3" stroke-width="1.2"/>
+<text x="20" y="90" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">Its formula</text>
+<text x="20" y="107" class="s" font-size="12" fill="#3D4B5D">a counted part plus an estimated part</text>
+<path class="arrow" d="M150 116 V126 H92 V129" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M88 129 L96 129 L92 136 Z" fill="#5F6D82"/>
+<path class="arrow" d="M210 116 V126 H268 V129" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M264 129 L272 129 L268 136 Z" fill="#5F6D82"/>
+<rect x="8" y="136" width="168" height="58" rx="3" class="code" fill="#FFFFFF" stroke="#A9B5C3" stroke-width="1.2"/>
+<rect class="sw-c" x="8" y="136" width="8" height="58" fill="#0B3C86"/>
+<text x="26" y="155" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">Counted part</text>
+<text x="26" y="172" class="s" font-size="12" fill="#3D4B5D">email actions times</text>
+<text x="26" y="187" class="s" font-size="12" fill="#3D4B5D">published minutes</text>
+<rect x="184" y="136" width="168" height="58" rx="3" class="code" fill="#FFFFFF" stroke="#A9B5C3" stroke-width="1.2"/>
+<rect class="sw-e" x="184" y="136" width="8" height="58" fill="url(#drill-hatch)" stroke="#0B3C86" stroke-width="1"/>
+<text x="202" y="155" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">Estimated part</text>
+<text x="202" y="172" class="s" font-size="12" fill="#3D4B5D">rounds times the</text>
+<text x="202" y="187" class="s" font-size="12" fill="#3D4B5D">bounded estimate</text>
+<path class="arrow" d="M92 194 V208" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M88 207 L96 207 L92 214 Z" fill="#5F6D82"/>
+<path class="arrow" d="M268 194 V208" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M264 207 L272 207 L268 214 Z" fill="#5F6D82"/>
+<rect x="8" y="214" width="168" height="58" rx="3" class="code" fill="#FFFFFF" stroke="#A9B5C3" stroke-width="1.2"/>
+<text x="26" y="233" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">Its messages</text>
+<text x="26" y="250" class="s" font-size="12" fill="#3D4B5D">each count opens</text>
+<text x="26" y="265" class="s" font-size="12" fill="#3D4B5D">the list it counts</text>
+<rect x="184" y="214" width="168" height="58" rx="3" class="code" fill="#FFFFFF" stroke="#A9B5C3" stroke-width="1.2"/>
+<text x="202" y="233" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">Its quotes</text>
+<text x="202" y="250" class="s" font-size="12" fill="#3D4B5D">the evidence the</text>
+<text x="202" y="265" class="s" font-size="12" fill="#3D4B5D">estimate cites</text>
+<path class="arrow" d="M92 272 V282 H150 V285" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M146 285 L154 285 L150 292 Z" fill="#5F6D82"/>
+<path class="arrow" d="M268 272 V282 H210 V285" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M206 285 L214 285 L210 292 Z" fill="#5F6D82"/>
+<rect x="8" y="292" width="344" height="44" rx="3" class="code" fill="#FFFFFF" stroke="#A9B5C3" stroke-width="1.2"/>
+<text x="20" y="310" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">The message viewer</text>
+<text x="20" y="327" class="m s" font-size="11.5" fill="#3D4B5D" font-family="'IBM Plex Mono', ui-monospace, Consolas, monospace">/api/message?id=&lt;id&gt;, quote marked</text>
+<path class="arrow" d="M180 336 V350" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M176 349 L184 349 L180 356 Z" fill="#5F6D82"/>
+<rect x="8" y="356" width="344" height="44" rx="3" class="code" fill="#FFFFFF" stroke="#A9B5C3" stroke-width="1.2"/>
+<text x="20" y="374" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">The corpus reader</text>
+<text x="20" y="391" class="s" font-size="12" fill="#3D4B5D">disk on macOS and Linux, Git objects on Windows</text>
+<path class="arrow" d="M180 400 V414" fill="none" stroke="#5F6D82" stroke-width="1.4"/><path class="head" d="M176 413 L184 413 L180 420 Z" fill="#5F6D82"/>
+<rect x="8" y="420" width="344" height="44" rx="12" class="data" fill="none" stroke="#5F6D82" stroke-width="1.2" stroke-dasharray="4 3"/>
+<text x="20" y="438" class="t" font-size="14.5" font-weight="600" fill="#0F1B2D">Your own check</text>
+<text x="20" y="455" class="m s" font-size="11.5" fill="#3D4B5D" font-family="'IBM Plex Mono', ui-monospace, Consolas, monospace">git show HEAD:&quot;&lt;id&gt;&quot;</text>
+<g class="legend">
+<rect x="8" y="480" width="16" height="14" fill="#0B3C86" class="sw-c"/>
+<text x="30" y="492" class="l" font-size="12.5" fill="#3D4B5D">counted</text>
+<rect x="100" y="480" width="16" height="14" fill="url(#drill-hatch)" stroke="#0B3C86" stroke-width="1" class="sw-e"/>
+<text x="122" y="492" class="l" font-size="12.5" fill="#3D4B5D">estimated</text>
+</g>
+</svg></figure>
+<details class="diagram-text"><summary>The diagram in words</summary>
+<ul><li>A figure on the dashboard, for example a process&#39;s automatable dollars a month.</li><li>Its formula: a counted part and an estimated part, added.</li><li>The counted part: email actions counted from the trail, times published minutes. Each count opens the list of messages it was counted from.</li><li>The estimated part: rounds counted from the trail, times the synthesizer&#39;s bounded estimate. The estimate opens the quotes it cites.</li><li>The message viewer: one message fetched by its ID, from the local server (<code>/api/message?id=</code>) or, in the copy on this site, from that message&#39;s file written beside the page when the site was built; shown exactly as the file holds it, with the quote marked at its stored offsets.</li><li>The corpus reader: the raw bytes, from disk on macOS and Linux or from Git objects on Windows.</li><li>Your own check: <code>git show HEAD:&quot;&lt;id&gt;&quot;</code> prints the same bytes from the repository.</li></ul>
+</details>
+<p>The build (<a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/src/report/build.ts"><code>src/report/build.ts</code></a>) writes every figure pre-formatted: its value, its text, its exact text, whether it is counted, estimated or a total, and a drill target from a closed list of kinds. The browser places those strings and computes nothing. Before anything ships, a walk over the built files (<a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/src/report/targets.ts"><code>src/report/targets.ts</code></a>) checks that every figure&#39;s target resolves and that every count equals the length of the list it opens, so a number cannot claim more messages than it shows. The server (<a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/src/serve/server.ts"><code>src/serve/server.ts</code></a>) reads each message through the one corpus reader, for any ID in the manifest and nothing else. The <a href="dashboard/index.html">copy on this site</a> calls no server: when the site was built, every message of the manifest was read once through the same reader and written as a file beside the page, and its viewer reads that file (<a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/site/dashboard.ts"><code>site/dashboard.ts</code></a>).</p>
+<h2 id="cross-os">Same result on every OS</h2>
+<ul><li>Every corpus file name ends in a dot, which Windows cannot create. A Windows clone therefore keeps the corpus in Git objects (<a href="how-to-run.html#windows">the clone recipe</a>), and the reader reads them with <code>git cat-file --batch</code>; on macOS and Linux it reads the files from disk (<a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/src/corpus/reader.ts"><code>src/corpus/reader.ts</code></a>).</li><li>Both sources must give the same bytes. <a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/tests/corpus.test.ts"><code>tests/corpus.test.ts</code></a> hashes every message to its Git blob ID and, where the files are on disk, compares disk and Git byte for byte.</li><li>Text is decoded as UTF-8 explicitly; quote checks treat CRLF and LF alike on both sides; dates go through a strict parser and are stored in UTC; file names made from model output go through one slug function.</li><li>CI runs the type check and every model-free test on Ubuntu, macOS and Windows, and on the oldest supported Node, then rebuilds the deterministic stages and re-checks every committed model output (<a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/.github/workflows/ci.yml"><code>.github/workflows/ci.yml</code></a>). This site&#39;s generator runs there too.</li></ul>
+</main>
+<footer class="foot">
+<p><a href="https://github.com/Schom975-coder/observation-agent-assignment">The repository on GitHub</a> · Scott Hom · <a href="architecture.md">This page in Markdown</a> · <a href="llms.txt">llms.txt</a> · <a href="llms-full.txt">llms-full.txt</a></p>
+</footer>
+</div>
+<script>
+(() => {
+  const button = document.getElementById('copy-url');
+  const url = document.getElementById('page-url');
+  if (!button || !url) return;
+  button.hidden = false;
+  const select = () => {
+    const range = document.createRange();
+    range.selectNodeContents(url);
+    const sel = window.getSelection();
+    if (sel) { sel.removeAllRanges(); sel.addRange(range); }
+  };
+  button.addEventListener('click', () => {
+    const text = url.textContent || '';
+    const selected = () => { select(); button.textContent = 'Selected: press Ctrl+C or Cmd+C'; };
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(() => { button.textContent = 'Copied'; }, selected);
+    else selected();
+  });
+})();
+</script>
+</body>
+</html>

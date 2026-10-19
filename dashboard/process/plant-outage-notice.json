@@ -1,0 +1,1396 @@
+{
+  "key": "plant-outage-notice",
+  "name": "Plant outage notices",
+  "definition": "Notifying gas schedulers and commercial staff when a methanol or MTBE plant goes down, runs reduced or restarts.",
+  "rank": 30,
+  "tier": "C",
+  "row": {
+    "rank": 30,
+    "key": "plant-outage-notice",
+    "name": "Plant outage notices",
+    "tier": "C",
+    "tier_words": "seen too rarely to count, not in the total",
+    "in_total": false,
+    "origin": "promoted",
+    "total": {
+      "v": 2377,
+      "t": "$24",
+      "x": "$23.77",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "plant-outage-notice"
+      }
+    },
+    "counted": {
+      "v": 1333,
+      "t": "$13",
+      "x": "$13.33",
+      "k": "counted",
+      "d": {
+        "kind": "formula",
+        "key": "plant-outage-notice"
+      }
+    },
+    "estimated": {
+      "v": 1044,
+      "t": "$11",
+      "x": "$10.44",
+      "k": "estimated",
+      "d": {
+        "kind": "formula",
+        "key": "plant-outage-notice"
+      }
+    },
+    "low": {
+      "v": 1856,
+      "t": "$19",
+      "x": "$18.56",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "plant-outage-notice"
+      }
+    },
+    "high": {
+      "v": 3944,
+      "t": "$39",
+      "x": "$39.44",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "plant-outage-notice"
+      }
+    },
+    "today": {
+      "v": 6092,
+      "t": "$61",
+      "x": "$60.92",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "plant-outage-notice"
+      }
+    },
+    "hours": {
+      "v": 28,
+      "t": "0.3",
+      "x": "0.28 hours",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "plant-outage-notice"
+      }
+    },
+    "hours_today": {
+      "v": 72,
+      "t": "0.7",
+      "x": "0.72 hours",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "plant-outage-notice"
+      }
+    },
+    "occurrences": {
+      "v": 10,
+      "t": "10 times",
+      "d": {
+        "kind": "occurrences",
+        "key": "plant-outage-notice"
+      }
+    },
+    "shared_occurrences": 0,
+    "active_months": {
+      "v": 2,
+      "t": "2 active months",
+      "d": {
+        "kind": "months",
+        "key": "plant-outage-notice"
+      }
+    },
+    "span_days": 124,
+    "first_utc": "2000-03-22T13:06:00Z",
+    "last_utc": "2000-07-24T11:08:00Z",
+    "messages": {
+      "v": 10,
+      "t": "10 emails",
+      "d": {
+        "kind": "occurrences",
+        "key": "plant-outage-notice"
+      }
+    },
+    "threads": 9,
+    "mailboxes": [
+      {
+        "key": "farmer-d",
+        "n": 10,
+        "pct": 100
+      }
+    ],
+    "top_mailbox": "farmer-d",
+    "top_pct": 100,
+    "one_mailbox": true,
+    "seen_in": "Mostly seen in: Farmer (100%)",
+    "staff": {
+      "v": 9,
+      "t": "9 staff",
+      "d": {
+        "kind": "participants",
+        "key": "plant-outage-notice",
+        "filter": "staff"
+      }
+    },
+    "writers": {
+      "v": 2,
+      "t": "2",
+      "d": {
+        "kind": "participants",
+        "key": "plant-outage-notice",
+        "filter": "writers"
+      }
+    },
+    "copied": {
+      "v": 7,
+      "t": "7",
+      "d": {
+        "kind": "participants",
+        "key": "plant-outage-notice",
+        "filter": "copied"
+      }
+    },
+    "estimate": {
+      "low": 5,
+      "mid": 10,
+      "high": 25,
+      "automatable_pct": 30,
+      "basis_words": "worked out from the steps the emails show",
+      "source": "model"
+    },
+    "stall_label": "Restart timing is often unknown or keeps moving, leaving schedulers waiting on further…",
+    "stall_summary": "Restart timing is often unknown or keeps moving, leaving schedulers waiting on further notices before they can settle volumes.",
+    "stall_kind": null,
+    "stall_quotes": {
+      "v": 0,
+      "t": "0 stall quotes",
+      "d": {
+        "kind": "stalls",
+        "key": "plant-outage-notice"
+      }
+    },
+    "fix": "A standard outage notice form with fields for plant, status, cause, current rate, expected restart and expected gas use, sent to a fixed distribution list, so schedulers get the…",
+    "document": null,
+    "status_line": "Not drafted: seen too rarely to count",
+    "chasers": {
+      "v": 0,
+      "t": "0 chasers",
+      "d": {
+        "kind": "actions",
+        "key": "plant-outage-notice",
+        "type": "chaser"
+      }
+    },
+    "stall_count": {
+      "v": 0,
+      "t": "0",
+      "d": {
+        "kind": "stalls",
+        "key": "plant-outage-notice"
+      }
+    },
+    "loops": {
+      "v": 0,
+      "t": "0 open loops",
+      "d": {
+        "kind": "loops",
+        "key": "plant-outage-notice"
+      }
+    },
+    "loops_recent": {
+      "v": 0,
+      "t": "0",
+      "d": {
+        "kind": "loops",
+        "key": "plant-outage-notice",
+        "recent": true
+      }
+    },
+    "claims": {
+      "v": 0,
+      "t": "0 claims",
+      "d": {
+        "kind": "claims",
+        "key": "plant-outage-notice"
+      }
+    },
+    "conflicts": {
+      "v": 0,
+      "t": "0 conflicts",
+      "d": {
+        "kind": "claims",
+        "key": "plant-outage-notice"
+      }
+    },
+    "reply_gap": null,
+    "last_three_months_share": {
+      "v": 0,
+      "t": "0 of 10",
+      "d": {
+        "kind": "occurrences",
+        "key": "plant-outage-notice"
+      }
+    },
+    "flags": []
+  },
+  "synthesis": {
+    "description": "When the methanol or MTBE plant trips, runs at reduced rates or restarts, the plant contact sends a short notice to gas schedulers and commercial staff describing the cause, such as a boiler taken out or a broken compressor shaft, and the expected restart. Updates follow as the restart estimate moves, ending with a notice that the plant is up and making spec product. Schedulers use these notices to adjust the gas they nominate to the plant.",
+    "steps": [
+      "The plant goes down, cuts rates or plans a restart.",
+      "The plant contact sends a notice with the cause and expected timing.",
+      "Schedulers adjust gas nominations to the plant's expected burn.",
+      "Updates are sent as the restart estimate changes.",
+      "A final notice confirms the plant is producing spec product."
+    ],
+    "approach": "A standard outage notice form with fields for plant, status, cause, current rate, expected restart and expected gas use, sent to a fixed distribution list, so schedulers get the same facts in the same place each time.",
+    "rationale": "The notices are short and repetitive. A fixed template ensures each one states the expected gas impact and restart time that schedulers need to rebalance nominations.",
+    "artifact_type": "email_template"
+  },
+  "formula": {
+    "counted": "10 occ over 124 d = 4.07 mo; email: 7 short x2 + 2 medium x6 + 0 long x15 + 1 fwd x2 + 0 chaser x3 + 47 read x1 = 75.00 min = 18.43 min/mo; automatable 60/40/30/80/100/50% = 38.30 min = 9.41 min/mo",
+    "estimated": "10.00 occ x 10 min/occ (estimate, mid of 5-25, basis inferred, 5 quotes from 5 occurrences) = 100.00 min = 24.57 min/mo; automatable 30% (estimate) = 7.37 min/mo; at the low end 5 min/occ = $18.56/mo, at the high end 25 min/occ = $39.44/mo (the row's automatable total)",
+    "total": "today 43.00 min/mo = 0.72 h/mo = $60.92/mo (email 18.43 min/mo = $26.11 + work 24.57 min/mo = $34.81); automatable 16.78 min/mo = 0.28 h/mo = $23.77/mo (counted email 9.41 min/mo = $13.33 + estimated work 7.37 min/mo = $10.44)"
+  },
+  "window": {
+    "first_utc": "2000-03-22T13:06:00Z",
+    "last_utc": "2000-07-24T11:08:00Z",
+    "span_days": 124,
+    "months_x100": 407,
+    "active_months": 2,
+    "undated_occurrences": 0
+  },
+  "months": 407,
+  "occurrence_share_x100": 1000,
+  "actions": {
+    "priced": {
+      "authored_short": 7,
+      "authored_medium": 2,
+      "authored_long": 0,
+      "forward": 1,
+      "chaser": 0,
+      "read": 47
+    },
+    "unpriced": {
+      "authored_short": 0,
+      "authored_medium": 0,
+      "authored_long": 0,
+      "forward": 0,
+      "chaser": 0,
+      "read": 0
+    }
+  },
+  "action_table": [
+    {
+      "type": "authored_short",
+      "words": "short emails written",
+      "count": {
+        "v": 7,
+        "t": "7",
+        "d": {
+          "kind": "actions",
+          "key": "plant-outage-notice",
+          "type": "authored_short"
+        }
+      },
+      "minutes_each": 2,
+      "minutes": "14.00",
+      "automatable_pct": 60,
+      "automatable_minutes": "8.40"
+    },
+    {
+      "type": "authored_medium",
+      "words": "medium emails written",
+      "count": {
+        "v": 2,
+        "t": "2",
+        "d": {
+          "kind": "actions",
+          "key": "plant-outage-notice",
+          "type": "authored_medium"
+        }
+      },
+      "minutes_each": 6,
+      "minutes": "12.00",
+      "automatable_pct": 40,
+      "automatable_minutes": "4.80"
+    },
+    {
+      "type": "authored_long",
+      "words": "long emails written",
+      "count": {
+        "v": 0,
+        "t": "0",
+        "d": {
+          "kind": "actions",
+          "key": "plant-outage-notice",
+          "type": "authored_long"
+        }
+      },
+      "minutes_each": 15,
+      "minutes": "0.00",
+      "automatable_pct": 30,
+      "automatable_minutes": "0.00"
+    },
+    {
+      "type": "forward",
+      "words": "forwards",
+      "count": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "actions",
+          "key": "plant-outage-notice",
+          "type": "forward"
+        }
+      },
+      "minutes_each": 2,
+      "minutes": "2.00",
+      "automatable_pct": 80,
+      "automatable_minutes": "1.60"
+    },
+    {
+      "type": "chaser",
+      "words": "chasers",
+      "count": {
+        "v": 0,
+        "t": "0",
+        "d": {
+          "kind": "actions",
+          "key": "plant-outage-notice",
+          "type": "chaser"
+        }
+      },
+      "minutes_each": 3,
+      "minutes": "0.00",
+      "automatable_pct": 100,
+      "automatable_minutes": "0.00"
+    },
+    {
+      "type": "read",
+      "words": "reads, one per addressee",
+      "count": {
+        "v": 47,
+        "t": "47",
+        "d": {
+          "kind": "actions",
+          "key": "plant-outage-notice",
+          "type": "read"
+        }
+      },
+      "minutes_each": 1,
+      "minutes": "47.00",
+      "automatable_pct": 50,
+      "automatable_minutes": "23.50"
+    }
+  ],
+  "email": {
+    "today_x100": 7500,
+    "automatable_x100": 3830,
+    "per_month_today_x100": 1843,
+    "per_month_automatable_x100": 941
+  },
+  "work": {
+    "per_month_today_x100": 2457,
+    "per_month_automatable_x100": 737,
+    "low_cents": 523,
+    "high_cents": 2611
+  },
+  "estimate_quotes": [
+    {
+      "id": "batch-008:e17",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/943.",
+      "start": 1015,
+      "end": 1063,
+      "raw_text": "The Methanol Plant went down about 5 a.m. today.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "maritta.mullet@enron.com",
+      "sender_label": "Maritta Mullet",
+      "date_utc": "2000-03-22T13:06:00Z"
+    },
+    {
+      "id": "batch-008:e20",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/945.",
+      "start": 1393,
+      "end": 1447,
+      "raw_text": "we broke a shaft in the MUG compressor on the methanol",
+      "match": "exact",
+      "segment": "forwarded",
+      "field": "body",
+      "sender": "robert.lloyd@enron.com",
+      "sender_label": "Robert E Lloyd",
+      "date_utc": "2000-03-22T14:12:00Z"
+    },
+    {
+      "id": "batch-008:e33",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/959.",
+      "start": 1078,
+      "end": 1155,
+      "raw_text": "The MTBE plant had an upset early today and a steam boiler is being taken out",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "maritta.mullet@enron.com",
+      "sender_label": "Maritta Mullet",
+      "date_utc": "2000-03-24T15:15:00Z"
+    },
+    {
+      "id": "batch-017:e13",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1267.",
+      "start": 1245,
+      "end": 1317,
+      "raw_text": "It appears that the plant will be down until the last week of the month.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "maritta.mullet@enron.com",
+      "sender_label": "Maritta Mullet",
+      "date_utc": "2000-07-10T09:28:00Z"
+    },
+    {
+      "id": "batch-009:e8",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/971.",
+      "start": 1047,
+      "end": 1096,
+      "raw_text": "The Methanol Plant is up and making spec product.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "maritta.mullet@enron.com",
+      "sender_label": "Maritta Mullet",
+      "date_utc": "2000-03-27T19:08:00Z"
+    }
+  ],
+  "estimate_check": {
+    "occurrences_cited": 5,
+    "senders_cited": 2
+  },
+  "monthly": [
+    {
+      "month": "2000-03",
+      "occurrences": {
+        "v": 7,
+        "t": "7",
+        "d": {
+          "kind": "occurrences",
+          "key": "plant-outage-notice",
+          "month": "2000-03"
+        }
+      },
+      "messages": 7,
+      "ids": [
+        "t-13559d88ef8b-o1",
+        "t-2afdb4d4f643-o1",
+        "t-36c2810a7a97-o1",
+        "t-4a0c174e4a86-o1",
+        "t-69c70429d49d-o1",
+        "t-7fcd461b6bd2-o1",
+        "t-bf13b4ff0795-o1"
+      ]
+    },
+    {
+      "month": "2000-07",
+      "occurrences": {
+        "v": 3,
+        "t": "3",
+        "d": {
+          "kind": "occurrences",
+          "key": "plant-outage-notice",
+          "month": "2000-07"
+        }
+      },
+      "messages": 3,
+      "ids": [
+        "t-529bd99c1574-o1",
+        "t-fe3fad905b9c-o1",
+        "t-fe3fad905b9c-o2"
+      ]
+    }
+  ],
+  "occurrences": [
+    {
+      "id": "t-13559d88ef8b-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/961."
+      ],
+      "date_utc": "2000-03-26T18:41:00Z"
+    },
+    {
+      "id": "t-2afdb4d4f643-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/981."
+      ],
+      "date_utc": "2000-03-28T13:47:00Z"
+    },
+    {
+      "id": "t-36c2810a7a97-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/959."
+      ],
+      "date_utc": "2000-03-24T15:15:00Z"
+    },
+    {
+      "id": "t-4a0c174e4a86-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/943."
+      ],
+      "date_utc": "2000-03-22T13:06:00Z"
+    },
+    {
+      "id": "t-529bd99c1574-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1261."
+      ],
+      "date_utc": "2000-07-05T11:37:00Z"
+    },
+    {
+      "id": "t-69c70429d49d-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/971."
+      ],
+      "date_utc": "2000-03-27T19:08:00Z"
+    },
+    {
+      "id": "t-7fcd461b6bd2-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/945."
+      ],
+      "date_utc": "2000-03-22T14:12:00Z"
+    },
+    {
+      "id": "t-bf13b4ff0795-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/960."
+      ],
+      "date_utc": "2000-03-24T15:17:00Z"
+    },
+    {
+      "id": "t-fe3fad905b9c-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1267."
+      ],
+      "date_utc": "2000-07-10T09:28:00Z"
+    },
+    {
+      "id": "t-fe3fad905b9c-o2",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1297."
+      ],
+      "date_utc": "2000-07-24T11:08:00Z"
+    }
+  ],
+  "undated_occurrences": [],
+  "action_sources": [
+    {
+      "message_id": "corpus/farmer-d/logistics/1261.",
+      "type": "authored_short",
+      "person": "maritta.mullet@enron.com",
+      "address": "maritta.mullet@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1261.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1261.",
+      "type": "read",
+      "person": "david.bush@enron.com",
+      "address": "david.bush@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1261.",
+      "type": "read",
+      "person": "mark.diedrich@enron.com",
+      "address": "mark.diedrich@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1261.",
+      "type": "read",
+      "person": "paul.clayton@enron.com",
+      "address": "paul.clayton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1261.",
+      "type": "read",
+      "person": "steven.elliott@enron.com",
+      "address": "steven.elliott@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1267.",
+      "type": "authored_medium",
+      "person": "maritta.mullet@enron.com",
+      "address": "maritta.mullet@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1267.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1267.",
+      "type": "read",
+      "person": "david.bush@enron.com",
+      "address": "david.bush@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1267.",
+      "type": "read",
+      "person": "mark.diedrich@enron.com",
+      "address": "mark.diedrich@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1267.",
+      "type": "read",
+      "person": "paul.clayton@enron.com",
+      "address": "paul.clayton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1267.",
+      "type": "read",
+      "person": "steven.elliott@enron.com",
+      "address": "steven.elliott@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1297.",
+      "type": "authored_short",
+      "person": "maritta.mullet@enron.com",
+      "address": "maritta.mullet@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1297.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1297.",
+      "type": "read",
+      "person": "david.bush@enron.com",
+      "address": "david.bush@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1297.",
+      "type": "read",
+      "person": "mark.diedrich@enron.com",
+      "address": "mark.diedrich@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1297.",
+      "type": "read",
+      "person": "paul.clayton@enron.com",
+      "address": "paul.clayton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1297.",
+      "type": "read",
+      "person": "steven.elliott@enron.com",
+      "address": "steven.elliott@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/943.",
+      "type": "authored_short",
+      "person": "maritta.mullet@enron.com",
+      "address": "maritta.mullet@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/943.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/943.",
+      "type": "read",
+      "person": "david.bush@enron.com",
+      "address": "david.bush@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/943.",
+      "type": "read",
+      "person": "mark.diedrich@enron.com",
+      "address": "mark.diedrich@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/943.",
+      "type": "read",
+      "person": "paul.clayton@enron.com",
+      "address": "paul.clayton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/943.",
+      "type": "read",
+      "person": "steven.elliott@enron.com",
+      "address": "steven.elliott@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/945.",
+      "type": "forward",
+      "person": "robert.lloyd@enron.com",
+      "address": "robert.lloyd@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/945.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/945.",
+      "type": "read",
+      "person": "stacey.neuweiler@enron.com",
+      "address": "stacey.neuweiler@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/959.",
+      "type": "authored_short",
+      "person": "maritta.mullet@enron.com",
+      "address": "maritta.mullet@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/959.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/959.",
+      "type": "read",
+      "person": "david.bush@enron.com",
+      "address": "david.bush@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/959.",
+      "type": "read",
+      "person": "mark.diedrich@enron.com",
+      "address": "mark.diedrich@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/959.",
+      "type": "read",
+      "person": "paul.clayton@enron.com",
+      "address": "paul.clayton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/959.",
+      "type": "read",
+      "person": "paul.fox@enron.com",
+      "address": "paul.fox@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/960.",
+      "type": "authored_short",
+      "person": "maritta.mullet@enron.com",
+      "address": "maritta.mullet@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/960.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/960.",
+      "type": "read",
+      "person": "david.bush@enron.com",
+      "address": "david.bush@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/960.",
+      "type": "read",
+      "person": "mark.diedrich@enron.com",
+      "address": "mark.diedrich@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/960.",
+      "type": "read",
+      "person": "paul.clayton@enron.com",
+      "address": "paul.clayton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/960.",
+      "type": "read",
+      "person": "steven.elliott@enron.com",
+      "address": "steven.elliott@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/961.",
+      "type": "authored_medium",
+      "person": "maritta.mullet@enron.com",
+      "address": "maritta.mullet@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/961.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/961.",
+      "type": "read",
+      "person": "david.bush@enron.com",
+      "address": "david.bush@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/961.",
+      "type": "read",
+      "person": "mark.diedrich@enron.com",
+      "address": "mark.diedrich@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/961.",
+      "type": "read",
+      "person": "paul.clayton@enron.com",
+      "address": "paul.clayton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/961.",
+      "type": "read",
+      "person": "paul.fox@enron.com",
+      "address": "paul.fox@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/971.",
+      "type": "authored_short",
+      "person": "maritta.mullet@enron.com",
+      "address": "maritta.mullet@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/971.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/971.",
+      "type": "read",
+      "person": "david.bush@enron.com",
+      "address": "david.bush@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/971.",
+      "type": "read",
+      "person": "mark.diedrich@enron.com",
+      "address": "mark.diedrich@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/971.",
+      "type": "read",
+      "person": "paul.clayton@enron.com",
+      "address": "paul.clayton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/971.",
+      "type": "read",
+      "person": "steven.elliott@enron.com",
+      "address": "steven.elliott@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/981.",
+      "type": "authored_short",
+      "person": "maritta.mullet@enron.com",
+      "address": "maritta.mullet@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/981.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/981.",
+      "type": "read",
+      "person": "david.bush@enron.com",
+      "address": "david.bush@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/981.",
+      "type": "read",
+      "person": "mark.diedrich@enron.com",
+      "address": "mark.diedrich@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/981.",
+      "type": "read",
+      "person": "paul.clayton@enron.com",
+      "address": "paul.clayton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/981.",
+      "type": "read",
+      "person": "paul.fox@enron.com",
+      "address": "paul.fox@enron.com",
+      "priced": true,
+      "share_x100": 100
+    }
+  ],
+  "participants": [
+    {
+      "email": "daren.farmer@enron.com",
+      "name": "Daren J Farmer",
+      "label": "Daren J Farmer",
+      "kind": "person",
+      "addresses": [
+        "daren.farmer@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 10,
+      "wrote": false
+    },
+    {
+      "email": "david.bush@enron.com",
+      "name": null,
+      "label": "david.bush@enron.com",
+      "kind": "person",
+      "addresses": [
+        "david.bush@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 9,
+      "wrote": false
+    },
+    {
+      "email": "maritta.mullet@enron.com",
+      "name": "Maritta Mullet",
+      "label": "Maritta Mullet",
+      "kind": "person",
+      "addresses": [
+        "maritta.mullet@enron.com"
+      ],
+      "staff": true,
+      "authored": 9,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "mark.diedrich@enron.com",
+      "name": null,
+      "label": "mark.diedrich@enron.com",
+      "kind": "person",
+      "addresses": [
+        "mark.diedrich@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 9,
+      "wrote": false
+    },
+    {
+      "email": "paul.clayton@enron.com",
+      "name": null,
+      "label": "paul.clayton@enron.com",
+      "kind": "person",
+      "addresses": [
+        "paul.clayton@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 9,
+      "wrote": false
+    },
+    {
+      "email": "steven.elliott@enron.com",
+      "name": null,
+      "label": "steven.elliott@enron.com",
+      "kind": "person",
+      "addresses": [
+        "steven.elliott@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 6,
+      "wrote": false
+    },
+    {
+      "email": "paul.fox@enron.com",
+      "name": null,
+      "label": "paul.fox@enron.com",
+      "kind": "person",
+      "addresses": [
+        "paul.fox@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 3,
+      "wrote": false
+    },
+    {
+      "email": "robert.lloyd@enron.com",
+      "name": "Robert E Lloyd",
+      "label": "Robert E Lloyd",
+      "kind": "person",
+      "addresses": [
+        "robert.lloyd@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 1,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "stacey.neuweiler@enron.com",
+      "name": "Stacey Neuweiler",
+      "label": "Stacey Neuweiler",
+      "kind": "person",
+      "addresses": [
+        "stacey.neuweiler@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    }
+  ],
+  "stalls_by_kind": [],
+  "stall_groups": [
+    {
+      "summary": "Restart timing is often unknown or keeps moving, leaving schedulers waiting on further notices before they can settle volumes.",
+      "quotes": [
+        {
+          "id": "batch-017:e8",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/1261.",
+          "start": 1210,
+          "end": 1261,
+          "raw_text": "No eta for plant startup is available at this time.",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "maritta.mullet@enron.com",
+          "sender_label": "Maritta Mullet",
+          "date_utc": "2000-07-05T11:37:00Z"
+        },
+        {
+          "id": "batch-008:e34",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/960.",
+          "start": 1047,
+          "end": 1116,
+          "raw_text": "The earliest time production of MeOH may begin is now Sunday evening.",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "maritta.mullet@enron.com",
+          "sender_label": "Maritta Mullet",
+          "date_utc": "2000-03-24T15:17:00Z"
+        },
+        {
+          "id": "batch-017:e13",
+          "kind": "evidence",
+          "message_id": "corpus/farmer-d/logistics/1267.",
+          "start": 1245,
+          "end": 1317,
+          "raw_text": "It appears that the plant will be down until the last week of the month.",
+          "match": "exact",
+          "segment": "own",
+          "field": "body",
+          "sender": "maritta.mullet@enron.com",
+          "sender_label": "Maritta Mullet",
+          "date_utc": "2000-07-10T09:28:00Z"
+        }
+      ]
+    }
+  ],
+  "stall_quotes": [],
+  "evidence": [
+    {
+      "id": "batch-008:e17",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/943.",
+      "start": 1015,
+      "end": 1063,
+      "raw_text": "The Methanol Plant went down about 5 a.m. today.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "maritta.mullet@enron.com",
+      "sender_label": "Maritta Mullet",
+      "date_utc": "2000-03-22T13:06:00Z"
+    },
+    {
+      "id": "batch-008:e20",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/945.",
+      "start": 1393,
+      "end": 1447,
+      "raw_text": "we broke a shaft in the MUG compressor on the methanol",
+      "match": "exact",
+      "segment": "forwarded",
+      "field": "body",
+      "sender": "robert.lloyd@enron.com",
+      "sender_label": "Robert E Lloyd",
+      "date_utc": "2000-03-22T14:12:00Z"
+    },
+    {
+      "id": "batch-008:e33",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/959.",
+      "start": 1078,
+      "end": 1155,
+      "raw_text": "The MTBE plant had an upset early today and a steam boiler is being taken out",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "maritta.mullet@enron.com",
+      "sender_label": "Maritta Mullet",
+      "date_utc": "2000-03-24T15:15:00Z"
+    },
+    {
+      "id": "batch-008:e34",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/960.",
+      "start": 1047,
+      "end": 1116,
+      "raw_text": "The earliest time production of MeOH may begin is now Sunday evening.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "maritta.mullet@enron.com",
+      "sender_label": "Maritta Mullet",
+      "date_utc": "2000-03-24T15:17:00Z"
+    },
+    {
+      "id": "batch-008:e35",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/961.",
+      "start": 1084,
+      "end": 1151,
+      "raw_text": "The MTBE plant will continue operating at lower production rates of",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "maritta.mullet@enron.com",
+      "sender_label": "Maritta Mullet",
+      "date_utc": "2000-03-26T18:41:00Z"
+    },
+    {
+      "id": "batch-009:e8",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/971.",
+      "start": 1047,
+      "end": 1096,
+      "raw_text": "The Methanol Plant is up and making spec product.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "maritta.mullet@enron.com",
+      "sender_label": "Maritta Mullet",
+      "date_utc": "2000-03-27T19:08:00Z"
+    },
+    {
+      "id": "batch-009:e14",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/981.",
+      "start": 1078,
+      "end": 1151,
+      "raw_text": "The MTBE plant has determined full production can be attained sooner than",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "maritta.mullet@enron.com",
+      "sender_label": "Maritta Mullet",
+      "date_utc": "2000-03-28T13:47:00Z"
+    },
+    {
+      "id": "batch-017:e8",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1261.",
+      "start": 1210,
+      "end": 1261,
+      "raw_text": "No eta for plant startup is available at this time.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "maritta.mullet@enron.com",
+      "sender_label": "Maritta Mullet",
+      "date_utc": "2000-07-05T11:37:00Z"
+    },
+    {
+      "id": "batch-017:e13",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1267.",
+      "start": 1245,
+      "end": 1317,
+      "raw_text": "It appears that the plant will be down until the last week of the month.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "maritta.mullet@enron.com",
+      "sender_label": "Maritta Mullet",
+      "date_utc": "2000-07-10T09:28:00Z"
+    },
+    {
+      "id": "batch-017:e14",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1297.",
+      "start": 1099,
+      "end": 1169,
+      "raw_text": "The Methanol Plant is still on target to begin making spec methanol on",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "maritta.mullet@enron.com",
+      "sender_label": "Maritta Mullet",
+      "date_utc": "2000-07-24T11:08:00Z"
+    }
+  ],
+  "chasers": [],
+  "reply_gaps": [],
+  "reply_gap_n": 0,
+  "median_reply_gap_h": null,
+  "claims": [],
+  "conflicts": [],
+  "contradictions": [],
+  "contradictions_dropped": 0,
+  "loops": [],
+  "document": null
+}

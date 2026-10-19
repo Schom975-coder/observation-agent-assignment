@@ -1,0 +1,1710 @@
+{
+  "key": "supply-cut-handling",
+  "name": "Gas supply cut handling",
+  "definition": "Responding when a pipeline or supplier cuts scheduled gas: finding the affected deals, rescheduling supply and informing customers.",
+  "rank": 49,
+  "tier": "B",
+  "row": {
+    "rank": 49,
+    "key": "supply-cut-handling",
+    "name": "Gas supply cut handling",
+    "tier": "B",
+    "tier_words": "in the total: 10 or more times over 3 or more months by 2 or more staff",
+    "in_total": true,
+    "origin": "taxonomy",
+    "total": {
+      "v": 983,
+      "t": "$10",
+      "x": "$9.83",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "supply-cut-handling"
+      }
+    },
+    "counted": {
+      "v": 241,
+      "t": "$2",
+      "x": "$2.41",
+      "k": "counted",
+      "d": {
+        "kind": "formula",
+        "key": "supply-cut-handling"
+      }
+    },
+    "estimated": {
+      "v": 742,
+      "t": "$8",
+      "x": "$7.42",
+      "k": "estimated",
+      "d": {
+        "kind": "formula",
+        "key": "supply-cut-handling"
+      }
+    },
+    "low": {
+      "v": 612,
+      "t": "$6",
+      "x": "$6.12",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "supply-cut-handling"
+      }
+    },
+    "high": {
+      "v": 2098,
+      "t": "$21",
+      "x": "$20.98",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "supply-cut-handling"
+      }
+    },
+    "today": {
+      "v": 2639,
+      "t": "$26",
+      "x": "$26.39",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "supply-cut-handling"
+      }
+    },
+    "hours": {
+      "v": 12,
+      "t": "0.1",
+      "x": "0.12 hours",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "supply-cut-handling"
+      }
+    },
+    "hours_today": {
+      "v": 31,
+      "t": "0.3",
+      "x": "0.31 hours",
+      "k": "total",
+      "d": {
+        "kind": "formula",
+        "key": "supply-cut-handling"
+      }
+    },
+    "occurrences": {
+      "v": 12,
+      "t": "12 times",
+      "d": {
+        "kind": "occurrences",
+        "key": "supply-cut-handling"
+      }
+    },
+    "shared_occurrences": 1,
+    "active_months": {
+      "v": 9,
+      "t": "9 active months",
+      "d": {
+        "kind": "months",
+        "key": "supply-cut-handling"
+      }
+    },
+    "span_days": 701,
+    "first_utc": "1999-12-30T08:44:00Z",
+    "last_utc": "2001-11-29T16:56:03Z",
+    "messages": {
+      "v": 12,
+      "t": "12 emails",
+      "d": {
+        "kind": "occurrences",
+        "key": "supply-cut-handling"
+      }
+    },
+    "threads": 12,
+    "mailboxes": [
+      {
+        "key": "farmer-d",
+        "n": 11,
+        "pct": 92
+      },
+      {
+        "key": "giron-d",
+        "n": 1,
+        "pct": 8
+      }
+    ],
+    "top_mailbox": "farmer-d",
+    "top_pct": 92,
+    "one_mailbox": true,
+    "seen_in": "Mostly seen in: Farmer (92%)",
+    "staff": {
+      "v": 26,
+      "t": "26 staff",
+      "d": {
+        "kind": "participants",
+        "key": "supply-cut-handling",
+        "filter": "staff"
+      }
+    },
+    "writers": {
+      "v": 6,
+      "t": "6",
+      "d": {
+        "kind": "participants",
+        "key": "supply-cut-handling",
+        "filter": "writers"
+      }
+    },
+    "copied": {
+      "v": 20,
+      "t": "20",
+      "d": {
+        "kind": "participants",
+        "key": "supply-cut-handling",
+        "filter": "copied"
+      }
+    },
+    "estimate": {
+      "low": 15,
+      "mid": 30,
+      "high": 75,
+      "automatable_pct": 35,
+      "basis_words": "worked out from the steps the emails show",
+      "source": "model"
+    },
+    "stall_label": "none quoted",
+    "stall_summary": null,
+    "stall_kind": null,
+    "stall_quotes": {
+      "v": 0,
+      "t": "0 stall quotes",
+      "d": {
+        "kind": "stalls",
+        "key": "supply-cut-handling"
+      }
+    },
+    "fix": "Feed pipeline cut notices into a standard cut report that looks up the affected deals by point and gas day from the scheduling system, lists the lost volumes, and sends the…",
+    "document": null,
+    "status_line": "Not drafted: $10 a month is under the $85 drafting line",
+    "chasers": {
+      "v": 0,
+      "t": "0 chasers",
+      "d": {
+        "kind": "actions",
+        "key": "supply-cut-handling",
+        "type": "chaser"
+      }
+    },
+    "stall_count": {
+      "v": 0,
+      "t": "0",
+      "d": {
+        "kind": "stalls",
+        "key": "supply-cut-handling"
+      }
+    },
+    "loops": {
+      "v": 0,
+      "t": "0 open loops",
+      "d": {
+        "kind": "loops",
+        "key": "supply-cut-handling"
+      }
+    },
+    "loops_recent": {
+      "v": 0,
+      "t": "0",
+      "d": {
+        "kind": "loops",
+        "key": "supply-cut-handling",
+        "recent": true
+      }
+    },
+    "claims": {
+      "v": 0,
+      "t": "0 claims",
+      "d": {
+        "kind": "claims",
+        "key": "supply-cut-handling"
+      }
+    },
+    "conflicts": {
+      "v": 0,
+      "t": "0 conflicts",
+      "d": {
+        "kind": "claims",
+        "key": "supply-cut-handling"
+      }
+    },
+    "reply_gap": null,
+    "last_three_months_share": {
+      "v": 1,
+      "t": "1 of 12",
+      "d": {
+        "kind": "occurrences",
+        "key": "supply-cut-handling"
+      }
+    },
+    "flags": [
+      "one round shared with another process"
+    ]
+  },
+  "synthesis": {
+    "description": "When a pipeline or supplier cuts scheduled gas, or a meter is shut in, the scheduler reports the cut to the trading and logistics team with the affected supplier, pipeline point and volumes. The desk then finds replacement supply, for example buying gas from another counterparty to resupply, and reschedules. Some rounds come from the counterparty side, such as a customer claiming force majeure or a supplier announcing it will stop deliveries, and need a summary of the affected days.",
+    "steps": [
+      "A pipeline, supplier or field contact reports a cut or shut-in.",
+      "The scheduler identifies the affected deals, points, gas days and volumes.",
+      "The scheduler sends the cut details to the desk and logistics team.",
+      "The trader buys replacement gas or adjusts the sale to cover the shortfall.",
+      "Nominations are rescheduled with the pipeline and affected parties are informed.",
+      "Force majeure claims or supplier notices are summarised for follow-up."
+    ],
+    "approach": "Feed pipeline cut notices into a standard cut report that looks up the affected deals by point and gas day from the scheduling system, lists the lost volumes, and sends the result to the desk using one message layout. Replacement purchases and rescheduling stay with the trader and scheduler.",
+    "rationale": "The cut messages carry the same facts each time: supplier, pipeline point, gas day, volume and replacement. A fixed message layout makes them faster to write and read, and a deal lookup removes the manual search; the buying decision still needs a person.",
+    "artifact_type": "email_template"
+  },
+  "formula": {
+    "counted": "12 occ (11.50 after sharing) over 701 d = 23.03 mo; email: 5 short x2 + 5 medium x6 + 1 long x15 + 1 fwd x2 + 0 chaser x3 + 37 read x1 = 94.00 min, 84.00 min after sharing = 3.65 min/mo; automatable 60/40/30/80/100/50% = 42.60 min, 39.10 min after sharing = 1.70 min/mo",
+    "estimated": "11.50 occ x 30 min/occ (estimate, mid of 15-75, basis inferred, 6 quotes from 6 occurrences) = 345.00 min = 14.98 min/mo; automatable 35% (estimate) = 5.24 min/mo; at the low end 15 min/occ = $6.12/mo, at the high end 75 min/occ = $20.98/mo (the row's automatable total)",
+    "total": "today 18.63 min/mo = 0.31 h/mo = $26.39/mo (email 3.65 min/mo = $5.17 + work 14.98 min/mo = $21.22); automatable 6.94 min/mo = 0.12 h/mo = $9.83/mo (counted email 1.70 min/mo = $2.41 + estimated work 5.24 min/mo = $7.42)"
+  },
+  "window": {
+    "first_utc": "1999-12-30T08:44:00Z",
+    "last_utc": "2001-11-29T16:56:03Z",
+    "span_days": 701,
+    "months_x100": 2303,
+    "active_months": 9,
+    "undated_occurrences": 0
+  },
+  "months": 2303,
+  "occurrence_share_x100": 1150,
+  "actions": {
+    "priced": {
+      "authored_short": 5,
+      "authored_medium": 5,
+      "authored_long": 1,
+      "forward": 1,
+      "chaser": 0,
+      "read": 37
+    },
+    "unpriced": {
+      "authored_short": 0,
+      "authored_medium": 0,
+      "authored_long": 0,
+      "forward": 0,
+      "chaser": 0,
+      "read": 0
+    }
+  },
+  "action_table": [
+    {
+      "type": "authored_short",
+      "words": "short emails written",
+      "count": {
+        "v": 5,
+        "t": "5",
+        "d": {
+          "kind": "actions",
+          "key": "supply-cut-handling",
+          "type": "authored_short"
+        }
+      },
+      "minutes_each": 2,
+      "minutes": "10.00",
+      "automatable_pct": 60,
+      "automatable_minutes": "6.00"
+    },
+    {
+      "type": "authored_medium",
+      "words": "medium emails written",
+      "count": {
+        "v": 5,
+        "t": "5",
+        "d": {
+          "kind": "actions",
+          "key": "supply-cut-handling",
+          "type": "authored_medium"
+        }
+      },
+      "minutes_each": 6,
+      "minutes": "30.00",
+      "automatable_pct": 40,
+      "automatable_minutes": "12.00"
+    },
+    {
+      "type": "authored_long",
+      "words": "long emails written",
+      "count": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "actions",
+          "key": "supply-cut-handling",
+          "type": "authored_long"
+        }
+      },
+      "minutes_each": 15,
+      "minutes": "15.00",
+      "automatable_pct": 30,
+      "automatable_minutes": "4.50"
+    },
+    {
+      "type": "forward",
+      "words": "forwards",
+      "count": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "actions",
+          "key": "supply-cut-handling",
+          "type": "forward"
+        }
+      },
+      "minutes_each": 2,
+      "minutes": "2.00",
+      "automatable_pct": 80,
+      "automatable_minutes": "1.60"
+    },
+    {
+      "type": "chaser",
+      "words": "chasers",
+      "count": {
+        "v": 0,
+        "t": "0",
+        "d": {
+          "kind": "actions",
+          "key": "supply-cut-handling",
+          "type": "chaser"
+        }
+      },
+      "minutes_each": 3,
+      "minutes": "0.00",
+      "automatable_pct": 100,
+      "automatable_minutes": "0.00"
+    },
+    {
+      "type": "read",
+      "words": "reads, one per addressee",
+      "count": {
+        "v": 37,
+        "t": "37",
+        "d": {
+          "kind": "actions",
+          "key": "supply-cut-handling",
+          "type": "read"
+        }
+      },
+      "minutes_each": 1,
+      "minutes": "37.00",
+      "automatable_pct": 50,
+      "automatable_minutes": "18.50"
+    }
+  ],
+  "email": {
+    "today_x100": 8400,
+    "automatable_x100": 3910,
+    "per_month_today_x100": 365,
+    "per_month_automatable_x100": 170
+  },
+  "work": {
+    "per_month_today_x100": 1498,
+    "per_month_automatable_x100": 524,
+    "low_cents": 371,
+    "high_cents": 1857
+  },
+  "estimate_quotes": [
+    {
+      "id": "batch-023:e0",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1393.",
+      "start": 638,
+      "end": 694,
+      "raw_text": "Stacey has already bought gas from Duke to resupply (the",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "mark.mccoy@enron.com",
+      "sender_label": "Mark McCoy",
+      "date_utc": "2000-09-07T17:09:00Z"
+    },
+    {
+      "id": "batch-014:e11",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1182.",
+      "start": 504,
+      "end": 565,
+      "raw_text": "Some of the gas purchased from Dynegy on gas day 6/6 was cut:",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "mark.mccoy@enron.com",
+      "sender_label": "Mark McCoy",
+      "date_utc": "2000-06-07T08:25:00Z"
+    },
+    {
+      "id": "batch-037:e17",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/2007.",
+      "start": 1036,
+      "end": 1087,
+      "raw_text": "Bruce at PG&E called with some cuts. I called Eddie",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "tom.acton@enron.com",
+      "sender_label": "Tom Acton",
+      "date_utc": "2000-12-26T09:02:00Z"
+    },
+    {
+      "id": "batch-010:e34",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1050.",
+      "start": 596,
+      "end": 673,
+      "raw_text": "Attached is a summary of the days Calpine has claimed force majeure beginning",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "kristen.hanson@enron.com",
+      "sender_label": "Kristen J Hanson",
+      "date_utc": "2000-04-17T16:19:00Z"
+    },
+    {
+      "id": "batch-001:e41",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/671.",
+      "start": 957,
+      "end": 1014,
+      "raw_text": "The meter will be shut in until late Thursday or early on",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "gary.hanks@enron.com",
+      "sender_label": "Gary A Hanks",
+      "date_utc": "2000-01-11T16:14:00Z"
+    },
+    {
+      "id": "batch-025:e6",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1422.",
+      "start": 468,
+      "end": 543,
+      "raw_text": "Oasis made cut to WGR sale to HPL on Sunday 9/24 & Monday 9/25 for 5.0 /day",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "mark.mccoy@enron.com",
+      "sender_label": "Mark McCoy",
+      "date_utc": "2000-09-25T11:17:00Z"
+    }
+  ],
+  "estimate_check": {
+    "occurrences_cited": 6,
+    "senders_cited": 4
+  },
+  "monthly": [
+    {
+      "month": "1999-12",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "supply-cut-handling",
+          "month": "1999-12"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-5f8c6f6f175a-o1"
+      ]
+    },
+    {
+      "month": "2000-01",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "supply-cut-handling",
+          "month": "2000-01"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-bd841337c311-o1"
+      ]
+    },
+    {
+      "month": "2000-02",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "supply-cut-handling",
+          "month": "2000-02"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-f091f52ef206-o1"
+      ]
+    },
+    {
+      "month": "2000-04",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "supply-cut-handling",
+          "month": "2000-04"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-5f1ff6b978d8-o1"
+      ]
+    },
+    {
+      "month": "2000-05",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "supply-cut-handling",
+          "month": "2000-05"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-dfd7a2bebb46-o1"
+      ]
+    },
+    {
+      "month": "2000-06",
+      "occurrences": {
+        "v": 3,
+        "t": "3",
+        "d": {
+          "kind": "occurrences",
+          "key": "supply-cut-handling",
+          "month": "2000-06"
+        }
+      },
+      "messages": 3,
+      "ids": [
+        "t-51ec78d91d2a-o1",
+        "t-7aafe3e6f37d-o1",
+        "t-db05516c0523-o1"
+      ]
+    },
+    {
+      "month": "2000-09",
+      "occurrences": {
+        "v": 2,
+        "t": "2",
+        "d": {
+          "kind": "occurrences",
+          "key": "supply-cut-handling",
+          "month": "2000-09"
+        }
+      },
+      "messages": 2,
+      "ids": [
+        "t-231f93ae1ef6-o1",
+        "t-dc443f515f8c-o1"
+      ]
+    },
+    {
+      "month": "2000-12",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "supply-cut-handling",
+          "month": "2000-12"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-dd7b464e55af-o1"
+      ]
+    },
+    {
+      "month": "2001-11",
+      "occurrences": {
+        "v": 1,
+        "t": "1",
+        "d": {
+          "kind": "occurrences",
+          "key": "supply-cut-handling",
+          "month": "2001-11"
+        }
+      },
+      "messages": 1,
+      "ids": [
+        "t-d0d24d173513-o1"
+      ]
+    }
+  ],
+  "occurrences": [
+    {
+      "id": "t-231f93ae1ef6-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1393."
+      ],
+      "date_utc": "2000-09-07T17:09:00Z"
+    },
+    {
+      "id": "t-51ec78d91d2a-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1201."
+      ],
+      "date_utc": "2000-06-13T06:12:00Z"
+    },
+    {
+      "id": "t-5f1ff6b978d8-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1050."
+      ],
+      "date_utc": "2000-04-17T16:19:00Z"
+    },
+    {
+      "id": "t-5f8c6f6f175a-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/635."
+      ],
+      "date_utc": "1999-12-30T08:44:00Z"
+    },
+    {
+      "id": "t-7aafe3e6f37d-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1182."
+      ],
+      "date_utc": "2000-06-07T08:25:00Z"
+    },
+    {
+      "id": "t-bd841337c311-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/671."
+      ],
+      "date_utc": "2000-01-11T16:14:00Z"
+    },
+    {
+      "id": "t-d0d24d173513-o1",
+      "message_ids": [
+        "corpus/giron-d/inbox/278."
+      ],
+      "date_utc": "2001-11-29T16:56:03Z"
+    },
+    {
+      "id": "t-db05516c0523-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1218."
+      ],
+      "date_utc": "2000-06-19T16:50:00Z"
+    },
+    {
+      "id": "t-dc443f515f8c-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1422."
+      ],
+      "date_utc": "2000-09-25T11:17:00Z"
+    },
+    {
+      "id": "t-dd7b464e55af-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/2007."
+      ],
+      "date_utc": "2000-12-26T09:02:00Z"
+    },
+    {
+      "id": "t-dfd7a2bebb46-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/1133."
+      ],
+      "date_utc": "2000-05-23T09:36:00Z"
+    },
+    {
+      "id": "t-f091f52ef206-o1",
+      "message_ids": [
+        "corpus/farmer-d/logistics/761."
+      ],
+      "date_utc": "2000-02-07T14:14:00Z"
+    }
+  ],
+  "undated_occurrences": [],
+  "action_sources": [
+    {
+      "message_id": "corpus/farmer-d/logistics/1050.",
+      "type": "authored_short",
+      "person": "kristen.hanson@enron.com",
+      "address": "kristen.hanson@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1050.",
+      "type": "read",
+      "person": "ami.chokshi@enron.com",
+      "address": "ami.chokshi@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1050.",
+      "type": "read",
+      "person": "dan.hyvl@enron.com",
+      "address": "dan.hyvl@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1050.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1050.",
+      "type": "read",
+      "person": "lisa.csikos@enron.com",
+      "address": "lisa.csikos@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1133.",
+      "type": "authored_medium",
+      "person": "mark.mccoy@enron.com",
+      "address": "mark.mccoy@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1133.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1133.",
+      "type": "read",
+      "person": "stacey.neuweiler@enron.com",
+      "address": "stacey.neuweiler@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1182.",
+      "type": "authored_short",
+      "person": "mark.mccoy@enron.com",
+      "address": "mark.mccoy@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1182.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1182.",
+      "type": "read",
+      "person": "stacey.neuweiler@enron.com",
+      "address": "stacey.neuweiler@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1201.",
+      "type": "authored_short",
+      "person": "mark.mccoy@enron.com",
+      "address": "mark.mccoy@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1201.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1201.",
+      "type": "read",
+      "person": "stacey.neuweiler@enron.com",
+      "address": "stacey.neuweiler@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1218.",
+      "type": "authored_medium",
+      "person": "mark.mccoy@enron.com",
+      "address": "mark.mccoy@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1218.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1218.",
+      "type": "read",
+      "person": "eddie.janzen@enron.com",
+      "address": "eddie.janzen@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1218.",
+      "type": "read",
+      "person": "stacey.neuweiler@enron.com",
+      "address": "stacey.neuweiler@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1393.",
+      "type": "authored_medium",
+      "person": "mark.mccoy@enron.com",
+      "address": "mark.mccoy@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1393.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1422.",
+      "type": "authored_short",
+      "person": "mark.mccoy@enron.com",
+      "address": "mark.mccoy@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/1422.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2007.",
+      "type": "authored_long",
+      "person": "tom.acton@enron.com",
+      "address": "tom.acton@enron.com",
+      "priced": true,
+      "share_x100": 50
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2007.",
+      "type": "read",
+      "person": "clem.cernosek@enron.com",
+      "address": "clem.cernosek@enron.com",
+      "priced": true,
+      "share_x100": 50
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2007.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 50
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2007.",
+      "type": "read",
+      "person": "gary.hanks@enron.com",
+      "address": "gary.hanks@enron.com",
+      "priced": true,
+      "share_x100": 50
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2007.",
+      "type": "read",
+      "person": "lauri.allen@enron.com",
+      "address": "lauri.allen@enron.com",
+      "priced": true,
+      "share_x100": 50
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/2007.",
+      "type": "read",
+      "person": "robert.cotten@enron.com",
+      "address": "robert.cotten@enron.com",
+      "priced": true,
+      "share_x100": 50
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/635.",
+      "type": "authored_short",
+      "person": "charlotte.hawkins@enron.com",
+      "address": "charlotte.hawkins@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/635.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/635.",
+      "type": "read",
+      "person": "elsa.villarreal@enron.com",
+      "address": "elsa.villarreal@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/671.",
+      "type": "authored_medium",
+      "person": "gary.hanks@enron.com",
+      "address": "gary.hanks@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/671.",
+      "type": "read",
+      "person": "connie.sutton@enron.com",
+      "address": "connie.sutton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/671.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/671.",
+      "type": "read",
+      "person": "lauri.allen@enron.com",
+      "address": "lauri.allen@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/671.",
+      "type": "read",
+      "person": "melissa.graves@enron.com",
+      "address": "melissa.graves@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/671.",
+      "type": "read",
+      "person": "shawna.flynn@enron.com",
+      "address": "shawna.flynn@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/761.",
+      "type": "authored_medium",
+      "person": "gary.hanks@enron.com",
+      "address": "gary.hanks@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/761.",
+      "type": "read",
+      "person": "connie.sutton@enron.com",
+      "address": "connie.sutton@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/761.",
+      "type": "read",
+      "person": "daren.farmer@enron.com",
+      "address": "daren.farmer@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/761.",
+      "type": "read",
+      "person": "mary.solmonson@enron.com",
+      "address": "mary.solmonson@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/761.",
+      "type": "read",
+      "person": "robert.walker@enron.com",
+      "address": "robert.walker@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/farmer-d/logistics/761.",
+      "type": "read",
+      "person": "shawna.flynn@enron.com",
+      "address": "shawna.flynn@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/278.",
+      "type": "forward",
+      "person": "lisa.kinsey@enron.com",
+      "address": "lisa.kinsey@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/278.",
+      "type": "read",
+      "person": "bryant.frihart@enron.com",
+      "address": "bryant.frihart@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/278.",
+      "type": "read",
+      "person": "lindsay.culotta@enron.com",
+      "address": "lindsay.culotta@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/278.",
+      "type": "read",
+      "person": "martin.cuilla@enron.com",
+      "address": "martin.cuilla@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/278.",
+      "type": "read",
+      "person": "t..hodge@enron.com",
+      "address": "t..hodge@enron.com",
+      "priced": true,
+      "share_x100": 100
+    },
+    {
+      "message_id": "corpus/giron-d/inbox/278.",
+      "type": "read",
+      "person": "tom.donohoe@enron.com",
+      "address": "tom.donohoe@enron.com",
+      "priced": true,
+      "share_x100": 100
+    }
+  ],
+  "participants": [
+    {
+      "email": "daren.farmer@enron.com",
+      "name": "Daren J Farmer",
+      "label": "Daren J Farmer",
+      "kind": "person",
+      "addresses": [
+        "daren.farmer@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 11,
+      "wrote": false
+    },
+    {
+      "email": "mark.mccoy@enron.com",
+      "name": "Mark McCoy",
+      "label": "Mark McCoy",
+      "kind": "person",
+      "addresses": [
+        "mark.mccoy@enron.com"
+      ],
+      "staff": true,
+      "authored": 6,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "stacey.neuweiler@enron.com",
+      "name": "Stacey Neuweiler",
+      "label": "Stacey Neuweiler",
+      "kind": "person",
+      "addresses": [
+        "stacey.neuweiler@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 4,
+      "wrote": false
+    },
+    {
+      "email": "gary.hanks@enron.com",
+      "name": "Gary A Hanks",
+      "label": "Gary A Hanks",
+      "kind": "person",
+      "addresses": [
+        "gary.hanks@enron.com"
+      ],
+      "staff": true,
+      "authored": 2,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": true
+    },
+    {
+      "email": "connie.sutton@enron.com",
+      "name": null,
+      "label": "connie.sutton@enron.com",
+      "kind": "person",
+      "addresses": [
+        "connie.sutton@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "lauri.allen@enron.com",
+      "name": "Lauri A Allen",
+      "label": "Lauri A Allen",
+      "kind": "person",
+      "addresses": [
+        "lauri.allen@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "shawna.flynn@enron.com",
+      "name": "Flynn, Shawna",
+      "label": "Shawna Flynn",
+      "kind": "person",
+      "addresses": [
+        "shawna.flynn@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 2,
+      "wrote": false
+    },
+    {
+      "email": "ami.chokshi@enron.com",
+      "name": "Ami Chokshi",
+      "label": "Ami Chokshi",
+      "kind": "person",
+      "addresses": [
+        "ami.chokshi@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "bryant.frihart@enron.com",
+      "name": "Frihart, Bryant",
+      "label": "Bryant Frihart",
+      "kind": "person",
+      "addresses": [
+        "bryant.frihart@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "charlotte.hawkins@enron.com",
+      "name": "Charlotte Hawkins",
+      "label": "Charlotte Hawkins",
+      "kind": "person",
+      "addresses": [
+        "charlotte.hawkins@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "clem.cernosek@enron.com",
+      "name": "Clem Cernosek",
+      "label": "Clem Cernosek",
+      "kind": "person",
+      "addresses": [
+        "clem.cernosek@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "dan.hyvl@enron.com",
+      "name": null,
+      "label": "dan.hyvl@enron.com",
+      "kind": "person",
+      "addresses": [
+        "dan.hyvl@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "eddie.janzen@enron.com",
+      "name": "Eddie Janzen",
+      "label": "Eddie Janzen",
+      "kind": "person",
+      "addresses": [
+        "eddie.janzen@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "elsa.villarreal@enron.com",
+      "name": "Elsa Villarreal",
+      "label": "Elsa Villarreal",
+      "kind": "person",
+      "addresses": [
+        "elsa.villarreal@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "kristen.hanson@enron.com",
+      "name": "Kristen J Hanson",
+      "label": "Kristen J Hanson",
+      "kind": "person",
+      "addresses": [
+        "kristen.hanson@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "lindsay.culotta@enron.com",
+      "name": "Culotta, Lindsay",
+      "label": "Lindsay Culotta",
+      "kind": "person",
+      "addresses": [
+        "lindsay.culotta@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "lisa.csikos@enron.com",
+      "name": "Lisa Csikos",
+      "label": "Lisa Csikos",
+      "kind": "person",
+      "addresses": [
+        "lisa.csikos@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "lisa.kinsey@enron.com",
+      "name": "Kinsey, Lisa",
+      "label": "Lisa Kinsey",
+      "kind": "person",
+      "addresses": [
+        "lisa.kinsey@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 1,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "martin.cuilla@enron.com",
+      "name": null,
+      "label": "martin.cuilla@enron.com",
+      "kind": "person",
+      "addresses": [
+        "martin.cuilla@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "mary.solmonson@enron.com",
+      "name": "Mary Solmonson",
+      "label": "Mary Solmonson",
+      "kind": "person",
+      "addresses": [
+        "mary.solmonson@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "melissa.graves@enron.com",
+      "name": "Melissa Graves",
+      "label": "Melissa Graves",
+      "kind": "person",
+      "addresses": [
+        "melissa.graves@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "robert.cotten@enron.com",
+      "name": "Robert Cotten",
+      "label": "Robert Cotten",
+      "kind": "person",
+      "addresses": [
+        "robert.cotten@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "robert.walker@enron.com",
+      "name": null,
+      "label": "robert.walker@enron.com",
+      "kind": "person",
+      "addresses": [
+        "robert.walker@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "t..hodge@enron.com",
+      "name": null,
+      "label": "t..hodge@enron.com",
+      "kind": "person",
+      "addresses": [
+        "t..hodge@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    },
+    {
+      "email": "tom.acton@enron.com",
+      "name": "Tom Acton",
+      "label": "Tom Acton",
+      "kind": "person",
+      "addresses": [
+        "tom.acton@enron.com"
+      ],
+      "staff": true,
+      "authored": 1,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 0,
+      "wrote": true
+    },
+    {
+      "email": "tom.donohoe@enron.com",
+      "name": null,
+      "label": "tom.donohoe@enron.com",
+      "kind": "person",
+      "addresses": [
+        "tom.donohoe@enron.com"
+      ],
+      "staff": true,
+      "authored": 0,
+      "forwards": 0,
+      "chasers": 0,
+      "reads": 1,
+      "wrote": false
+    }
+  ],
+  "stalls_by_kind": [],
+  "stall_groups": [],
+  "stall_quotes": [],
+  "evidence": [
+    {
+      "id": "batch-001:e14",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/635.",
+      "start": 618,
+      "end": 656,
+      "raw_text": "cut a/o pipeline capacity constraints.",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "charlotte.hawkins@enron.com",
+      "sender_label": "Charlotte Hawkins",
+      "date_utc": "1999-12-30T08:44:00Z"
+    },
+    {
+      "id": "batch-001:e41",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/671.",
+      "start": 957,
+      "end": 1014,
+      "raw_text": "The meter will be shut in until late Thursday or early on",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "gary.hanks@enron.com",
+      "sender_label": "Gary A Hanks",
+      "date_utc": "2000-01-11T16:14:00Z"
+    },
+    {
+      "id": "batch-003:e31",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/761.",
+      "start": 785,
+      "end": 855,
+      "raw_text": "The following meters were shut-in for approximately 12 Hours beginning",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "gary.hanks@enron.com",
+      "sender_label": "Gary A Hanks",
+      "date_utc": "2000-02-07T14:14:00Z"
+    },
+    {
+      "id": "batch-010:e34",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1050.",
+      "start": 596,
+      "end": 673,
+      "raw_text": "Attached is a summary of the days Calpine has claimed force majeure beginning",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "kristen.hanson@enron.com",
+      "sender_label": "Kristen J Hanson",
+      "date_utc": "2000-04-17T16:19:00Z"
+    },
+    {
+      "id": "batch-012:e25",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1133.",
+      "start": 549,
+      "end": 601,
+      "raw_text": "Conoco supply from El Paso #9DWE was cut into Oasis:",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "mark.mccoy@enron.com",
+      "sender_label": "Mark McCoy",
+      "date_utc": "2000-05-23T09:36:00Z"
+    },
+    {
+      "id": "batch-014:e11",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1182.",
+      "start": 504,
+      "end": 565,
+      "raw_text": "Some of the gas purchased from Dynegy on gas day 6/6 was cut:",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "mark.mccoy@enron.com",
+      "sender_label": "Mark McCoy",
+      "date_utc": "2000-06-07T08:25:00Z"
+    },
+    {
+      "id": "batch-015:e7",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1201.",
+      "start": 169,
+      "end": 190,
+      "raw_text": "El Paso Cuts to Oasis",
+      "match": "exact",
+      "segment": "subject",
+      "field": "subject",
+      "sender": "mark.mccoy@enron.com",
+      "sender_label": "Mark McCoy",
+      "date_utc": "2000-06-13T06:12:00Z"
+    },
+    {
+      "id": "batch-016:e5",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1218.",
+      "start": 550,
+      "end": 588,
+      "raw_text": "FYI----------Here are the latest cuts:",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "mark.mccoy@enron.com",
+      "sender_label": "Mark McCoy",
+      "date_utc": "2000-06-19T16:50:00Z"
+    },
+    {
+      "id": "batch-023:e0",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1393.",
+      "start": 638,
+      "end": 694,
+      "raw_text": "Stacey has already bought gas from Duke to resupply (the",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "mark.mccoy@enron.com",
+      "sender_label": "Mark McCoy",
+      "date_utc": "2000-09-07T17:09:00Z"
+    },
+    {
+      "id": "batch-025:e6",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/1422.",
+      "start": 468,
+      "end": 543,
+      "raw_text": "Oasis made cut to WGR sale to HPL on Sunday 9/24 & Monday 9/25 for 5.0 /day",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "mark.mccoy@enron.com",
+      "sender_label": "Mark McCoy",
+      "date_utc": "2000-09-25T11:17:00Z"
+    },
+    {
+      "id": "batch-037:e17",
+      "kind": "evidence",
+      "message_id": "corpus/farmer-d/logistics/2007.",
+      "start": 1036,
+      "end": 1087,
+      "raw_text": "Bruce at PG&E called with some cuts. I called Eddie",
+      "match": "exact",
+      "segment": "own",
+      "field": "body",
+      "sender": "tom.acton@enron.com",
+      "sender_label": "Tom Acton",
+      "date_utc": "2000-12-26T09:02:00Z"
+    },
+    {
+      "id": "batch-080:e17",
+      "kind": "evidence",
+      "message_id": "corpus/giron-d/inbox/278.",
+      "start": 3192,
+      "end": 3264,
+      "raw_text": "Please be advised that effective 11:00 am EST today AEP Energy Services,",
+      "match": "exact",
+      "segment": "quoted",
+      "field": "body",
+      "sender": "lisa.kinsey@enron.com",
+      "sender_label": "Lisa Kinsey",
+      "date_utc": "2001-11-29T16:56:03Z"
+    }
+  ],
+  "chasers": [],
+  "reply_gaps": [],
+  "reply_gap_n": 0,
+  "median_reply_gap_h": null,
+  "claims": [],
+  "conflicts": [],
+  "contradictions": [],
+  "contradictions_dropped": 0,
+  "loops": [],
+  "document": null
+}

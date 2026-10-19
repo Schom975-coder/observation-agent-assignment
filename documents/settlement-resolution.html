@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Settlement and invoice resolution: email template · Observation agent</title>
+<meta name="description" content="A drafted email template for one of the recurring processes the run found, with its evidence quoted exactly from the emails.">
+<meta name="obs-run" content="20261019T134634Z">
+<link rel="canonical" href="https://schom975-coder.github.io/observation-agent-assignment/documents/settlement-resolution.html">
+<link rel="alternate" type="text/markdown" href="settlement-resolution.md">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../site.css">
+</head>
+<body>
+<aside class="ai-note" aria-label="Reading with an AI assistant">
+<p class="ai-text">Reading this with an AI assistant? This site is set up for Claude to read in full. Give it this page's address and ask it anything about the project.</p>
+<p class="ai-url"><code id="page-url">https://schom975-coder.github.io/observation-agent-assignment/documents/settlement-resolution.html</code> <button type="button" id="copy-url" class="copy" hidden>Copy address</button></p>
+</aside>
+<div class="brandrule" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<div class="shell">
+<header class="top">
+<p class="site"><a href="../index.html">Observation agent</a> <span class="runline">Submitted run of 19 Oct 2026</span></p>
+<nav aria-label="Pages"><ul class="nav"><li><a href="../index.html">Home</a></li><li><a href="../dashboard/index.html">Dashboard</a></li><li><a href="../how-to-use.html">How to use</a></li><li><a href="../how-to-run.html">How to run</a></li><li><a href="../run.html" aria-current="page">The run</a></li><li><a href="../architecture.html">Architecture</a></li><li><a href="../design.html">Design</a></li><li><a href="../process.html">How it was built</a></li><li><a href="../claude-dir.html">Claude Code layer</a></li><li><a href="../notes.html">Notes</a></li><li><a href="../report.html">Report</a></li><li><a href="../brief.html">Brief</a></li></ul></nav>
+</header>
+<main id="main">
+<p class="kicker">Drafted document · rank 4 · email template</p>
+<h1>Settlement and invoice resolution: email template</h1>
+<p class="prefix">Drafted by the run for the process owner to review. The body is model prose that passed the draft gate; the title, the line under it and the Evidence section are written by code, and every quote in the Evidence section is checked against the raw message. <a href="../run.html#documents">All the drafted documents</a>.</p>
+<div class="doc"><p>Draft prepared from 170 emails about this process, for the process owner to review. Evidence about this process, quoted exactly from the emails, is listed at the end.</p>
+<h2>When to send</h2>
+<p>Send this query when Settlements or accounting finds that a counterparty invoice or payment does not match the deal as booked in Sitara. Typical triggers:</p>
+<ul><li>A different price on the invoice than in Sitara (for example, the counterparty billed a price that differs from the Sitara price by a fraction of a cent).</li><li>An unpriced or wrong index on the ticket.</li><li>Volumes not yet actualized, so there is nothing in volume management to settle against.</li><li>Deals that may need to be netted or washed out together.</li><li>An invoice for gas that was never paid.</li></ul>
+<p>Send one query per deal, as soon as the mismatch is found, so the owner has the longest possible time before the payment date.</p>
+<h3>Setup (once)</h3>
+<ol><li>Set up a variance list at <mark class="blank">[location, such as a shared sheet]</mark> with one row per mismatch: deal number, counterparty, invoice figure, Sitara figure, responsible desk, payment due date, date sent, status.</li><li>Set up a desk lookup at <mark class="blank">[location]</mark> that maps each counterparty or meter to the scheduler or trader who owns the deal, and keep it current when people move or leave. Use it to pick the recipient so the query does not go to the wrong desk.</li><li>Run a daily match of counterparty invoices against Sitara deal prices and volumes <mark class="blank">[proposed: each morning]</mark>, and add every variance to the list before sending.</li></ol>
+<h2>Sender and recipients</h2>
+<p>People doing this work (counted from the emails): Bill Williams III (29 written), Darron C Giron (15 written, 5 forwarded), Megan Parker (13 written, 1 forwarded), Katherine Herrera (10 written, 4 forwarded). Named as owner in the emails: Megan Parker (Sep 2000), Tom Acton (Nov 2000), Darron C Giron (Jan 2001), Melissa K Ratnala (Sep 2000); the process owner settles which. Owner: <mark class="blank">[process owner to confirm]</mark>.</p>
+<h3>Sender</h3>
+<p>The Settlements or accounting analyst who found the mismatch. The sender owns the query until the deal is corrected and the invoice is paid or rebilled, and keeps the variance list current.</p>
+<h3>Recipients</h3>
+<ul><li>To: the scheduler or trader who owns the deal, taken from the desk lookup.</li><li>Cc: the Settlements lead <mark class="blank">[confirm still in force]</mark> and, for power disputes, the person who can pull trader tape recordings or check published market prices.</li><li>Do not send dispute emails to the counterparty or customer unless the Settlements lead says to <mark class="blank">[confirm still in force]</mark>. Tell the counterparty the correct price only after the ticket is corrected or the owner confirms what to bill.</li><li>If the desk lookup does not show an owner, or the owner redirects you, send to the desk lead and ask who handles the deal. Record the answer in the lookup.</li></ul>
+<h2>Email</h2>
+<p>Subject: Deal <mark class="blank">[deal number]</mark>: <mark class="blank">[counterparty]</mark> invoice <mark class="blank">[invoice figure]</mark> vs Sitara <mark class="blank">[Sitara figure]</mark>, payment due <mark class="blank">[payment due date]</mark></p>
+<pre>Hi <mark class="blank">[owner name]</mark>,
+
+The <mark class="blank">[counterparty]</mark> invoice for <mark class="blank">[delivery month]</mark> on deal <mark class="blank">[deal number]</mark> does not match Sitara.
+
+Invoice: <mark class="blank">[price or volume on invoice]</mark> <mark class="blank">[unit, such as $/MMBtu or MMBtu/d]</mark>
+Sitara: <mark class="blank">[price or volume in Sitara]</mark> <mark class="blank">[unit]</mark>
+Index on the ticket: <mark class="blank">[index or &quot;unpriced&quot;]</mark>
+Payment due: <mark class="blank">[payment due date]</mark>
+
+Please verify the deal and reply with one of the following:
+1. The Sitara ticket is right, bill or pay <mark class="blank">[figure]</mark>.
+2. The ticket needs correcting to <mark class="blank">[figure]</mark>. Please correct it in Sitara and tell me when it is done.
+3. This deal belongs to <mark class="blank">[other desk or person]</mark>.
+
+For a power dispute, please say whether you checked the tapes or the published market price.
+
+I need your answer by <mark class="blank">[proposed: two business days before the payment due date]</mark> so I can rerun the invoice and confirm before it is due.
+
+Thanks,
+<mark class="blank">[sender name]</mark>
+<mark class="blank">[Settlements contact details]</mark></pre>
+<h2>If there is no reply</h2>
+<ol><li>Wait <mark class="blank">[proposed: one business day]</mark>, then send one follow-up to the same owner with the original query below it and the payment due date in the first line.</li><li>If there is still no answer, call the owner, then escalate to the desk lead and copy the Settlements lead <mark class="blank">[proposed: one reminder, then escalate]</mark>.</li><li>If the owner redirects the query, update the desk lookup and resend to the new owner. Do not start a new thread with a different subject.</li><li>If Sitara blocks the fix (a ticket cannot be opened to correct swing pricing, or two prices are held for one day), tell the owner and the Sitara support contact <mark class="blank">[Sitara support contact]</mark> and record the block on the variance list. Do not tell the counterparty a corrected price until the ticket matches.</li><li>If volumes are not yet actualized, ask the volume management group to actualize them first, then resend the query.</li><li>If the counterparty does not return calls about the payment or dispute, note each attempt on the variance list and escalate to the desk lead before the payment due date.</li><li>If the owner is leaving, ask them to hand every open item on the variance list to a named person before their last day, and update the desk lookup.</li><li>If a price believed final changes again, or the counterparty changes its price during the dispute, send a new query with the latest figures and mark the earlier one superseded on the list.</li><li>Close the row on the variance list only when the invoice is paid or rebilled and confirmed.</li></ol>
+<h2>Evidence</h2>
+<p>Passages about this process, each quoted exactly from the email named above it. They support the document as a whole, not any one line of it.</p>
+<h3>The work</h3>
+<ul><li><code>corpus/farmer-d/logistics/1528.</code> (2000-11-17, from Katherine Herrera):<blockquote>Are these deals suppose to be a washout and netted together?</blockquote></li><li><code>corpus/farmer-d/logistics/147.</code> (2001-05-07, from Cynthia Hakemack):<blockquote>BP invoiced HPL at $4.955 for the deal below, and Sitara shows $4.95.</blockquote></li><li><code>corpus/williams-w3/sent_items/266.</code> (2001-09-05, from Williams III, Bill):<blockquote>Per your request I have double checked Risk&#39;s daily record on ISO revenue/expenses for WHOURLY book in August and everything checked out.</blockquote></li><li><code>corpus/williams-w3/sent_items/131.</code> (2001-10-31, from Williams III, Bill):<blockquote>Please do NOT send emails regarding our disputes to our customers--El Paso or others.</blockquote></li><li><code>corpus/giron-d/inbox/280.</code> (2001-11-30, from Carl Sulzer GRE/ER Fuel/Plant):<blockquote>I am open to a settlement based on the change in the market price</blockquote></li><li><code>corpus/farmer-d/logistics/124.</code> (2001-05-24, from Ray, Tess):<blockquote>Can you confirm if 04/01 sales price for SA-745578, IF - $.06 per entry in Sitara</blockquote></li><li><code>corpus/giron-d/sent/680.</code> (2000-08-28, from Darron C Giron):<blockquote>Enron Canada purchase deal # 121397  Was 4.18427 should be 4.10185</blockquote></li><li><code>corpus/farmer-d/logistics/2048.</code> (2001-01-22, from Parker, Megan):<blockquote>Never mind.  They are now changing their price to 6.23.</blockquote></li><li><code>corpus/farmer-d/logistics/74.</code> (2001-08-17, from Vela, Valerie):<blockquote>Deal 819594 - the commodity price needs to be WAHA.HUB.GDP.D.A+.02</blockquote></li><li><code>corpus/farmer-d/logistics/1998.</code> (2000-12-20, from Julie Meyers):<blockquote>Can you please validate if this is his gas or if this deal ticket should have</blockquote></li><li><code>corpus/farmer-d/logistics/604.</code> (1999-12-21, from Julie Meyers):<blockquote>I wanted to update you on those Phillips deals that the counterparty is</blockquote></li><li><code>corpus/farmer-d/logistics/1058.</code> (2000-04-19, from Katherine Herrera):<blockquote>Would you like for me to confirm the conference call that Duke has requested</blockquote></li><li><code>corpus/williams-w3/sent_items/278.</code> (2001-08-29, from Williams III, Bill):<blockquote>In an effort to curb El Paso settlements issues, I&#39;ve requested several sets of tapes over the past few days.</blockquote></li><li><code>corpus/williams-w3/sent_items/322.</code> (2001-08-07, from Williams III, Bill):<blockquote>It looks like 28 mws at $198 and 75 mws at $223.00.</blockquote></li><li><code>corpus/farmer-d/logistics/1039.</code> (2000-04-13, from Sherlyn Schumack):<blockquote>Recap of PG&amp;E Texas meeting 4/12/00.</blockquote></li><li><code>corpus/giron-d/sent/12.</code> (2001-05-09, from Darron C Giron):<blockquote>Can you please update the 04/01 price for deal # 27253 in Sitara?</blockquote></li><li><code>corpus/farmer-d/logistics/922.</code> (2000-03-20, from Julie Meyers):<blockquote>We have a price difference with Mitchell Gas Services for 2/00 production,</blockquote></li><li><code>corpus/farmer-d/logistics/29.</code> (2001-10-31, from Parker, Megan):<blockquote>I received an invoice from Four Square Gas Company today for May 2001 gas that was never paid.</blockquote></li><li><code>corpus/farmer-d/logistics/132.</code> (2001-05-22, from Charlene Richmond):<blockquote>Could you fix asap because payment is due on 25th.</blockquote></li><li><code>corpus/farmer-d/logistics/78.</code> (2001-08-14, from Vela, Valerie):<blockquote>On day 18, did you intentionally enter 50,000 days or was it a slip of the fingers?</blockquote></li></ul>
+<h3>Where it stalls</h3>
+<ul><li><code>corpus/farmer-d/logistics/106.</code> (2001-06-25, from aep.com):<blockquote>I tried to get into the Sitara ticket # 373590 to correct the swing pricing</blockquote></li><li><code>corpus/farmer-d/logistics/1200.</code> (2000-06-12, from Katherine Herrera):<blockquote>Have you had a chance to change the pricing in the system?</blockquote></li><li><code>corpus/farmer-d/logistics/174.</code> (2001-04-17, from Rebecca Griffin):<blockquote>Let me know if this should go to someone else.</blockquote></li><li><code>corpus/farmer-d/logistics/604.</code> (1999-12-21, from Julie Meyers):<blockquote>I have left Gary L. a voice mail, but I have a</blockquote></li><li><code>corpus/farmer-d/logistics/99.</code> (2001-07-09, from Elizabeth L Hernandez):<blockquote>I have not received a response from you regarding the pricing discrepancies on these deals.</blockquote></li><li><code>corpus/giron-d/sent/643.</code> (2000-09-19, from Darron C Giron):<blockquote>Any word?  I am going to send in the water fall today so please let me know.</blockquote></li></ul>
+<h3>Who owns it</h3>
+<ul><li><code>corpus/farmer-d/logistics/1241.</code> (2000-06-26, from Rita Wynne):<blockquote>This is the piece that we need Daren&#39;s help on.</blockquote></li><li><code>corpus/farmer-d/logistics/1420.</code> (2000-09-22, from Kristen J Hanson):<blockquote>Megan Parker is handling this</blockquote></li><li><code>corpus/farmer-d/logistics/2037.</code> (2001-01-09, from Fred Boas):<blockquote>Kim Vaughn has taken over all of Kathy&#39;s meters.</blockquote></li><li><code>corpus/giron-d/sent/643.</code> (2000-09-19, from Darron C Giron):<blockquote>Please field all monetized questions/requests through me.</blockquote></li></ul>
+<p>Counted from the emails: this work came up 127 times over 27 active months (1999-12-21 to 2002-03-05), across 170 emails, with 132 staff taking part.</p>
+<p>Estimated, not counted: about 45 minutes of hands-on work each time (range 20 to 120), about 40% of it automatable. Basis: seen in the emails; proposed by a model and checked by code.</p></div>
+</main>
+<footer class="foot">
+<p><a href="https://github.com/Schom975-coder/observation-agent-assignment">The repository on GitHub</a> · Scott Hom · <a href="settlement-resolution.md">This page in Markdown</a> · <a href="../llms.txt">llms.txt</a> · <a href="../llms-full.txt">llms-full.txt</a></p>
+</footer>
+</div>
+<script>
+(() => {
+  const button = document.getElementById('copy-url');
+  const url = document.getElementById('page-url');
+  if (!button || !url) return;
+  button.hidden = false;
+  const select = () => {
+    const range = document.createRange();
+    range.selectNodeContents(url);
+    const sel = window.getSelection();
+    if (sel) { sel.removeAllRanges(); sel.addRange(range); }
+  };
+  button.addEventListener('click', () => {
+    const text = url.textContent || '';
+    const selected = () => { select(); button.textContent = 'Selected: press Ctrl+C or Cmd+C'; };
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(() => { button.textContent = 'Copied'; }, selected);
+    else selected();
+  });
+})();
+</script>
+</body>
+</html>

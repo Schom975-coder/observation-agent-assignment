@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Notes · Observation agent</title>
+<meta name="description" content="NOTES.md: how Claude Code was driven, what went to subagents and in parallel, where it went wrong, where the system is most likely wrong and what it took on faith.">
+<meta name="obs-run" content="20261019T134634Z">
+<link rel="canonical" href="https://schom975-coder.github.io/observation-agent-assignment/notes.html">
+<link rel="alternate" type="text/markdown" href="notes.md">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<aside class="ai-note" aria-label="Reading with an AI assistant">
+<p class="ai-text">Reading this with an AI assistant? This site is set up for Claude to read in full. Give it this page's address and ask it anything about the project.</p>
+<p class="ai-url"><code id="page-url">https://schom975-coder.github.io/observation-agent-assignment/notes.html</code> <button type="button" id="copy-url" class="copy" hidden>Copy address</button></p>
+</aside>
+<div class="brandrule" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<div class="shell">
+<header class="top">
+<p class="site"><a href="index.html">Observation agent</a> <span class="runline">Submitted run of 19 Oct 2026</span></p>
+<nav aria-label="Pages"><ul class="nav"><li><a href="index.html">Home</a></li><li><a href="dashboard/index.html">Dashboard</a></li><li><a href="how-to-use.html">How to use</a></li><li><a href="how-to-run.html">How to run</a></li><li><a href="run.html">The run</a></li><li><a href="architecture.html">Architecture</a></li><li><a href="design.html">Design</a></li><li><a href="process.html">How it was built</a></li><li><a href="claude-dir.html">Claude Code layer</a></li><li><a href="notes.html" aria-current="page">Notes</a></li><li><a href="report.html">Report</a></li><li><a href="brief.html">Brief</a></li></ul></nav>
+</header>
+<main id="main">
+<p class="kicker">Notes</p>
+<p class="prefix">This is <code>NOTES.md</code> from the repository, rendered. <a href="https://github.com/Schom975-coder/observation-agent-assignment/blob/main/NOTES.md">NOTES.md on GitHub</a></p>
+<h1 id="notes">Notes</h1>
+<p>A Claude Code pipeline that reads all 3,240 messages, prices recurring work from cited evidence and drafts documents. Figures are from the submitted run (<code>node obs.mjs summary</code>); the site expands every section: <a href="https://schom975-coder.github.io/observation-agent-assignment/">https://schom975-coder.github.io/observation-agent-assignment/</a>.</p>
+<h2 id="how-we-drove-claude-code">How we drove Claude Code</h2>
+<p>The <code>/observe</code> skill orchestrates: each turn it runs <code>node obs.mjs advance</code>, which does every ready code step and returns job IDs for background subagents. Hooks: PreToolUse enforces per-agent allowlists, SubagentStop validates and records each job, Stop blocks an early stop with the next command. A content-hash ledger keeps reruns warm. A throwaway experiment first tested four Claude Code behaviours the loop needs. Cold <code>claude -p</code> runs: 32 min 34 s, then 25 min 01 s to 29 min 51 s after loop changes; the submitted run 28 min 59 s with 130 subagents, a warm rerun 19 s (57 s with start-up) with none. To build it, the main session chaired: architects and review panels in fresh contexts, implementers on disjoint files against written briefs, an independent lighter-model review before our own tests, browser click-throughs on real data. Scott approved designs and daytime commits; overnight work stayed on feature branches.</p>
+<h2 id="what-we-handed-to-subagents-and-why">What we handed to subagents, and why</h2>
+<p>Judgement, never counting. Five pipeline agents, each with Read and Write only and a code gate: the taxonomist once, an extractor per batch (99), the merger once, a synthesizer per group of processes, a drafter per document. They decide membership, aliasing, descriptions, one bounded work estimate per process, and prose; code does every count, tier and sum. Agent definitions pin each stage&#39;s model and effort (<code>.claude/agents/</code>).</p>
+<h2 id="how-we-budgeted-their-context">How we budgeted their context</h2>
+<p>Read returns at most 25,000 tokens and numbers each line, so a batch stays under 64,000 bytes and 22,000 tokens, estimated as (bytes + 8 x lines) / 3: 99 batches. Synthesis groups hold at most four processes and 24,000 tokens. The orchestrator sees IDs and JSON, never email; fix-round problems travel in files. Prompts carry only a job ID and folder: typing 672-776-character prompts cost the first cold run about 4 minutes.</p>
+<h2 id="what-ran-in-parallel">What ran in parallel</h2>
+<p>Up to 20 extractors at once. Occupancy was the lever: 6.5 of 12 slots busy on average in M4, 10.0 of 20 in the first cold run, 11.6 with ID-only prompts and one <code>advance</code> per cycle, 12.5 with the orchestrator&#39;s effort pinned and a short folder path. Synthesis and drafting each run as one wave.</p>
+<h2 id="where-claude-code-got-it-wrong-and-how-we-caught-it">Where Claude Code got it wrong, and how we caught it</h2>
+<p>All caught before any output:</p>
+<ul><li>The SubagentStop block cannot re-enter a subagent that ended through its hand-back tool (auto mode); a deliberately corrupted batch stayed <code>running</code> (M3). Fix rounds became ledger re-dispatches in every mode.</li><li>Review showed the first corpus guard, a deny-list, let an extractor overwrite the guard hook (now an allowlist), and the taxonomy gate admitted instructions in definitions (now refused).</li><li>Review found 77 of 974 forwards mislabelled from quoted banners (the implementers&#39; tests had passed) and our de-duplication would chain daily sends into one.</li><li>Drafts made one email a standing rule and its sender the owner; better instructions gained a point in ten, so code writes the people line.</li><li>One person&#39;s four addresses counted as four staff; folding cut staff counts from 726 to 688, and an eye check caught a wrong fold (<code>m..presto</code>).</li><li>M7 reviews caught email text forming live links in <code>report.md</code> and a regex older Safari cannot parse, which would have blanked the dashboard.</li></ul>
+<p>Submitted run: 2,684 quotes exact, 13 repaired, 0 rejected; 4 fix rounds.</p>
+<h2 id="what-we-would-build-next-with-another-week">What we would build next with another week</h2>
+<p>A company-wide estimate from four mailboxes, assumptions stated; a hand check of the occurrences behind the top opportunities; nickname and sound-alike folds with evidence; per-sentence citations and worked examples in drafts; an injection check beyond phrases.</p>
+<h2 id="where-the-system-is-most-likely-wrong">Where the system is most likely wrong</h2>
+<p>By dollar impact:</p>
+<ol><li>Model-estimated hands-on minutes per round: $1,705 of the $2,231 a month ($526 counted). Bounded (1-480 minutes, at most 80% automatable), cited from 3+ rounds and 2+ senders, overridable. Range $1,243 to $4,989; forced reruns of the merge and estimates moved the headline 5% and 7.6%.</li><li>The merge, which placed 26% of tagged mail.</li><li>Occurrences: with no In-Reply-To headers, rounds come from subjects, 45-day gaps and fresh sends.</li><li>Tagging: 80.8% exact (84.6% after the merge) on 52 code-sampled messages, labelled blind by a fresh agent; Scott kept its calls on the 8 it was least sure of.</li><li>13 forwarded reports with stripped headers, priced as long emails.</li><li>Unsourced draft details, marked <code>[proposed: ...]</code>.</li></ol>
+<h2 id="what-it-took-on-faith">What it took on faith</h2>
+<p>That email shows the work: phone and screen work leave no trace, so totals are floors. The brief&#39;s $85 an hour and our per-action minutes (<code>config/effort-rates.json</code>). That each address fold is one person, and that four mailboxes&#39; recurring mail represents those people&#39;s processes. Neither of us knows the energy business: the process list, gold labels and drafts&#39; domain detail are the agents&#39; calls, checked for citations and consistency, not expertise. Undocumented Claude Code details, each failing safe. macOS, seen only through CI. Checked, not trusted: the corpus is about 6-8 times a 200k window, not thirty; we found the nine planted messages by their ID shape; the pipeline detects them by content and never reads that shape.</p>
+<h2 id="what-we-drafted-and-why">What we drafted, and why</h2>
+<p>The rule (dashboard and report; numbers in <code>config/scoring.json</code>): &quot;We draft a working document for every process seen 10 or more times over 3 or more months by 2 or more staff whose automatable work is worth one hour a month ($85) or more.&quot; Capped at 8, floored at 3; 5 drafted. The synthesizer picks one of the brief&#39;s four types; a gate refuses money, percent and effort figures, citations and steering text. Emails are reusable templates, not replies to threads still open in a 2002 archive. Open work shows as 24 recent open loops. Citations are per document: validated facts in, verbatim evidence appended by code.</p>
+</main>
+<footer class="foot">
+<p><a href="https://github.com/Schom975-coder/observation-agent-assignment">The repository on GitHub</a> · Scott Hom · <a href="notes.md">This page in Markdown</a> · <a href="llms.txt">llms.txt</a> · <a href="llms-full.txt">llms-full.txt</a></p>
+</footer>
+</div>
+<script>
+(() => {
+  const button = document.getElementById('copy-url');
+  const url = document.getElementById('page-url');
+  if (!button || !url) return;
+  button.hidden = false;
+  const select = () => {
+    const range = document.createRange();
+    range.selectNodeContents(url);
+    const sel = window.getSelection();
+    if (sel) { sel.removeAllRanges(); sel.addRange(range); }
+  };
+  button.addEventListener('click', () => {
+    const text = url.textContent || '';
+    const selected = () => { select(); button.textContent = 'Selected: press Ctrl+C or Cmd+C'; };
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(() => { button.textContent = 'Copied'; }, selected);
+    else selected();
+  });
+})();
+</script>
+</body>
+</html>

@@ -628,7 +628,18 @@ function cells(line) {
   let s = line.trim();
   if (s.startsWith('|')) s = s.slice(1);
   if (s.endsWith('|') && !s.endsWith('\\|')) s = s.slice(0, -1);
-  return s.split(/(?<!\\)\|/).map((c) => c.trim().replace(/\\\|/g, '|'));
+  // Split on every "|" not written as "\|", by a scan (a lookbehind would not parse in older Safari).
+  /** @type {string[]} */
+  const parts = [];
+  let start = 0;
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === '|' && s[i - 1] !== '\\') {
+      parts.push(s.slice(start, i));
+      start = i + 1;
+    }
+  }
+  parts.push(s.slice(start));
+  return parts.map((c) => c.trim().replace(/\\\|/g, '|'));
 }
 /** @param {string} line */
 const isDelimiter = (line) => /^\|?\s*:?-+:?\s*(?:\|\s*:?-+:?\s*)*\|?$/.test(line.trim());

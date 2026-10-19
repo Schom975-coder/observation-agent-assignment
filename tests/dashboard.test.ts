@@ -3,15 +3,21 @@
 // fonts/) and unit tests of viewer.js, imported in Node and run against a small DOM shim
 // (tests/fixtures/dom.ts): the quote marked at its stored offsets, "no usable date", the flag note,
 // the lazy render of a long message, the lookup hints, and the drafted-document renderer, which must
-// follow the report's grammar (src/report/markdown.ts) node for node. Checks on the page files that
-// arrive with the pages (index.html, app.js, styles.css) skip with a reason while they are absent.
+// follow the report's grammar (src/report/markdown.ts) node for node. Then the pages (app.js): its
+// pure helpers imported in Node (figures placed in sentences, the chart's layout with the drafting
+// line kept clear, sorting that never renumbers), and static checks that every drill target has a
+// layer and the top layer's words hold no internal key.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
+import { existsSync, mkdtempSync, readdirSync, readFileSync, rmSync, statSync } from 'node:fs';
+import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { renderMarkdownHtml } from '../src/report/markdown.ts';
 import { inertMarkdown } from '../src/report/text.ts';
+import { loadInputs, renderOutputs } from '../src/report/build.ts';
+import { TARGET_KINDS } from '../src/report/types.ts';
+import { builtProject } from './fixtures/pipeline.ts';
 import { ShimDocument, ShimElement, byText, serialize, type ShimNode } from './fixtures/dom.ts';
 
 const repo = fileURLToPath(new URL('..', import.meta.url));
@@ -191,20 +197,11 @@ test('viewer.js reads the document only inside its functions', () => {
   }
 });
 
-test('the page files arrive together', (t) => {
-  const present = PAGE_FILES.filter(has);
-  if (present.length === 0) {
-    t.skip('index.html, app.js and styles.css arrive with the pages');
-    return;
-  }
-  assert.deepEqual(present, PAGE_FILES);
+test('the page files are all there: index.html, app.js, styles.css and viewer.js', () => {
+  assert.deepEqual([...PAGE_FILES, 'viewer.js'].filter(has), [...PAGE_FILES, 'viewer.js']);
 });
 
-test('index.html: no inline script or style, no handler attribute, every script a local module', (t) => {
-  if (!has('index.html')) {
-    t.skip('index.html arrives with the pages');
-    return;
-  }
+test('index.html: no inline script or style, no handler attribute, every script a local module', () => {
   const html = read('index.html');
   assert.doesNotMatch(html, /<style\b/i, 'no <style> element');
   assert.doesNotMatch(html, /\sstyle\s*=/i, 'no style attribute');
@@ -218,11 +215,7 @@ test('index.html: no inline script or style, no handler attribute, every script 
   }
 });
 
-test('A2: the fonts load from fonts/', (t) => {
-  if (!has('styles.css')) {
-    t.skip('styles.css arrives with the pages');
-    return;
-  }
+test('A2: the fonts load from fonts/', () => {
   const urls = [...read('styles.css').matchAll(/url\(\s*['"]?([^'")]+)['"]?\s*\)/g)].map((m) => m[1] as string);
   assert.ok(urls.length >= 3, 'the three faces');
   for (const u of urls) {
@@ -623,4 +616,286 @@ test('renderMarkdown: a message id in backticks is a button that opens it', () =
   assert.deepEqual(opened, ['corpus/a/inbox/1.']);
   assert.equal(byText(wrap, 'code', 'not-an-id')?.getAttribute('class'), null);
   assert.equal((wrap.querySelector('li') as ShimElement).querySelector('blockquote')?.textContent, 'a quote');
+});
+
+// ---- The pages (app.js) ----
+
+type Target = { kind: string; [k: string]: unknown };
+type Num = { v: number; t: string; x?: string; k?: string; d: Target };
+type Step = { rank: number; label: string; counted: number; cum: number };
+type Geometry = {
+  W: number;
+  m: { l: number; r: number; t: number; b: number };
+  sw: number;
+  tx: number | null;
+  every: boolean;
+  narrow: boolean;
+  rankLabels: Array<{ i: number; x: number; text: string }>;
+  labels: Array<{ j: number; x: number; y: number; w: number }>;
+  rankY: number;
+  captionY: number;
+  axis: number;
+  y: (c: number) => number;
+};
+type App = {
+  dateText: (utc: string | null) => string;
+  monthText: (ym: string) => string;
+  nextMonth: (ym: string) => string;
+  prevMonth: (ym: string) => string;
+  grouped: (n: number) => string;
+  hundredths: (x: number) => string;
+  tenths: (x: number) => string;
+  personName: (name: string | null, email: string) => string;
+  findFigure: (text: string, figure: string, from?: number) => number;
+  placeNums: <T>(text: string, nums: Num[], make: (n: Num) => T) => Array<string | T>;
+  sortRows: (rows: unknown[], key: string, dir: 'ascending' | 'descending') => Array<{ rank: number; key: string }>;
+  nextTheme: (t: string) => string;
+  chartGeometry: (o: { width: number; mini?: boolean; steps: Step[]; yMax: number; drafted: number; measure?: (t: string) => number }) => Geometry;
+  numLabel: (n: Num, shown: string) => string;
+  processFile: (key: string) => string;
+  OPENS: Record<string, string>;
+  sameTarget: (a: Target, b: Target) => boolean;
+  quoteFor: (quotes: Array<{ id: string; message_id: string; raw_text: string }>, id: string, text: string) => { id: string } | null;
+  ROW_KEEP: Record<string, (r: unknown) => boolean>;
+  ROWS_TITLE: Record<string, string>;
+  BUCKET_TITLE: Record<string, string>;
+  useData: (data: unknown) => void;
+  renderOverview: () => void;
+  processDetails: (row: unknown, file: unknown) => ShimNode[];
+};
+// Importing the page's script at all proves its top level touches no DOM.
+const app = (await import(pathToFileURL(join(dash, 'app.js')).href)) as App;
+const appSource = read('app.js');
+
+test('app.js: dates, months and stored hundredths are read as written, never parsed or rounded', () => {
+  assert.equal(app.dateText('2001-06-12T17:59:47Z'), '12 Jun 2001');
+  assert.equal(app.dateText(null), 'no usable date');
+  assert.equal(app.dateText('Tues, 32 Febuary 2001'), 'no usable date');
+  assert.equal(app.monthText('2002-01'), 'January 2002');
+  assert.equal(app.nextMonth('2001-12'), '2002-01');
+  assert.equal(app.prevMonth('2002-01'), '2001-12');
+  assert.equal(app.grouped(3240), '3,240');
+  assert.equal(app.hundredths(762), '7.62');
+  assert.equal(app.hundredths(5950), '59.50');
+  assert.equal(app.hundredths(123456), '1,234.56');
+  assert.equal(app.hundredths(5), '0.05');
+  assert.equal(app.tenths(257), '25.7');
+  assert.equal(app.personName('Williams III, Bill', 'bill.williams@enron.com'), 'Bill Williams III');
+  assert.equal(app.personName(null, 'jim.reyes@enron.com'), 'jim.reyes@enron.com');
+});
+
+test('app.js: a sentence’s figures become buttons in order, each as a whole figure', () => {
+  const n = (t: string): Num => ({ v: 0, t, d: { kind: 'total' } });
+  const text = '21 threads were still waiting on someone when their mailbox’s record stops; 5 are in drafted processes.';
+  const parts = app.placeNums(text, [n('21 threads'), n('5')], (x) => `[${x.t}]`);
+  assert.equal(parts.join(''), '[21 threads] were still waiting on someone when their mailbox’s record stops; [5] are in drafted processes.');
+  // Not inside a longer number, a decimal or a dollar figure; a figure that is not there stays text.
+  assert.equal(app.findFigure('of 15 and 1.5 and $5 and 5.', '5'), 25);
+  assert.equal(app.findFigure('$1,500 of the $2,050', '$2,050'), 14);
+  assert.equal(app.findFigure('worth $1,500', '1,500'), -1);
+  const kept = app.placeNums('About half (17 of 37, worth $1,500 of the $2,050) draw', [n('17'), n('37'), n('$1,500'), n('$9,999'), n('$2,050')], (x) => `[${x.t}]`);
+  assert.equal(kept.join(''), 'About half ([17] of [37], worth [$1,500] of the [$2,050]) draw');
+});
+
+test('A7: sorting another column reorders the rows and never renumbers them', () => {
+  const row = (rank: number, key: string, total: number, hours: number, occ: number) => ({ rank, key, name: key, total: { v: total }, high: { v: total * 2 }, hours: { v: hours }, occurrences: { v: occ } });
+  const rows = [row(1, 'a', 300, 30, 5), row(2, 'b', 200, 40, 50), row(3, 'c', 200, 10, 9), row(4, 'd', 100, 20, 9)];
+  const seen = app.sortRows(rows, 'seen', 'descending');
+  assert.deepEqual(seen.map((r) => r.key), ['b', 'c', 'd', 'a'], 'ties fall back to the rank');
+  assert.deepEqual(seen.map((r) => r.rank), [2, 3, 4, 1], 'each row keeps its own rank');
+  assert.deepEqual(app.sortRows(rows, 'hours', 'ascending').map((r) => r.key), ['c', 'd', 'a', 'b']);
+  assert.deepEqual(app.sortRows(rows, 'rank', 'ascending').map((r) => r.rank), [1, 2, 3, 4]);
+  assert.deepEqual(rows.map((r) => r.key), ['a', 'b', 'c', 'd'], 'the data is not reordered in place');
+  // The rank cell is filled from the row's own rank, in one place.
+  const cells = appSource.split('\n').filter((l) => l.includes("'r rk'"));
+  assert.deepEqual(cells.map((l) => l.trim()), ["return el('td', { class: 'r rk' }, String(row.rank));"]);
+});
+
+// Steps shaped like a run: big first steps, a long tail, labels as long as real process names.
+function stepsOf(n: number): Step[] {
+  let cum = 0;
+  return Array.from({ length: n }, (_, i) => {
+    const total = Math.max(200, Math.round(24000 / (i + 1)));
+    cum += total;
+    return { rank: i + 1 + (i > 27 ? 1 : 0), label: `Pipeline expansion and interconnect projects number ${i + 1}  $${Math.round(total / 100)}`, counted: Math.round(total / 5), cum };
+  });
+}
+
+test('6.3 fix 1: a direct label never comes within 4 px of the drafting line, and the caption sits below the rank labels', () => {
+  for (const width of [640, 700, 820, 980, 1180, 1400]) {
+    for (const drafted of [1, 2, 3, 4, 6, 8, 12, 20]) {
+      const g = app.chartGeometry({ width, steps: stepsOf(37), yMax: 250000, drafted });
+      const tx = g.tx as number;
+      assert.ok(g.tx !== null);
+      for (const L of g.labels) {
+        const clear = L.x - 4 > tx || L.x + L.w + 4 < tx;
+        assert.ok(clear, `width ${width}, drafted ${drafted}: the label of step ${L.j} spans ${L.x}..${L.x + L.w} across the line at ${tx}`);
+        assert.ok(L.y >= g.m.t + 12 - 1e-9, 'inside the plot');
+      }
+      // Stacked: no two labels share a row.
+      const ys = g.labels.map((L) => L.y).sort((a, b) => a - b);
+      ys.slice(1).forEach((y, i) => assert.ok(y - (ys[i] as number) >= 18 - 1e-9, `labels ${i} and ${i + 1} overlap`));
+      assert.ok(g.captionY - g.rankY >= 14, 'the caption is a row below the rank labels');
+    }
+  }
+  // Under 640 px the chart drops direct labels (the table carries the names); the mini chart has none.
+  assert.deepEqual(app.chartGeometry({ width: 600, steps: stepsOf(37), yMax: 250000, drafted: 6 }).labels, []);
+  assert.deepEqual(app.chartGeometry({ width: 900, mini: true, steps: stepsOf(37), yMax: 250000, drafted: 6 }).labels, []);
+});
+
+test('6.3 fix 2: every rank is labelled at 14 px a step or more; narrower, rank 1, every fifth and the last, with a tick on every step', () => {
+  const wide = app.chartGeometry({ width: 980, steps: stepsOf(37), yMax: 250000, drafted: 6 });
+  assert.ok(wide.sw >= 14 && wide.every);
+  assert.deepEqual(wide.rankLabels.map((r) => r.text), stepsOf(37).map((s) => String(s.rank)));
+  const narrow = app.chartGeometry({ width: 375, steps: stepsOf(37), yMax: 250000, drafted: 6 });
+  assert.ok(narrow.sw < 14 && !narrow.every, 'the caller draws a tick on every step');
+  const shown = narrow.rankLabels.map((r) => Number(r.text));
+  const ranks = stepsOf(37).map((s) => s.rank);
+  assert.equal(shown[0], 1);
+  assert.equal(shown.at(-1), ranks.at(-1));
+  for (const r of shown.slice(1, -1)) assert.equal(r % 5, 0, `rank ${r}`);
+  assert.ok(shown.length >= 6);
+  // The page draws the ticks on every step when not every rank is labelled.
+  assert.match(appSource, /if \(!mini && !g\.every\) \{\s*steps\.forEach\(\(_s, i\) => svg\.append\(sv\('line', \{ class: 'ax-tick'/);
+});
+
+test('every kind of drill target opens a layer or a view, and every figure says what it opens', () => {
+  for (const kind of TARGET_KINDS) {
+    assert.match(appSource, new RegExp(`case '${kind}':`), `layerFor handles ${kind}`);
+    assert.ok(app.OPENS[kind], `a button for a ${kind} target says what it opens`);
+  }
+  const label = app.numLabel({ v: 3689, t: '$37', x: '$36.89', k: 'counted', d: { kind: 'formula', key: 'k' } }, '$37');
+  assert.equal(label, '$37, counted from the emails, exactly $36.89. Opens how this figure is worked out.');
+  assert.equal(app.numLabel({ v: 60, t: '60 times', d: { kind: 'occurrences', key: 'k' } }, '60 times'), '60 times. Opens every time it was seen.');
+});
+
+test('A19: the page’s own words hold no key, batch id, internal unit or tier letter', () => {
+  const literal = /'(?:[^'\\\n]|\\.)*'|"(?:[^"\\\n]|\\.)*"|`(?:[^`\\]|\\.)*`/g;
+  const bad = /batch-|synth-|draft-\d|x100|\bocc\b|cents|tier [ABC]\b/;
+  // A template's ${...} parts are code (field names such as rows_mostly_cents), not words.
+  for (const s of [...appSource.matchAll(literal)].map((m) => m[0].replace(/\$\{[^}]*\}/g, ''))) assert.doesNotMatch(s, bad, s);
+  assert.doesNotMatch(read('index.html'), bad);
+});
+
+test('the theme cycles system, light, dark; a process file is named as the build names it', () => {
+  assert.deepEqual(['system', 'light', 'dark', 'unknown'].map(app.nextTheme), ['light', 'dark', 'system', 'system']);
+  assert.equal(app.processFile('deal-ticket-setup'), 'process/deal-ticket-setup.json');
+  assert.equal(app.processFile('con'), 'process/p-con.json');
+  assert.equal(app.processFile('validated'), 'process/p-validated.json');
+});
+
+test('every browser storage call sits inside a try/catch', () => {
+  const lines = appSource.split('\n');
+  const uses = lines.map((l, i) => [l, i] as const).filter(([l]) => /localStorage\./.test(l));
+  assert.ok(uses.length >= 2);
+  for (const [, i] of uses) assert.match(lines.slice(Math.max(0, i - 3), i).join('\n'), /try \{/, `line ${i + 1}`);
+});
+
+test('no regular-expression lookbehind in the page scripts (Safari before 16.4 cannot parse one, and the page would not start)', () => {
+  for (const f of readdirSync(dash).filter((x) => x.endsWith('.js'))) {
+    read(f).split('\n').forEach((line, i) => assert.doesNotMatch(line, /\(\?<[=!]/, `${f}:${i + 1}`));
+  }
+});
+
+test('every element app.js looks up by id is in index.html or made by app.js', () => {
+  const html = read('index.html');
+  const made = new Set([...appSource.matchAll(/\bid: '([\w-]+)'/g)].map((m) => m[1] as string));
+  const used = new Set([
+    ...[...appSource.matchAll(/\$\('#([\w-]+)/g)].map((m) => m[1] as string),
+    ...[...appSource.matchAll(/getElementById\('([\w-]+)'\)/g)].map((m) => m[1] as string),
+    ...[...appSource.matchAll(/querySelector(?:All)?\('#([\w-]+)/g)].map((m) => m[1] as string),
+  ]);
+  assert.ok(used.size >= 10, [...used].join(', '));
+  for (const id of used) assert.ok(html.includes(`id="${id}"`) || made.has(id), `#${id}`);
+});
+
+// The string members of a union type in src/report/types.ts.
+function unionOf(name: string): string[] {
+  const types = readFileSync(join(repo, 'src', 'report', 'types.ts'), 'utf8');
+  const m = new RegExp(`export type ${name} =([\\s\\S]*?);`).exec(types);
+  assert.ok(m, name);
+  return [...(m[1] as string).matchAll(/'([^']+)'/g)].map((x) => x[1] as string);
+}
+
+test('every row filter lists and names its rows, every Methodology section has its anchor, every coverage bucket a title', () => {
+  const filters = unionOf('RowFilter');
+  assert.ok(filters.length >= 6);
+  for (const f of filters) {
+    assert.equal(typeof app.ROW_KEEP[f], 'function', `ROW_KEEP.${f}`);
+    assert.ok(app.ROWS_TITLE[f], `ROWS_TITLE.${f}`);
+  }
+  const sections = unionOf('MethodSection');
+  const anchors = new Set([...appSource.matchAll(/methodSec\('([\w-]+)'/g), ...appSource.matchAll(/id: 'method-([\w-]+)'/g)].map((m) => m[1] as string));
+  for (const s of sections) {
+    if (s === 'explainer') continue; // a layer of its own, not a section of the view
+    assert.ok(anchors.has(s), `#method-${s}`);
+  }
+  for (const b of unionOf('CoverageBucket')) assert.ok(app.BUCKET_TITLE[b], `BUCKET_TITLE.${b}`);
+});
+
+test('a figure inside the layer its target opens is plain text; a document’s evidence id finds its quote by comparison', () => {
+  assert.ok(app.sameTarget({ kind: 'occurrences', key: 'a' }, { kind: 'occurrences', key: 'a' }));
+  assert.ok(!app.sameTarget({ kind: 'occurrences', key: 'a', month: '2001-06' }, { kind: 'occurrences', key: 'a' }));
+  assert.ok(!app.sameTarget({ kind: 'months', key: 'a' }, { kind: 'occurrences', key: 'a' }));
+  assert.match(appSource, /seenLine\(r, \{ kind: 'occurrences', key \}\)/);
+  assert.match(appSource, /seenLine\(r, \{ kind: 'months', key \}\)/);
+  const quotes = [
+    { id: 'batch-001:e1', message_id: 'corpus/a/inbox/1.', raw_text: 'Please confirm\r\nthe June volumes.' },
+    { id: 'batch-001:e2', message_id: 'corpus/a/inbox/2.', raw_text: 'Something else.' },
+  ];
+  // The rendered blockquote joins its lines with <br>, so its text has no line break.
+  assert.equal(app.quoteFor(quotes, 'corpus/a/inbox/1.', 'Please confirmthe June volumes.')?.id, 'batch-001:e1');
+  assert.equal(app.quoteFor(quotes, 'corpus/a/inbox/2.', 'Please confirm the June volumes.'), null, 'another message');
+  assert.equal(app.quoteFor(quotes, 'corpus/a/inbox/1.', ''), null, 'no quote under the id');
+  // Asterisks the document's Markdown read as bold: the letters and digits still match.
+  const starred = [{ id: 'batch-002:e3', message_id: 'corpus/a/inbox/3.', raw_text: '****New ID is APX5****' }];
+  assert.equal(app.quoteFor(starred, 'corpus/a/inbox/3.', '***New ID is APX5****')?.id, 'batch-002:e3');
+});
+
+test('the overview and every process page render from a built fixture: figures as labelled buttons, data as text', (t) => {
+  const tmp = mkdtempSync(join(tmpdir(), 'obs pages '));
+  t.after(() => rmSync(tmp, { recursive: true, force: true }));
+  const { inputs, assets, shas } = loadInputs(builtProject(tmp));
+  const out = renderOutputs(inputs, assets, shas);
+  const json = (p: string): any => JSON.parse(out.files.get(p) as string);
+  const data = json('dashboard/data.json');
+  const hostile = '<img src=x onerror=alert(1)>';
+  data.rows[0].name = `${hostile} ${data.rows[0].name}`;
+  app.useData(data);
+  const g = globalThis as unknown as { document?: unknown };
+  const before = g.document;
+  const page = document.createElement('div');
+  page.setAttribute('id', 'overview');
+  document.body.append(page);
+  g.document = document;
+  /** Every element under a node. */
+  const all = (n: ShimNode): ShimElement[] => n.childNodes.flatMap((c) => (c instanceof ShimElement ? [c, ...all(c)] : []));
+  try {
+    app.renderOverview();
+    const text = page.textContent;
+    assert.ok(text.includes(`${data.headline.total.t} a month`), 'the headline');
+    assert.equal(page.querySelectorAll('article.finding').length, data.findings.length);
+    const inTotal = data.rows.filter((r: { in_total: boolean }) => r.in_total).length;
+    assert.equal(page.querySelectorAll('tr.row').length, Math.min(10, inTotal));
+    assert.ok(page.querySelectorAll('svg').length >= 1, 'the step chart');
+    const nums = page.querySelectorAll('button.num');
+    assert.ok(nums.length > 10);
+    for (const b of nums) assert.match(b.getAttribute('aria-label') ?? '', /\. Opens /, b.textContent);
+    // The headline's parts are buttons on the first screen.
+    for (const part of [data.headline.counted.t, data.headline.estimated.t]) assert.ok(nums.some((b) => b.textContent === part), part);
+    assert.ok(text.includes(hostile), 'a hostile name is shown as text');
+    for (const e of all(page)) {
+      assert.ok(!['img', 'script', 'iframe'].includes(e.localName), e.localName);
+      assert.equal(e.getAttribute('style'), null, `${e.localName} has no style attribute`);
+    }
+    for (const r of data.rows) {
+      const wrap = document.createElement('div');
+      wrap.append(...app.processDetails(r, json(`dashboard/${app.processFile(r.key)}`)));
+      assert.equal(wrap.querySelectorAll('h3').filter((h) => h.parentNode?.localName === 'section').length, 8, `${r.key}: eight sections`);
+      for (const e of all(wrap)) assert.ok(!['img', 'script'].includes(e.localName), `${r.key}: ${e.localName}`);
+    }
+  } finally {
+    g.document = before;
+    page.remove();
+  }
 });

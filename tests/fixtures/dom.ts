@@ -180,6 +180,18 @@ export class ShimElement extends ShimNode {
 }
 
 export class ShimDocument {
+  // A body to hang a page's shell on, and lookups through it (simple selectors only), so app.js can
+  // render a view with this document as the global one.
+  readonly body: ShimElement = new ShimElement(this, 'body');
+  getElementById(id: string): ShimElement | null {
+    return this.body.querySelector(`#${id}`);
+  }
+  querySelector(selector: string): ShimElement | null {
+    return this.body.querySelector(selector);
+  }
+  querySelectorAll(selector: string): ShimElement[] {
+    return this.body.querySelectorAll(selector);
+  }
   createElement(tag: string): ShimElement {
     return new ShimElement(this, tag);
   }

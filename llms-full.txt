@@ -568,7 +568,7 @@ The build writes every figure ready to show, with its kind and a drill target fr
 
 ## The 30-minute budget
 
-The first cold run, before drafting existed, took longer than the brief allows. Its log showed the extractors were not the bottleneck: the orchestrator was, typing every agent's prompt in full, so free slots sat empty while it wrote. Four changes followed, each measured in a timed rehearsal from a fresh clone: job prompts that carry only the job ID and the project folder; one `advance` command per turn that runs every ready step; one balanced wave of synthesizers; and a model and effort pinned in every agent file, with the orchestrator's effort pinned too, so a reviewer's own settings cannot slow the run or change its output. The submitted run took 29.0 minutes. The notes give the measured times run by run ([How we drove Claude Code](https://schom975-coder.github.io/observation-agent-assignment/notes.md#how-we-drove-claude-code)), and the rehearsals' logs are kept in [`out/runs/`](https://github.com/Schom975-coder/observation-agent-assignment/tree/main/out/runs) as timing evidence, listed on [the run page](https://schom975-coder.github.io/observation-agent-assignment/run.md#logs).
+The first cold run, before drafting existed, took longer than the brief allows. Its log showed the extractors were not the bottleneck: the orchestrator was, typing every agent's prompt in full, so free slots sat empty while it wrote. Four changes followed, each measured in a timed rehearsal from a fresh clone: job prompts that carry only the job ID and the project folder; one `advance` command per turn that runs every ready step; one balanced wave of synthesizers; and a model and effort pinned in every agent file, with the orchestrator's effort pinned too, so a reviewer's own settings cannot slow the run or change its output. The submitted run took 29.0 minutes. The notes tell how the time came down ([What ran in parallel](https://schom975-coder.github.io/observation-agent-assignment/notes.md#what-ran-in-parallel)), and the rehearsals' logs are kept in [`out/runs/`](https://github.com/Schom975-coder/observation-agent-assignment/tree/main/out/runs) as timing evidence, listed on [the run page](https://schom975-coder.github.io/observation-agent-assignment/run.md#logs).
 
 **Rejected:** more than 20 subagents in flight (the slots were not full as it was); two batches per extractor job (little gain once prompts were short); a lighter extractor effort (held in reserve behind a check of tagging accuracy).
 
@@ -731,7 +731,7 @@ At run time `/observe` loops on `node obs.mjs advance`, which runs every step re
 
 ## What we handed to subagents, and why
 
-Judgement, never arithmetic. Five agents, each reading its input, writing one file and checked by code: one proposes the processes, 99 extractors tag every email with a process and a verbatim quote, one merges the names they invent, 20 describe processes and estimate minutes per round, one per document drafts. Every count and dollar is code.
+Judgement, never arithmetic. Five agents, each reading its input, writing one file and checked by code: one proposes the processes, an extractor per batch (99) tags every email with a process and a verbatim quote, one merges the names they invent, one per group of processes (20) describes them and estimates minutes per round, and one per document drafts; retries come on top. Every count and dollar is code.
 
 ## How we budgeted their context
 

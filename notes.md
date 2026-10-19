@@ -17,7 +17,7 @@ At run time `/observe` loops on `node obs.mjs advance`, which runs every step re
 
 ## What we handed to subagents, and why
 
-Judgement, never arithmetic. Five agents, each reading its input, writing one file and checked by code: one proposes the processes, 99 extractors tag every email with a process and a verbatim quote, one merges the names they invent, 20 describe processes and estimate minutes per round, one per document drafts. Every count and dollar is code.
+Judgement, never arithmetic. Five agents, each reading its input, writing one file and checked by code: one proposes the processes, an extractor per batch (99) tags every email with a process and a verbatim quote, one merges the names they invent, one per group of processes (20) describes them and estimates minutes per round, and one per document drafts; retries come on top. Every count and dollar is code.
 
 ## How we budgeted their context
 

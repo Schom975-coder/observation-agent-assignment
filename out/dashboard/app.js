@@ -2857,6 +2857,7 @@ function renderShell() {
       D.run.later_runs && D.run.later_runs.v > 0 ? [', continued in ', num(D.run.later_runs), ` later ${D.run.later_runs.v === 1 ? 'run' : 'runs'}`] : null,
       D.run.date ? ` · ${dateText(D.run.date)}` : '', ' · ', num(D.scope.files, { after: ' messages' }), ' · ', num(D.rates.hourly), ' an hour.'),
     el('p', null, 'Counted: email actions found in the messages, priced at published minutes per action. Estimated: the hands-on work behind each round, estimated once per process from cited emails and checked by code.'),
+    el('p', null, D.sentences.rerun),
     el('p', null, `Prepared for Enron from ${numberWord(mbs.length)} employees’ archived mail. `, el('a', { href: 'report.html', class: 'link' }, 'The same figures as a printable report'), '.'),
   ]);
 }

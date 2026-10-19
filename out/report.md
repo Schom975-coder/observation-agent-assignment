@@ -2637,6 +2637,8 @@ The 18 processes seen too rarely to count are listed after the total in the full
 
 ## How the numbers are made
 
+Running /observe again reproduces these figures exactly. A fresh run (/observe --force) asks the model again, so its process list and work estimates, and the dollars built on them, can differ; the counting and arithmetic are exact either way.
+
 ### Rates
 
 - $85 an hour, the brief’s blended rate.

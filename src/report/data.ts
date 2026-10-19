@@ -855,6 +855,8 @@ export function buildData(raw: BuildInputs, opts: BuildOptions = {}): Built {
     range: F.rangeSentence(h.low, h.high),
     // What the work costs today beside the part that could be automated, and that both are floors.
     today: `This work costs ${F.money(h.today, 'total')} a month today (${F.hours(h.hours_x100.today)} hours); the ${F.money(h.total, 'total')} is the part that could be automated. Both are floors: email shows only part of the work.`,
+    // What a rerun does to these figures: the same run reproduces them; a fresh one asks the model again.
+    rerun: 'Running /observe again reproduces these figures exactly. A fresh run (/observe --force) asks the model again, so its process list and work estimates, and the dollars built on them, can differ; the counting and arithmetic are exact either way.',
     concentration: F.concentrationSentence({ rows: oneRows.length, of: ab.length, worth: oneShown, total: F.money(h.total, 'total') }),
     caution: F.cautionSentence({ drafted_one: draftedAb.filter((r) => r.one_mailbox).length, drafted: draftedAb.length }),
     threshold: F.thresholdSentence(scoring),

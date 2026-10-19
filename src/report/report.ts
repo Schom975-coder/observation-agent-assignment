@@ -253,6 +253,7 @@ export function buildReport(data: Omit<DashboardData, 'inputs' | 'outputs'>, pro
   const docs = data.documents;
   const how: Block[] = [
     h(2, 'How the numbers are made'),
+    p(S.rerun),
     h(3, 'Rates'),
     ul([
       [n(hourly), ' an hour, the brief’s blended rate.'],

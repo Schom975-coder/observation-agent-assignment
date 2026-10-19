@@ -13,7 +13,7 @@ import { createHash } from 'node:crypto';
 import { copyFileSync, cpSync, existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { buildSite, claudeRoles, loadConfig, NOT_COMMITTED, readAgents, type SiteResult } from '../site/build.ts';
+import { buildSite, claudeRoles, freshRunOf, loadConfig, NOT_COMMITTED, readAgents, type SiteResult } from '../site/build.ts';
 import { githubIds, renderMarkdown, slugId } from '../site/markdown.ts';
 import { publish } from '../site/publish.ts';
 import { buildStep } from '../src/report/build.ts';
@@ -586,3 +586,22 @@ test('8: README and drafted documents are rendered as text: no tag of theirs sur
   assert.ok(!/<img[^>]*onerror/.test(main), 'README: an image with a handler survived');
   assert.ok(main.includes('&lt;script&gt;alert(1)&lt;/script&gt;'), 'README tags shown as text');
 });
+
+test('freshRunOf: a forced run that wrote its scores gives its headline; anything else gives none', () => {
+  const line = (e: Record<string, unknown>) => `${JSON.stringify(e)}\n`;
+  const score = (total: string, missing: string) => ({
+    event: 'stage',
+    name: 'score',
+    summary: `score: tiers A+B $${total}/mo automatable (counted email $526.19 + estimated work $1,704.94), all tiers $2,683.45/mo, observed in 4 mailboxes, 1999-2002; 60 opportunities (13 A, 29 B, 18 C); ${missing}; wrote out/opportunities.json.`,
+  });
+  const forced = line({ event: 'run_start', force: true });
+  assert.deepEqual(freshRunOf(`${forced}not json\n${line(score('2,231.13', '2 estimates missing'))}`), { total: '2,231.13', counted: '526.19', estimated: '1,704.94', processes: 60, missing: 2 });
+  assert.equal(freshRunOf(forced + line(score('2,231.13', '1 estimate missing')))?.missing, 1);
+  // A later re-score in the same log wins, as it would in the file.
+  assert.equal(freshRunOf(forced + line(score('1,000.00', '0 estimates missing')) + line(score('2,231.13', '0 estimates missing')))?.total, '2,231.13');
+  assert.equal(freshRunOf(line({ event: 'run_start', force: false }) + line(score('2,231.13', '0 estimates missing'))), null, 'not forced');
+  assert.equal(freshRunOf(forced + line({ event: 'stage', name: 'merge accept', summary: 'merge: accepted' })), null, 'never scored');
+  assert.equal(freshRunOf(forced + line({ event: 'stage', name: 'score', summary: 'score: refused, 1 problem.' })), null, 'a refused score wrote nothing');
+  assert.equal(freshRunOf(''), null);
+});
+

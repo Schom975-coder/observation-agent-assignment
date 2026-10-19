@@ -7,14 +7,14 @@
     "people_sha": "58bf99503cc19b7e05e5e1b7537235cbf19d7bb6ba6beb35da597001b7cfcb7e",
     "messages_sha": "de4106958ceac3235b740b99b1060fd77b786632234cd84ebdc706a3985fbf88",
     "threads_sha": "ddc0517b84358157dd127576d90f0ac6f7b7aba214a6f09c7dfcd0545db0759d",
-    "assets_sha": "9ee4711875c7eaa16d816b80b828f34a8e60a5bc47098289a2b9433fc95410cc",
+    "assets_sha": "358cc559b5f4130b91aa5fc1d55dbcbedfff86cae9fa6ef87d04c16a0aefac69",
     "config_sha": "8efac8d902a12c3f16dc76c3404e4da9ac534559ca2acf28d2e99fd64bbad8e1",
     "gold_sha": "d4a7725be8a15bc9b0aad9eadd44fb45b6ae61b6958b812f4a2dbff23ac181d5",
     "synthesizer_sha": "5aed2160ea9f2bc4a3105f1a64b47fd75572bcbc031cbe1eff9985eda91e40eb",
     "run_sha": "5d3598816ed008af48d7eca632509e38387747a7c025a6e7f113e3534c1b8bd5"
   },
   "outputs": {
-    "dashboard/app.js": "4374d3f75ec31e04cf54160a2698829b2db97f6eed24d01e279c808aa0e3a95b",
+    "dashboard/app.js": "d4a0f16fc2770320fca7293325a34e26300926164325fc6ce2d4681380b328fb",
     "dashboard/fonts/LICENSE-Archivo.txt": "c3c8402eec0e31dc9a76851235b1c02a0bb821488b2db8e35bcc2ab60ca8fc2b",
     "dashboard/fonts/LICENSE-IBMPlexMono.txt": "23b0a9d0c6d3f140a0b77e483c5cfa6bba574325ef5cb189ed9f2fec4884533f",
     "dashboard/fonts/SOURCES.md": "2c56bda7a6dea6b349aefaabd8f70afdcf129ddb048bc64e15a695b08ba340dd",
@@ -88,8 +88,8 @@
     "dashboard/report.css": "0e7e93e6b4a2ca55587f7ae069cb3ee1043a33e2e5c3aad39cebb2b45e7f90ea",
     "dashboard/styles.css": "41382d645c0cff33f9aabb72d7dc19711970bd505798a13bf0e1e3c2808cc5b3",
     "dashboard/viewer.js": "4d6ffd3a05a2a7c15e1c69cfba176e7f063f2b12769cdb6fe9de1e4bc6b4dc40",
-    "report.html": "5d8b3ef255661ca8f45d8bd3b010ea8c2f8b683eeac73a12c02666fb5ac61092",
-    "report.md": "c8033a900add9be98594145f42c787bccee249d13b7f12286c291ae2ac383b52",
+    "report.html": "e34e80048379b6068c3103785c506db3c6480b1a8bcbc23264eb000f9cae3380",
+    "report.md": "58d8fd8291eb5fe51e42ad0d9389a49450ade0c31f4847f337ef05f9e0c80102",
     "run-summary.json": "b1b7995d081d819aaa257a06a487139c0985f4f158181f45a0e41185f127ab18"
   },
   "run": {
@@ -463,6 +463,7 @@
     "split": "About a quarter is email time counted from the messages; most is hands-on work estimated from them.",
     "range": "The estimates put it between $1,243 and $4,989.",
     "today": "This work costs $5,277 a month today (62.1 hours); the $2,231 is the part that could be automated. Both are floors: email shows only part of the work.",
+    "rerun": "Running /observe again reproduces these figures exactly. A fresh run (/observe --force) asks the model again, so its process list and work estimates, and the dollars built on them, can differ; the counting and arithmetic are exact either way.",
     "concentration": "About a third of the processes in the total (16 of 42, worth $1,359 of the $2,231) draw 90% or more of their messages from one mailbox.",
     "caution": "3 of the 5 processes with documents come almost only from one person’s mailbox. Read each finding as what one person’s mail shows.",
     "threshold": "We draft a working document for every process seen 10 or more times over 3 or more months by 2 or more staff whose automatable work is worth one hour a month ($85) or more.",

@@ -183,6 +183,7 @@ export type Sentences = {
   split: string;
   range: string;
   today: string;
+  rerun: string;
   concentration: string;
   caution: string;
   threshold: string;

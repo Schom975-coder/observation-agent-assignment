@@ -36,9 +36,9 @@ after(() => rmSync(tmp, { recursive: true, force: true }));
 // fixture changes them: print the new values with OBS_PRINT_PINS=1 and check the diff of the files
 // before pinning them.
 const PINS = {
-  'dashboard/data.json': '358eeab50e38d95d77926699996d20d5a12b6e9f6ac495f77f10948f393c5aac',
-  'report.md': 'a3966398b4312467dd38e1bc707a85d5cc3a4410bc48410c4fb90f590bb0b2a1',
-  'report.html': 'b550035efc3393c924fbf4ac7ddc8c5f45ee28b71ce5134396c6b97d70653fe8',
+  'dashboard/data.json': 'cde769c227b7044a8f496f4e95555b706e6cbcfe2c0b0f21a08360f6ecff8d17',
+  'report.md': '21bf5f37582feddf86ba36a541953f12a4eca17baf7b8aec55d509ce590da785',
+  'report.html': '222f8749fec21bea539217ce24a9a26a147caa20ce0efbcf10703f6064166ae6',
 };
 
 let root = '';

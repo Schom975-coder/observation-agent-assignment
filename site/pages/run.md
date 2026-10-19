@@ -8,6 +8,14 @@ The outputs of one real run of `/observe` are committed in [`out/`](/out/): run 
 
 The same facts print with `node obs.mjs summary`, and the dashboard's How we measured shows them beside the figures they explain.
 
+## Rerunning it {#rerun}
+
+Running `/observe` again reproduces these figures exactly: it finds every model output already done and starts no agent (the rerun after the submitted run took 19 s), and CI rebuilds every code step from the committed model outputs on macOS, Linux and Windows and fails if any committed output changes. A fresh run, `/observe --force`, asks the model again for its judgement: the list of processes, which messages belong to which, and the minutes one round of each takes. Like two analysts, two fresh runs do not judge identically, so the processes and the estimated dollars move with them. The counting and the arithmetic on any given judgement are exact. Every forced fresh run in the logs that reached scoring:
+
+{{block:fresh_runs}}
+
+The counted part, email actions priced at published minutes, moved little; most of the spread is in the estimated work. Part of the spread is ours rather than the model's: agent instructions and the scoring code changed between the earlier runs (they also rounded each part on its own, so their counted and estimated parts can miss the total by a few cents), and a process with no accepted estimate adds nothing to the estimated part. In a real engagement the client would approve the process list and the estimates once and lock them (an estimates file already replaces the model's figure for the processes it names: [How to use](how-to-use.html#rescore)), and later runs would move only when the mail does.
+
 ## Stage timeline {#timeline}
 
 Each stage's time from the run log, with the jobs it handed out, the subagents it started and the fix rounds it needed.

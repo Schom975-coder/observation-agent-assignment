@@ -44,6 +44,7 @@ In the submitted run 2,684 quotes matched exactly, 13 needed a small repair, non
 - **Owners and proven savings:** assign each opportunity, freeze today's figure, count again after the fix ships.
 - **Trends and nudges:** growing work, worsening stalls, and a weekly list to each owner of threads waiting on them.
 - **Key-person risk:** three of the five documented processes live almost entirely in one mailbox.
+- **Approve and lock:** the client signs off the process list and the estimates once, so later runs move only when the mail does, never because the model judged differently.
 - **An expert in the loop:** an operations lead corrects labels on the dashboard, feeding the next run. We are not energy experts; this closes that gap.
 
 **Architecture**
@@ -62,7 +63,7 @@ By dollar impact:
    - **Counted, $526:** the email itself. Code counts every email written, forwarded, chased and read in each process and prices each action at a published rate (2 minutes for a short email, 1 minute per person who reads it) with a published share that could be automated.
    - **Estimated, $1,705:** the hands-on work behind each round that the email does not show, such as entering a deal or correcting a schedule. For each process the model proposes the minutes one round takes and the share that could be automated, citing the emails it relied on. Code rejects an estimate over 480 minutes or 80%, or one not cited from at least 3 rounds and 2 senders, then multiplies it by the rounds it counted.
 
-   The estimate is judgement, so this is where the total is most likely off: with every estimate at the low or high end of its own range, it runs from $1,243 to $4,989. Any estimate can be overridden from a file without calling a model.
+   The estimate is judgement, so this is where the total is most likely off: with every estimate at the low or high end of its own range, it runs from $1,243 to $4,989. A fresh run asks the model again, and AI judgement is not repeatable: across the four fresh runs that reached scoring the headline ran from $1,932 to $2,231 while the counted part stayed within $523 to $553. Rerunning the same run reproduces it exactly, and any estimate can be overridden from a file without calling a model.
 2. **The merge**, which places 26% of tagged mail.
 3. **Rounds**, rebuilt from subjects and gaps; these emails carry no reply headers.
 4. **Tagging:** 80.8% exact (84.6% after the merge) on 52 emails labelled blind by a separate agent.

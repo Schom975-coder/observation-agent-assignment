@@ -93,6 +93,33 @@ const cap = (s: string): string => `${s.charAt(0).toUpperCase()}${s.slice(1)}`;
 // Element text: only what HTML needs escaped there, so the note's wording stays exact in the page.
 const escapeText = (s: string): string => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
+export type FreshRun = { total: string; counted: string; estimated: string; processes: number; missing: number };
+
+// One run log's headline if it is a forced fresh run (its run_start has force: true) that wrote
+// out/opportunities.json; else null. The score stage's summary is the score command's own line;
+// a later re-score in the same log (another score stage) replaces an earlier one, as it would the file.
+export function freshRunOf(log: string): FreshRun | null {
+  let forced = false;
+  let score: string | null = null;
+  for (const line of log.split('\n')) {
+    if (line.trim() === '') continue;
+    let e: unknown;
+    try {
+      e = JSON.parse(line);
+    } catch {
+      continue;
+    }
+    if (!isRecord(e)) continue;
+    if (e.event === 'run_start' && e.force === true) forced = true;
+    if (e.event === 'stage' && e.name === 'score' && typeof e.summary === 'string' && e.summary.includes('wrote out/opportunities.json')) score = e.summary;
+  }
+  if (!forced || score === null) return null;
+  const m = /tiers A\+B \$([\d,]+\.\d{2})\/mo automatable \(counted email \$([\d,]+\.\d{2}) \+ estimated work \$([\d,]+\.\d{2})\).*?; (\d+) opportunities/.exec(score);
+  if (m === null) return null;
+  const missing = /(\d+) estimates? missing/.exec(score);
+  return { total: m[1] as string, counted: m[2] as string, estimated: m[3] as string, processes: Number(m[4]), missing: missing === null ? 0 : Number(missing[1]) };
+}
+
 export function loadConfig(siteDir: string): SiteConfig {
   const raw = readJson(join(siteDir, 'site.json'));
   if (!isRecord(raw) || !Array.isArray(raw.pages)) throw new Error('site.json: expected an object with a pages list');
@@ -121,6 +148,7 @@ type RunData = {
   docs: Doc[];
   gold: { exact: [number, number]; overlap: [number, number]; role: [number, number] } | null;
   logs: Array<{ name: string; bytes: number }>;
+  fresh: Array<{ name: string } & FreshRun>;
   stages: StageTiming[] | null;
   stagesProblem: string | null;
   dashboard: boolean;
@@ -150,6 +178,7 @@ function loadRun(outDir: string): RunData {
     docs: [],
     gold: null,
     logs: [],
+    fresh: [],
     stages: null,
     stagesProblem: null,
     dashboard: false,
@@ -229,6 +258,20 @@ function loadRun(outDir: string): RunData {
       .map((name) => ({ name, bytes: statSync(join(at('runs'), name)).size }));
   }
   if (run.logs.length === 0) run.missing.push('runs/*.jsonl');
+  // The forced fresh runs that reached scoring, with the headline their score stage logged: how far
+  // a fresh run's judgement moves the figures, read from the logs, not typed. A log that cannot be
+  // read is a problem the strict build reports.
+  for (const l of run.logs) {
+    let text: string;
+    try {
+      text = readFileSync(join(at('runs'), l.name), 'utf8');
+    } catch (err) {
+      run.missing.push(`runs/${l.name} (unreadable: ${(err as Error).message})`);
+      continue;
+    }
+    const fresh = freshRunOf(text);
+    if (fresh !== null) run.fresh.push({ name: l.name, ...fresh });
+  }
   // The stage timeline, from the run log span, as `node obs.mjs summary` prints it. It reads
   // <project>/out, so it needs the output folder to be a project's out/.
   if (run.summary !== null) {
@@ -637,6 +680,16 @@ function block(name: string, ctx: Ctx, from: string): string {
         ...run.stages.map((st) => `| ${cell(st.stage)} | ${mmss(st.seconds)} | ${count(st.jobs)} | ${count(st.agents)} | ${count(st.fix_rounds)} |`),
       ].join('\n');
     }
+    case 'fresh_runs': {
+      if (run.fresh.length === 0) return notYet('the forced fresh runs (out/runs/)');
+      const id = ctx.figs.get('run_id');
+      const submitted = id === undefined ? null : `${id}.jsonl`;
+      return [
+        '| Fresh run | Processes | Estimates missing | Counted | Estimated | Total a month |',
+        '|---|---:|---:|---:|---:|---:|',
+        ...run.fresh.map((x) => `| [${code(x.name)}](repo:out/runs/${x.name})${x.name === submitted ? ' (submitted)' : ''} | ${count(x.processes)} | ${count(x.missing)} | $${x.counted} | $${x.estimated} | $${x.total} |`),
+      ].join('\n');
+    }
     case 'logs': {
       if (run.logs.length === 0) return notYet('the run logs (out/runs/)');
       return ['| Log | What it is | Size |', '|---|---|---:|', ...orderedLogs(run).map((l) => `| [${code(l.name)}](repo:out/runs/${l.name}) | ${l.what} | ${kb(l.bytes)} |`)].join('\n');
@@ -818,7 +871,7 @@ function expand(source: string, ctx: Ctx, from: string): Expanded {
         continue;
       }
       if (kind === 'block') {
-        if (['run_facts', 'timeline', 'logs', 'documents', 'dashboard_copy'].includes(name as string)) usesRun = true;
+        if (['run_facts', 'timeline', 'fresh_runs', 'logs', 'documents', 'dashboard_copy'].includes(name as string)) usesRun = true;
         if (name === 'figures') {
           usesRun = true;
           const f = figuresBlock(ctx);

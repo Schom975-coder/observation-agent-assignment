@@ -504,16 +504,15 @@ function specRow(label, ...kids) {
  */
 function deferred(promise, build, what = 'this part') {
   const box = el('div', { class: 'deferred' }, el('p', { class: 'loading', role: 'status' }, 'Loading…'));
-  promise.then(
-    (v) => {
+  promise
+    .then((v) => {
       box.replaceChildren();
       add(box, build(v));
       if (box.isConnected) afterRender(box);
-    },
-    (err) => {
+    })
+    .catch((err) => {
       box.replaceChildren(el('p', { class: 'note' }, `${cap(what)} did not load (${err instanceof Error ? err.message : String(err)}). Reload the page; if it still fails, run node obs.mjs build and then node obs.mjs serve.`));
-    },
-  );
+    });
   return box;
 }
 
@@ -824,7 +823,7 @@ function setSel(k) {
   if (k === selKey) return;
   selKey = k;
   document.querySelectorAll('tr.is-sel').forEach((x) => x.classList.remove('is-sel'));
-  if (k) document.querySelectorAll(`tr[data-k="${CSS.escape(k)}"]`).forEach((x) => x.classList.add('is-sel'));
+  if (k) document.querySelectorAll('tr.row').forEach((x) => x.getAttribute('data-k') === k && x.classList.add('is-sel'));
   drawCharts();
 }
 
@@ -880,6 +879,13 @@ function push(layer) {
   if (top !== undefined) top.from = innerOpener !== null && drawer().contains(innerOpener) ? innerOpener : null;
   stack.push(layer);
   showDrawer();
+}
+/** The top layer swapped for another; the layer below keeps the element that opened the top one.
+ * @param {Layer} layer */
+function replaceTop(layer) {
+  if (stack.length === 0) return openRoot(layer);
+  stack[stack.length - 1] = layer;
+  renderDrawer(false);
 }
 /** A layer on top of the drawer, or the drawer opened on it. @param {Layer} layer */
 const show = (layer) => (isOpen() ? push(layer) : openRoot(layer));
@@ -964,7 +970,7 @@ function afterRender(root) {
   });
 }
 
-function closeDrawer() {
+export function closeDrawer() {
   stack.length = 0;
   shown = null;
   innerOpener = null;
@@ -981,7 +987,7 @@ function closeDrawer() {
   if (opener && opener.isConnected) opener.focus();
 }
 
-function back() {
+export function back() {
   if (stack.length > 1) {
     stack.pop();
     renderDrawer(true);
@@ -1008,7 +1014,7 @@ function switchProcess(key) {
  * under it, so Back leads there; inside the drawer it goes on top of the current layer.
  * @param {Target} d @param {Ctx} [ctx]
  */
-function openTarget(d, ctx = {}) {
+export function openTarget(d, ctx = {}) {
   if (d.kind === 'method' && d.section !== 'explainer') {
     goMethod(String(d.section));
     return;
@@ -1152,9 +1158,9 @@ function explainerLayer() {
             class: 'btn',
             onclick: () => {
               closeDrawer();
-              go('overview');
               setRange(true);
-              requestAnimationFrame(() => document.getElementById('c-h')?.scrollIntoView({ block: 'start' }));
+              afterView = () => document.getElementById('c-h')?.scrollIntoView({ block: 'start' });
+              go('overview');
             },
           }, 'Show the range on the chart'))),
         specRow('Documents',
@@ -1757,10 +1763,7 @@ function occurrencesLayer(key, month) {
         /** @param {any} o */
         const round = (o) => o.message_ids.map((/** @type {string} */ id, /** @type {number} */ j) => msgItem(ix.get(id), id, { note: o.message_ids.length > 1 ? (j === 0 ? `a round of ${plural(o.message_ids.length, 'message')}` : 'same round') : '' }));
         return [
-          month ? el('p', { class: 'calc' }, plural(months[0]?.ids.length ?? 0, 'round'), ' in the month. ', link(`Show all ${r.occurrences.t}`, () => {
-            stack.pop();
-            push(occurrencesLayer(key));
-          })) : el('p', { class: 'calc' }, ...seenLine(r, { kind: 'occurrences', key })),
+          month ? el('p', { class: 'calc' }, plural(months[0]?.ids.length ?? 0, 'round'), ' in the month. ', link(`Show all ${r.occurrences.t}`, () => replaceTop(occurrencesLayer(key)))) : el('p', { class: 'calc' }, ...seenLine(r, { kind: 'occurrences', key })),
           months.map((/** @type {any} */ mo) => [
             el('p', { class: 'month-h' }, `${monthText(mo.month)} · ${plural(mo.ids.length, 'round')}`),
             el('ul', { class: 'mlist' }, mo.ids.map((/** @type {string} */ id) => round(byId.get(id) ?? { message_ids: [] }))),
@@ -2013,7 +2016,7 @@ function linkEvidence(root, f, name) {
     const id = b.textContent ?? '';
     const said = b.closest('li')?.querySelector('blockquote')?.textContent ?? '';
     const q = quoteFor(quotes, id, said);
-    if (q !== null) b.dataset.quote = q.id;
+    if (q !== null) b.setAttribute('data-quote', q.id);
     b.addEventListener('click', () => {
       remember(b);
       push(messageLayer(id, { quote: q, counted_in: { process: name } }));
@@ -2198,11 +2201,14 @@ function currentView() {
   return VIEWS.includes(h) ? h : 'overview';
 }
 let pendingSection = /** @type {string | null} */ (null);
+// What to do once the next view is applied instead of scrolling to its top (the range button's scroll to the chart).
+let afterView = /** @type {(() => void) | null} */ (null);
 
 /** @param {string} view */
 function go(view) {
   if (isOpen()) closeDrawer();
-  if (location.hash !== `#${view}`) location.hash = view;
+  // The view shown already (the overview at "/" too) is applied now, with no history entry.
+  if (currentView() !== view) location.hash = view;
   else applyView();
 }
 
@@ -2232,9 +2238,13 @@ function applyView() {
     rendered.add(v);
     renderMethod();
   }
-  if (v === 'methodology' && pendingSection !== null) scrollToSection();
-  else window.scrollTo(0, 0);
   if (v === 'overview') drawCharts();
+  if (v === 'methodology' && pendingSection !== null) scrollToSection();
+  else if (afterView !== null) {
+    const then = afterView;
+    afterView = null;
+    then();
+  } else window.scrollTo(0, 0);
 }
 
 function scrollToSection() {
@@ -2397,7 +2407,7 @@ function fillTable(t, rows, o) {
   });
   if (o.foot) body.append(el('tr', { class: 'more' }, el('td', { colspan: cols }, o.foot)));
   t.replaceChildren(headRow, body);
-  if (selKey) t.querySelectorAll(`tr[data-k="${CSS.escape(selKey)}"]`).forEach((x) => x.classList.add('is-sel'));
+  if (selKey) t.querySelectorAll('tr.row').forEach((x) => x.getAttribute('data-k') === selKey && x.classList.add('is-sel'));
 }
 
 /** @param {any} r @param {number} max @param {boolean} full */
@@ -2775,7 +2785,11 @@ function wireShell() {
     if (ev.detail > 1 && performance.now() - renderedAt < 500 && ev.target instanceof Node && (drawer().contains(ev.target) || ev.target === $('#scrim'))) {
       ev.preventDefault();
       ev.stopImmediatePropagation();
+      return;
     }
+    // Whatever was clicked inside the drawer (the viewer's own links included) is where Back returns.
+    const b = ev.target instanceof Element ? ev.target.closest('button, a') : null;
+    if (b instanceof HTMLElement && drawer().contains(b)) remember(b);
   }, true);
   $('#d-close').addEventListener('click', closeDrawer);
   $('#d-back').addEventListener('click', back);
@@ -2807,8 +2821,17 @@ function wireShell() {
   });
   // Browser Back or Forward changes the view: the drawer, which belongs to the view it opened on, closes.
   window.addEventListener('hashchange', () => {
-    if (isOpen()) closeDrawer();
+    const wasOpen = isOpen();
+    if (wasOpen) closeDrawer();
     applyView();
+    // The opener belonged to the view just left: the focus goes to the new view's heading.
+    if (wasOpen) {
+      const h = document.querySelector(`#${currentView()} h2`);
+      if (h instanceof HTMLElement) {
+        h.setAttribute('tabindex', '-1');
+        h.focus({ preventScroll: true });
+      }
+    }
   });
   let frame = 0;
   window.addEventListener('resize', () => {

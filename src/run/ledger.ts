@@ -78,8 +78,9 @@ export type BatchState = {
   // file, out/fix/<job_id>.txt, while the job is failed or in its fix round.
   problems: number | null;
   last_problems: string[]; // the first MAX_PROBLEMS_KEPT, one line each, with the project folder cut out
-  // Dispatches that ended with no output file and were the first such in a row: they don't count
-  // toward MAX_DISPATCHES (an agent cut off is not a failed output; two in a row are).
+  // Dispatches that don't count toward MAX_DISPATCHES: those that ended with no output file and
+  // were the first such in a row (an agent cut off is not a failed output; two in a row are), and
+  // a forced dispatch of a done job (a new first pass, not a fix round).
   uncounted_dispatches: number;
   no_output_streak: number; // consecutive stamps with no output file; 0 after any stamp with one
   no_output_utc: string | null; // the last stamp with no output file, for the circuit breaker
@@ -741,7 +742,11 @@ function holdsText(file: string): boolean {
 // the new one) and the prompt is the fresh one. The validated file always goes. The cache key of
 // the inputs it is handed out with is recorded now and kept; the dispatch count goes up under the
 // same key and restarts at 1 under a new one, as do the uncounted dispatches and the no-output
-// streak.
+// streak. A forced dispatch of a done job is a first pass again, never a fix round: it goes out
+// fresh and is uncounted, so the counted dispatches (the fix-round number in a later prompt, the
+// rounds left, the run's fix rounds) stay as they were. The count itself still goes up, so the
+// previous agent's binding is superseded. A forced dispatch of an exhausted job is one more
+// counted try.
 export function markDispatched(root: string, job: JobEntry, opts: { force?: boolean } = {}): { state: BatchState; fix: string[] | null } {
   const id = job.id;
   const kind = kindOf(id);
@@ -782,6 +787,8 @@ export function markDispatched(root: string, job: JobEntry, opts: { force?: bool
     }
     removeFile(paths.validated);
     const sameKey = s.cache_key === key;
+    // Done under this very key (effectiveStatus says so), so reached only with --force.
+    const redo = status === 'done';
     return {
       batch_id: id,
       status: 'running',
@@ -792,7 +799,7 @@ export function markDispatched(root: string, job: JobEntry, opts: { force?: bool
       quote_stats: null,
       problems: fixRound ? s.problems : null,
       last_problems: fixRound ? s.last_problems : [],
-      uncounted_dispatches: sameKey ? s.uncounted_dispatches : 0,
+      uncounted_dispatches: sameKey ? s.uncounted_dispatches + (redo ? 1 : 0) : 0,
       no_output_streak: sameKey ? s.no_output_streak : 0,
       no_output_utc: s.no_output_utc,
       no_output_run_id: s.no_output_run_id,
@@ -904,6 +911,10 @@ export function bindingIsCurrent(binding: AgentBinding, state: BatchState): bool
 }
 
 export type BindResult = { ok: true; binding: AgentBinding } | { ok: false; reason: string };
+// A bind attempt and whether this call made the binding (false when it found it already made, or
+// was refused). Two Reads of one agent in one turn run two guard hooks at once: both may find no
+// binding and both bind, and only the one that made it may say so (its `guard_bind` log line).
+export type BindOutcome = { result: BindResult; created: boolean };
 
 // out/ledger/agents/jobs/<job_id>.json: the agent holding the job's current dispatch, so that one
 // dispatch is worked on by one agent. `dispatch` and `refill` never hand out a running job, so
@@ -929,22 +940,30 @@ function readHolder(file: string): JobHolder | null {
 // under the same dispatch is refused. The binding copies the dispatch count, cache key and
 // dispatch time, so a re-dispatch supersedes it (bindingIsCurrent) and frees the job for the next
 // agent. Which kind of job an agent type may bind to is the guard's business (its allowlists);
-// this records whatever it allowed.
+// this records whatever it allowed. The agent's lock makes the first binding the only one, however
+// many calls race; bindAgentOutcome also says which call made it.
 export function bindAgent(root: string, agentId: string, jobId: string): BindResult {
-  if (!isAgentId(agentId)) return { ok: false, reason: `agent ID ${JSON.stringify(agentId.slice(0, 80))} can't be bound (letters, digits, - and _ only)` };
-  if (!isJobId(jobId)) return { ok: false, reason: `${JSON.stringify(jobId.slice(0, 80))} is not a job ID` };
+  return bindAgentOutcome(root, agentId, jobId).result;
+}
+
+export function bindAgentOutcome(root: string, agentId: string, jobId: string): BindOutcome {
+  const found = (result: BindResult): BindOutcome => ({ result, created: false });
+  if (!isAgentId(agentId)) return found({ ok: false, reason: `agent ID ${JSON.stringify(agentId.slice(0, 80))} can't be bound (letters, digits, - and _ only)` });
+  if (!isJobId(jobId)) return found({ ok: false, reason: `${JSON.stringify(jobId.slice(0, 80))} is not a job ID` });
   const k = JOB_KINDS[kindOf(jobId)];
   const file = agentBindingFile(root, agentId);
-  return withLock(file, `out/ledger/agents/${agentId}.json`, (): BindResult => {
+  return withLock(file, `out/ledger/agents/${agentId}.json`, (): BindOutcome => {
     const existing = parseBinding(agentId, readText(file));
     if (existing !== null) {
-      return existing.batch_id === jobId
-        ? { ok: true, binding: existing }
-        : { ok: false, reason: `this ${k.worker} is bound to ${existing.batch_id}, the first ${k.short} it read; ${jobId} is not its ${k.short}` };
+      return found(
+        existing.batch_id === jobId
+          ? { ok: true, binding: existing }
+          : { ok: false, reason: `this ${k.worker} is bound to ${existing.batch_id}, the first ${k.short} it read; ${jobId} is not its ${k.short}` },
+      );
     }
     const state = readBatchState(root, jobId);
-    if (state.status !== 'running') return { ok: false, reason: `${jobId} is ${state.status}, not running: it has not been handed to ${k.worker === 'extractor' ? 'an' : 'a'} ${k.worker}` };
-    if (state.cache_key === null || state.dispatched_utc === null) return { ok: false, reason: `${jobId} has no dispatch record to bind to` };
+    if (state.status !== 'running') return found({ ok: false, reason: `${jobId} is ${state.status}, not running: it has not been handed to ${k.worker === 'extractor' ? 'an' : 'a'} ${k.worker}` });
+    if (state.cache_key === null || state.dispatched_utc === null) return found({ ok: false, reason: `${jobId} has no dispatch record to bind to` });
     const dispatch = { dispatches: state.dispatches, cache_key: state.cache_key, dispatched_utc: state.dispatched_utc };
     // Agent lock, then job-holder lock: always in this order, so two agents can't deadlock.
     const holderFile = jobHolderFile(root, jobId);
@@ -957,7 +976,7 @@ export function bindAgent(root: string, agentId: string, jobId: string): BindRes
       return null;
     });
     if (heldBy !== null) {
-      return { ok: false, reason: `${jobId} is already being worked on by another ${k.worker} under its current dispatch; one ${k.short} has one ${k.worker} at a time` };
+      return found({ ok: false, reason: `${jobId} is already being worked on by another ${k.worker} under its current dispatch; one ${k.short} has one ${k.worker} at a time` });
     }
     const binding: AgentBinding = {
       agent_id: agentId,
@@ -968,7 +987,7 @@ export function bindAgent(root: string, agentId: string, jobId: string): BindRes
       bound_utc: nowUtc(),
     };
     writeJsonAtomic(file, binding);
-    return { ok: true, binding };
+    return { result: { ok: true, binding }, created: true };
   });
 }
 

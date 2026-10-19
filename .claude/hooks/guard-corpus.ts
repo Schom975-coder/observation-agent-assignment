@@ -48,7 +48,7 @@ import {
 } from './lib.ts';
 import {
   JOB_KINDS,
-  bindAgent,
+  bindAgentOutcome,
   bindingIsCurrent,
   boundJob,
   claimFile,
@@ -200,13 +200,15 @@ function bindingProblem(agent: string, tool: 'Read' | 'Write', jobId: string, ag
     if (tool === 'Write') {
       return `it has not read its ${short} yet. Read the ${INPUT_FILE[kind]} named in your task first; ${worker === 'extractor' ? 'an' : 'a'} ${worker} writes only the output of that ${short}`;
     }
-    const bound = bindAgent(root, agentId, jobId);
+    // Another Read of this agent's, in the same turn, may be binding it at this moment: only the
+    // call that made the binding logs it.
+    const { result: bound, created } = bindAgentOutcome(root, agentId, jobId);
     if (!bound.ok) {
       log(root, { event: 'guard_bind_refused', agent_type: agent, agent_id: agentId, batch_id: jobId, reason: bound.reason });
       return `it cannot start on ${jobId}: ${bound.reason}`;
     }
     binding = bound.binding;
-    log(root, { event: 'guard_bind', agent_type: agent, agent_id: agentId, batch_id: binding.batch_id, dispatches: binding.dispatches });
+    if (created) log(root, { event: 'guard_bind', agent_type: agent, agent_id: agentId, batch_id: binding.batch_id, dispatches: binding.dispatches });
   }
   if (binding.batch_id !== jobId) {
     return `it is working on ${binding.batch_id} (the first ${short} file it read), so ${tool} of ${jobId}'s files is refused`;

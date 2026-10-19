@@ -43,6 +43,7 @@ import {
   batchStateFile,
   batchViews,
   bindAgent,
+  bindAgentOutcome,
   bindingIsCurrent,
   boundBatch,
   cacheKey,
@@ -430,6 +431,94 @@ test('dispatch refuses a running batch, and a done or exhausted one without --fo
   assert.equal(statusOf(root, 'batch-001'), 'exhausted', 'one forced try, then exhausted again');
 });
 
+test('dispatch --force on a done job is a first pass that uses no fix round; on an exhausted job it is one more counted try', () => {
+  const root = project(2);
+  addGroups(root, 1);
+  for (const [id, check] of [['batch-000', passed('batch-000')], ['synth-000', passedSynth('synth-000')]] as const) {
+    finish(root, id, check);
+    const before = readBatchState(root, id);
+    assert.equal(countedDispatches(before), 1);
+    const forced = capture(() => dispatchCommand(root, [id, '--force']));
+    assert.equal(forced.code, 0, forced.err.join('\n'));
+    assert.match(forced.out[0] ?? '', new RegExp(`^(?:Extract|Synthesize) ${id}\\.\\nProject folder: `), 'a first-pass prompt');
+    const after = readBatchState(root, id);
+    assert.deepEqual(
+      [after.status, after.dispatches, after.uncounted_dispatches, countedDispatches(after), after.problems, hasFix(root, id)],
+      ['running', 2, 1, 1, null, false],
+      'counted dispatches unchanged: no fix round, no problems file',
+    );
+    // If that pass fails, the next dispatch is the first fix round, with every round still left.
+    writeExtract(root, id, '{}');
+    recordValidation(root, indexEntry(root, id), id === 'batch-000' ? failedCheck(id) : { ok: false, setup: null, problems: ['p'], validated: null });
+    const fix = capture(() => dispatchCommand(root, [id]));
+    assert.match(fix.out[0] ?? '', /\(fix round 1 of 3\): /);
+    assert.equal(countedDispatches(readBatchState(root, id)), 2);
+  }
+  // The run's fix rounds count the real fix round only.
+  const run = { active: true, run_id: '20261017T000000Z', started_utc: '2020-01-01T00:00:00Z' };
+  assert.equal(timingFrom([readBatchState(root, 'batch-000')], run)?.fix_rounds, 1);
+
+  // Exhausted: --force is one more counted try, a fix round past the usual ones, as before.
+  for (let i = 0; i < MAX_DISPATCHES; i++) {
+    writeExtract(root, 'batch-001', '{}');
+    finish(root, 'batch-001', failedCheck('batch-001'));
+  }
+  const exhausted = readBatchState(root, 'batch-001');
+  assert.deepEqual([statusOf(root, 'batch-001'), countedDispatches(exhausted), exhausted.uncounted_dispatches], ['exhausted', MAX_DISPATCHES, 0]);
+  const once = capture(() => dispatchCommand(root, ['batch-001', '--force']));
+  assert.match(once.out[0] ?? '', /^Extract batch-001 \(fix round 4\): 2 problems in the problems file\.\n/);
+  const tried = readBatchState(root, 'batch-001');
+  assert.deepEqual([tried.dispatches, tried.uncounted_dispatches, countedDispatches(tried)], [MAX_DISPATCHES + 1, 0, MAX_DISPATCHES + 1]);
+});
+
+test('dispatch --force on a done job whose agent is cut off: then the job goes as a fresh one does, first pass and three fix rounds', () => {
+  const root = project(1);
+  finish(root, 'batch-000', passed('batch-000'));
+  dispatch(root, 'batch-000', true);
+  // The redo's agent ends with no output file: the first such stamp in a row is not counted either.
+  recordValidation(root, indexEntry(root, 'batch-000'), failedCheck('batch-000'));
+  const cut = readBatchState(root, 'batch-000');
+  assert.deepEqual([cut.status, cut.dispatches, cut.uncounted_dispatches, countedDispatches(cut)], ['failed', 2, 2, 0]);
+  // As after a cut-off first pass of a job never done: a fresh prompt, then fix rounds 1 to 3, then exhausted.
+  const prompts: string[] = [];
+  for (let i = 0; i < MAX_DISPATCHES; i++) {
+    const r = capture(() => dispatchCommand(root, ['batch-000']));
+    prompts.push((r.out[0] ?? r.err[0] ?? '').split('\n')[0] as string);
+    writeExtract(root, 'batch-000', '{}');
+    recordValidation(root, indexEntry(root, 'batch-000'), failedCheck('batch-000'));
+  }
+  assert.deepEqual(prompts, [
+    'Extract batch-000.',
+    'Extract batch-000 (fix round 1 of 3): 2 problems in the problems file.',
+    'Extract batch-000 (fix round 2 of 3): 2 problems in the problems file.',
+    'Extract batch-000 (fix round 3 of 3): 2 problems in the problems file.',
+  ]);
+  assert.equal(statusOf(root, 'batch-000'), 'exhausted');
+});
+
+test('bindAgentOutcome says which call made the binding: the first, never one that found it or was refused', () => {
+  const root = project(2);
+  dispatch(root, 'batch-000');
+  const first = bindAgentOutcome(root, 'b1', 'batch-000');
+  assert.equal(first.created, true);
+  assert.ok(first.result.ok);
+  assert.deepEqual(bindAgentOutcome(root, 'b1', 'batch-000'), { result: first.result, created: false }, 'found, the same binding');
+  assert.equal(bindAgentOutcome(root, 'b1', 'batch-001').created, false, 'refused: bound elsewhere');
+  assert.equal(bindAgentOutcome(root, 'b2', 'batch-000').created, false, 'refused: held by another agent');
+  assert.deepEqual(bindAgent(root, 'b1', 'batch-000'), first.result, 'bindAgent gives the result alone');
+});
+
+test('run start logs the jobs it stamped, as advance logs what it recorded', () => {
+  const root = project(2, { taxonomy: true });
+  dispatch(root, 'batch-001');
+  backdate(root, 'batch-001');
+  assert.equal(capture(() => runCommand(root, ['start'])).code, 0);
+  const runId = readRun(root).run_id as string;
+  const logged = readFileSync(join(root, 'out', 'runs', `${runId}.jsonl`), 'utf8').trim().split('\n').map((l) => JSON.parse(l) as Record<string, unknown>);
+  assert.deepEqual(logged.map((e) => [e.event, e.stamped, e.recorded]), [['run_start', 1, [{ id: 'batch-001', status: 'failed' }]]]);
+  capture(() => runCommand(root, ['end']));
+});
+
 test('a fix round keeps the previous output and names the fix file, which holds every problem; without a JSON object to fix, the prompt is fresh', () => {
   const root = project(5, { taxonomy: true });
   const base = root.replaceAll('\\', '/');
@@ -804,6 +893,49 @@ test('timing comes from the ledger: batches dispatched since the run started, ne
   });
   // A time not in the stored form is ignored, never parsed loosely.
   assert.equal(timingFrom([s('batch-000', 'done', 1, '2026-10-17 10:00:05', '2026-10-17T10:01:35Z')], run)?.done, 0);
+});
+
+test('with no run active, status prints no timing: an ended run is not measured against what was dispatched after it', () => {
+  const root = project(2, { taxonomy: true });
+  addGroups(root, 1);
+  mkdirSync(join(root, 'out', 'ledger'), { recursive: true });
+  // The last run ended long ago; a batch and a group were handed out by hand ten hours later.
+  writeFileSync(join(root, 'out', 'ledger', 'run.json'), JSON.stringify({ active: false, run_id: '20261017T000000Z', started_utc: '2026-10-17T00:00:00Z' }));
+  finish(root, 'batch-000', passed('batch-000'));
+  finish(root, 'synth-000', passedSynth('synth-000'));
+  for (const id of ['batch-000', 'synth-000']) updateBatchState(root, id, (s) => ({ ...s, dispatched_utc: '2026-10-17T10:34:00Z', finished_utc: '2026-10-17T10:36:00Z' }));
+  const human = capture(() => statusCommand(root, []));
+  assert.equal(human.code, 0, human.err.join('\n'));
+  assert.match(human.out[0] ?? '', /; no run active\.$/);
+  assert.deepEqual(human.out.filter((l) => /timing|wall/.test(l)), [], human.out.join('\n'));
+  const json = jsonStatus(root);
+  assert.equal(json.timing, null);
+  assert.deepEqual(json.run, { active: false, run_id: '20261017T000000Z', started_utc: '2026-10-17T00:00:00Z' });
+  assert.equal(timingFrom([readBatchState(root, 'batch-000')], json.run), null);
+});
+
+test('during a run, the synthesis timing counts from the first group dispatched, the batch timing from the run start', () => {
+  const root = project(1, { taxonomy: true });
+  addGroups(root, 2);
+  mkdirSync(join(root, 'out', 'ledger'), { recursive: true });
+  writeFileSync(join(root, 'out', 'ledger', 'run.json'), JSON.stringify({ active: true, run_id: '20261017T100000Z', started_utc: '2026-10-17T10:00:00Z' }));
+  finish(root, 'batch-000', passed('batch-000'));
+  updateBatchState(root, 'batch-000', (s) => ({ ...s, dispatched_utc: '2026-10-17T10:02:00Z', finished_utc: '2026-10-17T10:04:00Z' }));
+  // The merge took twenty minutes; the groups ran from 10:24 to 10:27.
+  finish(root, 'synth-000', passedSynth('synth-000'));
+  finish(root, 'synth-001', passedSynth('synth-001'));
+  updateBatchState(root, 'synth-000', (s) => ({ ...s, dispatched_utc: '2026-10-17T10:24:00Z', finished_utc: '2026-10-17T10:26:00Z' }));
+  updateBatchState(root, 'synth-001', (s) => ({ ...s, dispatched_utc: '2026-10-17T10:24:01Z', finished_utc: '2026-10-17T10:27:00Z' }));
+  const lines = capture(() => statusCommand(root, [])).out;
+  assert.deepEqual(
+    lines.filter((l) => /timing/.test(l)),
+    [
+      '  timing: 1 batch done in this run; wall 4m 0s; per batch p50 120s, p90 120s; 0 fix rounds.',
+      '  synthesis timing: 2 groups done in this run; wall 3m 0s; per group p50 120s, p90 179s; 0 fix rounds.',
+    ],
+    lines.join('\n'),
+  );
+  assert.equal(jsonStatus(root).timing?.wall_s, 240, 'the JSON timing is the batches\', from the run start, as before');
 });
 
 // ---- Agent bindings ----

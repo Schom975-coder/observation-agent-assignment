@@ -86,13 +86,15 @@ export function compactIds(ids: readonly string[]): string {
 
 // ---- Timing ----
 
-// From the ledger alone, for the jobs of one kind dispatched since the run started (an orphan
-// dispatched by an earlier session is no sample). The ledger keeps each job's last dispatch and
-// stamp, so a fix round's earlier attempt is counted in fix_rounds but not timed. The field names
-// say batch; the same record times synthesis groups.
+// From the ledger alone, for the jobs of one kind dispatched since the active run started (an
+// orphan dispatched by an earlier session is no sample). The ledger keeps each job's last dispatch
+// and stamp, so a fix round's earlier attempt is counted in fix_rounds but not timed. The field
+// names say batch; the same record times synthesis groups. Null when no run is active: run.json
+// keeps an ended run's start but not its end, so a job handed out by hand after it would be timed
+// as part of it (`node obs.mjs summary` gives a finished run's facts, from its logs).
 export type Timing = {
   started_utc: string | null; // the run's
-  wall_s: number | null; // run start to the last stamp
+  wall_s: number | null; // from the run start (or the kind's first dispatch in it, `from`) to the last stamp
   done: number; // jobs dispatched and done in this run: the samples below
   batch_s_p50: number | null; // dispatch to stamp, nearest rank
   batch_s_p90: number | null;
@@ -104,7 +106,13 @@ const seconds = utcSeconds;
 const percentile = (sorted: readonly number[], p: number): number | null =>
   sorted.length === 0 ? null : (sorted[Math.max(0, Math.ceil(p * sorted.length) - 1)] as number);
 
-export function timingFrom(states: readonly BatchState[], run: RunState): Timing | null {
+// `from`: where the wall time starts. 'run' for the batches (their stage begins the run's work);
+// 'first_dispatch' for a later stage, so the synthesis wall is the groups' own and not the
+// extraction and the merge before them: the earliest dispatch the ledger still records for the
+// kind in this run (it keeps each job's last dispatch, so a fix round of the first job handed out
+// can move it later).
+export function timingFrom(states: readonly BatchState[], run: RunState, from: 'run' | 'first_dispatch' = 'run'): Timing | null {
+  if (!run.active) return null;
   const start = seconds(run.started_utc);
   if (start === null) return null;
   const inRun: Array<{ state: BatchState; dispatched: number; finished: number | null }> = [];
@@ -122,9 +130,10 @@ export function timingFrom(states: readonly BatchState[], run: RunState): Timing
     return next === undefined ? [] : [next - x.finished];
   });
   const last = finished.reduce<number | null>((m, x) => (m === null || x.finished > m ? x.finished : m), null);
+  const origin = from === 'run' ? start : (dispatches[0] ?? start);
   return {
     started_utc: run.started_utc,
-    wall_s: last === null ? null : last - start,
+    wall_s: last === null ? null : last - origin,
     done: done.length,
     batch_s_p50: percentile(durations, 0.5),
     batch_s_p90: percentile(durations, 0.9),
@@ -397,7 +406,7 @@ export function statusCommand(root: string, args: readonly string[]): number {
     if (next.length > 0) console.log(`  next: ${compactIds(next)}`);
     for (const line of failureLines(all)) console.log(line);
     if (report.timing !== null) console.log(timingLine(report.timing, 'timing', 'batch', 'batches'));
-    const synthTiming = groups === null ? null : timingFrom(groups.map((v) => v.state), report.run);
+    const synthTiming = groups === null ? null : timingFrom(groups.map((v) => v.state), report.run, 'first_dispatch');
     if (synthTiming !== null && synthTiming.done + synthTiming.fix_rounds > 0) console.log(timingLine(synthTiming, 'synthesis timing', 'group', 'groups'));
     return 0;
   });
@@ -850,7 +859,9 @@ export function runCommand(root: string, args: readonly string[]): number {
       if (force) clearModelOutputs(root);
       const stamped = stampOrphans(root);
       writeRun(root, run);
-      appendRunLog(root, { event: 'run_start', orchestrator: orchestrator === null ? 'unclaimed' : 'claimed', force, stamped: stamped.length });
+      // `recorded` as advance logs it, so the run's log holds every job stamped done or failed.
+      const recordedNow = stamped.filter((s) => s.status !== 'running').map((s) => ({ id: s.batch_id, status: s.status }));
+      appendRunLog(root, { event: 'run_start', orchestrator: orchestrator === null ? 'unclaimed' : 'claimed', force, stamped: stamped.length, recorded: recordedNow });
       const replaced = previous?.active ? ` (replaces run ${previous.run_id}, which never ended)` : '';
       console.log(`run: started ${run.run_id}${replaced}. The corpus guard now applies to every tool call.`);
       if (orchestrator !== null) console.log("run: the session that started it is the run's orchestrator.");

@@ -10,6 +10,7 @@ import { goldCommand } from './run/gold.ts';
 import { mergeCommand } from './run/merge.ts';
 import { rollupCommand } from './run/rollup.ts';
 import { scoreCommand } from './run/score.ts';
+import { summaryCommand } from './run/summary.ts';
 import { taxonomyCommand } from './run/taxonomy.ts';
 import { serveCommand } from './serve/server.ts';
 
@@ -103,7 +104,11 @@ export const COMMANDS: Record<string, Command> = {
     milestone: 'M7',
     run: (args) => buildCommand(ROOT, args),
   },
-  summary: { summary: 'Print the run summary', milestone: 'M8' },
+  summary: {
+    summary: 'Print the run facts from out/run-summary.json (written by build) and a timeline of the stages from the run logs (--json for the record)',
+    milestone: 'M8',
+    run: (args) => summaryCommand(ROOT, args),
+  },
   serve: {
     summary:
       'Serve the dashboard on 127.0.0.1 and print its address (--background returns at once and leaves it running, reusing one already up; --open also opens the browser; --stop; --status; --port N)',
@@ -117,10 +122,11 @@ function usage(): string {
   const lines = Object.entries(COMMANDS).map(
     ([name, cmd]) => `  ${name.padEnd(width)}  ${cmd.summary}${cmd.run ? '' : `  [${cmd.milestone}]`}`,
   );
+  const planned = Object.values(COMMANDS).some((cmd) => cmd.run === undefined);
   return [
     'Usage: node obs.mjs <command> [options]',
     '',
-    'Commands ([Mx] = not built yet, lands in that milestone):',
+    planned ? 'Commands ([Mx] = not built yet, lands in that milestone):' : 'Commands:',
     ...lines,
     '',
     'The whole pipeline runs from Claude Code with /observe.',

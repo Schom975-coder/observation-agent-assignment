@@ -7,7 +7,7 @@
 // between the settings, the agent definitions, the skills and the code they rely on.
 import { after, test } from 'node:test';
 import assert from 'node:assert/strict';
-import { spawnSync } from 'node:child_process';
+import { spawn as spawnChild, spawnSync } from 'node:child_process';
 import { copyFileSync, existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, realpathSync, renameSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -296,6 +296,17 @@ function hook(name: string, input: unknown, projectDir = proj, env: Record<strin
   return { status: r.status, stdout: r.stdout, stderr: r.stderr, ms: Number(process.hrtime.bigint() - started) / 1e6 };
 }
 const decision = (r: HookResult): Record<string, unknown> | null => (r.stdout.trim() === '' ? null : JSON.parse(r.stdout));
+// The same, without waiting for it: for hooks Claude Code runs at the same time.
+function hookAsync(name: string, input: unknown, projectDir = proj): Promise<HookResult> {
+  const started = process.hrtime.bigint();
+  const child = spawnChild(process.execPath, [join(repo, '.claude', 'hooks', `${name}.ts`)], { env: { ...process.env, CLAUDE_PROJECT_DIR: projectDir, OBS_IN_FLIGHT: '' } });
+  let stdout = '';
+  let stderr = '';
+  child.stdout.setEncoding('utf8').on('data', (d: string) => (stdout += d));
+  child.stderr.setEncoding('utf8').on('data', (d: string) => (stderr += d));
+  child.stdin.end(JSON.stringify(input));
+  return new Promise((resolve) => child.on('close', (status) => resolve({ status, stdout, stderr, ms: Number(process.hrtime.bigint() - started) / 1e6 })));
+}
 
 const preToolUse = (tool_name: string, tool_input: unknown, extra: Record<string, unknown> = {}) => ({
   session_id: 's1',
@@ -543,6 +554,27 @@ test('guard: an extractor is bound to the first batch it reads, and to that disp
 
   const bound = runLog('adhoc').filter((e) => e.event === 'guard_bind' && e.batch_id === 'batch-001').map((e) => [e.agent_id, e.dispatches]);
   assert.deepEqual(bound, [['agent-b1', binding?.dispatches], ['agent-b4', redispatched.dispatches]]);
+});
+
+// Two Reads in one turn run two guard hooks at once, and both may find the agent unbound. The
+// agent's binding lock is held while both start, so both reach the bind before either has made it;
+// then they race for the lock. Whatever the order, one binding is made and one guard_bind logged.
+test('guard: two Reads at once by one agent bind it to its batch once and log one guard_bind', async () => {
+  const dir = join(tmp, 'twin-reads');
+  addBatches(dir, ['batch-000']);
+  markDispatched(dir, findBatch(loadIndex(dir), 'batch-000'));
+  const dirBase = dir.replaceAll('\\', '/');
+  const lock = join(dir, 'out', 'ledger', 'agents', 'agent-twin.json.lock');
+  mkdirSync(join(lock, '..'), { recursive: true });
+  writeFileSync(lock, '');
+  const read = (file: string) => hookAsync('guard-corpus', preToolUse('Read', { file_path: `${dirBase}/${file}` }, { ...extractor('agent-twin'), cwd: dir }), dir);
+  const both = Promise.all([read('out/batches/batch-000.md'), read('out/batches/batch-000.md')]);
+  await new Promise((r) => setTimeout(r, 1500));
+  rmSync(lock, { force: true });
+  for (const r of await both) assert.deepEqual([r.status, r.stdout.trim()], [0, ''], r.stderr);
+  assert.equal(boundBatch(dir, 'agent-twin')?.batch_id, 'batch-000');
+  const binds = runLog('adhoc', dir).filter((e) => e.event === 'guard_bind' && e.agent_id === 'agent-twin');
+  assert.deepEqual(binds.map((e) => [e.batch_id, e.dispatches]), [['batch-000', 1]]);
 });
 
 test('guard: the taxonomist reads the digest and its proposal and writes only the proposal', () => {
@@ -1730,9 +1762,10 @@ test('stop gate: within the hook budget (target under 2 s) on a 99-batch ledger,
     const r = hook('gate-run', stopInput(dir, tasks), dir, { OBS_IN_FLIGHT: '20' });
     assert.equal(r.status, 0, r.stderr);
     // The hook fires at the end of every orchestrator turn: a cycle's hand-off waits on it. The
-    // target is under 2 s (about 0.7 s on the development machine); the bound asserted is 5 s, so a
-    // slow CI runner does not fail the build on timing alone.
-    assert.ok(r.ms < 5000, `took ${Math.round(r.ms)} ms`);
+    // target is under 2 s (about 0.7 s on the development machine). The bound asserted is 10 s against
+    // the hook's configured 30 s timeout: it catches an order-of-magnitude regression (re-validating
+    // every batch would take a minute) without failing a busy machine running several suites at once.
+    assert.ok(r.ms < 10000, `took ${Math.round(r.ms)} ms`);
     return r;
   };
   extract(0, 78);

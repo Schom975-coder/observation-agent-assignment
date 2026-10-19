@@ -237,14 +237,17 @@ function checkSubject(raw: string, m: ParsedMessage, q: string, length: number):
 }
 
 // Whether the raw message, headers or body, names `name`: every word of the name is a whole word
-// of the message. Words are what the rollup's ownership resolver compares (nameTokens: case-folded,
-// apostrophes dropped, anything but letters and digits a separator, words of two or more
-// characters), so word order and punctuation do not matter: "Darron Giron" is named by a header
-// "Giron, Darron C". A name with no such word (empty, or initials only) names no one. An ownership
-// claim must name someone the message itself names (ARCHITECTURE.md 15.3). The words may come from
-// different people: "Kate Symes" passes in a message naming Kate Fraser and Mark Symes, and the
-// rollup's `claimant` then keeps both of them as a tie, so such a claim takes part in a conflict
-// only against a claim that names neither.
+// of the message. Words are nameTokens (src/metrics/rollup.ts: case-folded, apostrophes dropped,
+// anything but letters and digits a separator, words of two or more characters), the words the
+// rollup's matchClaim also compares, so word order and punctuation do not matter: "Darron Giron"
+// is named by a header "Giron, Darron C". A name with no such word (empty, or initials only) names
+// no one. The extraction validator checks the `person` of each ownership claim with it (the first
+// entry for a message of its batch, when the person is not empty): a claim must name someone the
+// message itself names (ARCHITECTURE.md 15.3). The words may come from different people: "Kate
+// Symes" passes in a message naming Kate Fraser and Mark Symes. Whom a claim names is decided
+// later, by matchClaim against the process's participants (ARCHITECTURE.md 4.1), where a claim of
+// two or more words needs two of them among one participant's names and addresses, so this one
+// matches neither of those two people.
 export function mentions(raw: string, message: ParsedMessage, name: string): boolean {
   const words = nameTokens(name);
   if (words.length === 0) return false;
